@@ -152,7 +152,8 @@ const schema = buildGraph([
 
   .side {
     border: 1px solid var(--line);
-    border-top: 3px solid var(--ink);
+    border-top: 1px solid var(--line);
+    border-radius: var(--r-lg);
     background: var(--paper-2);
     padding: var(--sp-4) var(--sp-5);
   }
@@ -162,7 +163,7 @@ const schema = buildGraph([
     letter-spacing: 0.05em;
     text-transform: uppercase;
     color: var(--ink);
-    font-weight: 800;
+    font-weight: 700;
     margin: 0 0 var(--sp-3);
   }
   .side__ways {
@@ -188,7 +189,7 @@ const schema = buildGraph([
   }
 
   .tips {
-    border-top: 3px solid var(--ink);
+    border-top: 1px solid var(--line);
     padding-top: var(--sp-4);
     font-size: 0.93rem;
     color: var(--ink-2);
@@ -196,7 +197,7 @@ const schema = buildGraph([
   .tips__head {
     font-family: var(--font-body);
     font-size: 0.78rem;
-    font-weight: 800;
+    font-weight: 700;
     letter-spacing: 0.05em;
     text-transform: uppercase;
     color: var(--ink);

@@ -92,7 +92,7 @@ const ogImageUrl = absoluteUrl(ogImage);
     <link rel="manifest" href="/site.webmanifest" />
     <link rel="sitemap" type="application/xml" href="/sitemap.xml" />
 
-    {schema && <script type="application/ld+json" set:html={JSON.stringify(schema)} />}
+    {schema && <script is:inline type="application/ld+json" set:html={JSON.stringify(schema)} />}
 
     <Analytics />
   </head>

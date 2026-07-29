@@ -572,7 +572,9 @@ const steps = [
 
   /* ---------------------------------------------------------- Fehler */
   .errors {
-    border: 3px solid #a02318;
+    border: 1px solid #d7a49e;
+    border-left: 4px solid #a02318;
+    border-radius: var(--r-md);
     background: #fdeeec;
     color: #7d1a12;
     padding: var(--sp-4) var(--sp-5);
@@ -593,7 +595,8 @@ const steps = [
   /* ----------------------------------------------------------- Schritte */
   .step {
     border: 1px solid var(--line);
-    border-top: 3px solid var(--ink);
+    border-top: 1px solid var(--line);
+    border-radius: var(--r-lg);
     background: var(--white);
     padding: var(--sp-5);
     margin: 0 0 var(--sp-5);
@@ -605,7 +608,7 @@ const steps = [
   .step > legend {
     font-family: var(--font-head);
     font-size: 1.3rem;
-    font-weight: 800;
+    font-weight: 700;
     letter-spacing: -0.02em;
     color: var(--ink);
     padding: 0 var(--sp-3);
@@ -618,7 +621,7 @@ const steps = [
     letter-spacing: 0.05em;
     text-transform: uppercase;
     color: var(--accent-text);
-    font-weight: 800;
+    font-weight: 700;
     margin-bottom: 0.2rem;
   }
   .step__hint {
@@ -634,7 +637,7 @@ const steps = [
     min-width: 0;
   }
   .subfield > legend {
-    font-weight: 800;
+    font-weight: 700;
     color: var(--ink);
     font-size: 1rem;
     letter-spacing: -0.012em;
@@ -648,7 +651,7 @@ const steps = [
   }
   .field > label {
     display: block;
-    font-weight: 800;
+    font-weight: 700;
     color: var(--ink);
     letter-spacing: -0.012em;
     margin-bottom: var(--sp-2);
@@ -678,8 +681,8 @@ const steps = [
     font-size: 1rem;
     padding: 0.7rem 0.85rem;
     /* 16px verhindert das automatische Zoomen auf iOS */
-    border: 2px solid var(--line-strong);
-    border-radius: 0;
+    border: 1px solid var(--line-strong);
+    border-radius: var(--r-md);
     background: var(--white);
     color: var(--ink);
     min-height: 3rem;
@@ -750,12 +753,12 @@ const steps = [
   }
   .choice__body {
     display: block;
-    border: 2px solid var(--line-strong);
-    border-radius: 0;
+    border: 1px solid var(--line-strong);
+    border-radius: var(--r-md);
     padding: 0.75rem 0.9rem;
     background: var(--white);
     min-height: 3rem;
-    transition: border-color 0.12s ease, background-color 0.12s ease;
+    transition: border-color 0.18s ease, background-color 0.18s ease;
   }
   .choice:hover .choice__body {
     border-color: var(--ink);

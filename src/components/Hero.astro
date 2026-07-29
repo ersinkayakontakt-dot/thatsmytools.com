@@ -13,11 +13,9 @@ import Todo from './Todo.astro';
  * (siehe CONTENT-TODO.md).
  */
 const trust = [
-  'Einschätzung nach Fotos oder Besichtigung',
-  'Vor Beginn steht schriftlich fest, was enthalten ist',
-  'Berlin und Berliner Umland',
-  'Auf Wunsch besenreine Übergabe',
-  'Diskreter Umgang, auch in schwierigen Lagen',
+  'Kostenlose Besichtigung',
+  'Klare Absprache vor Beginn',
+  'Diskret und auf Wunsch besenrein',
 ];
 ---
 
@@ -25,16 +23,16 @@ const trust = [
   <div class="wrap hero__inner">
     <div class="hero__text">
       <p class="hero__eyebrow">Berlin und Umland</p>
-      <h1>Entrümpelung, Auflösung und Umzug in Berlin</h1>
+      <h1>Entrümpelung und Umzug in Berlin – schnell, sauber, fair.</h1>
       <p class="hero__sub">
-        Schnell organisiert, diskret durchgeführt und auf Wunsch besenrein übergeben. Senden Sie uns
-        Fotos oder vereinbaren Sie eine kostenlose Besichtigung.
+        Wir helfen bei Entrümpelung, Haushaltsauflösung und Umzug – persönlich, verlässlich und ohne
+        unnötigen Druck. Senden Sie Fotos oder vereinbaren Sie eine kostenlose Besichtigung.
       </p>
 
       <div class="btn-row hero__actions">
         <a class="btn btn--primary" href={primaryCta.href} data-track="estimate_cta_click" data-track-location="hero">
           <Icon name="camera" size={19} />
-          Fotos senden & Einschätzung erhalten
+          Kostenlos anfragen
         </a>
         {
           phone.available ? (
@@ -110,8 +108,8 @@ const trust = [
 
 <style>
   .hero {
-    background: var(--white);
-    border-bottom: 3px solid var(--ink);
+    background: linear-gradient(120deg, var(--paper) 0%, var(--paper) 62%, var(--brand-tint) 100%);
+    border-bottom: 1px solid var(--line);
     position: relative;
     overflow: hidden;
   }
@@ -119,8 +117,8 @@ const trust = [
   /* Kein dekoratives Raster. Der Hero trägt eine kräftige Unterkante,
      die den Bereich abschließt wie eine Markierung auf dem Boden. */
   .hero {
-    border-bottom-width: 3px;
-    border-bottom-color: var(--ink);
+    border-bottom-width: 1px;
+    border-bottom-color: var(--line);
   }
 
   .hero__inner {
@@ -151,7 +149,8 @@ const trust = [
   .hero__eyebrow::before {
     content: '';
     width: 1.4rem;
-    height: 0.7rem;
+    height: 0.25rem;
+    border-radius: 999px;
     background: var(--accent);
   }
 
@@ -174,9 +173,10 @@ const trust = [
 
   /* ------------------------------------------------------ Ablauf-Panel */
   .hero__panel {
-    background: var(--paper-2);
+    background: rgba(255, 255, 255, 0.86);
     border: 1px solid var(--line);
-    border-top: 3px solid var(--accent);
+    border-top: 1px solid var(--line);
+    border-radius: var(--r-lg);
     padding: var(--sp-5);
     position: relative;
   }
@@ -184,7 +184,7 @@ const trust = [
   .hero__panel-head {
     font-family: var(--font-body);
     font-size: 0.78rem;
-    font-weight: 800;
+    font-weight: 700;
     letter-spacing: 0.05em;
     text-transform: uppercase;
     color: var(--ink);
@@ -211,7 +211,7 @@ const trust = [
     flex: none;
     width: 1.8rem;
     font-family: var(--font-head);
-    font-weight: 800;
+    font-weight: 700;
     font-size: 1.25rem;
     line-height: 1.15;
     letter-spacing: -0.04em;

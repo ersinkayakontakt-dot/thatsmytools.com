@@ -90,8 +90,11 @@ const isCurrent = (href: string) => (href === '/' ? path === '/' : path.startsWi
 
 <style>
   .site-header {
-    background: var(--white);
-    border-bottom: 3px solid var(--ink);
+    background: rgba(255, 253, 249, 0.96);
+    border-bottom: 1px solid var(--line);
+    position: sticky;
+    top: 0;
+    backdrop-filter: blur(12px);
     position: relative;
     z-index: 20;
   }
@@ -131,15 +134,16 @@ const isCurrent = (href: string) => (href === '/' ? path === '/' : path.startsWi
   }
   .logo__name {
     font-family: var(--font-head);
-    font-weight: 800;
+    font-weight: 700;
     font-size: 1.3rem;
     letter-spacing: -0.03em;
   }
   .logo__num {
     color: var(--white);
     background: var(--accent);
-    padding: 0 0.22em;
+    padding: 0.02em 0.22em;
     margin-left: 0.1em;
+    border-radius: var(--r-sm);
   }
   .logo__claim {
     font-size: 0.69rem;
@@ -225,7 +229,7 @@ const isCurrent = (href: string) => (href === '/' ? path === '/' : path.startsWi
     align-items: center;
     gap: 0.4rem;
     color: var(--ink);
-    font-weight: 800;
+    font-weight: 700;
     text-decoration: none;
     font-size: 0.95rem;
     white-space: nowrap;
@@ -253,7 +257,8 @@ const isCurrent = (href: string) => (href === '/' ? path === '/' : path.startsWi
     gap: 0.45rem;
     min-height: 2.75rem;
     padding: 0.5rem 0.7rem;
-    border: 2px solid var(--ink);
+    border: 1px solid var(--line-strong);
+    border-radius: var(--r-md);
     font-weight: 700;
     font-size: 0.9rem;
     color: var(--ink);
@@ -267,7 +272,7 @@ const isCurrent = (href: string) => (href === '/' ? path === '/' : path.startsWi
     width: 18px;
   }
   .menu__bars span {
-    height: 3px;
+    height: 2px;
     background: currentColor;
   }
   .menu[open] summary {
@@ -281,7 +286,9 @@ const isCurrent = (href: string) => (href === '/' ? path === '/' : path.startsWi
     top: calc(100% + 0.5rem);
     width: min(19rem, calc(100vw - 2rem));
     background: var(--white);
-    border: 2px solid var(--ink);
+    border: 1px solid var(--line);
+    border-radius: var(--r-lg);
+    box-shadow: 0 1rem 2.5rem rgba(23, 49, 58, 0.14);
     padding: var(--sp-4);
   }
   .menu__panel ul {
