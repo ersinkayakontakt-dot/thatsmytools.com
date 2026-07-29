@@ -491,20 +491,12 @@ const advantages = [
   .svc {
     height: 100%;
   }
+  /* Icons stehen frei, ohne umrandetes Kästchen */
   .sit__icon,
   .svc__icon {
-    display: grid;
-    place-items: center;
-    width: 2.5rem;
-    height: 2.5rem;
-    border: 1px solid var(--line-strong);
-    border-radius: var(--r-md);
+    display: block;
     color: var(--accent);
     margin-bottom: var(--sp-3);
-  }
-  .svc__icon {
-    width: 2.25rem;
-    height: 2.25rem;
   }
 
   /* ----------------------------------------------------- Aufwand-Check */
@@ -524,7 +516,7 @@ const advantages = [
     padding: var(--sp-5) var(--sp-5) var(--sp-5) 2.75rem;
     background: var(--paper-2);
     border: 1px solid var(--line);
-    border-radius: var(--r-md);
+    border-top: 3px solid var(--accent);
     counter-reset: cl;
   }
   .check__list li {
@@ -537,9 +529,13 @@ const advantages = [
   }
 
   /* ---------------------------------------------------------- Vorteile */
+  .adv {
+    border-top: 3px solid var(--ink);
+    padding-top: var(--sp-4);
+  }
   .adv h3 {
     margin: 0 0 var(--sp-2);
-    font-size: 1.08rem;
+    font-size: 1.06rem;
   }
   .adv p {
     margin: 0;
@@ -547,44 +543,40 @@ const advantages = [
     font-size: 0.97rem;
   }
   .adv__icon {
-    display: inline-grid;
-    place-items: center;
-    width: 2.25rem;
-    height: 2.25rem;
+    display: block;
     color: var(--accent);
-    border-bottom: 2px solid var(--accent);
     margin-bottom: var(--sp-3);
   }
 
   /* ------------------------------------------------------ Einsatzatlas */
   .atlas {
     border: 1px solid var(--line);
-    border-left: 4px solid var(--brand-3);
+    border-left: 6px solid var(--ink);
     background: var(--white);
     padding: var(--sp-5);
-    border-radius: 0 var(--r-md) var(--r-md) 0;
     max-width: 46rem;
   }
   .case__meta {
     display: block;
-    font-size: 0.8rem;
-    letter-spacing: 0.05em;
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.04em;
     text-transform: uppercase;
-    color: var(--ink-4);
+    color: var(--ink-3);
     margin-bottom: var(--sp-2);
   }
 
   /* ----------------------------------------------------- Preisfaktoren */
   .pf-item {
-    border-top: 2px solid var(--line-strong);
+    border-top: 3px solid var(--ink);
     padding-top: var(--sp-3);
   }
   .pf-item__weight {
-    font-size: 0.75rem;
-    letter-spacing: 0.08em;
+    font-size: 0.74rem;
+    letter-spacing: 0.05em;
     text-transform: uppercase;
-    color: var(--accent);
-    font-weight: 700;
+    color: var(--accent-text);
+    font-weight: 800;
   }
   .pf-item h3 {
     margin: var(--sp-1) 0 var(--sp-2);
@@ -613,8 +605,9 @@ const advantages = [
     font-size: 1.05rem;
   }
   .chip--plain {
-    opacity: 0.62;
+    color: var(--ink-3);
     border-style: dashed;
+    background: transparent;
   }
   .areas__note {
     font-size: 0.9rem;
@@ -639,7 +632,7 @@ const advantages = [
 
   /* ------------------------------------------------------- Bewertungen */
   .rev__stars {
-    color: var(--accent);
+    color: var(--accent-text);
     letter-spacing: 0.1em;
     margin: 0 0 var(--sp-2);
   }

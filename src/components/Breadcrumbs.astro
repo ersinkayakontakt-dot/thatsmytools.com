@@ -28,7 +28,7 @@ const last = items.length - 1;
 <style>
   .crumbs {
     border-bottom: 1px solid var(--line);
-    background: var(--white);
+    background: var(--paper-2);
     font-size: 0.86rem;
   }
   .crumbs ol {
@@ -49,11 +49,9 @@ const last = items.length - 1;
   }
   .crumbs li + li::before {
     content: '';
-    width: 0.32rem;
-    height: 0.32rem;
-    border-right: 1.5px solid var(--line-strong);
-    border-top: 1.5px solid var(--line-strong);
-    transform: rotate(45deg);
+    width: 0.5rem;
+    height: 2px;
+    background: var(--line-strong);
     flex: none;
   }
   .crumbs a {
@@ -68,12 +66,12 @@ const last = items.length - 1;
     padding-block: 0.3rem;
   }
   .crumbs a:hover {
-    color: var(--accent);
+    color: var(--accent-text);
     text-decoration: underline;
     text-underline-offset: 0.2em;
   }
   .crumbs [aria-current='page'] {
     color: var(--ink);
-    font-weight: 600;
+    font-weight: 700;
   }
 </style>

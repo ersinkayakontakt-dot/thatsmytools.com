@@ -126,19 +126,19 @@ const toc = guide.blocks.map((b) => ({
 
   .toc {
     border: 1px solid var(--line);
-    border-radius: var(--r-md);
+    border-top: 3px solid var(--ink);
     padding: var(--sp-4) var(--sp-5);
-    background: var(--white);
+    background: var(--paper-2);
     margin-bottom: var(--sp-6);
   }
   .toc__head {
     font-family: var(--font-body);
     font-size: 0.78rem;
-    letter-spacing: 0.09em;
+    letter-spacing: 0.05em;
     text-transform: uppercase;
-    color: var(--ink-3);
+    color: var(--ink);
     margin: 0 0 var(--sp-3);
-    font-weight: 700;
+    font-weight: 800;
   }
   .toc ol {
     margin: 0;
@@ -152,7 +152,7 @@ const toc = guide.blocks.map((b) => ({
     font-size: 0.85rem;
   }
   .toc a {
-    color: var(--brand-3);
+    color: var(--ink);
     text-decoration: none;
     font-size: 0.95rem;
   }
@@ -169,16 +169,17 @@ const toc = guide.blocks.map((b) => ({
   }
   .side-box {
     border: 1px solid var(--line);
-    border-radius: var(--r-md);
+    border-top: 3px solid var(--ink);
     padding: var(--sp-4) var(--sp-5);
     background: var(--white);
   }
   .side-box__head {
     font-family: var(--font-body);
     font-size: 0.78rem;
-    letter-spacing: 0.09em;
+    font-weight: 800;
+    letter-spacing: 0.05em;
     text-transform: uppercase;
-    color: var(--ink-3);
+    color: var(--ink);
     margin: 0 0 var(--sp-3);
   }
   .side-box ul {

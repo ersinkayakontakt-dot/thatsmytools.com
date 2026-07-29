@@ -137,8 +137,8 @@ const hoursNote = realValue(site.openingHoursNote);
 
 <style>
   .site-footer {
-    background: var(--brand);
-    color: #cfd9dd;
+    background: var(--ink);
+    color: var(--on-dark);
     padding-block: var(--sp-7) var(--sp-5);
     margin-top: var(--sp-8);
     font-size: 0.94rem;
@@ -163,27 +163,34 @@ const hoursNote = realValue(site.openingHoursNote);
   .footer-name {
     font-family: var(--font-head);
     font-size: 1.35rem;
-    font-weight: 700;
+    font-weight: 800;
+    letter-spacing: -0.03em;
     color: var(--white);
     margin: 0 0 var(--sp-2);
   }
   .footer-name span {
-    color: #e6a882;
+    color: var(--white);
+    background: var(--accent);
+    padding: 0 0.22em;
+    margin-left: 0.1em;
   }
   .footer-claim {
-    color: #b7c4c9;
+    color: var(--on-dark);
     margin-bottom: var(--sp-4);
     max-width: 24rem;
   }
 
   .footer-head {
+    display: inline-block;
     font-family: var(--font-body);
     font-size: 0.78rem;
-    letter-spacing: 0.1em;
+    letter-spacing: 0.05em;
     text-transform: uppercase;
-    color: #90a6ae;
+    color: var(--white);
     margin: 0 0 var(--sp-3);
-    font-weight: 700;
+    padding-bottom: 0.35rem;
+    border-bottom: 3px solid var(--accent);
+    font-weight: 800;
   }
 
   .footer-col ul {
@@ -195,7 +202,7 @@ const hoursNote = realValue(site.openingHoursNote);
     margin-bottom: 0.45rem;
   }
   .footer-col a {
-    color: #cfd9dd;
+    color: var(--on-dark);
     text-decoration: none;
   }
   .footer-col a:hover {
@@ -214,7 +221,11 @@ const hoursNote = realValue(site.openingHoursNote);
     align-items: center;
     gap: 0.55rem;
     margin-bottom: 0.5rem;
-    color: #cfd9dd;
+    color: var(--on-dark);
+  }
+  .footer-contact :global(svg) {
+    color: var(--on-dark-accent);
+    flex: none;
   }
   .footer-contact a {
     color: var(--white);
@@ -227,7 +238,7 @@ const hoursNote = realValue(site.openingHoursNote);
   }
 
   .footer-hours {
-    color: #9fb1b8;
+    color: var(--on-dark-mute);
     font-size: 0.88rem;
     max-width: 24rem;
   }
@@ -240,9 +251,9 @@ const hoursNote = realValue(site.openingHoursNote);
     gap: var(--sp-3);
     margin-top: var(--sp-7);
     padding-top: var(--sp-4);
-    border-top: 1px solid rgba(255, 255, 255, 0.14);
+    border-top: 1px solid rgba(255, 255, 255, 0.18);
     font-size: 0.88rem;
-    color: #9fb1b8;
+    color: var(--on-dark-mute);
   }
   .footer-legal {
     margin: 0;
@@ -260,7 +271,7 @@ const hoursNote = realValue(site.openingHoursNote);
   .footer-legal-links a {
     display: inline-block;
     padding-block: 0.35rem;
-    color: #cfd9dd;
+    color: var(--on-dark);
     text-decoration: none;
   }
   .footer-legal-links a:hover {

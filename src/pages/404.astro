@@ -79,19 +79,23 @@ const description = 'Diese Seite existiert nicht oder wurde verschoben.';
 
 <style>
   .code {
+    display: inline-block;
     font-family: var(--font-head);
-    font-size: clamp(3rem, 2rem + 6vw, 5.5rem);
+    font-size: clamp(2.5rem, 1.8rem + 4vw, 4rem);
     line-height: 1;
-    color: var(--line-strong);
-    margin: 0 0 var(--sp-3);
-    font-weight: 700;
+    letter-spacing: -0.04em;
+    color: var(--white);
+    background: var(--ink);
+    padding: 0.35rem 0.8rem;
+    margin: 0 0 var(--sp-4);
+    font-weight: 800;
   }
   .cols {
     display: grid;
     gap: var(--sp-5);
     margin-top: var(--sp-7);
     padding-top: var(--sp-5);
-    border-top: 1px solid var(--line);
+    border-top: 3px solid var(--ink);
   }
   @media (min-width: 44em) {
     .cols {
@@ -101,9 +105,10 @@ const description = 'Diese Seite existiert nicht oder wurde verschoben.';
   .cols h2 {
     font-family: var(--font-body);
     font-size: 0.78rem;
-    letter-spacing: 0.09em;
+    font-weight: 800;
+    letter-spacing: 0.05em;
     text-transform: uppercase;
-    color: var(--ink-3);
+    color: var(--ink);
     margin: 0 0 var(--sp-3);
   }
   .cols ul {

@@ -211,10 +211,41 @@ Auftragsverarbeiter und braucht einen Vertrag nach Art. 28 DSGVO.
 
 ---
 
-## 7. Schriften
+## 7. Gestaltung und Schriften
 
-Die Website nutzt System-Schriftstapel: eine Serifenschrift für
-Überschriften (Georgia und Verwandte), eine Systemschrift für Fließtext.
+Die visuelle Handschrift heißt intern **„Werkstatt & Signal"** und ist in
+`src/styles/global.css` als Token-Satz definiert. Tragende Entscheidungen:
+
+- Kühles Weiß und Betongrau als Flächen, kein cremefarbenes Papierweiß.
+- Tiefschwarz trägt die Struktur: Balken, Regeln, Rahmen. Keine Haarlinien
+  in warmem Grau.
+- Ein gesättigtes Arbeitsorange (`#d24507`), ausschließlich für Handlungen
+  und Markierungen. Nie flächig, nie dekorativ.
+- Durchgehend Grotesk, keine Serifen. Überschriften in 800 mit enger
+  Laufweite.
+- Radius 0. Kartenkanten sind eckig, oben trägt jede Karte einen kräftigen
+  Balken statt einer Schattenkante.
+- Keine Schatten, keine Verläufe, keine schwebenden Elemente.
+
+Der Akzent existiert in zwei Werten: `--accent` für Flächen und Rahmen,
+`--accent-text` für Text. Der Unterschied ist kaum sichtbar, sorgt aber
+dafür, dass kleiner Text auch auf Betongrau die 4,5:1 nach WCAG erreicht.
+
+Alles Visuelle hängt an diesen Tokens. Ein Wechsel der Handschrift betrifft
+`global.css` plus die Detailmotive in einigen Komponenten, aber weder
+Struktur noch Inhalt noch SEO.
+
+### Schriften
+
+Ein konkreter Grotesk-Stack aus Systemschriften, bewusst **ohne**
+`system-ui` an erster Stelle: Diese Kennung löst je nach Betriebssystem auf
+unterschiedlich breit laufende Schriften auf und verschiebt dadurch
+Zeilenumbrüche und die Breite der Kopfzeile. Der konkrete Stack liefert
+überall eine vergleichbare Grotesk.
+
+Für deutsche Komposita ist `hyphens: auto` gesetzt. Ohne Silbentrennung
+schieben Wörter wie „Auftragsverarbeitungsvertrag" schmale Spalten seitlich
+auf.
 
 Warum keine Webfont:
 

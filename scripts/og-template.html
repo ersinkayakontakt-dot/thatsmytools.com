@@ -14,58 +14,44 @@
       * { margin: 0; padding: 0; box-sizing: border-box; }
       html, body { width: 1200px; height: 630px; }
       body {
-        background: #17323d;
-        color: #faf8f4;
-        font-family: Georgia, 'Noto Serif', serif;
+        background: #ffffff;
+        color: #14171a;
+        font-family: system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
         position: relative;
         overflow: hidden;
       }
-      .grid {
-        position: absolute; inset: 0;
-        background-image:
-          linear-gradient(rgba(255,255,255,.055) 1px, transparent 1px),
-          linear-gradient(90deg, rgba(255,255,255,.055) 1px, transparent 1px);
-        background-size: 70px 70px;
-      }
-      .inner { position: relative; padding: 54px 80px; }
+      /* Signalkante oben, wie eine Markierung auf dem Boden */
+      .bar { height: 14px; background: #d24507; }
+      .inner { padding: 54px 80px; }
 
       .brandrow { display: flex; align-items: center; gap: 16px; }
       .mark { width: 46px; height: 46px; }
-      .brand { font-size: 33px; font-weight: 700; letter-spacing: -.01em; }
-      .brand span { color: #e6a882; }
+      .brand { font-size: 32px; font-weight: 800; letter-spacing: -.03em; }
+      .brand em { font-style: normal; background: #d24507; color: #fff; padding: 0 7px; margin-left: 3px; }
 
-      h1 { font-size: 60px; line-height: 1.1; letter-spacing: -.02em;
-           margin-top: 40px; max-width: 17ch; }
-      .accent { display: block; width: 96px; height: 6px; background: #a8451c; margin: 24px 0 20px; }
-      p { font-family: -apple-system, 'Segoe UI', Roboto, Arial, sans-serif;
-          font-size: 25px; color: #b7c4c9; max-width: 46ch; line-height: 1.45; }
+      h1 { font-size: 62px; font-weight: 800; line-height: 1.06; letter-spacing: -.035em;
+           margin-top: 44px; max-width: 17ch; }
+      p { font-size: 25px; color: #31383d; max-width: 44ch; line-height: 1.4; margin-top: 22px; }
 
-      /* Bewusst im normalen Fluss statt absolut positioniert: Text in
-         absolut positionierten Boxen wird beim Headless-Screenshot in
-         manchen Chromium-Builds nicht mitgezeichnet. */
-      .foot { margin-top: 44px;
-              display: flex; justify-content: space-between; align-items: baseline;
-              padding-top: 22px; border-top: 1px solid rgba(255,255,255,.18);
-              font-family: -apple-system, 'Segoe UI', Roboto, Arial, sans-serif;
-              font-size: 22px; color: #9db0b7; }
-      .foot strong { color: #faf8f4; font-weight: 600; }
+      .foot { margin-top: 40px; display: flex; justify-content: space-between; align-items: baseline;
+              padding-top: 22px; border-top: 3px solid #14171a;
+              font-size: 22px; font-weight: 600; color: #525a60; }
+      .foot strong { color: #14171a; font-weight: 800; letter-spacing: -.02em; }
     </style>
   </head>
   <body>
-    <div class="grid"></div>
-
+    <div class="bar"></div>
     <div class="inner">
       <div class="brandrow">
-        <svg class="mark" viewBox="0 0 32 32" fill="none" stroke="#e6a882" stroke-width="2.2"
-             stroke-linejoin="round" stroke-linecap="round">
-          <path d="M5 14 16 6l11 8v12a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1z" />
-          <path d="M12.5 27v-7h7v7" />
+        <svg class="mark" viewBox="0 0 32 32" fill="none" stroke="#14171a" stroke-width="2.6"
+             stroke-linejoin="miter" stroke-linecap="butt">
+          <path d="M4 13.5 16 5l12 8.5" />
+          <path d="M6.5 15v8.5h19V15" />
         </svg>
-        <div class="brand">Schnellhelfer<span>24</span></div>
+        <div class="brand">Schnellhelfer<em>24</em></div>
       </div>
 
       <h1>Entrümpelung, Auflösung und Umzug in Berlin</h1>
-      <span class="accent"></span>
       <p>Schnell organisiert, diskret durchgeführt und auf Wunsch besenrein übergeben.</p>
 
       <div class="foot">

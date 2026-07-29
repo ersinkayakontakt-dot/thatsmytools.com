@@ -242,36 +242,34 @@ const dayNames: Record<string, string> = {
     gap: var(--sp-4);
     padding: var(--sp-4) var(--sp-5);
     border: 1px solid var(--line);
-    border-radius: var(--r-md);
+    border-left: 6px solid var(--line-strong);
     background: var(--white);
     text-decoration: none;
-    color: var(--brand);
+    color: var(--ink);
     min-height: 4rem;
   }
   .way:hover {
-    border-color: var(--brand-3);
-    color: var(--brand);
+    border-color: var(--line-strong);
+    border-left-color: var(--ink);
+    color: var(--ink);
   }
   .way:hover strong {
-    color: var(--accent);
+    color: var(--accent-text);
   }
   .way--primary {
-    border-left: 4px solid var(--accent);
+    border-left-color: var(--accent);
   }
   .way__icon {
-    display: grid;
-    place-items: center;
-    width: 2.75rem;
-    height: 2.75rem;
+    display: block;
     flex: none;
-    border: 1px solid var(--line-strong);
-    border-radius: var(--r-md);
     color: var(--accent);
   }
   .way strong {
     display: block;
     font-size: 1.08rem;
     font-family: var(--font-head);
+    font-weight: 800;
+    letter-spacing: -0.015em;
   }
   .way small {
     display: block;
@@ -286,16 +284,17 @@ const dayNames: Record<string, string> = {
   }
   .side-box {
     border: 1px solid var(--line);
-    border-radius: var(--r-md);
+    border-top: 3px solid var(--ink);
     padding: var(--sp-4) var(--sp-5);
     background: var(--paper-2);
   }
   .side-box__head {
     font-family: var(--font-body);
     font-size: 0.78rem;
-    letter-spacing: 0.09em;
+    font-weight: 800;
+    letter-spacing: 0.05em;
     text-transform: uppercase;
-    color: var(--ink-3);
+    color: var(--ink);
     margin: 0 0 var(--sp-3);
   }
   .side-box > :last-child {

@@ -152,17 +152,17 @@ const schema = buildGraph([
 
   .side {
     border: 1px solid var(--line);
+    border-top: 3px solid var(--ink);
     background: var(--paper-2);
-    border-radius: var(--r-md);
     padding: var(--sp-4) var(--sp-5);
   }
   .side__head {
     font-family: var(--font-body);
     font-size: 0.78rem;
-    letter-spacing: 0.09em;
+    letter-spacing: 0.05em;
     text-transform: uppercase;
-    color: var(--ink-3);
-    font-weight: 700;
+    color: var(--ink);
+    font-weight: 800;
     margin: 0 0 var(--sp-3);
   }
   .side__ways {
@@ -188,7 +188,7 @@ const schema = buildGraph([
   }
 
   .tips {
-    border-top: 3px solid var(--brand);
+    border-top: 3px solid var(--ink);
     padding-top: var(--sp-4);
     font-size: 0.93rem;
     color: var(--ink-2);
@@ -196,9 +196,10 @@ const schema = buildGraph([
   .tips__head {
     font-family: var(--font-body);
     font-size: 0.78rem;
-    letter-spacing: 0.09em;
+    font-weight: 800;
+    letter-spacing: 0.05em;
     text-transform: uppercase;
-    color: var(--ink-3);
+    color: var(--ink);
     margin: 0 0 var(--sp-3);
   }
   .tips h2 + p,
@@ -217,7 +218,7 @@ const schema = buildGraph([
     color: var(--accent);
   }
   .tips strong {
-    color: var(--brand);
+    color: var(--ink);
   }
   .tips__link {
     margin-bottom: var(--sp-6);

@@ -156,7 +156,7 @@ const prep = [
 <style>
   .done {
     text-align: left;
-    border-bottom: 1px solid var(--line);
+    border-bottom: 3px solid var(--ink);
     padding-bottom: var(--sp-5);
     margin-bottom: var(--sp-6);
   }
@@ -165,9 +165,8 @@ const prep = [
     place-items: center;
     width: 3.25rem;
     height: 3.25rem;
-    border: 2px solid var(--ok);
-    color: var(--ok);
-    border-radius: 50%;
+    background: var(--ok);
+    color: var(--white);
     margin-bottom: var(--sp-4);
   }
   .done h1 {
@@ -177,7 +176,7 @@ const prep = [
   .recap {
     background: var(--paper-2);
     border: 1px solid var(--line);
-    border-radius: var(--r-md);
+    border-top: 3px solid var(--ink);
     padding: var(--sp-5);
     margin-bottom: var(--sp-6);
   }
@@ -201,10 +200,9 @@ const prep = [
   }
 
   .urgent {
-    background: var(--brand-tint);
-    border-left: 4px solid var(--brand);
+    background: var(--paper-2);
+    border-left: 6px solid var(--accent);
     padding: var(--sp-5);
-    border-radius: 0 var(--r-md) var(--r-md) 0;
     margin: var(--sp-6) 0;
   }
   .urgent h2 {

@@ -501,9 +501,8 @@ const steps = [
     margin-bottom: var(--sp-6);
   }
   .progress__bar {
-    height: 4px;
+    height: 5px;
     background: var(--paper-3);
-    border-radius: 2px;
     overflow: hidden;
   }
   .progress__fill {
@@ -529,25 +528,26 @@ const steps = [
     text-align: center;
   }
   .progress__num {
-    width: 1.5rem;
-    height: 1.5rem;
+    width: 1.6rem;
+    height: 1.6rem;
     display: grid;
     place-items: center;
-    border-radius: 50%;
-    border: 1px solid var(--line-strong);
-    font-size: 0.78rem;
-    font-weight: 700;
-    color: var(--ink-4);
+    border: 2px solid var(--line-strong);
+    font-size: 0.8rem;
+    font-weight: 800;
+    color: var(--ink-3);
     background: var(--white);
+    font-variant-numeric: tabular-nums;
   }
   .progress__label {
     font-size: 0.7rem;
-    color: var(--ink-4);
-    letter-spacing: 0.02em;
+    font-weight: 600;
+    color: var(--ink-3);
+    letter-spacing: 0.01em;
   }
   .progress__steps li[data-done] .progress__num {
-    background: var(--brand);
-    border-color: var(--brand);
+    background: var(--ink);
+    border-color: var(--ink);
     color: var(--white);
   }
   .progress__steps li[data-current] .progress__num {
@@ -572,11 +572,10 @@ const steps = [
 
   /* ---------------------------------------------------------- Fehler */
   .errors {
-    border: 2px solid #a02318;
+    border: 3px solid #a02318;
     background: #fdeeec;
     color: #7d1a12;
     padding: var(--sp-4) var(--sp-5);
-    border-radius: var(--r-md);
     margin-bottom: var(--sp-5);
   }
   .errors__head {
@@ -594,7 +593,7 @@ const steps = [
   /* ----------------------------------------------------------- Schritte */
   .step {
     border: 1px solid var(--line);
-    border-radius: var(--r-md);
+    border-top: 3px solid var(--ink);
     background: var(--white);
     padding: var(--sp-5);
     margin: 0 0 var(--sp-5);
@@ -606,8 +605,9 @@ const steps = [
   .step > legend {
     font-family: var(--font-head);
     font-size: 1.3rem;
-    font-weight: 700;
-    color: var(--brand);
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    color: var(--ink);
     padding: 0 var(--sp-3);
     margin-left: calc(var(--sp-3) * -1);
   }
@@ -615,10 +615,10 @@ const steps = [
     display: block;
     font-family: var(--font-body);
     font-size: 0.72rem;
-    letter-spacing: 0.1em;
+    letter-spacing: 0.05em;
     text-transform: uppercase;
-    color: var(--accent);
-    font-weight: 700;
+    color: var(--accent-text);
+    font-weight: 800;
     margin-bottom: 0.2rem;
   }
   .step__hint {
@@ -634,9 +634,10 @@ const steps = [
     min-width: 0;
   }
   .subfield > legend {
-    font-weight: 700;
-    color: var(--brand);
+    font-weight: 800;
+    color: var(--ink);
     font-size: 1rem;
+    letter-spacing: -0.012em;
     padding: 0;
     margin-bottom: var(--sp-3);
   }
@@ -647,16 +648,18 @@ const steps = [
   }
   .field > label {
     display: block;
-    font-weight: 700;
-    color: var(--brand);
+    font-weight: 800;
+    color: var(--ink);
+    letter-spacing: -0.012em;
     margin-bottom: var(--sp-2);
     font-size: 1rem;
   }
   .req {
-    font-weight: 400;
-    font-size: 0.78rem;
-    color: var(--ink-4);
+    font-weight: 600;
+    font-size: 0.76rem;
+    color: var(--accent-text);
     letter-spacing: 0.02em;
+    text-transform: uppercase;
   }
   .field__hint {
     font-size: 0.87rem;
@@ -675,11 +678,11 @@ const steps = [
     font-size: 1rem;
     padding: 0.7rem 0.85rem;
     /* 16px verhindert das automatische Zoomen auf iOS */
-    border: 1px solid var(--line-strong);
-    border-radius: var(--r-md);
+    border: 2px solid var(--line-strong);
+    border-radius: 0;
     background: var(--white);
     color: var(--ink);
-    min-height: 2.875rem;
+    min-height: 3rem;
   }
   textarea {
     resize: vertical;
@@ -697,7 +700,7 @@ const steps = [
   input:focus-visible,
   select:focus-visible,
   textarea:focus-visible {
-    border-color: var(--accent);
+    border-color: var(--ink);
   }
   [aria-invalid='true'] {
     border-color: #a02318;
@@ -747,20 +750,19 @@ const steps = [
   }
   .choice__body {
     display: block;
-    border: 1px solid var(--line-strong);
-    border-radius: var(--r-md);
+    border: 2px solid var(--line-strong);
+    border-radius: 0;
     padding: 0.75rem 0.9rem;
     background: var(--white);
-    min-height: 2.875rem;
+    min-height: 3rem;
     transition: border-color 0.12s ease, background-color 0.12s ease;
   }
   .choice:hover .choice__body {
-    border-color: var(--brand-3);
+    border-color: var(--ink);
   }
   .choice input:checked + .choice__body {
     border-color: var(--accent);
     background: var(--accent-tint);
-    box-shadow: inset 0 0 0 1px var(--accent);
   }
   .choice input:focus-visible + .choice__body {
     outline: 3px solid var(--accent);
@@ -776,7 +778,7 @@ const steps = [
     align-items: center;
     gap: 0.35rem;
     font-weight: 700;
-    color: var(--brand);
+    color: var(--ink);
     font-size: 0.97rem;
   }
   .choice__hint {
@@ -788,7 +790,6 @@ const steps = [
   }
   .choice--pill .choice__body {
     padding: 0.6rem 1rem;
-    border-radius: 999px;
   }
   .choice--row .choice__body {
     display: flex;
@@ -801,9 +802,8 @@ const steps = [
     width: 100%;
     font: inherit;
     font-size: 0.95rem;
-    padding: 0.6rem;
-    border: 1px dashed var(--line-strong);
-    border-radius: var(--r-md);
+    padding: 0.7rem;
+    border: 2px dashed var(--line-strong);
     background: var(--paper-2);
   }
   .filelist {
@@ -847,17 +847,17 @@ const steps = [
   /* ---------------------------------------------------- Zusammenfassung */
   .summary {
     border: 1px solid var(--line);
+    border-left: 6px solid var(--ink);
     background: var(--paper-2);
-    border-radius: var(--r-md);
     padding: var(--sp-4);
     margin-bottom: var(--sp-5);
   }
   .summary__head {
     font-size: 0.75rem;
-    letter-spacing: 0.09em;
+    letter-spacing: 0.05em;
     text-transform: uppercase;
-    color: var(--ink-3);
-    font-weight: 700;
+    color: var(--ink);
+    font-weight: 800;
     margin: 0 0 var(--sp-3);
   }
   .summary dl {
@@ -883,7 +883,7 @@ const steps = [
     gap: var(--sp-3);
     margin-top: var(--sp-5);
     padding-top: var(--sp-4);
-    border-top: 1px solid var(--line);
+    border-top: 1px solid var(--line-strong);
   }
   .nav-row .btn {
     flex: 1 1 auto;

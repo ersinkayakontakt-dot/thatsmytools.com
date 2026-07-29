@@ -1,58 +1,83 @@
 /* ==========================================================================
-   SCHNELLHELFER24 – DESIGNSYSTEM
+   SCHNELLHELFER24 – DESIGNSYSTEM  "Werkstatt & Signal"
    ==========================================================================
 
-   Gestaltungsabsicht: bodenständig, handwerklich, ruhig, gut lesbar.
-   Bewusst vermieden: leuchtende Verläufe, Glaseffekte, schwebende Karten,
-   überall abgerundete Kacheln, SaaS-Ästhetik.
+   Gestaltungsabsicht: Handwerk, Transporter, Baustelle. Sachlich, laut genug,
+   wo es um Handlung geht, und sonst ruhig. Die Seite soll aussehen wie von
+   einem Betrieb, der arbeitet, nicht wie ein Magazin.
 
-   Stattdessen: warmes Papierweiß, ein tiefes Petrol als Hauptfarbe, ein
-   warmes Ziegelrot für Handlungen, dünne Linien, die an Grundrisse und
-   Kartons erinnern, Serifen in den Überschriften für einen redaktionellen,
-   nicht werblichen Ton.
+   Tragende Entscheidungen:
+   - Kühles Weiß und Betongrau als Flächen. Kein cremefarbenes Papierweiß.
+   - Tiefschwarz als Struktur: Balken, Regeln, Rahmen. Keine Haarlinien in
+     warmem Grau.
+   - Ein gesättigtes Arbeitsorange, ausschließlich für Handlungen und
+     Markierungen. Nie flächig, nie dekorativ.
+   - Durchgehend Grotesk, keine Serifen. Überschriften schwer und eng
+     gesetzt.
+   - Eckige Kanten. Radius 0, außer wo eine Form es zwingend braucht.
+   - Keine Schatten, keine Verläufe, keine schwebenden Elemente.
 
    Schriften: bewusst System-Stacks. Kein externer Font-Dienst, keine
    Webfont-Downloads, keine Layoutverschiebung beim Laden, kein
-   Datenschutzproblem. Wenn später eine eigene Hausschrift kommt, wird sie
-   selbst gehostet (siehe docs/ARCHITEKTUR.md).
+   Datenschutzproblem. Siehe docs/ARCHITEKTUR.md, Abschnitt 7.
+
+   Kontraste: Alle Farbpaare sind gegen WCAG 2.2 AA geprüft. Der Akzent
+   existiert in zwei Werten: --accent für Flächen und Rahmen, --accent-text
+   für Text. Der Unterschied ist mit bloßem Auge kaum sichtbar, sorgt aber
+   dafür, dass kleiner Text auch auf Betongrau die 4,5:1 erreicht.
    ========================================================================== */
 
 /* ---------------------------------------------------------------- Tokens */
 :root {
-  /* Farben */
-  --ink: #1b1a17;
-  --ink-2: #3d3a34;
-  --ink-3: #635e55;
-  /* #6b665c statt eines helleren Grautons: erreicht auch bei kleinen
-     Schriftgraden mindestens 4.5:1 auf allen Flächenfarben. */
-  --ink-4: #6b665c;
+  /* Text */
+  --ink: #14171a;
+  --ink-2: #31383d;
+  --ink-3: #525a60;
+  --ink-4: #5f676d;
 
-  --paper: #faf8f4;
-  --paper-2: #f2eee7;
-  --paper-3: #e6e0d6;
-  --line: #d9d2c6;
-  --line-strong: #bdb4a4;
+  /* Flächen */
+  --paper: #ffffff;
+  --paper-2: #eef0f1;
+  --paper-3: #dde2e5;
 
-  --brand: #17323d;
-  --brand-2: #1f4655;
-  --brand-3: #2d6072;
-  --brand-tint: #e8eef0;
+  /* Linien */
+  --line: #d5dadd;
+  --line-strong: #9aa3a9;
 
-  --accent: #a8451c;
-  --accent-2: #8c3915;
-  --accent-tint: #fbeee7;
+  /* Struktur: Schwarz trägt den Aufbau, nicht eine Markenfarbe */
+  --brand: #14171a;
+  --brand-2: #22282c;
+  --brand-3: #14171a;
+  --brand-tint: #eef0f1;
 
-  --ok: #2f5d3a;
-  --ok-tint: #e9f1ea;
-  --warn: #7a5310;
-  --warn-tint: #faf1de;
+  /* Handlung */
+  --accent: #d24507;
+  --accent-2: #a83606;
+  --accent-text: #c23e07;
+  --accent-tint: #fff1ea;
+
+  /* Auf schwarzem Grund */
+  --on-dark: #c9cfd3;
+  --on-dark-mute: #a8b1b7;
+  --on-dark-accent: #ffa06b;
+
+  --ok: #1f6b3a;
+  --ok-tint: #e8f2eb;
+  --warn: #8a5a00;
+  --warn-tint: #fff6e0;
+  --note-yellow: #ffefb8;
 
   --white: #ffffff;
 
-  /* Typografie */
-  --font-head: Georgia, 'Iowan Old Style', 'Palatino Linotype', 'Book Antiqua', 'Noto Serif', serif;
-  --font-body: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial,
-    'Noto Sans', sans-serif;
+  /* Typografie: eine Grotesk-Familie, Unterschiede nur über Gewicht und
+     Laufweite. Bewusst KEIN `system-ui` an erster Stelle: das löst je nach
+     Betriebssystem auf unterschiedlich breit laufende Schriften auf und
+     verschiebt dadurch Umbrüche und Kopfzeilenbreiten. Der konkrete Stack
+     liefert überall eine vergleichbare Grotesk. */
+  --font-head: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
+    'Helvetica Neue', Arial, 'Noto Sans', sans-serif;
+  --font-body: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
+    'Helvetica Neue', Arial, 'Noto Sans', sans-serif;
   --font-mono: ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, monospace;
 
   /* Maße */
@@ -70,11 +95,16 @@
   --sp-8: 4rem;
   --sp-9: 6rem;
 
-  --r-sm: 2px;
-  --r-md: 4px;
-  --r-lg: 6px;
+  /* Eckige Kanten. Der Radius bleibt als Token bestehen, damit sich die
+     Entscheidung an einer Stelle zurücknehmen lässt. */
+  --r-sm: 0;
+  --r-md: 0;
+  --r-lg: 0;
 
-  /* Höhe der mobilen Aktionsleiste, damit nichts verdeckt wird */
+  /* Linienstärken */
+  --rule: 1px;
+  --rule-strong: 3px;
+
   --stickybar-h: 3.75rem;
 }
 
@@ -109,12 +139,15 @@ body {
   color: var(--ink);
   font-family: var(--font-body);
   font-size: 1.0625rem;
-  line-height: 1.65;
+  line-height: 1.6;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
+  /* Deutsche Komposita wie "Auftragsverarbeitungsvertrag" sind länger als
+     eine schmale Spalte. Ohne Trennung schieben sie die Seite seitlich auf. */
+  hyphens: auto;
+  overflow-wrap: break-word;
 }
 
-/* Platz für die mobile Aktionsleiste */
 @media (max-width: 47.99em) {
   body {
     padding-bottom: var(--stickybar-h);
@@ -129,35 +162,39 @@ video {
   display: block;
 }
 
-/* ------------------------------------------------------------ Typografie */
+/* ------------------------------------------------------------ Typografie
+   Schwere Schnitte, enge Laufweite. Das ist der stärkste Unterschied zur
+   redaktionellen Anmutung: keine Serife, kein luftiger Satz.             */
 h1,
 h2,
 h3,
 h4 {
   font-family: var(--font-head);
-  font-weight: 700;
-  line-height: 1.18;
-  color: var(--brand);
+  font-weight: 800;
+  line-height: 1.1;
+  color: var(--ink);
   margin: 0 0 var(--sp-4);
-  letter-spacing: -0.01em;
+  letter-spacing: -0.022em;
   text-wrap: balance;
+  hyphens: manual;
 }
 
 h1 {
-  font-size: clamp(1.85rem, 1.35rem + 2.1vw, 3rem);
+  font-size: clamp(1.95rem, 1.35rem + 2.4vw, 3.15rem);
 }
 h2 {
-  font-size: clamp(1.45rem, 1.15rem + 1.3vw, 2.05rem);
+  font-size: clamp(1.5rem, 1.18rem + 1.4vw, 2.15rem);
   margin-top: var(--sp-7);
 }
 h3 {
-  font-size: clamp(1.15rem, 1.02rem + 0.6vw, 1.4rem);
+  font-size: clamp(1.15rem, 1.03rem + 0.55vw, 1.38rem);
   margin-top: var(--sp-6);
+  letter-spacing: -0.015em;
 }
 h4 {
   font-size: 1.0625rem;
-  font-family: var(--font-body);
   font-weight: 700;
+  letter-spacing: -0.01em;
   margin-top: var(--sp-5);
 }
 
@@ -169,13 +206,13 @@ p {
 ul,
 ol {
   margin: 0 0 var(--sp-4);
-  padding-left: 1.25rem;
+  padding-left: 1.2rem;
 }
 li {
   margin-bottom: var(--sp-2);
 }
 li::marker {
-  color: var(--ink-4);
+  color: var(--accent);
 }
 
 strong {
@@ -187,24 +224,28 @@ small {
   font-size: 0.875rem;
 }
 
+/* Links tragen die Textfarbe und werden durch die Linie erkennbar, nicht
+   durch eine eigene Farbe. Das hält den Satz ruhig. */
 a {
-  color: var(--brand-3);
-  text-decoration-thickness: 1px;
-  text-underline-offset: 0.2em;
+  color: var(--ink);
+  text-decoration-thickness: 2px;
+  text-underline-offset: 0.18em;
+  text-decoration-color: var(--accent);
 }
 a:hover {
-  color: var(--accent);
+  color: var(--accent-text);
+  text-decoration-color: currentColor;
 }
 
 :focus-visible {
   outline: 3px solid var(--accent);
   outline-offset: 2px;
-  border-radius: var(--r-sm);
+  border-radius: 0;
 }
 
 hr {
   border: 0;
-  border-top: 1px solid var(--line);
+  border-top: var(--rule-strong) solid var(--ink);
   margin: var(--sp-7) 0;
 }
 
@@ -237,46 +278,43 @@ abbr[title] {
   background: var(--paper-2);
 }
 .section--brand {
-  background: var(--brand);
-  color: var(--paper);
+  background: var(--ink);
+  color: var(--on-dark);
 }
 .section--brand h2,
 .section--brand h3 {
   color: var(--white);
 }
 .section--brand a:not(.btn) {
-  color: #a9d2de;
+  color: var(--white);
+  text-decoration-color: var(--on-dark-accent);
+}
+.section--brand a:not(.btn):hover {
+  color: var(--on-dark-accent);
 }
 
-/* Kicker über Überschriften: ordnet den Abschnitt ein */
+/* Kicker: kein gesperrter Kleinsatz mit Trennlinie, sondern eine kurze
+   Marke mit Signalbalken darunter. */
 .kicker {
+  display: inline-block;
   font-family: var(--font-body);
-  font-size: 0.78rem;
-  font-weight: 700;
-  letter-spacing: 0.11em;
+  font-size: 0.8rem;
+  font-weight: 800;
+  letter-spacing: 0.045em;
   text-transform: uppercase;
-  color: var(--accent);
-  margin: 0 0 var(--sp-2);
-  display: flex;
-  align-items: center;
-  gap: var(--sp-3);
-}
-.kicker::after {
-  content: '';
-  flex: 1;
-  height: 1px;
-  background: var(--line);
+  color: var(--ink);
+  margin: 0 0 var(--sp-3);
+  padding-bottom: 0.4rem;
+  border-bottom: var(--rule-strong) solid var(--accent);
 }
 .section--brand .kicker {
-  color: #e6a882;
-}
-.section--brand .kicker::after {
-  background: rgba(255, 255, 255, 0.18);
+  color: var(--white);
+  border-bottom-color: var(--on-dark-accent);
 }
 
 .lede {
-  font-size: 1.15rem;
-  line-height: 1.6;
+  font-size: 1.12rem;
+  line-height: 1.55;
   color: var(--ink-2);
   max-width: 42rem;
 }
@@ -311,7 +349,9 @@ abbr[title] {
   }
 }
 
-/* --------------------------------------------------------------- Buttons */
+/* --------------------------------------------------------------- Buttons
+   Eckig, kräftiger Rahmen, kein Radius. Weiß auf Orange erreicht 4,57:1
+   und ist damit auch für fetten 16-px-Text ausreichend.                 */
 .btn {
   display: inline-flex;
   align-items: center;
@@ -321,14 +361,14 @@ abbr[title] {
   font-size: 1rem;
   font-weight: 700;
   line-height: 1.2;
-  /* Touch-Ziel mindestens 44px hoch */
-  min-height: 2.875rem;
-  padding: 0.7rem 1.35rem;
+  letter-spacing: -0.005em;
+  min-height: 3rem;
+  padding: 0.75rem 1.4rem;
   border: 2px solid transparent;
-  border-radius: var(--r-md);
+  border-radius: 0;
   cursor: pointer;
   text-decoration: none;
-  transition: background-color 0.15s ease, border-color 0.15s ease, color 0.15s ease;
+  transition: background-color 0.12s ease, border-color 0.12s ease, color 0.12s ease;
 }
 
 .btn--primary {
@@ -344,22 +384,23 @@ abbr[title] {
 
 .btn--secondary {
   background: transparent;
-  border-color: var(--brand);
-  color: var(--brand);
+  border-color: var(--ink);
+  color: var(--ink);
 }
 .btn--secondary:hover {
-  background: var(--brand);
+  background: var(--ink);
   color: var(--white);
 }
 
 .btn--onbrand {
   background: var(--white);
   border-color: var(--white);
-  color: var(--brand);
+  color: var(--ink);
 }
 .btn--onbrand:hover {
-  background: var(--paper-2);
-  color: var(--brand);
+  background: var(--accent);
+  border-color: var(--accent);
+  color: var(--white);
 }
 
 .btn--ghost {
@@ -368,8 +409,8 @@ abbr[title] {
   color: var(--ink-2);
 }
 .btn--ghost:hover {
-  border-color: var(--brand);
-  color: var(--brand);
+  border-color: var(--ink);
+  color: var(--ink);
 }
 
 .btn--wide {
@@ -388,14 +429,15 @@ abbr[title] {
   gap: var(--sp-3);
 }
 
-/* ----------------------------------------------------------- Kartenmotiv
-   Kein Schatten, keine schwebenden Elemente. Stattdessen eine klare Linie
-   und eine kleine Ecke, die an eine Grundrisszeichnung erinnert.          */
+/* ---------------------------------------------------------- Kartenmotiv
+   Kein Schatten, kein Radius, keine Grundriss-Ecken. Stattdessen ein
+   kräftiger Balken oben, wie eine Beschriftung an einer Kiste.         */
 .card {
   position: relative;
   background: var(--white);
-  border: 1px solid var(--line);
-  border-radius: var(--r-md);
+  border: var(--rule) solid var(--line);
+  border-top: var(--rule-strong) solid var(--ink);
+  border-radius: 0;
   padding: var(--sp-5);
 }
 .card > :last-child {
@@ -409,74 +451,60 @@ abbr[title] {
   display: block;
   color: inherit;
   text-decoration: none;
-  transition: border-color 0.15s ease, background-color 0.15s ease;
+  transition: border-color 0.12s ease, background-color 0.12s ease;
 }
 .card--link:hover {
-  border-color: var(--brand-3);
+  border-color: var(--line-strong);
+  border-top-color: var(--accent);
   background: var(--white);
   color: inherit;
 }
 .card--link:hover .card__title {
-  color: var(--accent);
-  text-decoration: underline;
-  text-underline-offset: 0.2em;
+  color: var(--accent-text);
 }
 
-/* display:block, damit die Bausteine auch als <span> innerhalb eines
-   verlinkten Kartenelements als eigene Zeilen stehen. */
 .card__title {
   display: block;
   font-family: var(--font-head);
-  font-size: 1.15rem;
-  font-weight: 700;
-  color: var(--brand);
+  font-size: 1.12rem;
+  font-weight: 800;
+  letter-spacing: -0.017em;
+  color: var(--ink);
   margin: 0 0 var(--sp-2);
-  line-height: 1.25;
+  line-height: 1.22;
 }
 .card__text {
   display: block;
   margin: 0;
   color: var(--ink-2);
-  font-size: 0.98rem;
+  font-size: 0.97rem;
   line-height: 1.5;
 }
 .card__more {
   display: inline-block;
   margin-top: var(--sp-3);
-  font-size: 0.92rem;
+  font-size: 0.9rem;
   font-weight: 700;
-  color: var(--accent);
+  color: var(--accent-text);
+}
+.card__more::after {
+  content: ' →';
 }
 
-/* Grundriss-Ecken: dezenter, wiederkehrender Detailakzent */
-.card--plan::before,
-.card--plan::after {
-  content: '';
-  position: absolute;
-  width: 12px;
-  height: 12px;
-  border: 2px solid var(--line-strong);
-  pointer-events: none;
-}
-.card--plan::before {
-  top: -1px;
-  left: -1px;
-  border-right: 0;
-  border-bottom: 0;
-}
-.card--plan::after {
-  bottom: -1px;
-  right: -1px;
-  border-left: 0;
-  border-top: 0;
+/* Die Variante hebt den oberen Balken auf Signalfarbe an. Sie ersetzt die
+   frühere Grundriss-Ecke und trägt denselben Klassennamen weiter, damit
+   die Seiten unverändert bleiben. */
+.card--plan {
+  border-top-color: var(--accent);
 }
 
 /* ------------------------------------------------------------ Hinweisbox */
 .note {
-  border-left: 3px solid var(--brand-3);
-  background: var(--brand-tint);
+  border: var(--rule) solid var(--line);
+  border-left: 6px solid var(--ink);
+  background: var(--paper-2);
   padding: var(--sp-4) var(--sp-5);
-  border-radius: 0 var(--r-md) var(--r-md) 0;
+  border-radius: 0;
   margin: var(--sp-5) 0;
 }
 .note > :last-child {
@@ -484,77 +512,69 @@ abbr[title] {
 }
 .note__title {
   font-family: var(--font-body);
-  font-weight: 700;
+  font-weight: 800;
   font-size: 0.95rem;
+  letter-spacing: 0.01em;
   margin: 0 0 var(--sp-2);
-  color: var(--brand);
+  color: var(--ink);
 }
 .note--caution {
-  border-left-color: var(--warn);
+  border-left-color: var(--accent);
   background: var(--warn-tint);
+  border-color: var(--warn-tint);
 }
 .note--caution .note__title {
   color: var(--warn);
 }
 
-/* Notizzettel für echte Einsatzdaten: leicht gedreht, wirkt handgemacht */
+/* Notizzettel für echte Einsatzdaten. Signalgelb statt Cremeton, minimal
+   schief, damit die Seite eine handgemachte Stelle behält. */
 .memo {
-  background: #fdf6e3;
-  border: 1px solid #e7dcc0;
+  background: var(--note-yellow);
+  border: 2px solid var(--ink);
   padding: var(--sp-4) var(--sp-5);
-  border-radius: var(--r-sm);
-  transform: rotate(-0.5deg);
-  font-size: 0.95rem;
+  transform: rotate(-0.4deg);
+  font-size: 0.96rem;
+  color: var(--ink);
 }
 .memo > :last-child {
   margin-bottom: 0;
 }
 
-/* --------------------------------------------------------------- Schritte */
+/* --------------------------------------------------------------- Schritte
+   Große Ziffern statt eingekreister Zahlen mit Verbindungslinie.       */
 .steps {
   list-style: none;
   margin: var(--sp-5) 0;
   padding: 0;
   counter-reset: step;
+  border-top: var(--rule) solid var(--line);
 }
 .steps > li {
   counter-increment: step;
   position: relative;
-  padding-left: 3.25rem;
-  padding-bottom: var(--sp-5);
+  display: grid;
+  grid-template-columns: 2.75rem 1fr;
+  gap: var(--sp-4);
+  padding: var(--sp-4) 0;
   margin: 0;
+  border-bottom: var(--rule) solid var(--line);
 }
 .steps > li::before {
-  content: counter(step);
-  position: absolute;
-  left: 0;
-  top: 0;
-  width: 2.25rem;
-  height: 2.25rem;
-  display: grid;
-  place-items: center;
+  content: counter(step, decimal-leading-zero);
   font-family: var(--font-head);
-  font-weight: 700;
-  font-size: 1.05rem;
-  color: var(--brand);
-  background: var(--white);
-  border: 2px solid var(--brand);
-  border-radius: 50%;
-}
-/* Verbindungslinie zwischen den Schritten */
-.steps > li:not(:last-child)::after {
-  content: '';
-  position: absolute;
-  left: 1.125rem;
-  top: 2.5rem;
-  bottom: 0.35rem;
-  width: 1px;
-  background: var(--line-strong);
+  font-weight: 800;
+  font-size: 1.35rem;
+  line-height: 1.1;
+  letter-spacing: -0.04em;
+  color: var(--accent-text);
+  font-variant-numeric: tabular-nums;
 }
 .steps__title {
   display: block;
-  font-weight: 700;
-  color: var(--brand);
+  font-weight: 800;
+  color: var(--ink);
+  letter-spacing: -0.012em;
   margin-bottom: var(--sp-1);
 }
 .steps p {
@@ -566,8 +586,8 @@ abbr[title] {
 .table-scroll {
   overflow-x: auto;
   margin: var(--sp-5) 0;
-  border: 1px solid var(--line);
-  border-radius: var(--r-md);
+  border: var(--rule) solid var(--line);
+  border-top: var(--rule-strong) solid var(--ink);
   background: var(--white);
 }
 table {
@@ -580,23 +600,23 @@ caption {
   caption-side: top;
   text-align: left;
   padding: var(--sp-3) var(--sp-4);
-  font-size: 0.88rem;
+  font-size: 0.87rem;
   color: var(--ink-3);
-  border-bottom: 1px solid var(--line);
+  border-bottom: var(--rule) solid var(--line);
 }
 th,
 td {
   text-align: left;
   padding: 0.7rem var(--sp-4);
-  border-bottom: 1px solid var(--line);
+  border-bottom: var(--rule) solid var(--line);
   vertical-align: top;
 }
 th {
-  font-weight: 700;
-  color: var(--brand);
+  font-weight: 800;
+  color: var(--ink);
   background: var(--paper-2);
-  font-size: 0.88rem;
-  letter-spacing: 0.02em;
+  font-size: 0.85rem;
+  letter-spacing: 0.01em;
 }
 tbody tr:last-child td {
   border-bottom: 0;
@@ -604,13 +624,13 @@ tbody tr:last-child td {
 
 /* ---------------------------------------------------- Direkte Kurzantwort
    Der wichtigste Absatz jeder Seite. Steht direkt unter der H1 und ist so
-   formuliert, dass er eigenständig zitiert werden kann.                   */
+   formuliert, dass er eigenständig zitiert werden kann.                 */
 .answer {
-  border-left: 4px solid var(--accent);
-  padding: var(--sp-4) 0 var(--sp-4) var(--sp-5);
+  border-left: 6px solid var(--accent);
+  padding: var(--sp-2) 0 var(--sp-2) var(--sp-5);
   margin: 0 0 var(--sp-6);
   font-size: 1.1rem;
-  line-height: 1.6;
+  line-height: 1.55;
   color: var(--ink);
   max-width: 44rem;
 }
@@ -620,17 +640,18 @@ tbody tr:last-child td {
 
 /* ------------------------------------------------------------------- FAQ */
 .faq {
-  border-top: 1px solid var(--line);
+  border-top: var(--rule-strong) solid var(--ink);
 }
 .faq details {
-  border-bottom: 1px solid var(--line);
+  border-bottom: var(--rule) solid var(--line);
 }
 .faq summary {
   cursor: pointer;
-  padding: var(--sp-4) 2.25rem var(--sp-4) 0;
+  padding: var(--sp-4) 2.5rem var(--sp-4) 0;
   font-weight: 700;
-  color: var(--brand);
+  color: var(--ink);
   font-size: 1.03rem;
+  letter-spacing: -0.012em;
   list-style: none;
   position: relative;
   min-height: 2.75rem;
@@ -640,23 +661,34 @@ tbody tr:last-child td {
 .faq summary::-webkit-details-marker {
   display: none;
 }
+/* Plus, das zum Minus wird. Deutlicher als ein Pfeil und passt zum
+   technischen Duktus. */
+.faq summary::before,
 .faq summary::after {
   content: '';
   position: absolute;
-  right: 0.4rem;
+  right: 0.35rem;
   top: 50%;
-  width: 0.6rem;
-  height: 0.6rem;
-  border-right: 2px solid var(--accent);
-  border-bottom: 2px solid var(--accent);
-  transform: translateY(-70%) rotate(45deg);
-  transition: transform 0.15s ease;
+  background: var(--accent);
+  transition: transform 0.15s ease, opacity 0.15s ease;
+}
+.faq summary::before {
+  width: 0.85rem;
+  height: 3px;
+  transform: translateY(-50%);
+}
+.faq summary::after {
+  width: 3px;
+  height: 0.85rem;
+  right: 0.76rem;
+  transform: translateY(-50%);
 }
 .faq details[open] summary::after {
-  transform: translateY(-25%) rotate(225deg);
+  opacity: 0;
+  transform: translateY(-50%) rotate(90deg);
 }
 .faq summary:hover {
-  color: var(--accent);
+  color: var(--accent-text);
 }
 .faq__answer {
   padding: 0 0 var(--sp-5);
@@ -672,9 +704,8 @@ tbody tr:last-child td {
   display: grid;
   gap: 0;
   margin: var(--sp-5) 0;
-  border: 1px solid var(--line);
-  border-radius: var(--r-md);
-  overflow: hidden;
+  border: var(--rule) solid var(--line);
+  border-top: var(--rule-strong) solid var(--ink);
   background: var(--white);
 }
 @media (min-width: 40em) {
@@ -684,14 +715,15 @@ tbody tr:last-child td {
 }
 .facts__item {
   padding: var(--sp-3) var(--sp-4);
-  border-bottom: 1px solid var(--line);
+  border-bottom: var(--rule) solid var(--line);
 }
 .facts__label {
   display: block;
-  font-size: 0.78rem;
-  letter-spacing: 0.06em;
+  font-size: 0.76rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
   text-transform: uppercase;
-  color: var(--ink-4);
+  color: var(--ink-3);
   margin-bottom: 0.15rem;
 }
 .facts__value {
@@ -713,17 +745,19 @@ tbody tr:last-child td {
 }
 .chip {
   display: inline-block;
-  padding: 0.3rem 0.7rem;
-  border: 1px solid var(--line-strong);
-  border-radius: 999px;
-  font-size: 0.85rem;
+  padding: 0.35rem 0.75rem;
+  border: var(--rule) solid var(--line-strong);
+  border-radius: 0;
+  font-size: 0.86rem;
+  font-weight: 600;
   color: var(--ink-2);
   background: var(--white);
   text-decoration: none;
 }
 a.chip:hover {
-  border-color: var(--brand);
-  color: var(--brand);
+  border-color: var(--ink);
+  background: var(--ink);
+  color: var(--white);
 }
 
 /* ------------------------------------------------------- Vertrauenszeile */
@@ -740,17 +774,26 @@ a.chip:hover {
 .trustline li {
   margin: 0;
   display: flex;
-  align-items: center;
-  gap: 0.45rem;
+  align-items: flex-start;
+  gap: 0.55rem;
 }
+/* Kurzer Signalstrich statt Raute. Bei zweizeiligen Punkten sitzt er an
+   der ersten Zeile, nicht mittig zwischen beiden. */
 .trustline li::before {
   content: '';
-  width: 0.5rem;
-  height: 0.5rem;
+  width: 0.85rem;
+  height: 3px;
   flex: none;
+  margin-top: 0.68em;
   background: var(--accent);
-  border-radius: 1px;
-  transform: rotate(45deg);
+}
+
+/* ------------------------------------------------------- Icon ohne Rahmen
+   Icons stehen frei und kräftig, nicht in dünn umrandeten Kästchen.    */
+.icon-mark {
+  display: block;
+  color: var(--accent);
+  margin-bottom: var(--sp-3);
 }
 
 /* --------------------------------------------------------- Hilfsklassen */
@@ -773,8 +816,8 @@ a.chip:hover {
   z-index: 100;
   background: var(--accent);
   color: var(--white);
-  padding: 0.75rem 1.25rem;
-  border-radius: 0 0 var(--r-md) var(--r-md);
+  padding: 0.8rem 1.3rem;
+  border-radius: 0;
   font-weight: 700;
   text-decoration: none;
 }
@@ -795,10 +838,10 @@ a.chip:hover {
 
 .updated {
   font-size: 0.85rem;
-  color: var(--ink-4);
+  color: var(--ink-3);
   margin-top: var(--sp-6);
   padding-top: var(--sp-3);
-  border-top: 1px solid var(--line);
+  border-top: var(--rule) solid var(--line);
 }
 
 /* Redaktionshinweis: nur im Entwicklungsmodus sichtbar (siehe Todo.astro) */
@@ -810,7 +853,6 @@ a.chip:hover {
   margin: var(--sp-4) 0;
   font-family: var(--font-mono);
   font-size: 0.85rem;
-  border-radius: var(--r-sm);
 }
 
 /* Fließtextbereich mit begrenzter Zeilenlänge für gute Lesbarkeit */

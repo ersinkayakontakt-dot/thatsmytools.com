@@ -4,8 +4,8 @@
   "description": "Entrümpelung, Haushaltsauflösung und Umzug in Berlin und im Berliner Umland.",
   "start_url": "/",
   "display": "browser",
-  "background_color": "#faf8f4",
-  "theme_color": "#17323d",
+  "background_color": "#ffffff",
+  "theme_color": "#14171a",
   "lang": "de",
   "icons": [
     {

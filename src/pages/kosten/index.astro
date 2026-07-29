@@ -219,7 +219,7 @@ const schema = buildGraph([
   }
   .factor {
     margin: 0;
-    border-top: 2px solid var(--line-strong);
+    border-top: 3px solid var(--ink);
     padding-top: var(--sp-3);
     counter-increment: f;
   }
@@ -235,17 +235,16 @@ const schema = buildGraph([
     font-size: 1.08rem;
   }
   .factor h3::before {
-    content: counter(f) '. ';
-    color: var(--ink-4);
-    font-family: var(--font-body);
-    font-size: 0.9rem;
+    content: counter(f, decimal-leading-zero) ' ';
+    color: var(--accent-text);
+    font-variant-numeric: tabular-nums;
   }
   .factor__weight {
-    font-size: 0.75rem;
-    letter-spacing: 0.07em;
+    font-size: 0.74rem;
+    letter-spacing: 0.05em;
     text-transform: uppercase;
-    color: var(--accent);
-    font-weight: 700;
+    color: var(--accent-text);
+    font-weight: 800;
     white-space: nowrap;
   }
   .factor p {
@@ -256,10 +255,9 @@ const schema = buildGraph([
 
   .pending {
     border: 1px solid var(--line);
-    border-left: 4px solid var(--brand-3);
+    border-left: 6px solid var(--ink);
     background: var(--white);
     padding: var(--sp-5);
-    border-radius: 0 var(--r-md) var(--r-md) 0;
     max-width: 48rem;
   }
 

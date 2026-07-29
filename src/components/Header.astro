@@ -91,7 +91,7 @@ const isCurrent = (href: string) => (href === '/' ? path === '/' : path.startsWi
 <style>
   .site-header {
     background: var(--white);
-    border-bottom: 1px solid var(--line);
+    border-bottom: 3px solid var(--ink);
     position: relative;
     z-index: 20;
   }
@@ -115,7 +115,7 @@ const isCurrent = (href: string) => (href === '/' ? path === '/' : path.startsWi
     align-items: center;
     gap: 0.6rem;
     text-decoration: none;
-    color: var(--brand);
+    color: var(--ink);
     flex: none;
   }
   .logo__mark {
@@ -131,22 +131,48 @@ const isCurrent = (href: string) => (href === '/' ? path === '/' : path.startsWi
   }
   .logo__name {
     font-family: var(--font-head);
-    font-weight: 700;
-    font-size: 1.28rem;
-    letter-spacing: -0.015em;
+    font-weight: 800;
+    font-size: 1.3rem;
+    letter-spacing: -0.03em;
   }
   .logo__num {
-    color: var(--accent);
+    color: var(--white);
+    background: var(--accent);
+    padding: 0 0.22em;
+    margin-left: 0.1em;
   }
   .logo__claim {
-    font-size: 0.7rem;
+    font-size: 0.69rem;
+    font-weight: 600;
     color: var(--ink-3);
     letter-spacing: 0.02em;
-    margin-top: 0.15rem;
+    margin-top: 0.2rem;
+    text-transform: uppercase;
   }
-  @media (max-width: 25em) {
+  /* Auf sehr schmalen Geräten wird der Kopf zusammengezogen: Claim weg,
+     Wortmarke kleiner, im Menü-Button nur noch das Symbol. Sonst läuft die
+     Zeile bei 320 px über den Rand hinaus. */
+  @media (max-width: 26em) {
     .logo__claim {
       display: none;
+    }
+    .logo__name {
+      font-size: 1.12rem;
+    }
+    .site-header__inner {
+      padding-inline: var(--sp-4);
+      gap: var(--sp-3);
+    }
+    .menu summary {
+      padding-inline: 0.55rem;
+    }
+    .menu__label {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
     }
   }
 
@@ -177,10 +203,13 @@ const isCurrent = (href: string) => (href === '/' ? path === '/' : path.startsWi
     white-space: nowrap;
   }
   .nav-desktop a:hover {
-    color: var(--accent);
+    color: var(--accent-text);
+  }
+  .nav-desktop a {
+    border-bottom-width: 3px;
   }
   .nav-desktop a[aria-current='page'] {
-    color: var(--brand);
+    color: var(--ink);
     border-bottom-color: var(--accent);
   }
 
@@ -195,14 +224,17 @@ const isCurrent = (href: string) => (href === '/' ? path === '/' : path.startsWi
     display: none;
     align-items: center;
     gap: 0.4rem;
-    color: var(--brand);
-    font-weight: 700;
+    color: var(--ink);
+    font-weight: 800;
     text-decoration: none;
     font-size: 0.95rem;
     white-space: nowrap;
   }
-  .header-phone:hover {
+  .header-phone :global(svg) {
     color: var(--accent);
+  }
+  .header-phone:hover {
+    color: var(--accent-text);
   }
 
   .header-cta {
@@ -220,12 +252,11 @@ const isCurrent = (href: string) => (href === '/' ? path === '/' : path.startsWi
     align-items: center;
     gap: 0.45rem;
     min-height: 2.75rem;
-    padding: 0.4rem 0.6rem;
-    border: 1px solid var(--line-strong);
-    border-radius: var(--r-md);
+    padding: 0.5rem 0.7rem;
+    border: 2px solid var(--ink);
     font-weight: 700;
     font-size: 0.9rem;
-    color: var(--brand);
+    color: var(--ink);
   }
   .menu summary::-webkit-details-marker {
     display: none;
@@ -236,12 +267,12 @@ const isCurrent = (href: string) => (href === '/' ? path === '/' : path.startsWi
     width: 18px;
   }
   .menu__bars span {
-    height: 2px;
+    height: 3px;
     background: currentColor;
-    border-radius: 1px;
   }
   .menu[open] summary {
-    border-color: var(--brand);
+    background: var(--ink);
+    color: var(--white);
   }
 
   .menu__panel {
@@ -250,10 +281,8 @@ const isCurrent = (href: string) => (href === '/' ? path === '/' : path.startsWi
     top: calc(100% + 0.5rem);
     width: min(19rem, calc(100vw - 2rem));
     background: var(--white);
-    border: 1px solid var(--line-strong);
-    border-radius: var(--r-md);
+    border: 2px solid var(--ink);
     padding: var(--sp-4);
-    box-shadow: 0 8px 24px rgba(27, 26, 23, 0.1);
   }
   .menu__panel ul {
     list-style: none;
@@ -279,7 +308,7 @@ const isCurrent = (href: string) => (href === '/' ? path === '/' : path.startsWi
   }
   .menu__panel a:not(.btn):hover,
   .menu__panel a:not(.btn)[aria-current='page'] {
-    color: var(--accent);
+    color: var(--accent-text);
   }
 
   /* ------------------------------------------------------ Breakpoints */
@@ -290,19 +319,25 @@ const isCurrent = (href: string) => (href === '/' ? path === '/' : path.startsWi
   }
 
   /* Die Vollnavigation erscheint erst, wenn alle sieben Punkte plus
-     Telefonnummer und Handlungsaufruf nebeneinander passen. Darunter
-     bleibt das Menü eingeklappt – das ist verlässlicher als eine
-     zweizeilige oder gestauchte Navigationsleiste. */
-  @media (min-width: 76em) {
+     Telefonnummer und Handlungsaufruf nebeneinander passen – gemessen
+     inklusive Bildlaufleiste. Darunter bleibt das Menü eingeklappt; das
+     ist verlässlicher als eine zweizeilige oder gestauchte Leiste. */
+  @media (min-width: 82em) {
     .nav-desktop {
       display: block;
     }
     .site-header__actions {
       margin-left: 0;
     }
+    /* Zwischen 76em und 88em ist die Zeile knapp. Der Handlungsaufruf wird
+       dort kompakter gesetzt, damit er nicht über den Rand läuft, sobald
+       eine Bildlaufleiste Platz wegnimmt. */
     .header-cta {
       display: inline-flex;
       white-space: nowrap;
+      padding: 0.6rem 1rem;
+      min-height: 2.6rem;
+      font-size: 0.92rem;
     }
     .menu {
       display: none;
@@ -321,6 +356,11 @@ const isCurrent = (href: string) => (href === '/' ? path === '/' : path.startsWi
     }
     .nav-desktop a {
       font-size: 0.95rem;
+    }
+    .header-cta {
+      padding: 0.7rem 1.25rem;
+      min-height: 2.8rem;
+      font-size: 0.97rem;
     }
   }
 </style>
