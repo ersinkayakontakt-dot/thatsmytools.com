@@ -1,0 +1,26 @@
+---
+/**
+ * Redaktionshinweis für fehlende echte Inhalte.
+ *
+ * Sichtbar ist der Hinweis nur
+ *   - im Entwicklungsmodus (npm run dev) oder
+ *   - wenn beim Build PUBLIC_SHOW_TODOS=1 gesetzt ist.
+ *
+ * In der normalen Produktionsausgabe wird nichts gerendert. Begründung:
+ * Das Team soll die offenen Punkte sehen, Besucherinnen und Besucher
+ * sollen keine Baustellenhinweise vorfinden. Die vollständige Liste aller
+ * offenen Angaben steht zusätzlich in CONTENT-TODO.md.
+ *
+ * Verwendung:
+ *   <Todo>Durch echtes Einsatzfoto ersetzen</Todo>
+ */
+const show = import.meta.env.DEV || import.meta.env.PUBLIC_SHOW_TODOS === '1';
+---
+
+{
+  show && (
+    <p class="todo" role="note">
+      <strong>TODO:</strong> <slot />
+    </p>
+  )
+}

@@ -1,0 +1,334 @@
+---
+import Base from '../layouts/Base.astro';
+import Breadcrumbs from '../components/Breadcrumbs.astro';
+import Icon from '../components/Icon.astro';
+import Todo from '../components/Todo.astro';
+import { site, realValue, addressLine } from '../config/site';
+import { phone, whatsapp, email } from '../lib/contact';
+import {
+  buildGraph,
+  organizationNode,
+  websiteNode,
+  webPageNode,
+  breadcrumbNode,
+} from '../lib/schema';
+
+const path = '/kontakt/';
+const title = 'Kontakt: Schnellhelfer24 in Berlin erreichen';
+const description =
+  'So erreichen Sie Schnellhelfer24: Telefon, WhatsApp, E-Mail und Anfrageformular. Was wir für eine schnelle Einschätzung von Ihnen brauchen.';
+
+const crumbs = [
+  { name: 'Start', href: '/' },
+  { name: 'Kontakt', href: path },
+];
+
+const schema = buildGraph([
+  organizationNode(),
+  websiteNode(),
+  breadcrumbNode(path, crumbs),
+  webPageNode({ url: path, name: title, description, dateModified: '2026-07-29' }),
+]);
+
+const addr = addressLine();
+const hoursNote = realValue(site.openingHoursNote);
+const hasHours = site.openingHours.some((h) => realValue(h.opens) && realValue(h.closes));
+
+const dayNames: Record<string, string> = {
+  Monday: 'Mo',
+  Tuesday: 'Di',
+  Wednesday: 'Mi',
+  Thursday: 'Do',
+  Friday: 'Fr',
+  Saturday: 'Sa',
+  Sunday: 'So',
+};
+---
+
+<Base title={title} description={description} path={path} schema={schema}>
+  <Breadcrumbs items={crumbs} />
+
+  <div class="wrap section--tight">
+    <div class="prose">
+      <h1>Kontakt</h1>
+      <div class="answer">
+        <p>
+          Am schnellsten geht es telefonisch, wenn es eilt, und über das Anfrageformular, wenn Sie
+          Fotos schicken möchten. Für eine erste Einschätzung brauchen wir: um welche Leistung es
+          geht, die Postleitzahl, die Etage, ob ein Aufzug vorhanden ist und ein Foto pro Raum.
+          Nebenräume wie Keller und Dachboden nicht vergessen.
+        </p>
+      </div>
+    </div>
+
+    <div class="contact-grid">
+      <div class="ways">
+        {
+          phone.available && (
+            <a class="way way--primary" href={phone.href} data-track="phone_click" data-track-location="kontaktseite">
+              <span class="way__icon" aria-hidden="true">
+                <Icon name="phone" size={22} />
+              </span>
+              <span>
+                <strong>{phone.display}</strong>
+                <small>Anrufen. Am besten, wenn ein Termin drängt.</small>
+              </span>
+            </a>
+          )
+        }
+
+        {
+          whatsapp.available && (
+            <a
+              class="way"
+              href={whatsapp.href}
+              target="_blank"
+              rel="noopener"
+              data-track="whatsapp_click"
+              data-track-location="kontaktseite"
+            >
+              <span class="way__icon" aria-hidden="true">
+                <Icon name="whatsapp" size={22} />
+              </span>
+              <span>
+                <strong>WhatsApp</strong>
+                <small>Fotos direkt aus der Galerie schicken.</small>
+              </span>
+            </a>
+          )
+        }
+
+        {
+          email.available && (
+            <a class="way" href={email.href}>
+              <span class="way__icon" aria-hidden="true">
+                <Icon name="mail" size={22} />
+              </span>
+              <span>
+                <strong>{email.address}</strong>
+                <small>Für Unterlagen, Kostenvoranschläge und Rückfragen.</small>
+              </span>
+            </a>
+          )
+        }
+
+        <a class="way way--primary" href="/angebot-anfragen/" data-track="estimate_cta_click" data-track-location="kontaktseite">
+          <span class="way__icon" aria-hidden="true">
+            <Icon name="camera" size={22} />
+          </span>
+          <span>
+            <strong>Aufwand-Check</strong>
+            <small>Angaben und Fotos in wenigen Schritten. Der vollständigste Weg.</small>
+          </span>
+        </a>
+
+        <Todo>
+          Telefonnummer, WhatsApp-Nummer und Domain-E-Mail in <code>src/config/site.ts</code>
+          eintragen. Solange dort Platzhalter stehen, werden diese Kontaktwege überall ausgeblendet,
+          damit keine toten Links entstehen.
+        </Todo>
+      </div>
+
+      <div class="details">
+        <section class="side-box">
+          <h2 class="side-box__head">Erreichbarkeit</h2>
+          {
+            hasHours ? (
+              <table class="hours">
+                <tbody>
+                  {site.openingHours.map((h) => {
+                    const opens = realValue(h.opens);
+                    const closes = realValue(h.closes);
+                    if (!opens || !closes) return null;
+                    return (
+                      <tr>
+                        <th scope="row">{h.days.map((d) => dayNames[d]).join('–')}</th>
+                        <td>
+                          {opens} bis {closes} Uhr
+                        </td>
+                      </tr>
+                    );
+                  })}
+                </tbody>
+              </table>
+            ) : (
+              <p class="text-muted">
+                Die Zeiten werden ergänzt, sobald sie feststehen. Wir geben hier bewusst keine
+                Erreichbarkeit an, die wir nicht einhalten können.
+              </p>
+            )
+          }
+          {hoursNote && <p class="hours__note">{hoursNote}</p>}
+          <p class="hours__note">
+            Wir sind tagsüber im Einsatz. Wenn niemand rangeht, hinterlassen Sie eine Nachricht oder
+            schreiben Sie über WhatsApp, dann melden wir uns zurück.
+          </p>
+        </section>
+
+        <section class="side-box">
+          <h2 class="side-box__head">Anschrift</h2>
+          {
+            addr ? (
+              <address>
+                {site.name}
+                <br />
+                {addr}
+              </address>
+            ) : (
+              <p class="text-muted">
+                Die vollständige Anschrift steht im <a href="/impressum/">Impressum</a>.
+              </p>
+            )
+          }
+          <p class="text-muted">
+            Wir arbeiten bei Ihnen vor Ort. Ein Besuch bei uns ist für die Beauftragung nicht nötig.
+          </p>
+        </section>
+
+        <section class="side-box">
+          <h2 class="side-box__head">Einsatzgebiet</h2>
+          <p>
+            {site.areaServed.primary} und {site.areaServed.secondary}.
+          </p>
+          <p class="text-muted">
+            <a href="/berlin/">Berliner Bezirke</a> · <a href="/brandenburg/">Umland</a>
+          </p>
+        </section>
+      </div>
+    </div>
+
+    <div class="prose prep">
+      <h2>Was uns Zeit spart, wenn Sie anrufen</h2>
+      <p>
+        Sie müssen nichts davon vorbereiten, aber wenn Sie es zur Hand haben, können wir am Telefon
+        deutlich konkreter werden:
+      </p>
+      <ul>
+        <li>Um welche Räume geht es, und gehören Keller, Dachboden oder Garage dazu?</li>
+        <li>In welcher Etage, und gibt es einen Aufzug?</li>
+        <li>Gibt es einen festen Termin, etwa eine Wohnungsübergabe?</li>
+        <li>Kann das Fahrzeug vor dem Haus halten, oder ist das dort aussichtslos?</li>
+        <li>Soll etwas bleiben, oder soll wirklich alles weg?</li>
+      </ul>
+      <p>
+        Wenn Sie sich bei etwas nicht sicher sind, ist das kein Problem. Dafür gibt es die
+        Besichtigung, und die kostet nichts.
+      </p>
+    </div>
+  </div>
+</Base>
+
+<style>
+  .contact-grid {
+    display: grid;
+    gap: var(--sp-6);
+    margin: var(--sp-6) 0;
+  }
+  @media (min-width: 60em) {
+    .contact-grid {
+      grid-template-columns: 1.25fr 1fr;
+      gap: var(--sp-7);
+      align-items: start;
+    }
+  }
+
+  .ways {
+    display: grid;
+    gap: var(--sp-3);
+  }
+  .way {
+    display: flex;
+    align-items: center;
+    gap: var(--sp-4);
+    padding: var(--sp-4) var(--sp-5);
+    border: 1px solid var(--line);
+    border-radius: var(--r-md);
+    background: var(--white);
+    text-decoration: none;
+    color: var(--brand);
+    min-height: 4rem;
+  }
+  .way:hover {
+    border-color: var(--brand-3);
+    color: var(--brand);
+  }
+  .way:hover strong {
+    color: var(--accent);
+  }
+  .way--primary {
+    border-left: 4px solid var(--accent);
+  }
+  .way__icon {
+    display: grid;
+    place-items: center;
+    width: 2.75rem;
+    height: 2.75rem;
+    flex: none;
+    border: 1px solid var(--line-strong);
+    border-radius: var(--r-md);
+    color: var(--accent);
+  }
+  .way strong {
+    display: block;
+    font-size: 1.08rem;
+    font-family: var(--font-head);
+  }
+  .way small {
+    display: block;
+    color: var(--ink-3);
+    font-size: 0.88rem;
+    margin-top: 0.1rem;
+  }
+
+  .details {
+    display: grid;
+    gap: var(--sp-4);
+  }
+  .side-box {
+    border: 1px solid var(--line);
+    border-radius: var(--r-md);
+    padding: var(--sp-4) var(--sp-5);
+    background: var(--paper-2);
+  }
+  .side-box__head {
+    font-family: var(--font-body);
+    font-size: 0.78rem;
+    letter-spacing: 0.09em;
+    text-transform: uppercase;
+    color: var(--ink-3);
+    margin: 0 0 var(--sp-3);
+  }
+  .side-box > :last-child {
+    margin-bottom: 0;
+  }
+  .side-box address {
+    font-style: normal;
+    line-height: 1.6;
+  }
+
+  .hours {
+    min-width: 0;
+    width: auto;
+    font-size: 0.95rem;
+    margin-bottom: var(--sp-3);
+  }
+  .hours th,
+  .hours td {
+    background: none;
+    border: 0;
+    padding: 0.2rem 1rem 0.2rem 0;
+    color: var(--ink);
+    font-size: 0.95rem;
+    letter-spacing: 0;
+  }
+  .hours__note {
+    font-size: 0.88rem;
+    color: var(--ink-3);
+    margin-bottom: var(--sp-2);
+  }
+
+  .prep {
+    border-top: 1px solid var(--line);
+    padding-top: var(--sp-5);
+  }
+</style>

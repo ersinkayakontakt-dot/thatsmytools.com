@@ -1,0 +1,275 @@
+---
+import Base from '../layouts/Base.astro';
+import Breadcrumbs from '../components/Breadcrumbs.astro';
+import Todo from '../components/Todo.astro';
+import { site, realValue, addressLine } from '../config/site';
+import { phone, email } from '../lib/contact';
+import { buildGraph, organizationNode, websiteNode, webPageNode, breadcrumbNode } from '../lib/schema';
+
+/**
+ * Impressum nach § 5 DDG (bis 2024: § 5 TMG) und § 18 MStV.
+ *
+ * WICHTIG: Diese Seite ist ein sorgfältig vorbereitetes Gerüst, KEINE
+ * Rechtsberatung und keine geprüfte Rechtstextvorlage. Vor dem Livegang
+ * müssen die Angaben vollständig eingetragen und rechtlich geprüft werden.
+ * Fehlende oder falsche Pflichtangaben sind abmahnfähig.
+ */
+const path = '/impressum/';
+const title = 'Impressum | Schnellhelfer24';
+const description =
+  'Anbieterkennzeichnung von Schnellhelfer24: Firmierung, Anschrift, Kontaktdaten und Registerangaben für Entrümpelung und Umzug in Berlin.';
+
+const crumbs = [
+  { name: 'Start', href: '/' },
+  { name: 'Impressum', href: path },
+];
+
+const schema = buildGraph([
+  organizationNode(),
+  websiteNode(),
+  breadcrumbNode(path, crumbs),
+  webPageNode({ url: path, name: title, description }),
+]);
+
+const addr = addressLine();
+const legalName = realValue(site.legalName);
+const owner = realValue(site.owner);
+const vatId = realValue(site.register.vatId);
+const taxNumber = realValue(site.register.taxNumber);
+const court = realValue(site.register.court);
+const regNumber = realValue(site.register.number);
+const authority = realValue(site.register.supervisoryAuthority);
+const responsible = realValue(site.contentResponsible);
+
+/** Zeigt einen Wert oder einen deutlich markierten Platzhalter. */
+const ph = (value: string | undefined, hint: string) => value ?? hint;
+---
+
+<Base title={title} description={description} path={path} index={true} schema={schema}>
+  <Breadcrumbs items={crumbs} />
+
+  <div class="wrap wrap--mid section--tight">
+    <article class="prose legal">
+      <h1>Impressum</h1>
+
+      <div class="legal-check" role="note">
+        <p>
+          <strong>Hinweis für den Betreiber:</strong> Diese Seite ist vorbereitet, aber noch nicht
+          vollständig. Alle mit <code>[…]</code> markierten Felder müssen mit den echten
+          Unternehmensdaten gefüllt und anschließend rechtlich geprüft werden. Unvollständige
+          Pflichtangaben nach § 5 DDG sind abmahnfähig. Die Werte werden zentral in
+          <code>src/config/site.ts</code> gepflegt, nicht in dieser Datei.
+        </p>
+      </div>
+
+      <h2>Angaben gemäß § 5 DDG</h2>
+      <p class="block">
+        {ph(legalName, '[VOLLSTÄNDIGE FIRMIERUNG EINTRAGEN]')}<br />
+        {ph(addr, '[STRASSE, HAUSNUMMER, PLZ UND ORT EINTRAGEN]')}<br />
+        {site.address.countryName}
+      </p>
+
+      <h2>Vertreten durch</h2>
+      <p>{ph(owner, '[NAME DER INHABERIN / DES INHABERS ODER DER GESCHÄFTSFÜHRUNG EINTRAGEN]')}</p>
+
+      <h2>Kontakt</h2>
+      <table class="kv">
+        <tbody>
+          <tr>
+            <th scope="row">Telefon</th>
+            <td>
+              {
+                phone.available ? (
+                  <a href={phone.href}>{phone.display}</a>
+                ) : (
+                  '[TELEFONNUMMER EINTRAGEN]'
+                )
+              }
+            </td>
+          </tr>
+          <tr>
+            <th scope="row">E-Mail</th>
+            <td>
+              {email.available ? <a href={email.href}>{email.address}</a> : '[DOMAIN-E-MAIL EINTRAGEN]'}
+            </td>
+          </tr>
+          <tr>
+            <th scope="row">Internet</th>
+            <td><a href={site.url}>{site.domain}</a></td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h2>Umsatzsteuer</h2>
+      <p>
+        {
+          vatId ? (
+            <>Umsatzsteuer-Identifikationsnummer gemäß § 27a UStG: {vatId}</>
+          ) : taxNumber ? (
+            <>Steuernummer: {taxNumber}</>
+          ) : (
+            '[UST-IDNR. NACH § 27a UStG ODER STEUERNUMMER EINTRAGEN. Kleinunternehmer nach § 19 UStG geben stattdessen einen entsprechenden Hinweis an.]'
+          )
+        }
+      </p>
+
+      <h2>Registereintrag</h2>
+      <p>
+        {
+          court && regNumber ? (
+            <>
+              Registergericht: {court}
+              <br />
+              Registernummer: {regNumber}
+            </>
+          ) : (
+            '[NUR BEI EINGETRAGENEN GESELLSCHAFTEN AUSFÜLLEN (GmbH, UG, OHG, KG): Registergericht und Registernummer. Einzelunternehmen und GbR lassen diesen Abschnitt weg.]'
+          )
+        }
+      </p>
+
+      <h2>Aufsichtsbehörde und Erlaubnis</h2>
+      <p>
+        {
+          authority ??
+            '[PRÜFEN: Umzugsverkehr mit Fahrzeugen über 3,5 t zulässigem Gesamtgewicht ist güterkraftverkehrsrechtlich erlaubnispflichtig (§ 3 GüKG). Falls einschlägig: erteilende Behörde und Erlaubnis hier angeben. Bei ausschließlich kleineren Fahrzeugen entfällt der Abschnitt.]'
+        }
+      </p>
+
+      <h2>Verantwortlich für den Inhalt nach § 18 Abs. 2 MStV</h2>
+      <p class="block">
+        {ph(responsible, '[NAME DER VERANTWORTLICHEN PERSON EINTRAGEN]')}<br />
+        {ph(addr, '[ANSCHRIFT EINTRAGEN]')}
+      </p>
+
+      <h2>Berufshaftpflicht- und Betriebshaftpflichtversicherung</h2>
+      <p>
+        {
+          site.credentials.liabilityInsurance.held
+            ? site.credentials.liabilityInsurance.detail
+            : '[FREIWILLIGE ANGABE: Versicherer, Anschrift und räumlicher Geltungsbereich. Nur eintragen, wenn eine Versicherung tatsächlich besteht.]'
+        }
+      </p>
+
+      <h2>Streitbeilegung</h2>
+      <p>
+        Die Europäische Kommission stellt eine Plattform zur Online-Streitbeilegung bereit:{' '}
+        <a href="https://ec.europa.eu/consumers/odr/" rel="noopener nofollow" target="_blank">
+          ec.europa.eu/consumers/odr
+        </a>
+        . Unsere E-Mail-Adresse finden Sie oben.
+      </p>
+      <p>
+        Wir sind nicht bereit und nicht verpflichtet, an Streitbeilegungsverfahren vor einer
+        Verbraucherschlichtungsstelle teilzunehmen.
+      </p>
+
+      <div class="legal-check" role="note">
+        <p>
+          <strong>Vor dem Livegang zu prüfen:</strong>
+        </p>
+        <ul>
+          <li>Firmierung exakt wie in der Gewerbeanmeldung bzw. im Handelsregister</li>
+          <li>Ladungsfähige Anschrift, kein Postfach</li>
+          <li>Umsatzsteuerangabe oder Kleinunternehmerhinweis nach § 19 UStG</li>
+          <li>Erlaubnispflicht nach § 3 GüKG geklärt und ggf. angegeben</li>
+          <li>Angabe zur Streitbeilegung mit der tatsächlichen Bereitschaft abgeglichen</li>
+          <li>Angaben identisch mit Google-Unternehmensprofil und Bing Places (NAP-Konsistenz)</li>
+        </ul>
+        <p class="mb-0">
+          Diese Seite ist keine Rechtsberatung. Lassen Sie das Impressum vor der Veröffentlichung
+          anwaltlich prüfen.
+        </p>
+      </div>
+
+      <Todo>
+        Registerdaten, Aufsichtsbehörde und Versicherungsangaben in <code>src/config/site.ts</code>{' '}
+        unter <code>register</code> und <code>credentials</code> eintragen. Sie erscheinen dann
+        automatisch hier.
+      </Todo>
+    </article>
+  </div>
+</Base>
+
+<style>
+  .legal h2 {
+    font-size: 1.15rem;
+    margin-top: var(--sp-6);
+  }
+  .legal .block {
+    line-height: 1.7;
+  }
+  .legal-check {
+    border: 2px dashed var(--warn);
+    background: var(--warn-tint);
+    color: var(--warn);
+    padding: var(--sp-4) var(--sp-5);
+    border-radius: var(--r-md);
+    margin: var(--sp-5) 0;
+    font-size: 0.93rem;
+  }
+  .legal-check > :last-child {
+    margin-bottom: 0;
+  }
+  .legal-check code {
+    background: rgba(0, 0, 0, 0.06);
+    padding: 0.05em 0.35em;
+    border-radius: 2px;
+  }
+  .kv {
+    min-width: 0;
+    width: auto;
+  }
+  .kv th,
+  .kv td {
+    background: none;
+    border: 0;
+    padding: 0.25rem 1.5rem 0.25rem 0;
+    font-size: 1rem;
+    color: var(--ink);
+    letter-spacing: 0;
+    vertical-align: top;
+  }
+  .kv th {
+    font-weight: 600;
+    color: var(--ink-3);
+  }
+  /* Schlüssel-Wert-Tabellen: auf schmalen Bildschirmen untereinander
+     statt nebeneinander, sonst laufen sie über den Rand hinaus. */
+  .kv,
+  .kv tbody,
+  .kv tr,
+  .kv th,
+  .kv td {
+    display: block;
+    width: auto;
+  }
+  .kv tr {
+    margin-bottom: var(--sp-3);
+  }
+  .kv th {
+    padding-bottom: 0.1rem;
+  }
+  .kv td {
+    padding-left: 0;
+  }
+
+  @media (min-width: 34em) {
+    .kv,
+    .kv tbody {
+      display: table;
+    }
+    .kv tr {
+      display: table-row;
+      margin-bottom: 0;
+    }
+    .kv th,
+    .kv td {
+      display: table-cell;
+    }
+    .kv th {
+      padding-bottom: 0.25rem;
+    }
+  }
+
+</style>

@@ -1,0 +1,354 @@
+---
+import Base from '../../layouts/Base.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import Blocks from '../../components/Blocks.astro';
+import Faq from '../../components/Faq.astro';
+import PriceFactors from '../../components/PriceFactors.astro';
+import CtaBand from '../../components/CtaBand.astro';
+import ContactCard from '../../components/ContactCard.astro';
+import Icon from '../../components/Icon.astro';
+import Todo from '../../components/Todo.astro';
+import { services, relatedServices } from '../../data/services';
+import { relatedGuides } from '../../data/guides';
+import { casesForService } from '../../data/cases';
+import { publishedDistricts } from '../../data/districts';
+import { serviceIsIndexable, checkService } from '../../lib/publishGuard';
+import { formatDate } from '../../lib/text';
+import {
+  buildGraph,
+  organizationNode,
+  websiteNode,
+  webPageNode,
+  breadcrumbNode,
+  serviceNode,
+  faqNode,
+} from '../../lib/schema';
+
+export function getStaticPaths() {
+  // Auch Entwürfe werden gebaut, damit sie intern geprüft werden können.
+  // Sie sind noindex und stehen nicht in der Sitemap.
+  return services.map((service) => ({ params: { slug: service.slug }, props: { service } }));
+}
+
+const { service } = Astro.props;
+const path = `/leistungen/${service.slug}/`;
+const indexable = serviceIsIndexable(service);
+const guard = checkService(service);
+
+const crumbs = [
+  { name: 'Start', href: '/' },
+  { name: 'Leistungen', href: '/leistungen/' },
+  { name: service.navLabel, href: path },
+];
+
+const related = relatedServices(service.slug);
+const guides = relatedGuides(service.guides);
+const cases = casesForService(service.slug);
+
+const schema = buildGraph([
+  organizationNode(),
+  websiteNode(),
+  breadcrumbNode(path, crumbs),
+  webPageNode({
+    url: path,
+    name: service.metaTitle,
+    description: service.metaDescription,
+    dateModified: service.updated,
+    breadcrumbId: `https://schnellhelfer24.de${path}#breadcrumb`,
+  }),
+  serviceNode({
+    url: path,
+    name: service.h1,
+    serviceType: service.serviceType,
+    description: service.answer,
+  }),
+  faqNode(path, service.faq),
+]);
+---
+
+<Base
+  title={service.metaTitle}
+  description={service.metaDescription}
+  path={path}
+  index={indexable}
+  schema={schema}
+  modified={service.updated}
+>
+  <Breadcrumbs items={crumbs} />
+
+  {
+    !indexable && (
+      <div class="wrap">
+        <div class="draft-banner" role="note">
+          <strong>Entwurf.</strong> Diese Seite ist nicht veröffentlicht (noindex, nicht in der
+          Sitemap, nicht verlinkt). Offen: {guard.missing.join('; ') || 'Freigabe'}.
+        </div>
+      </div>
+    )
+  }
+
+  <div class="wrap section--tight">
+    <div class="grid grid--sidebar">
+      <article class="prose">
+        <h1>{service.h1}</h1>
+
+        <div class="answer">
+          <p>{service.answer}</p>
+        </div>
+
+        <!-- Situationen, die zu dieser Leistung führen -->
+        <section class="sit-box">
+          <h2 class="sit-box__head">Wann diese Leistung passt</h2>
+          <ul>
+            {service.situations.map((s) => <li>{s}</li>)}
+          </ul>
+        </section>
+
+        <!-- Enthalten / nicht enthalten -->
+        <section>
+          <h2>Was enthalten ist</h2>
+          <ul class="incl">
+            {
+              service.includes.map((i) => (
+                <li>
+                  <Icon name="check" size={17} />
+                  <span>{i}</span>
+                </li>
+              ))
+            }
+          </ul>
+
+          {
+            service.notIncluded && service.notIncluded.length > 0 && (
+              <>
+                <h3>Was nicht enthalten ist</h3>
+                <p class="text-muted">
+                  Damit es keine Missverständnisse gibt, hier ausdrücklich das, was nicht dazugehört:
+                </p>
+                <ul class="excl">
+                  {service.notIncluded.map((i) => (
+                    <li>{i}</li>
+                  ))}
+                </ul>
+              </>
+            )
+          }
+        </section>
+
+        <Blocks blocks={service.blocks} />
+
+        <PriceFactors factors={service.priceFactors} id={`pf-${service.slug}`} />
+
+        {
+          cases.length > 0 && (
+            <section>
+              <h2>Einsätze aus der Praxis</h2>
+              <ul class="linklist">
+                {cases.map((c) => (
+                  <li>
+                    <a href={`/einsatzberichte/${c.slug}/`} data-track="case_study_opened">
+                      {c.title}
+                    </a>
+                    <span class="linklist__meta">{c.locationLabel}</span>
+                  </li>
+                ))}
+              </ul>
+            </section>
+          )
+        }
+
+        <Faq items={service.faq} id={`faq-${service.slug}`} />
+
+        <p class="updated">
+          Zuletzt aktualisiert am {formatDate(service.updated)}. Verantwortlich für den Inhalt:
+          Schnellhelfer24.
+        </p>
+      </article>
+
+      <div class="sidebar">
+        <ContactCard location={`leistung-${service.slug}`} />
+
+        {
+          guides.length > 0 && (
+            <nav class="side-box" aria-labelledby="side-guides">
+              <h2 class="side-box__head" id="side-guides">
+                Passend dazu
+              </h2>
+              <ul>
+                {guides.map((g) => (
+                  <li>
+                    <a href={`/${g.hub}/${g.slug}/`}>{g.h1}</a>
+                  </li>
+                ))}
+              </ul>
+            </nav>
+          )
+        }
+
+        {
+          related.length > 0 && (
+            <nav class="side-box" aria-labelledby="side-related">
+              <h2 class="side-box__head" id="side-related">
+                Verwandte Leistungen
+              </h2>
+              <ul>
+                {related.map((r) => (
+                  <li>
+                    <a href={`/leistungen/${r.slug}/`}>{r.navLabel}</a>
+                  </li>
+                ))}
+              </ul>
+            </nav>
+          )
+        }
+
+        <nav class="side-box" aria-labelledby="side-areas">
+          <h2 class="side-box__head" id="side-areas">Einsatzgebiete</h2>
+          <ul>
+            {
+              publishedDistricts.map((d) => (
+                <li>
+                  <a href={`/berlin/${d.slug}/`} data-track="location_click">
+                    {d.name}
+                  </a>
+                </li>
+              ))
+            }
+            <li><a href="/berlin/">Alle Berliner Bezirke</a></li>
+            <li><a href="/brandenburg/">Berliner Umland</a></li>
+          </ul>
+        </nav>
+
+        <Todo>
+          Für diese Leistungsseite fehlen noch echte Einsatzfotos und mindestens ein
+          veröffentlichter Einsatzbericht aus einem abgeschlossenen Auftrag.
+        </Todo>
+      </div>
+    </div>
+  </div>
+
+  <CtaBand location={`leistung-${service.slug}`} />
+</Base>
+
+<style>
+  .draft-banner {
+    background: var(--warn-tint);
+    border: 2px dashed var(--warn);
+    color: var(--warn);
+    padding: var(--sp-3) var(--sp-4);
+    margin-top: var(--sp-4);
+    border-radius: var(--r-md);
+    font-size: 0.92rem;
+  }
+
+  .sit-box {
+    background: var(--paper-2);
+    border-left: 3px solid var(--brand-3);
+    padding: var(--sp-4) var(--sp-5);
+    margin: var(--sp-6) 0;
+    border-radius: 0 var(--r-md) var(--r-md) 0;
+  }
+  .sit-box__head {
+    font-family: var(--font-body);
+    font-size: 0.8rem;
+    letter-spacing: 0.09em;
+    text-transform: uppercase;
+    color: var(--ink-3);
+    margin: 0 0 var(--sp-3);
+  }
+  .sit-box ul {
+    margin: 0;
+    padding-left: 1.1rem;
+  }
+  .sit-box li:last-child {
+    margin-bottom: 0;
+  }
+
+  .incl {
+    list-style: none;
+    padding: 0;
+    margin: var(--sp-4) 0;
+  }
+  .incl li {
+    display: flex;
+    gap: var(--sp-3);
+    align-items: flex-start;
+    margin-bottom: var(--sp-2);
+  }
+  .incl :global(svg) {
+    color: var(--ok);
+    flex: none;
+    margin-top: 0.25rem;
+  }
+
+  .excl {
+    color: var(--ink-2);
+  }
+  .excl li::marker {
+    color: var(--line-strong);
+  }
+
+  .linklist {
+    list-style: none;
+    padding: 0;
+    margin: var(--sp-4) 0;
+  }
+  .linklist li {
+    padding: var(--sp-3) 0;
+    border-bottom: 1px solid var(--line);
+    display: flex;
+    justify-content: space-between;
+    gap: var(--sp-4);
+    flex-wrap: wrap;
+  }
+  .linklist__meta {
+    color: var(--ink-4);
+    font-size: 0.88rem;
+  }
+
+  .sidebar {
+    display: grid;
+    gap: var(--sp-5);
+    align-content: start;
+  }
+
+  .side-box {
+    border: 1px solid var(--line);
+    border-radius: var(--r-md);
+    padding: var(--sp-4) var(--sp-5);
+    background: var(--white);
+  }
+  .side-box__head {
+    font-family: var(--font-body);
+    font-size: 0.78rem;
+    letter-spacing: 0.09em;
+    text-transform: uppercase;
+    color: var(--ink-3);
+    margin: 0 0 var(--sp-3);
+  }
+  .side-box ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  .side-box li {
+    margin: 0;
+    border-top: 1px solid var(--paper-3);
+  }
+  .side-box li:first-child {
+    border-top: 0;
+  }
+  .side-box a {
+    display: block;
+    padding: 0.55rem 0;
+    color: var(--ink);
+    text-decoration: none;
+    font-size: 0.94rem;
+    min-height: 2.5rem;
+  }
+  .side-box a:hover {
+    color: var(--accent);
+    text-decoration: underline;
+    text-underline-offset: 0.2em;
+  }
+</style>

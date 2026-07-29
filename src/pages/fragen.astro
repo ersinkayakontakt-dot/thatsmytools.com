@@ -1,0 +1,163 @@
+---
+import Base from '../layouts/Base.astro';
+import Breadcrumbs from '../components/Breadcrumbs.astro';
+import Faq from '../components/Faq.astro';
+import CtaBand from '../components/CtaBand.astro';
+import { faqGroups, allFaqItems } from '../data/faq';
+import { publishedServices } from '../data/services';
+import {
+  buildGraph,
+  organizationNode,
+  websiteNode,
+  webPageNode,
+  breadcrumbNode,
+  faqNode,
+} from '../lib/schema';
+
+const path = '/fragen/';
+const title = 'Häufige Fragen zu Räumung, Entsorgung und Umzug';
+const description =
+  'Antworten auf die häufigsten Fragen zu Angebot, Ablauf, Entsorgung, Wertanrechnung, Rechnung und Kostenträgern bei Räumungen und Umzügen in Berlin.';
+
+const crumbs = [
+  { name: 'Start', href: '/' },
+  { name: 'Häufige Fragen', href: path },
+];
+
+const schema = buildGraph([
+  organizationNode(),
+  websiteNode(),
+  breadcrumbNode(path, crumbs),
+  webPageNode({ url: path, name: title, description, dateModified: '2026-07-29' }),
+  faqNode(path, allFaqItems),
+]);
+---
+
+<Base title={title} description={description} path={path} schema={schema}>
+  <Breadcrumbs items={crumbs} />
+
+  <div class="wrap section--tight">
+    <div class="prose">
+      <h1>Häufige Fragen</h1>
+      <div class="answer">
+        <p>
+          Hier stehen die Fragen, die uns am Telefon am häufigsten gestellt werden: wie ein Angebot
+          zustande kommt, wie der Einsatz abläuft, was mit den Sachen passiert, wie abgerechnet wird
+          und was gilt, wenn ein Kostenträger beteiligt ist. Fragen zu einzelnen Leistungen stehen
+          jeweils bei der Leistung selbst.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <div class="wrap section--tight">
+    <div class="faq-layout">
+      <nav class="faq-nav" aria-label="Themen">
+        <p class="faq-nav__head">Themen</p>
+        <ul>
+          {
+            faqGroups.map((g) => (
+              <li>
+                <a href={`#${g.id}-head`}>{g.title}</a>
+              </li>
+            ))
+          }
+        </ul>
+      </nav>
+
+      <div>
+        {faqGroups.map((g) => <Faq items={g.items} title={g.title} id={g.id} />)}
+
+        <section class="more">
+          <h2>Fragen zu einzelnen Leistungen</h2>
+          <p>
+            Zu jeder Leistung gibt es eigene Fragen und Antworten, die auf die jeweilige Situation
+            zugeschnitten sind.
+          </p>
+          <ul class="chips">
+            {
+              publishedServices.map((s) => (
+                <li>
+                  <a class="chip" href={`/leistungen/${s.slug}/#faq-${s.slug}-head`}>
+                    {s.navLabel}
+                  </a>
+                </li>
+              ))
+            }
+          </ul>
+        </section>
+      </div>
+    </div>
+  </div>
+
+  <CtaBand
+    location="faq"
+    headline="Ihre Frage ist nicht dabei?"
+    text="Rufen Sie an oder schicken Sie eine kurze Beschreibung mit Fotos. Wir antworten konkret, nicht mit Textbausteinen."
+  />
+</Base>
+
+<style>
+  .faq-layout {
+    display: grid;
+    gap: var(--sp-6);
+  }
+  @media (min-width: 62em) {
+    .faq-layout {
+      grid-template-columns: 15rem minmax(0, 1fr);
+      gap: var(--sp-8);
+      align-items: start;
+    }
+  }
+
+  .faq-nav {
+    border: 1px solid var(--line);
+    border-radius: var(--r-md);
+    background: var(--white);
+    padding: var(--sp-4) var(--sp-5);
+  }
+  @media (min-width: 62em) {
+    .faq-nav {
+      position: sticky;
+      top: var(--sp-5);
+    }
+  }
+  .faq-nav__head {
+    font-family: var(--font-body);
+    font-size: 0.78rem;
+    letter-spacing: 0.09em;
+    text-transform: uppercase;
+    color: var(--ink-3);
+    margin: 0 0 var(--sp-3);
+    font-weight: 700;
+  }
+  .faq-nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  .faq-nav li {
+    margin: 0;
+    border-top: 1px solid var(--paper-3);
+  }
+  .faq-nav li:first-child {
+    border-top: 0;
+  }
+  .faq-nav a {
+    display: block;
+    padding: 0.55rem 0;
+    color: var(--ink);
+    text-decoration: none;
+    font-size: 0.94rem;
+    min-height: 2.5rem;
+  }
+  .faq-nav a:hover {
+    color: var(--accent);
+  }
+
+  .more {
+    margin-top: var(--sp-7);
+    padding-top: var(--sp-5);
+    border-top: 1px solid var(--line);
+  }
+</style>

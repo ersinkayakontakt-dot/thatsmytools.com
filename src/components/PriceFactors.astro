@@ -1,0 +1,70 @@
+---
+import type { PriceFactor } from '../data/types';
+
+/**
+ * Preisfaktoren als Tabelle.
+ * Absichtlich tabellarisch: extrahierbar für Antwortsysteme, gut lesbar
+ * für Menschen und ehrlicher als eine erfundene Preisliste.
+ */
+interface Props {
+  factors: PriceFactor[];
+  title?: string;
+  intro?: string;
+  id?: string;
+}
+const {
+  factors,
+  title = 'Was den Preis bestimmt',
+  intro = 'Diese Faktoren entscheiden über den Aufwand. Sie können damit jedes Angebot prüfen, auch das von anderen Betrieben.',
+  id = 'preisfaktoren',
+} = Astro.props;
+---
+
+<section class="pf" aria-labelledby={`${id}-head`}>
+  <h2 id={`${id}-head`}>{title}</h2>
+  {intro && <p class="lede">{intro}</p>}
+
+  <div class="table-scroll">
+    <table>
+      <thead>
+        <tr>
+          <th scope="col">Faktor</th>
+          <th scope="col">Einfluss</th>
+          <th scope="col">Warum</th>
+        </tr>
+      </thead>
+      <tbody>
+        {
+          factors.map((f) => (
+            <tr>
+              <th scope="row">{f.name}</th>
+              <td class="pf__effect">{f.effect}</td>
+              <td>{f.why}</td>
+            </tr>
+          ))
+        }
+      </tbody>
+    </table>
+  </div>
+
+  <p class="pf__hint">
+    Eine belastbare Zahl entsteht erst, wenn wir die Räume gesehen haben. Deshalb nennen wir keinen
+    Preis am Telefon, bevor Fotos oder eine Besichtigung vorliegen.
+  </p>
+</section>
+
+<style>
+  .pf {
+    margin-top: var(--sp-7);
+  }
+  .pf__effect {
+    white-space: nowrap;
+    font-weight: 600;
+    color: var(--accent);
+  }
+  .pf__hint {
+    font-size: 0.92rem;
+    color: var(--ink-3);
+    max-width: 42rem;
+  }
+</style>

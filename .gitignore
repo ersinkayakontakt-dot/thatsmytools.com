@@ -1,0 +1,16 @@
+node_modules/
+dist/
+.astro/
+.DS_Store
+*.log
+.env
+.env.*
+!.env.example
+
+# Laufzeitdaten des PHP-Endpunkts (dürfen niemals ins Repo).
+# Hochgeladene Wohnungsfotos und eingegangene Anfragen bleiben lokal.
+# Die Schutzdateien des Verzeichnisses werden dagegen versioniert.
+public/api/_storage/*
+!public/api/_storage/.htaccess
+!public/api/_storage/.gitkeep
+public/api/config.local.php

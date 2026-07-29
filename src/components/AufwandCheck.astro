@@ -1,0 +1,1282 @@
+---
+import Icon from './Icon.astro';
+import { publishedServices } from '../data/services';
+import { site } from '../config/site';
+import { phone, whatsapp } from '../lib/contact';
+
+/**
+ * AUFWAND-CHECK
+ * =============
+ * Mehrstufiges Anfrageformular.
+ *
+ * Grundsätze:
+ *  - Es funktioniert ohne JavaScript. Ohne JS sind alle Schritte
+ *    untereinander sichtbar und das Formular lässt sich normal absenden.
+ *    Mit JS wird daraus ein Schritt-für-Schritt-Ablauf mit Fortschritt.
+ *  - Es fragt nur ab, was für eine Einschätzung wirklich nötig ist.
+ *  - Es rechnet KEINEN Preis aus. Es fasst den Aufwand zusammen und
+ *    erklärt, wie es weitergeht. Ein erfundener Festpreis wäre schneller
+ *    programmiert und würde am Einsatztag nicht halten.
+ *  - Zwischenstände liegen nur lokal im Browser (localStorage).
+ *  - Serverseitige Prüfung, Rate Limiting und Upload-Sicherheit:
+ *    siehe public/api/anfrage.php
+ */
+
+const objectTypes = [
+  '1-Zimmer-Wohnung',
+  '2-Zimmer-Wohnung',
+  '3-Zimmer-Wohnung',
+  '4-Zimmer-Wohnung oder größer',
+  'Einfamilienhaus',
+  'Nur Keller oder Abteil',
+  'Nur Dachboden',
+  'Garage oder Schuppen',
+  'Büro oder Gewerbefläche',
+  'Einzelne Möbelstücke',
+];
+
+const fillLevels = [
+  { value: 'wenig', label: 'Eher leer', hint: 'Nur einzelne Möbel, wenig Kleinkram' },
+  { value: 'normal', label: 'Normal möbliert', hint: 'Wie eine bewohnte Wohnung üblicherweise aussieht' },
+  { value: 'voll', label: 'Voll', hint: 'Schränke voll, Kartons, Nebenräume gefüllt' },
+  { value: 'sehr-voll', label: 'Sehr voll', hint: 'Kaum Bewegungsfläche, stark zugestellt' },
+];
+
+const floors = ['Erdgeschoss', '1. Stock', '2. Stock', '3. Stock', '4. Stock', '5. Stock oder höher', 'Keller / Untergeschoss'];
+
+const timeframes = [
+  { value: 'dringend', label: 'So schnell wie möglich', hint: 'Es gibt einen festen Termin, der drückt' },
+  { value: '2-wochen', label: 'In den nächsten zwei Wochen' },
+  { value: '1-monat', label: 'Im nächsten Monat' },
+  { value: 'flexibel', label: 'Ich bin zeitlich flexibel', hint: 'Günstiger, weil wir es mit anderen Fahrten kombinieren können' },
+];
+
+const contactPrefs = [
+  { value: 'telefon', label: 'Telefon', icon: 'phone' },
+  { value: 'whatsapp', label: 'WhatsApp', icon: 'whatsapp' },
+  { value: 'email', label: 'E-Mail', icon: 'mail' },
+];
+
+const steps = [
+  { id: 'schritt-1', label: 'Leistung' },
+  { id: 'schritt-2', label: 'Ort & Objekt' },
+  { id: 'schritt-3', label: 'Umfang' },
+  { id: 'schritt-4', label: 'Zeitraum' },
+  { id: 'schritt-5', label: 'Fotos' },
+  { id: 'schritt-6', label: 'Kontakt' },
+];
+---
+
+<div class="check" data-check>
+  <!-- Fortschritt: mit JS sichtbar, ohne JS ausgeblendet -->
+  <div class="progress" data-progress hidden>
+    <div class="progress__bar">
+      <div class="progress__fill" data-progress-fill style="width:16.6%"></div>
+    </div>
+    <ol class="progress__steps">
+      {
+        steps.map((s, i) => (
+          <li data-progress-step={i + 1}>
+            <span class="progress__num">{i + 1}</span>
+            <span class="progress__label">{s.label}</span>
+          </li>
+        ))
+      }
+    </ol>
+    <p class="progress__text" data-progress-text aria-live="polite">Schritt 1 von 6</p>
+  </div>
+
+  <!-- Fehlerübersicht, wird bei Validierungsfehlern gefüllt -->
+  <div class="errors" data-errors role="alert" hidden>
+    <p class="errors__head">Bitte prüfen Sie diese Angaben:</p>
+    <ul data-errors-list></ul>
+  </div>
+
+  <form
+    class="form"
+    method="post"
+    action={site.formEndpoint}
+    enctype="multipart/form-data"
+    novalidate
+    data-form
+  >
+    <!-- Spam-Schutz: unsichtbares Feld, das nur Programme ausfüllen -->
+    <div class="hp" aria-hidden="true">
+      <label for="webseite">Website (bitte frei lassen)</label>
+      <input type="text" id="webseite" name="webseite" tabindex="-1" autocomplete="off" />
+    </div>
+    <input type="hidden" name="gestartet" data-started value="" />
+    <input type="hidden" name="quelle" data-source value="" />
+
+    <!-- ================================================= Schritt 1 ===== -->
+    <fieldset class="step" data-step="1">
+      <legend>
+        <span class="step__n">Schritt 1</span>
+        Worum geht es?
+      </legend>
+      <p class="step__hint">
+        Wenn Sie unsicher sind, wählen Sie das, was am ehesten passt. Wir ordnen es richtig zu.
+      </p>
+
+      <div class="choices choices--cards">
+        {
+          publishedServices.map((s) => (
+            <label class="choice">
+              <input type="radio" name="leistung" value={s.navLabel} required data-validate="Bitte wählen Sie eine Leistung." />
+              <span class="choice__body">
+                <span class="choice__icon" aria-hidden="true">
+                  <Icon name={s.icon} size={19} />
+                </span>
+                <span class="choice__title">{s.navLabel}</span>
+                <span class="choice__hint">{s.teaser}</span>
+              </span>
+            </label>
+          ))
+        }
+        <label class="choice">
+          <input type="radio" name="leistung" value="Weiß ich noch nicht" />
+          <span class="choice__body">
+            <span class="choice__icon" aria-hidden="true">
+              <Icon name="doc" size={19} />
+            </span>
+            <span class="choice__title">Weiß ich noch nicht</span>
+            <span class="choice__hint">Beschreiben Sie es später mit eigenen Worten.</span>
+          </span>
+        </label>
+      </div>
+
+      <div class="nav-row">
+        <button type="button" class="btn btn--primary" data-next>Weiter</button>
+      </div>
+    </fieldset>
+
+    <!-- ================================================= Schritt 2 ===== -->
+    <fieldset class="step" data-step="2">
+      <legend>
+        <span class="step__n">Schritt 2</span>
+        Wo ist das Objekt?
+      </legend>
+
+      <div class="field field--short">
+        <label for="plz">Postleitzahl <span class="req">Pflichtfeld</span></label>
+        <input
+          type="text"
+          id="plz"
+          name="plz"
+          inputmode="numeric"
+          pattern="[0-9]{5}"
+          maxlength="5"
+          autocomplete="postal-code"
+          required
+          aria-describedby="plz-hint"
+          data-validate="Bitte geben Sie eine fünfstellige Postleitzahl ein."
+        />
+        <p class="field__hint" id="plz-hint">
+          Fünf Ziffern. Daran erkennen wir Anfahrt und Parksituation.
+        </p>
+      </div>
+
+      <div class="field">
+        <label for="ort">Ort oder Bezirk</label>
+        <input type="text" id="ort" name="ort" autocomplete="address-level2" aria-describedby="ort-hint" />
+        <p class="field__hint" id="ort-hint">Zum Beispiel „Prenzlauer Berg" oder „Falkensee".</p>
+      </div>
+
+      <div class="field">
+        <label for="objektart">Um was für ein Objekt geht es? <span class="req">Pflichtfeld</span></label>
+        <select id="objektart" name="objektart" required data-validate="Bitte wählen Sie die Objektart.">
+          <option value="">Bitte wählen</option>
+          {objectTypes.map((t) => <option value={t}>{t}</option>)}
+        </select>
+      </div>
+
+      <div class="nav-row">
+        <button type="button" class="btn btn--ghost" data-prev>Zurück</button>
+        <button type="button" class="btn btn--primary" data-next>Weiter</button>
+      </div>
+    </fieldset>
+
+    <!-- ================================================= Schritt 3 ===== -->
+    <fieldset class="step" data-step="3">
+      <legend>
+        <span class="step__n">Schritt 3</span>
+        Wie viel ist zu tun?
+      </legend>
+      <p class="step__hint">
+        Der wichtigste Teil. Etage und Aufzug verändern den Aufwand stärker als die Quadratmeter.
+      </p>
+
+      <fieldset class="subfield">
+        <legend>Wie voll ist es? <span class="req">Pflichtfeld</span></legend>
+        <div class="choices">
+          {
+            fillLevels.map((f) => (
+              <label class="choice choice--row">
+                <input type="radio" name="fuellgrad" value={f.label} required data-validate="Bitte schätzen Sie den Füllgrad ein." />
+                <span class="choice__body">
+                  <span class="choice__title">{f.label}</span>
+                  <span class="choice__hint">{f.hint}</span>
+                </span>
+              </label>
+            ))
+          }
+        </div>
+      </fieldset>
+
+      <div class="field">
+        <label for="etage">In welcher Etage? <span class="req">Pflichtfeld</span></label>
+        <select id="etage" name="etage" required data-validate="Bitte wählen Sie die Etage.">
+          <option value="">Bitte wählen</option>
+          {floors.map((f) => <option value={f}>{f}</option>)}
+        </select>
+      </div>
+
+      <fieldset class="subfield">
+        <legend>Gibt es einen Aufzug? <span class="req">Pflichtfeld</span></legend>
+        <div class="choices choices--inline">
+          <label class="choice choice--pill">
+            <input type="radio" name="aufzug" value="Ja" required data-validate="Bitte geben Sie an, ob ein Aufzug vorhanden ist." />
+            <span class="choice__body"><span class="choice__title">Ja</span></span>
+          </label>
+          <label class="choice choice--pill">
+            <input type="radio" name="aufzug" value="Nein" />
+            <span class="choice__body"><span class="choice__title">Nein</span></span>
+          </label>
+          <label class="choice choice--pill">
+            <input type="radio" name="aufzug" value="Weiß ich nicht" />
+            <span class="choice__body"><span class="choice__title">Weiß ich nicht</span></span>
+          </label>
+        </div>
+      </fieldset>
+
+      <fieldset class="subfield">
+        <legend>Gehört noch etwas dazu?</legend>
+        <p class="field__hint">
+          Mehrfachauswahl möglich. Diese Räume werden bei der ersten Schätzung am häufigsten
+          vergessen und machen oft ein Drittel des Volumens aus.
+        </p>
+        <div class="choices choices--inline">
+          {
+            ['Keller', 'Dachboden', 'Balkon oder Terrasse', 'Garage', 'Gartenhaus', 'Garten'].map((x) => (
+              <label class="choice choice--pill">
+                <input type="checkbox" name="nebenraeume[]" value={x} />
+                <span class="choice__body">
+                  <span class="choice__title">{x}</span>
+                </span>
+              </label>
+            ))
+          }
+        </div>
+      </fieldset>
+
+      <div class="nav-row">
+        <button type="button" class="btn btn--ghost" data-prev>Zurück</button>
+        <button type="button" class="btn btn--primary" data-next>Weiter</button>
+      </div>
+    </fieldset>
+
+    <!-- ================================================= Schritt 4 ===== -->
+    <fieldset class="step" data-step="4">
+      <legend>
+        <span class="step__n">Schritt 4</span>
+        Wann soll es stattfinden?
+      </legend>
+
+      <div class="choices">
+        {
+          timeframes.map((t) => (
+            <label class="choice choice--row">
+              <input type="radio" name="zeitraum" value={t.label} required data-validate="Bitte wählen Sie einen Zeitraum." />
+              <span class="choice__body">
+                <span class="choice__title">{t.label}</span>
+                {t.hint && <span class="choice__hint">{t.hint}</span>}
+              </span>
+            </label>
+          ))
+        }
+      </div>
+
+      <div class="field">
+        <label for="stichtag">Gibt es einen festen Termin?</label>
+        <input type="date" id="stichtag" name="stichtag" aria-describedby="stichtag-hint" />
+        <p class="field__hint" id="stichtag-hint">
+          Zum Beispiel der Tag der Wohnungsübergabe. Wir planen dann rückwärts davon.
+        </p>
+      </div>
+
+      <div class="nav-row">
+        <button type="button" class="btn btn--ghost" data-prev>Zurück</button>
+        <button type="button" class="btn btn--primary" data-next>Weiter</button>
+      </div>
+    </fieldset>
+
+    <!-- ================================================= Schritt 5 ===== -->
+    <fieldset class="step" data-step="5">
+      <legend>
+        <span class="step__n">Schritt 5</span>
+        Fotos und Beschreibung
+      </legend>
+      <p class="step__hint">
+        Beides ist freiwillig. Mit Fotos wird die Einschätzung aber deutlich genauer, und Sie
+        ersparen sich Rückfragen.
+      </p>
+
+      <div class="field">
+        <label for="fotos">Fotos anhängen</label>
+        <input
+          type="file"
+          id="fotos"
+          name="fotos[]"
+          accept="image/jpeg,image/png,image/webp,image/heic,image/heif"
+          multiple
+          aria-describedby="fotos-hint"
+          data-photos
+        />
+        <p class="field__hint" id="fotos-hint">
+          Ein Foto pro Raum, von der Tür aus. Volle Schränke bitte geöffnet. Keller und Dachboden
+          nicht vergessen. Maximal {site.maxUploadCount} Bilder, je bis {site.maxUploadMb} MB.
+        </p>
+        <ul class="filelist" data-filelist></ul>
+        <p class="field__hint">
+          <a href="/ratgeber/welche-fotos-fuer-ein-angebot/">Welche Fotos wir genau brauchen</a>
+        </p>
+      </div>
+
+      <div class="field">
+        <label for="beschreibung">Was sollten wir wissen?</label>
+        <textarea
+          id="beschreibung"
+          name="beschreibung"
+          rows="5"
+          maxlength="2000"
+          aria-describedby="beschreibung-hint"
+          placeholder="Zum Beispiel: schmales Treppenhaus, Hinterhof, Einbauküche soll raus, bestimmte Möbel bleiben."
+        ></textarea>
+        <p class="field__hint" id="beschreibung-hint">
+          Alles, was ungewöhnlich ist. Auch Dinge, die Ihnen unangenehm sind, helfen uns bei der
+          Planung mehr, als sie schaden.
+        </p>
+      </div>
+
+      <div class="nav-row">
+        <button type="button" class="btn btn--ghost" data-prev>Zurück</button>
+        <button type="button" class="btn btn--primary" data-next>Weiter</button>
+      </div>
+    </fieldset>
+
+    <!-- ================================================= Schritt 6 ===== -->
+    <fieldset class="step" data-step="6">
+      <legend>
+        <span class="step__n">Schritt 6</span>
+        Wie erreichen wir Sie?
+      </legend>
+
+      <div class="field">
+        <label for="name">Name <span class="req">Pflichtfeld</span></label>
+        <input
+          type="text"
+          id="name"
+          name="name"
+          autocomplete="name"
+          required
+          data-validate="Bitte geben Sie Ihren Namen an."
+        />
+      </div>
+
+      <div class="field">
+        <label for="telefon">Telefonnummer <span class="req">Pflichtfeld</span></label>
+        <input
+          type="tel"
+          id="telefon"
+          name="telefon"
+          autocomplete="tel"
+          inputmode="tel"
+          required
+          aria-describedby="telefon-hint"
+          data-validate="Bitte geben Sie eine Telefonnummer an, unter der wir Sie erreichen."
+        />
+        <p class="field__hint" id="telefon-hint">
+          Für eine Einschätzung müssen wir meistens kurz nachfragen. Deshalb brauchen wir eine
+          Nummer.
+        </p>
+      </div>
+
+      <div class="field">
+        <label for="mail">E-Mail-Adresse</label>
+        <input type="email" id="mail" name="mail" autocomplete="email" aria-describedby="mail-hint" />
+        <p class="field__hint" id="mail-hint">Freiwillig. Für schriftliche Angebote und Unterlagen.</p>
+      </div>
+
+      <fieldset class="subfield">
+        <legend>Wie möchten Sie am liebsten Antwort bekommen? <span class="req">Pflichtfeld</span></legend>
+        <div class="choices choices--inline">
+          {
+            contactPrefs.map((c) => (
+              <label class="choice choice--pill">
+                <input type="radio" name="kontaktart" value={c.label} required data-validate="Bitte wählen Sie, wie wir antworten sollen." />
+                <span class="choice__body">
+                  <span class="choice__title">
+                    <Icon name={c.icon} size={16} /> {c.label}
+                  </span>
+                </span>
+              </label>
+            ))
+          }
+        </div>
+      </fieldset>
+
+      <div class="field field--check">
+        <label class="consent">
+          <input
+            type="checkbox"
+            name="datenschutz"
+            value="ja"
+            required
+            data-validate="Ohne diese Bestätigung dürfen wir Ihre Anfrage nicht bearbeiten."
+          />
+          <span>
+            Ich habe die <a href="/datenschutz/" target="_blank" rel="noopener">Datenschutzerklärung</a>
+            gelesen und bin damit einverstanden, dass meine Angaben zur Bearbeitung dieser Anfrage
+            verarbeitet werden. <span class="req">Pflichtfeld</span>
+          </span>
+        </label>
+      </div>
+
+      <div class="summary" data-summary hidden>
+        <p class="summary__head">Das schicken Sie ab</p>
+        <dl data-summary-list></dl>
+      </div>
+
+      <div class="nav-row">
+        <button type="button" class="btn btn--ghost" data-prev>Zurück</button>
+        <button type="submit" class="btn btn--primary" data-submit>
+          <Icon name="arrow" size={19} />
+          Anfrage absenden
+        </button>
+      </div>
+
+      <p class="after">
+        Danach: Wir sehen uns Ihre Angaben an und melden uns auf dem Weg, den Sie gewählt haben. Für
+        eine belastbare Zahl fragen wir gegebenenfalls nach oder schlagen eine kurze Besichtigung
+        vor. Beides kostet nichts.
+      </p>
+    </fieldset>
+  </form>
+
+  <div class="fallback">
+    <p>
+      Lieber direkt sprechen?
+      {
+        phone.available && (
+          <>
+            {' '}
+            <a href={phone.href} data-track="phone_click" data-track-location="formular">
+              {phone.display}
+            </a>
+          </>
+        )
+      }
+      {
+        whatsapp.available && (
+          <>
+            {' '}oder{' '}
+            <a href={whatsapp.href} target="_blank" rel="noopener" data-track="whatsapp_click" data-track-location="formular">
+              per WhatsApp
+            </a>
+          </>
+        )
+      }
+      {!phone.available && !whatsapp.available && <> Alle Wege stehen auf der <a href="/kontakt/">Kontaktseite</a>.</>}
+    </p>
+  </div>
+</div>
+
+<style>
+  .check {
+    max-width: 46rem;
+  }
+
+  /* ------------------------------------------------------- Fortschritt */
+  .progress {
+    margin-bottom: var(--sp-6);
+  }
+  .progress__bar {
+    height: 4px;
+    background: var(--paper-3);
+    border-radius: 2px;
+    overflow: hidden;
+  }
+  .progress__fill {
+    height: 100%;
+    background: var(--accent);
+    transition: width 0.25s ease;
+  }
+  .progress__steps {
+    display: flex;
+    justify-content: space-between;
+    list-style: none;
+    margin: var(--sp-3) 0 0;
+    padding: 0;
+    gap: 0.25rem;
+  }
+  .progress__steps li {
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.25rem;
+    flex: 1;
+    text-align: center;
+  }
+  .progress__num {
+    width: 1.5rem;
+    height: 1.5rem;
+    display: grid;
+    place-items: center;
+    border-radius: 50%;
+    border: 1px solid var(--line-strong);
+    font-size: 0.78rem;
+    font-weight: 700;
+    color: var(--ink-4);
+    background: var(--white);
+  }
+  .progress__label {
+    font-size: 0.7rem;
+    color: var(--ink-4);
+    letter-spacing: 0.02em;
+  }
+  .progress__steps li[data-done] .progress__num {
+    background: var(--brand);
+    border-color: var(--brand);
+    color: var(--white);
+  }
+  .progress__steps li[data-current] .progress__num {
+    background: var(--accent);
+    border-color: var(--accent);
+    color: var(--white);
+  }
+  .progress__steps li[data-current] .progress__label {
+    color: var(--ink);
+    font-weight: 700;
+  }
+  .progress__text {
+    margin: var(--sp-2) 0 0;
+    font-size: 0.85rem;
+    color: var(--ink-3);
+  }
+  @media (max-width: 30em) {
+    .progress__label {
+      display: none;
+    }
+  }
+
+  /* ---------------------------------------------------------- Fehler */
+  .errors {
+    border: 2px solid #a02318;
+    background: #fdeeec;
+    color: #7d1a12;
+    padding: var(--sp-4) var(--sp-5);
+    border-radius: var(--r-md);
+    margin-bottom: var(--sp-5);
+  }
+  .errors__head {
+    font-weight: 700;
+    margin: 0 0 var(--sp-2);
+  }
+  .errors ul {
+    margin: 0;
+    padding-left: 1.2rem;
+  }
+  .errors a {
+    color: #7d1a12;
+  }
+
+  /* ----------------------------------------------------------- Schritte */
+  .step {
+    border: 1px solid var(--line);
+    border-radius: var(--r-md);
+    background: var(--white);
+    padding: var(--sp-5);
+    margin: 0 0 var(--sp-5);
+    min-width: 0;
+  }
+  .step[hidden] {
+    display: none;
+  }
+  .step > legend {
+    font-family: var(--font-head);
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: var(--brand);
+    padding: 0 var(--sp-3);
+    margin-left: calc(var(--sp-3) * -1);
+  }
+  .step__n {
+    display: block;
+    font-family: var(--font-body);
+    font-size: 0.72rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--accent);
+    font-weight: 700;
+    margin-bottom: 0.2rem;
+  }
+  .step__hint {
+    color: var(--ink-2);
+    font-size: 0.95rem;
+    margin-top: var(--sp-3);
+  }
+
+  .subfield {
+    border: 0;
+    padding: 0;
+    margin: 0 0 var(--sp-5);
+    min-width: 0;
+  }
+  .subfield > legend {
+    font-weight: 700;
+    color: var(--brand);
+    font-size: 1rem;
+    padding: 0;
+    margin-bottom: var(--sp-3);
+  }
+
+  /* ------------------------------------------------------------ Felder */
+  .field {
+    margin-bottom: var(--sp-5);
+  }
+  .field > label {
+    display: block;
+    font-weight: 700;
+    color: var(--brand);
+    margin-bottom: var(--sp-2);
+    font-size: 1rem;
+  }
+  .req {
+    font-weight: 400;
+    font-size: 0.78rem;
+    color: var(--ink-4);
+    letter-spacing: 0.02em;
+  }
+  .field__hint {
+    font-size: 0.87rem;
+    color: var(--ink-3);
+    margin: var(--sp-2) 0 0;
+  }
+
+  input[type='text'],
+  input[type='tel'],
+  input[type='email'],
+  input[type='date'],
+  select,
+  textarea {
+    width: 100%;
+    font: inherit;
+    font-size: 1rem;
+    padding: 0.7rem 0.85rem;
+    /* 16px verhindert das automatische Zoomen auf iOS */
+    border: 1px solid var(--line-strong);
+    border-radius: var(--r-md);
+    background: var(--white);
+    color: var(--ink);
+    min-height: 2.875rem;
+  }
+  textarea {
+    resize: vertical;
+    line-height: 1.55;
+  }
+  select {
+    appearance: none;
+    background-image: linear-gradient(45deg, transparent 50%, var(--ink-3) 50%),
+      linear-gradient(135deg, var(--ink-3) 50%, transparent 50%);
+    background-position: calc(100% - 1.15rem) 1.25rem, calc(100% - 0.8rem) 1.25rem;
+    background-size: 0.35rem 0.35rem, 0.35rem 0.35rem;
+    background-repeat: no-repeat;
+    padding-right: 2.5rem;
+  }
+  input:focus-visible,
+  select:focus-visible,
+  textarea:focus-visible {
+    border-color: var(--accent);
+  }
+  [aria-invalid='true'] {
+    border-color: #a02318;
+    background: #fdf6f5;
+  }
+  .field--short input {
+    max-width: 9rem;
+  }
+
+  .field__error {
+    display: block;
+    color: #a02318;
+    font-size: 0.88rem;
+    font-weight: 600;
+    margin-top: var(--sp-2);
+  }
+
+  /* ------------------------------------------------------------ Auswahl */
+  .choices {
+    display: grid;
+    gap: var(--sp-2);
+  }
+  .choices--cards {
+    grid-template-columns: 1fr;
+  }
+  @media (min-width: 34em) {
+    .choices--cards {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+  .choices--inline {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--sp-2);
+  }
+
+  .choice {
+    display: block;
+    position: relative;
+    cursor: pointer;
+  }
+  .choice input {
+    position: absolute;
+    opacity: 0;
+    width: 1px;
+    height: 1px;
+  }
+  .choice__body {
+    display: block;
+    border: 1px solid var(--line-strong);
+    border-radius: var(--r-md);
+    padding: 0.75rem 0.9rem;
+    background: var(--white);
+    min-height: 2.875rem;
+    transition: border-color 0.12s ease, background-color 0.12s ease;
+  }
+  .choice:hover .choice__body {
+    border-color: var(--brand-3);
+  }
+  .choice input:checked + .choice__body {
+    border-color: var(--accent);
+    background: var(--accent-tint);
+    box-shadow: inset 0 0 0 1px var(--accent);
+  }
+  .choice input:focus-visible + .choice__body {
+    outline: 3px solid var(--accent);
+    outline-offset: 2px;
+  }
+  .choice__icon {
+    display: block;
+    color: var(--accent);
+    margin-bottom: 0.3rem;
+  }
+  .choice__title {
+    display: flex;
+    align-items: center;
+    gap: 0.35rem;
+    font-weight: 700;
+    color: var(--brand);
+    font-size: 0.97rem;
+  }
+  .choice__hint {
+    display: block;
+    font-size: 0.86rem;
+    color: var(--ink-3);
+    margin-top: 0.15rem;
+    line-height: 1.45;
+  }
+  .choice--pill .choice__body {
+    padding: 0.6rem 1rem;
+    border-radius: 999px;
+  }
+  .choice--row .choice__body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  /* -------------------------------------------------------- Dateiliste */
+  input[type='file'] {
+    width: 100%;
+    font: inherit;
+    font-size: 0.95rem;
+    padding: 0.6rem;
+    border: 1px dashed var(--line-strong);
+    border-radius: var(--r-md);
+    background: var(--paper-2);
+  }
+  .filelist {
+    list-style: none;
+    margin: var(--sp-3) 0 0;
+    padding: 0;
+  }
+  .filelist li {
+    display: flex;
+    justify-content: space-between;
+    gap: var(--sp-3);
+    font-size: 0.88rem;
+    padding: 0.35rem 0;
+    border-bottom: 1px solid var(--paper-3);
+    color: var(--ink-2);
+    margin: 0;
+  }
+  .filelist li[data-too-big] {
+    color: #a02318;
+    font-weight: 600;
+  }
+
+  /* ------------------------------------------------------ Einwilligung */
+  .consent {
+    display: flex;
+    gap: var(--sp-3);
+    align-items: flex-start;
+    font-size: 0.95rem;
+    color: var(--ink-2);
+    line-height: 1.55;
+    cursor: pointer;
+  }
+  .consent input {
+    width: 1.35rem;
+    height: 1.35rem;
+    flex: none;
+    margin-top: 0.15rem;
+    accent-color: var(--accent);
+  }
+
+  /* ---------------------------------------------------- Zusammenfassung */
+  .summary {
+    border: 1px solid var(--line);
+    background: var(--paper-2);
+    border-radius: var(--r-md);
+    padding: var(--sp-4);
+    margin-bottom: var(--sp-5);
+  }
+  .summary__head {
+    font-size: 0.75rem;
+    letter-spacing: 0.09em;
+    text-transform: uppercase;
+    color: var(--ink-3);
+    font-weight: 700;
+    margin: 0 0 var(--sp-3);
+  }
+  .summary dl {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 0.3rem var(--sp-4);
+    margin: 0;
+    font-size: 0.9rem;
+  }
+  .summary dt {
+    color: var(--ink-3);
+  }
+  .summary dd {
+    margin: 0;
+    font-weight: 600;
+    color: var(--ink);
+  }
+
+  /* ------------------------------------------------------------ Rest */
+  .nav-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--sp-3);
+    margin-top: var(--sp-5);
+    padding-top: var(--sp-4);
+    border-top: 1px solid var(--line);
+  }
+  .nav-row .btn {
+    flex: 1 1 auto;
+  }
+  @media (min-width: 30em) {
+    .nav-row .btn {
+      flex: 0 0 auto;
+    }
+    [data-next],
+    [data-submit] {
+      margin-left: auto;
+    }
+  }
+
+  .after {
+    font-size: 0.88rem;
+    color: var(--ink-3);
+    margin: var(--sp-4) 0 0;
+  }
+
+  .hp {
+    position: absolute;
+    left: -9999px;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+  }
+
+  .fallback {
+    font-size: 0.95rem;
+    color: var(--ink-2);
+    padding-top: var(--sp-4);
+    border-top: 1px solid var(--line);
+  }
+</style>
+
+<script is:inline define:vars={{ maxMb: site.maxUploadMb, maxCount: site.maxUploadCount }}>
+  (function () {
+    var root = document.querySelector('[data-check]');
+    if (!root) return;
+
+    var form = root.querySelector('[data-form]');
+    var steps = Array.prototype.slice.call(root.querySelectorAll('[data-step]'));
+    var progress = root.querySelector('[data-progress]');
+    var fill = root.querySelector('[data-progress-fill]');
+    var progressText = root.querySelector('[data-progress-text]');
+    var progressSteps = Array.prototype.slice.call(root.querySelectorAll('[data-progress-step]'));
+    var errorBox = root.querySelector('[data-errors]');
+    var errorList = root.querySelector('[data-errors-list]');
+    var summary = root.querySelector('[data-summary]');
+    var summaryList = root.querySelector('[data-summary-list]');
+    var fileInput = root.querySelector('[data-photos]');
+    var fileList = root.querySelector('[data-filelist]');
+    var STORE = 'sh24_check';
+    var current = 1;
+    var maxReached = 1;
+
+    /* ------------------------------------------------- Hilfsfunktionen */
+    function track(name, detail) {
+      if (window.sh24 && window.sh24.track) window.sh24.track(name, detail);
+    }
+
+    function fieldsIn(step) {
+      return Array.prototype.slice.call(step.querySelectorAll('[data-validate]'));
+    }
+
+    function labelFor(field) {
+      if (field.type === 'radio' || field.type === 'checkbox') {
+        var fs = field.closest('fieldset');
+        var lg = fs ? fs.querySelector('legend') : null;
+        if (lg) return lg.textContent.replace(/Pflichtfeld/g, '').replace(/Schritt \d+/, '').trim();
+      }
+      var lbl = field.id ? root.querySelector('label[for="' + field.id + '"]') : null;
+      return lbl ? lbl.textContent.replace(/Pflichtfeld/g, '').trim() : 'Angabe';
+    }
+
+    function clearError(field) {
+      field.removeAttribute('aria-invalid');
+      var wrap = field.closest('.field, .subfield');
+      if (!wrap) return;
+      var msg = wrap.querySelector('.field__error');
+      if (msg) msg.remove();
+    }
+
+    function showError(field, message) {
+      field.setAttribute('aria-invalid', 'true');
+      var wrap = field.closest('.field, .subfield');
+      if (!wrap || wrap.querySelector('.field__error')) return;
+      var el = document.createElement('span');
+      el.className = 'field__error';
+      el.textContent = message;
+      wrap.appendChild(el);
+    }
+
+    function isFilled(field) {
+      if (field.type === 'checkbox') return field.checked;
+      if (field.type === 'radio') {
+        return !!form.querySelector('input[name="' + field.name + '"]:checked');
+      }
+      return field.value.trim() !== '';
+    }
+
+    function validateStep(step) {
+      var problems = [];
+      var seen = {};
+      fieldsIn(step).forEach(function (field) {
+        if (field.type === 'radio' && seen[field.name]) return;
+        seen[field.name] = true;
+        clearError(field);
+
+        var msg = field.getAttribute('data-validate');
+        if (!isFilled(field)) {
+          showError(field, msg);
+          problems.push({ field: field, message: msg });
+          return;
+        }
+        if (field.id === 'plz' && !/^\d{5}$/.test(field.value.trim())) {
+          showError(field, msg);
+          problems.push({ field: field, message: msg });
+        }
+      });
+
+      // E-Mail nur prüfen, wenn etwas eingetragen wurde (Feld ist freiwillig)
+      var mail = step.querySelector('#mail');
+      if (mail && mail.value.trim() && mail.value.indexOf('@') < 1) {
+        var m = 'Bitte prüfen Sie die E-Mail-Adresse.';
+        clearError(mail);
+        showError(mail, m);
+        problems.push({ field: mail, message: m });
+      }
+
+      renderErrors(problems);
+      return problems.length === 0;
+    }
+
+    function renderErrors(problems) {
+      if (!errorBox || !errorList) return;
+      errorList.innerHTML = '';
+      if (!problems.length) {
+        errorBox.hidden = true;
+        return;
+      }
+      problems.forEach(function (p) {
+        var li = document.createElement('li');
+        var a = document.createElement('a');
+        a.href = '#';
+        a.textContent = labelFor(p.field) + ': ' + p.message;
+        a.addEventListener('click', function (e) {
+          e.preventDefault();
+          p.field.focus();
+        });
+        li.appendChild(a);
+        errorList.appendChild(li);
+      });
+      errorBox.hidden = false;
+      errorBox.scrollIntoView({ block: 'nearest' });
+    }
+
+    /* ------------------------------------------------------ Navigation */
+    function show(n, focus) {
+      current = n;
+      maxReached = Math.max(maxReached, n);
+      steps.forEach(function (s) {
+        s.hidden = Number(s.getAttribute('data-step')) !== n;
+      });
+      if (fill) fill.style.width = (n / steps.length) * 100 + '%';
+      if (progressText) progressText.textContent = 'Schritt ' + n + ' von ' + steps.length;
+      progressSteps.forEach(function (li, i) {
+        li.removeAttribute('data-current');
+        li.removeAttribute('data-done');
+        if (i + 1 === n) li.setAttribute('data-current', '');
+        else if (i + 1 < n) li.setAttribute('data-done', '');
+      });
+      if (n === steps.length) buildSummary();
+      if (focus !== false) {
+        var lg = steps[n - 1].querySelector('legend');
+        if (lg) {
+          lg.setAttribute('tabindex', '-1');
+          lg.focus({ preventScroll: true });
+        }
+        var top = root.getBoundingClientRect().top + window.pageYOffset - 16;
+        window.scrollTo({ top: top, behavior: 'auto' });
+      }
+    }
+
+    root.addEventListener('click', function (e) {
+      var next = e.target.closest('[data-next]');
+      var prev = e.target.closest('[data-prev]');
+      if (next) {
+        if (!validateStep(steps[current - 1])) return;
+        save();
+        track('estimate_step_completed', { step: current });
+        show(current + 1);
+      }
+      if (prev) {
+        renderErrors([]);
+        show(current - 1);
+      }
+    });
+
+    /* ------------------------------------------- Zwischenstand sichern */
+    function save() {
+      try {
+        var data = {};
+        new FormData(form).forEach(function (value, key) {
+          if (key === 'fotos[]' || key === 'webseite') return;
+          if (key.slice(-2) === '[]') {
+            data[key] = data[key] || [];
+            data[key].push(value);
+          } else {
+            data[key] = value;
+          }
+        });
+        localStorage.setItem(STORE, JSON.stringify({ data: data, step: current, ts: Date.now() }));
+      } catch (err) {
+        /* localStorage kann blockiert sein – dann eben ohne Zwischenstand */
+      }
+    }
+
+    function restore() {
+      try {
+        var raw = localStorage.getItem(STORE);
+        if (!raw) return;
+        var saved = JSON.parse(raw);
+        // Zwischenstände älter als 7 Tage verwerfen
+        if (!saved || Date.now() - saved.ts > 7 * 864e5) {
+          localStorage.removeItem(STORE);
+          return;
+        }
+        Object.keys(saved.data).forEach(function (key) {
+          var values = [].concat(saved.data[key]);
+          values.forEach(function (value) {
+            var els = form.querySelectorAll('[name="' + key.replace(/"/g, '') + '"]');
+            Array.prototype.forEach.call(els, function (el) {
+              if (el.type === 'radio' || el.type === 'checkbox') {
+                if (el.value === value) el.checked = true;
+              } else {
+                el.value = value;
+              }
+            });
+          });
+        });
+        if (saved.step > 1) show(saved.step, false);
+      } catch (err) {
+        /* ignorieren */
+      }
+    }
+
+    form.addEventListener('change', function (e) {
+      save();
+      if (e.target.hasAttribute && e.target.hasAttribute('data-validate')) clearError(e.target);
+    });
+
+    /* --------------------------------------------------- Zusammenfassung */
+    function buildSummary() {
+      if (!summary || !summaryList) return;
+      var wanted = [
+        ['leistung', 'Leistung'],
+        ['plz', 'Postleitzahl'],
+        ['objektart', 'Objekt'],
+        ['fuellgrad', 'Füllgrad'],
+        ['etage', 'Etage'],
+        ['aufzug', 'Aufzug'],
+        ['zeitraum', 'Zeitraum'],
+      ];
+      var fd = new FormData(form);
+      summaryList.innerHTML = '';
+      var any = false;
+      wanted.forEach(function (pair) {
+        var v = fd.get(pair[0]);
+        if (!v) return;
+        any = true;
+        var dt = document.createElement('dt');
+        dt.textContent = pair[1];
+        var dd = document.createElement('dd');
+        dd.textContent = v;
+        summaryList.appendChild(dt);
+        summaryList.appendChild(dd);
+      });
+      var extra = fd.getAll('nebenraeume[]');
+      if (extra.length) {
+        var dt2 = document.createElement('dt');
+        dt2.textContent = 'Zusätzlich';
+        var dd2 = document.createElement('dd');
+        dd2.textContent = extra.join(', ');
+        summaryList.appendChild(dt2);
+        summaryList.appendChild(dd2);
+      }
+      var count = fileInput && fileInput.files ? fileInput.files.length : 0;
+      if (count) {
+        var dt3 = document.createElement('dt');
+        dt3.textContent = 'Fotos';
+        var dd3 = document.createElement('dd');
+        dd3.textContent = count === 1 ? '1 Bild' : count + ' Bilder';
+        summaryList.appendChild(dt3);
+        summaryList.appendChild(dd3);
+        any = true;
+      }
+      summary.hidden = !any;
+    }
+
+    /* ---------------------------------------------------------- Fotos */
+    if (fileInput && fileList) {
+      fileInput.addEventListener('change', function () {
+        fileList.innerHTML = '';
+        var files = Array.prototype.slice.call(fileInput.files);
+        if (files.length > maxCount) {
+          var warn = document.createElement('li');
+          warn.setAttribute('data-too-big', '');
+          warn.textContent =
+            'Bitte höchstens ' + maxCount + ' Bilder auswählen. Die übrigen schicken wir später per WhatsApp.';
+          fileList.appendChild(warn);
+        }
+        files.slice(0, maxCount + 4).forEach(function (f) {
+          var li = document.createElement('li');
+          var mb = f.size / 1048576;
+          var name = document.createElement('span');
+          name.textContent = f.name;
+          var size = document.createElement('span');
+          size.textContent = mb.toFixed(1) + ' MB';
+          if (mb > maxMb) {
+            li.setAttribute('data-too-big', '');
+            size.textContent = mb.toFixed(1) + ' MB – zu groß';
+          }
+          li.appendChild(name);
+          li.appendChild(size);
+          fileList.appendChild(li);
+        });
+        if (files.length) track('photo_uploaded', { count: files.length });
+      });
+    }
+
+    /* -------------------------------------------------------- Absenden */
+    form.addEventListener('submit', function (e) {
+      var ok = true;
+      // Alle Schritte prüfen, nicht nur den aktuellen
+      for (var i = 0; i < steps.length; i++) {
+        if (!validateStep(steps[i])) {
+          ok = false;
+          show(i + 1);
+          break;
+        }
+      }
+      if (!ok) {
+        e.preventDefault();
+        return;
+      }
+      var btn = form.querySelector('[data-submit]');
+      if (btn) {
+        btn.setAttribute('aria-disabled', 'true');
+        btn.textContent = 'Wird gesendet …';
+      }
+      // Zusammenfassung für die Bestätigungsseite bereitstellen
+      try {
+        var fd = new FormData(form);
+        var out = {};
+        ['leistung', 'plz', 'ort', 'objektart', 'fuellgrad', 'etage', 'aufzug', 'zeitraum', 'stichtag', 'kontaktart', 'name'].forEach(
+          function (k) {
+            var v = fd.get(k);
+            if (v) out[k] = v;
+          },
+        );
+        var neben = fd.getAll('nebenraeume[]');
+        if (neben.length) out.nebenraeume = neben.join(', ');
+        out.fotos = fileInput && fileInput.files ? fileInput.files.length : 0;
+        sessionStorage.setItem('sh24_anfrage', JSON.stringify(out));
+        localStorage.removeItem(STORE);
+      } catch (err) {
+        /* ignorieren */
+      }
+      track('lead_form_submitted', { steps: steps.length });
+    });
+
+    /* ------------------------------------------------------------ Start */
+    var started = root.querySelector('[data-started]');
+    if (started) started.value = String(Date.now());
+    var src = root.querySelector('[data-source]');
+    if (src && window.sh24 && window.sh24.source) {
+      src.value = window.sh24.source.channel + ' | ' + window.sh24.source.source;
+    }
+
+    if (progress) progress.hidden = false;
+    show(1, false);
+    restore();
+    track('estimate_started', {});
+
+    // Abbruch erfassen, wenn das Formular begonnen, aber nicht abgesendet wurde
+    var submitted = false;
+    form.addEventListener('submit', function () {
+      submitted = true;
+    });
+    window.addEventListener('pagehide', function () {
+      if (!submitted && maxReached > 1) track('estimate_abandoned', { lastStep: maxReached });
+    });
+  })();
+</script>

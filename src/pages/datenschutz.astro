@@ -1,0 +1,324 @@
+---
+import Base from '../layouts/Base.astro';
+import Breadcrumbs from '../components/Breadcrumbs.astro';
+import Todo from '../components/Todo.astro';
+import { site, realValue, addressLine } from '../config/site';
+import { email } from '../lib/contact';
+import { buildGraph, organizationNode, websiteNode, webPageNode, breadcrumbNode } from '../lib/schema';
+
+/**
+ * Datenschutzerklärung.
+ *
+ * WICHTIG: Dieses Dokument beschreibt genau das, was diese Website
+ * technisch tatsächlich tut. Es ist damit inhaltlich zutreffend, aber es
+ * ist KEINE Rechtsberatung und ersetzt keine anwaltliche Prüfung.
+ * Vor dem Livegang müssen die Verantwortlichen-Angaben ergänzt und der
+ * Text geprüft werden. Sobald Hosting, Analytics oder ein CRM
+ * hinzukommen, muss dieser Text erweitert werden.
+ */
+const path = '/datenschutz/';
+const title = 'Datenschutzerklärung | Schnellhelfer24';
+const description = 'Wie Schnellhelfer24 mit personenbezogenen Daten und mit Fotos aus Anfragen umgeht.';
+
+const crumbs = [
+  { name: 'Start', href: '/' },
+  { name: 'Datenschutz', href: path },
+];
+
+const schema = buildGraph([
+  organizationNode(),
+  websiteNode(),
+  breadcrumbNode(path, crumbs),
+  webPageNode({ url: path, name: title, description }),
+]);
+
+const legalName = realValue(site.legalName);
+const addr = addressLine();
+const dpo = realValue(site.dataProtectionOfficer);
+---
+
+<Base title={title} description={description} path={path} index={true} schema={schema}>
+  <Breadcrumbs items={crumbs} />
+
+  <div class="wrap wrap--mid section--tight">
+    <article class="prose legal">
+      <h1>Datenschutzerklärung</h1>
+
+      <div class="legal-check" role="note">
+        <p>
+          <strong>Hinweis für den Betreiber:</strong> Dieser Text beschreibt zutreffend, was diese
+          Website technisch tut. Er ist trotzdem vor dem Livegang zu prüfen und um die Angaben zum
+          Hostingunternehmen sowie um alles zu ergänzen, was nach dem Start hinzukommt (Analytics,
+          CRM, E-Mail-Automatisierung, Kartendienste). Keine Rechtsberatung.
+        </p>
+      </div>
+
+      <h2>1. Verantwortlicher</h2>
+      <p class="block">
+        {legalName ?? '[VOLLSTÄNDIGE FIRMIERUNG EINTRAGEN]'}<br />
+        {addr ?? '[ANSCHRIFT EINTRAGEN]'}<br />
+        E-Mail: {email.available ? <a href={email.href}>{email.address}</a> : '[DOMAIN-E-MAIL EINTRAGEN]'}
+      </p>
+      <p>
+        {
+          dpo
+            ? `Datenschutzbeauftragte Person: ${dpo}`
+            : 'Ein Datenschutzbeauftragter ist nach § 38 BDSG nicht in jedem Fall zu benennen. [PRÜFEN, ob eine Benennungspflicht besteht. Falls ja, hier eintragen.]'
+        }
+      </p>
+
+      <h2>2. Grundsatz: so wenig Daten wie möglich</h2>
+      <p>
+        Diese Website lädt keine externen Schriftarten, keine externen Skripte, keine Karten und
+        keine Videos von Drittanbietern. Es werden keine Cookies gesetzt, die für den Betrieb nicht
+        erforderlich sind. Ohne Ihre aktive Handlung, also ohne Anruf, Nachricht oder Formular,
+        verlassen keine Daten Ihren Browser in Richtung Dritter.
+      </p>
+
+      <h2>3. Aufruf der Website (Server-Logfiles)</h2>
+      <p>
+        Beim Aufruf der Website verarbeitet das Hostingunternehmen technisch notwendige Daten:
+        IP-Adresse, Datum und Uhrzeit, aufgerufene Seite, übertragene Datenmenge, Statuscode,
+        Referrer sowie Browser- und Betriebssystemkennung.
+      </p>
+      <table class="kv">
+        <tbody>
+          <tr>
+            <th scope="row">Zweck</th>
+            <td>Auslieferung der Seite, Betriebssicherheit, Abwehr von Angriffen</td>
+          </tr>
+          <tr>
+            <th scope="row">Rechtsgrundlage</th>
+            <td>Art. 6 Abs. 1 lit. f DSGVO (berechtigtes Interesse am sicheren Betrieb)</td>
+          </tr>
+          <tr>
+            <th scope="row">Speicherdauer</th>
+            <td>[SPEICHERDAUER DES HOSTERS EINTRAGEN, üblich sind 7 bis 30 Tage]</td>
+          </tr>
+          <tr>
+            <th scope="row">Empfänger</th>
+            <td>[HOSTINGUNTERNEHMEN MIT ANSCHRIFT EINTRAGEN, Auftragsverarbeitungsvertrag nach Art. 28 DSGVO erforderlich]</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h2>4. Anfrageformular und Aufwand-Check</h2>
+      <p>
+        Wenn Sie das Anfrageformular nutzen, verarbeiten wir die Angaben, die Sie eintragen: Art der
+        Leistung, Postleitzahl, Objektart, Umfang, Etage, Aufzug, Wunschzeitraum, Ihre Beschreibung,
+        Name, Telefonnummer, optional E-Mail-Adresse und bevorzugter Kontaktweg.
+      </p>
+      <table class="kv">
+        <tbody>
+          <tr>
+            <th scope="row">Zweck</th>
+            <td>Bearbeitung Ihrer Anfrage, Einschätzung des Aufwands, Kontaktaufnahme</td>
+          </tr>
+          <tr>
+            <th scope="row">Rechtsgrundlage</th>
+            <td>
+              Art. 6 Abs. 1 lit. b DSGVO (vorvertragliche Maßnahmen auf Ihre Anfrage hin)
+            </td>
+          </tr>
+          <tr>
+            <th scope="row">Speicherdauer</th>
+            <td>
+              Anfragen ohne Auftrag: [LÖSCHFRIST FESTLEGEN, Vorschlag 6 Monate]. Bei Beauftragung
+              gelten die handels- und steuerrechtlichen Aufbewahrungsfristen.
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <p>
+        Zur Abwehr automatisierter Einsendungen prüfen wir technisch, ob ein Formular von einem
+        Programm ausgefüllt wurde. Dazu werden ein verstecktes Feld sowie die Zeit zwischen Aufruf
+        und Absenden ausgewertet. Außerdem begrenzen wir die Anzahl der Einsendungen pro
+        IP-Adresse. Zu diesem Zweck wird die IP-Adresse in verkürzter, nicht rückführbarer Form
+        gespeichert.
+      </p>
+      <p>
+        Ihre Zwischeneingaben im mehrstufigen Formular werden ausschließlich lokal in Ihrem Browser
+        gespeichert (localStorage), damit die Angaben beim versehentlichen Schließen nicht verloren
+        gehen. Diese Daten werden nicht übertragen und beim Absenden gelöscht.
+      </p>
+
+      <h2>5. Fotos aus Wohnräumen</h2>
+      <p>
+        Fotos aus Wohnungen können sehr persönliche Informationen enthalten, darunter Angaben zu
+        Lebensumständen, Gesundheit oder Religion. Wir behandeln solche Uploads entsprechend
+        vorsichtig:
+      </p>
+      <ul>
+        <li>Die Dateien werden ausschließlich zur Einschätzung Ihrer Anfrage verwendet.</li>
+        <li>Sie werden unter zufällig erzeugten Dateinamen außerhalb des öffentlichen Webbereichs gespeichert und sind über die Website nicht abrufbar.</li>
+        <li>Es gibt kein öffentliches Verzeichnis der hochgeladenen Dateien.</li>
+        <li>Sie werden nicht veröffentlicht und nicht an Dritte weitergegeben.</li>
+        <li>Sie werden nach Abschluss der Bearbeitung gelöscht, spätestens nach [LÖSCHFRIST FÜR FOTOS FESTLEGEN, Vorschlag 90 Tage].</li>
+        <li>Eine Verwendung als Referenzbild erfolgt nur mit Ihrer ausdrücklichen, gesonderten Einwilligung.</li>
+      </ul>
+      <p>
+        Rechtsgrundlage ist Art. 6 Abs. 1 lit. b DSGVO. Sie entscheiden selbst, ob Sie Fotos
+        beifügen. Ohne Fotos ist eine Einschätzung ebenfalls möglich, dann über eine Besichtigung.
+      </p>
+
+      <h2>6. Kontakt per Telefon, E-Mail und WhatsApp</h2>
+      <p>
+        Wenn Sie uns anrufen oder schreiben, verarbeiten wir die dabei anfallenden Daten zur
+        Bearbeitung Ihres Anliegens (Art. 6 Abs. 1 lit. b bzw. lit. f DSGVO).
+      </p>
+      <p>
+        <strong>WhatsApp:</strong> Wenn Sie uns über WhatsApp schreiben, werden Ihre Daten durch
+        WhatsApp Ireland Limited verarbeitet. Auf diese Verarbeitung haben wir keinen Einfluss. Eine
+        Übermittlung in Drittländer ist dabei nicht ausgeschlossen. Wenn Sie das vermeiden möchten,
+        nutzen Sie bitte das Anfrageformular, das Telefon oder E-Mail. Der WhatsApp-Link auf dieser
+        Website stellt erst dann eine Verbindung her, wenn Sie ihn anklicken.
+      </p>
+
+      <h2>7. Reichweitenmessung</h2>
+      <p>
+        Diese Website erfasst im Browser, welche Handlungen ausgeführt werden, etwa ein Klick auf
+        die Telefonnummer oder das Absenden des Formulars. Diese Angaben werden derzeit
+        <strong>nicht</strong> an einen Server übertragen und nicht gespeichert. Sie dienen der
+        späteren Anbindung einer Auswertung.
+      </p>
+      <p>
+        Sobald eine Auswertung angebunden wird, gilt: Dienste, die dafür nicht zwingend erforderlich
+        sind, werden erst nach Ihrer Einwilligung geladen (§ 25 Abs. 1 TDDDG, Art. 6 Abs. 1 lit. a
+        DSGVO). Diese Erklärung wird dann entsprechend ergänzt.
+      </p>
+      <Todo>
+        Sobald ein Analytics-Dienst eingebunden wird: diesen Abschnitt ersetzen durch Name des
+        Dienstes, Anbieter, Zweck, Rechtsgrundlage, Speicherdauer, Empfänger, Drittlandtransfer und
+        Widerrufsmöglichkeit.
+      </Todo>
+
+      <h2>8. Empfänger Ihrer Daten</h2>
+      <ul>
+        <li>Hostingunternehmen: [ANBIETER MIT ANSCHRIFT EINTRAGEN, AV-Vertrag erforderlich]</li>
+        <li>E-Mail-Anbieter für den Empfang der Anfragen: [ANBIETER EINTRAGEN]</li>
+        <li>Bei Beauftragung: Steuerberatung im Rahmen der Buchführung</li>
+        <li>Keine Weitergabe zu Werbezwecken, kein Verkauf von Daten</li>
+      </ul>
+
+      <h2>9. Ihre Rechte</h2>
+      <p>Sie haben nach der DSGVO folgende Rechte:</p>
+      <ul>
+        <li>Auskunft über die zu Ihnen gespeicherten Daten (Art. 15)</li>
+        <li>Berichtigung unrichtiger Daten (Art. 16)</li>
+        <li>Löschung (Art. 17)</li>
+        <li>Einschränkung der Verarbeitung (Art. 18)</li>
+        <li>Datenübertragbarkeit (Art. 20)</li>
+        <li>Widerspruch gegen Verarbeitungen auf Grundlage berechtigter Interessen (Art. 21)</li>
+        <li>Widerruf erteilter Einwilligungen mit Wirkung für die Zukunft (Art. 7 Abs. 3)</li>
+      </ul>
+      <p>
+        Wenden Sie sich dafür an die oben genannte Adresse. Sie haben außerdem das Recht, sich bei
+        einer Aufsichtsbehörde zu beschweren. Für Berlin ist die Berliner Beauftragte für
+        Datenschutz und Informationsfreiheit zuständig.
+      </p>
+
+      <h2>10. Pflicht zur Bereitstellung</h2>
+      <p>
+        Die Angabe Ihrer Daten ist gesetzlich nicht vorgeschrieben. Ohne eine Kontaktmöglichkeit,
+        also Telefonnummer oder E-Mail-Adresse, können wir Ihre Anfrage jedoch nicht beantworten.
+        Alle übrigen Angaben sind freiwillig, verbessern aber die Genauigkeit der Einschätzung.
+      </p>
+
+      <h2>11. Änderungen</h2>
+      <p>
+        Wir passen diese Erklärung an, wenn sich die Verarbeitung ändert, etwa durch neue Dienste.
+        Stand dieser Fassung: 29. Juli 2026.
+      </p>
+
+      <div class="legal-check" role="note">
+        <p><strong>Vor dem Livegang zu ergänzen und zu prüfen:</strong></p>
+        <ul>
+          <li>Verantwortlicher mit vollständiger Firmierung und Anschrift</li>
+          <li>Hostingunternehmen, Speicherdauer der Logfiles, AV-Vertrag nach Art. 28 DSGVO</li>
+          <li>E-Mail-Anbieter, über den Anfragen empfangen werden</li>
+          <li>Konkrete Löschfristen für Anfragen und für hochgeladene Fotos</li>
+          <li>Prüfung, ob ein Datenschutzbeauftragter zu benennen ist (§ 38 BDSG)</li>
+          <li>Verzeichnis von Verarbeitungstätigkeiten nach Art. 30 DSGVO anlegen</li>
+          <li>Anwaltliche Prüfung des Gesamttexts</li>
+        </ul>
+        <p class="mb-0">Diese Seite ist keine Rechtsberatung.</p>
+      </div>
+    </article>
+  </div>
+</Base>
+
+<style>
+  .legal h2 {
+    font-size: 1.15rem;
+    margin-top: var(--sp-6);
+  }
+  .legal .block {
+    line-height: 1.7;
+  }
+  .legal-check {
+    border: 2px dashed var(--warn);
+    background: var(--warn-tint);
+    color: var(--warn);
+    padding: var(--sp-4) var(--sp-5);
+    border-radius: var(--r-md);
+    margin: var(--sp-5) 0;
+    font-size: 0.93rem;
+  }
+  .legal-check > :last-child {
+    margin-bottom: 0;
+  }
+  .kv {
+    min-width: 0;
+  }
+  .kv th,
+  .kv td {
+    background: none;
+    font-size: 0.95rem;
+    color: var(--ink);
+    letter-spacing: 0;
+    vertical-align: top;
+  }
+  .kv th {
+    font-weight: 600;
+    color: var(--ink-3);
+    width: 11rem;
+  }
+  /* Schlüssel-Wert-Tabellen: auf schmalen Bildschirmen untereinander
+     statt nebeneinander, sonst laufen sie über den Rand hinaus. */
+  .kv,
+  .kv tbody,
+  .kv tr,
+  .kv th,
+  .kv td {
+    display: block;
+    width: auto;
+  }
+  .kv tr {
+    margin-bottom: var(--sp-3);
+  }
+  .kv th {
+    padding-bottom: 0.1rem;
+  }
+  .kv td {
+    padding-left: 0;
+  }
+
+  @media (min-width: 34em) {
+    .kv,
+    .kv tbody {
+      display: table;
+    }
+    .kv tr {
+      display: table-row;
+      margin-bottom: 0;
+    }
+    .kv th,
+    .kv td {
+      display: table-cell;
+    }
+    .kv th {
+      padding-bottom: 0.25rem;
+    }
+  }
+
+</style>

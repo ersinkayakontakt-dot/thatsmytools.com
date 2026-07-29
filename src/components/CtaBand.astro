@@ -1,0 +1,112 @@
+---
+import Icon from './Icon.astro';
+import { phone, whatsapp, primaryCta } from '../lib/contact';
+
+/**
+ * Abschließender Handlungsaufruf.
+ * Ruhig gehalten: keine Countdown-Timer, keine künstliche Verknappung,
+ * keine Verfügbarkeitsanzeige. Nur die drei Wege, die tatsächlich zur
+ * Verfügung stehen.
+ */
+interface Props {
+  headline?: string;
+  text?: string;
+  /** Woher der Klick kommt – für die Auswertung */
+  location?: string;
+}
+const {
+  headline = 'Schicken Sie uns Fotos, wir schätzen den Aufwand ein',
+  text = 'Kostenlos und unverbindlich. Für eine erste Einschätzung genügen ein Foto pro Raum, die Etage und die Angabe, ob ein Aufzug vorhanden ist.',
+  location = 'cta-band',
+} = Astro.props;
+---
+
+<section class="section section--brand cta-band">
+  <div class="wrap">
+    <div class="cta-band__inner">
+      <div class="cta-band__text">
+        <p class="kicker">Nächster Schritt</p>
+        <h2>{headline}</h2>
+        <p>{text}</p>
+      </div>
+      <div class="cta-band__actions">
+        <a class="btn btn--onbrand" href={primaryCta.href} data-track="estimate_cta_click" data-track-location={location}>
+          <Icon name="camera" size={19} />
+          Fotos senden & Einschätzung erhalten
+        </a>
+        {
+          phone.available && (
+            <a
+              class="btn btn--outline-light"
+              href={phone.href}
+              data-track="phone_click"
+              data-track-location={location}
+            >
+              <Icon name="phone" size={19} />
+              {phone.display}
+            </a>
+          )
+        }
+        {
+          whatsapp.available && (
+            <a
+              class="btn btn--outline-light"
+              href={whatsapp.href}
+              target="_blank"
+              rel="noopener"
+              data-track="whatsapp_click"
+              data-track-location={location}
+            >
+              <Icon name="whatsapp" size={19} />
+              WhatsApp
+            </a>
+          )
+        }
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .cta-band__inner {
+    display: grid;
+    gap: var(--sp-6);
+  }
+  @media (min-width: 56em) {
+    .cta-band__inner {
+      grid-template-columns: 1.3fr 1fr;
+      align-items: center;
+      gap: var(--sp-8);
+    }
+  }
+  .cta-band__text h2 {
+    margin-top: 0;
+  }
+  .cta-band__text p {
+    color: #c3d0d5;
+    max-width: 34rem;
+    margin-bottom: 0;
+  }
+  .cta-band__actions {
+    display: flex;
+    flex-direction: column;
+    gap: var(--sp-3);
+  }
+  @media (min-width: 30em) and (max-width: 55.99em) {
+    .cta-band__actions {
+      flex-direction: row;
+      flex-wrap: wrap;
+    }
+  }
+
+  .cta-band__actions :global(.btn--outline-light) {
+    background: transparent;
+    border-color: rgba(255, 255, 255, 0.4);
+    color: var(--white);
+  }
+  .cta-band__actions :global(.btn--outline-light:hover) {
+    border-color: var(--white);
+    background: rgba(255, 255, 255, 0.08);
+    color: var(--white);
+  }
+</style>

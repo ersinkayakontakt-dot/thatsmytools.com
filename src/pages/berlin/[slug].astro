@@ -1,0 +1,63 @@
+---
+import Base from '../../layouts/Base.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import LocationArticle from '../../components/LocationArticle.astro';
+import CtaBand from '../../components/CtaBand.astro';
+import { districts } from '../../data/districts';
+import { locationIsIndexable } from '../../lib/publishGuard';
+import {
+  buildGraph,
+  organizationNode,
+  websiteNode,
+  webPageNode,
+  breadcrumbNode,
+  faqNode,
+} from '../../lib/schema';
+
+export function getStaticPaths() {
+  return districts.map((district) => ({ params: { slug: district.slug }, props: { district } }));
+}
+
+const { district } = Astro.props;
+const path = `/berlin/${district.slug}/`;
+const indexable = locationIsIndexable(district);
+
+const crumbs = [
+  { name: 'Start', href: '/' },
+  { name: 'Berlin', href: '/berlin/' },
+  { name: district.name, href: path },
+];
+
+const schema = buildGraph([
+  organizationNode(),
+  websiteNode(),
+  breadcrumbNode(path, crumbs),
+  webPageNode({
+    url: path,
+    name: district.metaTitle,
+    description: district.metaDescription,
+    dateModified: district.updated,
+    breadcrumbId: `https://schnellhelfer24.de${path}#breadcrumb`,
+  }),
+  faqNode(path, district.faq),
+]);
+---
+
+<Base
+  title={district.metaTitle}
+  description={district.metaDescription}
+  path={path}
+  index={indexable}
+  schema={schema}
+  modified={district.updated}
+>
+  <Breadcrumbs items={crumbs} />
+  <div class="wrap section--tight">
+    <LocationArticle loc={district} hub="berlin" indexable={indexable} />
+  </div>
+  <CtaBand
+    location={`bezirk-${district.slug}`}
+    headline={`Einsatz in ${district.name} anfragen`}
+    text="Fotos aus jedem Raum, Etage und Aufzug: damit können wir den Aufwand einschätzen. Bei größeren Objekten kommen wir vorbei."
+  />
+</Base>

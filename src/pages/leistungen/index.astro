@@ -1,0 +1,194 @@
+---
+import Base from '../../layouts/Base.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import Icon from '../../components/Icon.astro';
+import CtaBand from '../../components/CtaBand.astro';
+import { publishedServices } from '../../data/services';
+import { universalPriceFactors } from '../../data/costs';
+import {
+  buildGraph,
+  organizationNode,
+  websiteNode,
+  webPageNode,
+  breadcrumbNode,
+} from '../../lib/schema';
+
+const path = '/leistungen/';
+const title = 'Leistungen: Entrümpelung, Auflösung und Umzug in Berlin';
+const description =
+  'Alle Leistungen im Überblick: Entrümpelung, Haushalts- und Wohnungsauflösung, Nachlass, Keller, Büro, Sperrmüll, Umzug und Seniorenumzug in Berlin.';
+
+const crumbs = [
+  { name: 'Start', href: '/' },
+  { name: 'Leistungen', href: path },
+];
+
+const schema = buildGraph([
+  organizationNode(),
+  websiteNode(),
+  breadcrumbNode(path, crumbs),
+  webPageNode({ url: path, name: title, description, dateModified: '2026-07-29' }),
+]);
+
+// Gruppierung, damit die Übersicht nicht als beliebige Kachelwand wirkt
+const groups = [
+  {
+    id: 'raeumen',
+    title: 'Räumen und auflösen',
+    text: 'Von einem einzelnen Kellerabteil bis zur kompletten Auflösung eines Haushalts.',
+    slugs: [
+      'entruempelung-berlin',
+      'haushaltsaufloesung-berlin',
+      'wohnungsaufloesung-berlin',
+      'nachlassaufloesung-berlin',
+      'messiwohnung-raeumen',
+      'kellerentruempelung-berlin',
+    ],
+  },
+  {
+    id: 'transport',
+    title: 'Transportieren und entsorgen',
+    text: 'Einzelne Stücke oder ganze Haushalte bewegen, getrennt entsorgen, sicher übergeben.',
+    slugs: ['umzug-berlin', 'seniorenumzug-berlin', 'sperrmuellabholung-berlin'],
+  },
+  {
+    id: 'gewerbe',
+    title: 'Für Betriebe und Verwaltungen',
+    text: 'Gewerbeflächen räumen, Akten gesondert behandeln, termingerecht übergeben.',
+    slugs: ['bueroaufloesung-berlin'],
+  },
+];
+
+const byGroup = groups.map((g) => ({
+  ...g,
+  items: g.slugs
+    .map((s) => publishedServices.find((x) => x.slug === s))
+    .filter((x): x is NonNullable<typeof x> => Boolean(x)),
+}));
+---
+
+<Base title={title} description={description} path={path} schema={schema}>
+  <Breadcrumbs items={crumbs} />
+
+  <div class="wrap section--tight">
+    <div class="prose">
+      <h1>Leistungen</h1>
+      <div class="answer">
+        <p>
+          Schnellhelfer24 räumt, löst auf, transportiert und entsorgt in Berlin und im Berliner
+          Umland. Alle Leistungen kommen aus einer Hand, damit Räumung, Transport und Entsorgung
+          nicht auf mehrere Betriebe verteilt werden müssen. Der Aufwand wird vorher anhand von
+          Fotos oder bei einer Besichtigung eingeschätzt und schriftlich festgehalten.
+        </p>
+      </div>
+      <p class="lede">
+        Wenn Sie nicht sicher sind, welche Leistung zu Ihrer Situation gehört: Das müssen Sie nicht
+        wissen. Beschreiben Sie die Lage, wir ordnen es zu.
+      </p>
+    </div>
+  </div>
+
+  {
+    byGroup.map((group, gi) => (
+      <section class={`section${gi % 2 === 0 ? '' : ' section--paper'}`} aria-labelledby={group.id}>
+        <div class="wrap">
+          <p class="kicker">{`0${gi + 1}`}</p>
+          <h2 id={group.id}>{group.title}</h2>
+          <p class="lede">{group.text}</p>
+
+          <ul class="svc-list">
+            {group.items.map((s) => (
+              <li>
+                <a class="card card--link card--plan svc" href={`/leistungen/${s.slug}/`}>
+                  <span class="svc__icon" aria-hidden="true">
+                    <Icon name={s.icon} size={20} />
+                  </span>
+                  <span class="card__title">{s.h1}</span>
+                  <span class="card__text">{s.teaser}</span>
+                  <span class="card__more">Mehr zu dieser Leistung</span>
+                </a>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </section>
+    ))
+  }
+
+  <section class="section" aria-labelledby="pf-all">
+    <div class="wrap">
+      <p class="kicker">Gilt für alle Leistungen</p>
+      <h2 id="pf-all">Wovon der Preis abhängt</h2>
+      <p class="lede">
+        Unabhängig davon, ob geräumt, transportiert oder entsorgt wird: Es sind immer dieselben
+        Faktoren, die den Aufwand bestimmen.
+      </p>
+      <div class="table-scroll">
+        <table>
+          <thead>
+            <tr>
+              <th scope="col">Faktor</th>
+              <th scope="col">Gewicht</th>
+              <th scope="col">Warum</th>
+            </tr>
+          </thead>
+          <tbody>
+            {
+              universalPriceFactors.map((f) => (
+                <tr>
+                  <th scope="row">{f.name}</th>
+                  <td class="w">{f.weight}</td>
+                  <td>{f.text}</td>
+                </tr>
+              ))
+            }
+          </tbody>
+        </table>
+      </div>
+      <p><a class="btn btn--secondary" href="/kosten/" data-track="cost_hub_click">Zum Kostenbereich</a></p>
+    </div>
+  </section>
+
+  <CtaBand location="leistungen-hub" />
+</Base>
+
+<style>
+  .svc-list {
+    list-style: none;
+    margin: var(--sp-5) 0 0;
+    padding: 0;
+    display: grid;
+    gap: var(--sp-4);
+  }
+  @media (min-width: 40em) {
+    .svc-list {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+  @media (min-width: 64em) {
+    .svc-list {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+  .svc-list li {
+    margin: 0;
+  }
+  .svc {
+    height: 100%;
+  }
+  .svc__icon {
+    display: grid;
+    place-items: center;
+    width: 2.4rem;
+    height: 2.4rem;
+    border: 1px solid var(--line-strong);
+    border-radius: var(--r-md);
+    color: var(--accent);
+    margin-bottom: var(--sp-3);
+  }
+  .w {
+    white-space: nowrap;
+    font-weight: 600;
+    color: var(--accent);
+  }
+</style>

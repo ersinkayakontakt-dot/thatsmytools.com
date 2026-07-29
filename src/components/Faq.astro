@@ -1,0 +1,45 @@
+---
+import type { FaqItem } from '../data/types';
+import { inline } from '../lib/text';
+
+/**
+ * FAQ-Liste.
+ * Basiert auf <details>/<summary>: funktioniert ohne JavaScript, ist
+ * tastaturbedienbar und wird von Screenreadern korrekt angesagt.
+ *
+ * Wichtig: Diese Komponente rendert genau die Fragen, die auch als
+ * FAQPage ausgezeichnet werden. Es gibt keine unsichtbaren FAQ-Daten.
+ */
+interface Props {
+  items: FaqItem[];
+  title?: string;
+  /** Erste Frage geöffnet zeigen */
+  openFirst?: boolean;
+  id?: string;
+}
+const { items, title = 'Häufige Fragen', openFirst = false, id = 'fragen' } = Astro.props;
+---
+
+{
+  items.length > 0 && (
+    <section class="faq-section" aria-labelledby={`${id}-head`}>
+      <h2 id={`${id}-head`}>{title}</h2>
+      <div class="faq">
+        {items.map((item, i) => (
+          <details open={openFirst && i === 0}>
+            <summary>{item.q}</summary>
+            <div class="faq__answer">
+              <p set:html={inline(item.a)} />
+            </div>
+          </details>
+        ))}
+      </div>
+    </section>
+  )
+}
+
+<style>
+  .faq-section {
+    margin-top: var(--sp-7);
+  }
+</style>

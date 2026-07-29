@@ -1,0 +1,162 @@
+---
+import Base from '../../layouts/Base.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import CtaBand from '../../components/CtaBand.astro';
+import Faq from '../../components/Faq.astro';
+import { towns, publishedTowns } from '../../data/towns';
+import { site } from '../../config/site';
+import {
+  buildGraph,
+  organizationNode,
+  websiteNode,
+  webPageNode,
+  breadcrumbNode,
+  faqNode,
+} from '../../lib/schema';
+
+const path = '/brandenburg/';
+const title = 'Einsatzgebiet Berliner Umland | Schnellhelfer24';
+const description =
+  'Entrümpelung, Haushaltsauflösung und Umzug im Berliner Umland: Potsdam, Falkensee und weitere Orte in Brandenburg. Was bei Häusern mit Grundstück zu beachten ist.';
+
+const crumbs = [
+  { name: 'Start', href: '/' },
+  { name: 'Berliner Umland', href: path },
+];
+
+const faq = [
+  {
+    q: 'Wie weit fahren Sie aus Berlin heraus?',
+    a: `Regelmäßig ins nähere Umland, ungefähr im Bereich bis ${site.areaServed.radiusKm} Kilometer ab Berlin. Für weitere Strecken fragen Sie an, dann sagen wir Ihnen, ob es sich für Ihren Auftrag rechnet. Die Anfahrt geht in die Kalkulation ein, deshalb lohnt sich bei kleinen Abholungen ein flexibler Termin.`,
+  },
+  {
+    q: 'Warum ist eine Hausräumung im Umland oft teurer als gedacht?',
+    a: 'Weil Nebengebäude mitzählen. Keller, Garage, Schuppen, Gartenhaus und Garten enthalten bei einem Einfamilienhaus häufig mehr Volumen als das Wohnhaus selbst. Wer nur die Wohnfläche im Kopf hat, unterschätzt den Auftrag regelmäßig um die Hälfte.',
+  },
+  {
+    q: 'Brauche ich im Umland eine Halteverbotszone?',
+    a: 'In Einfamilienhausgebieten praktisch nie, dort können wir bis ans Grundstück fahren. In den Innenstadtlagen von Potsdam ist sie dagegen fast immer sinnvoll, weil die Straßen eng und die Parkflächen bewirtschaftet sind.',
+  },
+  {
+    q: 'Nehmen Sie auch Gartenabfälle und Bauschutt mit?',
+    a: 'Ja, beides wird aber getrennt entsorgt und gesondert berechnet, weil es über andere Wege geht als Sperrmüll. Bauschutt wird nach Gewicht abgerechnet. Sagen Sie bei der Anfrage, ob und wie viel davon anfällt, sonst stimmt die Einschätzung am Einsatztag nicht mehr.',
+  },
+];
+
+const schema = buildGraph([
+  organizationNode(),
+  websiteNode(),
+  breadcrumbNode(path, crumbs),
+  webPageNode({ url: path, name: title, description, dateModified: '2026-07-29' }),
+  faqNode(path, faq),
+]);
+
+const draftTowns = towns.filter((t) => t.status !== 'published');
+---
+
+<Base title={title} description={description} path={path} schema={schema}>
+  <Breadcrumbs items={crumbs} />
+
+  <div class="wrap section--tight">
+    <div class="prose">
+      <h1>Einsatzgebiet Berliner Umland</h1>
+      <div class="answer">
+        <p>
+          Wir arbeiten über die Stadtgrenze hinaus im angrenzenden Brandenburg. Dort ist die Zufahrt
+          fast immer einfacher als in Berlin: Zufahrt bis ans Grundstück, keine Halteverbotszone,
+          kein Treppenhaus. Dafür ist das Volumen bei Häusern regelmäßig höher als erwartet, weil
+          Keller, Garage, Schuppen, Gartenhaus und Garten dazukommen.
+        </p>
+      </div>
+      <p class="lede">
+        Für Orte, in denen wir regelmäßig arbeiten, gibt es eigene Seiten mit den örtlichen
+        Gegebenheiten.
+      </p>
+    </div>
+  </div>
+
+  <section class="section" aria-labelledby="orte">
+    <div class="wrap">
+      <p class="kicker">Orte mit eigener Seite</p>
+      <h2 id="orte">Wo wir regelmäßig unterwegs sind</h2>
+
+      <ul class="town-grid">
+        {
+          publishedTowns.map((t) => (
+            <li>
+              <a class="card card--link card--plan" href={`/brandenburg/${t.slug}/`} data-track="location_click">
+                <span class="town__county">{t.county}</span>
+                <span class="card__title">{t.name}</span>
+                <span class="card__text">{t.answer.split('.').slice(0, 2).join('.') + '.'}</span>
+                <span class="card__more">Zur Ortsseite</span>
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </section>
+
+  <section class="section section--paper" aria-labelledby="weitere">
+    <div class="wrap">
+      <p class="kicker">Ebenfalls im Einsatzgebiet</p>
+      <h2 id="weitere">Weitere Orte im Umland</h2>
+      <p class="lede">
+        Auch hier sind wir tätig. Eine eigene Seite legen wir erst an, wenn wir vor Ort genug
+        Erfahrung gesammelt haben, um etwas Konkretes über Bebauung, Zufahrt und typische Aufträge
+        schreiben zu können.
+      </p>
+      <ul class="chips">
+        {
+          draftTowns.map((t) => (
+            <li>
+              <span class="chip">{t.name}</span>
+            </li>
+          ))
+        }
+      </ul>
+      <p class="text-muted">
+        Ihr Ort ist nicht dabei? Fragen Sie trotzdem an. Wir sagen Ihnen ehrlich, ob wir hinkommen
+        und was die Anfahrt für Ihren Auftrag bedeutet.
+      </p>
+      <p><a class="btn btn--secondary" href="/angebot-anfragen/">Einschätzung anfordern</a></p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap wrap--mid">
+      <Faq items={faq} title="Fragen zum Umland" id="faq-umland" />
+    </div>
+  </section>
+
+  <CtaBand location="umland-hub" />
+</Base>
+
+<style>
+  .town-grid {
+    list-style: none;
+    margin: var(--sp-5) 0 0;
+    padding: 0;
+    display: grid;
+    gap: var(--sp-4);
+  }
+  @media (min-width: 40em) {
+    .town-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+  .town-grid li {
+    margin: 0;
+  }
+  .town-grid a {
+    height: 100%;
+  }
+  .town__county {
+    display: block;
+    font-size: 0.78rem;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: var(--ink-4);
+    margin-bottom: var(--sp-2);
+  }
+</style>

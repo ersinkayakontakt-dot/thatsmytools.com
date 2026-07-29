@@ -1,0 +1,79 @@
+---
+interface Props {
+  items: { name: string; href: string }[];
+}
+const { items } = Astro.props;
+// Das letzte Element ist die aktuelle Seite und wird nicht verlinkt.
+const last = items.length - 1;
+---
+
+<nav class="crumbs" aria-label="Sie befinden sich hier">
+  <div class="wrap">
+    <ol>
+      {
+        items.map((item, i) => (
+          <li>
+            {i === last ? (
+              <span aria-current="page">{item.name}</span>
+            ) : (
+              <a href={item.href}>{item.name}</a>
+            )}
+          </li>
+        ))
+      }
+    </ol>
+  </div>
+</nav>
+
+<style>
+  .crumbs {
+    border-bottom: 1px solid var(--line);
+    background: var(--white);
+    font-size: 0.86rem;
+  }
+  .crumbs ol {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.35rem 0.5rem;
+    list-style: none;
+    margin: 0;
+    padding: 0.4rem 0;
+  }
+  .crumbs li {
+    margin: 0;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--ink-3);
+  }
+  .crumbs li + li::before {
+    content: '';
+    width: 0.32rem;
+    height: 0.32rem;
+    border-right: 1.5px solid var(--line-strong);
+    border-top: 1.5px solid var(--line-strong);
+    transform: rotate(45deg);
+    flex: none;
+  }
+  .crumbs a {
+    display: inline-block;
+    /* mindestens 24 px hohe Zielfläche (WCAG 2.2, 2.5.8) */
+    padding-block: 0.3rem;
+    color: var(--ink-3);
+    text-decoration: none;
+  }
+  .crumbs [aria-current='page'] {
+    display: inline-block;
+    padding-block: 0.3rem;
+  }
+  .crumbs a:hover {
+    color: var(--accent);
+    text-decoration: underline;
+    text-underline-offset: 0.2em;
+  }
+  .crumbs [aria-current='page'] {
+    color: var(--ink);
+    font-weight: 600;
+  }
+</style>

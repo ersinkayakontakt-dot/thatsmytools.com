@@ -1,0 +1,134 @@
+---
+import Base from '../../layouts/Base.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import CtaBand from '../../components/CtaBand.astro';
+import { adviceGuides, costGuides } from '../../data/guides';
+import { formatDate } from '../../lib/text';
+import {
+  buildGraph,
+  organizationNode,
+  websiteNode,
+  webPageNode,
+  breadcrumbNode,
+} from '../../lib/schema';
+
+const path = '/ratgeber/';
+const title = 'Ratgeber: Räumung, Umzug und Übergabe in Berlin';
+const description =
+  'Praktische Anleitungen zu Entrümpelung, Wohnungsübergabe, Halteverbotszone und Haushaltsauflösung nach einem Todesfall. Konkret und ohne Werbesprache.';
+
+const crumbs = [
+  { name: 'Start', href: '/' },
+  { name: 'Ratgeber', href: path },
+];
+
+const schema = buildGraph([
+  organizationNode(),
+  websiteNode(),
+  breadcrumbNode(path, crumbs),
+  webPageNode({ url: path, name: title, description, dateModified: '2026-07-29' }),
+]);
+---
+
+<Base title={title} description={description} path={path} schema={schema}>
+  <Breadcrumbs items={crumbs} />
+
+  <div class="wrap section--tight">
+    <div class="prose">
+      <h1>Ratgeber</h1>
+      <div class="answer">
+        <p>
+          Hier stehen die Anleitungen, nach denen am häufigsten gefragt wird: welche Fotos für ein
+          Angebot nötig sind, wie man eine Entrümpelung vorbereitet, was bei der Wohnungsübergabe zu
+          beachten ist, wie eine Halteverbotszone beantragt wird und in welcher Reihenfolge nach
+          einem Todesfall vorzugehen ist.
+        </p>
+      </div>
+      <p class="lede">
+        Wenige Texte, dafür vollständig. Wir schreiben keine Artikel, um Seiten zu füllen.
+      </p>
+    </div>
+  </div>
+
+  <section class="section" aria-labelledby="anleitungen">
+    <div class="wrap">
+      <p class="kicker">Ablauf und Vorbereitung</p>
+      <h2 id="anleitungen">Anleitungen</h2>
+
+      <ul class="g-list">
+        {
+          adviceGuides.map((g) => (
+            <li>
+              <a class="card card--link card--plan" href={`/ratgeber/${g.slug}/`}>
+                <span class="card__title">{g.h1}</span>
+                <span class="card__text">{g.teaser}</span>
+                <span class="g-list__meta">Aktualisiert am {formatDate(g.updated)}</span>
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </section>
+
+  <section class="section section--paper" aria-labelledby="kosten">
+    <div class="wrap">
+      <p class="kicker">Preise verstehen</p>
+      <h2 id="kosten">Kostenfragen</h2>
+      <p class="lede">
+        Was den Preis bestimmt, was Wertanrechnung realistisch bringt und woran Sie ein unseriöses
+        Angebot erkennen.
+      </p>
+
+      <ul class="g-list">
+        {
+          costGuides.map((g) => (
+            <li>
+              <a class="card card--link card--plan" href={`/kosten/${g.slug}/`} data-track="cost_guide_click">
+                <span class="card__title">{g.h1}</span>
+                <span class="card__text">{g.teaser}</span>
+                <span class="g-list__meta">Aktualisiert am {formatDate(g.updated)}</span>
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+
+      <p><a class="btn btn--secondary" href="/kosten/" data-track="cost_hub_click">Zum Kostenbereich</a></p>
+    </div>
+  </section>
+
+  <CtaBand location="ratgeber-hub" />
+</Base>
+
+<style>
+  .g-list {
+    list-style: none;
+    margin: var(--sp-5) 0 var(--sp-5);
+    padding: 0;
+    display: grid;
+    gap: var(--sp-4);
+  }
+  @media (min-width: 40em) {
+    .g-list {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+  @media (min-width: 66em) {
+    .g-list {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+  .g-list li {
+    margin: 0;
+  }
+  .g-list a {
+    height: 100%;
+  }
+  .g-list__meta {
+    display: block;
+    margin-top: var(--sp-3);
+    font-size: 0.82rem;
+    color: var(--ink-4);
+  }
+</style>

@@ -1,0 +1,63 @@
+---
+import Base from '../../layouts/Base.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import LocationArticle from '../../components/LocationArticle.astro';
+import CtaBand from '../../components/CtaBand.astro';
+import { towns } from '../../data/towns';
+import { locationIsIndexable } from '../../lib/publishGuard';
+import {
+  buildGraph,
+  organizationNode,
+  websiteNode,
+  webPageNode,
+  breadcrumbNode,
+  faqNode,
+} from '../../lib/schema';
+
+export function getStaticPaths() {
+  return towns.map((town) => ({ params: { slug: town.slug }, props: { town } }));
+}
+
+const { town } = Astro.props;
+const path = `/brandenburg/${town.slug}/`;
+const indexable = locationIsIndexable(town);
+
+const crumbs = [
+  { name: 'Start', href: '/' },
+  { name: 'Berliner Umland', href: '/brandenburg/' },
+  { name: town.name, href: path },
+];
+
+const schema = buildGraph([
+  organizationNode(),
+  websiteNode(),
+  breadcrumbNode(path, crumbs),
+  webPageNode({
+    url: path,
+    name: town.metaTitle,
+    description: town.metaDescription,
+    dateModified: town.updated,
+    breadcrumbId: `https://schnellhelfer24.de${path}#breadcrumb`,
+  }),
+  faqNode(path, town.faq),
+]);
+---
+
+<Base
+  title={town.metaTitle}
+  description={town.metaDescription}
+  path={path}
+  index={indexable}
+  schema={schema}
+  modified={town.updated}
+>
+  <Breadcrumbs items={crumbs} />
+  <div class="wrap section--tight">
+    <LocationArticle loc={town} hub="brandenburg" indexable={indexable} />
+  </div>
+  <CtaBand
+    location={`ort-${town.slug}`}
+    headline={`Einsatz in ${town.name} anfragen`}
+    text="Bei Häusern mit Grundstück gehören Garage, Schuppen, Gartenhaus und Garten in die Anfrage. Sie machen oft den größeren Teil des Volumens aus."
+  />
+</Base>

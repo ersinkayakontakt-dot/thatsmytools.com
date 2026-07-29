@@ -1,0 +1,290 @@
+---
+import Base from '../../layouts/Base.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import CtaBand from '../../components/CtaBand.astro';
+import Faq from '../../components/Faq.astro';
+import Todo from '../../components/Todo.astro';
+import { costGuides } from '../../data/guides';
+import { universalPriceFactors, priceDataAvailable, priceDatasets } from '../../data/costs';
+import {
+  buildGraph,
+  organizationNode,
+  websiteNode,
+  webPageNode,
+  breadcrumbNode,
+  faqNode,
+} from '../../lib/schema';
+
+const path = '/kosten/';
+const title = 'Kosten und Ablauf: Was eine Räumung in Berlin bestimmt';
+const description =
+  'Wie sich Preise für Entrümpelung, Haushaltsauflösung und Umzug in Berlin zusammensetzen, welche Faktoren wirken und woran Sie ein unseriöses Angebot erkennen.';
+
+const crumbs = [
+  { name: 'Start', href: '/' },
+  { name: 'Kosten', href: path },
+];
+
+const faq = [
+  {
+    q: 'Warum stehen hier keine Preise?',
+    a: 'Weil wir keine Zahlen veröffentlichen, die wir nicht aus abgerechneten Aufträgen belegen können. Pauschalpreise der Art "2-Zimmer-Wohnung ab 690 Euro" klingen hilfreich, lassen aber den entscheidenden Faktor weg: wie viel tatsächlich in der Wohnung ist. Sobald ausgewertete Auftragsdaten vorliegen, veröffentlichen wir Spannen mit Fallzahl und Zeitraum.',
+  },
+  {
+    q: 'Wie komme ich dann an eine Zahl?',
+    a: 'Über Fotos oder eine Besichtigung. Beides kostet nichts. Danach bekommen Sie eine Aufstellung mit den einzelnen Positionen und wissen, was enthalten ist und was zusätzlich berechnet würde. Das dauert länger als eine Zahl am Telefon, hält dafür aber am Einsatztag.',
+  },
+  {
+    q: 'Was ist der häufigste Grund für Nachforderungen?',
+    a: 'Vergessene Nebenräume. Keller, Dachboden, Balkon, Garage und Gartenhaus tauchen auf den ersten Fotos oft nicht auf und machen dann ein Drittel des Volumens aus. Fotografieren Sie alles, was zur Wohnung gehört, dann bleibt die Einschätzung stabil.',
+  },
+  {
+    q: 'Ist eine Räumung steuerlich absetzbar?',
+    a: 'Für Privathaushalte kommt eine Anrechnung als haushaltsnahe Dienstleistung nach § 35a EStG in Betracht. Voraussetzung ist in der Regel eine Rechnung mit gesondert ausgewiesenem Arbeitslohn und unbare Zahlung. Wir weisen den Arbeitsanteil auf Wunsch getrennt aus. Die Beurteilung liegt beim Finanzamt.',
+  },
+];
+
+const schema = buildGraph([
+  organizationNode(),
+  websiteNode(),
+  breadcrumbNode(path, crumbs),
+  webPageNode({ url: path, name: title, description, dateModified: '2026-07-29' }),
+  faqNode(path, faq),
+]);
+---
+
+<Base title={title} description={description} path={path} schema={schema}>
+  <Breadcrumbs items={crumbs} />
+
+  <div class="wrap section--tight">
+    <div class="prose">
+      <h1>Kosten und Ablauf</h1>
+      <div class="answer">
+        <p>
+          Der Preis einer Räumung oder eines Umzugs in Berlin ergibt sich aus dem Volumen in
+          Kubikmetern, der Etage und dem Aufzug, der Länge des Trageweges bis zum Fahrzeug, der Art
+          des Materials und den nötigen Zusatzarbeiten. Verwertbares wird gegengerechnet. Die
+          Quadratmeterzahl der Wohnung sagt für sich genommen wenig aus.
+        </p>
+      </div>
+      <p class="lede">
+        Auf dieser Seite steht die Rechenlogik, nicht eine Preisliste. Damit können Sie jedes
+        Angebot prüfen, auch das von anderen Betrieben.
+      </p>
+    </div>
+  </div>
+
+  <section class="section" aria-labelledby="faktoren">
+    <div class="wrap">
+      <p class="kicker">Die Rechenlogik</p>
+      <h2 id="faktoren">Sieben Faktoren bestimmen den Aufwand</h2>
+
+      <ol class="factors">
+        {
+          universalPriceFactors.map((f) => (
+            <li class="factor">
+              <div class="factor__head">
+                <h3>{f.name}</h3>
+                <span class="factor__weight">{f.weight}</span>
+              </div>
+              <p>{f.text}</p>
+            </li>
+          ))
+        }
+      </ol>
+    </div>
+  </section>
+
+  <!-- Preisdaten: erscheinen erst, wenn echte Auswertungen vorliegen -->
+  <section class="section section--paper" aria-labelledby="daten">
+    <div class="wrap">
+      <p class="kicker">Preisdaten</p>
+      <h2 id="daten">Was echte Zahlen aus Berlin zeigen</h2>
+
+      {
+        priceDataAvailable ? (
+          <>
+            {priceDatasets.map((d) => (
+              <div class="dataset">
+                <h3>{d.title}</h3>
+                <div class="table-scroll">
+                  <table>
+                    <caption>
+                      Datenbasis: {d.basis.totalCases} Aufträge, {d.basis.period}. Enthalten:{' '}
+                      {d.basis.included}. Stand: {d.basis.updated}.
+                    </caption>
+                    <thead>
+                      <tr>
+                        <th scope="col">Kategorie</th>
+                        <th scope="col">Spanne</th>
+                        <th scope="col">Fälle</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {d.ranges.map((r) => (
+                        <tr>
+                          <th scope="row">{r.label}</th>
+                          <td>
+                            {r.from} bis {r.to} €
+                          </td>
+                          <td>{r.cases}</td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+                <p class="dataset__limits">
+                  <strong>Grenzen der Aussage:</strong> {d.basis.limits}
+                </p>
+              </div>
+            ))}
+          </>
+        ) : (
+          <div class="pending">
+            <p class="lede">
+              An dieser Stelle sollen künftig echte Zahlen stehen: ausgewertete Preisspannen aus
+              abgerechneten Berliner Aufträgen, aufgeschlüsselt nach Wohnungsgröße und nach
+              Mehraufwand ohne Aufzug.
+            </p>
+            <p>
+              Veröffentlicht wird das erst, wenn genügend abgeschlossene Aufträge ausgewertet sind.
+              Zu jeder Spanne kommen dann Zeitraum, Fallzahl, der enthaltene Leistungsumfang und die
+              Grenzen der Aussage. Bis dahin steht hier lieber nichts als eine geschätzte Zahl, die
+              sich wie eine Auswertung liest.
+            </p>
+            <p class="mb-0">
+              <a class="btn btn--secondary" href="/angebot-anfragen/">
+                Einschätzung für Ihren Fall anfordern
+              </a>
+            </p>
+          </div>
+        )
+      }
+
+      <Todo>
+        Preisdaten aktivieren: in <code>src/data/costs.ts</code> die Spannen aus echten Aufträgen
+        eintragen, <code>basis</code> ausfüllen und <code>priceDataAvailable</code> auf true setzen.
+        Ab mindestens 20 Aufträgen je Kategorie ist die Aussage belastbar.
+      </Todo>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="ratgeber">
+    <div class="wrap">
+      <p class="kicker">Im Detail</p>
+      <h2 id="ratgeber">Kostenfragen nach Leistung</h2>
+
+      <ul class="guide-grid">
+        {
+          costGuides.map((g) => (
+            <li>
+              <a class="card card--link card--plan" href={`/kosten/${g.slug}/`} data-track="cost_guide_click">
+                <span class="card__title">{g.h1}</span>
+                <span class="card__text">{g.teaser}</span>
+                <span class="card__more">Weiterlesen</span>
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </section>
+
+  <section class="section section--paper">
+    <div class="wrap wrap--mid">
+      <Faq items={faq} title="Fragen zu Preisen und Angeboten" id="faq-kosten" />
+    </div>
+  </section>
+
+  <CtaBand
+    location="kosten-hub"
+    headline="Eine Zahl, auf die Sie sich verlassen können"
+    text="Fotos schicken oder Besichtigung vereinbaren. Danach steht schriftlich fest, was enthalten ist und was der Einsatz kostet."
+  />
+</Base>
+
+<style>
+  .factors {
+    list-style: none;
+    margin: var(--sp-5) 0 0;
+    padding: 0;
+    display: grid;
+    gap: var(--sp-4);
+    counter-reset: f;
+  }
+  @media (min-width: 44em) {
+    .factors {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+  .factor {
+    margin: 0;
+    border-top: 2px solid var(--line-strong);
+    padding-top: var(--sp-3);
+    counter-increment: f;
+  }
+  .factor__head {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: var(--sp-3);
+    flex-wrap: wrap;
+  }
+  .factor h3 {
+    margin: 0 0 var(--sp-2);
+    font-size: 1.08rem;
+  }
+  .factor h3::before {
+    content: counter(f) '. ';
+    color: var(--ink-4);
+    font-family: var(--font-body);
+    font-size: 0.9rem;
+  }
+  .factor__weight {
+    font-size: 0.75rem;
+    letter-spacing: 0.07em;
+    text-transform: uppercase;
+    color: var(--accent);
+    font-weight: 700;
+    white-space: nowrap;
+  }
+  .factor p {
+    margin: 0;
+    color: var(--ink-2);
+    font-size: 0.96rem;
+  }
+
+  .pending {
+    border: 1px solid var(--line);
+    border-left: 4px solid var(--brand-3);
+    background: var(--white);
+    padding: var(--sp-5);
+    border-radius: 0 var(--r-md) var(--r-md) 0;
+    max-width: 48rem;
+  }
+
+  .dataset__limits {
+    font-size: 0.9rem;
+    color: var(--ink-3);
+    max-width: 46rem;
+  }
+
+  .guide-grid {
+    list-style: none;
+    margin: var(--sp-5) 0 0;
+    padding: 0;
+    display: grid;
+    gap: var(--sp-4);
+  }
+  @media (min-width: 40em) {
+    .guide-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+  .guide-grid li {
+    margin: 0;
+  }
+  .guide-grid a {
+    height: 100%;
+  }
+</style>

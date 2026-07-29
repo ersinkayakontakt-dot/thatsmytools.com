@@ -1,0 +1,658 @@
+---
+import Base from '../layouts/Base.astro';
+import Hero from '../components/Hero.astro';
+import Icon from '../components/Icon.astro';
+import Faq from '../components/Faq.astro';
+import CtaBand from '../components/CtaBand.astro';
+import Todo from '../components/Todo.astro';
+import { situations } from '../data/situations';
+import { publishedServices } from '../data/services';
+import { allDistrictNames } from '../data/districts';
+import { allTownNames } from '../data/towns';
+import { publishedCases } from '../data/cases';
+import { hasReviews, reviews } from '../data/reviews';
+import { universalPriceFactors } from '../data/costs';
+import { faqGroups } from '../data/faq';
+import { buildGraph, organizationNode, websiteNode, webPageNode, faqNode } from '../lib/schema';
+import { primaryCta } from '../lib/contact';
+
+const title = 'Entrümpelung, Auflösung & Umzug in Berlin | Schnellhelfer24';
+const description =
+  'Entrümpelung, Haushaltsauflösung und Umzug in Berlin und im Umland. Einschätzung nach Fotos oder Besichtigung, feste Absprache vor Beginn, besenreine Übergabe.';
+const path = '/';
+
+// Für die Startseite nur die meistgesuchten Fragen, nicht alle.
+const homeFaq = [
+  faqGroups[0].items[0],
+  faqGroups[0].items[1],
+  faqGroups[1].items[0],
+  faqGroups[1].items[3],
+  faqGroups[2].items[0],
+  faqGroups[3].items[1],
+];
+
+const schema = buildGraph([
+  organizationNode(),
+  websiteNode(),
+  webPageNode({
+    url: path,
+    name: title,
+    description,
+    dateModified: '2026-07-29',
+  }),
+  faqNode(path, homeFaq),
+]);
+
+const advantages = [
+  {
+    icon: 'doc',
+    title: 'Vor Beginn steht fest, was enthalten ist',
+    text: 'Sie bekommen eine Aufstellung mit den einzelnen Positionen, nicht eine Zeile mit einer Summe. Darin steht auch, was zusätzlich berechnet würde, damit es am Einsatztag keine Diskussion gibt.',
+  },
+  {
+    icon: 'camera',
+    title: 'Einschätzung ohne Termindruck',
+    text: 'Fotos genügen für kleinere Aufträge. Bei kompletten Auflösungen kommen wir vorbei, weil sich der Umfang auf Bildern regelmäßig zu harmlos darstellt. Besichtigung und Einschätzung kosten nichts.',
+  },
+  {
+    icon: 'shield',
+    title: 'Diskret, auch wenn es schwierig ist',
+    text: 'Bei Nachlässen und stark zugestellten Wohnungen arbeiten wir unauffällig: keine Gespräche über den Auftrag im Treppenhaus, keine Fotos nach außen, auf Wunsch neutrale Anfahrt.',
+  },
+  {
+    icon: 'boxes',
+    title: 'Getrennte Entsorgung statt alles in einen Container',
+    text: 'Holz, Metall, Elektroaltgeräte, Matratzen und Restmüll gehen über die jeweils vorgesehenen Wege. Was sich weitergeben lässt, rechnen wir an und weisen es auf der Rechnung aus.',
+  },
+  {
+    icon: 'key',
+    title: 'Übergabe mitgedacht',
+    text: 'Wir planen rückwärts vom Übergabetermin und lassen Puffer für das, was erst in der leeren Wohnung auffällt. Auf Wunsch sind wir bei der Übergabe an den Vermieter dabei.',
+  },
+  {
+    icon: 'people',
+    title: 'Auch für Angehörige aus anderen Städten',
+    text: 'Ein großer Teil unserer Aufträge kommt von Menschen, die nicht in Berlin wohnen. Schlüsselübergabe, Besichtigung mit Fotoprotokoll und Abstimmung per Telefon sind für uns Normalfall.',
+  },
+];
+---
+
+<Base title={title} description={description} path={path} schema={schema}>
+  <Hero />
+
+  <!-- ============================================ Einstieg nach Situation -->
+  <section class="section" aria-labelledby="situationen">
+    <div class="wrap">
+      <p class="kicker">Wo stehen Sie gerade?</p>
+      <h2 id="situationen">Sagen Sie uns Ihre Situation, nicht die Leistungsbezeichnung</h2>
+      <p class="lede">
+        Die meisten Menschen suchen keine Dienstleistung, sondern haben ein Problem. Wählen Sie, was
+        am ehesten passt.
+      </p>
+
+      <ul class="sit-grid">
+        {
+          situations.map((s) => (
+            <li>
+              <a class="card card--link card--plan sit" href={s.href} data-track="situation_click" data-track-label={s.title}>
+                <span class="sit__icon" aria-hidden="true">
+                  <Icon name={s.icon} size={22} />
+                </span>
+                <span class="card__title">{s.title}</span>
+                <span class="card__text">{s.text}</span>
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </section>
+
+  <!-- ========================================================= Leistungen -->
+  <section class="section section--paper" aria-labelledby="leistungen">
+    <div class="wrap">
+      <p class="kicker">Leistungen</p>
+      <h2 id="leistungen">Was wir in Berlin und im Umland machen</h2>
+      <p class="lede">
+        Alle Leistungen aus einer Hand, damit Räumung, Transport und Entsorgung nicht auf mehrere
+        Betriebe verteilt werden müssen.
+      </p>
+
+      <ul class="svc-grid">
+        {
+          publishedServices.map((s) => (
+            <li>
+              <a class="card card--link svc" href={`/leistungen/${s.slug}/`}>
+                <span class="svc__icon" aria-hidden="true">
+                  <Icon name={s.icon} size={20} />
+                </span>
+                <span class="card__title">{s.navLabel}</span>
+                <span class="card__text">{s.teaser}</span>
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+
+      <p class="mt-0"><a class="btn btn--secondary" href="/leistungen/">Alle Leistungen im Überblick</a></p>
+    </div>
+  </section>
+
+  <!-- ================================================== Aufwand-Check ----->
+  <section class="section check" aria-labelledby="aufwand-check">
+    <div class="wrap check__inner">
+      <div>
+        <p class="kicker">Aufwand-Check</p>
+        <h2 id="aufwand-check">In wenigen Schritten zur Ersteinschätzung</h2>
+        <p>
+          Der Aufwand-Check fragt genau die Angaben ab, die wir für eine belastbare Einschätzung
+          brauchen: Leistung, Postleitzahl, Objektart, Umfang, Etage, Aufzug und Zeitraum. Fotos
+          können Sie direkt anhängen.
+        </p>
+        <p>
+          Was er <strong>nicht</strong> macht: Ihnen einen Festpreis ausrechnen. Dafür bräuchte es
+          Angaben, die kein Formular zuverlässig erfassen kann. Sie bekommen stattdessen eine
+          Zusammenfassung Ihres Aufwands und von uns eine persönliche Einschätzung.
+        </p>
+        <div class="btn-row">
+          <a class="btn btn--primary" href={primaryCta.href} data-track="estimate_cta_click" data-track-location="home-check">
+            <Icon name="camera" size={19} />
+            Aufwand-Check starten
+          </a>
+          <a class="btn btn--ghost" href="/ratgeber/welche-fotos-fuer-ein-angebot/">
+            Welche Fotos wir brauchen
+          </a>
+        </div>
+      </div>
+
+      <ol class="check__list" aria-label="Schritte im Aufwand-Check">
+        <li>Leistung auswählen</li>
+        <li>Postleitzahl eingeben</li>
+        <li>Objektart und Umfang</li>
+        <li>Etage und Aufzug</li>
+        <li>Wunschzeitraum</li>
+        <li>Fotos anhängen (optional)</li>
+        <li>Kontaktdaten und bevorzugter Weg</li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- ========================================================== Vorteile -->
+  <section class="section section--paper" aria-labelledby="vorteile">
+    <div class="wrap">
+      <p class="kicker">Worauf Sie sich verlassen können</p>
+      <h2 id="vorteile">Sechs Punkte, die im Alltag den Unterschied machen</h2>
+      <p class="lede">
+        Keine Auszeichnungen, keine Siegel, keine Versprechen ohne Grundlage. Nur das, was wir
+        tatsächlich so handhaben.
+      </p>
+
+      <ul class="adv-grid">
+        {
+          advantages.map((a) => (
+            <li class="adv">
+              <span class="adv__icon" aria-hidden="true">
+                <Icon name={a.icon} size={22} />
+              </span>
+              <h3>{a.title}</h3>
+              <p>{a.text}</p>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </section>
+
+  <!-- ==================================================== Einsatzberichte -->
+  <section class="section" aria-labelledby="einsatzberichte">
+    <div class="wrap">
+      <p class="kicker">Berliner Einsatzatlas</p>
+      <h2 id="einsatzberichte">Echte Einsätze statt Werbeversprechen</h2>
+
+      {
+        publishedCases.length > 0 ? (
+          <>
+            <p class="lede">
+              Anonymisierte Berichte aus abgeschlossenen Aufträgen: Bezirk, Objektgröße, Etage,
+              Dauer, enthaltene Leistungen und Art der Übergabe.
+            </p>
+            <ul class="case-grid">
+              {publishedCases.slice(0, 3).map((c) => (
+                <li>
+                  <a class="card card--link card--plan" href={`/einsatzberichte/${c.slug}/`} data-track="case_study_opened">
+                    <span class="case__meta">
+                      {c.locationLabel} · {c.facts.objectType}
+                    </span>
+                    <span class="card__title">{c.title}</span>
+                    <span class="card__text">{c.summary}</span>
+                  </a>
+                </li>
+              ))}
+            </ul>
+            <p><a class="btn btn--secondary" href="/einsatzberichte/">Alle Einsatzberichte</a></p>
+          </>
+        ) : (
+          <div class="atlas">
+            <p class="lede">
+              Hier entsteht eine Sammlung anonymisierter Berichte aus echten Aufträgen: welcher
+              Bezirk, welche Objektgröße, welche Etage, wie lange es gedauert hat, was enthalten war
+              und wie übergeben wurde.
+            </p>
+            <p>
+              Veröffentlicht wird ausschließlich, was tatsächlich stattgefunden hat und wofür eine
+              Freigabe vorliegt. Deshalb steht hier noch nichts. Erfundene Referenzfälle wären
+              schnell geschrieben, aber sie würden Ihnen bei der Einschätzung Ihrer eigenen
+              Situation nicht helfen.
+            </p>
+            <p class="mb-0">
+              <a href="/einsatzberichte/">Was in einem Einsatzbericht stehen wird</a>
+            </p>
+          </div>
+        )
+      }
+    </div>
+  </section>
+
+  <!-- ====================================================== Preisfaktoren -->
+  <section class="section section--paper" aria-labelledby="preise">
+    <div class="wrap">
+      <p class="kicker">Kosten</p>
+      <h2 id="preise">Was eine Räumung teuer oder günstig macht</h2>
+      <p class="lede">
+        Wir nennen hier keine Pauschalpreise, weil sie ohne Kenntnis des Objekts nicht halten. Was
+        wir Ihnen geben können, ist die vollständige Logik dahinter.
+      </p>
+
+      <ul class="pf-grid">
+        {
+          universalPriceFactors.map((f) => (
+            <li class="pf-item">
+              <span class="pf-item__weight">{f.weight}</span>
+              <h3>{f.name}</h3>
+              <p>{f.text}</p>
+            </li>
+          ))
+        }
+      </ul>
+
+      <div class="btn-row">
+        <a class="btn btn--secondary" href="/kosten/" data-track="cost_hub_click">Kosten und Preisfaktoren im Detail</a>
+        <a class="btn btn--ghost" href="/kosten/was-kostet-eine-entruempelung-in-berlin/">
+          Was kostet eine Entrümpelung?
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ====================================================== Einsatzgebiete -->
+  <section class="section" aria-labelledby="gebiete">
+    <div class="wrap">
+      <p class="kicker">Einsatzgebiete</p>
+      <h2 id="gebiete">Berlin und das nähere Umland</h2>
+      <p class="lede">
+        Wir arbeiten in allen zwölf Berliner Bezirken und im angrenzenden Brandenburg. Für die
+        Bezirke und Orte, in denen wir regelmäßig unterwegs sind, gibt es eigene Seiten mit den
+        örtlichen Besonderheiten.
+      </p>
+
+      <div class="areas">
+        <div>
+          <h3>Berliner Bezirke</h3>
+          <ul class="chips">
+            {
+              allDistrictNames.map((d) => (
+                <li>
+                  {d.published ? (
+                    <a class="chip" href={`/berlin/${d.slug}/`} data-track="location_click">
+                      {d.name}
+                    </a>
+                  ) : (
+                    <span class="chip chip--plain">{d.name}</span>
+                  )}
+                </li>
+              ))
+            }
+          </ul>
+        </div>
+        <div>
+          <h3>Berliner Umland</h3>
+          <ul class="chips">
+            {
+              allTownNames.map((t) => (
+                <li>
+                  {t.published ? (
+                    <a class="chip" href={`/brandenburg/${t.slug}/`} data-track="location_click">
+                      {t.name}
+                    </a>
+                  ) : (
+                    <span class="chip chip--plain">{t.name}</span>
+                  )}
+                </li>
+              ))
+            }
+          </ul>
+        </div>
+      </div>
+
+      <p class="areas__note">
+        Verlinkte Orte haben eine eigene Seite mit den örtlichen Gegebenheiten. Für alle übrigen
+        gilt: Fragen Sie an, wir sagen Ihnen, ob wir hinkommen und was die Anfahrt bedeutet.
+      </p>
+
+      <div class="btn-row">
+        <a class="btn btn--secondary" href="/berlin/">Einsatzgebiet Berlin</a>
+        <a class="btn btn--ghost" href="/brandenburg/">Einsatzgebiet Umland</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================== Sensible Situationen -->
+  <section class="section section--paper" aria-labelledby="sensibel">
+    <div class="wrap sensible">
+      <div>
+        <p class="kicker">Wenn es schwierig ist</p>
+        <h2 id="sensibel">Nachlass, Trennung, Pflegefall</h2>
+        <p>
+          Ein großer Teil unserer Aufträge entsteht nicht, weil jemand umzieht, sondern weil sich
+          etwas im Leben verändert hat. Nach einem Todesfall, bei einem Einzug ins Pflegeheim, nach
+          einer Trennung.
+        </p>
+        <p>
+          In diesen Fällen ist Tempo selten das Wichtigste. Wir drängen nicht auf schnelle Termine,
+          sichern Unterlagen und persönliche Dinge, statt sie zu entsorgen, und arbeiten in dem
+          Tempo, das für Sie machbar ist.
+        </p>
+        <div class="btn-row">
+          <a class="btn btn--secondary" href="/leistungen/nachlassaufloesung-berlin/">Nachlassauflösung</a>
+          <a class="btn btn--ghost" href="/ratgeber/haushaltsaufloesung-nach-todesfall/">
+            Was nach einem Todesfall zuerst zu klären ist
+          </a>
+        </div>
+      </div>
+
+      <div>
+        <p class="kicker">Für Hausverwaltungen und Betriebe</p>
+        <h2>Gewerbliche Auftraggeber</h2>
+        <p>
+          Für Hausverwaltungen, Vermieter, Nachlasspfleger, Betreuungen und Betriebe arbeiten wir mit
+          schriftlicher Beauftragung, angemeldetem Zugang und dokumentierter Übergabe.
+        </p>
+        <ul>
+          <li>Fotodokumentation vor und nach dem Einsatz</li>
+          <li>Rechnung mit einzeln ausgewiesenen Positionen und Umsatzsteuer</li>
+          <li>Mehrere Kellerabteile oder Einheiten in einem Termin</li>
+          <li>Einsätze außerhalb der Geschäftszeiten nach Absprache</li>
+        </ul>
+        <div class="btn-row">
+          <a class="btn btn--secondary" href="/leistungen/bueroaufloesung-berlin/">Büro- und Gewerbeauflösung</a>
+          <a class="btn btn--ghost" href="/kontakt/">Ansprechpartner</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======================================================= Bewertungen -->
+  {
+    hasReviews ? (
+      <section class="section" aria-labelledby="bewertungen">
+        <div class="wrap">
+          <p class="kicker">Bewertungen</p>
+          <h2 id="bewertungen">Was Kundinnen und Kunden schreiben</h2>
+          <ul class="rev-grid">
+            {reviews.slice(0, 3).map((r) => (
+              <li class="card card--plan">
+                <p class="rev__stars" aria-label={`${r.rating} von 5 Sternen`}>
+                  {'★'.repeat(r.rating)}
+                  <span aria-hidden="true" class="rev__stars-off">
+                    {'★'.repeat(5 - r.rating)}
+                  </span>
+                </p>
+                <p class="rev__text">{r.text}</p>
+                <p class="rev__meta">
+                  {r.author} ·{' '}
+                  <a href={r.sourceUrl} rel="nofollow noopener" target="_blank">
+                    {r.source}
+                  </a>
+                </p>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </section>
+    ) : (
+      <Todo>
+        Bewertungsbereich erscheint automatisch, sobald in <code>src/data/reviews.ts</code> echte,
+        öffentlich nachprüfbare Bewertungen mit Quelle eingetragen sind. Bis dahin wird bewusst
+        nichts angezeigt und kein AggregateRating ausgezeichnet.
+      </Todo>
+    )
+  }
+
+  <!-- ============================================================== FAQ -->
+  <section class="section section--paper" aria-labelledby="faq-home">
+    <div class="wrap wrap--mid">
+      <p class="kicker">Häufige Fragen</p>
+      <Faq items={homeFaq} title="Was Kundinnen und Kunden am häufigsten fragen" id="faq-home" openFirst />
+      <p class="mt-0"><a href="/fragen/">Alle Fragen und Antworten</a></p>
+    </div>
+  </section>
+
+  <CtaBand location="home-footer" />
+</Base>
+
+<style>
+  /* --------------------------------------------------------- Situationen */
+  .sit-grid,
+  .svc-grid,
+  .case-grid,
+  .adv-grid,
+  .pf-grid,
+  .rev-grid {
+    list-style: none;
+    margin: var(--sp-5) 0 var(--sp-5);
+    padding: 0;
+    display: grid;
+    gap: var(--sp-4);
+  }
+  @media (min-width: 38em) {
+    .sit-grid,
+    .svc-grid,
+    .case-grid,
+    .adv-grid,
+    .pf-grid,
+    .rev-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+  @media (min-width: 60em) {
+    .sit-grid,
+    .adv-grid,
+    .pf-grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+    .svc-grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+    .case-grid,
+    .rev-grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+  .sit-grid li,
+  .svc-grid li,
+  .case-grid li,
+  .adv-grid li,
+  .pf-grid li,
+  .rev-grid li {
+    margin: 0;
+  }
+
+  .sit,
+  .svc {
+    height: 100%;
+  }
+  .sit__icon,
+  .svc__icon {
+    display: grid;
+    place-items: center;
+    width: 2.5rem;
+    height: 2.5rem;
+    border: 1px solid var(--line-strong);
+    border-radius: var(--r-md);
+    color: var(--accent);
+    margin-bottom: var(--sp-3);
+  }
+  .svc__icon {
+    width: 2.25rem;
+    height: 2.25rem;
+  }
+
+  /* ----------------------------------------------------- Aufwand-Check */
+  .check__inner {
+    display: grid;
+    gap: var(--sp-6);
+  }
+  @media (min-width: 56em) {
+    .check__inner {
+      grid-template-columns: 1.4fr 1fr;
+      gap: var(--sp-8);
+      align-items: start;
+    }
+  }
+  .check__list {
+    margin: 0;
+    padding: var(--sp-5) var(--sp-5) var(--sp-5) 2.75rem;
+    background: var(--paper-2);
+    border: 1px solid var(--line);
+    border-radius: var(--r-md);
+    counter-reset: cl;
+  }
+  .check__list li {
+    margin-bottom: var(--sp-2);
+    color: var(--ink-2);
+  }
+  .check__list li::marker {
+    color: var(--accent);
+    font-weight: 700;
+  }
+
+  /* ---------------------------------------------------------- Vorteile */
+  .adv h3 {
+    margin: 0 0 var(--sp-2);
+    font-size: 1.08rem;
+  }
+  .adv p {
+    margin: 0;
+    color: var(--ink-2);
+    font-size: 0.97rem;
+  }
+  .adv__icon {
+    display: inline-grid;
+    place-items: center;
+    width: 2.25rem;
+    height: 2.25rem;
+    color: var(--accent);
+    border-bottom: 2px solid var(--accent);
+    margin-bottom: var(--sp-3);
+  }
+
+  /* ------------------------------------------------------ Einsatzatlas */
+  .atlas {
+    border: 1px solid var(--line);
+    border-left: 4px solid var(--brand-3);
+    background: var(--white);
+    padding: var(--sp-5);
+    border-radius: 0 var(--r-md) var(--r-md) 0;
+    max-width: 46rem;
+  }
+  .case__meta {
+    display: block;
+    font-size: 0.8rem;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: var(--ink-4);
+    margin-bottom: var(--sp-2);
+  }
+
+  /* ----------------------------------------------------- Preisfaktoren */
+  .pf-item {
+    border-top: 2px solid var(--line-strong);
+    padding-top: var(--sp-3);
+  }
+  .pf-item__weight {
+    font-size: 0.75rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--accent);
+    font-weight: 700;
+  }
+  .pf-item h3 {
+    margin: var(--sp-1) 0 var(--sp-2);
+    font-size: 1.05rem;
+  }
+  .pf-item p {
+    margin: 0;
+    font-size: 0.95rem;
+    color: var(--ink-2);
+  }
+
+  /* ---------------------------------------------------- Einsatzgebiete */
+  .areas {
+    display: grid;
+    gap: var(--sp-5);
+    margin: var(--sp-5) 0;
+  }
+  @media (min-width: 52em) {
+    .areas {
+      grid-template-columns: 1fr 1fr;
+      gap: var(--sp-7);
+    }
+  }
+  .areas h3 {
+    margin-top: 0;
+    font-size: 1.05rem;
+  }
+  .chip--plain {
+    opacity: 0.62;
+    border-style: dashed;
+  }
+  .areas__note {
+    font-size: 0.9rem;
+    color: var(--ink-3);
+    max-width: 44rem;
+  }
+
+  /* -------------------------------------------------------- Sensibel/B2B */
+  .sensible {
+    display: grid;
+    gap: var(--sp-7);
+  }
+  @media (min-width: 56em) {
+    .sensible {
+      grid-template-columns: 1fr 1fr;
+      gap: var(--sp-8);
+    }
+  }
+  .sensible h2 {
+    margin-top: 0;
+  }
+
+  /* ------------------------------------------------------- Bewertungen */
+  .rev__stars {
+    color: var(--accent);
+    letter-spacing: 0.1em;
+    margin: 0 0 var(--sp-2);
+  }
+  .rev__stars-off {
+    color: var(--line-strong);
+  }
+  .rev__text {
+    font-size: 0.97rem;
+    color: var(--ink-2);
+  }
+  .rev__meta {
+    font-size: 0.86rem;
+    color: var(--ink-4);
+    margin: 0;
+  }
+</style>

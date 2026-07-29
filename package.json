@@ -1,0 +1,27 @@
+{
+  "name": "schnellhelfer24",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Website schnellhelfer24.de – Entrümpelung, Auflösung und Umzug in Berlin und Umland",
+  "scripts": {
+    "dev": "astro dev",
+    "start": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "check": "astro check",
+    "audit:content": "node scripts/content-audit.mjs",
+    "audit:build": "node scripts/build-audit.mjs",
+    "indexnow": "node scripts/indexnow.mjs"
+  },
+  "dependencies": {
+    "astro": "^5.6.1"
+  },
+  "devDependencies": {
+    "@astrojs/check": "^0.9.4",
+    "typescript": "^5.8.3"
+  },
+  "engines": {
+    "node": ">=20.3.0"
+  }
+}

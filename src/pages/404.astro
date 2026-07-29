@@ -1,0 +1,127 @@
+---
+import Base from '../layouts/Base.astro';
+import { publishedServices } from '../data/services';
+import { publishedDistricts } from '../data/districts';
+import { phone } from '../lib/contact';
+import Icon from '../components/Icon.astro';
+
+const title = 'Seite nicht gefunden | Schnellhelfer24';
+const description = 'Diese Seite existiert nicht oder wurde verschoben.';
+---
+
+<Base title={title} description={description} path="/404/" index={false}>
+  <div class="wrap wrap--mid section">
+    <p class="code" aria-hidden="true">404</p>
+    <h1>Diese Seite gibt es nicht</h1>
+    <p class="lede">
+      Der Link ist entweder veraltet, oder in der Adresse hat sich ein Tippfehler eingeschlichen.
+      Hier kommen Sie weiter:
+    </p>
+
+    <div class="btn-row">
+      <a class="btn btn--primary" href="/angebot-anfragen/">
+        <Icon name="camera" size={19} />
+        Einschätzung anfordern
+      </a>
+      {
+        phone.available && (
+          <a class="btn btn--secondary" href={phone.href} data-track="phone_click" data-track-location="404">
+            <Icon name="phone" size={19} />
+            {phone.display}
+          </a>
+        )
+      }
+      <a class="btn btn--ghost" href="/">Zur Startseite</a>
+    </div>
+
+    <div class="cols">
+      <nav aria-labelledby="nf-leistungen">
+        <h2 id="nf-leistungen">Leistungen</h2>
+        <ul>
+          {
+            publishedServices.map((s) => (
+              <li>
+                <a href={`/leistungen/${s.slug}/`}>{s.navLabel}</a>
+              </li>
+            ))
+          }
+        </ul>
+      </nav>
+
+      <nav aria-labelledby="nf-gebiete">
+        <h2 id="nf-gebiete">Einsatzgebiete</h2>
+        <ul>
+          <li><a href="/berlin/">Berlin</a></li>
+          {
+            publishedDistricts.map((d) => (
+              <li>
+                <a href={`/berlin/${d.slug}/`}>{d.name}</a>
+              </li>
+            ))
+          }
+          <li><a href="/brandenburg/">Berliner Umland</a></li>
+        </ul>
+      </nav>
+
+      <nav aria-labelledby="nf-info">
+        <h2 id="nf-info">Information</h2>
+        <ul>
+          <li><a href="/kosten/">Kosten und Preisfaktoren</a></li>
+          <li><a href="/ratgeber/">Ratgeber</a></li>
+          <li><a href="/fragen/">Häufige Fragen</a></li>
+          <li><a href="/kontakt/">Kontakt</a></li>
+          <li><a href="/ueber-uns/">Über uns</a></li>
+        </ul>
+      </nav>
+    </div>
+  </div>
+</Base>
+
+<style>
+  .code {
+    font-family: var(--font-head);
+    font-size: clamp(3rem, 2rem + 6vw, 5.5rem);
+    line-height: 1;
+    color: var(--line-strong);
+    margin: 0 0 var(--sp-3);
+    font-weight: 700;
+  }
+  .cols {
+    display: grid;
+    gap: var(--sp-5);
+    margin-top: var(--sp-7);
+    padding-top: var(--sp-5);
+    border-top: 1px solid var(--line);
+  }
+  @media (min-width: 44em) {
+    .cols {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+  .cols h2 {
+    font-family: var(--font-body);
+    font-size: 0.78rem;
+    letter-spacing: 0.09em;
+    text-transform: uppercase;
+    color: var(--ink-3);
+    margin: 0 0 var(--sp-3);
+  }
+  .cols ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  .cols li {
+    margin-bottom: 0.4rem;
+  }
+  .cols a {
+    color: var(--ink);
+    text-decoration: none;
+    font-size: 0.95rem;
+  }
+  .cols a:hover {
+    color: var(--accent);
+    text-decoration: underline;
+    text-underline-offset: 0.2em;
+  }
+</style>

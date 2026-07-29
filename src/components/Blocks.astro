@@ -1,0 +1,98 @@
+---
+import type { ContentBlock } from '../data/types';
+import { inline } from '../lib/text';
+
+/**
+ * Rendert die Inhaltsblöcke aus den Datendateien.
+ * Erzeugt eine saubere Überschriftenhierarchie: die Blocküberschriften
+ * liegen eine Ebene unter der H1 der Seite.
+ */
+interface Props {
+  blocks: ContentBlock[];
+  /** Überschriftenebene der Blöcke, Standard h2 */
+  level?: 2 | 3;
+}
+const { blocks, level = 2 } = Astro.props;
+const Head = `h${level}` as 'h2' | 'h3';
+const SubHead = `h${level + 1}` as 'h3' | 'h4';
+---
+
+{
+  blocks.map((block) => (
+    <section class="block">
+      <Head id={block.h.toLowerCase().replace(/[^a-z0-9äöüß]+/g, '-').replace(/^-|-$/g, '')}>
+        {block.h}
+      </Head>
+
+      {block.p?.map((para) => <p set:html={inline(para)} />)}
+
+      {block.list && (
+        <ul class="block__list">
+          {block.list.map((item) => (
+            <li set:html={inline(item)} />
+          ))}
+        </ul>
+      )}
+
+      {block.steps && (
+        <ol class="steps">
+          {block.steps.map((step) => (
+            <li>
+              <SubHead class="steps__title">{step.title}</SubHead>
+              <p set:html={inline(step.text)} />
+            </li>
+          ))}
+        </ol>
+      )}
+
+      {block.table && (
+        <div class="table-scroll">
+          <table>
+            {block.table.caption && <caption>{block.table.caption}</caption>}
+            <thead>
+              <tr>
+                {block.table.head.map((h) => (
+                  <th scope="col">{h}</th>
+                ))}
+              </tr>
+            </thead>
+            <tbody>
+              {block.table.rows.map((row) => (
+                <tr>
+                  {row.map((cell, i) =>
+                    i === 0 ? <th scope="row" set:html={inline(cell)} /> : <td set:html={inline(cell)} />,
+                  )}
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      )}
+
+      {block.note && (
+        <aside class={`note${block.note.tone === 'caution' ? ' note--caution' : ''}`}>
+          <p class="note__title">{block.note.title}</p>
+          <p set:html={inline(block.note.text)} />
+        </aside>
+      )}
+    </section>
+  ))
+}
+
+<style>
+  .block {
+    margin-bottom: var(--sp-6);
+  }
+  .block:last-child {
+    margin-bottom: 0;
+  }
+  /* Schrittüberschriften nutzen die Textschrift, nicht die Serifenschrift */
+  .block :global(.steps__title) {
+    font-family: var(--font-body);
+    font-size: 1rem;
+    margin: 0 0 var(--sp-1);
+  }
+  .block__list li::marker {
+    color: var(--accent);
+  }
+</style>

@@ -1,0 +1,260 @@
+---
+import Base from '../../layouts/Base.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import CtaBand from '../../components/CtaBand.astro';
+import ContactCard from '../../components/ContactCard.astro';
+import { cases } from '../../data/cases';
+import { getService } from '../../data/services';
+import { getDistrict } from '../../data/districts';
+import { getTown } from '../../data/towns';
+import { caseIsIndexable, checkCase } from '../../lib/publishGuard';
+import { formatDate } from '../../lib/text';
+import {
+  buildGraph,
+  organizationNode,
+  websiteNode,
+  webPageNode,
+  breadcrumbNode,
+  articleNode,
+} from '../../lib/schema';
+
+export function getStaticPaths() {
+  return cases.map((item) => ({ params: { slug: item.slug }, props: { item } }));
+}
+
+const { item } = Astro.props;
+const path = `/einsatzberichte/${item.slug}/`;
+const indexable = caseIsIndexable(item);
+const guard = checkCase(item);
+
+const crumbs = [
+  { name: 'Start', href: '/' },
+  { name: 'Einsatzberichte', href: '/einsatzberichte/' },
+  { name: item.locationLabel, href: path },
+];
+
+const service = getService(item.serviceSlug);
+const district = getDistrict(item.location);
+const town = getTown(item.location);
+const locHref = district ? `/berlin/${district.slug}/` : town ? `/brandenburg/${town.slug}/` : null;
+const locPublished = district?.status === 'published' || town?.status === 'published';
+
+const factRows: [string, string][] = [
+  ['Objektart', item.facts.objectType],
+  ['Größe', item.facts.size],
+  ['Etage', item.facts.floor],
+  ['Aufzug', item.facts.elevator],
+  ['Volumen', item.facts.volume],
+  ['Dauer', item.facts.duration],
+  ['Team', item.facts.crew],
+  ['Übergabe', item.facts.handover],
+  ['Preis', item.facts.price],
+];
+
+// Article-Schema nur für echte, veröffentlichte Berichte.
+const schema = buildGraph([
+  organizationNode(),
+  websiteNode(),
+  breadcrumbNode(path, crumbs),
+  webPageNode({
+    url: path,
+    name: item.metaTitle,
+    description: item.metaDescription,
+    dateModified: item.updated,
+    breadcrumbId: `https://schnellhelfer24.de${path}#breadcrumb`,
+  }),
+  indexable
+    ? articleNode({
+        url: path,
+        headline: item.title,
+        description: item.metaDescription,
+        published: item.date,
+        updated: item.updated,
+      })
+    : undefined,
+]);
+---
+
+<Base
+  title={item.metaTitle}
+  description={item.metaDescription}
+  path={path}
+  index={indexable}
+  schema={schema}
+  modified={item.updated}
+>
+  <Breadcrumbs items={crumbs} />
+
+  <div class="wrap section--tight">
+    {
+      !item.real && (
+        <div class="draft-banner" role="note">
+          <strong>Musterbericht, kein echter Einsatz.</strong> Diese Seite zeigt nur den Aufbau eines
+          Einsatzberichts. Sie ist nicht veröffentlicht: noindex, nicht in der Sitemap, öffentlich
+          nicht verlinkt. Alle Angaben in eckigen Klammern werden durch die Daten eines
+          tatsächlichen, freigegebenen Auftrags ersetzt. {!indexable && `Offen: ${guard.missing.join('; ')}.`}
+        </div>
+      )
+    }
+
+    <div class="grid grid--sidebar">
+      <article class="prose">
+        <p class="case-kicker">
+          {item.locationLabel}
+          {service && <> · {service.navLabel}</>}
+        </p>
+        <h1>{item.title}</h1>
+
+        <div class="answer">
+          <p>{item.summary}</p>
+        </div>
+
+        <section>
+          <h2>Die Eckdaten</h2>
+          <div class="facts">
+            {
+              factRows.map(([label, value]) => (
+                <div class="facts__item">
+                  <span class="facts__label">{label}</span>
+                  <span class="facts__value">{value}</span>
+                </div>
+              ))
+            }
+          </div>
+        </section>
+
+        <section>
+          <h2>Ausgangslage</h2>
+          {item.situation.map((p) => <p>{p}</p>)}
+        </section>
+
+        <section>
+          <h2>Vorgehen</h2>
+          <ol class="steps">
+            {
+              item.approach.map((a) => (
+                <li>
+                  <span class="steps__title">{a.title}</span>
+                  <p>{a.text}</p>
+                </li>
+              ))
+            }
+          </ol>
+        </section>
+
+        <section>
+          <h2>Ergebnis</h2>
+          {item.result.map((p) => <p>{p}</p>)}
+        </section>
+
+        <section>
+          <h2>Was sich daraus für ähnliche Fälle ableiten lässt</h2>
+          <div class="memo">
+            <p>{item.learning}</p>
+          </div>
+        </section>
+
+        <p class="updated">
+          Einsatz: {item.date}. Seite zuletzt aktualisiert am {formatDate(item.updated)}. Der Bericht
+          ist anonymisiert und wurde vom Auftraggeber freigegeben.
+        </p>
+      </article>
+
+      <div class="sidebar">
+        <ContactCard
+          location={`einsatz-${item.slug}`}
+          headline="Ähnlicher Fall?"
+          text="Schicken Sie Fotos Ihrer Räume, dann sagen wir Ihnen, was in Ihrer Situation zu erwarten ist."
+        />
+
+        <nav class="side-box" aria-labelledby="side-ctx">
+          <h2 class="side-box__head" id="side-ctx">Dazu passend</h2>
+          <ul>
+            {
+              service && service.status === 'published' && (
+                <li>
+                  <a href={`/leistungen/${service.slug}/`}>{service.h1}</a>
+                </li>
+              )
+            }
+            {
+              locHref && locPublished && (
+                <li>
+                  <a href={locHref} data-track="location_click">
+                    Einsatzgebiet {item.locationLabel}
+                  </a>
+                </li>
+              )
+            }
+            <li><a href="/kosten/">Kosten und Preisfaktoren</a></li>
+            <li><a href="/einsatzberichte/">Alle Einsatzberichte</a></li>
+          </ul>
+        </nav>
+      </div>
+    </div>
+  </div>
+
+  <CtaBand location={`einsatz-${item.slug}`} />
+</Base>
+
+<style>
+  .draft-banner {
+    background: var(--warn-tint);
+    border: 2px dashed var(--warn);
+    color: var(--warn);
+    padding: var(--sp-4);
+    margin-bottom: var(--sp-5);
+    border-radius: var(--r-md);
+    font-size: 0.92rem;
+  }
+  .case-kicker {
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 0.09em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: var(--sp-3);
+  }
+  .sidebar {
+    display: grid;
+    gap: var(--sp-5);
+    align-content: start;
+  }
+  .side-box {
+    border: 1px solid var(--line);
+    border-radius: var(--r-md);
+    padding: var(--sp-4) var(--sp-5);
+    background: var(--white);
+  }
+  .side-box__head {
+    font-family: var(--font-body);
+    font-size: 0.78rem;
+    letter-spacing: 0.09em;
+    text-transform: uppercase;
+    color: var(--ink-3);
+    margin: 0 0 var(--sp-3);
+  }
+  .side-box ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  .side-box li {
+    margin: 0;
+    border-top: 1px solid var(--paper-3);
+  }
+  .side-box li:first-child {
+    border-top: 0;
+  }
+  .side-box a {
+    display: block;
+    padding: 0.55rem 0;
+    color: var(--ink);
+    text-decoration: none;
+    font-size: 0.94rem;
+    min-height: 2.5rem;
+  }
+  .side-box a:hover {
+    color: var(--accent);
+  }
+</style>

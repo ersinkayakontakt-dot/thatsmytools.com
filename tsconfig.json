@@ -1,0 +1,17 @@
+{
+  "extends": "astro/tsconfigs/strict",
+  "include": [".astro/types.d.ts", "**/*.ts", "**/*.astro", "**/*.mjs"],
+  "exclude": ["dist", "node_modules"],
+  "compilerOptions": {
+    "strictNullChecks": true,
+    // Erlaubt Importe mit .ts-Endung. Dadurch lassen sich die Daten- und
+    // Prüfmodule auch direkt mit Node ausführen (scripts/content-audit.mjs),
+    // ohne vorher zu bauen.
+    "allowImportingTsExtensions": true,
+    "allowJs": true,
+    "baseUrl": ".",
+    "paths": {
+      "~/*": ["src/*"]
+    }
+  }
+}

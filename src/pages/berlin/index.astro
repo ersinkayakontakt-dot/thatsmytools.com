@@ -1,0 +1,188 @@
+---
+import Base from '../../layouts/Base.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import CtaBand from '../../components/CtaBand.astro';
+import Faq from '../../components/Faq.astro';
+import { districts, publishedDistricts } from '../../data/districts';
+import { publishedTowns } from '../../data/towns';
+import {
+  buildGraph,
+  organizationNode,
+  websiteNode,
+  webPageNode,
+  breadcrumbNode,
+  faqNode,
+} from '../../lib/schema';
+
+const path = '/berlin/';
+const title = 'Einsatzgebiet Berlin: alle zwölf Bezirke | Schnellhelfer24';
+const description =
+  'Entrümpelung, Auflösung und Umzug in allen zwölf Berliner Bezirken. Was Altbau, Plattenbau, Hinterhof und Parksituation für den Aufwand bedeuten.';
+
+const crumbs = [
+  { name: 'Start', href: '/' },
+  { name: 'Berlin', href: path },
+];
+
+const faq = [
+  {
+    q: 'In welchen Berliner Bezirken arbeiten Sie?',
+    a: 'In allen zwölf. Für die Bezirke, in denen wir am häufigsten unterwegs sind, gibt es eigene Seiten mit den örtlichen Gegebenheiten. Für die übrigen gilt dasselbe Einsatzgebiet, nur ohne eigene Seite. Fragen Sie einfach an, wir sagen Ihnen, was möglich ist.',
+  },
+  {
+    q: 'Warum gibt es nicht für jeden Bezirk eine eigene Seite?',
+    a: 'Weil eine Seite, die sich nur im Ortsnamen von einer anderen unterscheidet, niemandem hilft. Wir veröffentlichen eine Bezirksseite erst, wenn wir dort genug gearbeitet haben, um etwas Konkretes über Bebauung, Zufahrt und typische Aufträge sagen zu können.',
+  },
+  {
+    q: 'Kostet ein Einsatz am Stadtrand mehr als in der Innenstadt?',
+    a: 'Die Anfahrt fällt innerhalb Berlins kaum ins Gewicht. Entscheidender ist die Zugangssituation: In Innenstadtlagen brauchen Sie meist eine Halteverbotszone und haben Altbauten ohne Aufzug. Am Stadtrand ist die Zufahrt einfacher, dafür kommen bei Häusern mehr Nebengebäude zusammen.',
+  },
+  {
+    q: 'Wie schnell sind Sie in meinem Bezirk?',
+    a: 'Das hängt weniger vom Bezirk ab als von Umfang und Auslastung. Kleine Abholungen lassen sich oft mit anderen Fahrten in derselben Gegend kombinieren und sind dann kurzfristiger machbar. Rufen Sie an und nennen Sie Ihren Zeitrahmen.',
+  },
+];
+
+const schema = buildGraph([
+  organizationNode(),
+  websiteNode(),
+  breadcrumbNode(path, crumbs),
+  webPageNode({ url: path, name: title, description, dateModified: '2026-07-29' }),
+  faqNode(path, faq),
+]);
+
+const draftDistricts = districts.filter((d) => d.status !== 'published');
+---
+
+<Base title={title} description={description} path={path} schema={schema}>
+  <Breadcrumbs items={crumbs} />
+
+  <div class="wrap section--tight">
+    <div class="prose">
+      <h1>Einsatzgebiet Berlin</h1>
+      <div class="answer">
+        <p>
+          Wir arbeiten in allen zwölf Berliner Bezirken sowie im angrenzenden Brandenburg. Für den
+          Aufwand einer Räumung oder eines Umzugs zählt in Berlin vor allem die Bauform: Ein Altbau
+          im vierten Stock ohne Aufzug mit Hinterhof ist ein völlig anderer Einsatz als ein
+          Plattenbau mit Aufzug und Anlieferzone. Deshalb fragen wir zuerst nach Etage, Aufzug und
+          Parksituation, nicht nach Quadratmetern.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <section class="section" aria-labelledby="bezirke">
+    <div class="wrap">
+      <p class="kicker">Bezirke mit eigener Seite</p>
+      <h2 id="bezirke">Wo wir regelmäßig arbeiten</h2>
+      <p class="lede">
+        Diese Bezirksseiten enthalten das, was uns dort tatsächlich begegnet: typische Gebäude,
+        Zufahrt und Parken, häufige Auftragsarten und Fragen aus der Gegend.
+      </p>
+
+      <ul class="dist-grid">
+        {
+          publishedDistricts.map((d) => (
+            <li>
+              <a class="card card--link card--plan" href={`/berlin/${d.slug}/`} data-track="location_click">
+                <span class="card__title">{d.name}</span>
+                <span class="card__text">{d.answer.split('.').slice(0, 2).join('.') + '.'}</span>
+                <span class="dist__quarters">{d.quarters.slice(0, 5).join(' · ')}</span>
+                <span class="card__more">Zur Bezirksseite</span>
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </section>
+
+  <section class="section section--paper" aria-labelledby="weitere">
+    <div class="wrap">
+      <p class="kicker">Ebenfalls im Einsatzgebiet</p>
+      <h2 id="weitere">Die übrigen Bezirke</h2>
+      <p class="lede">
+        Hier arbeiten wir genauso, es gibt nur noch keine eigene Seite. Wir legen eine an, sobald wir
+        genug eigene Erfahrung im Bezirk gesammelt haben, um etwas Brauchbares dazu zu schreiben.
+        Eine Seite, die nur den Ortsnamen austauscht, hilft niemandem.
+      </p>
+      <ul class="chips">
+        {
+          draftDistricts.map((d) => (
+            <li>
+              <span class="chip">{d.name}</span>
+            </li>
+          ))
+        }
+      </ul>
+      <p>
+        <a class="btn btn--secondary" href="/angebot-anfragen/">Einschätzung für Ihre Adresse anfordern</a>
+      </p>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="umland">
+    <div class="wrap">
+      <p class="kicker">Über die Stadtgrenze hinaus</p>
+      <h2 id="umland">Berliner Umland</h2>
+      <p class="lede">
+        Im angrenzenden Brandenburg arbeiten wir ebenfalls. Dort ist die Zufahrt meist einfacher, das
+        Volumen bei Häusern mit Grundstück dafür oft deutlich höher als erwartet.
+      </p>
+      <ul class="chips">
+        {
+          publishedTowns.map((t) => (
+            <li>
+              <a class="chip" href={`/brandenburg/${t.slug}/`} data-track="location_click">
+                {t.name}
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+      <p><a class="btn btn--secondary" href="/brandenburg/">Einsatzgebiet Umland</a></p>
+    </div>
+  </section>
+
+  <section class="section section--paper">
+    <div class="wrap wrap--mid">
+      <Faq items={faq} title="Fragen zum Einsatzgebiet" id="faq-berlin" />
+    </div>
+  </section>
+
+  <CtaBand location="berlin-hub" />
+</Base>
+
+<style>
+  .dist-grid {
+    list-style: none;
+    margin: var(--sp-5) 0 0;
+    padding: 0;
+    display: grid;
+    gap: var(--sp-4);
+  }
+  @media (min-width: 40em) {
+    .dist-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+  @media (min-width: 66em) {
+    .dist-grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+  .dist-grid li {
+    margin: 0;
+  }
+  .dist-grid a {
+    height: 100%;
+  }
+  .dist__quarters {
+    display: block;
+    margin-top: var(--sp-3);
+    font-size: 0.83rem;
+    color: var(--ink-4);
+    line-height: 1.5;
+  }
+</style>

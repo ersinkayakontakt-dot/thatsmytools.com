@@ -1,0 +1,300 @@
+---
+import Base from '../layouts/Base.astro';
+import Icon from '../components/Icon.astro';
+import { phone, whatsapp, email } from '../lib/contact';
+import { publishedGuides } from '../data/guides';
+
+/**
+ * Bestätigungsseite.
+ * noindex: Sie hat keinen Suchwert und soll nicht in Suchergebnissen
+ * auftauchen. Der Aufruf dieser URL ist das Conversion-Ereignis.
+ */
+const title = 'Ihre Anfrage ist angekommen | Schnellhelfer24';
+const description = 'Bestätigung Ihrer Anfrage bei Schnellhelfer24 und die nächsten Schritte.';
+
+const prep = [
+  'Wo genau ist die Halteposition für das Fahrzeug? Hinterhof, Straße, eigene Einfahrt?',
+  'Gibt es Nebenräume, die noch nicht auf den Fotos sind? Keller, Dachboden, Balkon, Garage.',
+  'Soll etwas ausdrücklich bleiben oder an die Familie gehen?',
+  'Gibt es einen festen Übergabetermin mit dem Vermieter?',
+  'Muss etwas demontiert werden? Einbauküche, Einbauschrank, Teppichboden, Lampen.',
+  'Sind besonders schwere oder sperrige Stücke dabei? Klavier, Tresor, Aquarium, Werkbank.',
+  'Ist ein Kostenträger beteiligt, etwa Jobcenter, Sozialamt oder Pflegekasse?',
+];
+---
+
+<Base title={title} description={description} path="/anfrage-erhalten/" index={false} hideStickyBar>
+  <div class="wrap wrap--mid section">
+    <div class="done">
+      <span class="done__icon" aria-hidden="true"><Icon name="check" size={30} /></span>
+      <h1>Ihre Anfrage ist angekommen</h1>
+      <p class="lede">
+        Wir haben Ihre Angaben erhalten und melden uns auf dem Weg zurück, den Sie gewählt haben.
+      </p>
+    </div>
+
+    <!-- Zusammenfassung aus den abgesendeten Angaben. Wird clientseitig
+         gefüllt, weil die Seite statisch ausgeliefert wird. Die Angaben
+         stammen ausschließlich aus dem eigenen Browser des Nutzers. -->
+    <section class="recap" data-recap hidden aria-labelledby="recap-head">
+      <h2 id="recap-head">Das haben Sie uns geschickt</h2>
+      <dl data-recap-list></dl>
+    </section>
+
+    <section aria-labelledby="next">
+      <h2 id="next">Wie es weitergeht</h2>
+      <ol class="steps">
+        <li>
+          <span class="steps__title">Wir sehen uns die Angaben an</span>
+          <p>
+            Jemand aus dem Team schaut sich Ihre Fotos und die Angaben zu Etage, Aufzug und Zugang
+            an. Das macht kein Programm, sondern eine Person, die die Einsätze kennt.
+          </p>
+        </li>
+        <li>
+          <span class="steps__title">Wir melden uns zurück</span>
+          <p>
+            Auf dem Weg, den Sie angegeben haben. Wenn etwas unklar ist, fragen wir nach, statt zu
+            raten. Häufig genügen ein oder zwei zusätzliche Fotos.
+          </p>
+        </li>
+        <li>
+          <span class="steps__title">Einschätzung oder Besichtigung</span>
+          <p>
+            Bei überschaubaren Aufträgen reicht die Fotoeinschätzung. Bei kompletten Auflösungen,
+            Häusern mit Grundstück und stark zugestellten Wohnungen schlagen wir eine Besichtigung
+            vor. Sie kostet nichts und dauert je nach Objekt zwanzig bis sechzig Minuten.
+          </p>
+        </li>
+        <li>
+          <span class="steps__title">Schriftliche Absprache</span>
+          <p>
+            Vor dem Einsatz steht fest, was enthalten ist, wie lange es dauert und was es kostet.
+            Erst danach entscheiden Sie, ob Sie beauftragen.
+          </p>
+        </li>
+      </ol>
+    </section>
+
+    <section class="urgent" aria-labelledby="eilig">
+      <h2 id="eilig">Wenn es eilig ist</h2>
+      <p>
+        Wenn ein Übergabetermin drückt oder sich etwas geändert hat, warten Sie nicht auf unsere
+        Rückmeldung, sondern melden Sie sich direkt.
+      </p>
+      <div class="btn-row">
+        {
+          phone.available && (
+            <a class="btn btn--primary" href={phone.href} data-track="phone_click" data-track-location="bestaetigung">
+              <Icon name="phone" size={19} />
+              {phone.display}
+            </a>
+          )
+        }
+        {
+          whatsapp.available && (
+            <a
+              class="btn btn--secondary"
+              href={whatsapp.href}
+              target="_blank"
+              rel="noopener"
+              data-track="whatsapp_click"
+              data-track-location="bestaetigung"
+            >
+              <Icon name="whatsapp" size={19} />
+              Weitere Fotos per WhatsApp
+            </a>
+          )
+        }
+        {
+          email.available && (
+            <a class="btn btn--ghost" href={email.href}>
+              <Icon name="mail" size={19} />
+              {email.address}
+            </a>
+          )
+        }
+        {!phone.available && !whatsapp.available && <a class="btn btn--primary" href="/kontakt/">Zur Kontaktseite</a>}
+      </div>
+      {
+        whatsapp.available && (
+          <p class="text-muted">
+            Über WhatsApp können Sie Fotos direkt aus der Galerie schicken. Das ist der einfachste
+            Weg, wenn Sie noch Räume nachreichen möchten.
+          </p>
+        )
+      }
+    </section>
+
+    <section aria-labelledby="vorbereiten">
+      <h2 id="vorbereiten">Das hilft uns bei der Einschätzung</h2>
+      <p>
+        Sie müssen nichts davon vorbereiten. Wenn Sie sich diese Punkte aber schon einmal ansehen,
+        geht das Gespräch danach deutlich schneller:
+      </p>
+      <ul class="prep">
+        {prep.map((p) => <li>{p}</li>)}
+      </ul>
+    </section>
+
+    <section aria-labelledby="lesen">
+      <h2 id="lesen">Bis dahin</h2>
+      <ul class="links">
+        {
+          publishedGuides.slice(0, 5).map((g) => (
+            <li>
+              <a href={`/${g.hub}/${g.slug}/`}>{g.h1}</a>
+              <span>{g.teaser}</span>
+            </li>
+          ))
+        }
+      </ul>
+    </section>
+  </div>
+</Base>
+
+<style>
+  .done {
+    text-align: left;
+    border-bottom: 1px solid var(--line);
+    padding-bottom: var(--sp-5);
+    margin-bottom: var(--sp-6);
+  }
+  .done__icon {
+    display: grid;
+    place-items: center;
+    width: 3.25rem;
+    height: 3.25rem;
+    border: 2px solid var(--ok);
+    color: var(--ok);
+    border-radius: 50%;
+    margin-bottom: var(--sp-4);
+  }
+  .done h1 {
+    margin-bottom: var(--sp-3);
+  }
+
+  .recap {
+    background: var(--paper-2);
+    border: 1px solid var(--line);
+    border-radius: var(--r-md);
+    padding: var(--sp-5);
+    margin-bottom: var(--sp-6);
+  }
+  .recap h2 {
+    margin-top: 0;
+    font-size: 1.05rem;
+  }
+  .recap dl {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 0.35rem var(--sp-5);
+    margin: 0;
+    font-size: 0.95rem;
+  }
+  .recap dt {
+    color: var(--ink-3);
+  }
+  .recap dd {
+    margin: 0;
+    font-weight: 600;
+  }
+
+  .urgent {
+    background: var(--brand-tint);
+    border-left: 4px solid var(--brand);
+    padding: var(--sp-5);
+    border-radius: 0 var(--r-md) var(--r-md) 0;
+    margin: var(--sp-6) 0;
+  }
+  .urgent h2 {
+    margin-top: 0;
+  }
+  .urgent > :last-child {
+    margin-bottom: 0;
+  }
+
+  .prep li {
+    margin-bottom: var(--sp-2);
+  }
+  .prep li::marker {
+    color: var(--accent);
+  }
+
+  .links {
+    list-style: none;
+    padding: 0;
+  }
+  .links li {
+    padding: var(--sp-3) 0;
+    border-bottom: 1px solid var(--line);
+  }
+  .links a {
+    display: block;
+    font-weight: 700;
+  }
+  .links span {
+    display: block;
+    font-size: 0.9rem;
+    color: var(--ink-3);
+  }
+</style>
+
+<script is:inline>
+  (function () {
+    var box = document.querySelector('[data-recap]');
+    var list = document.querySelector('[data-recap-list]');
+    if (!box || !list) return;
+
+    var labels = {
+      leistung: 'Leistung',
+      plz: 'Postleitzahl',
+      ort: 'Ort',
+      objektart: 'Objekt',
+      fuellgrad: 'Füllgrad',
+      etage: 'Etage',
+      aufzug: 'Aufzug',
+      nebenraeume: 'Zusätzlich',
+      zeitraum: 'Zeitraum',
+      stichtag: 'Fester Termin',
+      kontaktart: 'Antwort per',
+    };
+
+    try {
+      var raw = sessionStorage.getItem('sh24_anfrage');
+      if (!raw) return;
+      var data = JSON.parse(raw);
+
+      Object.keys(labels).forEach(function (key) {
+        if (!data[key]) return;
+        var dt = document.createElement('dt');
+        dt.textContent = labels[key];
+        var dd = document.createElement('dd');
+        dd.textContent = data[key];
+        list.appendChild(dt);
+        list.appendChild(dd);
+      });
+
+      if (data.fotos) {
+        var dt2 = document.createElement('dt');
+        dt2.textContent = 'Fotos';
+        var dd2 = document.createElement('dd');
+        dd2.textContent = data.fotos === 1 ? '1 Bild' : data.fotos + ' Bilder';
+        list.appendChild(dt2);
+        list.appendChild(dd2);
+      }
+
+      if (list.children.length) box.hidden = false;
+
+      // Nur einmal anzeigen: beim erneuten Aufruf der Seite ist die
+      // Zusammenfassung weg, damit keine Daten im Browser liegen bleiben.
+      sessionStorage.removeItem('sh24_anfrage');
+
+      if (window.sh24 && window.sh24.track) {
+        window.sh24.track('lead_confirmed', { leistung: data.leistung || '' });
+      }
+    } catch (err) {
+      /* ohne Zusammenfassung ist die Seite trotzdem vollständig */
+    }
+  })();
+</script>

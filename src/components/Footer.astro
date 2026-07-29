@@ -1,0 +1,270 @@
+---
+import Icon from './Icon.astro';
+import { site, realValue, addressLine } from '../config/site';
+import { phone, whatsapp, email } from '../lib/contact';
+import { publishedServices } from '../data/services';
+import { publishedDistricts } from '../data/districts';
+import { publishedTowns } from '../data/towns';
+import Todo from './Todo.astro';
+
+/**
+ * Fußbereich.
+ * Bewusst KEIN Keyword-Block mit hunderten Ortslinks. Verlinkt werden nur
+ * veröffentlichte Seiten und die wichtigsten Einstiegspunkte.
+ */
+const year = new Date().getFullYear();
+const addr = addressLine();
+const hoursNote = realValue(site.openingHoursNote);
+---
+
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="footer-grid">
+      <div class="footer-col footer-col--brand">
+        <p class="footer-name">Schnellhelfer<span>24</span></p>
+        <p class="footer-claim">
+          Entrümpelung, Auflösung und Umzug in Berlin und im Berliner Umland.
+        </p>
+
+        <ul class="footer-contact">
+          {
+            phone.available ? (
+              <li>
+                <Icon name="phone" size={17} />
+                <a href={phone.href} data-track="phone_click" data-track-location="footer">
+                  {phone.display}
+                </a>
+              </li>
+            ) : null
+          }
+          {
+            whatsapp.available ? (
+              <li>
+                <Icon name="whatsapp" size={17} />
+                <a href={whatsapp.href} target="_blank" rel="noopener" data-track="whatsapp_click" data-track-location="footer">
+                  WhatsApp
+                </a>
+              </li>
+            ) : null
+          }
+          {
+            email.available ? (
+              <li>
+                <Icon name="mail" size={17} />
+                <a href={email.href}>{email.address}</a>
+              </li>
+            ) : null
+          }
+          {
+            addr ? (
+              <li>
+                <Icon name="pin" size={17} />
+                <span>{addr}</span>
+              </li>
+            ) : null
+          }
+        </ul>
+
+        <Todo>
+          Kontaktdaten in <code>src/config/site.ts</code> eintragen (Telefon, WhatsApp, E-Mail, Adresse).
+          Sie erscheinen erst dann im Footer, im Header, in der Sticky-Leiste und in den strukturierten Daten.
+        </Todo>
+
+        {hoursNote && <p class="footer-hours">{hoursNote}</p>}
+      </div>
+
+      <nav class="footer-col" aria-labelledby="f-leistungen">
+        <h2 class="footer-head" id="f-leistungen">Leistungen</h2>
+        <ul>
+          {
+            publishedServices.slice(0, 8).map((s) => (
+              <li>
+                <a href={`/leistungen/${s.slug}/`}>{s.navLabel}</a>
+              </li>
+            ))
+          }
+          <li><a href="/leistungen/">Alle Leistungen</a></li>
+        </ul>
+      </nav>
+
+      <nav class="footer-col" aria-labelledby="f-gebiete">
+        <h2 class="footer-head" id="f-gebiete">Einsatzgebiete</h2>
+        <ul>
+          <li><a href="/berlin/">Berlin – Übersicht</a></li>
+          {
+            publishedDistricts.map((d) => (
+              <li>
+                <a href={`/berlin/${d.slug}/`}>{d.name}</a>
+              </li>
+            ))
+          }
+          <li><a href="/brandenburg/">Berliner Umland</a></li>
+          {
+            publishedTowns.map((t) => (
+              <li>
+                <a href={`/brandenburg/${t.slug}/`}>{t.name}</a>
+              </li>
+            ))
+          }
+        </ul>
+      </nav>
+
+      <nav class="footer-col" aria-labelledby="f-info">
+        <h2 class="footer-head" id="f-info">Information</h2>
+        <ul>
+          <li><a href="/kosten/">Kosten & Preisfaktoren</a></li>
+          <li><a href="/ratgeber/">Ratgeber</a></li>
+          <li><a href="/einsatzberichte/">Einsatzberichte</a></li>
+          <li><a href="/fragen/">Häufige Fragen</a></li>
+          <li><a href="/ueber-uns/">Über uns</a></li>
+          <li><a href="/kontakt/">Kontakt</a></li>
+          <li><a href="/angebot-anfragen/">Einschätzung anfordern</a></li>
+        </ul>
+      </nav>
+    </div>
+
+    <div class="footer-bottom">
+      <p class="footer-legal">
+        © {year} {site.name}
+      </p>
+      <ul class="footer-legal-links">
+        <li><a href="/impressum/">Impressum</a></li>
+        <li><a href="/datenschutz/">Datenschutz</a></li>
+      </ul>
+    </div>
+  </div>
+</footer>
+
+<style>
+  .site-footer {
+    background: var(--brand);
+    color: #cfd9dd;
+    padding-block: var(--sp-7) var(--sp-5);
+    margin-top: var(--sp-8);
+    font-size: 0.94rem;
+  }
+
+  .footer-grid {
+    display: grid;
+    gap: var(--sp-6);
+  }
+  @media (min-width: 40em) {
+    .footer-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+  @media (min-width: 64em) {
+    .footer-grid {
+      grid-template-columns: 1.5fr 1fr 1fr 1fr;
+      gap: var(--sp-7);
+    }
+  }
+
+  .footer-name {
+    font-family: var(--font-head);
+    font-size: 1.35rem;
+    font-weight: 700;
+    color: var(--white);
+    margin: 0 0 var(--sp-2);
+  }
+  .footer-name span {
+    color: #e6a882;
+  }
+  .footer-claim {
+    color: #b7c4c9;
+    margin-bottom: var(--sp-4);
+    max-width: 24rem;
+  }
+
+  .footer-head {
+    font-family: var(--font-body);
+    font-size: 0.78rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #90a6ae;
+    margin: 0 0 var(--sp-3);
+    font-weight: 700;
+  }
+
+  .footer-col ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  .footer-col li {
+    margin-bottom: 0.45rem;
+  }
+  .footer-col a {
+    color: #cfd9dd;
+    text-decoration: none;
+  }
+  .footer-col a:hover {
+    color: var(--white);
+    text-decoration: underline;
+    text-underline-offset: 0.2em;
+  }
+
+  .footer-contact {
+    list-style: none;
+    margin: 0 0 var(--sp-4);
+    padding: 0;
+  }
+  .footer-contact li {
+    display: flex;
+    align-items: center;
+    gap: 0.55rem;
+    margin-bottom: 0.5rem;
+    color: #cfd9dd;
+  }
+  .footer-contact a {
+    color: var(--white);
+    font-weight: 700;
+    text-decoration: none;
+  }
+  .footer-contact a:hover {
+    text-decoration: underline;
+    text-underline-offset: 0.2em;
+  }
+
+  .footer-hours {
+    color: #9fb1b8;
+    font-size: 0.88rem;
+    max-width: 24rem;
+  }
+
+  .footer-bottom {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    gap: var(--sp-3);
+    margin-top: var(--sp-7);
+    padding-top: var(--sp-4);
+    border-top: 1px solid rgba(255, 255, 255, 0.14);
+    font-size: 0.88rem;
+    color: #9fb1b8;
+  }
+  .footer-legal {
+    margin: 0;
+  }
+  .footer-legal-links {
+    display: flex;
+    gap: var(--sp-5);
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  .footer-legal-links li {
+    margin: 0;
+  }
+  .footer-legal-links a {
+    display: inline-block;
+    padding-block: 0.35rem;
+    color: #cfd9dd;
+    text-decoration: none;
+  }
+  .footer-legal-links a:hover {
+    color: var(--white);
+    text-decoration: underline;
+  }
+</style>

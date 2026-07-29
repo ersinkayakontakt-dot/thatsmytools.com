@@ -1,0 +1,261 @@
+---
+import Base from '../../layouts/Base.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import CtaBand from '../../components/CtaBand.astro';
+import Todo from '../../components/Todo.astro';
+import { publishedCases, sampleCases } from '../../data/cases';
+import { publishedDistricts } from '../../data/districts';
+import {
+  buildGraph,
+  organizationNode,
+  websiteNode,
+  webPageNode,
+  breadcrumbNode,
+} from '../../lib/schema';
+
+const path = '/einsatzberichte/';
+const title = 'Einsatzberichte aus Berlin | Schnellhelfer24';
+const description =
+  'Anonymisierte Berichte aus abgeschlossenen Räumungen und Umzügen in Berlin: Bezirk, Objektgröße, Etage, Dauer, enthaltene Leistungen und Art der Übergabe.';
+
+const crumbs = [
+  { name: 'Start', href: '/' },
+  { name: 'Einsatzberichte', href: path },
+];
+
+const schema = buildGraph([
+  organizationNode(),
+  websiteNode(),
+  breadcrumbNode(path, crumbs),
+  webPageNode({ url: path, name: title, description, dateModified: '2026-07-29' }),
+]);
+
+// Musterberichte werden nur im Entwicklungsmodus verlinkt. Sie sind
+// keine echten Einsätze und dürfen deshalb nicht öffentlich auftauchen.
+const showSamples = import.meta.env.DEV;
+
+const fields = [
+  ['Bezirk oder Ort', 'In welchem Teil Berlins oder des Umlands der Einsatz stattfand'],
+  ['Objektart und Größe', 'Wohnung, Haus, Keller oder Gewerbefläche, mit Quadratmetern'],
+  ['Etage und Aufzug', 'Der Faktor, der die Arbeitszeit am stärksten verändert'],
+  ['Volumen', 'Wie viele Kubikmeter tatsächlich abtransportiert wurden'],
+  ['Dauer und Teamgröße', 'Wie lange es gedauert hat und mit wie vielen Personen'],
+  ['Enthaltene Leistungen', 'Was beauftragt war, inklusive Zusatzarbeiten'],
+  ['Art der Übergabe', 'Besenrein, an Vermieter, an Hausverwaltung, mit Protokoll'],
+  ['Besonderheiten', 'Was aufwendiger war als erwartet und warum'],
+  ['Preis oder Preisrahmen', 'Nur bei ausdrücklicher Freigabe durch den Auftraggeber'],
+];
+---
+
+<Base title={title} description={description} path={path} schema={schema}>
+  <Breadcrumbs items={crumbs} />
+
+  <div class="wrap section--tight">
+    <div class="prose">
+      <h1>Einsatzberichte</h1>
+      <div class="answer">
+        <p>
+          Hier entsteht eine Sammlung anonymisierter Berichte aus abgeschlossenen Aufträgen in Berlin
+          und im Umland. Jeder Bericht nennt Bezirk, Objektart, Etage, Volumen, Dauer, enthaltene
+          Leistungen und die Art der Übergabe. Veröffentlicht wird ausschließlich, was tatsächlich
+          stattgefunden hat und wofür der Auftraggeber eine Freigabe erteilt hat.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  {
+    publishedCases.length > 0 ? (
+      <section class="section" aria-labelledby="berichte">
+        <div class="wrap">
+          <h2 id="berichte">Abgeschlossene Einsätze</h2>
+          <ul class="case-grid">
+            {publishedCases.map((c) => (
+              <li>
+                <a class="card card--link card--plan" href={`/einsatzberichte/${c.slug}/`} data-track="case_study_opened">
+                  <span class="case__meta">
+                    {c.locationLabel} · {c.facts.objectType}
+                  </span>
+                  <span class="card__title">{c.title}</span>
+                  <span class="card__text">{c.summary}</span>
+                  <span class="case__facts">
+                    {c.facts.floor} · {c.facts.volume} · {c.facts.duration}
+                  </span>
+                </a>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </section>
+    ) : (
+      <section class="section" aria-labelledby="warum-leer">
+        <div class="wrap">
+          <div class="prose">
+            <h2 id="warum-leer">Warum hier noch nichts steht</h2>
+            <p>
+              Referenzfälle wären schnell geschrieben. Auf vielen Websites in dieser Branche stehen
+              Beispiele, die niemand nachprüfen kann. Wir machen das nicht.
+            </p>
+            <p>
+              Ein Einsatzbericht erscheint erst, wenn ein Auftrag abgeschlossen ist und die
+              Auftraggeberin oder der Auftraggeber der Veröffentlichung schriftlich zugestimmt hat.
+              Anonymisiert: kein Name, keine Hausnummer, keine erkennbaren Details auf Fotos.
+            </p>
+            <p>
+              Der Aufwand lohnt sich, weil solche Berichte die einzige ehrliche Antwort auf die Frage
+              sind, was eine Räumung in Berlin wirklich bedeutet. Bis dahin finden Sie die
+              Preislogik im <a href="/kosten/">Kostenbereich</a>.
+            </p>
+          </div>
+        </div>
+      </section>
+    )
+  }
+
+  <section class="section section--paper" aria-labelledby="was-drinsteht">
+    <div class="wrap">
+      <p class="kicker">Aufbau</p>
+      <h2 id="was-drinsteht">Was in jedem Bericht steht</h2>
+      <p class="lede">
+        Immer dieselben Angaben, damit sich Berichte untereinander vergleichen lassen und Sie Ihre
+        eigene Situation einordnen können.
+      </p>
+
+      <div class="table-scroll">
+        <table>
+          <thead>
+            <tr>
+              <th scope="col">Angabe</th>
+              <th scope="col">Warum sie drinsteht</th>
+            </tr>
+          </thead>
+          <tbody>
+            {
+              fields.map(([f, why]) => (
+                <tr>
+                  <th scope="row">{f}</th>
+                  <td>{why}</td>
+                </tr>
+              ))
+            }
+          </tbody>
+        </table>
+      </div>
+
+      <p class="text-muted">
+        Aus diesen Angaben entsteht mit der Zeit eine Auswertung je Bezirk: wie viele Einsätze,
+        welche Wohnungsgrößen, welche Volumen, welche Dauer, welche Kostentreiber. Auch diese
+        Auswertung wird erst veröffentlicht, wenn genügend Fälle vorliegen, und immer mit Fallzahl,
+        Zeitraum und den Grenzen der Aussage.
+      </p>
+    </div>
+  </section>
+
+  {
+    showSamples && sampleCases.length > 0 && (
+      <section class="section" aria-labelledby="muster">
+        <div class="wrap">
+          <Todo>
+            Nur im Entwicklungsmodus sichtbar: Musterberichte zur Struktur. Sie sind{' '}
+            <code>real: false</code> und <code>status: 'draft'</code>, also noindex, nicht in der
+            Sitemap und in der Produktionsausgabe nirgends verlinkt.
+          </Todo>
+          <h2 id="muster">Musterberichte (nur intern)</h2>
+          <ul class="linklist">
+            {sampleCases.map((c) => (
+              <li>
+                <a href={`/einsatzberichte/${c.slug}/`}>{c.title}</a>
+                <span class="linklist__meta">{c.locationLabel}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </section>
+    )
+  }
+
+  <section class="section" aria-labelledby="regionen">
+    <div class="wrap">
+      <p class="kicker">Nach Gebiet</p>
+      <h2 id="regionen">Einsätze nach Bezirk</h2>
+      <p class="lede">
+        Sobald Berichte vorliegen, werden sie auf den jeweiligen Bezirksseiten verlinkt.
+      </p>
+      <ul class="chips">
+        {
+          publishedDistricts.map((d) => (
+            <li>
+              <a class="chip" href={`/berlin/${d.slug}/`} data-track="location_click">
+                {d.name}
+              </a>
+            </li>
+          ))
+        }
+        <li><a class="chip" href="/berlin/">Alle Bezirke</a></li>
+      </ul>
+    </div>
+  </section>
+
+  <CtaBand
+    location="einsatzberichte"
+    headline="Ihr Fall wird der nächste Bericht"
+    text="Wenn Sie nach dem Einsatz einverstanden sind, machen wir daraus einen anonymisierten Bericht, der anderen bei der Einschätzung hilft. Ohne Ihre Zustimmung passiert das nicht."
+  />
+</Base>
+
+<style>
+  .case-grid {
+    list-style: none;
+    margin: var(--sp-5) 0 0;
+    padding: 0;
+    display: grid;
+    gap: var(--sp-4);
+  }
+  @media (min-width: 40em) {
+    .case-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+  @media (min-width: 66em) {
+    .case-grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+  .case-grid li {
+    margin: 0;
+  }
+  .case-grid a {
+    height: 100%;
+  }
+  .case__meta {
+    display: block;
+    font-size: 0.78rem;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: var(--ink-4);
+    margin-bottom: var(--sp-2);
+  }
+  .case__facts {
+    display: block;
+    margin-top: var(--sp-3);
+    padding-top: var(--sp-2);
+    border-top: 1px solid var(--line);
+    font-size: 0.85rem;
+    color: var(--ink-3);
+  }
+  .linklist {
+    list-style: none;
+    padding: 0;
+  }
+  .linklist li {
+    padding: var(--sp-3) 0;
+    border-bottom: 1px solid var(--line);
+    display: flex;
+    justify-content: space-between;
+    gap: var(--sp-4);
+  }
+  .linklist__meta {
+    color: var(--ink-4);
+    font-size: 0.88rem;
+  }
+</style>

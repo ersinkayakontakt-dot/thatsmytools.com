@@ -1,0 +1,77 @@
+<!doctype html>
+<!--
+  Vorlage für das Social-Media-Vorschaubild (1200 × 630).
+  Wird von scripts/make-images.mjs mit Chromium zu public/og-default.png gerendert.
+  Neu erzeugen mit:  node scripts/make-images.mjs
+
+  Bewusst ohne auto-Margins und ohne height:100% aufgebaut: feste Abstände
+  rendern in Headless-Chromium zuverlässig reproduzierbar.
+-->
+<html lang="de">
+  <head>
+    <meta charset="utf-8" />
+    <style>
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      html, body { width: 1200px; height: 630px; }
+      body {
+        background: #17323d;
+        color: #faf8f4;
+        font-family: Georgia, 'Noto Serif', serif;
+        position: relative;
+        overflow: hidden;
+      }
+      .grid {
+        position: absolute; inset: 0;
+        background-image:
+          linear-gradient(rgba(255,255,255,.055) 1px, transparent 1px),
+          linear-gradient(90deg, rgba(255,255,255,.055) 1px, transparent 1px);
+        background-size: 70px 70px;
+      }
+      .inner { position: relative; padding: 54px 80px; }
+
+      .brandrow { display: flex; align-items: center; gap: 16px; }
+      .mark { width: 46px; height: 46px; }
+      .brand { font-size: 33px; font-weight: 700; letter-spacing: -.01em; }
+      .brand span { color: #e6a882; }
+
+      h1 { font-size: 60px; line-height: 1.1; letter-spacing: -.02em;
+           margin-top: 40px; max-width: 17ch; }
+      .accent { display: block; width: 96px; height: 6px; background: #a8451c; margin: 24px 0 20px; }
+      p { font-family: -apple-system, 'Segoe UI', Roboto, Arial, sans-serif;
+          font-size: 25px; color: #b7c4c9; max-width: 46ch; line-height: 1.45; }
+
+      /* Bewusst im normalen Fluss statt absolut positioniert: Text in
+         absolut positionierten Boxen wird beim Headless-Screenshot in
+         manchen Chromium-Builds nicht mitgezeichnet. */
+      .foot { margin-top: 44px;
+              display: flex; justify-content: space-between; align-items: baseline;
+              padding-top: 22px; border-top: 1px solid rgba(255,255,255,.18);
+              font-family: -apple-system, 'Segoe UI', Roboto, Arial, sans-serif;
+              font-size: 22px; color: #9db0b7; }
+      .foot strong { color: #faf8f4; font-weight: 600; }
+    </style>
+  </head>
+  <body>
+    <div class="grid"></div>
+
+    <div class="inner">
+      <div class="brandrow">
+        <svg class="mark" viewBox="0 0 32 32" fill="none" stroke="#e6a882" stroke-width="2.2"
+             stroke-linejoin="round" stroke-linecap="round">
+          <path d="M5 14 16 6l11 8v12a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1z" />
+          <path d="M12.5 27v-7h7v7" />
+        </svg>
+        <div class="brand">Schnellhelfer<span>24</span></div>
+      </div>
+
+      <h1>Entrümpelung, Auflösung und Umzug in Berlin</h1>
+      <span class="accent"></span>
+      <p>Schnell organisiert, diskret durchgeführt und auf Wunsch besenrein übergeben.</p>
+
+      <div class="foot">
+        <div>Berlin &amp; Berliner Umland</div>
+        <div><strong>schnellhelfer24.de</strong></div>
+      </div>
+    </div>
+  </body>
+</html>

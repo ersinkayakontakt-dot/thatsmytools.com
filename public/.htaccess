@@ -1,0 +1,160 @@
+# =====================================================================
+# schnellhelfer24.de – Serverkonfiguration (Apache)
+# =====================================================================
+# Diese Datei wird beim Build unverändert nach dist/ kopiert und gehört
+# in das Webverzeichnis (bei Hostinger: public_html).
+#
+# Bei nginx muss dasselbe in der Serverkonfiguration abgebildet werden,
+# siehe docs/ARCHITEKTUR.md.
+# =====================================================================
+
+# ---------------------------------------------------------------------
+# 1. Zeichensatz und Standarddokument
+# ---------------------------------------------------------------------
+AddDefaultCharset UTF-8
+DirectoryIndex index.html index.php
+
+# Kein Verzeichnislisting
+Options -Indexes
+
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+
+  # -------------------------------------------------------------------
+  # 2. Eine kanonische Adresse
+  # -------------------------------------------------------------------
+  # HTTPS erzwingen
+  RewriteCond %{HTTPS} !=on
+  RewriteCond %{HTTP:X-Forwarded-Proto} !=https
+  RewriteRule ^(.*)$ https://schnellhelfer24.de/$1 [R=301,L]
+
+  # www entfernen. Wer lieber www verwendet, dreht diese Regel um UND
+  # ändert `site.url` in src/config/site.ts. Beides muss zusammenpassen,
+  # sonst zeigen die Canonicals auf die falsche Variante.
+  RewriteCond %{HTTP_HOST} ^www\.(.+)$ [NC]
+  RewriteRule ^(.*)$ https://%1/$1 [R=301,L]
+
+  # -------------------------------------------------------------------
+  # 3. Weiterleitungen alter Adressen
+  # -------------------------------------------------------------------
+  # WICHTIG vor dem Livegang: Die Adressen der bisherigen Website hier
+  # eintragen. Vorgehen:
+  #   1. Alte URLs sammeln (Google Search Console, Bing Webmaster Tools,
+  #      alte Sitemap, Serverlogs, Screaming Frog).
+  #   2. Jede alte URL auf die thematisch passende neue Seite leiten,
+  #      NICHT pauschal auf die Startseite. Pauschale Weiterleitungen
+  #      auf "/" wertet Google wie einen 404.
+  #   3. Nach dem Umstellen mit einem Crawler prüfen, dass keine Kette
+  #      und keine Schleife entsteht.
+  #
+  # Beispiele (auskommentiert, an die echten alten Adressen anpassen):
+  #
+  # Redirect 301 /entruempelung.html      /leistungen/entruempelung-berlin/
+  # Redirect 301 /haushaltsaufloesung     /leistungen/haushaltsaufloesung-berlin/
+  # Redirect 301 /umzuege                 /leistungen/umzug-berlin/
+  # Redirect 301 /kontakt.php             /kontakt/
+  # Redirect 301 /leistungen.html         /leistungen/
+  # Redirect 301 /preise                  /kosten/
+
+  # Häufige Altlasten aus CMS-Installationen abfangen
+  RewriteRule ^index\.(php|html?)$ / [R=301,L]
+
+  # -------------------------------------------------------------------
+  # 4. Einheitliche Schreibweise mit Schrägstrich am Ende
+  # -------------------------------------------------------------------
+  # Die Website wird mit trailingSlash: 'always' gebaut. Ohne diese
+  # Regel wären /kontakt und /kontakt/ zwei Adressen mit gleichem Inhalt.
+  RewriteCond %{REQUEST_FILENAME} !-f
+  RewriteCond %{REQUEST_FILENAME} !-d
+  RewriteCond %{REQUEST_URI} !\.[a-zA-Z0-9]{2,5}$
+  RewriteCond %{REQUEST_URI} !/$
+  RewriteRule ^(.*)$ /$1/ [R=301,L]
+</IfModule>
+
+# ---------------------------------------------------------------------
+# 5. Fehlerseiten
+# ---------------------------------------------------------------------
+ErrorDocument 404 /404.html
+
+# ---------------------------------------------------------------------
+# 6. Sicherheitskopfzeilen
+# ---------------------------------------------------------------------
+<IfModule mod_headers.c>
+  Header always set X-Content-Type-Options "nosniff"
+  Header always set Referrer-Policy "strict-origin-when-cross-origin"
+  Header always set X-Frame-Options "SAMEORIGIN"
+  Header always set Permissions-Policy "geolocation=(), camera=(), microphone=(), interest-cohort=()"
+
+  # Content Security Policy.
+  # Die Website lädt keine externen Skripte, Schriften oder Bilder.
+  # 'unsafe-inline' für Skripte ist nötig, weil die wenigen kleinen
+  # Skripte bewusst inline liegen (keine zusätzlichen Anfragen).
+  # Wenn später ein Analytics-Dienst dazukommt, muss dessen Domain
+  # hier ergänzt werden.
+  Header always set Content-Security-Policy "default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; form-action 'self'; frame-ancestors 'self'; base-uri 'self'; object-src 'none'"
+
+  # HSTS erst aktivieren, wenn HTTPS zuverlässig auf allen Subdomains
+  # läuft. Ein zu früh gesetzter Wert sperrt Besucher aus.
+  # Header always set Strict-Transport-Security "max-age=31536000; includeSubDomains"
+</IfModule>
+
+# ---------------------------------------------------------------------
+# 7. Komprimierung
+# ---------------------------------------------------------------------
+<IfModule mod_deflate.c>
+  AddOutputFilterByType DEFLATE text/html text/plain text/css text/xml
+  AddOutputFilterByType DEFLATE application/javascript application/json
+  AddOutputFilterByType DEFLATE application/xml image/svg+xml
+</IfModule>
+
+<IfModule mod_brotli.c>
+  AddOutputFilterByType BROTLI_COMPRESS text/html text/plain text/css text/xml
+  AddOutputFilterByType BROTLI_COMPRESS application/javascript application/json
+  AddOutputFilterByType BROTLI_COMPRESS application/xml image/svg+xml
+</IfModule>
+
+# ---------------------------------------------------------------------
+# 8. Zwischenspeicherung
+# ---------------------------------------------------------------------
+<IfModule mod_expires.c>
+  ExpiresActive On
+
+  # Dateien mit Prüfsumme im Namen dürfen lange zwischengespeichert werden
+  <FilesMatch "\.(css|js)$">
+    ExpiresDefault "access plus 1 year"
+    Header set Cache-Control "public, max-age=31536000, immutable"
+  </FilesMatch>
+
+  ExpiresByType image/avif "access plus 6 months"
+  ExpiresByType image/webp "access plus 6 months"
+  ExpiresByType image/jpeg "access plus 6 months"
+  ExpiresByType image/png "access plus 6 months"
+  ExpiresByType image/svg+xml "access plus 6 months"
+
+  # HTML immer frisch prüfen, damit Änderungen sofort sichtbar sind
+  ExpiresByType text/html "access plus 0 seconds"
+  ExpiresByType application/xml "access plus 1 hour"
+  ExpiresByType text/plain "access plus 1 hour"
+</IfModule>
+
+# ---------------------------------------------------------------------
+# 9. Richtige Inhaltstypen
+# ---------------------------------------------------------------------
+<IfModule mod_mime.c>
+  AddType image/avif .avif
+  AddType image/webp .webp
+  AddType application/manifest+json .webmanifest
+</IfModule>
+
+# ---------------------------------------------------------------------
+# 10. Versteckte Dateien sperren
+# ---------------------------------------------------------------------
+<FilesMatch "^\.">
+  <IfModule mod_authz_core.c>
+    Require all denied
+  </IfModule>
+  <IfModule !mod_authz_core.c>
+    Order allow,deny
+    Deny from all
+  </IfModule>
+</FilesMatch>

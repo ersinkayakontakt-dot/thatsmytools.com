@@ -1,0 +1,225 @@
+---
+import Base from '../layouts/Base.astro';
+import Breadcrumbs from '../components/Breadcrumbs.astro';
+import AufwandCheck from '../components/AufwandCheck.astro';
+import Icon from '../components/Icon.astro';
+import { phone, whatsapp } from '../lib/contact';
+import {
+  buildGraph,
+  organizationNode,
+  websiteNode,
+  webPageNode,
+  breadcrumbNode,
+} from '../lib/schema';
+
+const path = '/angebot-anfragen/';
+const title = 'Kostenlose Einschätzung anfordern | Schnellhelfer24';
+const description =
+  'Aufwand-Check: Leistung, Ort, Umfang, Etage und Zeitraum angeben, Fotos anhängen. Sie erhalten eine persönliche Einschätzung, kostenlos und unverbindlich.';
+
+const crumbs = [
+  { name: 'Start', href: '/' },
+  { name: 'Einschätzung anfordern', href: path },
+];
+
+const schema = buildGraph([
+  organizationNode(),
+  websiteNode(),
+  breadcrumbNode(path, crumbs),
+  webPageNode({ url: path, name: title, description, dateModified: '2026-07-29' }),
+]);
+---
+
+<Base title={title} description={description} path={path} schema={schema} hideStickyBar>
+  <Breadcrumbs items={crumbs} />
+
+  <div class="wrap section--tight">
+    <div class="intro">
+      <div>
+        <h1>Kostenlose Einschätzung anfordern</h1>
+        <div class="answer">
+          <p>
+            Sechs kurze Schritte, danach wissen wir genug für eine erste Einschätzung. Wichtig sind
+            vor allem Etage, Aufzug und Fotos aus jedem Raum. Die Anfrage ist kostenlos und
+            unverbindlich. Sie bekommen von uns keinen automatisch berechneten Festpreis, sondern
+            eine Rückmeldung von jemandem, der die Bilder angesehen hat.
+          </p>
+        </div>
+      </div>
+
+      <aside class="side">
+        <p class="side__head">Lieber direkt sprechen?</p>
+        <div class="side__ways">
+          {
+            phone.available && (
+              <a class="btn btn--secondary btn--wide" href={phone.href} data-track="phone_click" data-track-location="formularseite">
+                <Icon name="phone" size={18} />
+                {phone.display}
+              </a>
+            )
+          }
+          {
+            whatsapp.available && (
+              <a
+                class="btn btn--ghost btn--wide"
+                href={whatsapp.href}
+                target="_blank"
+                rel="noopener"
+                data-track="whatsapp_click"
+                data-track-location="formularseite"
+              >
+                <Icon name="whatsapp" size={18} />
+                Per WhatsApp schreiben
+              </a>
+            )
+          }
+          {
+            !phone.available && (
+              <a class="btn btn--secondary btn--wide" href="/kontakt/">
+                <Icon name="mail" size={18} />
+                Kontaktseite
+              </a>
+            )
+          }
+        </div>
+        <p class="side__note">
+          Am Telefon geht es schneller, wenn Sie Etage, Aufzug und den gewünschten Termin zur Hand
+          haben.
+        </p>
+      </aside>
+    </div>
+
+    <div class="form-area">
+      <AufwandCheck />
+
+      <aside class="tips">
+        <h2 class="tips__head">Damit die Einschätzung stimmt</h2>
+        <ul>
+          <li>
+            <strong>Nebenräume nicht vergessen.</strong> Keller, Dachboden, Balkon und Garage sind der
+            häufigste Grund, warum eine Schätzung am Einsatztag nicht mehr passt.
+          </li>
+          <li>
+            <strong>Nicht aufräumen vor den Fotos.</strong> Wir müssen den echten Zustand sehen.
+            Aufgeräumte Bilder führen zu einer zu niedrigen Einschätzung.
+          </li>
+          <li>
+            <strong>Volle Schränke öffnen.</strong> Von außen sieht ein leerer Schrank aus wie ein
+            voller. Der Unterschied sind mehrere Kubikmeter.
+          </li>
+          <li>
+            <strong>Licht anmachen.</strong> Auch tagsüber. Dunkle Fotos verschlucken die Hälfte.
+          </li>
+          <li>
+            <strong>Termindruck nennen.</strong> Wenn ein Übergabetermin feststeht, sagen Sie ihn
+            gleich. Wir planen rückwärts davon.
+          </li>
+        </ul>
+        <p class="tips__link">
+          <a href="/ratgeber/welche-fotos-fuer-ein-angebot/">Ausführliche Foto-Anleitung</a>
+        </p>
+
+        <h2 class="tips__head">Was mit Ihren Fotos passiert</h2>
+        <p>
+          Fotos aus Wohnungen sind sensibel. Sie werden ausschließlich für die Einschätzung Ihrer
+          Anfrage verwendet, nicht veröffentlicht, nicht weitergegeben und nach der Bearbeitung
+          gelöscht. Näheres in der <a href="/datenschutz/">Datenschutzerklärung</a>.
+        </p>
+      </aside>
+    </div>
+  </div>
+</Base>
+
+<style>
+  .intro {
+    display: grid;
+    gap: var(--sp-5);
+    margin-bottom: var(--sp-6);
+  }
+  @media (min-width: 60em) {
+    .intro {
+      grid-template-columns: minmax(0, 1fr) 18rem;
+      gap: var(--sp-7);
+      align-items: start;
+    }
+  }
+  .intro h1 {
+    margin-top: 0;
+  }
+  .intro .answer {
+    margin-bottom: 0;
+  }
+
+  .side {
+    border: 1px solid var(--line);
+    background: var(--paper-2);
+    border-radius: var(--r-md);
+    padding: var(--sp-4) var(--sp-5);
+  }
+  .side__head {
+    font-family: var(--font-body);
+    font-size: 0.78rem;
+    letter-spacing: 0.09em;
+    text-transform: uppercase;
+    color: var(--ink-3);
+    font-weight: 700;
+    margin: 0 0 var(--sp-3);
+  }
+  .side__ways {
+    display: grid;
+    gap: var(--sp-2);
+  }
+  .side__note {
+    font-size: 0.87rem;
+    color: var(--ink-3);
+    margin: var(--sp-3) 0 0;
+  }
+
+  .form-area {
+    display: grid;
+    gap: var(--sp-6);
+  }
+  @media (min-width: 66em) {
+    .form-area {
+      grid-template-columns: minmax(0, 1fr) 18rem;
+      gap: var(--sp-7);
+      align-items: start;
+    }
+  }
+
+  .tips {
+    border-top: 3px solid var(--brand);
+    padding-top: var(--sp-4);
+    font-size: 0.93rem;
+    color: var(--ink-2);
+  }
+  .tips__head {
+    font-family: var(--font-body);
+    font-size: 0.78rem;
+    letter-spacing: 0.09em;
+    text-transform: uppercase;
+    color: var(--ink-3);
+    margin: 0 0 var(--sp-3);
+  }
+  .tips h2 + p,
+  .tips h2 + ul {
+    margin-top: 0;
+  }
+  .tips ul {
+    padding-left: 1.1rem;
+    margin-bottom: var(--sp-5);
+  }
+  .tips li {
+    margin-bottom: var(--sp-3);
+    line-height: 1.5;
+  }
+  .tips li::marker {
+    color: var(--accent);
+  }
+  .tips strong {
+    color: var(--brand);
+  }
+  .tips__link {
+    margin-bottom: var(--sp-6);
+  }
+</style>

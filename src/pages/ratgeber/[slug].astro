@@ -1,0 +1,71 @@
+---
+import Base from '../../layouts/Base.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import GuideArticle from '../../components/GuideArticle.astro';
+import CtaBand from '../../components/CtaBand.astro';
+import { guides } from '../../data/guides';
+import { guideIsIndexable } from '../../lib/publishGuard';
+import {
+  buildGraph,
+  organizationNode,
+  websiteNode,
+  webPageNode,
+  breadcrumbNode,
+  articleNode,
+  faqNode,
+} from '../../lib/schema';
+
+export function getStaticPaths() {
+  return guides
+    .filter((g) => g.hub === 'ratgeber')
+    .map((guide) => ({ params: { slug: guide.slug }, props: { guide } }));
+}
+
+const { guide } = Astro.props;
+const path = `/ratgeber/${guide.slug}/`;
+const indexable = guideIsIndexable(guide);
+
+const crumbs = [
+  { name: 'Start', href: '/' },
+  { name: 'Ratgeber', href: '/ratgeber/' },
+  { name: guide.navLabel, href: path },
+];
+
+const schema = buildGraph([
+  organizationNode(),
+  websiteNode(),
+  breadcrumbNode(path, crumbs),
+  webPageNode({
+    url: path,
+    name: guide.metaTitle,
+    description: guide.metaDescription,
+    datePublished: guide.published,
+    dateModified: guide.updated,
+    breadcrumbId: `https://schnellhelfer24.de${path}#breadcrumb`,
+  }),
+  articleNode({
+    url: path,
+    headline: guide.h1,
+    description: guide.metaDescription,
+    published: guide.published,
+    updated: guide.updated,
+  }),
+  faqNode(path, guide.faq),
+]);
+---
+
+<Base
+  title={guide.metaTitle}
+  description={guide.metaDescription}
+  path={path}
+  index={indexable}
+  schema={schema}
+  published={guide.published}
+  modified={guide.updated}
+>
+  <Breadcrumbs items={crumbs} />
+  <div class="wrap section--tight">
+    <GuideArticle guide={guide} />
+  </div>
+  <CtaBand location={`ratgeber-${guide.slug}`} />
+</Base>

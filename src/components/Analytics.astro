@@ -1,0 +1,143 @@
+---
+/**
+ * ANALYTICS-GRUNDLAGE (datenschutzfreundlich)
+ * ===========================================
+ *
+ * Was hier passiert:
+ *   1. Ein kleines Skript sammelt Conversion-Ereignisse (Anruf, WhatsApp,
+ *      Formularschritte, Foto-Upload, Absenden) und legt sie in einer
+ *      Warteschlange `window.sh24.events` ab.
+ *   2. Es wertet UTM-Parameter und den Referrer aus, damit erkennbar ist,
+ *      ob Besuche aus Bing, Google, ChatGPT, Copilot oder Verzeichnissen
+ *      kommen. Die Quelle wird für die Sitzung im sessionStorage gehalten.
+ *   3. Es wird KEIN Drittanbieter-Skript geladen und KEIN Cookie gesetzt.
+ *      Es verlässt ohne Einwilligung nichts den Browser.
+ *
+ * ANBINDUNG EINES ANALYTICS-DIENSTES (siehe SEO-LAUNCH-CHECKLIST.md):
+ *   - Ein Dienst ohne Cookies und ohne personenbezogene Daten (z. B. eine
+ *     selbst gehostete Lösung) kann direkt eingebunden werden.
+ *   - Alles Weitergehende (Google Analytics, Ads, Meta Pixel) darf erst
+ *     nach wirksamer Einwilligung geladen werden. Der Haken dafür ist
+ *     `window.sh24.consent(true)` – erst danach wird die Warteschlange
+ *     an den Zielendpunkt gesendet.
+ *
+ * Ereignisse werden über `data-track` im Markup ausgelöst, damit keine
+ * Selektoren im Skript stehen, die beim Umbau der Seite brechen.
+ */
+---
+
+<script is:inline>
+  (function () {
+    var w = window;
+    var sh24 = (w.sh24 = w.sh24 || {});
+    sh24.events = sh24.events || [];
+    sh24.consented = false;
+
+    /* ------------------------------------------------ Quelle bestimmen */
+    function detectSource() {
+      try {
+        var stored = sessionStorage.getItem('sh24_src');
+        if (stored) return JSON.parse(stored);
+      } catch (e) {
+        /* sessionStorage kann blockiert sein – dann eben ohne */
+      }
+
+      var params = new URLSearchParams(w.location.search);
+      var ref = document.referrer || '';
+      var refHost = '';
+      try {
+        refHost = ref ? new URL(ref).hostname.replace(/^www\./, '') : '';
+      } catch (e) {
+        refHost = '';
+      }
+
+      // KI-Suchsysteme und Assistenten getrennt erfassen. Sie erscheinen
+      // teils als utm_source, teils nur als Referrer.
+      var aiHosts = ['chatgpt.com', 'chat.openai.com', 'copilot.microsoft.com', 'perplexity.ai', 'gemini.google.com'];
+      var channel = 'direct';
+      var source = params.get('utm_source') || refHost || '(direct)';
+
+      if (params.get('utm_medium') === 'cpc' || params.get('gclid') || params.get('msclkid')) {
+        channel = 'paid';
+      } else if (aiHosts.indexOf(source) > -1 || aiHosts.indexOf(refHost) > -1) {
+        channel = 'ai';
+      } else if (/google|bing|duckduckgo|ecosia|yahoo/.test(source) || /google|bing|duckduckgo|ecosia|yahoo/.test(refHost)) {
+        channel = 'organic';
+      } else if (refHost && refHost !== w.location.hostname.replace(/^www\./, '')) {
+        channel = 'referral';
+      }
+
+      var data = {
+        channel: channel,
+        source: source,
+        medium: params.get('utm_medium') || '',
+        campaign: params.get('utm_campaign') || '',
+        referrerHost: refHost,
+        landing: w.location.pathname,
+      };
+
+      try {
+        sessionStorage.setItem('sh24_src', JSON.stringify(data));
+      } catch (e) {
+        /* ignorieren */
+      }
+      return data;
+    }
+
+    sh24.source = detectSource();
+
+    /* ------------------------------------------------ Ereignis erfassen */
+    sh24.track = function (name, detail) {
+      var evt = {
+        event: name,
+        detail: detail || {},
+        page: w.location.pathname,
+        source: sh24.source,
+        ts: Date.now(),
+      };
+      sh24.events.push(evt);
+
+      // dataLayer für spätere Tag-Manager-Anbindung befüllen. Solange kein
+      // Tag Manager geladen ist, ist das nur ein Array im Speicher.
+      w.dataLayer = w.dataLayer || [];
+      w.dataLayer.push(evt);
+
+      if (sh24.consented && typeof sh24.send === 'function') sh24.send(evt);
+
+      // Im Entwicklungsmodus in der Konsole sichtbar machen
+      if (w.location.hostname === 'localhost' || w.location.hostname === '127.0.0.1') {
+        console.info('[sh24]', name, evt.detail);
+      }
+    };
+
+    /**
+     * Einwilligung setzen. Wird von einem späteren Consent-Banner
+     * aufgerufen. Erst danach dürfen zustimmungspflichtige Dienste laden.
+     */
+    sh24.consent = function (granted) {
+      sh24.consented = !!granted;
+      if (!granted) return;
+      if (typeof sh24.send === 'function') {
+        for (var i = 0; i < sh24.events.length; i++) sh24.send(sh24.events[i]);
+      }
+      w.dispatchEvent(new CustomEvent('sh24:consent', { detail: { granted: true } }));
+    };
+
+    /* ------------------------------------- Ereignisse aus dem Markup */
+    document.addEventListener(
+      'click',
+      function (e) {
+        var el = e.target && e.target.closest ? e.target.closest('[data-track]') : null;
+        if (!el) return;
+        sh24.track(el.getAttribute('data-track'), {
+          location: el.getAttribute('data-track-location') || '',
+          label: (el.getAttribute('data-track-label') || el.textContent || '').trim().slice(0, 80),
+        });
+      },
+      { passive: true },
+    );
+
+    // Seitenaufruf mit Kanalzuordnung
+    sh24.track('page_view', { title: document.title });
+  })();
+</script>

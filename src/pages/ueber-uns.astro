@@ -1,0 +1,196 @@
+---
+import Base from '../layouts/Base.astro';
+import Breadcrumbs from '../components/Breadcrumbs.astro';
+import CtaBand from '../components/CtaBand.astro';
+import Todo from '../components/Todo.astro';
+import { site, realValue } from '../config/site';
+import { publishedServices } from '../data/services';
+import {
+  buildGraph,
+  organizationNode,
+  websiteNode,
+  webPageNode,
+  breadcrumbNode,
+} from '../lib/schema';
+
+const path = '/ueber-uns/';
+const title = 'Über Schnellhelfer24: wer wir sind und wie wir arbeiten';
+const description =
+  'Schnellhelfer24 räumt, löst auf und zieht um in Berlin und im Umland. Wie wir arbeiten, worauf wir uns nicht einlassen und was Sie von uns erwarten können.';
+
+const crumbs = [
+  { name: 'Start', href: '/' },
+  { name: 'Über uns', href: path },
+];
+
+const schema = buildGraph([
+  organizationNode(),
+  websiteNode(),
+  breadcrumbNode(path, crumbs),
+  webPageNode({ url: path, name: title, description, dateModified: '2026-07-29' }),
+]);
+
+const founding = realValue(site.foundingYear);
+
+const principles = [
+  {
+    title: 'Wir nennen keinen Preis, bevor wir die Räume gesehen haben',
+    text: 'Eine Zahl am Telefon klingt entgegenkommend, hält aber nicht. Wir schauen uns Fotos an oder kommen vorbei, und danach steht schriftlich fest, was der Einsatz kostet und was enthalten ist.',
+  },
+  {
+    title: 'Wir versprechen keine Fristen, die wir nicht halten können',
+    text: 'Werbeaussagen wie "Termin innerhalb von 24 Stunden" oder "rund um die Uhr erreichbar" stehen auf vielen Seiten. Wir sagen Ihnen stattdessen konkret, was diese Woche machbar ist.',
+  },
+  {
+    title: 'Wir zeigen keine fremden Wohnungen her',
+    text: 'In diesem Gewerbe kursieren drastische Vorher-Fotos aus stark zugestellten Wohnungen. Solche Bilder sind für Betroffene beschämend und helfen bei der Einschätzung eines Auftrags nicht.',
+  },
+  {
+    title: 'Wir werben nicht mit kostenlosen Räumungen',
+    text: 'Dass der Wert eines Haushalts die Kosten einer Räumung deckt, ist die Ausnahme. Wer damit wirbt, muss den Betrag am Einsatztag anders wieder hereinholen.',
+  },
+  {
+    title: 'Wir erfinden keine Bewertungen und keine Referenzfälle',
+    text: 'Auf dieser Website steht kein Kundenzitat, das nicht öffentlich nachlesbar ist, und kein Einsatzbericht, den es nicht gegeben hat. Deshalb sind manche Bereiche noch leer.',
+  },
+  {
+    title: 'Wir sagen ab, wenn wir es nicht können',
+    text: 'Wenn ein Auftrag Spezialgerät, eine Fachfirma oder eine Erlaubnis braucht, die wir nicht haben, sagen wir das und nennen jemanden, der es kann.',
+  },
+];
+---
+
+<Base title={title} description={description} path={path} schema={schema}>
+  <Breadcrumbs items={crumbs} />
+
+  <div class="wrap section--tight">
+    <div class="prose">
+      <h1>Über Schnellhelfer24</h1>
+      <div class="answer">
+        <p>
+          Schnellhelfer24 räumt, löst auf und zieht um, in Berlin und im angrenzenden Brandenburg.
+          Ein großer Teil unserer Aufträge entsteht nicht aus einem Umzug, sondern aus einer
+          Veränderung: einem Todesfall, einem Einzug ins Pflegeheim, einer Trennung, einer
+          Wohnungsübergabe unter Zeitdruck. Entsprechend arbeiten wir: erst zuhören, dann planen,
+          dann anfassen.
+        </p>
+      </div>
+
+      <Todo>
+        Diesen Abschnitt mit der echten Geschichte des Betriebs füllen: seit wann, wie es angefangen
+        hat, wie viele Personen im Team, welche Fahrzeuge. Keine erfundenen Zahlen, lieber weniger
+        Text. Siehe CONTENT-TODO.md.
+      </Todo>
+
+      <h2>Woher wir kommen</h2>
+      <p>
+        {
+          founding
+            ? `Schnellhelfer24 arbeitet seit ${founding} in Berlin.`
+            : 'Schnellhelfer24 arbeitet in Berlin und im Berliner Umland.'
+        }{' '}
+        Angefangen hat es mit Umzügen und Transporten. Dass daraus Räumungen und Auflösungen wurden,
+        lag an den Anfragen: Wer eine Wohnung übergeben muss, braucht selten nur einen Transporter.
+        Er braucht jemanden, der auch das mitnimmt, was niemand mehr haben will, und der weiß, wohin
+        damit.
+      </p>
+
+      <h2>Wie wir arbeiten</h2>
+      <p>
+        Der Ablauf ist bei fast allen Aufträgen gleich: Sie schicken Fotos oder wir kommen vorbei.
+        Danach bekommen Sie eine Aufstellung, aus der hervorgeht, was gemacht wird, wie lange es
+        dauert und was es kostet. Am Einsatztag halten wir uns daran. Wenn sich etwas ändert, weil
+        mehr da ist als besprochen, fragen wir vorher, statt hinterher eine höhere Rechnung zu
+        schicken.
+      </p>
+      <p>
+        Was aus einer Wohnung kommt, wird getrennt: Was sich weitergeben lässt, geht diesen Weg, der
+        Rest wird nach Materialart entsorgt. Persönliche Unterlagen, Fotos und Fundstücke landen
+        nicht im Container, sondern in beschrifteten Kisten.
+      </p>
+
+      <h2>Worauf wir uns nicht einlassen</h2>
+      <p>
+        Diese Branche hat einen zweifelhaften Ruf, und zwar nicht ohne Grund. Deshalb ein paar
+        Punkte, an die wir uns halten, auch wenn sie uns kurzfristig Aufträge kosten:
+      </p>
+    </div>
+
+    <ul class="principles">
+      {
+        principles.map((p) => (
+          <li class="card card--plan">
+            <h3 class="card__title">{p.title}</h3>
+            <p class="card__text">{p.text}</p>
+          </li>
+        ))
+      }
+    </ul>
+
+    <div class="prose">
+      <h2>Wer mit uns arbeitet</h2>
+      <p>
+        Etwa zur Hälfte Privatkundschaft: Menschen vor einem Umzug, Angehörige nach einem Todesfall,
+        ältere Menschen, die sich verkleinern, Familien unter Zeitdruck vor einer Wohnungsübergabe.
+      </p>
+      <p>
+        Die andere Hälfte sind Hausverwaltungen, Vermieter, Nachlasspflegerinnen, rechtliche
+        Betreuungen und Betriebe. Für sie arbeiten wir mit schriftlicher Beauftragung, angemeldetem
+        Zugang, Fotodokumentation und einer Rechnung, die sich intern weiterverarbeiten lässt.
+      </p>
+
+      <h2>Was wir machen</h2>
+      <ul>
+        {
+          publishedServices.map((s) => (
+            <li>
+              <a href={`/leistungen/${s.slug}/`}>{s.h1}</a> – {s.teaser}
+            </li>
+          ))
+        }
+      </ul>
+
+      <h2>Kontakt und Ansprechpartner</h2>
+      <p>
+        Wer bei uns ans Telefon geht, ist keine Zentrale, sondern jemand, der die Einsätze kennt. Auf
+        der <a href="/kontakt/">Kontaktseite</a> stehen alle Wege zu uns. Die vollständigen
+        Unternehmensangaben finden Sie im <a href="/impressum/">Impressum</a>.
+      </p>
+
+      <Todo>
+        Ergänzen, sobald vorhanden: echte Fotos vom Team und den Fahrzeugen (keine Stockfotos, keine
+        KI-Bilder), Namen der Ansprechpartner, Gründungsjahr, Teamgröße. Diese Angaben sind für das
+        Vertrauen wichtiger als jeder Werbetext.
+      </Todo>
+    </div>
+  </div>
+
+  <CtaBand location="ueber-uns" />
+</Base>
+
+<style>
+  .principles {
+    list-style: none;
+    margin: var(--sp-5) 0 var(--sp-7);
+    padding: 0;
+    display: grid;
+    gap: var(--sp-4);
+  }
+  @media (min-width: 42em) {
+    .principles {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+  @media (min-width: 68em) {
+    .principles {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+  .principles li {
+    margin: 0;
+  }
+  .principles h3 {
+    margin-top: 0;
+    font-size: 1.02rem;
+  }
+</style>

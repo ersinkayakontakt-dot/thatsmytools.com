@@ -1,0 +1,345 @@
+---
+import Icon from './Icon.astro';
+import { site } from '../config/site';
+import { phone, primaryCta } from '../lib/contact';
+
+/**
+ * Kopfbereich.
+ * Mobil: Logo, Anruf-Icon, Menü-Button. Das Menü ist ein <details>-Element,
+ * funktioniert also ohne JavaScript und bleibt tastaturbedienbar.
+ */
+const nav = [
+  { href: '/leistungen/', label: 'Leistungen' },
+  { href: '/berlin/', label: 'Einsatzgebiete' },
+  { href: '/kosten/', label: 'Kosten & Ablauf' },
+  { href: '/einsatzberichte/', label: 'Einsatzberichte' },
+  { href: '/ratgeber/', label: 'Ratgeber' },
+  { href: '/ueber-uns/', label: 'Über uns' },
+  { href: '/kontakt/', label: 'Kontakt' },
+];
+
+const path = Astro.url.pathname;
+const isCurrent = (href: string) => (href === '/' ? path === '/' : path.startsWith(href));
+---
+
+<header class="site-header">
+  <div class="site-header__inner">
+    <a href="/" class="logo" aria-label={`${site.name} – zur Startseite`}>
+      <span class="logo__mark" aria-hidden="true">
+        <svg viewBox="0 0 32 32" width="32" height="32" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M4 13 16 5l12 8v13a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1z" />
+          <path d="M12 27v-8h8v8" />
+        </svg>
+      </span>
+      <span class="logo__text">
+        <span class="logo__name">Schnellhelfer<span class="logo__num">24</span></span>
+        <span class="logo__claim">Räumen · Auflösen · Umziehen in Berlin</span>
+      </span>
+    </a>
+
+    <nav class="nav-desktop" aria-label="Hauptnavigation">
+      <ul>
+        {
+          nav.map((item) => (
+            <li>
+              <a href={item.href} aria-current={isCurrent(item.href) ? 'page' : undefined}>
+                {item.label}
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </nav>
+
+    <div class="site-header__actions">
+      {
+        phone.available && (
+          <a class="header-phone" href={phone.href} data-track="phone_click" data-track-location="header">
+            <Icon name="phone" size={18} />
+            <span>{phone.display}</span>
+          </a>
+        )
+      }
+      <a class="btn btn--primary header-cta" href={primaryCta.href}>{primaryCta.labelShort}</a>
+
+      <details class="menu">
+        <summary aria-label="Menü öffnen">
+          <span class="menu__bars" aria-hidden="true"><span></span><span></span><span></span></span>
+          <span class="menu__label">Menü</span>
+        </summary>
+        <div class="menu__panel">
+          <nav aria-label="Hauptnavigation (mobil)">
+            <ul>
+              {
+                nav.map((item) => (
+                  <li>
+                    <a href={item.href} aria-current={isCurrent(item.href) ? 'page' : undefined}>
+                      {item.label}
+                    </a>
+                  </li>
+                ))
+              }
+            </ul>
+          </nav>
+          <a class="btn btn--primary btn--wide" href={primaryCta.href}>{primaryCta.labelShort}</a>
+        </div>
+      </details>
+    </div>
+  </div>
+</header>
+
+<style>
+  .site-header {
+    background: var(--white);
+    border-bottom: 1px solid var(--line);
+    position: relative;
+    z-index: 20;
+  }
+
+  /* Der Kopf darf breiter sein als der Textbereich, damit Navigation,
+     Telefonnummer und Handlungsaufruf in einer Zeile Platz haben. */
+  .site-header__inner {
+    display: flex;
+    align-items: center;
+    gap: var(--sp-4);
+    min-height: 4.25rem;
+    padding-block: var(--sp-3);
+    padding-inline: var(--sp-5);
+    max-width: 88rem;
+    margin-inline: auto;
+  }
+
+  /* ------------------------------------------------------------- Logo */
+  .logo {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    text-decoration: none;
+    color: var(--brand);
+    flex: none;
+  }
+  .logo__mark {
+    color: var(--accent);
+    display: grid;
+    place-items: center;
+    flex: none;
+  }
+  .logo__text {
+    display: flex;
+    flex-direction: column;
+    line-height: 1.1;
+  }
+  .logo__name {
+    font-family: var(--font-head);
+    font-weight: 700;
+    font-size: 1.28rem;
+    letter-spacing: -0.015em;
+  }
+  .logo__num {
+    color: var(--accent);
+  }
+  .logo__claim {
+    font-size: 0.7rem;
+    color: var(--ink-3);
+    letter-spacing: 0.02em;
+    margin-top: 0.15rem;
+  }
+  @media (max-width: 25em) {
+    .logo__claim {
+      display: none;
+    }
+  }
+
+  /* -------------------------------------------------------- Navigation */
+  .nav-desktop {
+    display: none;
+    margin-left: auto;
+  }
+  .nav-desktop ul {
+    display: flex;
+    gap: var(--sp-4);
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  .nav-desktop li {
+    margin: 0;
+  }
+  .nav-desktop a {
+    color: var(--ink-2);
+    text-decoration: none;
+    font-size: 0.92rem;
+    font-weight: 600;
+    padding-block: 0.5rem;
+    display: block;
+    border-bottom: 2px solid transparent;
+    /* Menüpunkte dürfen nicht umbrechen, sonst wird der Kopf zweizeilig */
+    white-space: nowrap;
+  }
+  .nav-desktop a:hover {
+    color: var(--accent);
+  }
+  .nav-desktop a[aria-current='page'] {
+    color: var(--brand);
+    border-bottom-color: var(--accent);
+  }
+
+  .site-header__actions {
+    display: flex;
+    align-items: center;
+    gap: var(--sp-3);
+    margin-left: auto;
+  }
+
+  .header-phone {
+    display: none;
+    align-items: center;
+    gap: 0.4rem;
+    color: var(--brand);
+    font-weight: 700;
+    text-decoration: none;
+    font-size: 0.95rem;
+    white-space: nowrap;
+  }
+  .header-phone:hover {
+    color: var(--accent);
+  }
+
+  .header-cta {
+    display: none;
+  }
+
+  /* -------------------------------------------------------- Mobilmenü */
+  .menu {
+    position: relative;
+  }
+  .menu summary {
+    list-style: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 0.45rem;
+    min-height: 2.75rem;
+    padding: 0.4rem 0.6rem;
+    border: 1px solid var(--line-strong);
+    border-radius: var(--r-md);
+    font-weight: 700;
+    font-size: 0.9rem;
+    color: var(--brand);
+  }
+  .menu summary::-webkit-details-marker {
+    display: none;
+  }
+  .menu__bars {
+    display: grid;
+    gap: 3px;
+    width: 18px;
+  }
+  .menu__bars span {
+    height: 2px;
+    background: currentColor;
+    border-radius: 1px;
+  }
+  .menu[open] summary {
+    border-color: var(--brand);
+  }
+
+  .menu__panel {
+    position: absolute;
+    right: 0;
+    top: calc(100% + 0.5rem);
+    width: min(19rem, calc(100vw - 2rem));
+    background: var(--white);
+    border: 1px solid var(--line-strong);
+    border-radius: var(--r-md);
+    padding: var(--sp-4);
+    box-shadow: 0 8px 24px rgba(27, 26, 23, 0.1);
+  }
+  .menu__panel ul {
+    list-style: none;
+    margin: 0 0 var(--sp-4);
+    padding: 0;
+  }
+  .menu__panel li {
+    margin: 0;
+    border-bottom: 1px solid var(--paper-3);
+  }
+  .menu__panel li:last-child {
+    border-bottom: 0;
+  }
+  /* :not(.btn), damit der Handlungsaufruf im Menü seine eigene
+     Schriftfarbe behält. Sonst stünde dunkler Text auf dunklem Grund. */
+  .menu__panel a:not(.btn) {
+    display: block;
+    padding: 0.7rem 0.25rem;
+    color: var(--ink);
+    text-decoration: none;
+    font-weight: 600;
+    min-height: 2.75rem;
+  }
+  .menu__panel a:not(.btn):hover,
+  .menu__panel a:not(.btn)[aria-current='page'] {
+    color: var(--accent);
+  }
+
+  /* ------------------------------------------------------ Breakpoints */
+  @media (min-width: 30em) {
+    .header-phone {
+      display: inline-flex;
+    }
+  }
+
+  /* Die Vollnavigation erscheint erst, wenn alle sieben Punkte plus
+     Telefonnummer und Handlungsaufruf nebeneinander passen. Darunter
+     bleibt das Menü eingeklappt – das ist verlässlicher als eine
+     zweizeilige oder gestauchte Navigationsleiste. */
+  @media (min-width: 76em) {
+    .nav-desktop {
+      display: block;
+    }
+    .site-header__actions {
+      margin-left: 0;
+    }
+    .header-cta {
+      display: inline-flex;
+      white-space: nowrap;
+    }
+    .menu {
+      display: none;
+    }
+    .site-header__inner {
+      gap: var(--sp-5);
+    }
+  }
+
+  @media (min-width: 88em) {
+    .nav-desktop ul {
+      gap: var(--sp-5);
+    }
+    .site-header__inner {
+      gap: var(--sp-6);
+    }
+    .nav-desktop a {
+      font-size: 0.95rem;
+    }
+  }
+</style>
+
+<script is:inline>
+  // Mobilmenü schließen, wenn außerhalb geklickt oder Escape gedrückt wird.
+  // Bewusst minimal und ohne Framework.
+  (function () {
+    var menu = document.querySelector('.menu');
+    if (!menu) return;
+    document.addEventListener('click', function (e) {
+      if (menu.hasAttribute('open') && !menu.contains(e.target)) menu.removeAttribute('open');
+    });
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && menu.hasAttribute('open')) {
+        menu.removeAttribute('open');
+        var s = menu.querySelector('summary');
+        if (s) s.focus();
+      }
+    });
+  })();
+</script>
