@@ -5,7 +5,11 @@
  * Situation. Dieser Einstieg spricht die Situation an und führt von dort zur
  * passenden Seite.
  *
- * Reihenfolge = Reihenfolge auf der Startseite.
+ * Reihenfolge = Reihenfolge auf der Startseite. Sie ist wirtschaftlich
+ * sortiert: Komplettaufträge (ganze Wohnung, Nachlass, Wohnwechsel,
+ * Objektübergabe) stehen oben. Einzelne Möbelstücke und Sperrmüll bleiben im
+ * Angebot, bestimmen aber nicht mehr den ersten Eindruck – sie stehen weiter
+ * unten auf der Startseite und auf einer eigenen Sammelseite.
  */
 
 export interface Situation {
@@ -20,51 +24,39 @@ export interface Situation {
 
 export const situations: Situation[] = [
   {
-    title: 'Eine Wohnung muss komplett leer werden',
-    text: 'Übergabetermin steht fest, die Wohnung ist noch voll. Wir planen rückwärts vom Termin.',
+    title: 'Eine Wohnung muss vollständig aufgelöst werden',
+    text: 'Der Übergabetermin steht, die Wohnung ist noch voll. Wir planen rückwärts vom Termin und übergeben besenrein.',
     href: '/leistungen/wohnungsaufloesung-berlin/',
     icon: 'key',
   },
   {
-    title: 'Wir lösen den Haushalt eines Angehörigen auf',
-    text: 'Unterlagen und Erinnerungsstücke werden gesichert, nicht entsorgt. Termine richten sich nach Ihnen.',
+    title: 'Ein Nachlass muss diskret organisiert werden',
+    text: 'Unterlagen und Erinnerungsstücke werden vorher festgelegt und gesichert, nicht entsorgt. Die Termine richten sich nach Ihnen, auch wenn Sie nicht in Berlin wohnen.',
     href: '/leistungen/nachlassaufloesung-berlin/',
     icon: 'heart',
   },
   {
-    title: 'Keller oder Dachboden sind voll',
-    text: 'Einzelne Abteile oder ganze Kellergeschosse, auch mehrere in einem Termin.',
-    href: '/leistungen/kellerentruempelung-berlin/',
-    icon: 'stairs',
+    title: 'Ein Seniorenumzug soll komplett begleitet werden',
+    text: 'Einpacken, Transport, Aufbau und Einräumen in der neuen Wohnung – und die alte Wohnung übergabefertig hinterlassen.',
+    href: '/leistungen/seniorenumzug-berlin/',
+    icon: 'home',
   },
   {
-    title: 'Ich brauche kurzfristig einen Transport',
-    text: 'Einzelne Möbel, Sperrmüll oder Elektrogeräte direkt aus der Wohnung, nicht nur vom Bordstein.',
-    href: '/leistungen/sperrmuellabholung-berlin/',
-    icon: 'truck',
+    title: 'Eine Immobilie muss leer und übergabefertig werden',
+    text: 'Räumung, Keller und Nebenräume, Reinigung und Fotoprotokoll bis zur Schlüsselübergabe an Eigentümer, Verwaltung oder Makler.',
+    href: '/leistungen/wohnungsaufloesung-berlin/',
+    icon: 'doc',
   },
   {
-    title: 'Eine vermüllte Wohnung muss diskret geräumt werden',
-    text: 'Unauffällige Anfahrt, keine Kommentare im Haus, keine Fotos nach außen.',
-    href: '/leistungen/messiwohnung-raeumen/',
-    icon: 'shield',
-  },
-  {
-    title: 'Ein Büro oder Gewerberaum muss übergeben werden',
-    text: 'Auch außerhalb der Geschäftszeiten. Akten und Datenträger werden gesondert behandelt.',
-    href: '/leistungen/bueroaufloesung-berlin/',
+    title: 'Eine Hausverwaltung braucht einen Räumungspartner',
+    text: 'Feste Ansprechperson, nachvollziehbare Leistungspositionen, Schlüsselübernahme und Rechnung an das Unternehmen.',
+    href: '/hausverwaltungen-immobilienpartner/',
     icon: 'building',
   },
   {
-    title: 'Ein Umzug steht an',
-    text: 'Von der Halteverbotszone bis zum Aufbau am Zielort. Innerhalb Berlins und ins Umland.',
+    title: 'Ein Haushalt muss während einer Renovierung ausgelagert werden',
+    text: 'Abbau, Zwischenlagerung und Rücktransport nach der Renovierung – in einem Auftrag geplant statt in drei Terminen.',
     href: '/leistungen/umzug-berlin/',
     icon: 'boxes',
-  },
-  {
-    title: 'Meine Eltern ziehen in eine kleinere Wohnung oder ins Heim',
-    text: 'Mehr Zeit für Absprachen, Einrichten am Zielort, auf Wunsch Auflösung der alten Wohnung.',
-    href: '/leistungen/seniorenumzug-berlin/',
-    icon: 'people',
   },
 ];

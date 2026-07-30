@@ -5,13 +5,14 @@ import Icon from '../components/Icon.astro';
 import Faq from '../components/Faq.astro';
 import CtaBand from '../components/CtaBand.astro';
 import { publishedServices } from '../data/services';
+import { situations } from '../data/situations';
 import { faqGroups } from '../data/faq';
 import { buildGraph, organizationNode, websiteNode, webPageNode, faqNode } from '../lib/schema';
 import { primaryCta } from '../lib/contact';
 
-const title = 'Entrümpelung, Auflösung & Umzug in Berlin | Schnellhelfer24';
+const title = 'Wohnungsauflösung & Seniorenumzug Berlin | Schnellhelfer24';
 const description =
-  'Entrümpelung, Haushaltsauflösung und Umzug in Berlin und im Umland. Persönliche Einschätzung nach Fotos oder Besichtigung und klare Absprache vor Beginn.';
+  'Komplette Wohnungsauflösungen, Nachlässe und Seniorenumzüge in Berlin und im Umland – von der Sichtung bis zur besenreinen Übergabe, persönlich koordiniert.';
 const path = '/';
 
 const homeFaq = [
@@ -33,27 +34,77 @@ const schema = buildGraph([
   faqNode(path, homeFaq),
 ]);
 
-const featured = publishedServices.slice(0, 6);
+/*
+ * Reihenfolge der Startseite ist eine wirtschaftliche Entscheidung, keine
+ * Datenreihenfolge: oben die Komplettaufträge, darunter die Leistungen, die
+ * auch einzeln beauftragt werden. `serviceBySlug` bricht beim Build ab, wenn
+ * ein Slug nicht mehr existiert – so fällt ein Umbenennen sofort auf, statt
+ * still eine Kachel verschwinden zu lassen.
+ */
+const serviceBySlug = (slug: string) => {
+  const found = publishedServices.find((s) => s.slug === slug);
+  if (!found) throw new Error(`Startseite verweist auf unbekannte Leistung: ${slug}`);
+  return found;
+};
+
+const completeJobs = [
+  'wohnungsaufloesung-berlin',
+  'nachlassaufloesung-berlin',
+  'seniorenumzug-berlin',
+  'haushaltsaufloesung-berlin',
+  'bueroaufloesung-berlin',
+  'umzug-berlin',
+].map(serviceBySlug);
+
+const singleJobs = [
+  'entruempelung-berlin',
+  'kellerentruempelung-berlin',
+  'messiwohnung-raeumen',
+  'sperrmuellabholung-berlin',
+].map(serviceBySlug);
 ---
 
 <Base title={title} description={description} path={path} schema={schema}>
   <Hero />
 
+  <section class="cases" aria-labelledby="situationen">
+    <div class="wrap">
+      <div class="cases__head">
+        <p class="eyebrow">Worum es meistens geht</p>
+        <h2 id="situationen">Sie haben keine Leistung gesucht.<br />Sie haben eine Situation.</h2>
+      </div>
+      <ul class="cases__grid">
+        {
+          situations.map((s) => (
+            <li>
+              <a href={s.href}>
+                <Icon name={s.icon} size={26} />
+                <strong>{s.title}</strong>
+                <small>{s.text}</small>
+                <span class="cases__arrow" aria-hidden="true">→</span>
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </section>
+
   <section class="work" aria-labelledby="arbeit">
     <div class="wrap work__grid">
       <div class="work__intro">
-        <p class="eyebrow">Was wir übernehmen</p>
-        <h2 id="arbeit">Alles raus.<br />Sauber übergeben.</h2>
+        <p class="eyebrow">Komplett übernommen</p>
+        <h2 id="arbeit">Ein Auftrag.<br />Eine Ansprechperson.</h2>
         <p>
-          Vom einzelnen Keller bis zur kompletten Wohnung. Wir tragen, laden, transportieren und
-          entsorgen – in Berlin und im Umland.
+          Sichtung, Sortierung, Räumung, Transport, Aufbau, Reinigung und Übergabe laufen über
+          dieselbe Koordination – in Berlin und im Umland.
         </p>
         <a class="text-link" href="/leistungen/">Alle Leistungen ansehen <span aria-hidden="true">↗</span></a>
       </div>
 
       <ol class="service-list">
         {
-          featured.map((service, index) => (
+          completeJobs.map((service, index) => (
             <li>
               <a href={`/leistungen/${service.slug}/`}>
                 <span class="service-list__number">{String(index + 1).padStart(2, '0')}</span>
@@ -67,6 +118,31 @@ const featured = publishedServices.slice(0, 6);
           ))
         }
       </ol>
+    </div>
+  </section>
+
+  <section class="single" aria-labelledby="einzeln">
+    <div class="wrap single__grid">
+      <div>
+        <p class="eyebrow">Auch einzeln möglich</p>
+        <h2 id="einzeln">Kleiner Auftrag? Geht auch.</h2>
+        <p>
+          Ein Keller, ein Zimmer, einzelne Möbel. Wenn daraus später mehr wird, planen wir es in
+          einem Termin statt in dreien.
+        </p>
+      </div>
+      <ul class="single__list">
+        {
+          singleJobs.map((service) => (
+            <li>
+              <a href={`/leistungen/${service.slug}/`}>
+                {service.navLabel}
+                <span aria-hidden="true">→</span>
+              </a>
+            </li>
+          ))
+        }
+      </ul>
     </div>
   </section>
 
@@ -145,6 +221,129 @@ const featured = publishedServices.slice(0, 6);
     font-weight: 850;
     letter-spacing: 0.12em;
     text-transform: uppercase;
+  }
+
+  /* Situationseinstiege: erste Sektion nach dem Hero. Kartenraster statt
+     Liste, damit sich die sechs Einstiege optisch von der nummerierten
+     Leistungsliste darunter unterscheiden. */
+  .cases {
+    padding-block: clamp(4rem, 8vw, 7rem);
+    border-bottom: 1px solid var(--line-strong);
+  }
+  .cases__head {
+    max-width: 40rem;
+    margin-bottom: clamp(2.5rem, 5vw, 4rem);
+  }
+  .cases h2 {
+    margin: 0;
+    font-size: clamp(2rem, 4.2vw, 3.6rem);
+    line-height: 1;
+    letter-spacing: -0.05em;
+  }
+  .cases__grid {
+    display: grid;
+    gap: 1px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    background: var(--line-strong);
+    border: 1px solid var(--line-strong);
+  }
+  .cases__grid li {
+    margin: 0;
+    background: var(--paper);
+  }
+  .cases__grid a {
+    display: grid;
+    gap: 0.7rem;
+    height: 100%;
+    padding: clamp(1.4rem, 2.5vw, 2rem);
+    color: var(--ink);
+    text-decoration: none;
+    transition: background-color 0.18s ease;
+  }
+  .cases__grid a:hover {
+    background: var(--white);
+  }
+  .cases__grid strong {
+    font-size: 1.12rem;
+    line-height: 1.25;
+    letter-spacing: -0.02em;
+  }
+  .cases__grid small {
+    color: var(--ink-2);
+    font-size: 0.92rem;
+    line-height: 1.5;
+  }
+  .cases__arrow {
+    color: var(--accent-text);
+    font-weight: 800;
+  }
+  @media (min-width: 44em) {
+    .cases__grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+  @media (min-width: 68em) {
+    .cases__grid {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+  }
+
+  /* Nebenleistungen: bewusst ruhiger und kleiner als die Komplettaufträge. */
+  .single {
+    padding-block: clamp(3rem, 6vw, 5rem);
+    background: var(--paper);
+    border-top: 1px solid var(--line-strong);
+  }
+  .single__grid {
+    display: grid;
+    gap: 2rem;
+  }
+  .single h2 {
+    margin: 0 0 0.9rem;
+    font-size: clamp(1.5rem, 2.6vw, 2.1rem);
+    line-height: 1.1;
+    letter-spacing: -0.03em;
+  }
+  .single__grid > div > p {
+    max-width: 30rem;
+    margin: 0;
+    color: var(--ink-2);
+  }
+  .single__list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.6rem;
+    align-content: start;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+  .single__list li {
+    margin: 0;
+  }
+  .single__list a {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.6rem 0.95rem;
+    border: 1px solid var(--line-strong);
+    color: var(--ink-2);
+    font-size: 0.92rem;
+    font-weight: 650;
+    text-decoration: none;
+  }
+  .single__list a:hover {
+    border-color: var(--ink);
+    color: var(--ink);
+  }
+  @media (min-width: 60em) {
+    .single__grid {
+      grid-template-columns: 0.8fr 1.2fr;
+      gap: clamp(3rem, 6vw, 7rem);
+      align-items: center;
+    }
   }
 
   .work {

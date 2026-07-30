@@ -164,6 +164,7 @@ export function indexableUrls(): { url: string; lastmod: string; priority: numbe
     { url: '/berlin/', lastmod: today, priority: 0.9 },
     { url: '/brandenburg/', lastmod: today, priority: 0.7 },
     { url: '/kosten/', lastmod: today, priority: 0.9 },
+    { url: '/hausverwaltungen-immobilienpartner/', lastmod: today, priority: 0.9 },
     { url: '/ratgeber/', lastmod: today, priority: 0.8 },
     { url: '/einsatzberichte/', lastmod: today, priority: 0.6 },
     { url: '/fragen/', lastmod: today, priority: 0.7 },

@@ -5,35 +5,38 @@ import { phone, whatsapp, primaryCta } from '../lib/contact';
 
 <section class="hero">
   <div class="hero__label" aria-hidden="true">
-    <span>BERLIN</span>
-    <span>RÄUMEN · TRAGEN · FAHREN</span>
+    <span>BERLIN + UMLAND</span>
+    <span>AUFLÖSEN · UMZIEHEN · ÜBERGEBEN</span>
   </div>
 
   <div class="wrap hero__inner">
-    <p class="hero__place">Berlin + Umland</p>
+    <p class="hero__place">Komplettservice aus einer Hand</p>
     <h1>
-      Wir machen<br />
-      <span>Platz.</span>
+      Wohnungsauflösung,<br />
+      Nachlass und<br />
+      <span>Seniorenumzug</span> in Berlin
     </h1>
     <p class="hero__sub">
-      Entrümpelung, Haushaltsauflösung und Umzug. Direkt abgesprochen, ordentlich ausgeführt.
+      Wir organisieren komplette Räumungen und Wohnungswechsel – von der ersten Sichtung bis zur
+      besenreinen Übergabe. Persönlich koordiniert, diskret durchgeführt und auch für Angehörige
+      außerhalb Berlins.
     </p>
 
     <div class="hero__actions">
       <a class="btn btn--primary" href={primaryCta.href} data-track="estimate_cta_click" data-track-location="hero">
-        Auftrag zeigen
+        Komplettauftrag anfragen
         <span aria-hidden="true">→</span>
       </a>
       {
         phone.available ? (
           <a class="btn btn--secondary" href={phone.href} data-track="phone_click" data-track-location="hero">
             <Icon name="phone" size={19} />
-            {phone.display}
+            Projekt telefonisch besprechen
           </a>
         ) : (
           <a class="btn btn--secondary" href="/kontakt/">
             <Icon name="phone" size={19} />
-            Kontakt aufnehmen
+            Projekt telefonisch besprechen
           </a>
         )
       }
@@ -48,16 +51,16 @@ import { phone, whatsapp, primaryCta } from '../lib/contact';
             data-track-location="hero"
           >
             <Icon name="whatsapp" size={19} />
-            WhatsApp
+            Fotos und Eckdaten senden
           </a>
         )
       }
     </div>
 
     <ul class="hero__facts">
-      <li><strong>01</strong><span>Fotos senden<br />oder Besichtigung</span></li>
-      <li><strong>02</strong><span>Klare Absprache<br />vor Beginn</span></li>
-      <li><strong>03</strong><span>Auf Wunsch<br />besenrein</span></li>
+      <li><strong>01</strong><span>Eine Ansprechperson<br />vom Termin bis zur Übergabe</span></li>
+      <li><strong>02</strong><span>Fester Leistungsumfang<br />vor Beginn abgestimmt</span></li>
+      <li><strong>03</strong><span>Besenrein übergeben,<br />auf Wunsch mit Fotoprotokoll</span></li>
     </ul>
   </div>
 </section>
@@ -105,14 +108,21 @@ import { phone, whatsapp, primaryCta } from '../lib/contact';
     letter-spacing: 0.13em;
     text-transform: uppercase;
   }
+  /*
+   * Die Zeile trägt jetzt die Positionierung statt eines Zweiwortclaims.
+   * Damit sie in drei Zeilen lesbar bleibt, ist der Schriftgrad kleiner und
+   * die Zeilenhöhe größer als beim vorherigen "WIR MACHEN PLATZ" – der
+   * Charakter (fett, versal, eng, Akzentwort) bleibt erhalten.
+   */
   .hero h1 {
-    max-width: none;
+    max-width: 16ch;
     margin: 0 0 1.75rem;
-    font-size: clamp(4.2rem, 13vw, 10rem);
+    font-size: clamp(2.4rem, 6.1vw, 5rem);
     font-weight: 900;
-    line-height: 0.78;
-    letter-spacing: -0.085em;
+    line-height: 0.94;
+    letter-spacing: -0.045em;
     text-transform: uppercase;
+    text-wrap: balance;
   }
   .hero h1 span {
     color: var(--accent);

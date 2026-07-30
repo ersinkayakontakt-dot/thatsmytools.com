@@ -1,0 +1,458 @@
+---
+import Base from '../layouts/Base.astro';
+import Breadcrumbs from '../components/Breadcrumbs.astro';
+import Faq from '../components/Faq.astro';
+import Icon from '../components/Icon.astro';
+import CtaBand from '../components/CtaBand.astro';
+import { phone, primaryCta } from '../lib/contact';
+import {
+  buildGraph,
+  organizationNode,
+  websiteNode,
+  webPageNode,
+  breadcrumbNode,
+  serviceNode,
+  faqNode,
+} from '../lib/schema';
+import type { FaqItem } from '../data/types';
+
+/**
+ * Einstieg für Hausverwaltungen, Eigentümer, Makler und Nachlasspfleger.
+ *
+ * Diese Seite ist auf Wiederholungsaufträge ausgelegt, nicht auf den
+ * einmaligen Privatauftrag. Deshalb steht hier, was ein gewerblicher
+ * Auftraggeber tatsächlich braucht: Ansprechbarkeit, nachvollziehbare
+ * Positionen, Dokumentation, Schlüsselverantwortung, Rechnung ans
+ * Unternehmen.
+ *
+ * REGEL: Auf dieser Seite steht kein Referenzunternehmen, kein
+ * Rahmenvertragspartner und keine Objektzahl, solange es dafür keinen
+ * freigegebenen echten Fall gibt. Angebotene Leistungen werden als Angebot
+ * formuliert ("kann angefordert werden"), nicht als Erfahrung ("machen wir
+ * regelmäßig").
+ */
+
+const path = '/hausverwaltungen-immobilienpartner/';
+const title = 'Räumungen für Hausverwaltungen und Eigentümer in Berlin';
+const description =
+  'Wohnungs- und Hausräumungen für Hausverwaltungen, Eigentümer und Makler in Berlin: feste Ansprechperson, Schlüsselübernahme, Fotoprotokoll, Rechnung ans Unternehmen.';
+
+const crumbs = [
+  { name: 'Start', href: '/' },
+  { name: 'Hausverwaltungen und Immobilienpartner', href: path },
+];
+
+const faq: FaqItem[] = [
+  {
+    q: 'Können wir mehrere Objekte gleichzeitig übergeben?',
+    a: 'Ja. Mehrere Einheiten in einem Haus oder mehrere Objekte in einem Zeitraum planen wir als einen Einsatz. Anfahrt, Rüstzeit und Containerstellung fallen dann nicht je Wohnung an. Schicken Sie die Liste der Einheiten mit Etage, Größe und Zustand, dann kommt eine Einschätzung je Einheit und eine für das Paket zurück.',
+  },
+  {
+    q: 'Bekommen wir eine Rechnung an die Verwaltung statt an den Mieter?',
+    a: 'Ja. Rechnungsempfänger ist, wer den Auftrag erteilt. Für die Buchhaltung nennen wir Objekt, Einheit, Einsatzdatum und die einzelnen Positionen getrennt, damit die Kosten dem richtigen Objekt zugeordnet werden können.',
+  },
+  {
+    q: 'Übernehmen Sie die Schlüssel?',
+    a: 'Ja, nach schriftlicher Übergabe. Wir halten fest, wie viele Schlüssel übernommen wurden, wer sie geführt hat und wann sie zurückgegeben oder an die Verwaltung, den Eigentümer oder den Makler übergeben wurden.',
+  },
+  {
+    q: 'Was passiert mit Unterlagen, die in der Wohnung liegen?',
+    a: 'Persönliche Unterlagen, Ausweise, Verträge und Datenträger werden nicht mitentsorgt, sondern gesammelt und Ihnen oder der von Ihnen benannten Stelle übergeben. Wie damit weiter verfahren wird, entscheiden nicht wir.',
+  },
+  {
+    q: 'Bekommen wir eine Dokumentation für die Akte?',
+    a: 'Auf Wunsch ein Fotoprotokoll des Zustands vor Beginn und nach Abschluss sowie eine Aufstellung der ausgeführten Positionen. Das ist eine Dokumentation für Ihre Unterlagen und kein Sachverständigengutachten.',
+  },
+  {
+    q: 'Wie kurzfristig geht es?',
+    a: 'Das hängt vom Umfang und von der Woche ab. Statt einer pauschalen Zusage bekommen Sie bei der Anfrage einen konkreten Zeitraum genannt, der auch gehalten wird. Wenn ein Termin nicht machbar ist, sagen wir das vorher.',
+  },
+];
+
+const schema = buildGraph([
+  organizationNode(),
+  websiteNode(),
+  breadcrumbNode(path, crumbs),
+  webPageNode({ url: path, name: title, description, dateModified: '2026-07-30' }),
+  serviceNode({
+    name: 'Räumung und Objektübergabe für Hausverwaltungen',
+    description:
+      'Räumung von Wohnungen, Häusern, Kellern und Nebenflächen vor Neuvermietung oder Verkauf, mit Schlüsselübernahme, Fotoprotokoll und Rechnung an das Unternehmen.',
+    url: path,
+    serviceType: 'Objekträumung',
+  }),
+  faqNode(path, faq),
+]);
+
+/** Was ein gewerblicher Auftraggeber vom Ablauf her braucht. */
+const scope = [
+  {
+    icon: 'key',
+    title: 'Vollständige Räumung',
+    text: 'Wohnungen und Häuser, einschließlich Keller, Dachboden, Nebenflächen und Stellplatz. Auf Wunsch mit definiertem Rückbau vorheriger Mietereinbauten.',
+  },
+  {
+    icon: 'doc',
+    title: 'Dokumentierter Abschluss',
+    text: 'Fotoprotokoll vor Beginn und nach Abschluss, Aufstellung der ausgeführten Positionen, Übergabe an Verwaltung, Eigentümer oder Makler.',
+  },
+  {
+    icon: 'shield',
+    title: 'Schlüsselverantwortung',
+    text: 'Schriftliche Schlüsselübernahme mit Stückzahl, benannter Verantwortung während des Einsatzes und dokumentierter Rückgabe.',
+  },
+  {
+    icon: 'people',
+    title: 'Feste Ansprechperson',
+    text: 'Ein Name und eine Nummer für das gesamte Objekt, von der Besichtigung bis zur Übergabe. Kein Wechsel der Zuständigkeit mitten im Auftrag.',
+  },
+  {
+    icon: 'clock',
+    title: 'Terminabstimmung im Haus',
+    text: 'Anfahrt, Halteverbotszone und Arbeitszeiten werden mit Ihnen und, wo nötig, mit den übrigen Mietparteien abgestimmt.',
+  },
+  {
+    icon: 'boxes',
+    title: 'Sammelaufträge',
+    text: 'Mehrere Einheiten in einem Haus oder mehrere Objekte in einem Zeitraum werden als ein Einsatz geplant und einzeln abgerechnet.',
+  },
+];
+
+/** Der Weg von der Anfrage bis zur Rechnung. */
+const steps = [
+  {
+    title: 'Objekt einreichen',
+    text: 'Adresse, Einheit, Etage, Aufzug, ungefähre Größe und Zustand. Fotos beschleunigen die Einschätzung, sind aber keine Bedingung.',
+  },
+  {
+    title: 'Besichtigung',
+    text: 'Bei Komplettaufträgen sehen wir uns das Objekt an, statt eine Zahl zu raten. Zugang über Ihre Schlüssel oder gemeinsam vor Ort.',
+  },
+  {
+    title: 'Angebot mit einzelnen Positionen',
+    text: 'Räumung, Entsorgung, Rückbau, Reinigung und Dokumentation stehen getrennt. So ist erkennbar, was entfällt, wenn Sie eine Position streichen.',
+  },
+  {
+    title: 'Durchführung',
+    text: 'Zum abgestimmten Termin, mit benannter Ansprechperson. Abweichungen werden vorher gemeldet, nicht nachträglich berechnet.',
+  },
+  {
+    title: 'Übergabe und Rechnung',
+    text: 'Objekt besenrein, Fotoprotokoll auf Wunsch, Schlüsselrückgabe dokumentiert, Rechnung an das Unternehmen mit Objektbezug.',
+  },
+];
+---
+
+<Base title={title} description={description} path={path} schema={schema}>
+  <Breadcrumbs items={crumbs} />
+
+  <section class="lead">
+    <div class="wrap">
+      <p class="eyebrow">Für Verwaltungen, Eigentümer und Makler</p>
+      <h1>Ein Räumungspartner, der die Übergabe zu Ende bringt</h1>
+      <div class="answer">
+        <p>
+          Wir räumen Wohnungen, Häuser, Keller und Nebenflächen in Berlin und im Umland – vor
+          Neuvermietung, vor Verkauf und nach Mietende. Sie erhalten eine feste Ansprechperson,
+          ein Angebot mit einzeln ausgewiesenen Positionen, auf Wunsch ein Fotoprotokoll und eine
+          Rechnung an Ihr Unternehmen.
+        </p>
+      </div>
+      <div class="btn-row lead__actions">
+        <a
+          class="btn btn--primary"
+          href={primaryCta.href}
+          data-track="estimate_cta_click"
+          data-track-location="partner-hero"
+        >
+          Objekt zur Prüfung einreichen
+          <span aria-hidden="true">→</span>
+        </a>
+        {
+          phone.available ? (
+            <a
+              class="btn btn--secondary"
+              href={phone.href}
+              data-track="phone_click"
+              data-track-location="partner-hero"
+            >
+              <Icon name="phone" size={19} />
+              Zusammenarbeit besprechen
+            </a>
+          ) : (
+            <a class="btn btn--secondary" href="/kontakt/">
+              <Icon name="phone" size={19} />
+              Zusammenarbeit besprechen
+            </a>
+          )
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="scope" aria-labelledby="umfang">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="eyebrow">Was zum Auftrag gehört</p>
+        <h2 id="umfang">Nicht nur räumen. Übergabefähig machen.</h2>
+      </div>
+      <ul class="scope__grid">
+        {
+          scope.map((s) => (
+            <li>
+              <Icon name={s.icon} size={24} />
+              <h3>{s.title}</h3>
+              <p>{s.text}</p>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </section>
+
+  <section class="flow" aria-labelledby="ablauf">
+    <div class="wrap flow__grid">
+      <div class="flow__intro">
+        <p class="eyebrow">Ablauf</p>
+        <h2 id="ablauf">Von der Objektmeldung bis zur Rechnung</h2>
+        <p>
+          Der Ablauf ist bei einer Einheit derselbe wie bei zwölf. Was sich ändert, ist die
+          Planung davor.
+        </p>
+      </div>
+      <ol class="flow__steps">
+        {
+          steps.map((s, i) => (
+            <li>
+              <span class="flow__num">{String(i + 1).padStart(2, '0')}</span>
+              <div>
+                <h3>{s.title}</h3>
+                <p>{s.text}</p>
+              </div>
+            </li>
+          ))
+        }
+      </ol>
+    </div>
+  </section>
+
+  <section class="honest" aria-labelledby="klartext">
+    <div class="wrap honest__grid">
+      <div>
+        <p class="eyebrow">Klartext</p>
+        <h2 id="klartext">Was hier bewusst nicht steht</h2>
+      </div>
+      <div class="honest__copy">
+        <p>
+          Auf dieser Seite finden Sie keine Logos von Verwaltungen, keine Zahl bereits geräumter
+          Objekte und keinen Rahmenvertragspartner. Solche Angaben stehen hier erst, wenn es sie
+          gibt und die Nennung freigegeben ist.
+        </p>
+        <p>
+          Was Sie stattdessen bekommen: eine benannte Ansprechperson, ein Angebot, das sich Position
+          für Position prüfen lässt, und eine Absage, wenn ein Auftrag Spezialgerät oder eine
+          Erlaubnis erfordert, die wir nicht haben.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="faq-section" aria-labelledby="fragen">
+    <div class="wrap wrap--mid">
+      <p class="eyebrow">Häufig gefragt</p>
+      <h2 id="fragen">Fragen aus der Verwaltung</h2>
+      <Faq items={faq} title="Fragen von Hausverwaltungen und Eigentümern" id="fragen-partner" openFirst />
+    </div>
+  </section>
+
+  <CtaBand
+    location="partner-footer"
+    headline="Objekt zur Prüfung einreichen"
+    text="Adresse, Einheit, Größe und Zustand genügen für eine erste Einschätzung. Auf Wunsch sehen wir uns das Objekt vorher an."
+  />
+</Base>
+
+<style>
+  .eyebrow {
+    margin: 0 0 1rem;
+    color: var(--accent-text);
+    font-size: 0.78rem;
+    font-weight: 850;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+
+  .lead {
+    padding-block: clamp(3rem, 6vw, 5.5rem) clamp(2.5rem, 5vw, 4rem);
+    background: var(--paper);
+    border-bottom: 1px solid var(--line-strong);
+  }
+  .lead h1 {
+    max-width: 20ch;
+    margin: 0 0 1.5rem;
+    font-size: clamp(2.1rem, 5vw, 4rem);
+    font-weight: 900;
+    line-height: 1;
+    letter-spacing: -0.045em;
+  }
+  .answer {
+    max-width: 44rem;
+    padding-left: 1.1rem;
+    border-left: 3px solid var(--accent);
+  }
+  .answer p {
+    margin: 0;
+    font-size: clamp(1.05rem, 1.8vw, 1.22rem);
+    line-height: 1.55;
+  }
+  .lead__actions {
+    margin-top: 2rem;
+  }
+  .lead__actions :global(.btn) {
+    border-radius: 0;
+    min-height: 3.4rem;
+  }
+
+  .section-head {
+    max-width: 40rem;
+    margin-bottom: clamp(2.2rem, 4vw, 3.5rem);
+  }
+  .scope,
+  .flow,
+  .honest,
+  .faq-section {
+    padding-block: clamp(3.5rem, 7vw, 6.5rem);
+  }
+  .scope h2,
+  .flow h2,
+  .honest h2,
+  .faq-section h2 {
+    margin: 0 0 1rem;
+    font-size: clamp(1.8rem, 3.6vw, 3rem);
+    line-height: 1.05;
+    letter-spacing: -0.045em;
+  }
+
+  .scope {
+    border-bottom: 1px solid var(--line-strong);
+  }
+  .scope__grid {
+    display: grid;
+    gap: 1px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    background: var(--line-strong);
+    border: 1px solid var(--line-strong);
+  }
+  .scope__grid li {
+    display: grid;
+    gap: 0.6rem;
+    align-content: start;
+    margin: 0;
+    padding: clamp(1.3rem, 2.4vw, 1.9rem);
+    background: var(--paper);
+  }
+  .scope__grid h3 {
+    margin: 0;
+    font-size: 1.08rem;
+    letter-spacing: -0.02em;
+  }
+  .scope__grid p {
+    margin: 0;
+    color: var(--ink-2);
+    font-size: 0.94rem;
+    line-height: 1.55;
+  }
+  @media (min-width: 46em) {
+    .scope__grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+  @media (min-width: 70em) {
+    .scope__grid {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+  }
+
+  .flow {
+    background: var(--paper);
+    border-bottom: 1px solid var(--line-strong);
+  }
+  .flow__grid {
+    display: grid;
+    gap: 2.5rem;
+  }
+  .flow__intro p:not(.eyebrow) {
+    max-width: 28rem;
+    color: var(--ink-2);
+  }
+  .flow__steps {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    border-top: 2px solid var(--ink);
+  }
+  .flow__steps li {
+    display: grid;
+    grid-template-columns: 3rem 1fr;
+    gap: 1rem;
+    margin: 0;
+    padding: 1.3rem 0;
+    border-bottom: 1px solid var(--line-strong);
+  }
+  .flow__num {
+    color: var(--accent-text);
+    font: 800 0.8rem/1.6 var(--font-mono);
+  }
+  .flow__steps h3 {
+    margin: 0 0 0.35rem;
+    font-size: 1.1rem;
+    letter-spacing: -0.02em;
+  }
+  .flow__steps p {
+    margin: 0;
+    color: var(--ink-2);
+    font-size: 0.96rem;
+    line-height: 1.55;
+  }
+  @media (min-width: 62em) {
+    .flow__grid {
+      grid-template-columns: 0.8fr 1.2fr;
+      gap: clamp(3rem, 7vw, 8rem);
+    }
+    .flow__intro {
+      position: sticky;
+      top: 2rem;
+      align-self: start;
+    }
+  }
+
+  .honest {
+    background: var(--ink);
+    color: var(--paper);
+  }
+  .honest .eyebrow {
+    color: var(--accent);
+  }
+  .honest__grid {
+    display: grid;
+    gap: 2rem;
+  }
+  .honest__copy p {
+    max-width: 38rem;
+    color: rgba(255, 255, 255, 0.82);
+    font-size: 1.02rem;
+    line-height: 1.6;
+  }
+  @media (min-width: 62em) {
+    .honest__grid {
+      grid-template-columns: 0.9fr 1.1fr;
+      gap: clamp(3rem, 7vw, 7rem);
+    }
+  }
+
+  .faq-section {
+    background: var(--paper);
+  }
+</style>

@@ -18,12 +18,22 @@
  * Build-Schritt funktioniert, wird Astros eigener Loader genutzt.
  */
 import { spawnSync } from 'node:child_process';
-import { fileURLToPath } from 'node:url';
+import { fileURLToPath, pathToFileURL } from 'node:url';
 import { dirname, join, resolve } from 'node:path';
 import { writeFileSync, mkdirSync, rmSync } from 'node:fs';
 
 const here = dirname(fileURLToPath(import.meta.url));
 const root = resolve(here, '..');
+
+/**
+ * Importpfad für die temporäre Prüfdatei.
+ *
+ * Ein roher Windows-Pfad (`C:\Users\...`) ist in einem Importstring keine
+ * gültige Zeichenkette – `\U` liest der Parser als Escape-Sequenz und bricht
+ * mit ERR_INVALID_TYPESCRIPT_SYNTAX ab. `pathToFileURL` erzeugt eine
+ * file://-URL, die auf allen Plattformen funktioniert.
+ */
+const mod = (relative) => pathToFileURL(join(root, relative)).href;
 
 /**
  * Das Prüfprogramm wird als temporäre Datei abgelegt und mit Node
@@ -37,12 +47,12 @@ const tmpFile = join(tmpDir, 'content-audit.mts');
 writeFileSync(
   tmpFile,
   `
-import { auditContent } from '${join(root, 'src/lib/publishGuard.ts').replace(/\\\\/g, '/')}';
-import { services, publishedServices } from '${join(root, 'src/data/services.ts').replace(/\\\\/g, '/')}';
-import { districts } from '${join(root, 'src/data/districts.ts').replace(/\\\\/g, '/')}';
-import { towns } from '${join(root, 'src/data/towns.ts').replace(/\\\\/g, '/')}';
-import { guides } from '${join(root, 'src/data/guides.ts').replace(/\\\\/g, '/')}';
-import { cases } from '${join(root, 'src/data/cases.ts').replace(/\\\\/g, '/')}';
+import { auditContent } from '${mod('src/lib/publishGuard.ts')}';
+import { services, publishedServices } from '${mod('src/data/services.ts')}';
+import { districts } from '${mod('src/data/districts.ts')}';
+import { towns } from '${mod('src/data/towns.ts')}';
+import { guides } from '${mod('src/data/guides.ts')}';
+import { cases } from '${mod('src/data/cases.ts')}';
 
 const errors: string[] = [];
 const notes: string[] = [];
