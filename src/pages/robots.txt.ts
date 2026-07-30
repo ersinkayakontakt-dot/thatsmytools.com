@@ -59,6 +59,17 @@ Allow: /
 User-agent: PerplexityBot
 Allow: /
 
+# Claude: Suchindex und Abruf im Auftrag eines Menschen
+User-agent: Claude-SearchBot
+Allow: /
+
+User-agent: Claude-User
+Allow: /
+
+# DuckDuckGo-Antworten
+User-agent: DuckAssistBot
+Allow: /
+
 # Apple Intelligence / Siri
 User-agent: Applebot-Extended
 Allow: /
@@ -71,6 +82,9 @@ Allow: /
 # eine eigene Entscheidung des Betreibers, siehe docs/KI-CRAWLER.md.
 
 User-agent: GPTBot
+Disallow: /
+
+User-agent: ClaudeBot
 Disallow: /
 
 User-agent: CCBot

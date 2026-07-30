@@ -9,15 +9,51 @@ Bing ist außerdem deutlich schneller beim Aufnehmen neuer Seiten, vor allem
 über IndexNow. Für ein junges lokales Unternehmen ist das der schnellste
 sichtbare Effekt.
 
+**Was in KI-Antworten wirklich zählt** – in dieser Reihenfolge, damit keine
+Zeit an der falschen Stelle verbraucht wird:
+
+1. **Im Index sein.** Bing zuerst (ChatGPT, Copilot), dann Google (Gemini,
+   AI Overviews). Ohne Index keine Nennung, alles andere ist nachrangig.
+2. **Eindeutige Unternehmensidentität.** Gleiche Firmierung, Adresse und
+   Telefonnummer auf Website, im Impressum, in den strukturierten Daten und
+   in jedem externen Profil. Antwortsysteme verknüpfen Angaben über genau
+   diese Übereinstimmung.
+3. **Direkte Antworten.** Unter jeder H1 stehen 40 bis 100 Wörter, die die
+   Frage der Seite tatsächlich beantworten. Genau solche Absätze werden
+   zitiert – lange Einleitungen nicht.
+4. **Belegbarkeit.** Erfundene Bewertungen, Zertifikate oder Preisbeispiele
+   sind nicht nur rechtlich riskant, sie fallen bei einem Abgleich mit
+   anderen Quellen auf und kosten Vertrauen an der Stelle, wo es zählt.
+5. **Erreichbarkeit für die richtigen Bots.** Suchbots erlaubt,
+   Trainingssammler gesperrt – siehe Abschnitt „Strukturierte Daten und
+   KI-Auffindbarkeit" in Phase 0.
+
+Keine dieser Maßnahmen garantiert eine Nennung in ChatGPT, Copilot,
+Perplexity oder Google AI Overviews. Wer das zusichert, verkauft etwas, das
+er nicht liefern kann. Was sie leisten: Sie machen eine Nennung überhaupt
+erst möglich und sorgen dafür, dass die genannten Angaben stimmen.
+
 ---
 
 ## Phase 0: Vor dem Livegang
 
 ### Inhalte und Recht
 - [ ] `CONTENT-TODO.md` Abschnitt A vollständig abgearbeitet
+- [x] Kontaktdaten in `src/config/site.ts` eingetragen: Telefon und WhatsApp
+      `+49 176 86066817`, E-Mail `hello@schnellhelfer24.de`, Anschrift
+      Lindenstr. 16, 10969 Berlin, Firmierung „Schnellhelfer24 – Inhaber
+      Ersin Kaya", Einzelunternehmen *(Stand 30.07.2026)*
+- [ ] Postfach `hello@schnellhelfer24.de` empfängt tatsächlich – mit einer
+      echten Testmail prüfen, nicht annehmen
 - [ ] Impressum anwaltlich geprüft
-- [ ] Datenschutzerklärung ergänzt und geprüft
+- [ ] Datenschutzerklärung ergänzt und geprüft (offen: Logfile-Speicherdauer
+      beim Hoster, E-Mail-Anbieter, Datenschutzbeauftragter nach § 38 BDSG)
+- [ ] AV-Vertrag mit Hostinger nach Art. 28 DSGVO tatsächlich abgeschlossen –
+      die Datenschutzerklärung behauptet ihn bereits
 - [ ] `public/api/config.local.php` angelegt, Testanfrage kommt an
+- [ ] **Testanfrage prüfen:** Kommen Umfang, Anlass, Größe und
+      Zusatzleistungen in Mail und JSON-Ablage an? Die Felder wurden ergänzt,
+      konnten lokal aber nicht gegen PHP getestet werden
 - [ ] Keine sichtbaren Platzhalter außer den bewusst markierten in Impressum
       und Datenschutz
 
@@ -35,6 +71,59 @@ sichtbare Effekt.
 - [ ] `api/_storage` ist über den Browser **nicht** erreichbar. Testen:
       `https://schnellhelfer24.de/api/_storage/` muss 403 oder 404 liefern
 - [ ] `https://schnellhelfer24.de/api/config.local.php` liefert 403 oder 404
+
+### Analytics und Consent
+- [ ] Entscheidung treffen, ob überhaupt ein Analytics-Dienst angebunden wird.
+      Ohne Anbindung sammelt `src/components/Analytics.astro` die Ereignisse
+      nur im Browser (`window.sh24.events`), setzt **kein Cookie** und sendet
+      nichts nach außen – dafür braucht es auch kein Consent-Banner
+- [ ] Bei einem cookiefreien, selbst gehosteten Dienst ohne personenbezogene
+      Daten: Endpunkt eintragen, weiterhin kein Banner nötig
+- [ ] Bei Google Analytics, Google Ads oder Meta Pixel: **Consent-Banner
+      zwingend**, Laden erst nach `window.sh24.consent(true)`. Ablehnen muss
+      genauso leicht sein wie Zustimmen, kein vorausgewähltes Häkchen
+- [ ] Jeder eingebundene Dienst wird in der Datenschutzerklärung ergänzt:
+      Anbieter, Zweck, Rechtsgrundlage, Speicherdauer, Empfänger,
+      Drittlandtransfer, Widerruf
+- [ ] Conversion-Ereignisse gegenprüfen: `phone_click`, `whatsapp_click`,
+      `estimate_cta_click`, `lead_form_submitted`, `lead_confirmed` feuern
+      auf allen wichtigen Seiten
+
+### Strukturierte Daten und KI-Auffindbarkeit
+
+Der Hebel für Antwortsysteme (ChatGPT Search, Copilot, Perplexity, Claude,
+Gemini) ist nicht ein Trick, sondern: **eindeutige Unternehmensangaben,
+eine direkte Antwort unter jeder H1, saubere Schema-Daten und ein Bing-Index,
+der stimmt.** Diese Punkte prüfen:
+
+- [ ] **Kontaktdaten überall identisch** (NAP). Telefon, Anschrift und
+      Firmierung kommen aus `src/config/site.ts`, dürfen also nirgends
+      abweichend von Hand stehen. Gegen Google-Unternehmensprofil und Bing
+      Places abgleichen – schon eine abweichende Schreibweise
+      („Lindenstraße" statt „Lindenstr.") schwächt die Zuordnung
+- [ ] **Schema prüfen** mit dem Rich-Results-Test und dem Schema-Validator:
+      `Organization`, `LocalBusiness`/`MovingCompany`, `Service`,
+      `BreadcrumbList`, `WebPage`, `FAQPage`, `Article`. Keine Warnungen zu
+      Pflichtfeldern
+- [ ] **Keine `aggregateRating`-Auszeichnung**, solange keine echten,
+      öffentlich nachprüfbaren Bewertungen vorliegen. Technisch bereits
+      abgesichert über `ratings.verified` in `site.ts` – nicht umgehen
+- [ ] **`robots.txt` gegenlesen** (`/robots.txt`). Erlaubt sein müssen:
+      `OAI-SearchBot`, `ChatGPT-User`, `PerplexityBot`, `Claude-SearchBot`,
+      `Claude-User`, `DuckAssistBot`, `Applebot-Extended`.
+      Gesperrt bleiben die reinen Trainingssammler: `GPTBot`, `ClaudeBot`,
+      `CCBot`, `Google-Extended`, `meta-externalagent`, `Bytespider`.
+      Wer die Inhalte auch fürs Training freigeben will, entscheidet das
+      bewusst – siehe `docs/KI-CRAWLER.md`
+- [ ] **`/llms.txt` gegenlesen.** Enthält Positionierung, Firmierung,
+      Anschrift, Telefon, typische Anlässe und die Aussage zu Kostenträgern.
+      Kein Standard, aber die kompakteste maschinenlesbare Zusammenfassung
+      des Angebots
+- [ ] **Direkte Antwort unter jeder H1** vorhanden und 40–100 Wörter lang.
+      `npm run audit:content` meldet Abweichungen
+- [ ] **Kein Inhalt nur per JavaScript.** Die Seite ist statisch gebaut;
+      wer neue Bausteine ergänzt, darf daran nichts ändern – Antwortsysteme
+      rendern in der Regel kein JS nach
 
 ### Weiterleitungen
 - [ ] Alle URLs der bisherigen Website gesammelt (Search Console, Bing
@@ -119,6 +208,28 @@ Für ein lokales Dienstleistungsunternehmen ist das der wirksamste Hebel
 Name, Adresse und Telefonnummer müssen **überall zeichengenau identisch**
 sein. Unterschiedliche Schreibweisen sind der häufigste Grund, warum ein
 lokales Unternehmen nicht eindeutig zugeordnet wird.
+
+**Der verbindliche Stand, gegen den überall abgeglichen wird:**
+
+```
+Schnellhelfer24 – Inhaber Ersin Kaya
+Lindenstr. 16
+10969 Berlin
+Telefon: +49 176 86066817   (Anzeigeform: 0176 86066817)
+E-Mail:  hello@schnellhelfer24.de
+Web:     https://schnellhelfer24.de
+```
+
+Diese Angaben stehen an genau einer Stelle im Code (`src/config/site.ts`) und
+werden von Kopf- und Fußbereich, Impressum, Kontaktseite, allen Telefon-,
+WhatsApp- und Mail-Links, `llms.txt` und sämtlichen strukturierten Daten
+gelesen. Wer sie ändert, ändert sie dort – und trägt die Änderung danach in
+jedem externen Profil nach.
+
+Ein offener Punkt: `hasVisitableAddress` steht auf `false` (Dienstleister
+ohne Kundenverkehr vor Ort). Falls Kundschaft die Lindenstraße aufsuchen
+kann, muss der Wert auf `true` – sonst wird die Adresse in Google und Bing
+versteckt geführt.
 
 Prüfen auf:
 - [ ] Website (kommt aus `src/config/site.ts`, also automatisch konsistent)

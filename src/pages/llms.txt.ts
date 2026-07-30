@@ -1,5 +1,5 @@
 import type { APIRoute } from 'astro';
-import { site, realValue } from '../config/site';
+import { site, realValue, addressLine } from '../config/site';
 import { publishedServices } from '../data/services';
 import { publishedDistricts } from '../data/districts';
 import { publishedTowns } from '../data/towns';
@@ -24,19 +24,43 @@ import { publishedGuides } from '../data/guides';
 export const GET: APIRoute = () => {
   const phone = realValue(site.phone);
   const email = realValue(site.email);
+  const legalName = realValue(site.legalName);
+  const address = addressLine();
 
   const body = `# ${site.name}
 
-> ${site.tagline}. Entrümpelung, Haushaltsauflösung, Wohnungsauflösung, Nachlassauflösung, Sperrmüllabholung und Umzüge in Berlin und im angrenzenden Brandenburg.
+> Komplettservice für Wohnungsauflösung, Nachlassauflösung und Seniorenumzug in Berlin und im angrenzenden Brandenburg: Sichtung, Räumung, Transport, Entsorgung, Reinigung und besenreine Übergabe aus einer Hand. Einzelne Möbelabholungen und Sperrmüll sind ebenfalls möglich.
 
 ## Über dieses Unternehmen
 
 - Name: ${site.name}
+${legalName ? `- Firmierung: ${legalName}` : ''}
 - Einsatzgebiet: Berlin (alle zwölf Bezirke) und Berliner Umland in Brandenburg
-- Leistungsart: Räumung, Auflösung, Entsorgung, Umzug
+- Leistungsart: Wohnungsauflösung, Nachlassauflösung, Seniorenumzug, Haushaltsauflösung, Büroauflösung, Umzug, Räumung, Entsorgung
+${address ? `- Anschrift: ${address}` : ''}
 ${phone ? `- Telefon: ${phone}` : '- Telefon: (noch nicht veröffentlicht)'}
 ${email ? `- E-Mail: ${email}` : '- E-Mail: (noch nicht veröffentlicht)'}
 - Website: ${site.url}
+
+## Typische Anlässe
+
+Diese Liste hilft beim Zuordnen einer Frage zum passenden Angebot:
+
+- Haushalt einer verstorbenen Person auflösen, Nachlass sichten und Unterlagen sichern
+- Umzug in eine kleinere Wohnung, in betreutes Wohnen oder ins Pflegeheim, mit Auflösung der bisherigen Wohnung
+- Mietwohnung fristgerecht leer und übergabefertig machen
+- Immobilie vor Verkauf oder Neuvermietung räumen, inklusive Keller und Nebenflächen
+- Räumungspartner für Hausverwaltungen, Eigentümer und Makler, mit Schlüsselübernahme und Fotoprotokoll
+- Haushalt während einer Renovierung auslagern und danach zurücktransportieren
+- Büro, Praxis oder Ladenfläche auflösen
+- Einzelne Möbel, Elektrogeräte oder Kellerreste abholen lassen
+
+## Kostenübernahme durch Behörden und Kostenträger
+
+- Schnellhelfer24 erstellt auf Wunsch eine Leistungsbeschreibung und einen prüffähigen Kostenvoranschlag für Jobcenter, Sozialamt, Pflegekasse oder Betreuungsgericht.
+- Ob Kosten übernommen werden, entscheidet ausschließlich der zuständige Leistungsträger im Einzelfall.
+- In der Regel muss der Antrag vor der Beauftragung gestellt und bewilligt sein.
+- Schnellhelfer24 sagt keine Kostenübernahme zu und rechnet nicht garantiert direkt mit Kostenträgern ab.
 
 ## Wie dieses Unternehmen arbeitet
 
@@ -82,6 +106,7 @@ ${publishedTowns.map((t) => `- [${t.name} (${t.county})](${site.url}/brandenburg
 ## Weitere Seiten
 
 - [Alle Leistungen](${site.url}/leistungen/)
+- [Für Hausverwaltungen und Immobilienpartner](${site.url}/hausverwaltungen-immobilienpartner/)
 - [Einsatzgebiet Berlin](${site.url}/berlin/)
 - [Einsatzgebiet Umland](${site.url}/brandenburg/)
 - [Kosten und Ablauf](${site.url}/kosten/)
