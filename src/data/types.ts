@@ -191,6 +191,19 @@ export interface Guide {
   faq: FaqItem[];
   related: string[];
   services: string[];
+  /** Belegbare Primärquellen für rechtliche, behördliche oder technische Aussagen. */
+  sources?: {
+    label: string;
+    url: string;
+    publisher: string;
+    checked: string;
+  }[];
+  /** Optionaler, lokal gehosteter Download zum Ratgeber. */
+  download?: {
+    href: string;
+    label: string;
+    description: string;
+  };
   published: string;
   updated: string;
 }

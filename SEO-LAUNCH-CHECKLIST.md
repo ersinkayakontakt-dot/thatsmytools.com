@@ -60,7 +60,7 @@ erst möglich und sorgen dafür, dass die genannten Angaben stimmen.
 ### Technik
 - [x] `npm run audit:content` ohne Fehler *(30.07.2026)*
 - [x] `npm run build` ohne Fehler *(30.07.2026)*
-- [x] `npm run audit:build` ohne Fehler *(30.07.2026; 47 indexierbare URLs)*
+- [x] `npm run audit:build` ohne Fehler *(30.07.2026; 50 indexierbare URLs)*
 - [x] `site.url` in `src/config/site.ts` stimmt mit der tatsächlichen Domain
       überein, inklusive www-Entscheidung
 - [ ] Die www-Regel in `public/.htaccess` passt zu `site.url`. Beides muss
@@ -129,7 +129,10 @@ der stimmt.** Diese Punkte prüfen:
 
 ### Weiterleitungen
 - [ ] Alle URLs der bisherigen Website gesammelt (Search Console, Bing
-      Webmaster Tools, alte Sitemap, Serverlogs, Crawler)
+      Webmaster Tools, alte Sitemap, Serverlogs, Crawler). Öffentliche
+      Websuche und Wayback-CDX lieferten am 30.07.2026 nur die Startseite
+      beziehungsweise keine archivierten Unterseiten; GSC/Serverlogs bleiben
+      deshalb die maßgebliche offene Quelle.
 - [ ] Jede alte URL auf die thematisch passende neue Seite weitergeleitet,
       **nicht** pauschal auf die Startseite. Pauschale Weiterleitungen auf `/`
       wertet Google wie einen 404

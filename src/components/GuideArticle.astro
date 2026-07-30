@@ -64,7 +64,48 @@ const toc = guide.blocks.map((b) => ({
 
     <Blocks blocks={guide.blocks} />
 
+    {
+      guide.download && (
+        <aside class="download-box" aria-labelledby="download-head">
+          <p class="download-box__kicker">Kostenlos herunterladen</p>
+          <h2 id="download-head">{guide.download.label}</h2>
+          <p>{guide.download.description}</p>
+          <a
+            class="btn btn--primary"
+            href={guide.download.href}
+            download
+            data-track="guide_download"
+            data-track-location={`ratgeber-${guide.slug}`}
+          >
+            PDF herunterladen
+          </a>
+        </aside>
+      )
+    }
+
     <Faq items={guide.faq} id="fragen" />
+
+    {
+      guide.sources && guide.sources.length > 0 && (
+        <section class="sources" aria-labelledby="sources-head">
+          <h2 id="sources-head">Quellen und Prüfstand</h2>
+          <p>
+            Behördliche und rechtliche Angaben wurden am {formatDate(guide.updated)} geprüft. Bei
+            Ihrem Einzelfall ist die Auskunft der zuständigen Stelle maßgeblich.
+          </p>
+          <ul>
+            {guide.sources.map((source) => (
+              <li>
+                <a href={source.url} target="_blank" rel="noopener">
+                  {source.label}
+                </a>{' '}
+                – {source.publisher}, geprüft am {formatDate(source.checked)}
+              </li>
+            ))}
+          </ul>
+        </section>
+      )
+    }
 
     <p class="updated">
       Zuletzt aktualisiert am {formatDate(guide.updated)}, erstmals veröffentlicht am{' '}
@@ -166,6 +207,36 @@ const toc = guide.blocks.map((b) => ({
     display: grid;
     gap: var(--sp-5);
     align-content: start;
+  }
+
+  .download-box {
+    border: 3px solid var(--ink);
+    border-left-color: var(--accent);
+    padding: var(--sp-5);
+    margin: var(--sp-6) 0;
+    background: var(--paper-2);
+  }
+  .download-box__kicker {
+    margin: 0 0 var(--sp-2);
+    color: var(--accent-text);
+    font-size: 0.78rem;
+    font-weight: 800;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+  .download-box h2 {
+    margin-top: 0;
+  }
+  .sources {
+    border-top: 1px solid var(--line);
+    margin-top: var(--sp-6);
+    padding-top: var(--sp-5);
+  }
+  .sources h2 {
+    font-size: 1.25rem;
+  }
+  .sources li {
+    margin-bottom: var(--sp-2);
   }
   .side-box {
     border: 1px solid var(--line);

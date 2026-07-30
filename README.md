@@ -97,8 +97,9 @@ Sitemap heraus. Die Regel lässt sich nicht versehentlich umgehen.
 
 So entstehen keine zwölf fast identischen Bezirksseiten.
 
-Aktuell veröffentlicht: 3 von 12 Bezirken, 2 von 12 Orten im Umland. Die
-übrigen existieren als Entwurf und warten auf echte Inhalte.
+Aktuell veröffentlicht: 12 von 12 Bezirken, 2 von 12 Orten im Umland. Die
+zehn übrigen Umlandorte existieren als Entwurf und warten auf bestätigte
+Einsatzgebiete.
 
 ### 3. Eine Quelle für Unternehmensdaten
 
@@ -127,7 +128,7 @@ zwischen Seiten sind dadurch ausgeschlossen.
 
 ## Stand
 
-37 indexierbare Seiten, 29 weitere als Entwurf.
+50 indexierbare Seiten, 18 weitere Inhalte als Entwurf.
 
 Was fehlt, sind keine Funktionen, sondern echte Unternehmensdaten. Die Liste
 steht in `CONTENT-TODO.md`, Abschnitt A.

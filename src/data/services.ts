@@ -161,7 +161,7 @@ export const services: Service[] = [
       },
     ],
     related: ['haushaltsaufloesung-berlin', 'kellerentruempelung-berlin', 'sperrmuellabholung-berlin'],
-    guides: ['was-kostet-eine-entruempelung-in-berlin', 'entruempelung-vorbereiten', 'welche-fotos-fuer-ein-angebot'],
+    guides: ['was-kostet-eine-entruempelung-in-berlin', 'sperrmuell-moebel-entsorgen-berlin', 'entruempelung-vorbereiten'],
     updated: '2026-07-29',
   },
 
@@ -300,7 +300,7 @@ export const services: Service[] = [
       },
     ],
     related: ['wohnungsaufloesung-berlin', 'nachlassaufloesung-berlin', 'entruempelung-berlin'],
-    guides: ['kosten-haushaltsaufloesung-berlin', 'haushaltsaufloesung-nach-todesfall', 'checkliste-wohnungsuebergabe'],
+    guides: ['kosten-haushaltsaufloesung-berlin', 'haushaltsaufloesung-nach-todesfall', 'wohnungsaufloesung-checkliste-pdf'],
     updated: '2026-07-29',
   },
 
@@ -411,7 +411,7 @@ export const services: Service[] = [
       },
     ],
     related: ['haushaltsaufloesung-berlin', 'entruempelung-berlin', 'nachlassaufloesung-berlin'],
-    guides: ['checkliste-wohnungsuebergabe', 'kosten-haushaltsaufloesung-berlin'],
+    guides: ['wohnungsaufloesung-checkliste-pdf', 'checkliste-wohnungsuebergabe', 'kosten-haushaltsaufloesung-berlin'],
     updated: '2026-07-29',
   },
 
@@ -529,7 +529,7 @@ export const services: Service[] = [
       },
     ],
     related: ['haushaltsaufloesung-berlin', 'wohnungsaufloesung-berlin', 'messiwohnung-raeumen'],
-    guides: ['haushaltsaufloesung-nach-todesfall', 'kosten-haushaltsaufloesung-berlin'],
+    guides: ['haushaltsaufloesung-nach-todesfall', 'wohnungsaufloesung-checkliste-pdf', 'kosten-haushaltsaufloesung-berlin'],
     updated: '2026-07-29',
   },
 
@@ -766,7 +766,7 @@ export const services: Service[] = [
       },
     ],
     related: ['entruempelung-berlin', 'kellerentruempelung-berlin', 'kleintransport-moebeltransport-berlin'],
-    guides: ['kosten-sperrmuellabholung-berlin'],
+    guides: ['sperrmuell-moebel-entsorgen-berlin', 'kosten-sperrmuellabholung-berlin'],
     updated: '2026-07-29',
   },
 
@@ -899,7 +899,7 @@ export const services: Service[] = [
       },
     ],
     related: ['seniorenumzug-berlin', 'kleintransport-moebeltransport-berlin', 'entruempelung-berlin'],
-    guides: ['halteverbotszone-berlin-umzug', 'checkliste-wohnungsuebergabe'],
+    guides: ['umzugskosten-jobcenter-berlin', 'halteverbotszone-berlin-umzug', 'checkliste-wohnungsuebergabe'],
     updated: '2026-07-29',
   },
 
@@ -1011,7 +1011,7 @@ export const services: Service[] = [
       },
     ],
     related: ['umzug-berlin', 'haushaltsaufloesung-berlin', 'wohnungsaufloesung-berlin'],
-    guides: ['kosten-seniorenumzug-berlin', 'checkliste-wohnungsuebergabe'],
+    guides: ['umzugskosten-jobcenter-berlin', 'kosten-seniorenumzug-berlin', 'checkliste-wohnungsuebergabe'],
     updated: '2026-07-29',
   },
 
@@ -1110,7 +1110,7 @@ export const services: Service[] = [
       },
     ],
     related: ['entruempelung-berlin', 'sperrmuellabholung-berlin', 'dachbodenentruempelung-berlin'],
-    guides: ['was-kostet-eine-entruempelung-in-berlin', 'entruempelung-vorbereiten'],
+    guides: ['sperrmuell-moebel-entsorgen-berlin', 'was-kostet-eine-entruempelung-in-berlin', 'entruempelung-vorbereiten'],
     updated: '2026-07-29',
   },
 

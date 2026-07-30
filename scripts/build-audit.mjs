@@ -49,6 +49,15 @@ function walk(dir, out = []) {
 }
 
 const files = walk(dist);
+
+function walkFiles(dir, out = []) {
+  for (const entry of readdirSync(dir)) {
+    const full = join(dir, entry);
+    if (statSync(full).isDirectory()) walkFiles(full, out);
+    else out.push(full);
+  }
+  return out;
+}
 const pages = files.map((file) => {
   const html = readFileSync(file, 'utf8');
   const rel = relative(dist, file).replace(/\\/g, '/');
@@ -113,11 +122,7 @@ for (const [desc, urls] of byDesc) {
 
 const known = new Set(pages.map((p) => p.url));
 // Zusätzlich vorhandene Dateien in public/ berücksichtigen
-for (const f of walk(dist).concat(
-  readdirSync(dist)
-    .filter((e) => !statSync(join(dist, e)).isDirectory())
-    .map((e) => join(dist, e)),
-)) {
+for (const f of walkFiles(dist)) {
   known.add('/' + relative(dist, f).replace(/\\/g, '/'));
 }
 

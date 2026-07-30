@@ -321,7 +321,7 @@ export const guides: Guide[] = [
         a: 'Matratzen werden getrennt entsorgt und nach Stück berechnet. Sie sind sperrig, lassen sich nicht gut stapeln und gehen über einen eigenen Entsorgungsweg. Bei einer Abholung zusammen mit anderen Möbeln fällt der Aufwand kaum ins Gewicht, als Einzelabholung greift die Mindestpauschale.',
       },
     ],
-    related: ['was-kostet-eine-entruempelung-in-berlin'],
+    related: ['sperrmuell-moebel-entsorgen-berlin', 'was-kostet-eine-entruempelung-in-berlin'],
     services: ['sperrmuellabholung-berlin', 'kellerentruempelung-berlin'],
     published: '2026-07-29',
     updated: '2026-07-29',
@@ -404,7 +404,7 @@ export const guides: Guide[] = [
         a: 'Ja, und in einem Auftrag geplant ist es meist günstiger, weil Fahrten und Team zusammengelegt werden können. Wir empfehlen, ein paar Tage zwischen Umzug und Räumung zu lassen. Erfahrungsgemäß fällt in den ersten Tagen im neuen Zuhause auf, dass noch etwas fehlt.',
       },
     ],
-    related: ['kosten-haushaltsaufloesung-berlin', 'checkliste-wohnungsuebergabe'],
+    related: ['umzugskosten-jobcenter-berlin', 'kosten-haushaltsaufloesung-berlin', 'checkliste-wohnungsuebergabe'],
     services: ['seniorenumzug-berlin', 'umzug-berlin', 'haushaltsaufloesung-berlin'],
     published: '2026-07-29',
     updated: '2026-07-29',
@@ -686,7 +686,7 @@ export const guides: Guide[] = [
         a: 'Der Vermieter darf die Kaution eine angemessene Zeit einbehalten, um offene Forderungen zu prüfen, insbesondere die Betriebskostenabrechnung. Ein Teil wird oft bis zur nächsten Abrechnung zurückgehalten. Feste Fristen gibt es nicht, mehrere Monate sind aber üblich und meist zulässig.',
       },
     ],
-    related: ['entruempelung-vorbereiten', 'kosten-haushaltsaufloesung-berlin'],
+    related: ['wohnungsaufloesung-checkliste-pdf', 'entruempelung-vorbereiten', 'kosten-haushaltsaufloesung-berlin'],
     services: ['wohnungsaufloesung-berlin', 'umzug-berlin', 'haushaltsaufloesung-berlin'],
     published: '2026-07-29',
     updated: '2026-07-29',
@@ -782,7 +782,7 @@ export const guides: Guide[] = [
         a: 'Ja. Wir drängen bei Nachlässen nicht auf schnelle Termine. Melden Sie sich, wenn Sie eine Einschätzung brauchen, auch wenn der Termin noch offen ist. Eine Besichtigung jetzt und eine Räumung in sechs Wochen ist ein normaler Ablauf.',
       },
     ],
-    related: ['kosten-haushaltsaufloesung-berlin', 'checkliste-wohnungsuebergabe'],
+    related: ['wohnungsaufloesung-checkliste-pdf', 'kosten-haushaltsaufloesung-berlin', 'checkliste-wohnungsuebergabe'],
     services: ['nachlassaufloesung-berlin', 'haushaltsaufloesung-berlin', 'wohnungsaufloesung-berlin'],
     published: '2026-07-29',
     updated: '2026-07-29',
@@ -876,10 +876,455 @@ export const guides: Guide[] = [
         a: 'Ja. Ein Anwohnerparkausweis berechtigt nicht zum Parken in einem eingerichteten Halteverbot. Wenn ein Fahrzeug nach dem ordnungsgemäßen Aufstellen der Schilder dort parkt, kann es kostenpflichtig umgesetzt werden.',
       },
     ],
-    related: ['checkliste-wohnungsuebergabe', 'entruempelung-vorbereiten'],
+    related: ['umzugskosten-jobcenter-berlin', 'checkliste-wohnungsuebergabe', 'entruempelung-vorbereiten'],
     services: ['umzug-berlin', 'seniorenumzug-berlin'],
     published: '2026-07-29',
     updated: '2026-07-29',
+  },
+
+  /* ================================================================== */
+  {
+    slug: 'umzugskosten-jobcenter-berlin',
+    status: 'published',
+    hub: 'ratgeber',
+    h1: 'Umzugskosten vom Jobcenter in Berlin: Antrag und Ablauf',
+    navLabel: 'Jobcenter und Umzugskosten',
+    metaTitle: 'Jobcenter Umzugskosten Berlin: Antrag, Zusicherung, Angebote',
+    metaDescription:
+      'Jobcenter-Umzugskosten in Berlin: Wann eine Zusicherung nötig ist, welche Unterlagen verlangt werden und warum der Antrag vor der Beauftragung gestellt wird.',
+    answer:
+      'Das Jobcenter kann notwendige und angemessene Umzugskosten übernehmen, wenn die zuständige Stelle die Kosten vor dem Umzug schriftlich zugesichert hat. Unterschreiben Sie den neuen Mietvertrag und beauftragen Sie kein Umzugsunternehmen, bevor die Prüfung abgeschlossen ist. In Berlin werden für einen Firmenumzug regelmäßig eine Begründung und mehrere Kostenvoranschläge verlangt. Welche Kosten tatsächlich anerkannt werden, entscheidet das Jobcenter im Einzelfall.',
+    teaser:
+      'Zusicherung, Zuständigkeit, Kostenvoranschläge und die richtige Reihenfolge vor dem Umzug.',
+    blocks: [
+      {
+        h: 'Was hat sich seit Juli 2026 geändert?',
+        p: [
+          'Seit dem 1. Juli 2026 heißt das bisherige Bürgergeld **Grundsicherungsgeld**. Die Berliner Jobcenter weisen darauf hin, dass vorhandene Formulare und Online-Dienste weiter genutzt werden können und bereits erlassene Bescheide gültig bleiben.',
+          'Viele Menschen suchen weiterhin nach „Bürgergeld Umzugskosten“. Gemeint ist dieselbe praktische Frage: Welche Kosten erkennt das Jobcenter an und welche Zustimmung ist vor dem Umzug notwendig?',
+          'Für die Entscheidung zählt nicht die Bezeichnung der Leistung, sondern die vorherige Abstimmung mit der zuständigen Leistungsstelle. Die [Bundesagentur für Arbeit](https://www.arbeitsagentur.de/grundsicherung/wohnen) empfiehlt ausdrücklich, einen neuen Mietvertrag erst nach dieser Abstimmung zu unterschreiben.',
+        ],
+      },
+      {
+        h: 'Welche Reihenfolge schützt vor abgelehnten Kosten?',
+        steps: [
+          {
+            title: 'Umzugsgrund schriftlich erklären',
+            text: 'Beschreiben Sie konkret, warum der Wohnungswechsel erforderlich ist. Je nach Grund können Nachweise sinnvoll sein, etwa eine Kündigung, ein ärztlicher Hinweis, Unterlagen zur Familiengröße oder Angaben zur bisherigen Wohnung.',
+          },
+          {
+            title: 'Neue Wohnung prüfen lassen',
+            text: 'Reichen Sie das Wohnungsangebot ein, bevor Sie den Mietvertrag unterschreiben. Das Jobcenter prüft insbesondere, ob die Aufwendungen der neuen Unterkunft anerkannt werden können.',
+          },
+          {
+            title: 'Umzugskosten gesondert beantragen',
+            text: 'Die Zustimmung zur neuen Wohnung ersetzt nicht automatisch die Zusicherung der Umzugskosten. Beantragen Sie Mietfahrzeug, Hilfsmittel oder Firmenumzug ausdrücklich und schriftlich.',
+          },
+          {
+            title: 'Geforderte Kostenvoranschläge einreichen',
+            text: 'Für einen Umzug durch ein Unternehmen verlangen Berliner Jobcenter regelmäßig Vergleichsangebote. Das Jobcenter Treptow-Köpenick nennt drei Kostenvoranschläge und eine Begründung, warum ein Firmenumzug notwendig ist.',
+          },
+          {
+            title: 'Erst nach schriftlicher Entscheidung beauftragen',
+            text: 'Lösen Sie keine Kosten aus, solange die Zusicherung fehlt. Eine telefonische Auskunft ist für eine spätere Erstattung deutlich schwerer nachzuweisen als eine schriftliche Entscheidung.',
+          },
+        ],
+        note: {
+          title: 'Der entscheidende Satz',
+          text: 'Wohnungsbeschaffungs-, Umzugs- und Kautionskosten werden grundsätzlich nur übernommen, wenn die zuständige Stelle vorher zugestimmt hat. Reichen Sie deshalb zuerst Antrag und Unterlagen ein und beauftragen Sie erst danach.',
+          tone: 'caution',
+        },
+      },
+      {
+        h: 'Welche Kosten können berücksichtigt werden?',
+        table: {
+          caption: 'Mögliche Kostenarten – die Bewilligung bleibt eine Einzelfallentscheidung',
+          head: ['Kostenart', 'Was dazu gehören kann', 'Wichtig'],
+          rows: [
+            [
+              'Selbst organisierter Umzug',
+              'Mietfahrzeug, notwendige Kartons und Hilfsmittel',
+              'Vorher beantragen und Belege aufbewahren',
+            ],
+            [
+              'Helfende Personen',
+              'In Berlin kann eine Verpflegungspauschale anerkannt werden',
+              'Höhe und Personenzahl vorher klären',
+            ],
+            [
+              'Umzugsunternehmen',
+              'Transport des Umzugsguts bei begründetem Ausnahmefall',
+              'Notwendigkeit begründen und Vergleichsangebote einreichen',
+            ],
+            [
+              'Mietkaution',
+              'Kaution oder Genossenschaftsanteile häufig als Darlehen',
+              'Beim zuständigen Jobcenter des neuen Wohnorts beantragen',
+            ],
+            [
+              'Weitere Wohnungswechselkosten',
+              'Im Einzelfall Wohnungsbeschaffung oder unvermeidbare Doppelmiete',
+              'Nur nach vorheriger Prüfung und Zusicherung',
+            ],
+          ],
+        },
+        p: [
+          'Die Berliner Ausführungshinweise unterscheiden zwischen den Kosten der neuen Unterkunft und den einmaligen Kosten des Wohnungswechsels. Deshalb sollten Sie im Antrag genau benennen, welche Positionen Sie beantragen.',
+          'Ein Kostenvoranschlag sollte die Leistung nachvollziehbar aufschlüsseln. Für eine [Umzugsanfrage bei Schnellhelfer24](/angebot-anfragen/) können Sie den Anlass „Kostenträger“ auswählen. Wir erstellen damit eine prüfbare Kalkulationsgrundlage; über die Bewilligung entscheidet ausschließlich Ihre Leistungsstelle.',
+        ],
+      },
+      {
+        h: 'Welches Jobcenter ist zuständig?',
+        p: [
+          'Bei einem Umzug innerhalb Berlins erteilt in der Regel die Stelle die Zusicherung zu den Umzugskosten, die Ihre bisherigen Leistungen bewilligt. Für die Anerkennung der neuen Unterkunft kann zusätzlich die Stelle am neuen Wohnort beteiligt sein.',
+          'Bei einem Zuzug nach Berlin oder einem Wegzug aus Berlin kann die Zuständigkeit zwischen bisherigem und künftigem Träger aufgeteilt sein. Lassen Sie sich deshalb schriftlich bestätigen, wohin Wohnungsangebot, Kautionsantrag und Umzugskostenantrag gehören.',
+          'Die Berliner Senatsverwaltung beschreibt die Zuständigkeit und Voraussetzungen in ihren [Fragen und Antworten zu den Kosten der Unterkunft](https://www.berlin.de/sen/soziales/soziale-sicherung/kosten-der-unterkunft-av-wohnen/kosten-der-unterkunft-fragen-und-antworten/).',
+        ],
+      },
+      {
+        h: 'Was sollte im Kostenvoranschlag stehen?',
+        list: [
+          'vollständiger Name und Anschrift des Umzugsunternehmens',
+          'Abhol- und Zieladresse sowie geplanter Zeitraum',
+          'Wohnungsgröße, Etagen, Aufzüge und relevante Tragewege',
+          'Umfang des Umzugsguts und voraussichtliche Fahrzeuggröße',
+          'Anzahl der eingesetzten Personen und kalkulierte Arbeitszeit',
+          'vereinbarte Zusatzleistungen wie Demontage oder Halteverbotszone',
+          'Gesamtbetrag und erkennbare Gültigkeitsdauer des Angebots',
+        ],
+        note: {
+          title: 'Keine Bewilligungsgarantie',
+          text: 'Ein vollständiger Kostenvoranschlag verbessert die Prüfbarkeit, garantiert aber keine Kostenübernahme. Maßgeblich bleiben Erforderlichkeit, Angemessenheit und die schriftliche Entscheidung der zuständigen Stelle.',
+          tone: 'info',
+        },
+      },
+    ],
+    faq: [
+      {
+        q: 'Zahlt das Jobcenter immer ein Umzugsunternehmen?',
+        a: 'Nein. Berliner Jobcenter gehen grundsätzlich davon aus, dass ein Umzug zunächst selbst organisiert wird. Ein Firmenumzug kann in einem begründeten Ausnahmefall berücksichtigt werden, beispielsweise wenn Selbsthilfe nicht möglich oder nicht zumutbar ist. Die Notwendigkeit muss vor der Beauftragung erklärt und durch die Leistungsstelle anerkannt werden.',
+      },
+      {
+        q: 'Wie viele Kostenvoranschläge werden benötigt?',
+        a: 'Das Jobcenter Treptow-Köpenick verlangt für einen Firmenumzug drei Kostenvoranschläge. Andere Berliner Stellen können vergleichbar verfahren, die konkrete Anforderung sollten Sie jedoch bei Ihrem zuständigen Jobcenter erfragen. Reichen Sie nur Angebote ein, die denselben Leistungsumfang abbilden, damit sie tatsächlich vergleichbar sind.',
+      },
+      {
+        q: 'Darf ich den Mietvertrag schon unterschreiben?',
+        a: 'Die Bundesagentur für Arbeit und die Berliner Stellen empfehlen, den neuen Mietvertrag erst nach der Abstimmung und Zusicherung zu unterschreiben. Andernfalls besteht das Risiko, dass die neue Miete oder weitere Umzugskosten nicht vollständig anerkannt werden. Lassen Sie sich die Entscheidung schriftlich geben.',
+      },
+      {
+        q: 'Rechnet Schnellhelfer24 direkt mit dem Jobcenter ab?',
+        a: 'Eine direkte Abrechnung ist derzeit nicht pauschal zugesagt. Schnellhelfer24 kann einen nachvollziehbaren Kostenvoranschlag für die Prüfung erstellen. Ob eine Direktzahlung, Erstattung an Sie oder eine andere Abwicklung möglich ist, muss vor der Beauftragung mit dem zuständigen Jobcenter und im konkreten Angebot geklärt werden.',
+      },
+    ],
+    related: ['halteverbotszone-berlin-umzug', 'kosten-seniorenumzug-berlin', 'welche-fotos-fuer-ein-angebot'],
+    services: ['umzug-berlin', 'seniorenumzug-berlin'],
+    sources: [
+      {
+        label: 'Wohnen und Miete beim Grundsicherungsgeld',
+        url: 'https://www.arbeitsagentur.de/grundsicherung/wohnen',
+        publisher: 'Bundesagentur für Arbeit',
+        checked: '2026-07-30',
+      },
+      {
+        label: 'Kosten der Unterkunft – Fragen und Antworten',
+        url: 'https://www.berlin.de/sen/soziales/soziale-sicherung/kosten-der-unterkunft-av-wohnen/kosten-der-unterkunft-fragen-und-antworten/',
+        publisher: 'Land Berlin',
+        checked: '2026-07-30',
+      },
+      {
+        label: 'Umzugskosten',
+        url: 'https://www.berlin.de/jobcenter-treptow-koepenick/wegweiser/artikel.1530795.php',
+        publisher: 'Jobcenter Berlin Treptow-Köpenick',
+        checked: '2026-07-30',
+      },
+    ],
+    published: '2026-07-30',
+    updated: '2026-07-30',
+  },
+
+  /* ================================================================== */
+  {
+    slug: 'sperrmuell-moebel-entsorgen-berlin',
+    status: 'published',
+    hub: 'ratgeber',
+    h1: 'Sofa, Matratze und Möbel in Berlin entsorgen',
+    navLabel: 'Möbel und Sperrmüll entsorgen',
+    metaTitle: 'Möbel entsorgen Berlin: Sofa, Matratze und Sperrmüll',
+    metaDescription:
+      'Sofa, Matratze, Schrank oder Elektrogerät in Berlin entsorgen: Recyclinghof, BSR-Abholung und kompletter Abholservice verständlich verglichen.',
+    answer:
+      'Einzelne Möbel, Matratzen und bis zu drei Kubikmeter Sperrmüll können Berliner Privathaushalte selbst zu einem BSR-Recyclinghof bringen. Wer nicht transportieren kann, bucht eine BSR-Abholung oder einen privaten Abholservice. Elektrogeräte gehören niemals in den Hausmüll. Entscheidend sind Menge, Etage, Demontage und Trageweg: Bei wenigen bereitgestellten Teilen genügt oft die BSR, bei Räumen oder Zusatzarbeiten ist ein Komplettservice sinnvoller.',
+    teaser:
+      'Recyclinghof, BSR-Abholung und Komplettservice – welche Lösung zu Menge und Aufwand passt.',
+    blocks: [
+      {
+        h: 'Welche Entsorgungsmöglichkeit passt zu meiner Situation?',
+        table: {
+          caption: 'Die drei üblichen Wege für sperrige Gegenstände in Berlin',
+          head: ['Situation', 'Passender Weg', 'Was Sie selbst erledigen'],
+          rows: [
+            [
+              'Wenige Teile, eigenes Fahrzeug',
+              'BSR-Recyclinghof',
+              'Tragen, verladen, transportieren und vor Ort sortieren',
+            ],
+            [
+              'Bereitgestellter Sperrmüll',
+              'BSR-Sperrmüllabholung',
+              'Termin buchen, Annahmeregeln beachten und Angaben vollständig machen',
+            ],
+            [
+              'Möbel stehen noch in der Wohnung',
+              'Abhol- oder Räumungsservice',
+              'Umfang zeigen; Demontage, Tragen und Abtransport vereinbaren',
+            ],
+            [
+              'Ganzer Raum oder mehrere Bereiche',
+              'Entrümpelung oder Wohnungsauflösung',
+              'Festlegen, was bleibt, verwertet, gespendet oder entsorgt wird',
+            ],
+          ],
+        },
+        p: [
+          'Die günstigste Lösung ist nicht automatisch die passende. Ein kostenloser Recyclinghof hilft nur, wenn Fahrzeug, Tragende und Zeit vorhanden sind. Bei einem schweren Sofa aus dem vierten Stock kann der Transportaufwand größer sein als die eigentliche Entsorgung.',
+          'Für eine einzelne Abholung bietet Schnellhelfer24 die [Sperrmüllabholung in Berlin](/leistungen/sperrmuellabholung-berlin/) an. Wenn zusätzlich Schränke geleert, Möbel demontiert oder mehrere Räume geräumt werden, passt eher eine [Entrümpelung](/leistungen/entruempelung-berlin/).',
+        ],
+      },
+      {
+        h: 'Was nimmt die BSR als Sperrmüll an?',
+        list: [
+          'zerlegte große und kleine Möbel, darunter Betten, Schränke, Tische und Sofas',
+          'Teppiche und Matratzen',
+          'Hölzer aus dem Wohnbereich',
+          'Schrott wie Fahrräder oder Kinderwagen',
+          'Laminat, Türblätter und bestimmte Kunststoffteile',
+          'Elektrogeräte bei der Abholung nur in Verbindung mit Sperrmüll',
+          'Alttextilien in getrennten, beschrifteten Säcken',
+          'begrenzte Mengen verpackten Restabfalls nach den Vorgaben der BSR',
+        ],
+        note: {
+          title: 'Nicht zum normalen Sperrmüll',
+          text: 'Bauabfälle, Autoreifen, Autobatterien und Schadstoffe wie Farben oder Lacke nimmt die reguläre BSR-Sperrmüllabholung nicht mit. Solche Stoffe benötigen den jeweils vorgesehenen Entsorgungsweg.',
+          tone: 'caution',
+        },
+      },
+      {
+        h: 'Wie entsorge ich Sofa, Matratze und Schrank?',
+        steps: [
+          {
+            title: 'Weiterverwendung prüfen',
+            text: 'Gut erhaltene Möbel zuerst verschenken, verkaufen oder einer geeigneten Annahmestelle anbieten. Fotografieren Sie Zustand, Maße und erkennbare Schäden ehrlich.',
+          },
+          {
+            title: 'Maße und Transportweg aufnehmen',
+            text: 'Notieren Sie Breite, Höhe und Tiefe. Prüfen Sie Treppenhaus, Aufzug, Haustür und Weg bis zur möglichen Fahrzeugposition. Bei Schränken zählt außerdem, ob sie demontiert werden müssen.',
+          },
+          {
+            title: 'Menge vollständig angeben',
+            text: 'Nennen Sie alle Teile, nicht nur das größte Möbelstück. Ein Sofa plus Matratze plus Schrankteile ist ein anderer Auftrag als eine einzelne Couch.',
+          },
+          {
+            title: 'Termin und Bereitstellung klären',
+            text: 'Bei der BSR gelten deren Buchungs- und Bereitstellungsbedingungen. Bei einem privaten Service sollte schriftlich feststehen, ob Abbau, Tragen, Verladen und Entsorgung enthalten sind.',
+          },
+        ],
+      },
+      {
+        h: 'Was gilt für Waschmaschine und andere Elektrogeräte?',
+        p: [
+          'Elektroaltgeräte gehören nicht in den Hausmüll. Die BSR nimmt große und kleine Geräte auf ihren Recyclinghöfen kostenlos an. Eine Abholung ist nach Angaben der BSR in Verbindung mit einer Sperrmüllbestellung möglich.',
+          'Strom- und Wasseranschlüsse müssen vor der Abholung bereits getrennt sein. Arbeiten an festen Elektro-, Gas- oder Wasseranschlüssen gehören in fachkundige Hände.',
+          'Bei einer Anfrage sollten Sie Gerätetyp, ungefähres Gewicht, Etage, Aufzug und Anschlusszustand nennen. So lässt sich vorab klären, ob Tragen und Mitnahme möglich sind.',
+        ],
+      },
+      {
+        h: 'Warum darf Sperrmüll nicht einfach an die Straße?',
+        p: [
+          'Sperrmüll darf nur entsprechend einer vereinbarten Abholung oder an einer zugelassenen Annahmestelle abgegeben werden. Eine Ablage auf Gehweg, Straße oder Grundstücksrand ohne geregelte Abholung ist illegal.',
+          'Die BSR weist darauf hin, dass illegale Ablagerungen erhebliche Bußgelder und bei gefährlichen Bestandteilen weitere strafrechtliche Folgen haben können. Fremden Sperrmüll sollten Sie dem Ordnungsamt melden, nicht dazustellen.',
+        ],
+      },
+    ],
+    faq: [
+      {
+        q: 'Kann ich eine Matratze kostenlos entsorgen?',
+        a: 'Berliner Privathaushalte können Sperrmüll in haushaltsüblichen Mengen selbst zu einem BSR-Recyclinghof bringen; die BSR nennt bis zu drei Kubikmeter pro Anlieferung. Sie benötigen dafür ein geeignetes Fahrzeug und müssen die Matratze selbst tragen und transportieren. Eine Abholung ist kostenpflichtig.',
+      },
+      {
+        q: 'Holt die BSR Möbel aus der Wohnung?',
+        a: 'Bei der Buchung fragt die BSR unter anderem Gebäudeteil, Stockwerk, Treppen, Transportweg, Dachboden und Aufzug ab und bietet bestimmte Zusatzleistungen an. Welche Hilfe für Ihren konkreten Auftrag verfügbar ist, ergibt sich aus dem aktuellen BSR-Buchungsportal. Prüfen Sie die Angaben dort vor dem Abschluss.',
+      },
+      {
+        q: 'Was kostet eine private Möbelabholung?',
+        a: 'Der Preis hängt vor allem von Anzahl und Größe der Teile, Etage, Aufzug, Trageweg, Demontage und Entsorgungsart ab. Ohne diese Angaben ist ein Festpreis nicht belastbar. Fotos von Möbeln, Treppenhaus und Zugang ermöglichen eine deutlich genauere Einschätzung.',
+      },
+      {
+        q: 'Kann eine Waschmaschine zusammen mit Möbeln abgeholt werden?',
+        a: 'Grundsätzlich kann eine Elektrogeräte-Mitnahme zusammen mit Sperrmüll möglich sein. Das Gerät muss vorher fachgerecht von Strom und Wasser getrennt sein. Geben Sie Gerät, Etage und Aufzug bei der Buchung ausdrücklich an; versteckte oder unangekündigte Zusatzteile können den geplanten Transport verändern.',
+      },
+    ],
+    related: ['kosten-sperrmuellabholung-berlin', 'entruempelung-vorbereiten', 'welche-fotos-fuer-ein-angebot'],
+    services: ['sperrmuellabholung-berlin', 'entruempelung-berlin', 'kellerentruempelung-berlin'],
+    sources: [
+      {
+        label: 'Sperrmüllabfuhr: Annahme, Termine und Alternativen',
+        url: 'https://www.bsr.de/sperrmuell-buchen',
+        publisher: 'Berliner Stadtreinigung',
+        checked: '2026-07-30',
+      },
+      {
+        label: 'Elektroaltgeräte richtig entsorgen',
+        url: 'https://www.bsr.de/elektrogeraete',
+        publisher: 'Berliner Stadtreinigung',
+        checked: '2026-07-30',
+      },
+    ],
+    published: '2026-07-30',
+    updated: '2026-07-30',
+  },
+
+  /* ================================================================== */
+  {
+    slug: 'wohnungsaufloesung-checkliste-pdf',
+    status: 'published',
+    hub: 'ratgeber',
+    h1: 'Wohnungsauflösung planen: Checkliste zum Ausdrucken',
+    navLabel: 'Checkliste Wohnungsauflösung',
+    metaTitle: 'Wohnungsauflösung Checkliste: kostenloses PDF für Berlin',
+    metaDescription:
+      'Kostenlose Checkliste für die Wohnungsauflösung: Unterlagen, Sortierung, Termine, Entsorgung und Wohnungsübergabe in der richtigen Reihenfolge planen.',
+    answer:
+      'Eine Wohnungsauflösung beginnt nicht mit dem Wegwerfen, sondern mit Terminen, Vollmachten und einer klaren Sortierung. Sichern Sie zuerst Unterlagen und persönliche Gegenstände. Markieren Sie anschließend, was bleibt, verkauft, verschenkt oder entsorgt wird. Klären Sie dann Räumung, Abmeldungen und Wohnungsübergabe. Die kostenlose PDF-Checkliste führt in dieser Reihenfolge durch alle Schritte und lässt Platz für Termine, Zuständigkeiten und Notizen.',
+    teaser:
+      'Alle Schritte von den Unterlagen bis zur Schlüsselübergabe – als Seite und kostenlose Druck-PDF.',
+    blocks: [
+      {
+        h: 'Die fünf Phasen einer Wohnungsauflösung',
+        steps: [
+          {
+            title: 'Auftrag und Fristen klären',
+            text: 'Mietende, Übergabetermin, Vollmacht und entscheidungsberechtigte Personen festhalten. Bei einem Nachlass zuerst die Erb- und Verfügungsberechtigung klären.',
+          },
+          {
+            title: 'Unterlagen und Persönliches sichern',
+            text: 'Verträge, Urkunden, Fotos, Schlüssel, Wertsachen, Medikamente und digitale Geräte aus der späteren Sortierung herausnehmen.',
+          },
+          {
+            title: 'Bestand sichtbar entscheiden',
+            text: 'Mit vier eindeutigen Kategorien arbeiten: behalten, verkaufen oder verschenken, spenden, entsorgen. Unklare Dinge bekommen eine begrenzte Prüfzone statt vieler verteilter Stapel.',
+          },
+          {
+            title: 'Räumung und Zusatzarbeiten planen',
+            text: 'Volumen, Etage, Aufzug, Keller, Dachboden, Demontage, Bodenbeläge und Trageweg vollständig aufnehmen. Erst danach Angebote vergleichen.',
+          },
+          {
+            title: 'Übergabe vorbereiten',
+            text: 'Zählerstände, Schlüssel, Zustand und offene Arbeiten dokumentieren. Zwischen Räumung und Übergabe möglichst einen Puffertag lassen.',
+          },
+        ],
+      },
+      {
+        h: 'Was muss vor der ersten Entsorgung gesichert werden?',
+        list: [
+          'Personalausweise, Geburts- und Heiratsurkunden, Testamente und Vollmachten',
+          'Mietvertrag, Übergabeprotokolle, Betriebskosten- und Versorgerunterlagen',
+          'Bank-, Versicherungs-, Renten- und Steuerunterlagen',
+          'Schlüssel für Wohnung, Keller, Briefkasten, Garage und Schließfächer',
+          'Medikamente, Hilfsmittel und sensible Gesundheitsunterlagen',
+          'Fotos, Briefe, Schmuck, Sammlungen und Erinnerungsstücke',
+          'Computer, Telefone, Datenträger und Zugangsdaten',
+          'Gegenstände, über die mehrere Angehörige gemeinsam entscheiden müssen',
+        ],
+        note: {
+          title: 'Bei einem Todesfall',
+          text: 'Nichts endgültig verwerten oder entsorgen, solange nicht geklärt ist, wer verfügen darf und ob eine Erbausschlagung erwogen wird. Die [Reihenfolge nach einem Todesfall](/ratgeber/haushaltsaufloesung-nach-todesfall/) ist gesondert erklärt.',
+          tone: 'caution',
+        },
+      },
+      {
+        h: 'Welche Angaben braucht ein vergleichbares Angebot?',
+        table: {
+          caption: 'Diese Angaben sollten bei allen angefragten Betrieben identisch sein',
+          head: ['Bereich', 'Benötigte Angabe', 'Typischer Nachweis'],
+          rows: [
+            ['Objekt', 'Räume, Keller, Dachboden, Balkon und Nebenflächen', 'Raumliste und Übersichtsfotos'],
+            ['Zugang', 'Etage, Aufzug, Treppenhaus und Trageweg', 'Fotos von Zugang und Straße'],
+            ['Bestand', 'Füllgrad, große Möbel, Elektrogeräte, Sondermaterial', 'Fotos bei geöffneten Schränken'],
+            ['Leistungsumfang', 'Demontage, Bodenbeläge, Reinigung, Übergabe', 'schriftliche Aufgabenliste'],
+            ['Termin', 'Räumungsfenster und späteste Übergabe', 'bestätigter Terminplan'],
+            ['Abrechnung', 'enthaltene Arbeiten und mögliche Zusatzkosten', 'schriftliches Angebot'],
+          ],
+        },
+        p: [
+          'Wenn jeder Betrieb andere Informationen erhält, sind die Preise nicht vergleichbar. Schicken Sie deshalb dieselbe Raumliste und dieselben Fotos an alle angefragten Unternehmen.',
+          'Die Anleitung [Welche Fotos braucht ein Angebot?](/ratgeber/welche-fotos-fuer-ein-angebot/) zeigt, welche Aufnahmen Volumen und Arbeitsweg sichtbar machen.',
+        ],
+      },
+      {
+        h: 'Was gehört in die letzte Übergabeprüfung?',
+        list: [
+          'alle vereinbarten Räume und Nebenflächen vollständig kontrolliert',
+          'Fenster, Türen, Einbauten und sichtbare Schäden fotografiert',
+          'Strom-, Gas-, Wasser- und Heizungszähler abgelesen und fotografiert',
+          'Anzahl und Art aller übergebenen Schlüssel notiert',
+          'offene Arbeiten nur konkret und mit Zuständigkeit ins Protokoll aufgenommen',
+          'Protokoll vollständig gelesen und eine unterschriebene Kopie erhalten',
+          'Versorger, Versicherungen und relevante Vertragspartner informiert',
+          'Nachsendeauftrag und neue Kontaktadresse eingerichtet, falls erforderlich',
+        ],
+        p: [
+          'Ein Übergabeprotokoll dokumentiert den Zustand und kann spätere Streitpunkte reduzieren. Unterschreiben Sie keine pauschalen Zusatzpflichten, die Sie nicht geprüft haben. Bei Unsicherheit hilft eine unabhängige Mietrechtsberatung.',
+          'Eine ausführlichere Vorbereitung steht in der [Checkliste zur Wohnungsübergabe](/ratgeber/checkliste-wohnungsuebergabe/).',
+        ],
+      },
+      {
+        h: 'Wie benutze ich die PDF-Checkliste?',
+        p: [
+          'Drucken Sie die Liste aus und tragen Sie oben Objekt, Übergabetermin und verantwortliche Person ein. Jede Aufgabe hat ein Kontrollkästchen sowie Platz für Termin oder Notiz.',
+          'Bei mehreren Beteiligten empfiehlt sich eine Farbe pro Person. Fotografieren Sie die ausgefüllte Liste nach jedem Termin, damit keine Information nur auf einem einzelnen Blatt bleibt.',
+          'Die PDF enthält bewusst keine Preise und keine pauschalen rechtlichen Aussagen. Sie ist ein Arbeitsplan, der sich für Umzug, Haushaltsauflösung, Nachlassauflösung und Übergabe anpassen lässt.',
+        ],
+      },
+    ],
+    faq: [
+      {
+        q: 'Wie früh sollte eine Wohnungsauflösung beginnen?',
+        a: 'Sobald der Übergabetermin feststeht, sollte rückwärts geplant werden. Bei einer vollständig eingerichteten Wohnung sind mehrere Wochen Vorlauf sinnvoll. Zwischen Räumung und Übergabe sollte möglichst mindestens ein Puffertag liegen, damit vergessene Bereiche oder offene Arbeiten nicht am Übergabetermin auffallen.',
+      },
+      {
+        q: 'Muss die Wohnung besenrein übergeben werden?',
+        a: 'Maßgeblich sind Mietvertrag, wirksame Vereinbarungen und der konkrete Zustand. Besenrein bedeutet üblicherweise grob gereinigt und frei von zurückgelassenem Besitz, ist aber keine pauschale Renovierungspflicht. Bei Streit über Schönheitsreparaturen sollten Sie den Vertrag unabhängig prüfen lassen.',
+      },
+      {
+        q: 'Kann ich die Checkliste auch für einen Nachlass verwenden?',
+        a: 'Ja, aber erst nachdem geklärt ist, wer über den Nachlass verfügen darf. Ergänzen Sie bei einer Erbengemeinschaft die entscheidungsberechtigten Personen und dokumentieren Sie Freigaben. Persönliche Unterlagen und Erinnerungsstücke sollten vor jeder Verkaufs- oder Entsorgungsentscheidung gesondert gesichert werden.',
+      },
+    ],
+    related: ['checkliste-wohnungsuebergabe', 'haushaltsaufloesung-nach-todesfall', 'welche-fotos-fuer-ein-angebot'],
+    services: ['wohnungsaufloesung-berlin', 'haushaltsaufloesung-berlin', 'nachlassaufloesung-berlin'],
+    sources: [
+      {
+        label: '10 Fragen zur Wohnungsrückgabe',
+        url: 'https://www.berliner-mieterverein.de/magazin/online/hintergrund/10-fragen-zur-wohnungsrueckgabe-wie-eine-gute-uebergabe-gelingt-121822.htm',
+        publisher: 'Berliner Mieterverein',
+        checked: '2026-07-30',
+      },
+      {
+        label: 'Hinweise zu Übergabeprotokoll und Zählerständen',
+        url: 'https://www.verbraucherzentrale.de/sites/default/files/2021-12/energiefuhrerschein_unterrichtsvorschlag_uberarbeitet.pdf',
+        publisher: 'Verbraucherzentrale',
+        checked: '2026-07-30',
+      },
+    ],
+    download: {
+      href: '/downloads/wohnungsaufloesung-checkliste.pdf',
+      label: 'Wohnungsauflösung-Checkliste als PDF',
+      description:
+        'Vier Seiten mit Aufgaben, Kontrollkästchen, Zuständigkeiten und Platz für Übergabetermin, Zählerstände und Schlüssel.',
+    },
+    published: '2026-07-30',
+    updated: '2026-07-30',
   },
 ];
 

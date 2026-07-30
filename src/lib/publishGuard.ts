@@ -189,7 +189,7 @@ export function indexableUrls(): { url: string; lastmod: string }[] {
     { url: '/brandenburg/', lastmod: '2026-07-29' },
     { url: '/kosten/', lastmod: '2026-07-30' },
     { url: '/hausverwaltungen-immobilienpartner/', lastmod: '2026-07-30' },
-    { url: '/ratgeber/', lastmod: '2026-07-29' },
+    { url: '/ratgeber/', lastmod: '2026-07-30' },
     { url: '/einsatzberichte/', lastmod: '2026-07-29' },
     { url: '/fragen/', lastmod: '2026-07-29' },
     { url: '/ueber-uns/', lastmod: '2026-07-30' },

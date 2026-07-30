@@ -15,7 +15,7 @@ import {
 const path = '/ratgeber/';
 const title = 'Ratgeber: Räumung, Umzug und Übergabe in Berlin';
 const description =
-  'Praktische Anleitungen zu Entrümpelung, Wohnungsübergabe, Halteverbotszone und Haushaltsauflösung nach einem Todesfall. Konkret und ohne Werbesprache.';
+  'Praktische Berlin-Ratgeber zu Entrümpelung, Sperrmüll, Jobcenter-Umzugskosten, Wohnungsauflösung und Übergabe – mit Quellen und kostenloser PDF-Checkliste.';
 
 const crumbs = [
   { name: 'Start', href: '/' },
@@ -26,7 +26,7 @@ const schema = buildGraph([
   organizationNode(),
   websiteNode(),
   breadcrumbNode(path, crumbs),
-  webPageNode({ url: path, name: title, description, dateModified: '2026-07-29' }),
+  webPageNode({ url: path, name: title, description, dateModified: '2026-07-30' }),
 ]);
 ---
 
@@ -38,14 +38,15 @@ const schema = buildGraph([
       <h1>Ratgeber</h1>
       <div class="answer">
         <p>
-          Hier stehen die Anleitungen, nach denen am häufigsten gefragt wird: welche Fotos für ein
-          Angebot nötig sind, wie man eine Entrümpelung vorbereitet, was bei der Wohnungsübergabe zu
-          beachten ist, wie eine Halteverbotszone beantragt wird und in welcher Reihenfolge nach
-          einem Todesfall vorzugehen ist.
+          Hier finden Sie konkrete Hilfe für Berlin: Umzugskosten beim Jobcenter richtig beantragen,
+          Möbel und Sperrmüll korrekt entsorgen, eine Wohnungsauflösung planen und die Übergabe
+          dokumentieren. Wo Behördenregeln oder Entsorgungswege entscheidend sind, verlinken wir
+          direkt auf die offiziellen Quellen.
         </p>
       </div>
       <p class="lede">
-        Wenige Texte, dafür vollständig. Wir schreiben keine Artikel, um Seiten zu füllen.
+        Praxisnah, überprüfbar und ohne erfundene Pauschalpreise. Die Checkliste zur
+        Wohnungsauflösung können Sie kostenlos als PDF ausdrucken.
       </p>
     </div>
   </div>

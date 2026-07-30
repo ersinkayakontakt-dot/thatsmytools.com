@@ -47,12 +47,13 @@ Wohnungsauflösung, Nachlass und Seniorenumzug" umgestellt. Umgesetzt sind:
    Entwicklungsrechner). Vor dem Livegang eine Testanfrage über den echten
    Server senden und kontrollieren, ob Umfang, Anlass, Größe und
    Zusatzleistungen in der Mail und in der JSON-Ablage ankommen.
-2. **Zentrale Seite `/moebel-sperrmuell-abholung-berlin/`** als Sammelseite für
-   Sofa, Matratze, Schrank, Waschmaschine, Kellerreste – mit den
-   Qualifizierungsfragen (weitere Möbel? ganzer Raum? Keller? Übergabe?).
-   Die vorhandene Leistungsseite `/leistungen/sperrmuellabholung-berlin/` muss
-   dabei entweder weiterleiten oder klar abgegrenzt werden, sonst konkurrieren
-   zwei Seiten um dieselbe Suchintention.
+2. ✅ **Sperrmüll-Informationscluster ergänzt.** Der Ratgeber
+   `/ratgeber/sperrmuell-moebel-entsorgen-berlin/` beantwortet die
+   Informationssuche zu Sofa, Matratze, Möbeln und Elektrogeräten und verweist
+   für die Beauftragung auf die bestehende Leistungsseite
+   `/leistungen/sperrmuellabholung-berlin/`. So bleiben Informations- und
+   Transaktionsintention getrennt, ohne eine zweite konkurrierende
+   Leistungsseite anzulegen.
 3. **Postleitzahlen** (`src/data/serviceAreas.ts` anlegen). Aktuell existieren
    **keine** PLZ-Daten im Projekt; die PLZ-Prüfung im Formular validiert nur
    das Format. Benötigt: amtliche Berliner PLZ mit Bezirk, Ortsteilen,
@@ -168,9 +169,10 @@ Zu klären, bevor daraus mehr gemacht wird:
 - [ ] Wird **direkt** mit Jobcenter, Sozialamt oder Pflegekasse abgerechnet,
       oder wird nur ein Kostenvoranschlag erstellt?
       → `costCoverage.directBilling` in `src/config/site.ts`
-- [ ] Gibt es Erfahrung damit, welche Unterlagen die Berliner Jobcenter
-      konkret verlangen? Daraus würde eine eigene, sehr gut rankende Seite
-      „Umzug mit Kostenübernahme in Berlin" (siehe Abschnitt F).
+- [x] Eigener Ratgeber zu Berliner Jobcenter-Umzugskosten veröffentlicht:
+      `/ratgeber/umzugskosten-jobcenter-berlin/`. Er stützt sich auf
+      veröffentlichte Vorgaben von Bundesagentur und Berliner Jobcentern,
+      verspricht keine Bewilligung und keine garantierte Direktabrechnung.
 - [ ] Wird weiterhin **Gartenpflege** angeboten? Die neue Website führt sie
       nicht mehr, weil sie thematisch nicht zur Positionierung Räumung,
       Auflösung und Umzug passt und die Autorität verwässert. Wenn sie
@@ -386,9 +388,10 @@ mit Freigabe in `cases.ts`.
       Entsorgungswege bestätigen; die Seite bleibt bis dahin Entwurf.
 - [ ] `areaServed.note`: Wie weit wird tatsächlich gefahren? Der Radius von
       50 km ist eine Annahme.
-- [ ] Alte URLs der bisherigen Website sammeln und in `public/.htaccess`
-      weiterleiten. Ohne das gehen alle bisherigen Rankings verloren. Quellen:
-      Google Search Console, Bing Webmaster Tools, alte Sitemap, Serverlogs.
+- [ ] Alte URLs der bisherigen Website aus Google Search Console oder
+      Serverlogs sammeln und in `public/.htaccess` weiterleiten. Öffentliche
+      Websuche und Wayback-CDX fanden am 30.07.2026 keine belegten alten
+      Unterseiten; deshalb wurden bewusst keine geratenen Redirects angelegt.
 
 ---
 
