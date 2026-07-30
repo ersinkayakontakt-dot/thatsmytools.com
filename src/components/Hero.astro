@@ -39,7 +39,14 @@ import { phone, whatsapp, primaryCta } from '../lib/contact';
       }
       {
         whatsapp.available && (
-          <a class="hero__phone" href={whatsapp.href} target="_blank" rel="noopener">
+          <a
+            class="hero__phone"
+            href={whatsapp.href}
+            target="_blank"
+            rel="noopener"
+            data-track="whatsapp_click"
+            data-track-location="hero"
+          >
             <Icon name="whatsapp" size={19} />
             WhatsApp
           </a>
