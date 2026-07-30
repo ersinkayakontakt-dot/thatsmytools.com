@@ -58,13 +58,13 @@ export const site = {
   name: 'Schnellhelfer24',
 
   /** Vollständige Firmierung laut Handelsregister/Gewerbeanmeldung. */
-  legalName: '[VOLLSTÄNDIGE FIRMIERUNG EINTRAGEN, z. B. Schnellhelfer24 – Inhaber Vorname Nachname]',
+  legalName: 'Schnellhelfer24 – Inhaber Ersin Kaya',
 
   /** Rechtsform: Einzelunternehmen, GbR, GmbH, UG … */
-  legalForm: '[RECHTSFORM EINTRAGEN]',
+  legalForm: 'Einzelunternehmen',
 
   /** Inhaber / vertretungsberechtigte Person (§ 5 DDG). */
-  owner: '[INHABER:IN / GESCHÄFTSFÜHRUNG EINTRAGEN]',
+  owner: 'Ersin Kaya',
 
   url: 'https://schnellhelfer24.de',
   /** Kanonische Domain ohne Protokoll – für Anzeige und E-Mail-Prüfung. */
@@ -230,7 +230,7 @@ export const site = {
   },
 
   /** Verantwortlich für den Inhalt (redaktionell). */
-  contentResponsible: '[VERANTWORTLICHE PERSON FÜR DEN INHALT EINTRAGEN]',
+  contentResponsible: 'Ersin Kaya',
 
   /** Datenschutzbeauftragte:r – nur falls bestellt. */
   dataProtectionOfficer: '[NUR FALLS BESTELLT – SONST ZEILE ENTFERNEN]',

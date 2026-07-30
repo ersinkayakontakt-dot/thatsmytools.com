@@ -35,14 +35,17 @@ Ohne Telefonnummer fehlt der zweitwichtigste Conversion-Weg der ganzen Seite.
 ### A2. Firmierung und Rechtliches
 `src/config/site.ts`, erscheint im Impressum
 
-- `legalName`: vollständige Firmierung, exakt wie in Gewerbeanmeldung oder
-  Handelsregister
-- `legalForm`: Einzelunternehmen, GbR, GmbH, UG …
-- `owner`: Inhaberin/Inhaber oder Geschäftsführung
-- `contentResponsible`: verantwortliche Person nach § 18 Abs. 2 MStV
+- ~~`legalName`~~ ✅ `Schnellhelfer24 – Inhaber Ersin Kaya` – gegen die
+  Gewerbeanmeldung prüfen, die Schreibweise muss exakt übereinstimmen
+- ~~`legalForm`~~ ✅ `Einzelunternehmen`
+- ~~`owner`~~ ✅ `Ersin Kaya`
+- ~~`contentResponsible`~~ ✅ `Ersin Kaya` (§ 18 Abs. 2 MStV; identisch mit
+  dem Inhaber – ändern, falls eine andere Person verantwortlich zeichnet)
 - `register.vatId` **oder** `register.taxNumber`. Bei Kleinunternehmerregelung
   nach § 19 UStG stattdessen einen entsprechenden Hinweis
-- `register.court` und `register.number`: nur bei GmbH, UG, OHG, KG
+- ~~`register.court` / `register.number`~~ – entfällt, da Einzelunternehmen.
+  Der Abschnitt rendert im Build aber weiterhin seinen Platzhaltertext und
+  muss aus der Impressum-Vorlage entfernt werden
 - `register.supervisoryAuthority`: **prüfen.** Güterkraftverkehr mit Fahrzeugen
   über 3,5 t zulässigem Gesamtgewicht ist nach § 3 GüKG erlaubnispflichtig.
   Falls einschlägig, gehört die Erlaubnis ins Impressum.
