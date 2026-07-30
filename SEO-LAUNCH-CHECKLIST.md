@@ -153,11 +153,13 @@ der stimmt.** Diese Punkte prüfen:
 7. [ ] Unter „Site Scan" den ersten Crawl anstoßen
 
 ### Google Search Console
-1. [ ] Property anlegen, am besten als Domain-Property
-2. [ ] Verifizieren (DNS-Eintrag)
-3. [ ] Sitemap einreichen: `sitemap.xml`
-4. [ ] URL-Prüfung für Startseite und die wichtigsten Leistungsseiten,
-       jeweils Indexierung beantragen
+1. [x] Domain-Property `schnellhelfer24.de` angelegt *(30.07.2026)*
+2. [x] Per DNS-TXT-Eintrag verifiziert *(30.07.2026; Eintrag nicht löschen)*
+3. [x] Sitemap `https://schnellhelfer24.de/sitemap.xml` erfolgreich
+       eingereicht; Google hat 47 Seiten erkannt *(30.07.2026)*
+4. [x] URL-Prüfung durchgeführt: Startseite bereits indexiert; für
+       Wohnungsauflösung, Entrümpelung und Nachlassauflösung wurde die
+       Indexierung beantragt *(30.07.2026)*
 5. [ ] Unter „Einstellungen → Crawling-Statistiken" nach dem ersten Crawl
        prüfen, ob Fehler auftreten
 
