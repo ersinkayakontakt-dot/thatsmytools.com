@@ -1,0 +1,76 @@
+# robots.txt für schnellhelfer24.de
+
+# ------------------------------------------------------------------
+# Klassische Suchmaschinen
+# ------------------------------------------------------------------
+User-agent: *
+Allow: /
+
+# Endpunkte und Laufzeitdaten gehören nicht in den Index
+Disallow: /api/
+Disallow: /anfrage-erhalten/
+
+# Keine indexierbaren Such- oder Filterseiten, keine Parameter-URLs
+Disallow: /*?fehler=
+Disallow: /*?grund=
+
+# ------------------------------------------------------------------
+# KI-Suche und Antwortsysteme
+# ------------------------------------------------------------------
+
+# ChatGPT Search: soll die Seite finden und als Quelle nennen können
+User-agent: OAI-SearchBot
+Allow: /
+
+# Abruf im Auftrag eines Menschen im Gespräch
+User-agent: ChatGPT-User
+Allow: /
+
+# Perplexity
+User-agent: PerplexityBot
+Allow: /
+
+# Claude: Suchindex und Abruf im Auftrag eines Menschen
+User-agent: Claude-SearchBot
+Allow: /
+
+User-agent: Claude-User
+Allow: /
+
+# DuckDuckGo-Antworten
+User-agent: DuckAssistBot
+Allow: /
+
+# Apple Intelligence / Siri
+User-agent: Applebot-Extended
+Allow: /
+
+# ------------------------------------------------------------------
+# Trainingsdaten-Sammler
+# ------------------------------------------------------------------
+# Bewusst gesperrt. Diese Bots verbessern die Auffindbarkeit nicht.
+# Wenn die Inhalte für das Training freigegeben werden sollen, ist das
+# eine eigene Entscheidung des Betreibers, siehe docs/KI-CRAWLER.md.
+
+User-agent: GPTBot
+Disallow: /
+
+User-agent: ClaudeBot
+Disallow: /
+
+User-agent: CCBot
+Disallow: /
+
+User-agent: Google-Extended
+Disallow: /
+
+User-agent: meta-externalagent
+Disallow: /
+
+User-agent: Bytespider
+Disallow: /
+
+# ------------------------------------------------------------------
+# Sitemap
+# ------------------------------------------------------------------
+Sitemap: https://schnellhelfer24.de/sitemap.xml

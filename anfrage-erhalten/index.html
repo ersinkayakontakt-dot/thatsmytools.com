@@ -1,0 +1,232 @@
+<!DOCTYPE html><html lang="de"> <head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Ihre Anfrage ist angekommen | Schnellhelfer24</title><meta name="description" content="Bestätigung Ihrer Anfrage bei Schnellhelfer24 und die nächsten Schritte."><link rel="canonical" href="https://schnellhelfer24.de/anfrage-erhalten/"><meta name="robots" content="noindex, follow"><!-- Open Graph --><meta property="og:type" content="website"><meta property="og:site_name" content="Schnellhelfer24"><meta property="og:locale" content="de_DE"><meta property="og:title" content="Ihre Anfrage ist angekommen | Schnellhelfer24"><meta property="og:description" content="Bestätigung Ihrer Anfrage bei Schnellhelfer24 und die nächsten Schritte."><meta property="og:url" content="https://schnellhelfer24.de/anfrage-erhalten/"><meta property="og:image" content="https://schnellhelfer24.de/og-default.png"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta property="og:image:alt" content="Schnellhelfer24 – Entrümpelung, Auflösung und Umzug in Berlin"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="Ihre Anfrage ist angekommen | Schnellhelfer24"><meta name="twitter:description" content="Bestätigung Ihrer Anfrage bei Schnellhelfer24 und die nächsten Schritte."><meta name="twitter:image" content="https://schnellhelfer24.de/og-default.png"><meta name="theme-color" content="#14171a"><meta name="format-detection" content="telephone=yes"><meta name="geo.region" content="DE-BE"><meta name="geo.placename" content="Berlin"><link rel="icon" href="/favicon.svg" type="image/svg+xml"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><link rel="manifest" href="/site.webmanifest"><link rel="sitemap" type="application/xml" href="/sitemap.xml"><script>
+  (function () {
+    var w = window;
+    var sh24 = (w.sh24 = w.sh24 || {});
+    sh24.events = sh24.events || [];
+    sh24.consented = false;
+
+    /* ------------------------------------------------ Quelle bestimmen */
+    function detectSource() {
+      try {
+        var stored = sessionStorage.getItem('sh24_src');
+        if (stored) return JSON.parse(stored);
+      } catch (e) {
+        /* sessionStorage kann blockiert sein – dann eben ohne */
+      }
+
+      var params = new URLSearchParams(w.location.search);
+      var ref = document.referrer || '';
+      var refHost = '';
+      try {
+        refHost = ref ? new URL(ref).hostname.replace(/^www\./, '') : '';
+      } catch (e) {
+        refHost = '';
+      }
+
+      // KI-Suchsysteme und Assistenten getrennt erfassen. Sie erscheinen
+      // teils als utm_source, teils nur als Referrer.
+      var aiHosts = ['chatgpt.com', 'chat.openai.com', 'copilot.microsoft.com', 'perplexity.ai', 'gemini.google.com'];
+      var channel = 'direct';
+      var source = params.get('utm_source') || refHost || '(direct)';
+
+      if (params.get('utm_medium') === 'cpc' || params.get('gclid') || params.get('msclkid')) {
+        channel = 'paid';
+      } else if (aiHosts.indexOf(source) > -1 || aiHosts.indexOf(refHost) > -1) {
+        channel = 'ai';
+      } else if (/google|bing|duckduckgo|ecosia|yahoo/.test(source) || /google|bing|duckduckgo|ecosia|yahoo/.test(refHost)) {
+        channel = 'organic';
+      } else if (refHost && refHost !== w.location.hostname.replace(/^www\./, '')) {
+        channel = 'referral';
+      }
+
+      var data = {
+        channel: channel,
+        source: source,
+        medium: params.get('utm_medium') || '',
+        campaign: params.get('utm_campaign') || '',
+        referrerHost: refHost,
+        landing: w.location.pathname,
+      };
+
+      try {
+        sessionStorage.setItem('sh24_src', JSON.stringify(data));
+      } catch (e) {
+        /* ignorieren */
+      }
+      return data;
+    }
+
+    sh24.source = detectSource();
+
+    /* ------------------------------------------------ Ereignis erfassen */
+    sh24.track = function (name, detail) {
+      var evt = {
+        event: name,
+        detail: detail || {},
+        page: w.location.pathname,
+        source: sh24.source,
+        ts: Date.now(),
+      };
+      sh24.events.push(evt);
+
+      // dataLayer für spätere Tag-Manager-Anbindung befüllen. Solange kein
+      // Tag Manager geladen ist, ist das nur ein Array im Speicher.
+      w.dataLayer = w.dataLayer || [];
+      w.dataLayer.push(evt);
+
+      if (sh24.consented && typeof sh24.send === 'function') sh24.send(evt);
+
+      // Im Entwicklungsmodus in der Konsole sichtbar machen
+      if (w.location.hostname === 'localhost' || w.location.hostname === '127.0.0.1') {
+        console.info('[sh24]', name, evt.detail);
+      }
+    };
+
+    /**
+     * Einwilligung setzen. Wird von einem späteren Consent-Banner
+     * aufgerufen. Erst danach dürfen zustimmungspflichtige Dienste laden.
+     */
+    sh24.consent = function (granted) {
+      sh24.consented = !!granted;
+      if (!granted) return;
+      if (typeof sh24.send === 'function') {
+        for (var i = 0; i < sh24.events.length; i++) sh24.send(sh24.events[i]);
+      }
+      w.dispatchEvent(new CustomEvent('sh24:consent', { detail: { granted: true } }));
+    };
+
+    /* ------------------------------------- Ereignisse aus dem Markup */
+    document.addEventListener(
+      'click',
+      function (e) {
+        var el = e.target && e.target.closest ? e.target.closest('[data-track]') : null;
+        if (!el) return;
+        sh24.track(el.getAttribute('data-track'), {
+          location: el.getAttribute('data-track-location') || '',
+          label: (el.getAttribute('data-track-label') || el.textContent || '').trim().slice(0, 80),
+        });
+      },
+      { passive: true },
+    );
+
+    // Seitenaufruf mit Kanalzuordnung
+    sh24.track('page_view', { title: document.title });
+  })();
+</script><link rel="stylesheet" href="/_assets/anfrage-erhalten.gAzvqZAM.css">
+<style>.done[data-astro-cid-fsayqnme]{text-align:left;border-bottom:3px solid var(--ink);padding-bottom:var(--sp-5);margin-bottom:var(--sp-6)}.done__icon[data-astro-cid-fsayqnme]{display:grid;place-items:center;width:3.25rem;height:3.25rem;background:var(--ok);color:var(--white);margin-bottom:var(--sp-4)}.done[data-astro-cid-fsayqnme] h1[data-astro-cid-fsayqnme]{margin-bottom:var(--sp-3)}.recap[data-astro-cid-fsayqnme]{background:var(--paper-2);border:1px solid var(--line);border-top:3px solid var(--ink);padding:var(--sp-5);margin-bottom:var(--sp-6)}.recap[data-astro-cid-fsayqnme] h2[data-astro-cid-fsayqnme]{margin-top:0;font-size:1.05rem}.recap[data-astro-cid-fsayqnme] dl[data-astro-cid-fsayqnme]{display:grid;grid-template-columns:auto 1fr;gap:.35rem var(--sp-5);margin:0;font-size:.95rem}.recap[data-astro-cid-fsayqnme] dt[data-astro-cid-fsayqnme]{color:var(--ink-3)}.recap[data-astro-cid-fsayqnme] dd[data-astro-cid-fsayqnme]{margin:0;font-weight:600}.urgent[data-astro-cid-fsayqnme]{background:var(--paper-2);border-left:6px solid var(--accent);padding:var(--sp-5);margin:var(--sp-6) 0}.urgent[data-astro-cid-fsayqnme] h2[data-astro-cid-fsayqnme]{margin-top:0}.urgent[data-astro-cid-fsayqnme]>[data-astro-cid-fsayqnme]:last-child{margin-bottom:0}.prep[data-astro-cid-fsayqnme] li[data-astro-cid-fsayqnme]{margin-bottom:var(--sp-2)}.prep[data-astro-cid-fsayqnme] li[data-astro-cid-fsayqnme]::marker{color:var(--accent)}.links[data-astro-cid-fsayqnme]{list-style:none;padding:0}.links[data-astro-cid-fsayqnme] li[data-astro-cid-fsayqnme]{padding:var(--sp-3) 0;border-bottom:1px solid var(--line)}.links[data-astro-cid-fsayqnme] a[data-astro-cid-fsayqnme]{display:block;font-weight:700}.links[data-astro-cid-fsayqnme] span[data-astro-cid-fsayqnme]{display:block;font-size:.9rem;color:var(--ink-3)}
+</style><script type="module" src="/_assets/page.BT_9kWGp.js"></script></head> <body> <a class="skip-link" href="#inhalt">Zum Inhalt springen</a> <header class="site-header" data-astro-cid-3ef6ksr2> <div class="site-header__inner" data-astro-cid-3ef6ksr2> <a href="/" class="logo" aria-label="Schnellhelfer24 – zur Startseite" data-astro-cid-3ef6ksr2> <span class="logo__mark" aria-hidden="true" data-astro-cid-3ef6ksr2> <svg viewBox="0 0 32 32" width="32" height="32" fill="none" stroke="currentColor" stroke-width="2" data-astro-cid-3ef6ksr2> <path d="M4 13 16 5l12 8v13a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1z" data-astro-cid-3ef6ksr2></path> <path d="M12 27v-8h8v8" data-astro-cid-3ef6ksr2></path> </svg> </span> <span class="logo__text" data-astro-cid-3ef6ksr2> <span class="logo__name" data-astro-cid-3ef6ksr2>Schnellhelfer<span class="logo__num" data-astro-cid-3ef6ksr2>24</span></span> <span class="logo__claim" data-astro-cid-3ef6ksr2>Berlin &amp; Umland</span> </span> </a> <nav class="nav-desktop" aria-label="Hauptnavigation" data-astro-cid-3ef6ksr2> <ul data-astro-cid-3ef6ksr2> <li data-astro-cid-3ef6ksr2> <a href="/leistungen/" data-astro-cid-3ef6ksr2> Leistungen </a> </li><li data-astro-cid-3ef6ksr2> <a href="/berlin/" data-astro-cid-3ef6ksr2> Einsatzgebiete </a> </li><li data-astro-cid-3ef6ksr2> <a href="/kosten/" data-astro-cid-3ef6ksr2> Kosten &amp; Ablauf </a> </li><li data-astro-cid-3ef6ksr2> <a href="/hausverwaltungen-immobilienpartner/" data-astro-cid-3ef6ksr2> Für Verwaltungen </a> </li><li data-astro-cid-3ef6ksr2> <a href="/einsatzberichte/" data-astro-cid-3ef6ksr2> Einsatzberichte </a> </li><li data-astro-cid-3ef6ksr2> <a href="/ratgeber/" data-astro-cid-3ef6ksr2> Ratgeber </a> </li><li data-astro-cid-3ef6ksr2> <a href="/ueber-uns/" data-astro-cid-3ef6ksr2> Über uns </a> </li><li data-astro-cid-3ef6ksr2> <a href="/kontakt/" data-astro-cid-3ef6ksr2> Kontakt </a> </li> </ul> </nav> <div class="site-header__actions" data-astro-cid-3ef6ksr2> <a class="header-phone" href="tel:+4917686066817" data-track="phone_click" data-track-location="header" data-astro-cid-3ef6ksr2> <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class aria-hidden="true" focusable="false"><path d="M6 3h3l2 5-2.5 1.5a12 12 0 0 0 6 6L16 13l5 2v3a2 2 0 0 1-2.2 2A17 17 0 0 1 4 5.2 2 2 0 0 1 6 3z"/></svg> <span data-astro-cid-3ef6ksr2>0176 86066817</span> </a> <a class="btn btn--primary header-cta" href="/angebot-anfragen/" data-astro-cid-3ef6ksr2>Einschätzung anfordern</a> <details class="menu" data-astro-cid-3ef6ksr2> <summary aria-label="Menü öffnen" data-astro-cid-3ef6ksr2> <span class="menu__bars" aria-hidden="true" data-astro-cid-3ef6ksr2><span data-astro-cid-3ef6ksr2></span><span data-astro-cid-3ef6ksr2></span><span data-astro-cid-3ef6ksr2></span></span> <span class="menu__label" data-astro-cid-3ef6ksr2>Menü</span> </summary> <div class="menu__panel" data-astro-cid-3ef6ksr2> <nav aria-label="Hauptnavigation (mobil)" data-astro-cid-3ef6ksr2> <ul data-astro-cid-3ef6ksr2> <li data-astro-cid-3ef6ksr2> <a href="/leistungen/" data-astro-cid-3ef6ksr2> Leistungen </a> </li><li data-astro-cid-3ef6ksr2> <a href="/berlin/" data-astro-cid-3ef6ksr2> Einsatzgebiete </a> </li><li data-astro-cid-3ef6ksr2> <a href="/kosten/" data-astro-cid-3ef6ksr2> Kosten &amp; Ablauf </a> </li><li data-astro-cid-3ef6ksr2> <a href="/hausverwaltungen-immobilienpartner/" data-astro-cid-3ef6ksr2> Für Verwaltungen </a> </li><li data-astro-cid-3ef6ksr2> <a href="/einsatzberichte/" data-astro-cid-3ef6ksr2> Einsatzberichte </a> </li><li data-astro-cid-3ef6ksr2> <a href="/ratgeber/" data-astro-cid-3ef6ksr2> Ratgeber </a> </li><li data-astro-cid-3ef6ksr2> <a href="/ueber-uns/" data-astro-cid-3ef6ksr2> Über uns </a> </li><li data-astro-cid-3ef6ksr2> <a href="/kontakt/" data-astro-cid-3ef6ksr2> Kontakt </a> </li> </ul> </nav> <a class="btn btn--primary btn--wide" href="/angebot-anfragen/" data-astro-cid-3ef6ksr2>Einschätzung anfordern</a> </div> </details> </div> </div> </header>  <script>
+  // Mobilmenü schließen, wenn außerhalb geklickt oder Escape gedrückt wird.
+  // Bewusst minimal und ohne Framework.
+  (function () {
+    var menu = document.querySelector('.menu');
+    if (!menu) return;
+    document.addEventListener('click', function (e) {
+      if (menu.hasAttribute('open') && !menu.contains(e.target)) menu.removeAttribute('open');
+    });
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && menu.hasAttribute('open')) {
+        menu.removeAttribute('open');
+        var s = menu.querySelector('summary');
+        if (s) s.focus();
+      }
+    });
+  })();
+</script> <main id="inhalt">  <div class="wrap wrap--mid section" data-astro-cid-fsayqnme> <div class="done" data-astro-cid-fsayqnme> <span class="done__icon" aria-hidden="true" data-astro-cid-fsayqnme><svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class aria-hidden="true" focusable="false"><path d="m4 12 5 5L20 6"/></svg></span> <h1 data-astro-cid-fsayqnme>Ihre Anfrage ist angekommen</h1> <p class="lede" data-astro-cid-fsayqnme>
+Wir haben Ihre Angaben erhalten und melden uns auf dem Weg zurück, den Sie gewählt haben.
+</p> </div> <!-- Zusammenfassung aus den abgesendeten Angaben. Wird clientseitig
+         gefüllt, weil die Seite statisch ausgeliefert wird. Die Angaben
+         stammen ausschließlich aus dem eigenen Browser des Nutzers. --> <section class="recap" data-recap hidden aria-labelledby="recap-head" data-astro-cid-fsayqnme> <h2 id="recap-head" data-astro-cid-fsayqnme>Das haben Sie uns geschickt</h2> <dl data-recap-list data-astro-cid-fsayqnme></dl> </section> <section aria-labelledby="next" data-astro-cid-fsayqnme> <h2 id="next" data-astro-cid-fsayqnme>Wie es weitergeht</h2> <ol class="steps" data-astro-cid-fsayqnme> <li data-astro-cid-fsayqnme> <span class="steps__title" data-astro-cid-fsayqnme>Wir sehen uns die Angaben an</span> <p data-astro-cid-fsayqnme>
+Jemand aus dem Team schaut sich Ihre Fotos und die Angaben zu Etage, Aufzug und Zugang
+            an. Das macht kein Programm, sondern eine Person, die die Einsätze kennt.
+</p> </li> <li data-astro-cid-fsayqnme> <span class="steps__title" data-astro-cid-fsayqnme>Wir melden uns zurück</span> <p data-astro-cid-fsayqnme>
+Auf dem Weg, den Sie angegeben haben. Wenn etwas unklar ist, fragen wir nach, statt zu
+            raten. Häufig genügen ein oder zwei zusätzliche Fotos.
+</p> </li> <li data-astro-cid-fsayqnme> <span class="steps__title" data-astro-cid-fsayqnme>Einschätzung oder Besichtigung</span> <p data-astro-cid-fsayqnme>
+Bei überschaubaren Aufträgen reicht die Fotoeinschätzung. Bei kompletten Auflösungen,
+            Häusern mit Grundstück und stark zugestellten Wohnungen schlagen wir eine Besichtigung
+            vor. Sie kostet nichts und dauert je nach Objekt zwanzig bis sechzig Minuten.
+</p> </li> <li data-astro-cid-fsayqnme> <span class="steps__title" data-astro-cid-fsayqnme>Schriftliche Absprache</span> <p data-astro-cid-fsayqnme>
+Vor dem Einsatz steht fest, was enthalten ist, wie lange es dauert und was es kostet.
+            Erst danach entscheiden Sie, ob Sie beauftragen.
+</p> </li> </ol> </section> <section class="urgent" aria-labelledby="eilig" data-astro-cid-fsayqnme> <h2 id="eilig" data-astro-cid-fsayqnme>Wenn es eilig ist</h2> <p data-astro-cid-fsayqnme>
+Wenn ein Übergabetermin drückt oder sich etwas geändert hat, warten Sie nicht auf unsere
+        Rückmeldung, sondern melden Sie sich direkt.
+</p> <div class="btn-row" data-astro-cid-fsayqnme> <a class="btn btn--primary" href="tel:+4917686066817" data-track="phone_click" data-track-location="bestaetigung" data-astro-cid-fsayqnme> <svg xmlns="http://www.w3.org/2000/svg" width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class aria-hidden="true" focusable="false"><path d="M6 3h3l2 5-2.5 1.5a12 12 0 0 0 6 6L16 13l5 2v3a2 2 0 0 1-2.2 2A17 17 0 0 1 4 5.2 2 2 0 0 1 6 3z"/></svg> 0176 86066817 </a> <a class="btn btn--secondary" href="https://wa.me/4917686066817?text=Hallo%2C%20ich%20m%C3%B6chte%20eine%20Einsch%C3%A4tzung%20f%C3%BCr%20eine%20R%C3%A4umung%20bzw.%20einen%20Umzug.%20Ich%20schicke%20Ihnen%20gleich%20Fotos." target="_blank" rel="noopener" data-track="whatsapp_click" data-track-location="bestaetigung" data-astro-cid-fsayqnme> <svg xmlns="http://www.w3.org/2000/svg" width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class aria-hidden="true" focusable="false"><path d="M20 12a8 8 0 0 1-11.9 7L4 20l1.1-3.9A8 8 0 1 1 20 12z"/><path d="M9 9.5c0 3 2.5 5.5 5.5 5.5.6 0 1-.5 1-1l-1.5-.8-1 .8a5 5 0 0 1-2.5-2.5l.8-1L10.5 9c-.5 0-1.5.1-1.5.5z"/></svg>
+Weitere Fotos per WhatsApp
+</a> <a class="btn btn--ghost" href="mailto:hello@schnellhelfer24.de" data-astro-cid-fsayqnme> <svg xmlns="http://www.w3.org/2000/svg" width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class aria-hidden="true" focusable="false"><path d="M3 6h18v12H3z"/><path d="m3 7 9 6 9-6"/></svg> hello@schnellhelfer24.de </a>  </div> <p class="text-muted" data-astro-cid-fsayqnme>
+Über WhatsApp können Sie Fotos direkt aus der Galerie schicken. Das ist der einfachste
+            Weg, wenn Sie noch Räume nachreichen möchten.
+</p> </section> <section aria-labelledby="vorbereiten" data-astro-cid-fsayqnme> <h2 id="vorbereiten" data-astro-cid-fsayqnme>Das hilft uns bei der Einschätzung</h2> <p data-astro-cid-fsayqnme>
+Sie müssen nichts davon vorbereiten. Wenn Sie sich diese Punkte aber schon einmal ansehen,
+        geht das Gespräch danach deutlich schneller:
+</p> <ul class="prep" data-astro-cid-fsayqnme> <li data-astro-cid-fsayqnme>Wo genau ist die Halteposition für das Fahrzeug? Hinterhof, Straße, eigene Einfahrt?</li><li data-astro-cid-fsayqnme>Gibt es Nebenräume, die noch nicht auf den Fotos sind? Keller, Dachboden, Balkon, Garage.</li><li data-astro-cid-fsayqnme>Soll etwas ausdrücklich bleiben oder an die Familie gehen?</li><li data-astro-cid-fsayqnme>Gibt es einen festen Übergabetermin mit dem Vermieter?</li><li data-astro-cid-fsayqnme>Muss etwas demontiert werden? Einbauküche, Einbauschrank, Teppichboden, Lampen.</li><li data-astro-cid-fsayqnme>Sind besonders schwere oder sperrige Stücke dabei? Klavier, Tresor, Aquarium, Werkbank.</li><li data-astro-cid-fsayqnme>Ist ein Kostenträger beteiligt, etwa Jobcenter, Sozialamt oder Pflegekasse?</li> </ul> </section> <section aria-labelledby="lesen" data-astro-cid-fsayqnme> <h2 id="lesen" data-astro-cid-fsayqnme>Bis dahin</h2> <ul class="links" data-astro-cid-fsayqnme> <li data-astro-cid-fsayqnme> <a href="/kosten/was-kostet-eine-entruempelung-in-berlin/" data-astro-cid-fsayqnme>Was kostet eine Entrümpelung in Berlin?</a> <span data-astro-cid-fsayqnme>Woraus sich der Preis zusammensetzt und woran Sie ein unseriöses Angebot erkennen.</span> </li><li data-astro-cid-fsayqnme> <a href="/kosten/kosten-haushaltsaufloesung-berlin/" data-astro-cid-fsayqnme>Was kostet eine Haushaltsauflösung in Berlin?</a> <span data-astro-cid-fsayqnme>Warum der Sortieraufwand mehr kostet als das Tragen und was Wertanrechnung wirklich bringt.</span> </li><li data-astro-cid-fsayqnme> <a href="/kosten/kosten-sperrmuellabholung-berlin/" data-astro-cid-fsayqnme>Was kostet eine Sperrmüllabholung in Berlin?</a> <span data-astro-cid-fsayqnme>BSR, Recyclinghof oder private Abholung: Was wann der sinnvollere Weg ist.</span> </li><li data-astro-cid-fsayqnme> <a href="/kosten/kosten-seniorenumzug-berlin/" data-astro-cid-fsayqnme>Was kostet ein Seniorenumzug in Berlin?</a> <span data-astro-cid-fsayqnme>Was den Preis bestimmt und in welcher Reihenfolge Sie bei Kostenträgern vorgehen müssen.</span> </li><li data-astro-cid-fsayqnme> <a href="/ratgeber/welche-fotos-fuer-ein-angebot/" data-astro-cid-fsayqnme>Welche Fotos brauchen wir für ein Angebot?</a> <span data-astro-cid-fsayqnme>Zwölf Fotos genügen. Diese zwölf sollten es sein.</span> </li> </ul> </section> </div>  </main> <footer class="site-footer" data-astro-cid-sz7xmlte> <div class="wrap" data-astro-cid-sz7xmlte> <div class="footer-grid" data-astro-cid-sz7xmlte> <div class="footer-col footer-col--brand" data-astro-cid-sz7xmlte> <p class="footer-name" data-astro-cid-sz7xmlte>Schnellhelfer<span data-astro-cid-sz7xmlte>24</span></p> <p class="footer-claim" data-astro-cid-sz7xmlte>
+Entrümpelung, Auflösung und Umzug in Berlin und im Berliner Umland.
+</p> <ul class="footer-contact" data-astro-cid-sz7xmlte> <li data-astro-cid-sz7xmlte> <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class aria-hidden="true" focusable="false"><path d="M6 3h3l2 5-2.5 1.5a12 12 0 0 0 6 6L16 13l5 2v3a2 2 0 0 1-2.2 2A17 17 0 0 1 4 5.2 2 2 0 0 1 6 3z"/></svg> <a href="tel:+4917686066817" data-track="phone_click" data-track-location="footer" data-astro-cid-sz7xmlte> 0176 86066817 </a> </li> <li data-astro-cid-sz7xmlte> <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class aria-hidden="true" focusable="false"><path d="M20 12a8 8 0 0 1-11.9 7L4 20l1.1-3.9A8 8 0 1 1 20 12z"/><path d="M9 9.5c0 3 2.5 5.5 5.5 5.5.6 0 1-.5 1-1l-1.5-.8-1 .8a5 5 0 0 1-2.5-2.5l.8-1L10.5 9c-.5 0-1.5.1-1.5.5z"/></svg> <a href="https://wa.me/4917686066817?text=Hallo%2C%20ich%20m%C3%B6chte%20eine%20Einsch%C3%A4tzung%20f%C3%BCr%20eine%20R%C3%A4umung%20bzw.%20einen%20Umzug.%20Ich%20schicke%20Ihnen%20gleich%20Fotos." target="_blank" rel="noopener" data-track="whatsapp_click" data-track-location="footer" data-astro-cid-sz7xmlte>
+WhatsApp
+</a> </li> <li data-astro-cid-sz7xmlte> <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class aria-hidden="true" focusable="false"><path d="M3 6h18v12H3z"/><path d="m3 7 9 6 9-6"/></svg> <a href="mailto:hello@schnellhelfer24.de" data-astro-cid-sz7xmlte>hello@schnellhelfer24.de</a> </li> <li data-astro-cid-sz7xmlte> <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class aria-hidden="true" focusable="false"><path d="M12 21s7-6 7-11a7 7 0 1 0-14 0c0 5 7 11 7 11z"/><circle cx="12" cy="10" r="2.5"/></svg> <span data-astro-cid-sz7xmlte>Lindenstr. 16, 10969 Berlin</span> </li> </ul>   </div> <nav class="footer-col" aria-labelledby="f-leistungen" data-astro-cid-sz7xmlte> <h2 class="footer-head" id="f-leistungen" data-astro-cid-sz7xmlte>Leistungen</h2> <ul data-astro-cid-sz7xmlte> <li data-astro-cid-sz7xmlte> <a href="/leistungen/entruempelung-berlin/" data-astro-cid-sz7xmlte>Entrümpelung</a> </li><li data-astro-cid-sz7xmlte> <a href="/leistungen/haushaltsaufloesung-berlin/" data-astro-cid-sz7xmlte>Haushaltsauflösung</a> </li><li data-astro-cid-sz7xmlte> <a href="/leistungen/wohnungsaufloesung-berlin/" data-astro-cid-sz7xmlte>Wohnungsauflösung</a> </li><li data-astro-cid-sz7xmlte> <a href="/leistungen/nachlassaufloesung-berlin/" data-astro-cid-sz7xmlte>Nachlassauflösung</a> </li><li data-astro-cid-sz7xmlte> <a href="/leistungen/messiwohnung-raeumen/" data-astro-cid-sz7xmlte>Vermüllte Wohnung räumen</a> </li><li data-astro-cid-sz7xmlte> <a href="/leistungen/sperrmuellabholung-berlin/" data-astro-cid-sz7xmlte>Sperrmüll &amp; Möbel</a> </li><li data-astro-cid-sz7xmlte> <a href="/leistungen/umzug-berlin/" data-astro-cid-sz7xmlte>Umzug</a> </li><li data-astro-cid-sz7xmlte> <a href="/leistungen/seniorenumzug-berlin/" data-astro-cid-sz7xmlte>Seniorenumzug</a> </li> <li data-astro-cid-sz7xmlte><a href="/leistungen/" data-astro-cid-sz7xmlte>Alle Leistungen</a></li> </ul> </nav> <nav class="footer-col" aria-labelledby="f-gebiete" data-astro-cid-sz7xmlte> <h2 class="footer-head" id="f-gebiete" data-astro-cid-sz7xmlte>Einsatzgebiete</h2> <ul data-astro-cid-sz7xmlte> <li data-astro-cid-sz7xmlte><a href="/berlin/" data-astro-cid-sz7xmlte>Berlin – Übersicht</a></li> <li data-astro-cid-sz7xmlte> <a href="/berlin/pankow/" data-astro-cid-sz7xmlte>Pankow</a> </li><li data-astro-cid-sz7xmlte> <a href="/berlin/marzahn-hellersdorf/" data-astro-cid-sz7xmlte>Marzahn-Hellersdorf</a> </li><li data-astro-cid-sz7xmlte> <a href="/berlin/charlottenburg-wilmersdorf/" data-astro-cid-sz7xmlte>Charlottenburg-Wilmersdorf</a> </li> <li data-astro-cid-sz7xmlte><a href="/brandenburg/" data-astro-cid-sz7xmlte>Berliner Umland</a></li> <li data-astro-cid-sz7xmlte> <a href="/brandenburg/potsdam/" data-astro-cid-sz7xmlte>Potsdam</a> </li><li data-astro-cid-sz7xmlte> <a href="/brandenburg/falkensee/" data-astro-cid-sz7xmlte>Falkensee</a> </li> </ul> </nav> <nav class="footer-col" aria-labelledby="f-info" data-astro-cid-sz7xmlte> <h2 class="footer-head" id="f-info" data-astro-cid-sz7xmlte>Information</h2> <ul data-astro-cid-sz7xmlte> <li data-astro-cid-sz7xmlte><a href="/kosten/" data-astro-cid-sz7xmlte>Kosten & Preisfaktoren</a></li> <li data-astro-cid-sz7xmlte><a href="/hausverwaltungen-immobilienpartner/" data-astro-cid-sz7xmlte>Für Hausverwaltungen</a></li> <li data-astro-cid-sz7xmlte><a href="/ratgeber/" data-astro-cid-sz7xmlte>Ratgeber</a></li> <li data-astro-cid-sz7xmlte><a href="/einsatzberichte/" data-astro-cid-sz7xmlte>Einsatzberichte</a></li> <li data-astro-cid-sz7xmlte><a href="/fragen/" data-astro-cid-sz7xmlte>Häufige Fragen</a></li> <li data-astro-cid-sz7xmlte><a href="/ueber-uns/" data-astro-cid-sz7xmlte>Über uns</a></li> <li data-astro-cid-sz7xmlte><a href="/kontakt/" data-astro-cid-sz7xmlte>Kontakt</a></li> <li data-astro-cid-sz7xmlte><a href="/angebot-anfragen/" data-astro-cid-sz7xmlte>Einschätzung anfordern</a></li> </ul> </nav> </div> <div class="footer-bottom" data-astro-cid-sz7xmlte> <p class="footer-legal" data-astro-cid-sz7xmlte>
+© 2026 Schnellhelfer24 </p> <ul class="footer-legal-links" data-astro-cid-sz7xmlte> <li data-astro-cid-sz7xmlte><a href="/impressum/" data-astro-cid-sz7xmlte>Impressum</a></li> <li data-astro-cid-sz7xmlte><a href="/datenschutz/" data-astro-cid-sz7xmlte>Datenschutz</a></li> </ul> </div> </div> </footer>   </body></html>  <script>
+  (function () {
+    var box = document.querySelector('[data-recap]');
+    var list = document.querySelector('[data-recap-list]');
+    if (!box || !list) return;
+
+    // Reihenfolge der Zusammenfassung. Wer hier ein Feld ergänzt, muss es
+    // auch im Formular (AufwandCheck.astro) und in der Auswertung
+    // (public/api/anfrage.php) führen – sonst zeigt die Bestätigung etwas
+    // an, was in der Anfrage nie ankommt.
+    var labels = {
+      leistung: 'Leistung',
+      umfang: 'Umfang',
+      anlass: 'Anlass',
+      plz: 'Postleitzahl',
+      ort: 'Ort',
+      objektart: 'Objekt',
+      flaeche: 'Größe',
+      fuellgrad: 'Füllgrad',
+      etage: 'Etage',
+      aufzug: 'Aufzug',
+      zusatzleistungen: 'Zusatzleistungen',
+      nebenraeume: 'Zusätzlich',
+      zeitraum: 'Zeitraum',
+      stichtag: 'Fester Termin',
+      kontaktart: 'Antwort per',
+    };
+
+    try {
+      var raw = sessionStorage.getItem('sh24_anfrage');
+      if (!raw) return;
+      var data = JSON.parse(raw);
+
+      Object.keys(labels).forEach(function (key) {
+        if (!data[key]) return;
+        var dt = document.createElement('dt');
+        dt.textContent = labels[key];
+        var dd = document.createElement('dd');
+        dd.textContent = data[key];
+        list.appendChild(dt);
+        list.appendChild(dd);
+      });
+
+      if (data.fotos) {
+        var dt2 = document.createElement('dt');
+        dt2.textContent = 'Fotos';
+        var dd2 = document.createElement('dd');
+        dd2.textContent = data.fotos === 1 ? '1 Bild' : data.fotos + ' Bilder';
+        list.appendChild(dt2);
+        list.appendChild(dd2);
+      }
+
+      if (list.children.length) box.hidden = false;
+
+      // Nur einmal anzeigen: beim erneuten Aufruf der Seite ist die
+      // Zusammenfassung weg, damit keine Daten im Browser liegen bleiben.
+      sessionStorage.removeItem('sh24_anfrage');
+
+      if (window.sh24 && window.sh24.track) {
+        window.sh24.track('lead_confirmed', { leistung: data.leistung || '' });
+      }
+    } catch (err) {
+      /* ohne Zusammenfassung ist die Seite trotzdem vollständig */
+    }
+  })();
+</script>

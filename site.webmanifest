@@ -1,0 +1,18 @@
+{
+  "name": "Schnellhelfer24 – Entrümpelung, Auflösung & Umzug in Berlin",
+  "short_name": "Schnellhelfer24",
+  "description": "Entrümpelung, Haushaltsauflösung und Umzug in Berlin und im Berliner Umland.",
+  "start_url": "/",
+  "display": "browser",
+  "background_color": "#ffffff",
+  "theme_color": "#14171a",
+  "lang": "de",
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    }
+  ]
+}

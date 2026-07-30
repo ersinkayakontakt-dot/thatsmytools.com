@@ -1,0 +1,22 @@
+# Vollständige Sperre für die Ablage.
+#
+# Hier liegen hochgeladene Wohnungsfotos und eingegangene Anfragen.
+# Diese Dateien dürfen unter keinen Umständen über das Web erreichbar
+# sein. Zusätzlich zu dieser Datei gilt:
+#   - zufällige Dateinamen
+#   - Verzeichnisrechte 0700, Dateirechte 0600
+#   - kein Verzeichnislisting
+#
+# Noch sicherer: storageDir in config.local.php auf einen Pfad
+# OBERHALB des Webverzeichnisses setzen. Dann greift diese Datei
+# gar nicht erst.
+
+Options -Indexes
+
+<IfModule mod_authz_core.c>
+  Require all denied
+</IfModule>
+<IfModule !mod_authz_core.c>
+  Order allow,deny
+  Deny from all
+</IfModule>

@@ -1,0 +1,3 @@
+# Dieses Verzeichnis nimmt zur Laufzeit hochgeladene Fotos und
+# eingegangene Anfragen auf. Der Inhalt gehört niemals ins Repository
+# (siehe .gitignore). Nur .htaccess und diese Datei werden versioniert.
