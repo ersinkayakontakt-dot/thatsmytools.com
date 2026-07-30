@@ -26,12 +26,12 @@ import { phone, whatsapp, primaryCta } from '../lib/contact';
       </a>
       {
         phone.available ? (
-          <a class="hero__phone" href={phone.href} data-track="phone_click" data-track-location="hero">
+          <a class="btn btn--secondary" href={phone.href} data-track="phone_click" data-track-location="hero">
             <Icon name="phone" size={19} />
             {phone.display}
           </a>
         ) : (
-          <a class="hero__phone" href="/kontakt/">
+          <a class="btn btn--secondary" href="/kontakt/">
             <Icon name="phone" size={19} />
             Kontakt aufnehmen
           </a>
@@ -40,7 +40,7 @@ import { phone, whatsapp, primaryCta } from '../lib/contact';
       {
         whatsapp.available && (
           <a
-            class="hero__phone"
+            class="btn btn--ghost"
             href={whatsapp.href}
             target="_blank"
             rel="noopener"
@@ -128,26 +128,12 @@ import { phone, whatsapp, primaryCta } from '../lib/contact';
     display: flex;
     flex-wrap: wrap;
     align-items: center;
-    gap: 1rem 1.5rem;
+    gap: 0.9rem;
   }
   .hero__actions :global(.btn) {
     border-radius: 0;
     min-height: 3.5rem;
     padding-inline: 1.6rem;
-  }
-  .hero__phone {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.55rem;
-    min-height: 2.75rem;
-    color: var(--ink);
-    font-weight: 750;
-    text-decoration: none;
-    border-bottom: 2px solid var(--ink);
-  }
-  .hero__phone:hover {
-    color: var(--accent-text);
-    border-color: var(--accent);
   }
   .hero__facts {
     display: grid;
