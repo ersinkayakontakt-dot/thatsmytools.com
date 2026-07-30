@@ -118,6 +118,9 @@
 html {
   -webkit-text-size-adjust: 100%;
   scroll-behavior: smooth;
+  /* Der Kopfbereich läuft mit. Ohne diesen Abstand verschwindet das Ziel
+     eines Ankerlinks (Inhaltsverzeichnis, FAQ-Sprungmarken) darunter. */
+  scroll-padding-top: 5.5rem;
 }
 
 @media (prefers-reduced-motion: reduce) {

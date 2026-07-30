@@ -145,6 +145,12 @@ PUBLIC_SHOW_TODOS=1 npm run build
 
 ## 6. Deployment
 
+> Für die **laufende Aktualisierung** einer bereits eingerichteten
+> Installation gibt es eine eigene, ausführlichere Anleitung:
+> `docs/HOSTINGER-AKTUALISIEREN.md`. Sie beschreibt das PowerShell-Skript
+> `scripts/deploy.ps1` und den GitHub-Ablauf. Der Abschnitt hier beschreibt
+> die Ersteinrichtung.
+
 ### Variante A: Hostinger oder anderes Webhosting mit Apache
 
 1. `npm run build`
