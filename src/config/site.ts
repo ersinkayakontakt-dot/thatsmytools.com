@@ -90,7 +90,7 @@ export const site = {
   /**
    * E-Mail unter eigener Domain (kein gmail/web.de – Vertrauensfaktor).
    */
-  email: '[DOMAIN-E-MAIL EINTRAGEN, z. B. anfrage@schnellhelfer24.de]',
+  email: 'hello@schnellhelfer24.de',
 
   address: {
     street: '[STRASSE UND HAUSNUMMER EINTRAGEN]',

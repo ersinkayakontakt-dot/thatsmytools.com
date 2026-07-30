@@ -27,7 +27,7 @@ Die Reihenfolge unten ist nach Dringlichkeit sortiert.
 |---|---|
 | ~~`phone` / `phoneDisplay`~~ ✅ | Eingetragen: `+49 176 86066817` / `0176 86066817`. Muss **identisch** im Google-Unternehmensprofil hinterlegt werden. |
 | ~~`whatsapp`~~ ✅ | Eingetragen: `+49 176 86066817` (identisch mit der Telefonnummer). |
-| `email` | E-Mail unter eigener Domain, zum Beispiel `anfrage@schnellhelfer24.de`. **Keine gmail- oder web.de-Adresse.** Fremde Absenderdomains landen im Spam und wirken unseriös. |
+| ~~`email`~~ ✅ | Eingetragen: `hello@schnellhelfer24.de`. Postfach muss unter der Domain tatsächlich empfangen – vor Launch mit einer Testmail prüfen. |
 | `address.street`, `address.postalCode` | Ladungsfähige Anschrift. Kein Postfach. Pflicht nach § 5 DDG. |
 
 Ohne Telefonnummer fehlt der zweitwichtigste Conversion-Weg der ganzen Seite.
