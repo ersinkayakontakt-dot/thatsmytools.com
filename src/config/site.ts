@@ -147,16 +147,78 @@ export const site = {
 
   /**
    * sameAs-Profile für die Entity-Konsistenz.
-   * Nur echte, live erreichbare Profile eintragen.
-   * Platzhalter werden aus dem Schema herausgefiltert.
+   *
+   * WARUM DAS DIE WICHTIGSTE LISTE DIESER DATEI IST:
+   * Suchmaschinen und Antwortsysteme erkennen ein Unternehmen nicht am
+   * Namen, sondern daran, dass überall dieselben Angaben stehen. Je mehr
+   * unabhängige Quellen dieselbe Firmierung, Adresse und Telefonnummer
+   * nennen und auf dieselbe Domain verweisen, desto eindeutiger wird die
+   * Zuordnung. Bei einem Namen wie „Schnellhelfer24", der in einem Feld
+   * ähnlicher Namen steht (DeineHelfer24, PflegeHelfer24, Umzugsheld24),
+   * ist das der einzige Weg, überhaupt als eigenständiges Unternehmen
+   * erkannt zu werden.
+   *
+   * Nur echte, live erreichbare Profile eintragen. Platzhalter werden aus
+   * dem Schema herausgefiltert, sie schaden also nicht, nützen aber auch
+   * nichts. Reihenfolge = Reihenfolge der Wirkung.
+   *
+   * Vollständige Anleitung: docs/ENTITY-UND-RANKING.md
    */
   profiles: {
+    // Stufe 1: die Karten- und Suchprofile. Ohne diese existiert das
+    // Unternehmen für die lokale Suche schlicht nicht.
     googleBusiness: 'https://www.google.com/maps?cid=17944767786079972495',
-    youtube: 'https://www.youtube.com/channel/UCEoMRI2OM4uR-wfm8Gh2b8Q',
     bingPlaces: '[URL BING PLACES EINTRAGEN]',
+    appleMaps: '[URL APPLE BUSINESS CONNECT EINTRAGEN]',
+
+    // Stufe 2: deutsche Branchenverzeichnisse. Jeder Eintrag ist eine
+    // unabhängige Nennung derselben Daten (eine „Citation").
+    gelbeSeiten: '[GELBE-SEITEN-URL EINTRAGEN]',
+    dasOertliche: '[DAS-ÖRTLICHE-URL EINTRAGEN]',
+    elf1880: '[11880-URL EINTRAGEN]',
+    cylex: '[CYLEX-URL EINTRAGEN]',
+    golocal: '[GOLOCAL-URL EINTRAGEN]',
+
+    // Stufe 3: Bewertungsplattformen
+    provenExpert: '[PROVENEXPERT-URL EINTRAGEN ODER ZEILE LÖSCHEN]',
+
+    // Stufe 4: eigene Kanäle
+    linkedin: '[LINKEDIN-UNTERNEHMENSSEITE EINTRAGEN ODER ZEILE LÖSCHEN]',
     facebook: '[FACEBOOK-URL EINTRAGEN ODER ZEILE LÖSCHEN]',
     instagram: '[INSTAGRAM-URL EINTRAGEN ODER ZEILE LÖSCHEN]',
+    youtube: 'https://www.youtube.com/channel/UCEoMRI2OM4uR-wfm8Gh2b8Q',
   } as Record<string, string>,
+
+  /**
+   * Weitere Schreibweisen des Namens.
+   * Menschen und Suchsysteme schreiben den Namen unterschiedlich. Wer die
+   * Varianten auszeichnet, wird auch bei abweichender Schreibweise
+   * zugeordnet.
+   */
+  alternateNames: ['Schnellhelfer 24', 'Schnellhelfer24 Berlin', 'Schnellhelfer24 Entrümpelung'],
+
+  /**
+   * ABGRENZUNG ZU ÄHNLICHEN NAMEN
+   *
+   * Anlass: Auf die Frage nach „schnellhelfer24" antworten KI-Systeme
+   * derzeit mit Verweisen auf DeineHelfer24 und PflegeHelfer24. Der Grund
+   * ist nicht ein schlechtes Ranking, sondern dass zu Schnellhelfer24 noch
+   * keine belastbaren Angaben existieren. Das Modell greift dann zum
+   * ähnlichsten bekannten Namen.
+   *
+   * Dieser Satz erscheint SICHTBAR auf der Über-uns-Seite und wird
+   * zusätzlich als `disambiguatingDescription` ausgezeichnet. Beides muss
+   * übereinstimmen, sonst ist die Auszeichnung wertlos.
+   */
+  disambiguation:
+    'Schnellhelfer24 ist ein eigenständiger Berliner Dienstleistungsbetrieb für Entrümpelung, Haushaltsauflösung, Wohnungsauflösung, Nachlassauflösung und Umzüge in Berlin und im angrenzenden Brandenburg. Das Unternehmen gehört zu keiner Kette und steht in keiner Verbindung zu ähnlich benannten Anbietern wie DeineHelfer24, PflegeHelfer24 oder anderen Diensten mit der Endung „helfer24".',
+
+  /** Kurzform für Karten- und Verzeichniseinträge (max. ca. 200 Zeichen). */
+  shortDescription:
+    'Entrümpelung, Haushaltsauflösung und Umzug in Berlin und im Umland. Einschätzung nach Fotos oder Besichtigung, feste Absprache vor Beginn, auf Wunsch besenreine Übergabe.',
+
+  /** Gründerin oder Gründer – nur eintragen, wenn öffentlich genannt werden soll. */
+  founder: '[NAME DER GRÜNDERIN / DES GRÜNDERS ODER ZEILE LEER LASSEN]',
 
   /**
    * Bewertungen.

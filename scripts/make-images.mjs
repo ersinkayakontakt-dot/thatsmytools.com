@@ -166,6 +166,10 @@ function cropTo(file, width, height) {
 const jobs = [
   { tpl: 'og-template.html', out: 'og-default.png', w: 1200, h: 630 },
   { tpl: 'icon-template.html', out: 'apple-touch-icon.png', w: 180, h: 180 },
+  // Wird in den strukturierten Daten als `logo` der Organisation
+  // referenziert. Größe und Pfad stehen so auch in src/lib/schema.ts –
+  // beides muss zusammenpassen.
+  { tpl: 'logo-template.html', out: 'logo.png', w: 512, h: 512 },
 ];
 
 mkdirSync(tmpDir, { recursive: true });
