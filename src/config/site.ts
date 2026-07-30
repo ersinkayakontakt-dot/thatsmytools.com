@@ -93,8 +93,8 @@ export const site = {
   email: 'hello@schnellhelfer24.de',
 
   address: {
-    street: '[STRASSE UND HAUSNUMMER EINTRAGEN]',
-    postalCode: '[PLZ EINTRAGEN]',
+    street: 'Lindenstr. 16',
+    postalCode: '10969',
     city: 'Berlin',
     region: 'Berlin',
     country: 'DE',

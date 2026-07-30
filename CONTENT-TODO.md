@@ -28,7 +28,7 @@ Die Reihenfolge unten ist nach Dringlichkeit sortiert.
 | ~~`phone` / `phoneDisplay`~~ ✅ | Eingetragen: `+49 176 86066817` / `0176 86066817`. Muss **identisch** im Google-Unternehmensprofil hinterlegt werden. |
 | ~~`whatsapp`~~ ✅ | Eingetragen: `+49 176 86066817` (identisch mit der Telefonnummer). |
 | ~~`email`~~ ✅ | Eingetragen: `hello@schnellhelfer24.de`. Postfach muss unter der Domain tatsächlich empfangen – vor Launch mit einer Testmail prüfen. |
-| `address.street`, `address.postalCode` | Ladungsfähige Anschrift. Kein Postfach. Pflicht nach § 5 DDG. |
+| ~~`address.street`, `address.postalCode`~~ ✅ | Eingetragen: Lindenstr. 16, 10969 Berlin. `hasVisitableAddress` steht weiterhin auf `false` (Service Area Business) – umstellen, falls Kundschaft die Adresse aufsuchen kann. |
 
 Ohne Telefonnummer fehlt der zweitwichtigste Conversion-Weg der ganzen Seite.
 
