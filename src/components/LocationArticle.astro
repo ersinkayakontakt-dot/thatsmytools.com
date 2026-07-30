@@ -56,7 +56,9 @@ const quartersLabel = hub === 'berlin' ? 'Ortsteile im Bezirk' : 'Ortsteile';
         <section>
           <h2>{quartersLabel}</h2>
           <p>
-            Wir arbeiten im gesamten Gebiet. Diese Ortsteile kommen bei Anfragen am häufigsten vor:
+            {hub === 'berlin'
+              ? 'Zum Bezirk gehören diese Ortsteile:'
+              : 'Zu diesem Einsatzgebiet gehören unter anderem diese Ortsteile:'}
           </p>
           <ul class="chips">
             {loc.quarters.map((q) => (
@@ -166,8 +168,8 @@ const quartersLabel = hub === 'berlin' ? 'Ortsteile im Bezirk' : 'Ortsteile';
     <Faq items={loc.faq} title={`Häufige Fragen zu ${loc.name}`} id={`faq-${loc.slug}`} />
 
     <p class="updated">
-      Zuletzt aktualisiert am {formatDate(loc.updated)}. Angaben zu Bebauung und Zufahrt beruhen auf
-      unseren Einsätzen vor Ort und ersetzen keine Prüfung Ihrer konkreten Adresse.
+      Zuletzt aktualisiert am {formatDate(loc.updated)}. Die Beschreibung fasst typische
+      Rahmenbedingungen des Gebiets zusammen und ersetzt keine Prüfung Ihrer konkreten Adresse.
     </p>
   </article>
 

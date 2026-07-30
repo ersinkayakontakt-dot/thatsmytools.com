@@ -153,7 +153,7 @@ export const services: Service[] = [
       },
       {
         q: 'Entrümpeln Sie auch am Wochenende?',
-        a: 'Samstagstermine sind je nach Auslastung möglich. Sonntags arbeiten wir in der Regel nicht, weil in Wohngebäuden Ruhezeiten gelten und ein Räumungseinsatz laut ist. Wenn ein Objekt kurzfristig übergeben werden muss, sprechen Sie uns an, dann suchen wir eine Lösung.',
+        a: 'Ein Samstagstermin kann individuell geprüft werden. Entscheidend sind Auslastung, Hausordnung und Lärmschutz. Nennen Sie bei der Anfrage Ihr Zeitfenster; verbindlich ist ein Wochenendtermin erst, wenn er ausdrücklich bestätigt wurde.',
       },
       {
         q: 'Was kostet eine Entrümpelung in Berlin?',
@@ -1122,9 +1122,9 @@ export const services: Service[] = [
     navLabel: 'Büroauflösung',
     metaTitle: 'Büroauflösung Berlin: Gewerbefläche geräumt übergeben',
     metaDescription:
-      'Büroauflösung in Berlin: Mobiliar, IT und Einbauten räumen, Akten sicher behandeln, Fläche termingerecht übergeben. Auch außerhalb der Geschäftszeiten.',
+      'Büroauflösung in Berlin: Mobiliar, IT und Einbauten räumen, Akten gesondert behandeln und die Fläche nach klar vereinbartem Umfang übergeben.',
     answer:
-      'Bei einer Büroauflösung räumen wir Gewerbeflächen: Möbel, Technik, Einbauten und Lager. Der Einsatz kann außerhalb der Geschäftszeiten stattfinden, damit der laufende Betrieb im Gebäude nicht gestört wird. Akten und Datenträger behandeln wir gesondert. Die Fläche wird termingerecht und besenrein übergeben.',
+      'Bei einer Büroauflösung räumen wir Gewerbeflächen: Möbel, Technik, einfache Einbauten und Lager. Ein Termin außerhalb der Geschäftszeiten kann individuell geprüft werden, damit der laufende Betrieb im Gebäude nicht gestört wird. Akten und Datenträger behandeln wir gesondert. Umfang und gewünschter Übergabezustand werden vorher festgehalten.',
     teaser: 'Gewerbeflächen räumen, Akten gesondert behandeln, termingerecht übergeben.',
     icon: 'building',
     serviceType: 'Büroauflösung',
@@ -1158,7 +1158,7 @@ export const services: Service[] = [
         h: 'Akten und Datenträger',
         p: [
           'Personalakten, Verträge, Buchhaltung und Datenträger dürfen nicht im Sperrmüll landen. Wir sammeln sie getrennt, transportieren sie verschlossen und übergeben sie an die von Ihnen benannte Stelle.',
-          'Für die eigentliche Vernichtung nach DIN 66399 arbeiten wir mit spezialisierten Betrieben zusammen, die Ihnen ein Vernichtungsprotokoll ausstellen. Wir stellen kein eigenes Zertifikat aus und behaupten das auch nicht.',
+          'Für eine Vernichtung nach DIN 66399 ist ein dafür geeigneter Fachbetrieb erforderlich. Ob wir die Übergabe an einen solchen Betrieb im konkreten Auftrag koordinieren können, klären wir vor der Beauftragung. Ein eigenes Vernichtungszertifikat stellen wir nicht aus.',
         ],
         note: {
           title: 'Aufbewahrungsfristen prüfen',
@@ -1209,11 +1209,11 @@ export const services: Service[] = [
     faq: [
       {
         q: 'Können Sie am Wochenende oder abends räumen?',
-        a: 'Ja, das ist bei Gewerbeflächen häufig sinnvoll, weil der Lastenaufzug frei ist und der Betrieb im Haus nicht gestört wird. Zuschläge für Arbeiten außerhalb der üblichen Zeiten nennen wir im Angebot, nicht hinterher.',
+        a: 'Ein Termin außerhalb üblicher Geschäftszeiten kann individuell geprüft werden. Maßgeblich sind Auslastung, Hausordnung, Lärmschutz, Zugang und die Zeiten des Lastenaufzugs. Wenn ein Sondertermin möglich ist und Mehrkosten entstehen, gehört das vor Beginn ausdrücklich in das Angebot.',
       },
       {
         q: 'Übernehmen Sie die Aktenvernichtung?',
-        a: 'Wir sammeln und transportieren Akten gesondert und beauftragen auf Wunsch einen spezialisierten Betrieb für die Vernichtung nach DIN 66399. Das Vernichtungsprotokoll kommt von diesem Betrieb. Ein eigenes Zertifikat stellen wir nicht aus.',
+        a: 'Wir können Akten im Räumungsumfang gesondert behandeln. Für eine Vernichtung nach DIN 66399 ist ein geeigneter Fachbetrieb erforderlich. Ob die Übergabe und ein Vernichtungsnachweis im konkreten Auftrag organisiert werden können, muss vorab schriftlich vereinbart werden. Ein eigenes Zertifikat stellen wir nicht aus.',
       },
       {
         q: 'Was passiert mit alter IT-Hardware?',
@@ -1221,12 +1221,12 @@ export const services: Service[] = [
       },
       {
         q: 'Bekomme ich eine Rechnung mit ausgewiesener Umsatzsteuer?',
-        a: 'Ja. Gewerbliche Auftraggeber erhalten eine ordnungsgemäße Rechnung mit ausgewiesener Umsatzsteuer und einzeln aufgeführten Positionen, sodass sie sich sauber buchen lässt.',
+        a: 'Sie erhalten eine Rechnung mit den vereinbarten Positionen. Ob Umsatzsteuer ausgewiesen wird oder ein gesetzlicher Hinweis zur steuerlichen Behandlung auf der Rechnung steht, richtet sich nach dem tatsächlichen steuerlichen Status des Unternehmens. Diese Angabe wird nicht versprochen, bevor der Status bestätigt ist.',
       },
     ],
     related: ['entruempelung-berlin', 'demontage-rueckbau', 'kleintransport-moebeltransport-berlin'],
     guides: ['was-kostet-eine-entruempelung-in-berlin'],
-    updated: '2026-07-29',
+    updated: '2026-07-30',
   },
 
   /* ================================================================== */

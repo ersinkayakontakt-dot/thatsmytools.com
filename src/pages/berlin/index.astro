@@ -3,7 +3,7 @@ import Base from '../../layouts/Base.astro';
 import Breadcrumbs from '../../components/Breadcrumbs.astro';
 import CtaBand from '../../components/CtaBand.astro';
 import Faq from '../../components/Faq.astro';
-import { districts, publishedDistricts } from '../../data/districts';
+import { publishedDistricts } from '../../data/districts';
 import { publishedTowns } from '../../data/towns';
 import {
   buildGraph,
@@ -27,11 +27,11 @@ const crumbs = [
 const faq = [
   {
     q: 'In welchen Berliner Bezirken arbeiten Sie?',
-    a: 'In allen zwölf. Für die Bezirke, in denen wir am häufigsten unterwegs sind, gibt es eigene Seiten mit den örtlichen Gegebenheiten. Für die übrigen gilt dasselbe Einsatzgebiet, nur ohne eigene Seite. Fragen Sie einfach an, wir sagen Ihnen, was möglich ist.',
+    a: 'In allen zwölf. Zu jedem Bezirk gibt es eine eigene Seite mit den dort typischen Gebäude-, Zugangs- und Verkehrssituationen. Für die konkrete Einschätzung zählen trotzdem immer Adresse, Etage, Aufzug, Trageweg und Umfang des Auftrags.',
   },
   {
-    q: 'Warum gibt es nicht für jeden Bezirk eine eigene Seite?',
-    a: 'Weil eine Seite, die sich nur im Ortsnamen von einer anderen unterscheidet, niemandem hilft. Wir veröffentlichen eine Bezirksseite erst, wenn wir dort genug gearbeitet haben, um etwas Konkretes über Bebauung, Zufahrt und typische Aufträge sagen zu können.',
+    q: 'Warum unterscheiden sich die Bezirksseiten?',
+    a: 'Weil Gebäude und Zugang den Aufwand stärker bestimmen als der Ortsname. Die Seiten beschreiben jeweils andere Rahmenbedingungen, etwa Altbau und Hinterhof, Großwohnanlage und Aufzug oder Haus und Nebenflächen. Eine verbindliche Einschätzung erfolgt erst anhand Ihrer konkreten Adresse.',
   },
   {
     q: 'Kostet ein Einsatz am Stadtrand mehr als in der Innenstadt?',
@@ -51,7 +51,6 @@ const schema = buildGraph([
   faqNode(path, faq),
 ]);
 
-const draftDistricts = districts.filter((d) => d.status !== 'published');
 ---
 
 <Base title={title} description={description} path={path} schema={schema}>
@@ -74,11 +73,11 @@ const draftDistricts = districts.filter((d) => d.status !== 'published');
 
   <section class="section" aria-labelledby="bezirke">
     <div class="wrap">
-      <p class="kicker">Bezirke mit eigener Seite</p>
-      <h2 id="bezirke">Wo wir regelmäßig arbeiten</h2>
+      <p class="kicker">Alle zwölf Bezirke</p>
+      <h2 id="bezirke">Lokale Planung für Ihre Adresse</h2>
       <p class="lede">
-        Diese Bezirksseiten enthalten das, was uns dort tatsächlich begegnet: typische Gebäude,
-        Zufahrt und Parken, häufige Auftragsarten und Fragen aus der Gegend.
+        Jede Bezirksseite erklärt die typischen Gebäude, Zufahrten und Tragewege. Sie hilft bei der
+        Vorbereitung; das konkrete Angebot basiert immer auf Ihrem Objekt.
       </p>
 
       <ul class="dist-grid">
@@ -95,30 +94,6 @@ const draftDistricts = districts.filter((d) => d.status !== 'published');
           ))
         }
       </ul>
-    </div>
-  </section>
-
-  <section class="section section--paper" aria-labelledby="weitere">
-    <div class="wrap">
-      <p class="kicker">Ebenfalls im Einsatzgebiet</p>
-      <h2 id="weitere">Die übrigen Bezirke</h2>
-      <p class="lede">
-        Hier arbeiten wir genauso, es gibt nur noch keine eigene Seite. Wir legen eine an, sobald wir
-        genug eigene Erfahrung im Bezirk gesammelt haben, um etwas Brauchbares dazu zu schreiben.
-        Eine Seite, die nur den Ortsnamen austauscht, hilft niemandem.
-      </p>
-      <ul class="chips">
-        {
-          draftDistricts.map((d) => (
-            <li>
-              <span class="chip">{d.name}</span>
-            </li>
-          ))
-        }
-      </ul>
-      <p>
-        <a class="btn btn--secondary" href="/angebot-anfragen/">Einschätzung für Ihre Adresse anfordern</a>
-      </p>
     </div>
   </section>
 

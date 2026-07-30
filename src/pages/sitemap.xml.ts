@@ -23,7 +23,6 @@ ${urls
     (u) => `  <url>
     <loc>${site.url}${u.url}</loc>
     <lastmod>${u.lastmod}</lastmod>
-    <priority>${u.priority.toFixed(1)}</priority>
   </url>`,
   )
   .join('\n')}

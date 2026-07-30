@@ -1,4 +1,5 @@
 import type { District } from './types.ts';
+import { additionalDistricts } from './additionalDistricts.ts';
 
 /**
  * BERLINER BEZIRKE
@@ -302,122 +303,8 @@ export const districts: District[] = [
     updated: '2026-07-29',
   },
 
-  /* ================================================================== */
-  /* ENTWÜRFE                                                           */
-  /* Diese Seiten sind angelegt, aber NICHT veröffentlicht.             */
-  /* Sie sind noindex, nicht in der Sitemap und nicht verlinkt.         */
-  /* Freigabe erst nach Ergänzung der individuellen Inhalte.            */
-  /* ================================================================== */
-  draftDistrict('mitte', 'Mitte', ['Mitte', 'Moabit', 'Wedding', 'Gesundbrunnen', 'Tiergarten', 'Hansaviertel']),
-  draftDistrict('friedrichshain-kreuzberg', 'Friedrichshain-Kreuzberg', [
-    'Friedrichshain',
-    'Kreuzberg',
-  ]),
-  draftDistrict('spandau', 'Spandau', [
-    'Spandau',
-    'Haselhorst',
-    'Siemensstadt',
-    'Staaken',
-    'Gatow',
-    'Kladow',
-    'Hakenfelde',
-    'Falkenhagener Feld',
-    'Wilhelmstadt',
-  ]),
-  draftDistrict('steglitz-zehlendorf', 'Steglitz-Zehlendorf', [
-    'Steglitz',
-    'Lichterfelde',
-    'Lankwitz',
-    'Zehlendorf',
-    'Dahlem',
-    'Nikolassee',
-    'Wannsee',
-  ]),
-  draftDistrict('tempelhof-schoeneberg', 'Tempelhof-Schöneberg', [
-    'Schöneberg',
-    'Friedenau',
-    'Tempelhof',
-    'Mariendorf',
-    'Marienfelde',
-    'Lichtenrade',
-  ]),
-  draftDistrict('neukoelln', 'Neukölln', [
-    'Neukölln',
-    'Britz',
-    'Buckow',
-    'Rudow',
-    'Gropiusstadt',
-  ]),
-  draftDistrict('treptow-koepenick', 'Treptow-Köpenick', [
-    'Alt-Treptow',
-    'Plänterwald',
-    'Baumschulenweg',
-    'Johannisthal',
-    'Adlershof',
-    'Altglienicke',
-    'Bohnsdorf',
-    'Oberschöneweide',
-    'Niederschöneweide',
-    'Köpenick',
-    'Friedrichshagen',
-    'Rahnsdorf',
-    'Grünau',
-    'Müggelheim',
-    'Schmöckwitz',
-  ]),
-  draftDistrict('lichtenberg', 'Lichtenberg', [
-    'Lichtenberg',
-    'Friedrichsfelde',
-    'Karlshorst',
-    'Rummelsburg',
-    'Fennpfuhl',
-    'Alt-Hohenschönhausen',
-    'Neu-Hohenschönhausen',
-    'Falkenberg',
-    'Malchow',
-    'Wartenberg',
-  ]),
-  draftDistrict('reinickendorf', 'Reinickendorf', [
-    'Reinickendorf',
-    'Tegel',
-    'Konradshöhe',
-    'Heiligensee',
-    'Frohnau',
-    'Hermsdorf',
-    'Waidmannslust',
-    'Lübars',
-    'Wittenau',
-    'Märkisches Viertel',
-    'Borsigwalde',
-  ]),
+  ...additionalDistricts,
 ];
-
-/**
- * Erzeugt einen Bezirks-Entwurf.
- * Bewusst OHNE erfundene Detailinhalte: Die Seite bleibt so lange 'draft',
- * bis eine reale Beschreibung, echte Einsätze und eigene FAQ ergänzt wurden.
- */
-function draftDistrict(slug: string, name: string, quarters: string[]): District {
-  return {
-    slug,
-    status: 'draft',
-    name,
-    fullName: `Berlin-${name}`,
-    h1: `Entrümpelung und Umzug in ${name}`,
-    metaTitle: `Entrümpelung & Umzug ${name}`,
-    metaDescription: `Entrümpelung, Auflösung und Umzug in ${name}. Diese Seite befindet sich in Vorbereitung.`,
-    answer: `Wir sind in ${name} tätig. Diese Bezirksseite wird derzeit mit ortsspezifischen Inhalten ergänzt und ist deshalb noch nicht veröffentlicht.`,
-    quarters,
-    intro: [],
-    buildings: [],
-    access: [],
-    cases: [],
-    focusServices: [],
-    faq: [],
-    differentiator: '',
-    updated: '2026-07-29',
-  };
-}
 
 export const publishedDistricts = districts.filter((d) => d.status === 'published');
 

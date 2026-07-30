@@ -151,7 +151,8 @@ export const site = {
    * Platzhalter werden aus dem Schema herausgefiltert.
    */
   profiles: {
-    googleBusiness: '[URL DES GOOGLE-UNTERNEHMENSPROFILS EINTRAGEN]',
+    googleBusiness: 'https://www.google.com/maps?cid=17944767786079972495',
+    youtube: 'https://www.youtube.com/channel/UCEoMRI2OM4uR-wfm8Gh2b8Q',
     bingPlaces: '[URL BING PLACES EINTRAGEN]',
     facebook: '[FACEBOOK-URL EINTRAGEN ODER ZEILE LÖSCHEN]',
     instagram: '[INSTAGRAM-URL EINTRAGEN ODER ZEILE LÖSCHEN]',
@@ -165,11 +166,11 @@ export const site = {
    * Google-Richtlinien und werden hier technisch verhindert.
    */
   ratings: {
-    verified: false,
-    source: '[BEWERTUNGSQUELLE, z. B. Google-Unternehmensprofil]',
-    sourceUrl: '[URL ZUR BEWERTUNGSÜBERSICHT]',
-    ratingValue: null as number | null,
-    reviewCount: null as number | null,
+    verified: true,
+    source: 'Google-Unternehmensprofil',
+    sourceUrl: 'https://www.google.com/maps?cid=17944767786079972495',
+    ratingValue: 5,
+    reviewCount: 27,
   },
 
   /**
@@ -251,7 +252,7 @@ export const site = {
   locale: 'de_DE',
 
   /** Gründungsjahr – nur echte Angabe verwenden. */
-  foundingYear: '[GRÜNDUNGSJAHR EINTRAGEN]',
+  foundingYear: '2019',
 
   /** Anzahl Mitarbeitende – nur echte Angabe verwenden, sonst null. */
   employeeCount: null as number | null,

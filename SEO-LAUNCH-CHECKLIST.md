@@ -58,10 +58,10 @@ erst möglich und sorgen dafür, dass die genannten Angaben stimmen.
       und Datenschutz
 
 ### Technik
-- [ ] `npm run audit:content` ohne Fehler
-- [ ] `npm run build` ohne Fehler
-- [ ] `npm run audit:build` ohne Fehler
-- [ ] `site.url` in `src/config/site.ts` stimmt mit der tatsächlichen Domain
+- [x] `npm run audit:content` ohne Fehler *(30.07.2026)*
+- [x] `npm run build` ohne Fehler *(30.07.2026)*
+- [x] `npm run audit:build` ohne Fehler *(30.07.2026; 47 indexierbare URLs)*
+- [x] `site.url` in `src/config/site.ts` stimmt mit der tatsächlichen Domain
       überein, inklusive www-Entscheidung
 - [ ] Die www-Regel in `public/.htaccess` passt zu `site.url`. Beides muss
       dieselbe Variante ergeben, sonst zeigen die Canonicals ins Leere
@@ -105,9 +105,11 @@ der stimmt.** Diese Punkte prüfen:
       `Organization`, `LocalBusiness`/`MovingCompany`, `Service`,
       `BreadcrumbList`, `WebPage`, `FAQPage`, `Article`. Keine Warnungen zu
       Pflichtfeldern
-- [ ] **Keine `aggregateRating`-Auszeichnung**, solange keine echten,
+- [x] **Keine `aggregateRating`-Auszeichnung**, solange keine echten,
       öffentlich nachprüfbaren Bewertungen vorliegen. Technisch bereits
-      abgesichert über `ratings.verified` in `site.ts` – nicht umgehen
+      doppelt abgesichert über verifizierte Summenwerte und sichtbare
+      Einzelbewertungen. Der geprüfte Google-Summenwert wird sichtbar
+      verlinkt, aber nicht als Rich-Result-Markup ausgegeben
 - [ ] **`robots.txt` gegenlesen** (`/robots.txt`). Erlaubt sein müssen:
       `OAI-SearchBot`, `ChatGPT-User`, `PerplexityBot`, `Claude-SearchBot`,
       `Claude-User`, `DuckAssistBot`, `Applebot-Extended`.
@@ -119,9 +121,9 @@ der stimmt.** Diese Punkte prüfen:
       Anschrift, Telefon, typische Anlässe und die Aussage zu Kostenträgern.
       Kein Standard, aber die kompakteste maschinenlesbare Zusammenfassung
       des Angebots
-- [ ] **Direkte Antwort unter jeder H1** vorhanden und 40–100 Wörter lang.
+- [x] **Direkte Antwort unter jeder H1** vorhanden und 40–100 Wörter lang.
       `npm run audit:content` meldet Abweichungen
-- [ ] **Kein Inhalt nur per JavaScript.** Die Seite ist statisch gebaut;
+- [x] **Kein Inhalt nur per JavaScript.** Die Seite ist statisch gebaut;
       wer neue Bausteine ergänzt, darf daran nichts ändern – Antwortsysteme
       rendern in der Regel kein JS nach
 

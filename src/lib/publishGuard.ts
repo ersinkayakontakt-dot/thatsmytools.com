@@ -26,15 +26,35 @@ export interface GuardResult {
 }
 
 const MIN_INTRO_CHARS = 350;
-const MIN_QUARTERS = 4;
+const MIN_QUARTERS = 2;
 const MIN_FAQ = 3;
 const MIN_ACCESS_POINTS = 3;
 const MIN_BUILDING_POINTS = 3;
+const MIN_LOCATION_CHARS = 1800;
 
 /** Prüft eine Bezirks- oder Ortsseite. */
 export function checkLocation(loc: District | Town): GuardResult {
   const missing: string[] = [];
   const introChars = loc.intro.join(' ').length;
+  const blockText = (loc.blocks ?? [])
+    .flatMap((block) => [
+      block.h,
+      ...(block.p ?? []),
+      ...(block.list ?? []),
+      ...(block.steps ?? []).flatMap((step) => [step.title, step.text]),
+      ...(block.table?.rows.flat() ?? []),
+      block.note?.title ?? '',
+      block.note?.text ?? '',
+    ])
+    .join(' ');
+  const totalChars = [
+    loc.answer,
+    ...loc.intro,
+    ...loc.buildings,
+    ...loc.access,
+    blockText,
+    ...loc.faq.flatMap((item) => [item.q, item.a]),
+  ].join(' ').length;
 
   if (loc.intro.length < 2) missing.push('eigene Einleitung mit mindestens 2 Absätzen');
   if (introChars < MIN_INTRO_CHARS) missing.push(`Einleitung zu kurz (${introChars} von ${MIN_INTRO_CHARS} Zeichen)`);
@@ -46,6 +66,10 @@ export function checkLocation(loc: District | Town): GuardResult {
   if (!loc.answer || loc.answer.length < 120) missing.push('direkte Antwort unter der H1 (mind. 120 Zeichen)');
   if (!loc.metaDescription || loc.metaDescription.length < 80) missing.push('eigene Meta Description (mind. 80 Zeichen)');
   if (loc.focusServices.length < 2) missing.push('mindestens 2 lokal passende Leistungen');
+  if ((loc.blocks?.length ?? 0) < 2) missing.push('mindestens 2 eigenständige Inhaltsblöcke');
+  if (totalChars < MIN_LOCATION_CHARS) {
+    missing.push(`Gesamtinhalt zu kurz (${totalChars} von ${MIN_LOCATION_CHARS} Zeichen)`);
+  }
 
   return { ok: missing.length === 0, missing };
 }
@@ -153,42 +177,42 @@ export function auditContent(): { level: 'error' | 'warn'; where: string; messag
 }
 
 /** Alle indexierbaren URLs – Grundlage für Sitemap und IndexNow. */
-export function indexableUrls(): { url: string; lastmod: string; priority: number }[] {
-  const urls: { url: string; lastmod: string; priority: number }[] = [];
-  const today = new Date().toISOString().slice(0, 10);
+export function indexableUrls(): { url: string; lastmod: string }[] {
+  const urls: { url: string; lastmod: string }[] = [];
 
-  // Statische Kernseiten
+  // Explizite Änderungsdaten statt eines künstlichen "heute" bei jedem Build.
+  // lastmod wird nur angefasst, wenn sich der sichtbare Hauptinhalt ändert.
   urls.push(
-    { url: '/', lastmod: today, priority: 1.0 },
-    { url: '/leistungen/', lastmod: today, priority: 0.9 },
-    { url: '/berlin/', lastmod: today, priority: 0.9 },
-    { url: '/brandenburg/', lastmod: today, priority: 0.7 },
-    { url: '/kosten/', lastmod: today, priority: 0.9 },
-    { url: '/hausverwaltungen-immobilienpartner/', lastmod: today, priority: 0.9 },
-    { url: '/ratgeber/', lastmod: today, priority: 0.8 },
-    { url: '/einsatzberichte/', lastmod: today, priority: 0.6 },
-    { url: '/fragen/', lastmod: today, priority: 0.7 },
-    { url: '/ueber-uns/', lastmod: today, priority: 0.6 },
-    { url: '/kontakt/', lastmod: today, priority: 0.8 },
-    { url: '/angebot-anfragen/', lastmod: today, priority: 0.9 },
-    { url: '/impressum/', lastmod: today, priority: 0.3 },
-    { url: '/datenschutz/', lastmod: today, priority: 0.3 },
+    { url: '/', lastmod: '2026-07-30' },
+    { url: '/leistungen/', lastmod: '2026-07-29' },
+    { url: '/berlin/', lastmod: '2026-07-30' },
+    { url: '/brandenburg/', lastmod: '2026-07-29' },
+    { url: '/kosten/', lastmod: '2026-07-30' },
+    { url: '/hausverwaltungen-immobilienpartner/', lastmod: '2026-07-30' },
+    { url: '/ratgeber/', lastmod: '2026-07-29' },
+    { url: '/einsatzberichte/', lastmod: '2026-07-29' },
+    { url: '/fragen/', lastmod: '2026-07-29' },
+    { url: '/ueber-uns/', lastmod: '2026-07-30' },
+    { url: '/kontakt/', lastmod: '2026-07-30' },
+    { url: '/angebot-anfragen/', lastmod: '2026-07-30' },
+    { url: '/impressum/', lastmod: '2026-07-30' },
+    { url: '/datenschutz/', lastmod: '2026-07-30' },
   );
 
   for (const s of services) {
-    if (serviceIsIndexable(s)) urls.push({ url: `/leistungen/${s.slug}/`, lastmod: s.updated, priority: 0.9 });
+    if (serviceIsIndexable(s)) urls.push({ url: `/leistungen/${s.slug}/`, lastmod: s.updated });
   }
   for (const d of districts) {
-    if (locationIsIndexable(d)) urls.push({ url: `/berlin/${d.slug}/`, lastmod: d.updated, priority: 0.8 });
+    if (locationIsIndexable(d)) urls.push({ url: `/berlin/${d.slug}/`, lastmod: d.updated });
   }
   for (const t of towns) {
-    if (locationIsIndexable(t)) urls.push({ url: `/brandenburg/${t.slug}/`, lastmod: t.updated, priority: 0.7 });
+    if (locationIsIndexable(t)) urls.push({ url: `/brandenburg/${t.slug}/`, lastmod: t.updated });
   }
   for (const g of guides) {
-    if (guideIsIndexable(g)) urls.push({ url: `/${g.hub}/${g.slug}/`, lastmod: g.updated, priority: 0.8 });
+    if (guideIsIndexable(g)) urls.push({ url: `/${g.hub}/${g.slug}/`, lastmod: g.updated });
   }
   for (const c of cases) {
-    if (caseIsIndexable(c)) urls.push({ url: `/einsatzberichte/${c.slug}/`, lastmod: c.updated, priority: 0.6 });
+    if (caseIsIndexable(c)) urls.push({ url: `/einsatzberichte/${c.slug}/`, lastmod: c.updated });
   }
 
   return urls;

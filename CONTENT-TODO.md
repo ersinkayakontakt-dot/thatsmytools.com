@@ -58,10 +58,12 @@ Wohnungsauflösung, Nachlass und Seniorenumzug" umgestellt. Umgesetzt sind:
    das Format. Benötigt: amtliche Berliner PLZ mit Bezirk, Ortsteilen,
    bedient ja/nein, Prioritätsgebiet, Umlandprüfung – plus Prüfungen auf
    Dubletten, ungültige und fehlende PLZ. Keine eigene Seite je PLZ.
-4. **Einsatzgebiete vervollständigen.** `districts.ts` enthält 12 Bezirke,
-   davon nur 3 veröffentlicht; `towns.ts` 12 Orte, davon 2. Für die
-   Zielgebiete (Steglitz-Zehlendorf, Mitte, Prenzlauer Berg, Kleinmachnow,
-   Teltow, Stahnsdorf …) fehlen die Inhalte, die der Publish Guard verlangt.
+4. ✅ **Alle Berliner Bezirke veröffentlicht.** Seit 30.07.2026 bestehen für
+   alle 12 Bezirke eigenständige, indexierbare Seiten. Neun neue Inhalte
+   liegen in `src/data/additionalDistricts.ts`; der Publish Guard verlangt
+   zusätzlich mindestens zwei Inhaltsblöcke und 1.800 Zeichen Gesamtinhalt.
+   Offen bleiben 10 Umlandorte, bis das tatsächliche Einsatzgebiet bestätigt
+   ist.
 5. **Drei Hauptprodukte als eigene Seiten** (Nachlass-Komplettservice,
    Senioren-Wohnwechsel, Immobilie übergabefertig). Die Leistungsseiten decken
    die Themen ab, sind aber als Einzelleistungen aufgebaut, nicht als
@@ -324,48 +326,64 @@ die Auswertungen je Bezirk erzeugen, die für Antwortsysteme zitierfähig sind.
 
 ## F. Standortseiten freischalten
 
-Veröffentlicht sind bisher drei Bezirke (Pankow, Marzahn-Hellersdorf,
-Charlottenburg-Wilmersdorf) und zwei Orte im Umland (Potsdam, Falkensee). Alle
-übrigen sind angelegt, aber als Entwurf: noindex, nicht in der Sitemap,
-nirgends verlinkt.
+**Stand 30.07.2026:** Alle zwölf Berliner Bezirke sind veröffentlicht und
+werden intern verlinkt. Zwei Orte im Umland (Potsdam, Falkensee) sind
+veröffentlicht; zehn weitere bleiben Entwurf, bis das tatsächliche
+Einsatzgebiet bestätigt ist.
 
-Das ist Absicht. Zwölf fast gleiche Bezirksseiten wären Doorway Pages und
-schaden mehr, als sie nützen.
+Die neuen Berliner Seiten beschreiben objektive Gebäude-, Zugangs- und
+Verkehrssituationen und behaupten keine konkreten Einsätze. Der Audit prüft
+zusätzlich auf stark ähnliche Standorttexte, damit spätere Erweiterungen
+nicht zu Doorway Pages werden.
 
 Eine Standortseite geht online, wenn sie hat:
 
 - eigene Einleitung, mindestens zwei Absätze und 350 Zeichen
-- mindestens vier Ortsteile
+- mindestens zwei Ortsteile (Friedrichshain-Kreuzberg hat amtlich nur zwei)
 - mindestens drei eigene Angaben zur Gebäudesituation
 - mindestens drei eigene Angaben zu Zufahrt, Parken und Tragewegen
 - mindestens drei eigene FAQ
 - eigenen Title, eigene Meta Description, eigene Kurzantwort
 - einen notierten Unterschied zu den anderen Standortseiten
   (`differentiator`)
+- mindestens zwei individuelle Inhaltsblöcke und 1.800 Zeichen Gesamtinhalt
 - idealerweise mindestens einen echten Einsatzbericht aus der Gegend
 
 `npm run audit:content` prüft das und meldet auch, wenn ein Entwurf
 inzwischen vollständig ist und veröffentlicht werden könnte.
 
-**Woher die Inhalte kommen:** nicht aus Recherche, sondern aus der eigenen
-Arbeit. Nach jedem Einsatz eine Notiz: Wie war das Treppenhaus? Konnte das
-Fahrzeug halten? Was war anders als erwartet? Nach fünf Einsätzen in einem
-Bezirk schreibt sich die Seite fast von selbst und ist besser als alles, was
-Wettbewerber dort stehen haben.
+**Für spätere Aktualisierungen:** objektive Ortsinformationen dürfen
+recherchiert werden; Aussagen über eigene Erfahrung nur aus dokumentierter
+Arbeit. Nach jedem Einsatz notieren: Treppenhaus, Fahrzeugposition, Aufzug,
+Trageweg und unerwartete Besonderheiten. Echte Fälle kommen ausschließlich
+mit Freigabe in `cases.ts`.
 
 ---
 
 ## G. Sonstiges
 
-- [ ] `foundingYear` und `employeeCount` in `src/config/site.ts`, nur echte
-      Angaben. `employeeCount` bleibt sonst `null` und wird nicht ausgegeben.
+- [x] `foundingYear` auf 2019 gesetzt (Quelle: Google-Unternehmensprofil,
+      geprüft 30.07.2026). `employeeCount` bleibt mangels bestätigter Angabe
+      `null` und wird nicht ausgegeben.
 - [ ] Über-uns-Seite: echte Geschichte des Betriebs, Namen der
       Ansprechpartner. Der Abschnitt „Woher wir kommen" ist bewusst kurz
       gehalten und wartet auf echte Angaben.
-- [ ] `profiles` in `src/config/site.ts`: URLs von Google-Unternehmensprofil,
-      Bing Places und, falls vorhanden, Social-Media-Profilen. Sie fließen als
+- [x] Google-Unternehmensprofil und YouTube in `profiles` eingetragen.
+      Bing Places und weitere Profile bleiben offen. Die URLs fließen als
       `sameAs` in die strukturierten Daten und sind wichtig dafür, dass
       Suchmaschinen das Unternehmen eindeutig zuordnen.
+- [ ] Google-Unternehmensprofil nach den vorgenommenen Änderungen erneut
+      verifizieren. Bis Google freigibt, kann im öffentlichen Panel noch die
+      alte Anschrift Lindenstraße 14 erscheinen; auf Website und im Profil
+      ist der Betrieb als Dienstleistungsgebiet ohne Kundenstandort geführt.
+- [ ] Steuerstatus bestätigen (USt-Ausweis oder Kleinunternehmerhinweis).
+      Bis dahin verspricht die Website nur eine ordnungsgemäße Rechnung,
+      keinen Umsatzsteuerausweis.
+- [ ] Exakte Erreichbarkeitszeiten bestätigen. Sonder- und
+      Wochenendtermine werden bis dahin nur als individuell prüfbar
+      beschrieben.
+- [ ] Für `bau-renovierungsabfaelle` zulässige Abfallarten und tatsächliche
+      Entsorgungswege bestätigen; die Seite bleibt bis dahin Entwurf.
 - [ ] `areaServed.note`: Wie weit wird tatsächlich gefahren? Der Radius von
       50 km ist eine Annahme.
 - [ ] Alte URLs der bisherigen Website sammeln und in `public/.htaccess`

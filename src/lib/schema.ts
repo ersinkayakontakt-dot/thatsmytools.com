@@ -124,6 +124,11 @@ export function organizationNode() {
     name: site.name,
     legalName: realValue(site.legalName),
     url: site.url,
+    image: absoluteUrl('/og-default.png'),
+    logo: {
+      '@type': 'ImageObject',
+      url: absoluteUrl('/apple-touch-icon.png'),
+    },
     description:
       'Entrümpelung, Haushaltsauflösung, Wohnungsauflösung und Umzug in Berlin und im Berliner Umland.',
     telephone: realValue(site.phone),
@@ -133,11 +138,17 @@ export function organizationNode() {
       ? { '@type': 'GeoCoordinates', latitude: site.geo.lat, longitude: site.geo.lng }
       : undefined,
     areaServed: areaServed(),
-    serviceArea: {
-      '@type': 'GeoCircle',
-      geoMidpoint: { '@type': 'GeoCoordinates', address: postalAddress() },
-      geoRadius: `${site.areaServed.radiusKm * 1000}`,
-    },
+    serviceArea: site.geo
+      ? {
+          '@type': 'GeoCircle',
+          geoMidpoint: {
+            '@type': 'GeoCoordinates',
+            latitude: site.geo.lat,
+            longitude: site.geo.lng,
+          },
+          geoRadius: `${site.areaServed.radiusKm * 1000}`,
+        }
+      : undefined,
     openingHoursSpecification: openingHoursSpecification(),
     priceRange: realValue(site.priceRange),
     paymentAccepted: site.paymentAccepted.map((p) => realValue(p)).filter(Boolean).join(', ') || undefined,

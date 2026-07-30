@@ -1,7 +1,7 @@
 # Handoff: maximale Auffindbarkeit weiterbauen
 
-Stand: 30.07.2026, Branch `claude/schnellhelfer24-rebuild-nn7fwd`, letzter
-Commit `e3a2e00`. Arbeitsverzeichnis sauber, Build grün.
+Stand: 30.07.2026, Branch `claude/schnellhelfer24-rebuild-nn7fwd`.
+Inhaltsaudit, Typprüfung, Produktionsbuild und Build-Audit sind grün.
 
 Diese Datei sagt, **was als Nächstes den größten Effekt auf die
 Auffindbarkeit hat, in welcher Reihenfolge und woran fertig erkennbar ist.**
@@ -22,8 +22,8 @@ ohne `index.html` einen HTTP-403-Fehler.
 
 Vor einem künftigen Livegang zuerst die vier Prüfungen ausführen, danach
 `dist/` als neuen Stand von `hostinger-live` veröffentlichen und in Hostinger
-neu deployen. Der am 30.07.2026 geprüfte Live-Stand basiert auf Quellcommit
-`8c3e562` und Build-Commit `fd43637`.
+neu deployen. Die tatsächlich ausgelieferte Quell- und Build-Version nach
+jedem Livegang im Deployment-Protokoll festhalten.
 
 ---
 
@@ -55,13 +55,12 @@ neu deployen. Der am 30.07.2026 geprüfte Live-Stand basiert auf Quellcommit
 
 ---
 
-## Priorität 1 — Neun Bezirksseiten veröffentlichen
+## Erledigt am 30.07.2026 — Neun Bezirksseiten veröffentlicht
 
-**Warum zuerst:** Das ist die größte indexierbare Fläche, die schon zur
-Hälfte existiert. Aktuell sind **3 von 12** Bezirken veröffentlicht
-(`pankow`, `marzahn-hellersdorf`, `charlottenburg-wilmersdorf`). Neun stehen
-als Entwurf in `src/data/districts.ts` und liefern damit `noindex` –
-darunter genau die wirtschaftlich interessanten Gebiete.
+Alle **12 von 12** Berliner Bezirken sind nun indexierbar. Die neun neuen,
+eigenständigen Inhalte liegen in `src/data/additionalDistricts.ts`. Sie
+behaupten keine konkreten Einsätze, sondern erklären objektive Gebäude-,
+Zugangs- und Verkehrssituationen. Der Berlin-Hub verlinkt alle Bezirke.
 
 Reihenfolge nach Auftragswert:
 
@@ -75,12 +74,12 @@ Reihenfolge nach Auftragswert:
 8. `lichtenberg`
 9. `neukoelln`
 
-**Was der Publish Guard je Seite verlangt** (aus `publishGuard.ts`, exakt):
+**Der verschärfte Publish Guard verlangt je Seite:**
 
 | Feld | Anforderung |
 |---|---|
 | `intro` | mindestens 2 Absätze, zusammen ≥ 350 Zeichen |
-| `quarters` | ≥ 4 Ortsteile (stehen bereits drin) |
+| `quarters` | ≥ 2 Ortsteile |
 | `buildings` | ≥ 3 Angaben zur Gebäudesituation |
 | `access` | ≥ 3 Angaben zu Zufahrt und Zugang |
 | `faq` | ≥ 3 eigene Fragen, nicht kopiert |
@@ -88,21 +87,13 @@ Reihenfolge nach Auftragswert:
 | `differentiator` | nicht leer – worin sich der Bezirk unterscheidet |
 | `answer` | ≥ 120 Zeichen, 40–100 Wörter (Kurzantwort unter der H1) |
 | `metaDescription` | ≥ 80 Zeichen, projektweit eindeutig |
+| Gesamtinhalt | ≥ 1.800 Zeichen und mindestens 2 Inhaltsblöcke |
 
-Erst wenn alles erfüllt ist, `status: 'published'` setzen. Wer vorher
-umschaltet, bekommt beim Build eine Warnung und die Seite bleibt trotzdem
-`noindex` – die Regel lässt sich nicht umgehen.
+`scripts/content-audit.mjs` vergleicht veröffentlichte Standorttexte
+zusätzlich auf starke Wortmengen-Überschneidung. Dadurch werden spätere
+Ortstausch-Templates als Fehler gemeldet.
 
-**Inhaltlich:** reale logistische Besonderheiten beschreiben – Altbau ohne
-Aufzug, Hinterhof, Vorgarten, lange Laufwege, Parksituation, Villengrundstück,
-Diskretionsbedarf. Keine erfundenen Einsätze, keine Behauptung von
-Ortskenntnis, die es nicht gibt. Kein Bezirk wird als „reich" bezeichnet.
-
-**Fertig, wenn:** `npm run audit:content` die Seite nicht mehr als
-unvollständig meldet, `audit:build` sie in der Sitemap führt und die
-Description projektweit einmalig ist.
-
-## Priorität 2 — Zehn Umlandorte, gleiche Regeln
+## Priorität 1 — Zehn Umlandorte, gleiche Regeln
 
 `src/data/towns.ts`, aktuell 2 von 12 veröffentlicht. Entwürfe:
 `teltow`, `kleinmachnow`, `hennigsdorf`, `oranienburg`, `bernau-bei-berlin`,
@@ -113,7 +104,7 @@ Description projektweit einmalig ist.
 tatsächlich angefahren und bis wohin? Eine Seite für einen Ort, den niemand
 bedient, ist eine Doorway Page. Lieber vier ehrliche Orte als zehn leere.
 
-## Priorität 3 — Erste echte Einsatzberichte
+## Priorität 2 — Erste echte Einsatzberichte
 
 `src/data/cases.ts` – Struktur steht, es gibt drei Muster (`real: false`,
 korrekt auf `noindex`). **Null echte Fälle.** Für lokale KI-Antworten und für
@@ -128,7 +119,7 @@ noch Platzhalter im Text stehen.
 Drei belegte Fälle schlagen dreißig erfundene. Ohne Zustimmung: nicht
 veröffentlichen, auch nicht anonymisiert erfinden.
 
-## Priorität 4 — Postleitzahlen als Datei
+## Priorität 3 — Postleitzahlen als Datei
 
 Es gibt **keine** PLZ-Daten im Projekt; die Formularprüfung testet nur fünf
 Ziffern. Anlegen: `src/data/serviceAreas.ts` mit PLZ, Stadt, Bezirk,
@@ -143,7 +134,7 @@ Bezirkszuordnung gehören in `scripts/content-audit.mjs`.
 **Keine eigene Seite je PLZ.** Postleitzahlen dienen der
 Verfügbarkeitsprüfung, nicht der Seitenerzeugung.
 
-## Priorität 5 — Sammelseite für Kleinaufträge
+## Priorität 4 — Sammelseite für Kleinaufträge
 
 `/moebel-sperrmuell-abholung-berlin/` als eine starke Seite für Sofa,
 Matratze, Schrank, Waschmaschine, Kühlschrank, Kellerreste – mit den

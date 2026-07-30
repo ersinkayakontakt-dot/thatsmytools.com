@@ -97,6 +97,44 @@ checkDuplicates('Bezirke', districts.map((d) => ({ slug: d.slug, title: d.metaTi
 checkDuplicates('Orte', towns.map((t) => ({ slug: t.slug, title: t.metaTitle, desc: t.metaDescription, published: t.status === 'published' })));
 checkDuplicates('Ratgeber', guides.map((g) => ({ slug: g.slug, title: g.metaTitle, desc: g.metaDescription, published: g.status === 'published' })));
 
+/* -------------------------- Ähnlichkeit veröffentlichter Standortseiten
+ * Ein reiner Dublettencheck erkennt Doorway-Texte mit ausgetauschtem
+ * Ortsnamen nicht. Der Jaccard-Wert über längere Wörter ist bewusst eine
+ * grobe Schranke: Er blockiert nur stark überlappende Texte, nicht
+ * unvermeidbare Fachbegriffe wie Aufzug, Keller oder Haltefläche.
+ */
+const publishedLocations = [...districts, ...towns].filter((loc) => loc.status === 'published');
+const locationTokens = (loc: (typeof publishedLocations)[number]) => {
+  const body = [
+    loc.answer,
+    ...loc.intro,
+    ...loc.buildings,
+    ...loc.access,
+    ...(loc.blocks ?? []).flatMap((b) => [b.h, ...(b.p ?? []), ...(b.list ?? [])]),
+    ...loc.faq.flatMap((f) => [f.q, f.a]),
+    loc.differentiator,
+  ].join(' ').toLocaleLowerCase('de-DE');
+  return new Set(body.match(/[a-zäöüß]{5,}/g) ?? []);
+};
+const jaccard = (a: Set<string>, b: Set<string>) => {
+  const intersection = [...a].filter((token) => b.has(token)).length;
+  return intersection / (a.size + b.size - intersection);
+};
+
+for (let i = 0; i < publishedLocations.length; i += 1) {
+  for (let j = i + 1; j < publishedLocations.length; j += 1) {
+    const a = publishedLocations[i];
+    const b = publishedLocations[j];
+    const similarity = jaccard(locationTokens(a), locationTokens(b));
+    if (similarity >= 0.72) {
+      errors.push(
+        'Standorttexte zu ähnlich: ' + a.name + ' / ' + b.name +
+        ' (' + Math.round(similarity * 100) + '% Wortmengen-Überschneidung)',
+      );
+    }
+  }
+}
+
 /* ------------------------------------------------- Verweise prüfen */
 const serviceSlugs = new Set(services.map((s) => s.slug));
 const guideSlugs = new Set(guides.map((g) => g.slug));

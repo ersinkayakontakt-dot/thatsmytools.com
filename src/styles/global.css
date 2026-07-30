@@ -866,6 +866,11 @@ a.chip:hover {
 .prose {
   max-width: 44rem;
 }
+.prose p {
+  /* Automatische Trennung wirkt in den schmalen Artikelspalten schnell
+     unruhig ("Besichti-gung"). Normale Wortumbrüche reichen hier aus. */
+  hyphens: manual;
+}
 .prose > .table-scroll,
 .prose > .facts {
   max-width: none;

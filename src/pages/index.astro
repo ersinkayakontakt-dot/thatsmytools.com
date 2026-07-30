@@ -9,6 +9,7 @@ import { situations } from '../data/situations';
 import { faqGroups } from '../data/faq';
 import { buildGraph, organizationNode, websiteNode, webPageNode, faqNode } from '../lib/schema';
 import { primaryCta } from '../lib/contact';
+import { site } from '../config/site';
 
 const title = 'Wohnungsauflösung & Seniorenumzug Berlin | Schnellhelfer24';
 const description =
@@ -66,6 +67,22 @@ const singleJobs = [
 
 <Base title={title} description={description} path={path} schema={schema}>
   <Hero />
+
+  {
+    site.ratings.verified && site.ratings.ratingValue && site.ratings.reviewCount && (
+      <aside class="google-proof" aria-label="Bewertungen bei Google">
+        <div class="wrap google-proof__inner">
+          <span class="google-proof__score">{site.ratings.ratingValue.toLocaleString('de-DE', { minimumFractionDigits: 1 })}</span>
+          <span class="google-proof__stars" aria-hidden="true">★★★★★</span>
+          <span>aus {site.ratings.reviewCount} Google-Bewertungen</span>
+          <a href={site.ratings.sourceUrl} rel="noopener noreferrer">
+            Profil bei Google ansehen <span aria-hidden="true">↗</span>
+          </a>
+          <small>Stand 30.07.2026</small>
+        </div>
+      </aside>
+    )
+  }
 
   <section class="cases" aria-labelledby="situationen">
     <div class="wrap">
@@ -217,6 +234,38 @@ const singleJobs = [
 </Base>
 
 <style>
+  .google-proof {
+    background: var(--ink);
+    color: var(--white);
+    border-bottom: 1px solid color-mix(in srgb, var(--white) 18%, transparent);
+  }
+  .google-proof__inner {
+    min-height: 3.75rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.65rem 0.9rem;
+    flex-wrap: wrap;
+    padding-block: 0.75rem;
+    font-size: 0.9rem;
+  }
+  .google-proof__score {
+    font-size: 1.15rem;
+    font-weight: 900;
+  }
+  .google-proof__stars {
+    color: #f3b61f;
+    letter-spacing: 0.12em;
+  }
+  .google-proof a {
+    color: var(--white);
+    font-weight: 750;
+    text-underline-offset: 0.2em;
+  }
+  .google-proof small {
+    color: color-mix(in srgb, var(--white) 68%, transparent);
+  }
+
   .eyebrow {
     margin: 0 0 1rem;
     color: var(--accent-text);

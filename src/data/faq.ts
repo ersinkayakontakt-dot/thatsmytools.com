@@ -58,7 +58,7 @@ export const faqGroups: FaqGroup[] = [
       },
       {
         q: 'Arbeiten Sie auch am Wochenende?',
-        a: 'Samstagstermine sind je nach Auslastung möglich. Sonntags arbeiten wir in Wohngebäuden grundsätzlich nicht, weil Ruhezeiten gelten und ein Räumungseinsatz laut ist. Bei Gewerbeflächen sind Einsätze außerhalb der Geschäftszeiten üblich und werden mit Zuschlag im Angebot ausgewiesen.',
+        a: 'Termine außerhalb üblicher Geschäftszeiten können individuell geprüft werden. Entscheidend sind Auslastung, Hausordnung, Lärmschutz und Zugang. Für einen konkreten Samstag oder Abend nennen Sie bitte Ihr Zeitfenster; möglich ist nur, was vorab ausdrücklich bestätigt wurde.',
       },
       {
         q: 'Was bedeutet besenrein?',
@@ -102,7 +102,7 @@ export const faqGroups: FaqGroup[] = [
       },
       {
         q: 'Bekomme ich eine ordentliche Rechnung?',
-        a: 'Ja, immer, mit einzeln ausgewiesenen Positionen. Gewerbliche Auftraggeber erhalten eine Rechnung mit ausgewiesener Umsatzsteuer. Für die Vorlage bei Behörden, Nachlassgerichten oder Kostenträgern schlüsseln wir die Positionen so auf, dass sie dort geprüft werden können.',
+        a: 'Sie erhalten eine Rechnung mit den vereinbarten Positionen. Ob Umsatzsteuer ausgewiesen wird oder ein anderer gesetzlicher Steuerhinweis erforderlich ist, richtet sich nach dem tatsächlichen steuerlichen Status des Unternehmens. Für Behörden oder Kostenträger kann der Kostenvoranschlag nach deren Vorgaben aufgeschlüsselt werden.',
       },
     ],
   },
