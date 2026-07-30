@@ -25,6 +25,11 @@ Vor einem künftigen Livegang zuerst die vier Prüfungen ausführen, danach
 neu deployen. Die tatsächlich ausgelieferte Quell- und Build-Version nach
 jedem Livegang im Deployment-Protokoll festhalten.
 
+**Aktueller Live-Stand (30.07.2026):** Quellcommit `8aa4b6e`, Buildcommit
+`45ecddc`. Startseite, neue Bezirksseiten, Sitemap, robots.txt, llms.txt,
+404-Verhalten und geschützte API-Pfade wurden von außen geprüft. 47
+indexierbare URLs wurden von IndexNow mit HTTP 202 angenommen.
+
 ---
 
 ## Zuerst lesen

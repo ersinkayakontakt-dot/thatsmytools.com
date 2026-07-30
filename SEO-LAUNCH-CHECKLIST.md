@@ -65,12 +65,12 @@ erst möglich und sorgen dafür, dass die genannten Angaben stimmen.
       überein, inklusive www-Entscheidung
 - [ ] Die www-Regel in `public/.htaccess` passt zu `site.url`. Beides muss
       dieselbe Variante ergeben, sonst zeigen die Canonicals ins Leere
-- [ ] SSL-Zertifikat aktiv, `https://` erzwungen
-- [ ] `.htaccess` ist mit hochgeladen worden (viele FTP-Programme blenden
+- [x] SSL-Zertifikat aktiv, `https://` erzwungen *(live geprüft 30.07.2026)*
+- [x] `.htaccess` ist mit hochgeladen worden (viele FTP-Programme blenden
       Punktdateien aus)
-- [ ] `api/_storage` ist über den Browser **nicht** erreichbar. Testen:
+- [x] `api/_storage` ist über den Browser **nicht** erreichbar. Testen:
       `https://schnellhelfer24.de/api/_storage/` muss 403 oder 404 liefern
-- [ ] `https://schnellhelfer24.de/api/config.local.php` liefert 403 oder 404
+- [x] `https://schnellhelfer24.de/api/config.local.php` liefert 403 oder 404
 
 ### Analytics und Consent
 - [ ] Entscheidung treffen, ob überhaupt ein Analytics-Dienst angebunden wird.
@@ -144,10 +144,11 @@ der stimmt.** Diese Punkte prüfen:
 1. [ ] Konto unter `bing.com/webmasters` anlegen
 2. [ ] Domain hinzufügen und verifizieren (DNS-Eintrag oder Meta-Tag)
 3. [ ] Sitemap einreichen: `https://schnellhelfer24.de/sitemap.xml`
-4. [ ] IndexNow prüfen: Ist die Schlüsseldatei
+4. [x] IndexNow prüfen: Ist die Schlüsseldatei
        `https://schnellhelfer24.de/<KEY>.txt` erreichbar und enthält sie
        genau den Schlüssel? Ohne das lehnt IndexNow mit HTTP 403 ab
-5. [ ] `npm run indexnow -- --all` ausführen und HTTP 200 oder 202 prüfen
+5. [x] `npm run indexnow -- --all` ausgeführt: 47 URLs, HTTP 202
+       *(30.07.2026)*
 6. [ ] URL-Prüfung für Startseite und die wichtigste Leistungsseite
 7. [ ] Unter „Site Scan" den ersten Crawl anstoßen
 
@@ -161,11 +162,11 @@ der stimmt.** Diese Punkte prüfen:
        prüfen, ob Fehler auftreten
 
 ### Prüfungen von außen
-- [ ] `https://schnellhelfer24.de/robots.txt` erreichbar, Sitemap-Verweis
+- [x] `https://schnellhelfer24.de/robots.txt` erreichbar, Sitemap-Verweis
       enthalten, `OAI-SearchBot` **nicht** gesperrt
-- [ ] `https://schnellhelfer24.de/sitemap.xml` erreichbar, enthält nur
+- [x] `https://schnellhelfer24.de/sitemap.xml` erreichbar, enthält nur
       indexierbare Seiten
-- [ ] `https://schnellhelfer24.de/llms.txt` erreichbar
+- [x] `https://schnellhelfer24.de/llms.txt` erreichbar
 - [ ] Rich-Results-Test von Google für Startseite, eine Leistungsseite, eine
       Bezirksseite und einen Ratgeber
 - [ ] Schema-Validator (`validator.schema.org`) für dieselben Seiten
@@ -173,7 +174,7 @@ der stimmt.** Diese Punkte prüfen:
       keine echten Bewertungen sichtbar auf der Seite stehen
 - [ ] PageSpeed Insights für Startseite, wichtigste Leistungsseite,
       Bezirksseite, Ratgeber und Formularseite
-- [ ] 404-Seite testen: eine erfundene URL aufrufen, muss Statuscode 404 und
+- [x] 404-Seite testen: eine erfundene URL aufrufen, muss Statuscode 404 und
       die gestaltete Seite liefern
 - [ ] Social-Vorschau prüfen: Link in WhatsApp und LinkedIn einfügen, muss
       `og-default.png` zeigen
