@@ -221,6 +221,20 @@ export const site = {
   founder: '[NAME DER GRÜNDERIN / DES GRÜNDERS ODER ZEILE LEER LASSEN]',
 
   /**
+   * Direktlink zum Bewertungsformular des Google-Unternehmensprofils.
+   *
+   * WO DER HERKOMMT: Im Google-Unternehmensprofil unter „Rezensionen" gibt
+   * es „Mehr Rezensionen erhalten". Google erzeugt dort einen kurzen Link
+   * der Form https://g.page/r/XXXXXXXX/review. Der führt mit einem Klick
+   * direkt in das Sternebewertungs-Fenster.
+   *
+   * Solange hier ein Platzhalter steht, verlinkt /bewerten/ ersatzweise auf
+   * den Karteneintrag. Das funktioniert, kostet aber zwei zusätzliche
+   * Klicks — und jeder zusätzliche Klick kostet Bewertungen.
+   */
+  reviewLink: '[GOOGLE-BEWERTUNGSLINK EINTRAGEN – Form: https://g.page/r/…/review]',
+
+  /**
    * Bewertungen.
    * WICHTIG: aggregateRating wird NUR ins Schema geschrieben, wenn
    * `verified: true` gesetzt ist UND echte Zahlen aus einer benennbaren

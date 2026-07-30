@@ -12,7 +12,8 @@
     "check": "astro check",
     "audit:content": "node scripts/content-audit.mjs",
     "audit:build": "node scripts/build-audit.mjs",
-    "indexnow": "node scripts/indexnow.mjs"
+    "indexnow": "node scripts/indexnow.mjs",
+    "kit": "node scripts/eintrags-kit.mjs"
   },
   "dependencies": {
     "astro": "^5.6.1"

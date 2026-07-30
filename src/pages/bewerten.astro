@@ -1,0 +1,97 @@
+---
+import Base from '../layouts/Base.astro';
+import { site, realValue } from '../config/site';
+
+/**
+ * Kurzer Weg zur Bewertung.
+ *
+ * WOZU DIESE SEITE:
+ * Bewertungen sind für ein lokales Dienstleistungsunternehmen das
+ * wichtigste Signal, das sich nicht selbst erzeugen lässt. Der Weg dorthin
+ * scheitert aber fast immer an der Mechanik: Der Google-Bewertungslink ist
+ * lang, lässt sich nicht diktieren, nicht auf eine Rechnung drucken und
+ * nicht am Telefon durchgeben.
+ *
+ * `schnellhelfer24.de/bewerten` kann man aussprechen, aufdrucken und als
+ * QR-Code auf eine Karte legen. Ändert sich der Google-Link, ändert sich
+ * nur `site.reviewLink`, nicht das gedruckte Material.
+ *
+ * noindex: Die Seite hat keinen Suchwert. Sie ist ein Werkzeug für den
+ * Betrieb, kein Inhalt für Suchmaschinen.
+ */
+const title = 'Bewertung schreiben | Schnellhelfer24';
+const description =
+  'Direkter Weg zur Bewertung von Schnellhelfer24 bei Google. Dauert etwa eine Minute.';
+
+const direkt = realValue(site.reviewLink);
+const karte = realValue(site.profiles.googleBusiness);
+
+// Ohne Direktlink führt der Karteneintrag zum Ziel, nur mit zwei Klicks
+// mehr. Ohne beides gibt es keinen Weg, dann wird die Seite ehrlich leer.
+const ziel = direkt ?? karte;
+---
+
+<Base title={title} description={description} path="/bewerten/" index={false}>
+  <div class="wrap wrap--mid section">
+    <div class="prose">
+      <h1>Danke, dass Sie sich die Minute nehmen</h1>
+
+      {
+        ziel ? (
+          <>
+            <p class="lede">
+              Für einen kleinen Betrieb wie unseren zählt jede einzelne Bewertung. Sie hilft den
+              Menschen, die nach uns kommen, bei der Einschätzung, ob sie uns in ihre Wohnung
+              lassen wollen.
+            </p>
+
+            <p class="cta">
+              <a class="btn btn--primary" href={ziel} rel="noopener" target="_blank"
+                 data-track="review_click">
+                Bei Google bewerten
+              </a>
+            </p>
+
+            {!direkt && (
+              <p class="hint">
+                Der Link öffnet unseren Karteneintrag. Dort auf <strong>Rezensionen</strong> und
+                dann auf <strong>Rezension schreiben</strong> tippen.
+              </p>
+            )}
+
+            <h2>Worüber wir uns besonders freuen</h2>
+            <p>
+              Am hilfreichsten für andere ist nicht „alles super", sondern was konkret war: welche
+              Leistung, in welchem Bezirk, was gut lief und was besser hätte laufen können. Kritik
+              ist ausdrücklich willkommen — wir antworten auf jede Bewertung.
+            </p>
+
+            <h2>Und was wir nicht tun</h2>
+            <p>
+              Wir bieten für Bewertungen keine Rabatte, Gutscheine oder Gewinnspiele an. Eine
+              gekaufte Bewertung ist wertlos für Sie, wettbewerbsrechtlich angreifbar für uns, und
+              Google löscht sie ohnehin. Wenn Sie unzufrieden waren, schreiben Sie das bitte
+              genauso — oder rufen Sie uns vorher an, damit wir es in Ordnung bringen können.
+            </p>
+          </>
+        ) : (
+          <p class="lede">
+            Der Bewertungsweg ist gerade noch nicht eingerichtet. Bitte melden Sie sich direkt bei
+            uns, wir freuen uns auch über eine Rückmeldung per E-Mail oder Telefon.
+            Alle Wege stehen auf der <a href="/kontakt/">Kontaktseite</a>.
+          </p>
+        )
+      }
+    </div>
+  </div>
+</Base>
+
+<style>
+  .cta {
+    margin: var(--sp-5) 0 var(--sp-4);
+  }
+  .hint {
+    color: var(--ink-3);
+    font-size: 0.94rem;
+  }
+</style>

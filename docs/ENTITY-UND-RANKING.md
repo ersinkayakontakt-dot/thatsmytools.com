@@ -136,6 +136,12 @@ mehr voneinander unabhängige Quellen **dieselbe** Firmierung, Anschrift und
 Telefonnummer nennen, desto sicherer ordnet ein System sie einer Entität zu.
 Derzeit gibt es außer dem Google-Profil keine einzige.
 
+**Werkzeug dafür:** `npm run kit` erzeugt `docs/EINTRAGS-KIT.md` — alle
+Angaben in genau der Form, in der sie in die Portale gehören, direkt aus
+`src/config/site.ts`. Beim Anlegen eines Profils von dort kopieren, nicht
+abtippen. Fehlende Angaben erscheinen im Kit als sichtbare Fehlstelle statt
+als geratener Wert.
+
 Kostenlos und in einem Nachmittag zu erledigen:
 
 - Gelbe Seiten, Das Örtliche, 11880, Cylex, GoLocal, wlw (für B2B),
@@ -180,11 +186,23 @@ Derzeit null. Mit 20 echten Bewertungen ist das Kartenprofil in einem
 Berliner Bezirk konkurrenzfähig. Das ist neben echten Einsatzberichten der
 größte Hebel, den kein technischer Kniff ersetzt.
 
+**Werkzeug dafür:** `schnellhelfer24.de/bewerten/` ist der kurze Weg zum
+Bewertungsformular — aussprechbar, aufdruckbar, als QR-Code verwendbar. Die
+Seite steht auf `noindex`, sie ist ein Werkzeug für den Betrieb und kein
+Inhalt für Suchmaschinen. Ändert sich der Google-Link, ändert sich nur
+`site.reviewLink`, nicht das gedruckte Material.
+
+Offen: Den Direktlink der Form `https://g.page/r/…/review` aus dem
+Google-Profil holen („Rezensionen" → „Mehr Rezensionen erhalten") und in
+`site.reviewLink` eintragen. Bis dahin öffnet die Seite nur den
+Karteneintrag, und das kostet zwei zusätzliche Klicks.
+
 Der einzige Weg, der zulässig ist und trägt:
 
 - Bei der Übergabe fragen, wenn die Kundschaft zufrieden ist. Nicht per
   Serienmail hinterher.
-- Kurzlink oder QR-Code auf der Rechnung und auf einer Karte im Fahrzeug.
+- `schnellhelfer24.de/bewerten/` als QR-Code auf die Rechnung und auf eine
+  Karte im Fahrzeug.
 - Keine Gutscheine, keine Rabatte, keine Gewinnspiele als Gegenleistung. Das
   ist wettbewerbsrechtlich angreifbar und Google löscht solche Bewertungen.
 - Auf jede Bewertung antworten, auch und gerade auf kritische. Die Antwort

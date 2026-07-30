@@ -386,6 +386,12 @@ mit Freigabe in `cases.ts`.
 - [ ] `founder` in `src/config/site.ts`: Name der Gründerin oder des
       Gründers, falls öffentlich genannt werden soll. Sonst Platzhalter
       stehen lassen, dann wird das Feld nicht ausgegeben.
+- [ ] `reviewLink` in `src/config/site.ts`: Direktlink zum Google-
+      Bewertungsformular. Im Unternehmensprofil unter „Rezensionen" →
+      „Mehr Rezensionen erhalten"; Google erzeugt einen Link der Form
+      `https://g.page/r/…/review`. Bis dahin öffnet `/bewerten/` nur den
+      Karteneintrag, was zwei zusätzliche Klicks und damit Bewertungen
+      kostet.
 - [ ] Google-Unternehmensprofil nach den vorgenommenen Änderungen erneut
       verifizieren. Bis Google freigibt, kann im öffentlichen Panel noch die
       alte Anschrift Lindenstraße 14 erscheinen; auf Website und im Profil
