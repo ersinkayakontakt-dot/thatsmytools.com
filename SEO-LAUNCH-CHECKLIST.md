@@ -151,7 +151,9 @@ der stimmt.** Diese Punkte prüfen:
        `https://schnellhelfer24.de/<KEY>.txt` erreichbar und enthält sie
        genau den Schlüssel? Ohne das lehnt IndexNow mit HTTP 403 ab
 5. [x] Vollständige Erstmeldung: 47 URLs, HTTP 202. Nach dem Ratgeber-Ausbau
-       zusätzlich 21 neue oder geänderte URLs, HTTP 202 *(30.07.2026)*
+       zusätzlich 21 neue oder geänderte URLs, HTTP 202. Nach der
+       Lesbarkeitsoptimierung weitere 18 geänderte URLs, HTTP 200
+       *(30.07.2026)*
 6. [ ] URL-Prüfung für Startseite und die wichtigste Leistungsseite
 7. [ ] Unter „Site Scan" den ersten Crawl anstoßen
 
@@ -180,6 +182,9 @@ der stimmt.** Diese Punkte prüfen:
       Elementtypen; Article-Warnungen zu Bild und Datumswerten behoben.
       Verbleibend ist nur der bewusst akzeptierte optionale
       `LocalBusiness.priceRange`-Hinweis *(30.07.2026)*
+- [x] Alle zwölf Kosten- und Ratgeberseiten auf 375 Pixel Breite geprüft:
+      zwei kurze Direktantwort-Absätze je Seite, kein horizontaler Überlauf
+      *(30.07.2026)*
 - [ ] Schema-Validator (`validator.schema.org`) für dieselben Seiten
 - [ ] Prüfen: Es darf **kein** `aggregateRating` ausgegeben werden, solange
       keine echten Bewertungen sichtbar auf der Seite stehen

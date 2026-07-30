@@ -25,10 +25,12 @@ Vor einem künftigen Livegang zuerst die vier Prüfungen ausführen, danach
 neu deployen. Die tatsächlich ausgelieferte Quell- und Build-Version nach
 jedem Livegang im Deployment-Protokoll festhalten.
 
-**Aktueller Live-Stand (30.07.2026):** Quellcommit `c65eaf0`, Buildcommit
-`8b3706c`. 50 indexierbare URLs sind live. Die drei neuen Ratgeber, der
-PDF-Download, Sitemap, 404-Verhalten und geschützte API-Pfade wurden von
-außen geprüft. IndexNow nahm 21 neue oder geänderte URLs mit HTTP 202 an.
+**Aktueller Live-Stand (30.07.2026):** Quellcommit `80c5e5f`, Buildcommit
+`052a913`. 50 indexierbare URLs sind live. Alle zwölf Kosten- und
+Ratgeberseiten haben mobil geprüfte, gegliederte Direktantworten ohne
+horizontalen Überlauf. Die drei neuen Ratgeber, der PDF-Download, Sitemap,
+404-Verhalten und geschützte API-Pfade wurden von außen geprüft. IndexNow
+nahm zuletzt 18 geänderte URLs mit HTTP 200 an.
 Google Search Console erkennt 50 Sitemap-URLs; für die drei neuen Ratgeber
 wurde die Indexierung beantragt. Der offizielle Rich-Results-Test erkennt
 beim Jobcenter-Ratgeber vier gültige Elementtypen. Der einzige verbleibende
