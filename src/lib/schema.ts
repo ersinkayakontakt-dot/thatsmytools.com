@@ -271,14 +271,23 @@ export function articleNode(opts: {
   published: string;
   updated: string;
 }) {
+  const publishedAt = `${opts.published}T00:00:00+00:00`;
+  const updatedAt = `${opts.updated}T00:00:00+00:00`;
+
   return clean({
     '@type': 'Article',
     '@id': `${absoluteUrl(opts.url)}#article`,
     headline: opts.headline,
     description: opts.description,
     url: absoluteUrl(opts.url),
-    datePublished: opts.published,
-    dateModified: opts.updated,
+    image: {
+      '@type': 'ImageObject',
+      url: absoluteUrl('/og-default.png'),
+      width: 1200,
+      height: 630,
+    },
+    datePublished: publishedAt,
+    dateModified: updatedAt,
     inLanguage: 'de-DE',
     author: { '@id': ORG_ID },
     publisher: { '@id': ORG_ID },
