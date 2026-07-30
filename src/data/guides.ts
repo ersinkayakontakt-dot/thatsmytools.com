@@ -24,7 +24,7 @@ export const guides: Guide[] = [
     metaDescription:
       'Wie sich der Preis einer Entrümpelung in Berlin zusammensetzt: Volumen, Etage, Trageweg, Materialart und Zusatzarbeiten. Mit Hinweisen zu unseriösen Angeboten.',
     answer:
-      'Der Preis einer Entrümpelung in Berlin ergibt sich aus fünf Größen: dem Volumen in Kubikmetern, der Etage und ob ein Aufzug vorhanden ist, der Länge des Trageweges bis zum Fahrzeug, der Art des Materials und den nötigen Zusatzarbeiten. Verwertbares wird gegengerechnet. Eine seriöse Zahl entsteht erst nach Fotos oder einer Besichtigung, weil sich das Volumen von außen nicht zuverlässig schätzen lässt.',
+      'Der Preis einer Entrümpelung in Berlin ergibt sich aus fünf Größen: Volumen, Etage und Aufzug, Trageweg, Materialart und Zusatzarbeiten.\n\nVerwertbares wird gegengerechnet. Eine seriöse Zahl entsteht erst nach Fotos oder einer Besichtigung, weil sich das tatsächliche Volumen von außen nicht zuverlässig schätzen lässt.',
     teaser: 'Woraus sich der Preis zusammensetzt und woran Sie ein unseriöses Angebot erkennen.',
     blocks: [
       {
@@ -131,7 +131,7 @@ export const guides: Guide[] = [
     metaDescription:
       'Wovon der Preis einer Haushaltsauflösung in Berlin abhängt, warum der Sortieraufwand entscheidend ist und was Wertanrechnung realistisch bringt.',
     answer:
-      'Bei einer Haushaltsauflösung entsteht der größte Kostenblock nicht durch das Tragen, sondern durch das Sortieren. Der Preis hängt vom Volumen, vom Sichtungsaufwand, von Etage und Aufzug sowie von den Nebenräumen ab. Keller, Dachboden und Garage werden regelmäßig vergessen und machen häufig ein Drittel des Volumens aus. Verwertbares wird angerechnet, deckt die Kosten aber nur in Ausnahmefällen.',
+      'Bei einer Haushaltsauflösung entsteht der größte Kostenblock oft nicht durch das Tragen, sondern durch das Sortieren. Der Preis hängt von Volumen, Sichtungsaufwand, Etage, Aufzug und Nebenräumen ab.\n\nKeller, Dachboden und Garage werden bei der ersten Einschätzung häufig vergessen. Verwertbares wird angerechnet, deckt die Kosten aber nur in Ausnahmefällen.',
     teaser: 'Warum der Sortieraufwand mehr kostet als das Tragen und was Wertanrechnung wirklich bringt.',
     blocks: [
       {
@@ -226,7 +226,7 @@ export const guides: Guide[] = [
     metaDescription:
       'Sperrmüllentsorgung in Berlin im Vergleich: BSR-Abholung, Recyclinghof und private Abholung aus der Wohnung. Wann sich welcher Weg lohnt.',
     answer:
-      'Für Sperrmüll in Berlin gibt es drei Wege: die kostenpflichtige Abholung durch die BSR, die Selbstanlieferung auf einem Recyclinghof und die private Abholung aus der Wohnung. Die BSR ist am günstigsten, verlangt aber Bereitstellung an zugänglicher Stelle und hat Wartezeiten. Die private Abholung kostet mehr, holt dafür aus jeder Etage ab und ist kurzfristiger planbar.',
+      'Für Sperrmüll in Berlin gibt es drei Wege: BSR-Abholung, Selbstanlieferung auf einem Recyclinghof oder private Abholung aus der Wohnung.\n\nDie BSR ist meist günstiger, verlangt aber eine zugängliche Bereitstellung und kann Vorlauf haben. Ein privater Abholservice trägt auch aus der Wohnung und ist oft flexibler planbar.',
     teaser: 'BSR, Recyclinghof oder private Abholung: Was wann der sinnvollere Weg ist.',
     blocks: [
       {
@@ -338,7 +338,7 @@ export const guides: Guide[] = [
     metaDescription:
       'Was einen Seniorenumzug in Berlin teurer oder günstiger macht, wann Pflegekasse oder Sozialamt beteiligt sein können und welche Reihenfolge Sie einhalten müssen.',
     answer:
-      'Ein Seniorenumzug kostet weniger als ein normaler Wohnungsumzug, wenn nur ein Zimmer ins Heim mitkommt, und mehr, wenn zusätzlich beraten, eingerichtet und anschließend die alte Wohnung aufgelöst wird. Eine Beteiligung von Pflegekasse oder Sozialamt ist je nach Einzelfall möglich, setzt aber immer voraus, dass der Antrag vor der Beauftragung gestellt und bewilligt wurde.',
+      'Die Kosten eines Seniorenumzugs hängen vor allem davon ab, wie viel mitkommt und ob zusätzlich eingerichtet oder die alte Wohnung aufgelöst wird.\n\nEine Beteiligung von Pflegekasse oder Sozialamt ist im Einzelfall möglich. Der Antrag muss jedoch vor der Beauftragung gestellt und bewilligt werden.',
     teaser: 'Was den Preis bestimmt und in welcher Reihenfolge Sie bei Kostenträgern vorgehen müssen.',
     blocks: [
       {
@@ -421,7 +421,7 @@ export const guides: Guide[] = [
     metaDescription:
       'Anleitung für Fotos, mit denen sich eine Entrümpelung oder ein Umzug zuverlässig einschätzen lässt. Was fotografiert werden muss und was oft vergessen wird.',
     answer:
-      'Für eine belastbare Einschätzung brauchen wir pro Raum ein Übersichtsfoto von der Tür aus, geöffnete Schränke, alle Nebenräume wie Keller, Dachboden und Balkon, das Treppenhaus und die Straße vor dem Haus. Zwölf gute Fotos genügen meistens. Fehlt der Keller, verschiebt sich der Aufwand am Einsatztag und damit auch der Preis.',
+      'Für eine belastbare Einschätzung brauchen wir Übersichtsfotos aller Räume, geöffnete Schränke, Nebenräume, Treppenhaus und die Straße vor dem Haus.\n\nZwölf gute Fotos genügen meistens. Zeigen Sie auch Keller, Dachboden oder Balkon: Fehlen diese Bereiche, können Aufwand und Preis am Einsatztag von der ersten Einschätzung abweichen.',
     teaser: 'Zwölf Fotos genügen. Diese zwölf sollten es sein.',
     blocks: [
       {
@@ -517,7 +517,7 @@ export const guides: Guide[] = [
     metaDescription:
       'Was Sie vor einer Entrümpelung erledigen sollten: markieren, sichern, Zugang klären, Halteverbot beantragen. Damit am Einsatztag nichts schiefgeht.',
     answer:
-      'Vor einer Entrümpelung sollten Sie drei Dinge klären: Was bleibt, wer aufschließt und wo das Fahrzeug steht. Markieren Sie alles, was nicht mitgeht, deutlich sichtbar. Sichern Sie Dokumente, Schlüssel und Wertsachen vorher selbst. Klären Sie Etage, Aufzug und Halteposition. Diese drei Punkte verhindern die meisten Probleme am Einsatztag.',
+      'Vor einer Entrümpelung sollten Sie drei Dinge klären: Was bleibt, wer aufschließt und wo das Fahrzeug stehen kann.\n\nMarkieren Sie Gegenstände, die nicht mitgehen, und sichern Sie Dokumente, Schlüssel und Wertsachen selbst. Angaben zu Etage, Aufzug und Halteposition verhindern die meisten Überraschungen am Einsatztag.',
     teaser: 'Drei Dinge klären, dann läuft der Einsatztag ohne Überraschungen.',
     blocks: [
       {
@@ -603,7 +603,7 @@ export const guides: Guide[] = [
     metaDescription:
       'Checkliste für die Wohnungsübergabe in Berlin: Zählerstände, Schlüssel, Protokoll, besenrein und was Vermieter verlangen dürfen und was nicht.',
     answer:
-      'Vor der Wohnungsübergabe sollten die Wohnung geräumt und besenrein sein, alle Zählerstände abgelesen, sämtliche Schlüssel gesammelt und die Mängel dokumentiert sein. Bestehen Sie auf einem schriftlichen Übergabeprotokoll mit Datum, Zählerständen und Schlüsselanzahl. Unterschreiben Sie nichts, das Sie nicht selbst geprüft haben, und fotografieren Sie den Zustand jedes Raums.',
+      'Vor der Wohnungsübergabe sollte die Wohnung geräumt und besenrein sein. Lesen Sie alle Zählerstände ab, sammeln Sie sämtliche Schlüssel und dokumentieren Sie vorhandene Mängel.\n\nBestehen Sie auf einem schriftlichen Übergabeprotokoll mit Datum, Zählerständen und Schlüsselanzahl. Prüfen Sie alles vor der Unterschrift und fotografieren Sie den Zustand jedes Raums.',
     teaser: 'Zählerstände, Schlüssel, Protokoll: was am Übergabetag erledigt sein muss.',
     blocks: [
       {
@@ -703,7 +703,7 @@ export const guides: Guide[] = [
     metaDescription:
       'Was nach einem Todesfall in welcher Reihenfolge zu tun ist, bevor die Wohnung aufgelöst wird: Erbschaft, Mietvertrag, Fristen und Unterlagen.',
     answer:
-      'Nach einem Todesfall sollte die Wohnung erst geräumt werden, wenn geklärt ist, wer erbt und ob das Erbe angenommen wird. Der Mietvertrag läuft zunächst weiter und kann meist mit einer Sonderkündigung beendet werden. Sichten Sie zuerst die Unterlagen, dann kündigen Sie, dann planen Sie die Räumung mit Blick auf den Übergabetermin.',
+      'Nach einem Todesfall sollte die Wohnung erst geräumt werden, wenn geklärt ist, wer verfügungsberechtigt ist und wie mit dem Erbe umgegangen wird.\n\nDer Mietvertrag läuft zunächst weiter. Sichten Sie zuerst die Unterlagen, klären Sie danach die Kündigung und planen Sie die Haushaltsauflösung rückwärts vom Übergabetermin.',
     teaser: 'Was zuerst zu klären ist, bevor die Wohnung geräumt wird.',
     blocks: [
       {
@@ -799,7 +799,7 @@ export const guides: Guide[] = [
     metaDescription:
       'Wie eine Halteverbotszone für den Umzug in Berlin beantragt wird, welcher Vorlauf nötig ist und warum sie sich in den meisten Innenstadtlagen rechnet.',
     answer:
-      'Eine Halteverbotszone reserviert die Fläche vor dem Haus für den Umzugstag. In Berlin wird sie bei der zuständigen Straßenverkehrsbehörde des Bezirks oder über einen Dienstleister beantragt. Planen Sie mindestens zwei Wochen Vorlauf ein. Die Schilder müssen rechtzeitig vor dem Termin stehen, sonst gilt das Verbot nicht für bereits geparkte Fahrzeuge.',
+      'Eine Halteverbotszone reserviert die Fläche vor dem Haus für den Umzugstag. In Berlin wird sie bei der zuständigen Straßenverkehrsbehörde des Bezirks oder über einen Dienstleister beantragt.\n\nPlanen Sie ausreichend Vorlauf ein. Die Schilder müssen fristgerecht stehen, damit das Verbot auch gegenüber bereits geparkten Fahrzeugen wirksam werden kann.',
     teaser: 'Vorlauf, Antrag und warum sie sich in der Innenstadt fast immer rechnet.',
     blocks: [
       {
@@ -887,13 +887,13 @@ export const guides: Guide[] = [
     slug: 'umzugskosten-jobcenter-berlin',
     status: 'published',
     hub: 'ratgeber',
-    h1: 'Umzugskosten vom Jobcenter in Berlin: Antrag und Ablauf',
+    h1: 'Jobcenter-Umzugskosten in Berlin: Antrag und Ablauf',
     navLabel: 'Jobcenter und Umzugskosten',
     metaTitle: 'Jobcenter Umzugskosten Berlin: Antrag, Zusicherung, Angebote',
     metaDescription:
       'Jobcenter-Umzugskosten in Berlin: Wann eine Zusicherung nötig ist, welche Unterlagen verlangt werden und warum der Antrag vor der Beauftragung gestellt wird.',
     answer:
-      'Das Jobcenter kann notwendige und angemessene Umzugskosten übernehmen, wenn die zuständige Stelle die Kosten vor dem Umzug schriftlich zugesichert hat. Unterschreiben Sie den neuen Mietvertrag und beauftragen Sie kein Umzugsunternehmen, bevor die Prüfung abgeschlossen ist. In Berlin werden für einen Firmenumzug regelmäßig eine Begründung und mehrere Kostenvoranschläge verlangt. Welche Kosten tatsächlich anerkannt werden, entscheidet das Jobcenter im Einzelfall.',
+      'Das Jobcenter kann notwendige und angemessene Umzugskosten übernehmen, wenn die zuständige Stelle die Kosten vor dem Umzug schriftlich zugesichert hat.\n\nStimmen Sie den neuen Mietvertrag und die Beauftragung deshalb vorher mit dem Jobcenter ab. Häufig werden eine Begründung und mehrere Kostenvoranschläge verlangt; entschieden wird immer im Einzelfall.',
     teaser:
       'Zusicherung, Zuständigkeit, Kostenvoranschläge und die richtige Reihenfolge vor dem Umzug.',
     blocks: [
@@ -1054,7 +1054,7 @@ export const guides: Guide[] = [
     metaDescription:
       'Sofa, Matratze, Schrank oder Elektrogerät in Berlin entsorgen: Recyclinghof, BSR-Abholung und kompletter Abholservice verständlich verglichen.',
     answer:
-      'Einzelne Möbel, Matratzen und bis zu drei Kubikmeter Sperrmüll können Berliner Privathaushalte selbst zu einem BSR-Recyclinghof bringen. Wer nicht transportieren kann, bucht eine BSR-Abholung oder einen privaten Abholservice. Elektrogeräte gehören niemals in den Hausmüll. Entscheidend sind Menge, Etage, Demontage und Trageweg: Bei wenigen bereitgestellten Teilen genügt oft die BSR, bei Räumen oder Zusatzarbeiten ist ein Komplettservice sinnvoller.',
+      'Einzelne Möbel, Matratzen und haushaltsübliche Mengen Sperrmüll können Berliner Privathaushalte selbst zu einem BSR-Recyclinghof bringen. Alternativen sind die BSR-Abholung und ein privater Abholservice.\n\nEntscheidend sind Menge, Etage, Demontage und Trageweg. Bei wenigen bereitgestellten Teilen genügt oft die BSR; für volle Räume oder Zusatzarbeiten ist ein Komplettservice meist passender.',
     teaser:
       'Recyclinghof, BSR-Abholung und Komplettservice – welche Lösung zu Menge und Aufwand passt.',
     blocks: [
@@ -1189,13 +1189,13 @@ export const guides: Guide[] = [
     slug: 'wohnungsaufloesung-checkliste-pdf',
     status: 'published',
     hub: 'ratgeber',
-    h1: 'Wohnungsauflösung planen: Checkliste zum Ausdrucken',
+    h1: 'Wohnungsauflösung: Checkliste zum Ausdrucken',
     navLabel: 'Checkliste Wohnungsauflösung',
     metaTitle: 'Wohnungsauflösung Checkliste: kostenloses PDF für Berlin',
     metaDescription:
       'Kostenlose Checkliste für die Wohnungsauflösung: Unterlagen, Sortierung, Termine, Entsorgung und Wohnungsübergabe in der richtigen Reihenfolge planen.',
     answer:
-      'Eine Wohnungsauflösung beginnt nicht mit dem Wegwerfen, sondern mit Terminen, Vollmachten und einer klaren Sortierung. Sichern Sie zuerst Unterlagen und persönliche Gegenstände. Markieren Sie anschließend, was bleibt, verkauft, verschenkt oder entsorgt wird. Klären Sie dann Räumung, Abmeldungen und Wohnungsübergabe. Die kostenlose PDF-Checkliste führt in dieser Reihenfolge durch alle Schritte und lässt Platz für Termine, Zuständigkeiten und Notizen.',
+      'Eine Wohnungsauflösung beginnt mit Terminen, Vollmachten und einer klaren Sortierung. Sichern Sie zuerst Unterlagen und persönliche Gegenstände, bevor etwas abgeholt oder entsorgt wird.\n\nDanach folgen Räumung, Abmeldungen und Wohnungsübergabe. Die kostenlose PDF-Checkliste führt in der richtigen Reihenfolge durch alle Schritte und bietet Platz für Termine, Zuständigkeiten und Notizen.',
     teaser:
       'Alle Schritte von den Unterlagen bis zur Schlüsselübergabe – als Seite und kostenlose Druck-PDF.',
     blocks: [

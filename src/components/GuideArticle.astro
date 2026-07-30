@@ -17,6 +17,7 @@ const related = relatedGuides(guide.related);
 const svcs = guide.services
   .map((s) => getService(s))
   .filter((s): s is NonNullable<typeof s> => Boolean(s) && s!.status === 'published');
+const answerParagraphs = guide.answer.split(/\n\s*\n/).filter(Boolean);
 
 // Inhaltsverzeichnis aus den Blocküberschriften
 const toc = guide.blocks.map((b) => ({
@@ -37,7 +38,7 @@ const toc = guide.blocks.map((b) => ({
     </p>
 
     <div class="answer">
-      <p>{guide.answer}</p>
+      {answerParagraphs.map((paragraph) => <p>{paragraph}</p>)}
     </div>
 
     {

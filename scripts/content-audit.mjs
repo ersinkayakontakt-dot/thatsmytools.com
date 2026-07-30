@@ -79,6 +79,30 @@ for (const a of answerful) {
   if (n > 100) notes.push(a.label + ': Kurzantwort hat ' + n + ' Wörter (Ziel 40 bis 100)');
 }
 
+/* -------------------------------- Lesbarkeit längerer Ratgeberantworten
+ * Lange Direktantworten werden redaktionell in kurze Absätze getrennt.
+ * So bleibt die vollständige Antwort zitierbar, ohne mobil als Textwand
+ * zu erscheinen. Explizite Absatzgrenzen sind verlässlicher als ein
+ * automatisches Trennen nach beliebigen Sätzen.
+ */
+for (const guide of guides) {
+  if (guide.status !== 'published') continue;
+  const paragraphs = guide.answer.split(/\\n\\s*\\n/).filter(Boolean);
+  if (paragraphs.length < 2) {
+    errors.push('Ratgeber /' + guide.slug + '/: Direktantwort braucht mindestens 2 lesbare Absätze');
+    continue;
+  }
+  for (const [index, paragraph] of paragraphs.entries()) {
+    const n = words(paragraph);
+    if (n > 40) {
+      errors.push(
+        'Ratgeber /' + guide.slug + '/: Absatz ' + (index + 1) +
+        ' der Direktantwort hat ' + n + ' Wörter (höchstens 40)',
+      );
+    }
+  }
+}
+
 /* ------------------------------------------------- Doppelte Metadaten */
 function checkDuplicates(label: string, entries: { slug: string; title: string; desc: string; published: boolean }[]) {
   const titles = new Map<string, string[]>();

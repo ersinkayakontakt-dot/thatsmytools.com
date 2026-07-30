@@ -26,6 +26,7 @@ export const GET: APIRoute = () => {
   const email = realValue(site.email);
   const legalName = realValue(site.legalName);
   const address = addressLine();
+  const compact = (text: string) => text.replace(/\s+/g, ' ').trim();
 
   const body = `# ${site.name}
 
@@ -88,14 +89,14 @@ ${publishedServices.map((s) => `- [${s.h1}](${site.url}/leistungen/${s.slug}/): 
 
 ${publishedGuides
   .filter((g) => g.hub === 'kosten')
-  .map((g) => `- [${g.h1}](${site.url}/kosten/${g.slug}/): ${g.answer}`)
+  .map((g) => `- [${g.h1}](${site.url}/kosten/${g.slug}/): ${compact(g.answer)}`)
   .join('\n')}
 
 ## Ratgeber
 
 ${publishedGuides
   .filter((g) => g.hub === 'ratgeber')
-  .map((g) => `- [${g.h1}](${site.url}/ratgeber/${g.slug}/): ${g.answer}`)
+  .map((g) => `- [${g.h1}](${site.url}/ratgeber/${g.slug}/): ${compact(g.answer)}`)
   .join('\n')}
 
 ## Einsatzgebiete mit eigener Seite

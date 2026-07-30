@@ -32,6 +32,9 @@ Wohnungsauflösung, Nachlass und Seniorenumzug" umgestellt. Umgesetzt sind:
   `/kosten/` inklusive Prüfdatum
 - ✅ Besichtigungszusage präzisiert (telefonische Ersteinschätzung kostenlos,
   Besichtigung bei geeigneten Komplettaufträgen)
+- ✅ Alle zwölf Kosten- und Ratgeberseiten redaktionell auf mobile Lesbarkeit
+  geprüft. Die Direktantworten sind in kurze Absätze gegliedert, zwei lange
+  H1 gekürzt und der Content-Audit verhindert neue Textwände.
 
 **Offen aus dem Umbauauftrag – nach Wirkung sortiert:**
 
