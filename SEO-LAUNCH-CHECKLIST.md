@@ -150,19 +150,21 @@ der stimmt.** Diese Punkte prüfen:
 4. [x] IndexNow prüfen: Ist die Schlüsseldatei
        `https://schnellhelfer24.de/<KEY>.txt` erreichbar und enthält sie
        genau den Schlüssel? Ohne das lehnt IndexNow mit HTTP 403 ab
-5. [x] `npm run indexnow -- --all` ausgeführt: 47 URLs, HTTP 202
-       *(30.07.2026)*
+5. [x] Vollständige Erstmeldung: 47 URLs, HTTP 202. Nach dem Ratgeber-Ausbau
+       zusätzlich 21 neue oder geänderte URLs, HTTP 202 *(30.07.2026)*
 6. [ ] URL-Prüfung für Startseite und die wichtigste Leistungsseite
 7. [ ] Unter „Site Scan" den ersten Crawl anstoßen
 
 ### Google Search Console
 1. [x] Domain-Property `schnellhelfer24.de` angelegt *(30.07.2026)*
 2. [x] Per DNS-TXT-Eintrag verifiziert *(30.07.2026; Eintrag nicht löschen)*
-3. [x] Sitemap `https://schnellhelfer24.de/sitemap.xml` erfolgreich
-       eingereicht; Google hat 47 Seiten erkannt *(30.07.2026)*
+3. [x] Sitemap `https://schnellhelfer24.de/sitemap.xml` erfolgreich erneut
+       eingereicht; Google hat 50 Seiten erkannt *(30.07.2026)*
 4. [x] URL-Prüfung durchgeführt: Startseite bereits indexiert; für
        Wohnungsauflösung, Entrümpelung und Nachlassauflösung wurde die
-       Indexierung beantragt *(30.07.2026)*
+       Indexierung beantragt. Zusätzlich wurden Jobcenter-Umzugskosten,
+       Sperrmüll/Möbel-Entsorgung und die PDF-Checkliste einzeln beantragt
+       *(30.07.2026)*
 5. [ ] Unter „Einstellungen → Crawling-Statistiken" nach dem ersten Crawl
        prüfen, ob Fehler auftreten
 
@@ -174,6 +176,10 @@ der stimmt.** Diese Punkte prüfen:
 - [x] `https://schnellhelfer24.de/llms.txt` erreichbar
 - [ ] Rich-Results-Test von Google für Startseite, eine Leistungsseite, eine
       Bezirksseite und einen Ratgeber
+- [x] Neuer Jobcenter-Ratgeber im offiziellen Google-Test: 4 gültige
+      Elementtypen; Article-Warnungen zu Bild und Datumswerten behoben.
+      Verbleibend ist nur der bewusst akzeptierte optionale
+      `LocalBusiness.priceRange`-Hinweis *(30.07.2026)*
 - [ ] Schema-Validator (`validator.schema.org`) für dieselben Seiten
 - [ ] Prüfen: Es darf **kein** `aggregateRating` ausgegeben werden, solange
       keine echten Bewertungen sichtbar auf der Seite stehen
