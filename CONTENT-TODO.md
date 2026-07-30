@@ -35,13 +35,18 @@ Wohnungsauflösung, Nachlass und Seniorenumzug" umgestellt. Umgesetzt sind:
 
 **Offen aus dem Umbauauftrag – nach Wirkung sortiert:**
 
-1. **Anfrageformular qualifizieren** (`src/components/AufwandCheck.astro` +
-   `public/api/anfrage.php`). Es fehlen: Anlass (Nachlass, Seniorenumzug,
-   Immobilienverkauf, Renovierung, Neuvermietung, Gewerbeauflösung),
-   Zimmerzahl/Quadratmeter, Zusatzleistungen (Verpackung, Ab- und Aufbau,
-   Einlagerung, Reinigung, Fotodokumentation, Schlüsselübergabe) und der
-   Umfang (einzelner Raum / Wohnung / Haus / Gewerbe). **Achtung: beide
-   Schichten anfassen** – das PHP-Skript baut die E-Mail aus den POST-Feldern.
+1. ✅ **Anfrageformular qualifiziert.** Neu: Umfang (Raum / Wohnung / Haus /
+   Gewerbe), Größe in Zimmern oder m², Anlass und sieben Zusatzleistungen.
+   Gepflegt in **vier** Schichten, die zusammenpassen müssen:
+   `AufwandCheck.astro` (Felder, Zwischenzusammenfassung, sessionStorage),
+   `anfrage-erhalten.astro` (Bestätigungsseite) und `public/api/anfrage.php`
+   (Mailtext, JSON-Ablage, Betreff). Umfang und Anlass sind Pflichtfelder im
+   Browser, serverseitig optional – so scheitert eine zwischengespeicherte
+   alte Seite nicht am Absenden.
+   **Offen:** Das PHP konnte hier nicht geprüft werden (kein PHP auf dem
+   Entwicklungsrechner). Vor dem Livegang eine Testanfrage über den echten
+   Server senden und kontrollieren, ob Umfang, Anlass, Größe und
+   Zusatzleistungen in der Mail und in der JSON-Ablage ankommen.
 2. **Zentrale Seite `/moebel-sperrmuell-abholung-berlin/`** als Sammelseite für
    Sofa, Matratze, Schrank, Waschmaschine, Kellerreste – mit den
    Qualifizierungsfragen (weitere Möbel? ganzer Raum? Keller? Übergabe?).

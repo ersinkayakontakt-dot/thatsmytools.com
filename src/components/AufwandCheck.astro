@@ -35,6 +35,43 @@ const objectTypes = [
   'Einzelne Möbelstücke',
 ];
 
+/**
+ * Umfang, Anlass und Zusatzleistungen qualifizieren die Anfrage.
+ *
+ * Sie entscheiden darüber, ob aus einer Anfrage ein Komplettauftrag wird:
+ * "vollständiges Haus, Anlass Nachlass, mit Einlagerung und Reinigung" ist
+ * ein anderer Termin als "einzelner Raum, Anlass Umzug". Die Angaben stehen
+ * in der Benachrichtigungsmail ganz oben, damit die Einschätzung nicht erst
+ * telefonisch erfragt werden muss.
+ */
+const scopes = [
+  { value: 'Einzelner Raum', hint: 'Ein Zimmer, ein Keller, ein Abteil' },
+  { value: 'Vollständige Wohnung', hint: 'Alle Räume einschließlich Nebenflächen' },
+  { value: 'Vollständiges Haus', hint: 'Mehrere Etagen, meist mit Keller und Garten' },
+  { value: 'Gewerberäume', hint: 'Büro, Praxis, Ladenfläche, Lager' },
+];
+
+const occasions = [
+  'Nachlass / Haushalt eines Angehörigen',
+  'Seniorenumzug oder Wechsel ins Heim',
+  'Immobilienverkauf',
+  'Umzug',
+  'Renovierung oder Sanierung',
+  'Neuvermietung',
+  'Gewerbeauflösung',
+  'Anderer Anlass',
+];
+
+const extras = [
+  'Verpackung',
+  'Möbelabbau',
+  'Möbelaufbau',
+  'Einlagerung',
+  'Reinigung',
+  'Fotodokumentation',
+  'Schlüsselübergabe',
+];
+
 const fillLevels = [
   { value: 'wenig', label: 'Eher leer', hint: 'Nur einzelne Möbel, wenig Kleinkram' },
   { value: 'normal', label: 'Normal möbliert', hint: 'Wie eine bewohnte Wohnung üblicherweise aussieht' },
@@ -190,6 +227,45 @@ const steps = [
         </select>
       </div>
 
+      <fieldset class="subfield">
+        <legend>Was soll insgesamt bearbeitet werden? <span class="req">Pflichtfeld</span></legend>
+        <div class="choices">
+          {
+            scopes.map((s) => (
+              <label class="choice choice--row">
+                <input
+                  type="radio"
+                  name="umfang"
+                  value={s.value}
+                  required
+                  data-validate="Bitte wählen Sie den Umfang."
+                />
+                <span class="choice__body">
+                  <span class="choice__title">{s.value}</span>
+                  <span class="choice__hint">{s.hint}</span>
+                </span>
+              </label>
+            ))
+          }
+        </div>
+      </fieldset>
+
+      <div class="field">
+        <label for="flaeche">Wie viele Zimmer oder Quadratmeter?</label>
+        <input
+          type="text"
+          id="flaeche"
+          name="flaeche"
+          inputmode="text"
+          maxlength="60"
+          aria-describedby="flaeche-hint"
+        />
+        <p class="field__hint" id="flaeche-hint">
+          Eine Schätzung genügt, zum Beispiel „3 Zimmer, etwa 75 m²". Wenn Sie es nicht wissen,
+          lassen Sie das Feld leer.
+        </p>
+      </div>
+
       <div class="nav-row">
         <button type="button" class="btn btn--ghost" data-prev>Zurück</button>
         <button type="button" class="btn btn--primary" data-next>Weiter</button>
@@ -246,6 +322,38 @@ const steps = [
             <input type="radio" name="aufzug" value="Weiß ich nicht" />
             <span class="choice__body"><span class="choice__title">Weiß ich nicht</span></span>
           </label>
+        </div>
+      </fieldset>
+
+      <div class="field">
+        <label for="anlass">Was ist der Anlass? <span class="req">Pflichtfeld</span></label>
+        <select id="anlass" name="anlass" required data-validate="Bitte wählen Sie den Anlass.">
+          <option value="">Bitte wählen</option>
+          {occasions.map((o) => <option value={o}>{o}</option>)}
+        </select>
+        <p class="field__hint">
+          Der Anlass entscheidet über den Ablauf: Bei einem Nachlass wird gesichtet und gesichert,
+          vor einer Neuvermietung zählt der Übergabetermin.
+        </p>
+      </div>
+
+      <fieldset class="subfield">
+        <legend>Welche Zusatzleistungen brauchen Sie?</legend>
+        <p class="field__hint">
+          Mehrfachauswahl möglich. Gemeinsam in einem Termin ausgeführt ist das in der Regel
+          einfacher zu planen als in mehreren Einsätzen. Was Sie nicht brauchen, lassen Sie weg.
+        </p>
+        <div class="choices choices--inline">
+          {
+            extras.map((x) => (
+              <label class="choice choice--pill">
+                <input type="checkbox" name="zusatzleistungen[]" value={x} />
+                <span class="choice__body">
+                  <span class="choice__title">{x}</span>
+                </span>
+              </label>
+            ))
+          }
         </div>
       </fieldset>
 
@@ -1145,8 +1253,11 @@ const steps = [
       if (!summary || !summaryList) return;
       var wanted = [
         ['leistung', 'Leistung'],
+        ['umfang', 'Umfang'],
+        ['anlass', 'Anlass'],
         ['plz', 'Postleitzahl'],
         ['objektart', 'Objekt'],
+        ['flaeche', 'Größe'],
         ['fuellgrad', 'Füllgrad'],
         ['etage', 'Etage'],
         ['aufzug', 'Aufzug'],
@@ -1166,6 +1277,15 @@ const steps = [
         summaryList.appendChild(dt);
         summaryList.appendChild(dd);
       });
+      var services = fd.getAll('zusatzleistungen[]');
+      if (services.length) {
+        var dt3 = document.createElement('dt');
+        dt3.textContent = 'Zusatzleistungen';
+        var dd3 = document.createElement('dd');
+        dd3.textContent = services.join(', ');
+        summaryList.appendChild(dt3);
+        summaryList.appendChild(dd3);
+      }
       var extra = fd.getAll('nebenraeume[]');
       if (extra.length) {
         var dt2 = document.createElement('dt');
@@ -1243,12 +1363,14 @@ const steps = [
       try {
         var fd = new FormData(form);
         var out = {};
-        ['leistung', 'plz', 'ort', 'objektart', 'fuellgrad', 'etage', 'aufzug', 'zeitraum', 'stichtag', 'kontaktart', 'name'].forEach(
+        ['leistung', 'umfang', 'anlass', 'plz', 'ort', 'objektart', 'flaeche', 'fuellgrad', 'etage', 'aufzug', 'zeitraum', 'stichtag', 'kontaktart', 'name'].forEach(
           function (k) {
             var v = fd.get(k);
             if (v) out[k] = v;
           },
         );
+        var zusatz = fd.getAll('zusatzleistungen[]');
+        if (zusatz.length) out.zusatzleistungen = zusatz.join(', ');
         var neben = fd.getAll('nebenraeume[]');
         if (neben.length) out.nebenraeume = neben.join(', ');
         out.fotos = fileInput && fileInput.files ? fileInput.files.length : 0;

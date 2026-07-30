@@ -227,6 +227,9 @@ $fields = [
     'plz'         => clean($_POST['plz'] ?? '', 5),
     'ort'         => clean($_POST['ort'] ?? '', 120),
     'objektart'   => clean($_POST['objektart'] ?? '', 120),
+    'umfang'      => clean($_POST['umfang'] ?? '', 60),
+    'flaeche'     => clean($_POST['flaeche'] ?? '', 60),
+    'anlass'      => clean($_POST['anlass'] ?? '', 80),
     'fuellgrad'   => clean($_POST['fuellgrad'] ?? '', 60),
     'etage'       => clean($_POST['etage'] ?? '', 60),
     'aufzug'      => clean($_POST['aufzug'] ?? '', 30),
@@ -246,6 +249,22 @@ if (isset($_POST['nebenraeume']) && is_array($_POST['nebenraeume'])) {
         $value = clean(is_string($raum) ? $raum : '', 40);
         if ($value !== '') {
             $nebenraeume[] = $value;
+        }
+    }
+}
+
+/*
+ * Zusatzleistungen kommen wie die Nebenräume als Array. Begrenzt auf 12
+ * Einträge und 60 Zeichen, damit ein manipuliertes Formular die Mail nicht
+ * aufblähen kann. Es wird bewusst nicht gegen eine feste Liste geprüft:
+ * neue Auswahlmöglichkeiten im Formular sollen nicht am Server scheitern.
+ */
+$zusatzleistungen = [];
+if (isset($_POST['zusatzleistungen']) && is_array($_POST['zusatzleistungen'])) {
+    foreach (array_slice($_POST['zusatzleistungen'], 0, 12) as $extra) {
+        $value = clean(is_string($extra) ? $extra : '', 60);
+        if ($value !== '') {
+            $zusatzleistungen[] = $value;
         }
     }
 }
@@ -399,8 +418,12 @@ $lines = [
     '',
     '--- Auftrag ---------------------------------------',
     'Leistung:        ' . $fields['leistung'],
+    'Umfang:          ' . ($fields['umfang'] !== '' ? $fields['umfang'] : '(nicht angegeben)'),
+    'Anlass:          ' . ($fields['anlass'] !== '' ? $fields['anlass'] : '(nicht angegeben)'),
     'PLZ / Ort:       ' . $fields['plz'] . ($fields['ort'] !== '' ? ' ' . $fields['ort'] : ''),
     'Objektart:       ' . $fields['objektart'],
+    'Größe:           ' . ($fields['flaeche'] !== '' ? $fields['flaeche'] : '(nicht angegeben)'),
+    'Zusatzleistungen:' . ' ' . ($zusatzleistungen !== [] ? implode(', ', $zusatzleistungen) : '(keine gewählt)'),
     'Füllgrad:        ' . $fields['fuellgrad'],
     'Etage:           ' . $fields['etage'],
     'Aufzug:          ' . $fields['aufzug'],
@@ -433,9 +456,15 @@ $lines[] = 'Löschfrist der Fotos: ' . $config['retentionDays'] . ' Tage nach Ei
 
 $body = implode("\r\n", $lines);
 
+/*
+ * Der Umfang steht im Betreff, weil danach priorisiert wird: eine
+ * vollständige Wohnung oder ein Haus ist im Posteingang sofort von einer
+ * Einzelabholung zu unterscheiden, ohne die Mail zu öffnen.
+ */
 $subject = sprintf(
-    '[Anfrage %s] %s, %s %s',
+    '[Anfrage %s]%s %s, %s %s',
     $ref,
+    $fields['umfang'] !== '' ? ' ' . $fields['umfang'] . ' -' : '',
     $fields['leistung'],
     $fields['plz'],
     $fields['ort'] !== '' ? $fields['ort'] : ''
@@ -473,7 +502,8 @@ $sent = @mail(
 $inboxDir = $storage . '/anfragen';
 if (ensureDir($inboxDir)) {
     $record = $fields;
-    $record['nebenraeume'] = $nebenraeume;
+    $record['nebenraeume']      = $nebenraeume;
+    $record['zusatzleistungen'] = $zusatzleistungen;
     $record['referenz']    = $ref;
     $record['zeit']        = date('c');
     $record['fotos']       = array_map('basename', $saved);

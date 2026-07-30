@@ -244,14 +244,22 @@ const prep = [
     var list = document.querySelector('[data-recap-list]');
     if (!box || !list) return;
 
+    // Reihenfolge der Zusammenfassung. Wer hier ein Feld ergänzt, muss es
+    // auch im Formular (AufwandCheck.astro) und in der Auswertung
+    // (public/api/anfrage.php) führen – sonst zeigt die Bestätigung etwas
+    // an, was in der Anfrage nie ankommt.
     var labels = {
       leistung: 'Leistung',
+      umfang: 'Umfang',
+      anlass: 'Anlass',
       plz: 'Postleitzahl',
       ort: 'Ort',
       objektart: 'Objekt',
+      flaeche: 'Größe',
       fuellgrad: 'Füllgrad',
       etage: 'Etage',
       aufzug: 'Aufzug',
+      zusatzleistungen: 'Zusatzleistungen',
       nebenraeume: 'Zusätzlich',
       zeitraum: 'Zeitraum',
       stichtag: 'Fester Termin',
