@@ -89,13 +89,15 @@ const isCurrent = (href: string) => (href === '/' ? path === '/' : path.startsWi
 </header>
 
 <style>
+  /* Mitlaufender Kopf. Wichtig: nur EINE position-Angabe. Ein späteres
+     `position: relative` würde `sticky` still überschreiben, und dann
+     bliebe auch das backdrop-filter wirkungslos. */
   .site-header {
     background: rgba(255, 253, 249, 0.96);
     border-bottom: 1px solid var(--line);
     position: sticky;
     top: 0;
     backdrop-filter: blur(12px);
-    position: relative;
     z-index: 20;
   }
 

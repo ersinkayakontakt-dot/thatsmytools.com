@@ -1,0 +1,88 @@
+name: Zu Hostinger übertragen
+
+# Bewusst NUR manuell auslösbar.
+#
+# Grund: Solange in src/config/site.ts noch Platzhalter stehen (Telefon,
+# Anschrift, Firmierung) und Impressum wie Datenschutz nicht anwaltlich
+# geprüft sind, darf ein Push nicht automatisch auf die Live-Domain gehen.
+#
+# Sobald das erledigt ist und die Seite wirklich live laufen soll, kann der
+# auskommentierte push-Auslöser unten aktiviert werden. Dann veröffentlicht
+# jeder Push auf den Branch automatisch.
+on:
+  workflow_dispatch:
+    inputs:
+      probelauf:
+        description: 'Nur anzeigen, was übertragen würde (nichts hochladen)'
+        type: boolean
+        default: true
+
+  # push:
+  #   branches: [claude/schnellhelfer24-rebuild-nn7fwd]
+
+concurrency:
+  # Zwei gleichzeitige Übertragungen würden sich gegenseitig überschreiben.
+  group: hostinger-deploy
+  cancel-in-progress: false
+
+jobs:
+  bauen-und-uebertragen:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Quellcode holen
+        uses: actions/checkout@v4
+
+      - name: Node einrichten
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+
+      - name: Abhängigkeiten installieren
+        run: npm ci
+
+      - name: Inhalte prüfen
+        # Publish Guard, tote Verweise, Platzhalter in veröffentlichten Texten
+        run: npm run audit:content
+
+      - name: Bauen
+        run: npm run build
+
+      - name: Gebaute Website prüfen
+        # Titles, Descriptions, H1, Canonicals, interne Links, Sitemap, Schema.
+        # Schlägt der Schritt fehl, wird NICHT übertragen.
+        run: npm run audit:build
+
+      - name: Übertragen (FTPS)
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+        with:
+          server: ${{ secrets.HOSTINGER_FTP_SERVER }}
+          username: ${{ secrets.HOSTINGER_FTP_USER }}
+          password: ${{ secrets.HOSTINGER_FTP_PASSWORD }}
+          protocol: ftps
+          port: 21
+          local-dir: ./dist/
+          server-dir: ${{ secrets.HOSTINGER_FTP_DIR }}
+          dry-run: ${{ inputs.probelauf }}
+          # Niemals blind alles löschen. Auf dem Server liegen Dateien, die
+          # nicht aus dem Build stammen und nicht verloren gehen dürfen.
+          dangerous-clean-slate: false
+          exclude: |
+            **/.git*
+            **/.git*/**
+            **/node_modules/**
+            **/api/_storage/**
+            **/api/config.local.php
+
+      - name: Hinweis zu IndexNow
+        if: ${{ inputs.probelauf == false }}
+        run: |
+          echo "Übertragung abgeschlossen."
+          echo ""
+          echo "Nächster Schritt auf dem eigenen Rechner:"
+          echo "  npm run indexnow"
+          echo ""
+          echo "Das meldet geänderte URLs an Bing und die übrigen IndexNow-Dienste."
+          echo "Es läuft bewusst nicht hier, weil die Datei .indexnow-state.json"
+          echo "in das Repository zurückgeschrieben werden muss."

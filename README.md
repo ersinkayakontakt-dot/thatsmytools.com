@@ -53,6 +53,15 @@ npm run indexnow       # meldet geänderte URLs an IndexNow
 node scripts/make-images.mjs   # erzeugt og-default.png und apple-touch-icon.png
 ```
 
+Aktualisierung der Live-Website (Windows, PowerShell):
+
+```powershell
+.\scripts\deploy.ps1 -Server ftp.schnellhelfer24.de -Benutzer BENUTZER -Zielverzeichnis /public_html -Probelauf
+```
+
+Ohne `-Probelauf` wird tatsächlich übertragen. Ausführlich in
+`docs/HOSTINGER-AKTUALISIEREN.md`.
+
 ---
 
 ## Drei Regeln, die dieses Projekt trägt
@@ -110,6 +119,7 @@ zwischen Seiten sind dadurch ausgeschlossen.
 |---|---|
 | `CONTENT-TODO.md` | Alle noch fehlenden echten Angaben, nach Dringlichkeit sortiert |
 | `SEO-LAUNCH-CHECKLIST.md` | Schritt für Schritt zum Livegang, plus Contentplan für 90 Tage |
+| `docs/HOSTINGER-AKTUALISIEREN.md` | Website bei Hostinger aktualisieren: PowerShell-Skript und GitHub-Ablauf |
 | `docs/ARCHITEKTUR.md` | Warum Astro, warum PHP fürs Formular, Deployment, Performance-Budget |
 | `docs/KI-CRAWLER.md` | Welche KI-Bots erlaubt sind und warum |
 
