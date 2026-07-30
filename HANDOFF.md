@@ -8,6 +8,23 @@ Auffindbarkeit hat, in welcher Reihenfolge und woran fertig erkennbar ist.**
 Sie ersetzt keine der beiden Pflichtdateien: offene Inhalte stehen in
 `CONTENT-TODO.md`, der Launchablauf in `SEO-LAUNCH-CHECKLIST.md`.
 
+## Live-Deployment bei Hostinger
+
+Die Domain `schnellhelfer24.de` ist in Hostinger mit dem Repository
+`ersinkayakontakt-dot/thatsmytools.com` verbunden. Hostinger muss den Branch
+`hostinger-live` nach `public_html` deployen. Dieser Branch enthält nur den
+fertigen Inhalt aus `dist/`.
+
+Den Astro-Quellbranch
+`claude/schnellhelfer24-rebuild-nn7fwd` niemals direkt nach `public_html`
+deployen: Hostinger führt dabei keinen Astro-Build aus und die Domain liefert
+ohne `index.html` einen HTTP-403-Fehler.
+
+Vor einem künftigen Livegang zuerst die vier Prüfungen ausführen, danach
+`dist/` als neuen Stand von `hostinger-live` veröffentlichen und in Hostinger
+neu deployen. Der am 30.07.2026 geprüfte Live-Stand basiert auf Quellcommit
+`8c3e562` und Build-Commit `fd43637`.
+
 ---
 
 ## Zuerst lesen
