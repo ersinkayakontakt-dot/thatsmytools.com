@@ -73,8 +73,13 @@ Anfragen, die still verschwinden.
   - Hostingunternehmen mit Anschrift, Speicherdauer der Logfiles,
     Auftragsverarbeitungsvertrag nach Art. 28 DSGVO
   - E-Mail-Anbieter, über den Anfragen empfangen werden
-  - konkrete Löschfristen für Anfragen (Vorschlag: 6 Monate) und für Fotos
-    (Vorschlag: 90 Tage, muss zu `retentionDays` in `config.local.php` passen)
+  - ~~konkrete Löschfristen~~ ✅ festgelegt: Anfragen 6 Monate nach dem
+    letzten Kontakt, Fotos 90 Tage nach dem Upload. Die 90 Tage stimmen mit
+    `retentionDays => 90` in `public/api/anfrage.php` überein – bei Änderung
+    beide Stellen anfassen. Für die 6 Monate gibt es **noch keinen
+    technischen Löschlauf**: Anfragen liegen im Postfach und müssen
+    organisatorisch gelöscht werden, sonst verspricht die Erklärung etwas,
+    was nicht passiert
   - prüfen, ob ein Datenschutzbeauftragter zu benennen ist (§ 38 BDSG)
 - Verzeichnis von Verarbeitungstätigkeiten nach Art. 30 DSGVO anlegen
 
