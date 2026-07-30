@@ -153,6 +153,7 @@ der stimmt.** Diese Punkte prüfen:
 5. [x] Vollständige Erstmeldung: 47 URLs, HTTP 202. Nach dem Ratgeber-Ausbau
        zusätzlich 21 neue oder geänderte URLs, HTTP 202. Nach der
        Lesbarkeitsoptimierung weitere 18 geänderte URLs, HTTP 200
+       und nach dem Schrittlisten-Fix weitere 13 URLs, HTTP 200
        *(30.07.2026)*
 6. [ ] URL-Prüfung für Startseite und die wichtigste Leistungsseite
 7. [ ] Unter „Site Scan" den ersten Crawl anstoßen
@@ -184,6 +185,10 @@ der stimmt.** Diese Punkte prüfen:
       `LocalBusiness.priceRange`-Hinweis *(30.07.2026)*
 - [x] Alle zwölf Kosten- und Ratgeberseiten auf 375 Pixel Breite geprüft:
       zwei kurze Direktantwort-Absätze je Seite, kein horizontaler Überlauf
+      *(30.07.2026)*
+- [x] Nummerierte Schrittlisten nach einem Mobilgerät-Fund korrigiert:
+      Überschrift und Absatz teilen sich nun die breite Inhaltsspalte; alle
+      zehn betroffenen Ratgeberseiten erneut auf 375 Pixel geprüft
       *(30.07.2026)*
 - [ ] Schema-Validator (`validator.schema.org`) für dieselben Seiten
 - [ ] Prüfen: Es darf **kein** `aggregateRating` ausgegeben werden, solange
