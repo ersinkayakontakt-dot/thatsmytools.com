@@ -30,31 +30,31 @@
 /* ---------------------------------------------------------------- Tokens */
 :root {
   /* Text */
-  --ink: #17313a;
-  --ink-2: #354c53;
-  --ink-3: #5b6c71;
-  --ink-4: #68777b;
+  --ink: #171717;
+  --ink-2: #3f3f3b;
+  --ink-3: #666660;
+  --ink-4: #74746e;
 
   /* Flächen */
-  --paper: #fffdf9;
-  --paper-2: #f4f2ed;
-  --paper-3: #e8e5de;
+  --paper: #f7f7f2;
+  --paper-2: #ecece6;
+  --paper-3: #dfdfd7;
 
   /* Linien */
-  --line: #dcded9;
-  --line-strong: #aeb8b7;
+  --line: #d5d5cd;
+  --line-strong: #9c9c94;
 
   /* Struktur: Schwarz trägt den Aufbau, nicht eine Markenfarbe */
-  --brand: #17313a;
-  --brand-2: #24454f;
-  --brand-3: #10262d;
-  --brand-tint: #edf3f2;
+  --brand: #171717;
+  --brand-2: #292929;
+  --brand-3: #090909;
+  --brand-tint: #e7e7e0;
 
   /* Handlung */
-  --accent: #c94f1d;
-  --accent-2: #a83d13;
-  --accent-text: #a83d13;
-  --accent-tint: #fff0e8;
+  --accent: #e84917;
+  --accent-2: #c9360b;
+  --accent-text: #b9340c;
+  --accent-tint: #ffe9df;
 
   /* Auf schwarzem Grund */
   --on-dark: #c9cfd3;
@@ -97,9 +97,9 @@
 
   /* Eckige Kanten. Der Radius bleibt als Token bestehen, damit sich die
      Entscheidung an einer Stelle zurücknehmen lässt. */
-  --r-sm: 0.25rem;
-  --r-md: 0.5rem;
-  --r-lg: 0.75rem;
+  --r-sm: 0;
+  --r-md: 0;
+  --r-lg: 0;
 
   /* Linienstärken */
   --rule: 1px;
@@ -138,7 +138,7 @@ body {
   background: var(--paper);
   color: var(--ink);
   font-family: var(--font-body);
-  font-size: 1.0625rem;
+  font-size: 1rem;
   line-height: 1.6;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
@@ -170,7 +170,7 @@ h2,
 h3,
 h4 {
   font-family: var(--font-head);
-  font-weight: 700;
+  font-weight: 800;
   line-height: 1.14;
   color: var(--ink);
   margin: 0 0 var(--sp-4);

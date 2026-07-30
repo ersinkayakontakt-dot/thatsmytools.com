@@ -1,244 +1,189 @@
 ---
-import Icon from '../components/Icon.astro';
+import Icon from './Icon.astro';
 import { phone, whatsapp, primaryCta } from '../lib/contact';
-import Todo from './Todo.astro';
-
-/**
- * Hero der Startseite.
- * Beantwortet in den ersten Sekunden: Was, wo, warum, was jetzt tun.
- *
- * Kein Stockfoto, keine generischen Menschenbilder. Stattdessen eine
- * ruhige typografische Fläche mit dezentem Grundriss-Raster. Sobald echte
- * Einsatzfotos vorliegen, ersetzt eines davon die rechte Spalte
- * (siehe CONTENT-TODO.md).
- */
-const trust = [
-  'Kostenlose Besichtigung',
-  'Klare Absprache vor Beginn',
-  'Diskret und auf Wunsch besenrein',
-];
 ---
 
 <section class="hero">
+  <div class="hero__label" aria-hidden="true">
+    <span>BERLIN</span>
+    <span>RÄUMEN · TRAGEN · FAHREN</span>
+  </div>
+
   <div class="wrap hero__inner">
-    <div class="hero__text">
-      <p class="hero__eyebrow">Berlin und Umland</p>
-      <h1>Entrümpelung und Umzug in Berlin – schnell, sauber, fair.</h1>
-      <p class="hero__sub">
-        Wir helfen bei Entrümpelung, Haushaltsauflösung und Umzug – persönlich, verlässlich und ohne
-        unnötigen Druck. Senden Sie Fotos oder vereinbaren Sie eine kostenlose Besichtigung.
-      </p>
+    <p class="hero__place">Berlin + Umland</p>
+    <h1>
+      Wir machen<br />
+      <span>Platz.</span>
+    </h1>
+    <p class="hero__sub">
+      Entrümpelung, Haushaltsauflösung und Umzug. Direkt abgesprochen, ordentlich ausgeführt.
+    </p>
 
-      <div class="btn-row hero__actions">
-        <a class="btn btn--primary" href={primaryCta.href} data-track="estimate_cta_click" data-track-location="hero">
-          <Icon name="camera" size={19} />
-          Kostenlos anfragen
-        </a>
-        {
-          phone.available ? (
-            <a class="btn btn--secondary" href={phone.href} data-track="phone_click" data-track-location="hero">
-              <Icon name="phone" size={19} />
-              {phone.display}
-            </a>
-          ) : (
-            <a class="btn btn--secondary" href="/kontakt/">
-              <Icon name="phone" size={19} />
-              Kontakt aufnehmen
-            </a>
-          )
-        }
-        {
-          whatsapp.available && (
-            <a
-              class="btn btn--ghost"
-              href={whatsapp.href}
-              target="_blank"
-              rel="noopener"
-              data-track="whatsapp_click"
-              data-track-location="hero"
-            >
-              <Icon name="whatsapp" size={19} />
-              WhatsApp
-            </a>
-          )
-        }
-      </div>
-
-      <ul class="trustline">
-        {trust.map((t) => <li>{t}</li>)}
-      </ul>
-
-      <Todo>
-        Sobald echte Einsatzfotos vorliegen: rechte Spalte des Heros durch ein Foto aus einem
-        abgeschlossenen Berliner Einsatz ersetzen (Team oder Fahrzeug vor Ort, kein Stockfoto).
-      </Todo>
+    <div class="hero__actions">
+      <a class="btn btn--primary" href={primaryCta.href} data-track="estimate_cta_click" data-track-location="hero">
+        Auftrag zeigen
+        <span aria-hidden="true">→</span>
+      </a>
+      {
+        phone.available ? (
+          <a class="hero__phone" href={phone.href} data-track="phone_click" data-track-location="hero">
+            <Icon name="phone" size={19} />
+            {phone.display}
+          </a>
+        ) : (
+          <a class="hero__phone" href="/kontakt/">
+            <Icon name="phone" size={19} />
+            Kontakt aufnehmen
+          </a>
+        )
+      }
+      {
+        whatsapp.available && (
+          <a class="hero__phone" href={whatsapp.href} target="_blank" rel="noopener">
+            <Icon name="whatsapp" size={19} />
+            WhatsApp
+          </a>
+        )
+      }
     </div>
 
-    <aside class="hero__panel" aria-label="Ablauf in drei Schritten">
-      <p class="hero__panel-head">So läuft es ab</p>
-      <ol class="hero__steps">
-        <li>
-          <span class="hero__step-n" aria-hidden="true">1</span>
-          <span>
-            <strong>Fotos oder Besichtigung</strong>
-            Ein Bild pro Raum, dazu Etage und Aufzug. Nebenräume nicht vergessen.
-          </span>
-        </li>
-        <li>
-          <span class="hero__step-n" aria-hidden="true">2</span>
-          <span>
-            <strong>Feste Absprache</strong>
-            Sie erfahren, was enthalten ist, wie lange es dauert und was den Preis verändern würde.
-          </span>
-        </li>
-        <li>
-          <span class="hero__step-n" aria-hidden="true">3</span>
-          <span>
-            <strong>Einsatz und Übergabe</strong>
-            Wir räumen, transportieren ab, entsorgen getrennt und übergeben auf Wunsch besenrein.
-          </span>
-        </li>
-      </ol>
-      <p class="hero__panel-foot">
-        <a href="/kosten/">Wovon der Preis abhängt</a>
-      </p>
-    </aside>
+    <ul class="hero__facts">
+      <li><strong>01</strong><span>Fotos senden<br />oder Besichtigung</span></li>
+      <li><strong>02</strong><span>Klare Absprache<br />vor Beginn</span></li>
+      <li><strong>03</strong><span>Auf Wunsch<br />besenrein</span></li>
+    </ul>
   </div>
 </section>
 
 <style>
   .hero {
-    background: linear-gradient(120deg, var(--paper) 0%, var(--paper) 62%, var(--brand-tint) 100%);
-    border-bottom: 1px solid var(--line);
     position: relative;
     overflow: hidden;
+    min-height: min(49rem, calc(100vh - 4.5rem));
+    background: #eef0ed;
+    border-bottom: 0;
   }
-
-  /* Kein dekoratives Raster. Der Hero trägt eine kräftige Unterkante,
-     die den Bereich abschließt wie eine Markierung auf dem Boden. */
-  .hero {
-    border-bottom-width: 1px;
-    border-bottom-color: var(--line);
+  .hero::after {
+    content: '24';
+    position: absolute;
+    right: -0.04em;
+    bottom: -0.24em;
+    color: rgba(23, 49, 58, 0.055);
+    font-size: clamp(18rem, 42vw, 42rem);
+    font-weight: 900;
+    line-height: 0.8;
+    letter-spacing: -0.11em;
+    pointer-events: none;
   }
-
+  .hero__label {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 0.65rem var(--sp-5);
+    background: var(--ink);
+    color: var(--white);
+    font: 700 0.68rem/1.2 var(--font-mono);
+    letter-spacing: 0.1em;
+  }
   .hero__inner {
     position: relative;
-    display: grid;
-    gap: var(--sp-6);
-    padding-block: clamp(2.25rem, 1.5rem + 3.5vw, 4.25rem);
+    z-index: 1;
+    padding-block: clamp(3.5rem, 7vw, 7rem) 2.5rem;
   }
-  @media (min-width: 62em) {
-    .hero__inner {
-      grid-template-columns: 1.35fr 1fr;
-      gap: var(--sp-8);
-      align-items: start;
-    }
-  }
-
-  .hero__eyebrow {
+  .hero__place {
+    margin: 0 0 1.3rem;
+    color: var(--accent-text);
     font-size: 0.8rem;
-    font-weight: 700;
-    letter-spacing: 0.12em;
+    font-weight: 850;
+    letter-spacing: 0.13em;
     text-transform: uppercase;
-    color: var(--ink);
-    margin: 0 0 var(--sp-3);
+  }
+  .hero h1 {
+    max-width: none;
+    margin: 0 0 1.75rem;
+    font-size: clamp(4.2rem, 13vw, 10rem);
+    font-weight: 900;
+    line-height: 0.78;
+    letter-spacing: -0.085em;
+    text-transform: uppercase;
+  }
+  .hero h1 span {
+    color: var(--accent);
+  }
+  .hero__sub {
+    max-width: 36rem;
+    margin-bottom: 2rem;
+    color: var(--ink-2);
+    font-size: clamp(1.15rem, 2vw, 1.4rem);
+    line-height: 1.45;
+  }
+  .hero__actions {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 1rem 1.5rem;
+  }
+  .hero__actions :global(.btn) {
+    border-radius: 0;
+    min-height: 3.5rem;
+    padding-inline: 1.6rem;
+  }
+  .hero__phone {
     display: inline-flex;
     align-items: center;
-    gap: 0.6rem;
-  }
-  .hero__eyebrow::before {
-    content: '';
-    width: 1.4rem;
-    height: 0.25rem;
-    border-radius: 999px;
-    background: var(--accent);
-  }
-
-  .hero h1 {
-    margin-bottom: var(--sp-4);
-    max-width: 16ch;
-  }
-
-  .hero__sub {
-    font-size: clamp(1.05rem, 1rem + 0.4vw, 1.2rem);
-    line-height: 1.55;
-    color: var(--ink-2);
-    max-width: 38rem;
-    margin-bottom: var(--sp-5);
-  }
-
-  .hero__actions {
-    margin-bottom: var(--sp-5);
-  }
-
-  /* ------------------------------------------------------ Ablauf-Panel */
-  .hero__panel {
-    background: rgba(255, 255, 255, 0.86);
-    border: 1px solid var(--line);
-    border-top: 1px solid var(--line);
-    border-radius: var(--r-lg);
-    padding: var(--sp-5);
-    position: relative;
-  }
-
-  .hero__panel-head {
-    font-family: var(--font-body);
-    font-size: 0.78rem;
-    font-weight: 700;
-    letter-spacing: 0.05em;
-    text-transform: uppercase;
+    gap: 0.55rem;
+    min-height: 2.75rem;
     color: var(--ink);
-    margin: 0 0 var(--sp-4);
+    font-weight: 750;
+    text-decoration: none;
+    border-bottom: 2px solid var(--ink);
   }
-
-  .hero__steps {
-    list-style: none;
-    margin: 0 0 var(--sp-4);
-    padding: 0;
-    counter-reset: hs;
-  }
-  .hero__steps li {
-    display: flex;
-    gap: var(--sp-3);
-    padding-bottom: var(--sp-4);
-    margin: 0;
-    position: relative;
-  }
-  .hero__steps li:not(:last-child) {
-    border-bottom: 1px solid var(--line);
-  }
-  .hero__step-n {
-    flex: none;
-    width: 1.8rem;
-    font-family: var(--font-head);
-    font-weight: 700;
-    font-size: 1.25rem;
-    line-height: 1.15;
-    letter-spacing: -0.04em;
+  .hero__phone:hover {
     color: var(--accent-text);
-    font-variant-numeric: tabular-nums;
+    border-color: var(--accent);
   }
-  .hero__steps strong {
-    display: block;
-    color: var(--ink);
-    letter-spacing: -0.012em;
-    font-size: 0.98rem;
-    margin-bottom: 0.15rem;
+  .hero__facts {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 0;
+    max-width: 43rem;
+    margin: clamp(3.5rem, 8vw, 6rem) 0 0;
+    padding: 0;
+    list-style: none;
+    border-top: 1px solid var(--ink);
   }
-  .hero__steps li > span:last-child {
-    font-size: 0.92rem;
-    color: var(--ink-2);
-    line-height: 1.5;
-  }
-
-  .hero__panel-foot {
+  .hero__facts li {
+    display: flex;
+    gap: 0.7rem;
     margin: 0;
-    padding-top: var(--sp-3);
-    border-top: 1px solid var(--line);
-    font-size: 0.9rem;
+    padding: 1rem 0.75rem 0 0;
+    color: var(--ink-2);
+    font-size: 0.8rem;
+    line-height: 1.35;
   }
-  .hero__panel-foot a {
-    display: inline-block;
-    padding-block: 0.3rem;
+  .hero__facts li + li {
+    padding-left: 0.75rem;
+    border-left: 1px solid var(--line-strong);
+  }
+  .hero__facts strong {
+    color: var(--accent-text);
+    font: 800 0.7rem/1.35 var(--font-mono);
+  }
+  @media (max-width: 34em) {
+    .hero {
+      min-height: auto;
+    }
+    .hero__label span:last-child {
+      display: none;
+    }
+    .hero__facts {
+      grid-template-columns: 1fr;
+    }
+    .hero__facts li,
+    .hero__facts li + li {
+      padding: 0.8rem 0;
+      border-left: 0;
+      border-bottom: 1px solid var(--line-strong);
+    }
   }
 </style>
