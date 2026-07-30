@@ -18,6 +18,62 @@ Die Reihenfolge unten ist nach Dringlichkeit sortiert.
 
 ---
 
+## 0. Umbau auf Komplettaufträge (Stand 30.07.2026)
+
+Die Website wurde von „günstiger Einzeltransport" auf „Komplettservice für
+Wohnungsauflösung, Nachlass und Seniorenumzug" umgestellt. Umgesetzt sind:
+
+- ✅ Hero, Startseiten-Reihenfolge und Meta-Daten auf Komplettaufträge
+  ausgerichtet; Einzelabholungen stehen weiter unten als Nebensektion
+- ✅ Sechs Situationseinstiege auf der Startseite (`src/data/situations.ts`)
+- ✅ `/hausverwaltungen-immobilienpartner/` als eigener Einstieg für
+  Verwaltungen, Eigentümer und Makler, in Navigation und Sitemap verlinkt
+- ✅ Abschnitt „Kostenvoranschläge für Behörden und Kostenträger" auf
+  `/kosten/` inklusive Prüfdatum
+- ✅ Besichtigungszusage präzisiert (telefonische Ersteinschätzung kostenlos,
+  Besichtigung bei geeigneten Komplettaufträgen)
+
+**Offen aus dem Umbauauftrag – nach Wirkung sortiert:**
+
+1. **Anfrageformular qualifizieren** (`src/components/AufwandCheck.astro` +
+   `public/api/anfrage.php`). Es fehlen: Anlass (Nachlass, Seniorenumzug,
+   Immobilienverkauf, Renovierung, Neuvermietung, Gewerbeauflösung),
+   Zimmerzahl/Quadratmeter, Zusatzleistungen (Verpackung, Ab- und Aufbau,
+   Einlagerung, Reinigung, Fotodokumentation, Schlüsselübergabe) und der
+   Umfang (einzelner Raum / Wohnung / Haus / Gewerbe). **Achtung: beide
+   Schichten anfassen** – das PHP-Skript baut die E-Mail aus den POST-Feldern.
+2. **Zentrale Seite `/moebel-sperrmuell-abholung-berlin/`** als Sammelseite für
+   Sofa, Matratze, Schrank, Waschmaschine, Kellerreste – mit den
+   Qualifizierungsfragen (weitere Möbel? ganzer Raum? Keller? Übergabe?).
+   Die vorhandene Leistungsseite `/leistungen/sperrmuellabholung-berlin/` muss
+   dabei entweder weiterleiten oder klar abgegrenzt werden, sonst konkurrieren
+   zwei Seiten um dieselbe Suchintention.
+3. **Postleitzahlen** (`src/data/serviceAreas.ts` anlegen). Aktuell existieren
+   **keine** PLZ-Daten im Projekt; die PLZ-Prüfung im Formular validiert nur
+   das Format. Benötigt: amtliche Berliner PLZ mit Bezirk, Ortsteilen,
+   bedient ja/nein, Prioritätsgebiet, Umlandprüfung – plus Prüfungen auf
+   Dubletten, ungültige und fehlende PLZ. Keine eigene Seite je PLZ.
+4. **Einsatzgebiete vervollständigen.** `districts.ts` enthält 12 Bezirke,
+   davon nur 3 veröffentlicht; `towns.ts` 12 Orte, davon 2. Für die
+   Zielgebiete (Steglitz-Zehlendorf, Mitte, Prenzlauer Berg, Kleinmachnow,
+   Teltow, Stahnsdorf …) fehlen die Inhalte, die der Publish Guard verlangt.
+5. **Drei Hauptprodukte als eigene Seiten** (Nachlass-Komplettservice,
+   Senioren-Wohnwechsel, Immobilie übergabefertig). Die Leistungsseiten decken
+   die Themen ab, sind aber als Einzelleistungen aufgebaut, nicht als
+   Komplettpakete mit Zusatzleistungen.
+6. **Unterseiten auf das Niveau der Startseite heben.** Leistungs-, Standort-
+   und Ratgeberseiten nutzen noch das ältere Kartenlayout. Wiederverwendbare
+   Bausteine (Hero, Direktantwort, Prozess, Szenarien, Fallbeispiel, Sprung-
+   navigation) fehlen als gemeinsames System.
+7. **Bildsprache.** Es gibt keine Fotos im Projekt. Vor der Auswahl von
+   Stockfotos muss `IMAGE-SOURCES.md` angelegt werden (Datei, Plattform,
+   Fotograf, Quelle, Datum, Lizenz, Verwendung). Echte Fotos haben Vorrang.
+8. **Einsatzberichte.** Datenstruktur steht (`src/data/cases.ts`), es gibt
+   drei Muster, die korrekt auf noindex stehen. Echte, freigegebene Fälle
+   fehlen vollständig.
+
+---
+
 ## A. Ohne diese Angaben kann die Website nicht online gehen
 
 ### A1. Kontaktdaten
