@@ -70,8 +70,15 @@ Anfragen, die still verschwinden.
 ### A5. Rechtliche Prüfung
 - Impressum durch eine Anwältin oder einen Anwalt prüfen lassen
 - Datenschutzerklärung ergänzen und prüfen lassen:
-  - Hostingunternehmen mit Anschrift, Speicherdauer der Logfiles,
-    Auftragsverarbeitungsvertrag nach Art. 28 DSGVO
+  - ~~Hostingunternehmen mit Anschrift~~ ✅ HOSTINGER operations, UAB,
+    Švitrigailos str. 34, LT-03230 Vilnius, Litauen. Quelle: Hostinger
+    Privacy Policy (Stand 30.07.2026). **Gegen die eigene Rechnung und den
+    AV-Vertrag prüfen** – Hostinger nennt daneben auch `HOSTINGER, UAB` und
+    `Hostinger International Ltd` (Zypern); maßgeblich ist die Firmierung
+    auf dem eigenen Vertrag
+  - AV-Vertrag nach Art. 28 DSGVO tatsächlich abschließen (in hPanel
+    verfügbar) – die Erklärung behauptet ihn bereits
+  - Speicherdauer der Logfiles beim Hoster erfragen und eintragen
   - E-Mail-Anbieter, über den Anfragen empfangen werden
   - ~~konkrete Löschfristen~~ ✅ festgelegt: Anfragen 6 Monate nach dem
     letzten Kontakt, Fotos 90 Tage nach dem Upload. Die 90 Tage stimmen mit
