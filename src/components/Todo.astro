@@ -14,11 +14,11 @@
  * Verwendung:
  *   <Todo>Durch echtes Einsatzfoto ersetzen</Todo>
  */
-const show = import.meta.env.DEV || import.meta.env.PUBLIC_SHOW_TODOS === '1';
+import { showInternalNotes } from '../lib/internalNotes';
 ---
 
 {
-  show && (
+  showInternalNotes && (
     <p class="todo" role="note">
       <strong>TODO:</strong> <slot />
     </p>

@@ -4,6 +4,7 @@ import Breadcrumbs from '../components/Breadcrumbs.astro';
 import Todo from '../components/Todo.astro';
 import { site, realValue, addressLine } from '../config/site';
 import { email } from '../lib/contact';
+import { showInternalNotes } from '../lib/internalNotes';
 import { buildGraph, organizationNode, websiteNode, webPageNode, breadcrumbNode } from '../lib/schema';
 
 /**
@@ -44,14 +45,19 @@ const dpo = realValue(site.dataProtectionOfficer);
     <article class="prose legal">
       <h1>Datenschutzerklärung</h1>
 
-      <div class="legal-check" role="note">
-        <p>
-          <strong>Hinweis für den Betreiber:</strong> Dieser Text beschreibt zutreffend, was diese
-          Website technisch tut. Er ist trotzdem vor dem Livegang zu prüfen und um die Angaben zum
-          Hostingunternehmen sowie um alles zu ergänzen, was nach dem Start hinzukommt (Analytics,
-          CRM, E-Mail-Automatisierung, Kartendienste). Keine Rechtsberatung.
-        </p>
-      </div>
+      {
+        showInternalNotes && (
+          <div class="legal-check" role="note">
+            <p>
+              <strong>Hinweis für den Betreiber:</strong> Dieser Text beschreibt zutreffend, was
+              diese Website technisch tut. Er ist trotzdem vor dem Livegang zu prüfen und um die
+              Angaben zum Hostingunternehmen sowie um alles zu ergänzen, was nach dem Start
+              hinzukommt (Analytics, CRM, E-Mail-Automatisierung, Kartendienste). Keine
+              Rechtsberatung.
+            </p>
+          </div>
+        )
+      }
 
       <h2>1. Verantwortlicher</h2>
       <p class="block">
@@ -230,19 +236,23 @@ const dpo = realValue(site.dataProtectionOfficer);
         Stand dieser Fassung: 29. Juli 2026.
       </p>
 
-      <div class="legal-check" role="note">
-        <p><strong>Vor dem Livegang zu ergänzen und zu prüfen:</strong></p>
-        <ul>
-          <li>Verantwortlicher mit vollständiger Firmierung und Anschrift</li>
-          <li>Hostingunternehmen, Speicherdauer der Logfiles, AV-Vertrag nach Art. 28 DSGVO</li>
-          <li>E-Mail-Anbieter, über den Anfragen empfangen werden</li>
-          <li>Konkrete Löschfristen für Anfragen und für hochgeladene Fotos</li>
-          <li>Prüfung, ob ein Datenschutzbeauftragter zu benennen ist (§ 38 BDSG)</li>
-          <li>Verzeichnis von Verarbeitungstätigkeiten nach Art. 30 DSGVO anlegen</li>
-          <li>Anwaltliche Prüfung des Gesamttexts</li>
-        </ul>
-        <p class="mb-0">Diese Seite ist keine Rechtsberatung.</p>
-      </div>
+      {
+        showInternalNotes && (
+          <div class="legal-check" role="note">
+            <p><strong>Vor dem Livegang zu ergänzen und zu prüfen:</strong></p>
+            <ul>
+              <li>Verantwortlicher mit vollständiger Firmierung und Anschrift</li>
+              <li>Hostingunternehmen, Speicherdauer der Logfiles, AV-Vertrag nach Art. 28 DSGVO</li>
+              <li>E-Mail-Anbieter, über den Anfragen empfangen werden</li>
+              <li>Konkrete Löschfristen für Anfragen und für hochgeladene Fotos</li>
+              <li>Prüfung, ob ein Datenschutzbeauftragter zu benennen ist (§ 38 BDSG)</li>
+              <li>Verzeichnis von Verarbeitungstätigkeiten nach Art. 30 DSGVO anlegen</li>
+              <li>Anwaltliche Prüfung des Gesamttexts</li>
+            </ul>
+            <p class="mb-0">Diese Seite ist keine Rechtsberatung.</p>
+          </div>
+        )
+      }
     </article>
   </div>
 </Base>

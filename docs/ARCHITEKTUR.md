@@ -130,8 +130,12 @@ npm run indexnow       # Nach dem Deployment: geänderte URLs melden
 node scripts/make-images.mjs   # Vorschaubild und Icon neu erzeugen
 ```
 
-Redaktionshinweise (`<Todo>`) sind im Entwicklungsmodus sichtbar und in der
-Produktionsausgabe unsichtbar. Um sie testweise auch im Build zu sehen:
+Redaktionshinweise (`<Todo>`) und die Betreiberkästen `legal-check` auf
+Impressum und Datenschutz sind im Entwicklungsmodus sichtbar und in der
+Produktionsausgabe unsichtbar. Beide lesen dieselbe Bedingung aus
+`src/lib/internalNotes.ts` (`showInternalNotes`) – neue interne Hinweise
+bitte ebenfalls damit schalten, nicht mit einer eigenen Abfrage. Um sie
+testweise auch im Build zu sehen:
 
 ```bash
 PUBLIC_SHOW_TODOS=1 npm run build

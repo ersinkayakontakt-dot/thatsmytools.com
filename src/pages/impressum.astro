@@ -4,6 +4,7 @@ import Breadcrumbs from '../components/Breadcrumbs.astro';
 import Todo from '../components/Todo.astro';
 import { site, realValue, addressLine } from '../config/site';
 import { phone, email } from '../lib/contact';
+import { showInternalNotes } from '../lib/internalNotes';
 import { buildGraph, organizationNode, websiteNode, webPageNode, breadcrumbNode } from '../lib/schema';
 
 /**
@@ -52,15 +53,19 @@ const ph = (value: string | undefined, hint: string) => value ?? hint;
     <article class="prose legal">
       <h1>Impressum</h1>
 
-      <div class="legal-check" role="note">
-        <p>
-          <strong>Hinweis für den Betreiber:</strong> Diese Seite ist vorbereitet, aber noch nicht
-          vollständig. Alle mit <code>[…]</code> markierten Felder müssen mit den echten
-          Unternehmensdaten gefüllt und anschließend rechtlich geprüft werden. Unvollständige
-          Pflichtangaben nach § 5 DDG sind abmahnfähig. Die Werte werden zentral in
-          <code>src/config/site.ts</code> gepflegt, nicht in dieser Datei.
-        </p>
-      </div>
+      {
+        showInternalNotes && (
+          <div class="legal-check" role="note">
+            <p>
+              <strong>Hinweis für den Betreiber:</strong> Diese Seite ist vorbereitet, aber noch
+              nicht vollständig. Alle mit <code>[…]</code> markierten Felder müssen mit den echten
+              Unternehmensdaten gefüllt und anschließend rechtlich geprüft werden. Unvollständige
+              Pflichtangaben nach § 5 DDG sind abmahnfähig. Die Werte werden zentral in
+              <code>src/config/site.ts</code> gepflegt, nicht in dieser Datei.
+            </p>
+          </div>
+        )
+      }
 
       <h2>Angaben gemäß § 5 DDG</h2>
       <p class="block">
@@ -100,41 +105,53 @@ const ph = (value: string | undefined, hint: string) => value ?? hint;
         </tbody>
       </table>
 
-      <h2>Umsatzsteuer</h2>
-      <p>
-        {
-          vatId ? (
-            <>Umsatzsteuer-Identifikationsnummer gemäß § 27a UStG: {vatId}</>
-          ) : taxNumber ? (
-            <>Steuernummer: {taxNumber}</>
-          ) : (
-            '[UST-IDNR. NACH § 27a UStG ODER STEUERNUMMER EINTRAGEN. Kleinunternehmer nach § 19 UStG geben stattdessen einen entsprechenden Hinweis an.]'
-          )
-        }
-      </p>
+      {
+        /*
+         * Umsatzsteuer, Registereintrag, Aufsichtsbehörde und Versicherung sind
+         * bedingte Abschnitte: Sie erscheinen nur, wenn in src/config/site.ts
+         * echte Werte hinterlegt sind. Ohne Angabe entfällt die Überschrift
+         * ganz, statt einen Platzhalter oder eine leere Rubrik zu zeigen.
+         * Einzelunternehmen ohne USt-IdNr. und ohne Registereintrag brauchen
+         * die Abschnitte nicht (§ 5 Abs. 1 Nr. 6 DDG: USt-IdNr. nur, sofern
+         * vorhanden).
+         */
+      }
+      {
+        (vatId || taxNumber) && (
+          <>
+            <h2>Umsatzsteuer</h2>
+            <p>
+              {vatId ? (
+                <>Umsatzsteuer-Identifikationsnummer gemäß § 27a UStG: {vatId}</>
+              ) : (
+                <>Steuernummer: {taxNumber}</>
+              )}
+            </p>
+          </>
+        )
+      }
 
-      <h2>Registereintrag</h2>
-      <p>
-        {
-          court && regNumber ? (
-            <>
+      {
+        court && regNumber && (
+          <>
+            <h2>Registereintrag</h2>
+            <p>
               Registergericht: {court}
               <br />
               Registernummer: {regNumber}
-            </>
-          ) : (
-            '[NUR BEI EINGETRAGENEN GESELLSCHAFTEN AUSFÜLLEN (GmbH, UG, OHG, KG): Registergericht und Registernummer. Einzelunternehmen und GbR lassen diesen Abschnitt weg.]'
-          )
-        }
-      </p>
+            </p>
+          </>
+        )
+      }
 
-      <h2>Aufsichtsbehörde und Erlaubnis</h2>
-      <p>
-        {
-          authority ??
-            '[PRÜFEN: Umzugsverkehr mit Fahrzeugen über 3,5 t zulässigem Gesamtgewicht ist güterkraftverkehrsrechtlich erlaubnispflichtig (§ 3 GüKG). Falls einschlägig: erteilende Behörde und Erlaubnis hier angeben. Bei ausschließlich kleineren Fahrzeugen entfällt der Abschnitt.]'
-        }
-      </p>
+      {
+        authority && (
+          <>
+            <h2>Aufsichtsbehörde und Erlaubnis</h2>
+            <p>{authority}</p>
+          </>
+        )
+      }
 
       <h2>Verantwortlich für den Inhalt nach § 18 Abs. 2 MStV</h2>
       <p class="block">
@@ -142,14 +159,14 @@ const ph = (value: string | undefined, hint: string) => value ?? hint;
         {ph(addr, '[ANSCHRIFT EINTRAGEN]')}
       </p>
 
-      <h2>Berufshaftpflicht- und Betriebshaftpflichtversicherung</h2>
-      <p>
-        {
-          site.credentials.liabilityInsurance.held
-            ? site.credentials.liabilityInsurance.detail
-            : '[FREIWILLIGE ANGABE: Versicherer, Anschrift und räumlicher Geltungsbereich. Nur eintragen, wenn eine Versicherung tatsächlich besteht.]'
-        }
-      </p>
+      {
+        site.credentials.liabilityInsurance.held && (
+          <>
+            <h2>Berufshaftpflicht- und Betriebshaftpflichtversicherung</h2>
+            <p>{site.credentials.liabilityInsurance.detail}</p>
+          </>
+        )
+      }
 
       <h2>Streitbeilegung</h2>
       <p>
@@ -164,23 +181,27 @@ const ph = (value: string | undefined, hint: string) => value ?? hint;
         Verbraucherschlichtungsstelle teilzunehmen.
       </p>
 
-      <div class="legal-check" role="note">
-        <p>
-          <strong>Vor dem Livegang zu prüfen:</strong>
-        </p>
-        <ul>
-          <li>Firmierung exakt wie in der Gewerbeanmeldung bzw. im Handelsregister</li>
-          <li>Ladungsfähige Anschrift, kein Postfach</li>
-          <li>Umsatzsteuerangabe oder Kleinunternehmerhinweis nach § 19 UStG</li>
-          <li>Erlaubnispflicht nach § 3 GüKG geklärt und ggf. angegeben</li>
-          <li>Angabe zur Streitbeilegung mit der tatsächlichen Bereitschaft abgeglichen</li>
-          <li>Angaben identisch mit Google-Unternehmensprofil und Bing Places (NAP-Konsistenz)</li>
-        </ul>
-        <p class="mb-0">
-          Diese Seite ist keine Rechtsberatung. Lassen Sie das Impressum vor der Veröffentlichung
-          anwaltlich prüfen.
-        </p>
-      </div>
+      {
+        showInternalNotes && (
+          <div class="legal-check" role="note">
+            <p>
+              <strong>Vor dem Livegang zu prüfen:</strong>
+            </p>
+            <ul>
+              <li>Firmierung exakt wie in der Gewerbeanmeldung bzw. im Handelsregister</li>
+              <li>Ladungsfähige Anschrift, kein Postfach</li>
+              <li>Umsatzsteuerangabe oder Kleinunternehmerhinweis nach § 19 UStG</li>
+              <li>Erlaubnispflicht nach § 3 GüKG geklärt und ggf. angegeben</li>
+              <li>Angabe zur Streitbeilegung mit der tatsächlichen Bereitschaft abgeglichen</li>
+              <li>Angaben identisch mit Google-Unternehmensprofil und Bing Places (NAP-Konsistenz)</li>
+            </ul>
+            <p class="mb-0">
+              Diese Seite ist keine Rechtsberatung. Lassen Sie das Impressum vor der
+              Veröffentlichung anwaltlich prüfen.
+            </p>
+          </div>
+        )
+      }
 
       <Todo>
         Registerdaten, Aufsichtsbehörde und Versicherungsangaben in <code>src/config/site.ts</code>{' '}
