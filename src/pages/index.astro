@@ -269,6 +269,9 @@ const singleJobs = [
     font-size: 1.12rem;
     line-height: 1.25;
     letter-spacing: -0.02em;
+    /* Überschriften nicht automatisch trennen – "auf-gelöst" quer über zwei
+       Zeilen liest sich schlechter als eine etwas kürzere erste Zeile. */
+    hyphens: manual;
   }
   .cases__grid small {
     color: var(--ink-2);

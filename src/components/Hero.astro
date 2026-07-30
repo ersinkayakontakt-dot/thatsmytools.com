@@ -115,14 +115,21 @@ import { phone, whatsapp, primaryCta } from '../lib/contact';
    * Charakter (fett, versal, eng, Akzentwort) bleibt erhalten.
    */
   .hero h1 {
-    max-width: 16ch;
+    /*
+     * Keine Breitenbegrenzung und kein automatischer Umbruch: "Wohnungs-
+     * auflösung" ist 17 Zeichen lang und würde sonst mitten im Wort brechen.
+     * Die Zeilen setzt das Markup per <br />, der Schriftgrad ist so
+     * gewählt, dass die längste Zeile auch auf 360 px Breite passt.
+     */
+    max-width: none;
     margin: 0 0 1.75rem;
-    font-size: clamp(2.4rem, 6.1vw, 5rem);
+    font-size: clamp(1.85rem, 4.9vw, 4.2rem);
     font-weight: 900;
-    line-height: 0.94;
+    line-height: 0.96;
     letter-spacing: -0.045em;
     text-transform: uppercase;
-    text-wrap: balance;
+    overflow-wrap: normal;
+    word-break: keep-all;
   }
   .hero h1 span {
     color: var(--accent);

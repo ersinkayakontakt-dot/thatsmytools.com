@@ -190,6 +190,43 @@ const schema = buildGraph([
     </div>
   </section>
 
+  <section class="section" aria-labelledby="kostentraeger">
+    <div class="wrap wrap--mid">
+      <p class="kicker">Wenn eine Behörde mitentscheidet</p>
+      <h2 id="kostentraeger">Kostenvoranschläge für Behörden und Kostenträger</h2>
+      <div class="prose">
+        <p>
+          Wir erstellen auf Wunsch eine nachvollziehbare Leistungsbeschreibung und einen prüffähigen
+          Kostenvoranschlag. Ob und in welchem Umfang Kosten übernommen werden, entscheidet der
+          zuständige Leistungsträger nach vorheriger Prüfung und gegebenenfalls vorheriger
+          Zusicherung.
+        </p>
+        <ul>
+          <li>Eine Kostenübernahme erfolgt immer im Einzelfall, nicht pauschal für eine Leistungsart.</li>
+          <li>
+            In der Regel muss der Antrag <strong>vor</strong> der Beauftragung gestellt und bewilligt
+            sein. Wer zuerst beauftragt, bleibt häufig auf den Kosten sitzen.
+          </li>
+          <li>Nicht jede Position eines Angebots ist erstattungsfähig.</li>
+          <li>
+            Die Anforderungen unterscheiden sich je nach Kostenträger – Jobcenter, Sozialamt,
+            Pflegekasse und Betreuungsgericht verlangen unterschiedliche Nachweise.
+          </li>
+          <li>
+            Was wir übernehmen können: die benötigten Angebotspositionen so darstellen, dass die
+            zuständige Stelle sie prüfen kann, und beim Zusammenstellen der Unterlagen helfen.
+          </li>
+        </ul>
+        <p class="reviewed">
+          Diese Angaben sind allgemeine Hinweise und keine Rechts- oder Sozialberatung. Maßgeblich
+          ist die Auskunft der für Sie zuständigen Stelle.
+          <br />
+          <strong>Zuletzt inhaltlich geprüft: 30. Juli 2026.</strong>
+        </p>
+      </div>
+    </div>
+  </section>
+
   <section class="section section--paper">
     <div class="wrap wrap--mid">
       <Faq items={faq} title="Fragen zu Preisen und Angeboten" id="faq-kosten" />
@@ -204,6 +241,17 @@ const schema = buildGraph([
 </Base>
 
 <style>
+  /* Hinweis zur Prüfung: bewusst ruhig, nicht als Warnkasten. Er soll
+     Verlässlichkeit signalisieren, nicht Angst machen. */
+  .reviewed {
+    margin-top: 1.5rem;
+    padding-top: 1rem;
+    border-top: 1px solid var(--line-strong);
+    color: var(--ink-2);
+    font-size: 0.92rem;
+    line-height: 1.55;
+  }
+
   .factors {
     list-style: none;
     margin: var(--sp-5) 0 0;
