@@ -25,8 +25,8 @@ Die Reihenfolge unten ist nach Dringlichkeit sortiert.
 
 | Feld | Was gebraucht wird |
 |---|---|
-| `phone` / `phoneDisplay` | Telefonnummer, international (`+49 30 …`) und in Anzeigeform. Muss **identisch** mit dem Google-Unternehmensprofil sein. |
-| `whatsapp` | WhatsApp-Nummer. Oft die Mobilnummer. Wenn kein WhatsApp genutzt wird: Platzhalter stehen lassen, dann verschwinden alle WhatsApp-Elemente. |
+| ~~`phone` / `phoneDisplay`~~ ✅ | Eingetragen: `+49 176 86066817` / `0176 86066817`. Muss **identisch** im Google-Unternehmensprofil hinterlegt werden. |
+| ~~`whatsapp`~~ ✅ | Eingetragen: `+49 176 86066817` (identisch mit der Telefonnummer). |
 | `email` | E-Mail unter eigener Domain, zum Beispiel `anfrage@schnellhelfer24.de`. **Keine gmail- oder web.de-Adresse.** Fremde Absenderdomains landen im Spam und wirken unseriös. |
 | `address.street`, `address.postalCode` | Ladungsfähige Anschrift. Kein Postfach. Pflicht nach § 5 DDG. |
 

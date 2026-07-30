@@ -80,12 +80,12 @@ export const site = {
    * Telefonnummer in internationaler Schreibweise.
    * Muss identisch sein mit Google-Unternehmensprofil und Bing Places.
    */
-  phone: '[TELEFONNUMMER EINTRAGEN, Format +49 30 12345678]',
+  phone: '+49 176 86066817',
   /** Anzeigeform der Telefonnummer (darf Leerzeichen enthalten). */
-  phoneDisplay: '[TELEFONNUMMER EINTRAGEN]',
+  phoneDisplay: '0176 86066817',
 
   /** WhatsApp-Nummer. Häufig identisch mit der Mobilnummer. */
-  whatsapp: '[WHATSAPP-NUMMER EINTRAGEN, Format +49 1XX XXXXXXX]',
+  whatsapp: '+49 176 86066817',
 
   /**
    * E-Mail unter eigener Domain (kein gmail/web.de – Vertrauensfaktor).
