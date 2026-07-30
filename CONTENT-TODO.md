@@ -34,7 +34,10 @@ Wohnungsauflösung, Nachlass und Seniorenumzug" umgestellt. Umgesetzt sind:
   Besichtigung bei geeigneten Komplettaufträgen)
 - ✅ Alle zwölf Kosten- und Ratgeberseiten redaktionell auf mobile Lesbarkeit
   geprüft. Die Direktantworten sind in kurze Absätze gegliedert, zwei lange
-  H1 gekürzt und der Content-Audit verhindert neue Textwände.
+  H1 gekürzt und der Content-Audit verhindert neue Textwände. Der anschließend
+  auf einem echten Mobilgerät gefundene Spaltenfehler in nummerierten
+  Schrittlisten ist ebenfalls behoben: Überschrift und Absatz liegen nun
+  gemeinsam in der breiten Textspalte.
 
 **Offen aus dem Umbauauftrag – nach Wirkung sortiert:**
 

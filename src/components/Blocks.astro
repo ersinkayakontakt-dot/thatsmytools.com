@@ -38,8 +38,10 @@ const SubHead = `h${level + 1}` as 'h3' | 'h4';
         <ol class="steps">
           {block.steps.map((step) => (
             <li>
-              <SubHead class="steps__title">{step.title}</SubHead>
-              <p set:html={inline(step.text)} />
+              <div class="steps__content">
+                <SubHead class="steps__title">{step.title}</SubHead>
+                <p set:html={inline(step.text)} />
+              </div>
             </li>
           ))}
         </ol>
@@ -97,5 +99,8 @@ const SubHead = `h${level + 1}` as 'h3' | 'h4';
   }
   .block :global(.steps__title) {
     letter-spacing: -0.012em;
+  }
+  .steps__content {
+    min-width: 0;
   }
 </style>
