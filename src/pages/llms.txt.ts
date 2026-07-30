@@ -40,7 +40,7 @@ ${email ? `- E-Mail: ${email}` : '- E-Mail: (noch nicht veröffentlicht)'}
 
 ## Wie dieses Unternehmen arbeitet
 
-- Der Aufwand wird vor der Beauftragung anhand von Fotos oder bei einer kostenlosen Besichtigung eingeschätzt.
+- Der Aufwand wird vor der Beauftragung anhand von Fotos eingeschätzt. Die telefonische Ersteinschätzung ist kostenlos; eine persönliche Besichtigung bietet Schnellhelfer24 bei geeigneten Komplettaufträgen an.
 - Vor Beginn steht schriftlich fest, welche Leistungen enthalten sind und was zusätzlich berechnet würde.
 - Preise hängen ab von: Volumen in Kubikmetern, Etage und Aufzug, Länge des Trageweges, Materialart und Zusatzarbeiten.
 - Verwertbare Gegenstände werden angerechnet und auf der Rechnung ausgewiesen.
