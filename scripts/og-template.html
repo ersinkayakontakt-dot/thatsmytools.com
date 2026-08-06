@@ -1,8 +1,15 @@
 <!doctype html>
 <!--
-  Vorlage für das Social-Media-Vorschaubild (1200 × 630).
-  Wird von scripts/make-images.mjs mit Chromium zu public/og-default.png gerendert.
-  Neu erzeugen mit:  node scripts/make-images.mjs
+  Vorlage für die Social-Media-Vorschaubilder (1200 × 630).
+  Wird von scripts/make-images.mjs mit Chromium gerendert.
+
+  Die drei Platzhalter in doppelten geschweiften Klammern (Überschrift,
+  Untertext, Fußzeile) werden ersetzt. Die Texte kommen aus
+  der SEO-Seitenkarte (src/data/seo-pages.ts) – also aus derselben Quelle
+  wie H1 und Meta Description der Seite. So kann das Vorschaubild nicht
+  etwas anderes behaupten als die Seite selbst.
+
+  Neu erzeugen mit:  npm run images:og
 
   Bewusst ohne auto-Margins und ohne height:100% aufgebaut: feste Abstände
   rendern in Headless-Chromium zuverlässig reproduzierbar.
@@ -21,13 +28,13 @@
         overflow: hidden;
       }
       /* Signalkante oben, wie eine Markierung auf dem Boden */
-      .bar { height: 14px; background: #d24507; }
+      .bar { height: 14px; background: #d2400f; }
       .inner { padding: 54px 80px; }
 
       .brandrow { display: flex; align-items: center; gap: 16px; }
       .mark { width: 46px; height: 46px; }
       .brand { font-size: 32px; font-weight: 800; letter-spacing: -.03em; }
-      .brand em { font-style: normal; background: #d24507; color: #fff; padding: 0 7px; margin-left: 3px; }
+      .brand em { font-style: normal; background: #d2400f; color: #fff; padding: 0 7px; margin-left: 3px; }
 
       h1 { font-size: 62px; font-weight: 800; line-height: 1.06; letter-spacing: -.035em;
            margin-top: 44px; max-width: 17ch; }
@@ -51,11 +58,11 @@
         <div class="brand">Schnellhelfer<em>24</em></div>
       </div>
 
-      <h1>Entrümpelung, Auflösung und Umzug in Berlin</h1>
-      <p>Schnell organisiert, diskret durchgeführt und auf Wunsch besenrein übergeben.</p>
+      <h1>{{HEADLINE}}</h1>
+      <p>{{TEXT}}</p>
 
       <div class="foot">
-        <div>Berlin &amp; Berliner Umland</div>
+        <div>{{FOOT}}</div>
         <div><strong>schnellhelfer24.de</strong></div>
       </div>
     </div>

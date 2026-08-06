@@ -70,6 +70,23 @@ export const site = {
   /** Kanonische Domain ohne Protokoll – für Anzeige und E-Mail-Prüfung. */
   domain: 'schnellhelfer24.de',
 
+  /**
+   * Stabile, seitenübergreifende Kennung des Unternehmens in den
+   * strukturierten Daten.
+   *
+   * Sie ist der Anker der Entity: Jede Seite verweist mit derselben `@id`
+   * auf dasselbe Unternehmen, statt fünfzig lose Organisationsknoten zu
+   * erzeugen, die Suchmaschinen erst zusammenführen müssten.
+   *
+   * DARF SICH NIE ÄNDERN. Eine neue `@id` ist für Suchmaschinen ein neues
+   * Unternehmen – die bisher aufgebaute Zuordnung wäre verloren. Auch bei
+   * einem Domainwechsel bleibt dieser Wert bestehen.
+   *
+   * `npm run seo:schema` prüft, dass genau eine Unternehmens-`@id` über
+   * die gesamte Website hinweg verwendet wird.
+   */
+  entityId: 'https://schnellhelfer24.de/#organisation',
+
   tagline: 'Entrümpelung, Auflösung und Umzug in Berlin',
 
   /* ------------------------------------------------------------------ */
@@ -110,9 +127,26 @@ export const site = {
 
   /**
    * Hat das Unternehmen eine Adresse, die Kundschaft aufsuchen kann?
+   *
    * false = reiner Dienstleister vor Ort (Service Area Business).
-   * Bei false wird im Schema `serviceArea` statt einer besuchbaren
-   * Adresse betont und die Adresse in Google/Bing versteckt geführt.
+   *
+   * WAS DAS FLAG TATSÄCHLICH BEWIRKT (seit 03.08.2026):
+   * Bei `false` gibt `src/lib/schema.ts` die Straße NICHT im
+   * `PostalAddress` des Unternehmens aus – nur Ort, Region und Land, dazu
+   * `areaServed`. Grund: Eine Straßenanschrift im LocalBusiness-Schema
+   * behauptet einen Ort, an dem Kundschaft erscheinen kann. Stimmt das
+   * nicht, ist es eine Falschangabe, und Google stuft Betriebe dafür ab.
+   *
+   * Das Impressum zeigt die Anschrift weiterhin vollständig – dort ist sie
+   * nach § 5 DDG Pflicht. Die beiden Anforderungen widersprechen sich
+   * nicht: Das Impressum nennt den Sitz, das Schema beschreibt, wo
+   * gearbeitet wird.
+   *
+   * VORHER war dieses Flag deklariert, wurde aber nirgends ausgewertet –
+   * die Straße landete trotz `false` im Schema.
+   *
+   * ZU KLÄREN: Ist die Lindenstraße für Kundschaft aufsuchbar? Dann hier
+   * auf `true` stellen, siehe CONTENT-TODO.md.
    */
   hasVisitableAddress: false,
 
@@ -171,6 +205,18 @@ export const site = {
     sourceUrl: 'https://www.google.com/maps?cid=17944767786079972495',
     ratingValue: 5,
     reviewCount: 27,
+    /**
+     * Wann wurden Wert und Anzahl zuletzt am Google-Profil abgeglichen?
+     * Erscheint sichtbar unter dem Bewertungsband auf der Startseite.
+     *
+     * Stand vorher als fester Text „Stand 30.07.2026" im Markup von
+     * index.astro – also an einer zweiten Stelle, die beim nächsten
+     * Abgleich mit Sicherheit vergessen worden wäre.
+     *
+     * Eine Bewertungsangabe ohne Datum ist eine Werbeaussage mit
+     * unbekanntem Alter. Mit Datum ist sie überprüfbar.
+     */
+    checked: '2026-07-30',
   },
 
   /**

@@ -5,6 +5,15 @@ import Icon from '../components/Icon.astro';
 import Todo from '../components/Todo.astro';
 import { site, realValue, addressLine } from '../config/site';
 import { phone, whatsapp, email } from '../lib/contact';
+import { seoPage } from '../data/seo-pages';
+import ContextualCompanyLink from '../components/ContextualCompanyLink.astro';
+
+
+/* Metadaten kommen aus der zentralen Seitenkarte, damit Title,
+   Description, URL und Sitemap-Datum nur an einer Stelle stehen. */
+const page = seoPage('kontakt');
+const { url: path, title, metaDescription: description } = page;
+
 import {
   buildGraph,
   organizationNode,
@@ -12,11 +21,6 @@ import {
   webPageNode,
   breadcrumbNode,
 } from '../lib/schema';
-
-const path = '/kontakt/';
-const title = 'Kontakt: Schnellhelfer24 in Berlin erreichen';
-const description =
-  'So erreichen Sie Schnellhelfer24: Telefon, WhatsApp, E-Mail und Anfrageformular. Was wir für eine schnelle Einschätzung von Ihnen brauchen.';
 
 const crumbs = [
   { name: 'Start', href: '/' },
@@ -215,6 +219,9 @@ const dayNames: Record<string, string> = {
         Besichtigung, und die kostet nichts.
       </p>
     </div>
+  </div>
+  <div class="wrap wrap--mid section--tight">
+    <ContextualCompanyLink context="kontakt" />
   </div>
 </Base>
 

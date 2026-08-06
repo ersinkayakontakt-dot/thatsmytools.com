@@ -2,7 +2,6 @@ import { site, realValue, sameAsUrls, absoluteUrl } from '../config/site';
 import { publishedServices } from '../data/services';
 import { publishedDistricts } from '../data/districts';
 import { publishedTowns } from '../data/towns';
-import { reviews, hasReviews } from '../data/reviews';
 import type { FaqItem } from '../data/types';
 
 /**
@@ -13,11 +12,22 @@ import type { FaqItem } from '../data/types';
  *   2. Platzhalter werden herausgefiltert. Lieber ein Feld weniger als
  *      ein Feld mit "[ADRESSE EINTRAGEN]" im Schema.
  *   3. Es wird nichts ausgezeichnet, was auf der Seite nicht sichtbar ist.
- *      AggregateRating gibt es nur, wenn echte Bewertungen vorliegen und
- *      auch angezeigt werden.
+ *   4. Bewertungen über das eigene Unternehmen werden GAR NICHT
+ *      ausgezeichnet – Begründung bei `aggregateRating()` weiter unten.
+ *   5. Die Straßenanschrift steht nur im Schema, wenn Kundschaft sie
+ *      tatsächlich aufsuchen kann (`site.hasVisitableAddress`).
+ *
+ * Geprüft wird das alles von `npm run seo:schema`: Es gleicht die
+ * ausgegebenen Knoten gegen src/config/site.ts, gegen den sichtbaren Text
+ * und gegen die in der Seitenkarte erlaubten Typen ab.
  */
 
-const ORG_ID = `${site.url}/#organisation`;
+/**
+ * Die stabile Unternehmens-@id steht in src/config/site.ts und nicht hier.
+ * Sie ist eine Geschäftsentscheidung („so heißt diese Entity dauerhaft"),
+ * keine Implementierungsentscheidung dieser Datei.
+ */
+const ORG_ID = site.entityId;
 const WEBSITE_ID = `${site.url}/#website`;
 
 /** Entfernt Felder mit undefined/null/leeren Arrays rekursiv. */
@@ -41,12 +51,31 @@ export function clean<T>(obj: T): T {
 /* Adresse und Öffnungszeiten                                          */
 /* ------------------------------------------------------------------ */
 
+/**
+ * Anschrift für die strukturierten Daten.
+ *
+ * Zwei Fälle, die auseinandergehalten werden müssen:
+ *
+ *   hasVisitableAddress: true
+ *     Kundschaft kann herkommen. Vollständige Anschrift mit Straße.
+ *
+ *   hasVisitableAddress: false  (aktueller Stand)
+ *     Reiner Dienstleister vor Ort. Dann wird die Straße bewusst NICHT
+ *     ausgegeben: Eine Straßenanschrift im LocalBusiness-Schema behauptet
+ *     einen Ort, an dem man erscheinen kann. Ausgegeben werden Ort,
+ *     Region und Land – zusammen mit `areaServed` beschreibt das die Lage
+ *     zutreffend.
+ *
+ * Das Impressum ist davon unberührt und zeigt die Anschrift vollständig,
+ * wie es § 5 DDG verlangt.
+ *
+ * Fehlt eine echte Straße oder PLZ (Platzhalter), greift ohnehin dieselbe
+ * verkürzte Ausgabe – das ist besser als eine erfundene Adresse.
+ */
 function postalAddress() {
-  const street = realValue(site.address.street);
-  const zip = realValue(site.address.postalCode);
-  // Ohne echte Straße/PLZ wird nur die Stadt ausgegeben – das ist korrekt
-  // für ein Unternehmen, das im Einsatzgebiet arbeitet, und besser als
-  // eine erfundene Adresse.
+  const street = site.hasVisitableAddress ? realValue(site.address.street) : undefined;
+  const zip = site.hasVisitableAddress ? realValue(site.address.postalCode) : undefined;
+
   return clean({
     '@type': 'PostalAddress',
     streetAddress: street,
@@ -83,30 +112,40 @@ function areaServed() {
   return areas;
 }
 
+/**
+ * BEWERTUNGEN WERDEN BEWUSST NICHT AUSGEZEICHNET
+ * ==============================================
+ *
+ * Google untersagt „self-serving reviews": Bewertungen über das eigene
+ * Unternehmen, ausgezeichnet auf der eigenen Website, sind für Rich
+ * Results nicht zulässig. Für `LocalBusiness` und `Organization` gilt das
+ * seit 2019 ausdrücklich. Wer es trotzdem tut, riskiert eine manuelle
+ * Maßnahme gegen die gesamte Domain – für ein Sternchen, das ohnehin nicht
+ * angezeigt würde.
+ *
+ * Deshalb geben diese beiden Funktionen dauerhaft `undefined` zurück.
+ *
+ * WAS STATTDESSEN PASSIERT
+ * Die Startseite zeigt Wertung, Anzahl, Prüfdatum und einen Link auf das
+ * Google-Unternehmensprofil. Das ist eine überprüfbare Aussage über eine
+ * fremde Plattform – erlaubt, ehrlich und für Menschen nützlicher als ein
+ * Schema-Feld, das niemand sieht.
+ *
+ * VORHER war die Ausgabe nur zufällig richtig: Sie hing an
+ * `hasReviews`, also daran, dass src/data/reviews.ts leer ist. Eine
+ * einzige eingetragene Bewertung hätte ein `aggregateRating` mit
+ * reviewCount 27 erzeugt – bei einer sichtbaren Bewertung.
+ *
+ * Falls diese Entscheidung je revidiert wird: `npm run seo:schema`
+ * meldet ein `aggregateRating` ohne passende sichtbare Bewertungen als
+ * Fehler, und die Selbstprüfung deckt den Fall ab.
+ */
 function aggregateRating() {
-  // Doppelte Absicherung: Flag in der Konfiguration UND tatsächlich
-  // vorhandene, sichtbare Bewertungen.
-  if (!site.ratings.verified || !hasReviews) return undefined;
-  if (!site.ratings.ratingValue || !site.ratings.reviewCount) return undefined;
-  return {
-    '@type': 'AggregateRating',
-    ratingValue: site.ratings.ratingValue,
-    reviewCount: site.ratings.reviewCount,
-    bestRating: 5,
-    worstRating: 1,
-  };
+  return undefined;
 }
 
 function reviewNodes() {
-  if (!hasReviews) return undefined;
-  return reviews.map((r) => ({
-    '@type': 'Review',
-    author: { '@type': 'Person', name: r.author },
-    reviewRating: { '@type': 'Rating', ratingValue: r.rating, bestRating: 5, worstRating: 1 },
-    reviewBody: r.text,
-    datePublished: r.date,
-    publisher: { '@type': 'Organization', name: r.source },
-  }));
+  return undefined;
 }
 
 /* ------------------------------------------------------------------ */
@@ -157,6 +196,10 @@ export function organizationNode() {
       ? { '@type': 'QuantitativeValue', value: site.employeeCount }
       : undefined,
     sameAs: sameAsUrls(),
+    // hasMap nur mit einem tatsächlich bestätigten Kartenprofil. Der
+    // Verweis zeigt auf dasselbe Google-Unternehmensprofil, das auf der
+    // Startseite als Bewertungsquelle sichtbar verlinkt ist.
+    hasMap: realValue(site.profiles.googleBusiness),
     aggregateRating: aggregateRating(),
     review: reviewNodes(),
     hasOfferCatalog: {

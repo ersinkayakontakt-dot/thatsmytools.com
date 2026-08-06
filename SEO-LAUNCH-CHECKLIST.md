@@ -57,6 +57,54 @@ erst möglich und sorgen dafür, dass die genannten Angaben stimmen.
 - [ ] Keine sichtbaren Platzhalter außer den bewusst markierten in Impressum
       und Datenschutz
 
+### Sicherheit und Datenschutz auf dem Server *(neu, 06.08.2026)*
+
+- [ ] **Ablage prüfen – das Wichtigste.** Eine Testanfrage mit Foto senden,
+      dann die abgelegte Datei direkt im Browser aufrufen:
+      `https://schnellhelfer24.de/api/_storage/anfragen/<datei>`
+      **Es muss 403 oder 404 kommen.** Kommt das Bild, sind alle
+      hochgeladenen Wohnungsfotos öffentlich abrufbar – dann sofort
+      `storageDir` in `config.local.php` auf einen Pfad **oberhalb** von
+      `public_html` setzen. Der Schutz hängt allein an `.htaccess`; ob
+      Hostinger `AllowOverride` erlaubt, ließ sich lokal nicht prüfen.
+- [ ] `php -l` auf dem Server über `anfrage.php` und `events.php` laufen
+      lassen, oder beide einmal aufrufen. Beide sind lokal gegen PHP 8.3
+      geprüft, die Serverversion kann abweichen.
+- [ ] Prüfen, ob `mbstring` aktiv ist (`<?php var_dump(function_exists('mb_strlen'));`).
+      Beide Endpunkte brauchen es. Auf Shared Hosting fast immer vorhanden.
+
+### Messsystem *(neu, 06.08.2026 – bleibt zunächst AUS)*
+
+- [ ] Datenschutzerklärung um die Reichweitenmessung ergänzt
+      (Zweck, Kategorien, Aufbewahrung, Rechtsgrundlage)
+- [ ] Anwaltlich geprüft, ob die Messung ohne Einwilligung zulässig ist.
+      Technische Datensparsamkeit allein genügt dafür **nicht**.
+- [ ] Erst danach in `config.local.php`: `'eventsEnabled' => true`
+- [ ] Danach je einen Klick auslösen (Telefon, WhatsApp, Formularstart)
+      und in `_storage/events/JJJJ-MM-TT.jsonl` kontrollieren:
+      **keine IP-Adresse, kein Name, keine Telefonnummer, keine
+      Formularinhalte, kein User-Agent.** Erwartet wird nur:
+      `ts, event, page, visitor, device, channel` und je nach Ereignis
+      `location`, `step`, `count`, `leistung` oder ein Web-Vitals-Wert.
+- [ ] `npm run seo:events` muss grün sein, bevor neue Ereignisse ergänzt
+      werden – sonst verwirft der Endpunkt sie stillschweigend.
+
+### HSTS *(vorbereitet, NICHT aktiv)*
+
+Gemessen am 06.08.2026: HTTPS liefert 200, `www` und `http` leiten korrekt
+um, HSTS ist nicht gesetzt. Keine weitere Subdomain antwortet auf HTTPS –
+aber `autodiscover.schnellhelfer24.de` hat einen DNS-Eintrag.
+
+- [ ] Stufe 1: `Header always set Strict-Transport-Security "max-age=300"`
+      in `public/.htaccess` freischalten, eine Woche beobachten
+- [ ] Stufe 2: auf `max-age=31536000` erhöhen
+- [ ] Stufe 3 (`includeSubDomains`) **nur**, wenn zuvor bestätigt wurde,
+      dass jede Subdomain dauerhaft gültiges HTTPS liefert und die
+      Mail-Einrichtung nicht leidet
+- [ ] Preload-Liste: nicht empfohlen. Die Aufnahme ist praktisch dauerhaft.
+
+Die vollständige Begründung samt Rücknahmeweg steht in `public/.htaccess`.
+
 ### Technik
 - [x] `npm run audit:content` ohne Fehler *(30.07.2026)*
 - [x] `npm run build` ohne Fehler *(30.07.2026)*

@@ -5,6 +5,13 @@ import Icon from '../../components/Icon.astro';
 import CtaBand from '../../components/CtaBand.astro';
 import { publishedServices } from '../../data/services';
 import { universalPriceFactors } from '../../data/costs';
+import { seoPage } from '../../data/seo-pages';
+
+/* Metadaten kommen aus der zentralen Seitenkarte, damit Title,
+   Description, URL und Sitemap-Datum nur an einer Stelle stehen. */
+const page = seoPage('leistungen');
+const { url: path, title, metaDescription: description } = page;
+
 import {
   buildGraph,
   organizationNode,
@@ -12,11 +19,6 @@ import {
   webPageNode,
   breadcrumbNode,
 } from '../../lib/schema';
-
-const path = '/leistungen/';
-const title = 'Leistungen: Entrümpelung, Auflösung und Umzug in Berlin';
-const description =
-  'Alle Leistungen im Überblick: Entrümpelung, Haushalts- und Wohnungsauflösung, Nachlass, Keller, Büro, Sperrmüll, Umzug und Seniorenumzug in Berlin.';
 
 const crumbs = [
   { name: 'Start', href: '/' },
@@ -59,11 +61,20 @@ const groups = [
   },
 ];
 
+/**
+ * Die Gruppen sind redaktionell gesetzt – sie erklären, wofür eine Leistung
+ * da ist. INNERHALB einer Gruppe entscheidet die wirtschaftliche Priorität
+ * aus der Seitenkarte über die Reihenfolge, damit die wertvollste Leistung
+ * zuerst steht und die stärkste Position bekommt.
+ */
 const byGroup = groups.map((g) => ({
   ...g,
   items: g.slugs
     .map((s) => publishedServices.find((x) => x.slug === s))
-    .filter((x): x is NonNullable<typeof x> => Boolean(x)),
+    .filter((x): x is NonNullable<typeof x> => Boolean(x))
+    .map((svc) => ({ svc, priority: seoPage(`service:${svc.slug}`).businessPriority }))
+    .sort((a, b) => b.priority - a.priority)
+    .map(({ svc }) => svc),
 }));
 ---
 

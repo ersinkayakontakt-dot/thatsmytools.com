@@ -5,6 +5,15 @@ import Faq from '../components/Faq.astro';
 import CtaBand from '../components/CtaBand.astro';
 import { faqGroups, allFaqItems } from '../data/faq';
 import { publishedServices } from '../data/services';
+import { seoPage } from '../data/seo-pages';
+import NextStepPanel from '../components/NextStepPanel.astro';
+
+
+/* Metadaten kommen aus der zentralen Seitenkarte, damit Title,
+   Description, URL und Sitemap-Datum nur an einer Stelle stehen. */
+const page = seoPage('fragen');
+const { url: path, title, metaDescription: description } = page;
+
 import {
   buildGraph,
   organizationNode,
@@ -13,11 +22,6 @@ import {
   breadcrumbNode,
   faqNode,
 } from '../lib/schema';
-
-const path = '/fragen/';
-const title = 'Häufige Fragen zu Räumung, Entsorgung und Umzug';
-const description =
-  'Antworten auf die häufigsten Fragen zu Angebot, Ablauf, Entsorgung, Wertanrechnung, Rechnung und Kostenträgern bei Räumungen und Umzügen in Berlin.';
 
 const crumbs = [
   { name: 'Start', href: '/' },
@@ -95,6 +99,9 @@ const schema = buildGraph([
     headline="Ihre Frage ist nicht dabei?"
     text="Rufen Sie an oder schicken Sie eine kurze Beschreibung mit Fotos. Wir antworten konkret, nicht mit Textbausteinen."
   />
+  <div class="wrap wrap--mid section--tight">
+    <NextStepPanel pageId="fragen" />
+  </div>
 </Base>
 
 <style>
@@ -152,7 +159,7 @@ const schema = buildGraph([
     min-height: 2.5rem;
   }
   .faq-nav a:hover {
-    color: var(--accent);
+    color: var(--accent-text);
   }
 
   .more {

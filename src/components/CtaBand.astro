@@ -1,6 +1,7 @@
 ---
 import Icon from './Icon.astro';
 import { phone, whatsapp, primaryCta } from '../lib/contact';
+import { seoPage } from '../data/seo-pages';
 
 /**
  * Abschließender Handlungsaufruf.
@@ -13,12 +14,52 @@ interface Props {
   text?: string;
   /** Woher der Klick kommt – für die Auswertung */
   location?: string;
+  /**
+   * ID in der SEO-Seitenkarte. Ist sie gesetzt, richtet sich der Aufruf
+   * nach dem dort hinterlegten `conversionGoal` – ein Nachlassfall bekommt
+   * dann ein anderes Angebot als eine Sperrmüllabholung. Ausdrücklich
+   * übergebene `headline`/`text` haben weiterhin Vorrang.
+   */
+  pageId?: string;
 }
-const {
-  headline = 'Schicken Sie uns Fotos, wir schätzen den Aufwand ein',
-  text = 'Kostenlos und unverbindlich. Für eine erste Einschätzung genügen ein Foto pro Raum, die Etage und die Angabe, ob ein Aufzug vorhanden ist.',
-  location = 'cta-band',
-} = Astro.props;
+const { headline, text, location = 'cta-band', pageId } = Astro.props;
+
+const goal = pageId ? seoPage(pageId).conversionGoal : 'complete_project_request';
+
+/**
+ * Formulierungen je Conversion-Ziel. Sie stehen hier und nicht in jeder
+ * Seite, damit dieselbe Situation überall gleich angesprochen wird.
+ */
+const BY_GOAL: Record<string, { headline: string; text: string }> = {
+  complete_project_request: {
+    headline: 'Schicken Sie uns Fotos, wir schätzen den Aufwand ein',
+    text: 'Kostenlos und unverbindlich. Für eine erste Einschätzung genügen ein Foto pro Raum, die Etage und die Angabe, ob ein Aufzug vorhanden ist.',
+  },
+  callback: {
+    headline: 'Wir rufen zurück, wenn es Ihnen passt',
+    text: 'Sie müssen nichts vorbereiten und nichts entscheiden. Wir hören zu und sagen Ihnen, was als Nächstes sinnvoll ist.',
+  },
+  phone_call: {
+    headline: 'Kurze Frage? Rufen Sie einfach an',
+    text: 'Für alles, was sich in zwei Minuten klären lässt, ist ein Anruf der schnellste Weg.',
+  },
+  whatsapp: {
+    headline: 'Ein Foto genügt für die erste Einschätzung',
+    text: 'Schicken Sie ein Bild des Gegenstands und die Adresse. Sie bekommen zeitnah eine Rückmeldung, was die Abholung kostet.',
+  },
+  partner_request: {
+    headline: 'Objekt zur Prüfung einreichen',
+    text: 'Adresse, Einheit, Größe und Zustand genügen für eine erste Einschätzung. Auf Wunsch sehen wir uns das Objekt vorher an.',
+  },
+  information: {
+    headline: 'Wenn Sie so weit sind: Fotos genügen',
+    text: 'Dieser Text soll Ihnen zuerst Klarheit geben. Für eine konkrete Einschätzung schicken Sie ein Foto pro Raum.',
+  },
+};
+
+const copy = BY_GOAL[goal] ?? BY_GOAL.complete_project_request;
+const finalHeadline = headline ?? copy.headline;
+const finalText = text ?? copy.text;
 ---
 
 <section class="section section--brand cta-band">
@@ -26,8 +67,8 @@ const {
     <div class="cta-band__inner">
       <div class="cta-band__text">
         <p class="kicker">Nächster Schritt</p>
-        <h2>{headline}</h2>
-        <p>{text}</p>
+        <h2>{finalHeadline}</h2>
+        <p>{finalText}</p>
       </div>
       <div class="cta-band__actions">
         <a class="btn btn--onbrand" href={primaryCta.href} data-track="estimate_cta_click" data-track-location={location}>

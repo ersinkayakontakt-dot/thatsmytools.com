@@ -5,6 +5,16 @@ import CtaBand from '../components/CtaBand.astro';
 import Todo from '../components/Todo.astro';
 import { site, realValue } from '../config/site';
 import { publishedServices } from '../data/services';
+import { seoPage } from '../data/seo-pages';
+import RelatedServiceLinks from '../components/RelatedServiceLinks.astro';
+import NextStepPanel from '../components/NextStepPanel.astro';
+
+
+/* Metadaten kommen aus der zentralen Seitenkarte, damit Title,
+   Description, URL und Sitemap-Datum nur an einer Stelle stehen. */
+const page = seoPage('ueber-uns');
+const { url: path, title, metaDescription: description } = page;
+
 import {
   buildGraph,
   organizationNode,
@@ -12,11 +22,6 @@ import {
   webPageNode,
   breadcrumbNode,
 } from '../lib/schema';
-
-const path = '/ueber-uns/';
-const title = 'Über Schnellhelfer24: wer wir sind und wie wir arbeiten';
-const description =
-  'Schnellhelfer24 räumt, löst auf und zieht um in Berlin und im Umland. Wie wir arbeiten, worauf wir uns nicht einlassen und was Sie von uns erwarten können.';
 
 const crumbs = [
   { name: 'Start', href: '/' },
@@ -166,6 +171,22 @@ const principles = [
   </div>
 
   <CtaBand location="ueber-uns" />
+  <div class="wrap wrap--mid section--tight">
+    <RelatedServiceLinks
+      slugs={[
+        'wohnungsaufloesung-berlin',
+        'nachlassaufloesung-berlin',
+        'haushaltsaufloesung-berlin',
+        'seniorenumzug-berlin',
+        'entruempelung-berlin',
+      ]}
+      heading="Wofür wir am häufigsten geholt werden"
+      intro="Das sind die Aufträge, die den größten Teil unserer Arbeit ausmachen."
+      variant="wide"
+    />
+
+    <NextStepPanel pageId="ueber-uns" />
+  </div>
 </Base>
 
 <style>

@@ -25,7 +25,13 @@ Vor einem künftigen Livegang zuerst die vier Prüfungen ausführen, danach
 neu deployen. Die tatsächlich ausgelieferte Quell- und Build-Version nach
 jedem Livegang im Deployment-Protokoll festhalten.
 
-**Aktueller Live-Stand (30.07.2026):** Quellcommit `173c3c9`, Buildcommit
+> **Achtung, überholt.** Der folgende Abschnitt beschreibt den Stand vom
+> 30.07.2026. Seither wurde das SEO-System ausgebaut (siehe
+> `SEO-SYSTEM.md` und `SEO-AUDIT-REPORT.md`). Der aktuelle Quellstand ist
+> **nicht** live; vor dem nächsten Deployment gilt die erweiterte
+> Prüfliste oben.
+
+**Live-Stand am 30.07.2026:** Quellcommit `173c3c9`, Buildcommit
 `684c333`. 50 indexierbare URLs sind live. Alle zwölf Kosten- und
 Ratgeberseiten haben mobil geprüfte, gegliederte Direktantworten ohne
 horizontalen Überlauf. Der auf einem echten Mobilgerät gemeldete Spaltenfehler
@@ -64,8 +70,31 @@ belastbaren Preisdaten vorliegen.
   `AufwandCheck.astro`, `anfrage-erhalten.astro`, `public/api/anfrage.php`
   und die Zusammenfassung. Wer einen Slug umbenennt, prüft `related`,
   `focusServices`, `situations.ts`, Navigation und Sitemap.
-- **Nach jeder Änderung:** `npm run build && npm run check &&
-  npm run audit:content && npm run audit:build`. Alle vier müssen sauber sein.
+
+  **Neu seit 06.08.2026 – zwei weitere Schichten:**
+  Wer eine Seite anlegt oder umbenennt, braucht auch einen Eintrag in
+  `src/data/seo-pages.ts`; ohne ihn schlägt `npm run seo:metadata` fehl.
+  Wer ein Mess-Ereignis ergänzt, trägt den Namen zusätzlich in
+  `ALLOWED_EVENTS` in `public/api/events.php` ein – sonst verwirft der
+  Endpunkt es stillschweigend. `npm run seo:events` prüft genau das.
+  Diese Prüfung existiert, weil die Namen bereits einmal auseinanderliefen.
+- **Nach jeder Änderung:** 
+
+  ```bash
+  npm run build && npm run check && npm run audit:content && npm run audit:build && npm run seo:all
+  ```
+
+  Alle fünf müssen sauber sein. `npm run seo:all` ist seit dem 06.08.2026
+  der eigentliche Torwächter: Er bündelt Metadaten-, Linkgraph-,
+  Kannibalisierungs-, Schema-, Bild- und Kontrastprüfung. Was er als
+  FEHLER meldet, blockiert die Veröffentlichung; Warnungen brauchen eine
+  redaktionelle Entscheidung.
+
+  Zusätzlich, wenn Prüfregeln oder Ereignisnamen angefasst wurden:
+  `npm run seo:selftest` (14 absichtliche Verletzungen müssen alle
+  erkannt werden) und `npm run seo:events`.
+
+  Die vollständige Beschreibung des Systems steht in `SEO-SYSTEM.md`.
 
 ---
 

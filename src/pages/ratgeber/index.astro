@@ -4,6 +4,13 @@ import Breadcrumbs from '../../components/Breadcrumbs.astro';
 import CtaBand from '../../components/CtaBand.astro';
 import { adviceGuides, costGuides } from '../../data/guides';
 import { formatDate } from '../../lib/text';
+import { seoPage } from '../../data/seo-pages';
+
+/* Metadaten kommen aus der zentralen Seitenkarte, damit Title,
+   Description, URL und Sitemap-Datum nur an einer Stelle stehen. */
+const page = seoPage('ratgeber');
+const { url: path, title, metaDescription: description } = page;
+
 import {
   buildGraph,
   organizationNode,
@@ -11,11 +18,6 @@ import {
   webPageNode,
   breadcrumbNode,
 } from '../../lib/schema';
-
-const path = '/ratgeber/';
-const title = 'Ratgeber: Räumung, Umzug und Übergabe in Berlin';
-const description =
-  'Praktische Berlin-Ratgeber zu Entrümpelung, Sperrmüll, Jobcenter-Umzugskosten, Wohnungsauflösung und Übergabe – mit Quellen und kostenloser PDF-Checkliste.';
 
 const crumbs = [
   { name: 'Start', href: '/' },

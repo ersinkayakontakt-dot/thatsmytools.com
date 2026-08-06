@@ -3,14 +3,18 @@ import Base from '../layouts/Base.astro';
 import Icon from '../components/Icon.astro';
 import { phone, whatsapp, email } from '../lib/contact';
 import { publishedGuides } from '../data/guides';
+import { seoPage } from '../data/seo-pages';
+
+/* Metadaten kommen aus der zentralen Seitenkarte, damit Title,
+   Description, URL und Sitemap-Datum nur an einer Stelle stehen. */
+const page = seoPage('anfrage-erhalten');
+const { url: path, title, metaDescription: description } = page;
 
 /**
  * Bestätigungsseite.
  * noindex: Sie hat keinen Suchwert und soll nicht in Suchergebnissen
  * auftauchen. Der Aufruf dieser URL ist das Conversion-Ereignis.
  */
-const title = 'Ihre Anfrage ist angekommen | Schnellhelfer24';
-const description = 'Bestätigung Ihrer Anfrage bei Schnellhelfer24 und die nächsten Schritte.';
 
 const prep = [
   'Wo genau ist die Halteposition für das Fahrzeug? Hinterhof, Straße, eigene Einfahrt?',
@@ -23,7 +27,7 @@ const prep = [
 ];
 ---
 
-<Base title={title} description={description} path="/anfrage-erhalten/" index={false} hideStickyBar>
+<Base title={title} description={description} path={path} index={false} hideStickyBar>
   <div class="wrap wrap--mid section">
     <div class="done">
       <span class="done__icon" aria-hidden="true"><Icon name="check" size={30} /></span>

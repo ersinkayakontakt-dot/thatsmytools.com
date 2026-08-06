@@ -4,12 +4,16 @@ import { publishedServices } from '../data/services';
 import { publishedDistricts } from '../data/districts';
 import { phone } from '../lib/contact';
 import Icon from '../components/Icon.astro';
+import { seoPage } from '../data/seo-pages';
 
-const title = 'Seite nicht gefunden | Schnellhelfer24';
-const description = 'Diese Seite existiert nicht oder wurde verschoben.';
+/* Metadaten kommen aus der zentralen Seitenkarte, damit Title,
+   Description, URL und Sitemap-Datum nur an einer Stelle stehen. */
+const page = seoPage('404');
+const { url: path, title, metaDescription: description } = page;
+
 ---
 
-<Base title={title} description={description} path="/404/" index={false}>
+<Base title={title} description={description} path={path} index={false}>
   <div class="wrap wrap--mid section">
     <p class="code" aria-hidden="true">404</p>
     <h1>Diese Seite gibt es nicht</h1>
@@ -125,7 +129,7 @@ const description = 'Diese Seite existiert nicht oder wurde verschoben.';
     font-size: 0.95rem;
   }
   .cols a:hover {
-    color: var(--accent);
+    color: var(--accent-text);
     text-decoration: underline;
     text-underline-offset: 0.2em;
   }

@@ -5,6 +5,15 @@ import CtaBand from '../../components/CtaBand.astro';
 import Faq from '../../components/Faq.astro';
 import { towns, publishedTowns } from '../../data/towns';
 import { site } from '../../config/site';
+import { seoPage } from '../../data/seo-pages';
+import RelatedServiceLinks from '../../components/RelatedServiceLinks.astro';
+
+
+/* Metadaten kommen aus der zentralen Seitenkarte, damit Title,
+   Description, URL und Sitemap-Datum nur an einer Stelle stehen. */
+const page = seoPage('brandenburg');
+const { url: path, title, metaDescription: description } = page;
+
 import {
   buildGraph,
   organizationNode,
@@ -13,11 +22,6 @@ import {
   breadcrumbNode,
   faqNode,
 } from '../../lib/schema';
-
-const path = '/brandenburg/';
-const title = 'Einsatzgebiet Berliner Umland | Schnellhelfer24';
-const description =
-  'Entrümpelung, Haushaltsauflösung und Umzug im Berliner Umland: Potsdam, Falkensee und weitere Orte in Brandenburg. Was bei Häusern mit Grundstück zu beachten ist.';
 
 const crumbs = [
   { name: 'Start', href: '/' },
@@ -127,6 +131,15 @@ const draftTowns = towns.filter((t) => t.status !== 'published');
     <div class="wrap wrap--mid">
       <Faq items={faq} title="Fragen zum Umland" id="faq-umland" />
     </div>
+  </section>
+
+  <section class="wrap wrap--mid section--tight">
+    <RelatedServiceLinks
+      slugs={['haushaltsaufloesung-berlin', 'wohnungsaufloesung-berlin', 'entruempelung-berlin']}
+      heading="Was im Umland am häufigsten anfällt"
+      intro="Bei Häusern mit Grundstück und Nebengebäuden sieht der Auftrag anders aus als in einer Berliner Etagenwohnung."
+      variant="wide"
+    />
   </section>
 
   <CtaBand location="umland-hub" />

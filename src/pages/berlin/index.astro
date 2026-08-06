@@ -5,6 +5,15 @@ import CtaBand from '../../components/CtaBand.astro';
 import Faq from '../../components/Faq.astro';
 import { publishedDistricts } from '../../data/districts';
 import { publishedTowns } from '../../data/towns';
+import { seoPage } from '../../data/seo-pages';
+import RelatedServiceLinks from '../../components/RelatedServiceLinks.astro';
+
+
+/* Metadaten kommen aus der zentralen Seitenkarte, damit Title,
+   Description, URL und Sitemap-Datum nur an einer Stelle stehen. */
+const page = seoPage('berlin');
+const { url: path, title, metaDescription: description } = page;
+
 import {
   buildGraph,
   organizationNode,
@@ -13,11 +22,6 @@ import {
   breadcrumbNode,
   faqNode,
 } from '../../lib/schema';
-
-const path = '/berlin/';
-const title = 'Einsatzgebiet Berlin: alle zwölf Bezirke | Schnellhelfer24';
-const description =
-  'Entrümpelung, Auflösung und Umzug in allen zwölf Berliner Bezirken. Was Altbau, Plattenbau, Hinterhof und Parksituation für den Aufwand bedeuten.';
 
 const crumbs = [
   { name: 'Start', href: '/' },
@@ -124,6 +128,15 @@ const schema = buildGraph([
     <div class="wrap wrap--mid">
       <Faq items={faq} title="Fragen zum Einsatzgebiet" id="faq-berlin" />
     </div>
+  </section>
+
+  <section class="wrap wrap--mid section--tight">
+    <RelatedServiceLinks
+      slugs={['entruempelung-berlin', 'wohnungsaufloesung-berlin', 'haushaltsaufloesung-berlin']}
+      heading="Was in Berlin am häufigsten beauftragt wird"
+      intro="Unabhängig vom Bezirk sind das die drei Aufträge, die am häufigsten anfallen."
+      variant="wide"
+    />
   </section>
 
   <CtaBand location="berlin-hub" />

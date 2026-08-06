@@ -5,6 +5,7 @@ import Footer from '../components/Footer.astro';
 import StickyBar from '../components/StickyBar.astro';
 import Analytics from '../components/Analytics.astro';
 import { site, absoluteUrl } from '../config/site';
+import { seoPageByUrl, ogImageFor } from '../data/seo-pages';
 
 /**
  * Basis-Layout.
@@ -23,7 +24,11 @@ interface Props {
   index?: boolean;
   /** Fertiger JSON-LD-Graph */
   schema?: unknown;
-  /** Abweichendes Vorschaubild */
+  /**
+   * Abweichendes Vorschaubild.
+   * Ohne Angabe wird es aus der SEO-Seitenkarte bestimmt: Seiten mit
+   * `ownOgImage: true` bekommen ihr eigenes, alle anderen das allgemeine.
+   */
   ogImage?: string;
   /** Für Artikel: Veröffentlichungs- und Änderungsdatum */
   published?: string;
@@ -38,14 +43,21 @@ const {
   path,
   index = true,
   schema,
-  ogImage = '/og-default.png',
+  ogImage,
   published,
   modified,
   hideStickyBar = false,
 } = Astro.props;
 
 const canonical = absoluteUrl(path);
-const ogImageUrl = absoluteUrl(ogImage);
+
+/**
+ * Vorschaubild aus der Seitenkarte auflösen. Das geschieht hier zentral,
+ * damit nicht zwanzig Seiten dieselbe Zeile tragen müssen – und damit eine
+ * neue Seite mit `ownOgImage: true` das Bild automatisch bekommt.
+ */
+const seoEntry = seoPageByUrl(path);
+const ogImageUrl = absoluteUrl(ogImage ?? (seoEntry ? ogImageFor(seoEntry) : '/og-default.png'));
 ---
 
 <!doctype html>

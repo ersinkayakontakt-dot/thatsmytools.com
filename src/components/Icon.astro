@@ -42,6 +42,21 @@ const paths: Record<string, string> = {
   pin: '<path d="M12 21s7-6 7-11a7 7 0 1 0-14 0c0 5 7 11 7 11z"/><circle cx="12" cy="10" r="2.5"/>',
 };
 
+/**
+ * Ein unbekannter Icon-Name ist ein Tippfehler, kein zulässiger Zustand.
+ * Der frühere stille Rückfall auf `check` war besonders tückisch: Ein
+ * Häkchen bedeutet „enthalten" – bei einem falsch geschriebenen Namen stand
+ * damit ein sachlich falsches Symbol auf der Seite, ohne dass es auffiel.
+ *
+ * Im Entwicklungsmodus bricht der Build jetzt ab. In der Produktion bleibt
+ * der Rückfall bestehen, damit ein Tippfehler nicht die ganze Website
+ * unerreichbar macht – dort ist ein falsches Icon das kleinere Übel.
+ */
+if (!paths[name] && import.meta.env.DEV) {
+  throw new Error(
+    `Icon "${name}" gibt es nicht. Verfügbar: ${Object.keys(paths).sort().join(', ')}`,
+  );
+}
 const body = paths[name] ?? paths.check;
 ---
 

@@ -88,6 +88,82 @@ Wohnungsauflösung, Nachlass und Seniorenumzug" umgestellt. Umgesetzt sind:
 
 ---
 
+## 0a. Offene Entscheidungen aus dem SEO-Ausbau (Stand 06.08.2026)
+
+Diese Punkte hat der technische Ausbau aufgedeckt. Sie lassen sich **nicht
+aus dem Code beantworten** – sie brauchen eine Entscheidung oder eine
+Prüfung durch den Betreiber. Keiner davon wurde eigenmächtig geändert.
+
+### Dringend, weil rechtlich oder sicherheitsrelevant
+
+1. **Ist die Ablage auf dem Server wirklich geschützt?**
+   `public/api/_storage/` enthält hochgeladene Wohnungsfotos und künftig
+   Messdaten. Der Schutz hängt allein daran, dass Apache die dortige
+   `.htaccess` auswertet. Setzt Hostinger `AllowOverride None`, wären die
+   **Fotos öffentlich abrufbar**.
+   *Prüfen:* Eine hochgeladene Datei direkt im Browser aufrufen. Es muss
+   403 oder 404 kommen.
+   *Bessere Lösung:* `storageDir` in `config.local.php` auf einen Pfad
+   **oberhalb** des Webverzeichnisses setzen. Dann greift die `.htaccess`
+   gar nicht erst.
+
+2. **Datenschutzerklärung um die Reichweitenmessung ergänzen.**
+   Der Endpunkt `public/api/events.php` ist gebaut, aber **abgeschaltet**
+   (`'eventsEnabled' => false`). Vor dem Einschalten:
+   Zweck, Datenkategorien, Aufbewahrung und Rechtsgrundlage aufnehmen und
+   anwaltlich prüfen lassen, ob die Messung ohne Einwilligung zulässig ist.
+   Technische Datensparsamkeit allein genügt dafür nicht.
+
+3. **Ist die Lindenstraße für Kundschaft aufsuchbar?**
+   `site.hasVisitableAddress` steht auf `false`. Seit dem 03.08.2026 wird
+   das Flag auch ausgewertet: Das Schema gibt dann **keine Straßenanschrift**
+   aus, nur Ort und Region. Das Impressum zeigt sie weiterhin vollständig.
+   Ist die Adresse tatsächlich aufsuchbar, das Flag auf `true` setzen.
+
+### Bewertungsangabe
+
+4. **„5,0 aus 27 Google-Bewertungen" – Stand halten.**
+   Die Angabe steht sichtbar auf der Startseite mit Prüfdatum aus
+   `site.ratings.checked`. Beim nächsten Abgleich mit dem Google-Profil
+   Wert, Anzahl **und Datum** dort aktualisieren.
+   Im Schema wird bewusst **kein** `aggregateRating` ausgegeben: Google
+   untersagt selbstvergebene Bewertungen für das eigene Unternehmen.
+
+### Inhalte
+
+5. **Bild für `/leistungen/bueroaufloesung-berlin/`.**
+   Als einzige Seite mit Priorität 4 hat sie ein hinterlegtes Bildmotiv,
+   aber noch kein Bild. `npm run seo:images` weist darauf hin.
+
+6. **Sieben Stockfotos durch echte Einsatzbilder ersetzen.**
+   Alle sind in `IMAGE-SOURCES.md` mit `Austausch: offen` verzeichnet.
+   Jedes echte Bild aus einem freigegebenen Auftrag ist besser als das
+   beste Stockfoto. Ersetzen heißt: Datei in `src/assets/` tauschen,
+   `imageOrigin` in `src/data/images.ts` auf `'company'` oder
+   `'customer-approved'` stellen, Zeile in `IMAGE-SOURCES.md` anpassen.
+   Keine Seitenvorlage wird angefasst.
+
+7. **Alte URLs der Vorgängerseite sammeln.**
+   `public/.htaccess`, Abschnitt 3, enthält nur auskommentierte Beispiele.
+   Ohne echte Weiterleitungen verliert jede alte Adresse ihre Signale.
+   Quellen: Search Console, Bing Webmaster Tools, alte Sitemap, Serverlogs.
+
+### Daten, die die Werkzeuge brauchen
+
+8. **Search-Console-Export** nach `data/gsc/`, **Bing-Export** nach
+   `data/bing/`. Dann liefert `npm run seo:opportunities` konkrete
+   Aufgaben. Ohne Daten gibt das Werkzeug ausdrücklich nichts aus.
+
+9. **Hostinger-Zugriffsprotokolle** nach `data/logs/`. Dann zeigt
+   `npm run logs:analyze`, was die Bots tatsächlich holen.
+
+10. **Search-Console-API-Zugang** (optional, aber deutlich aussagekräftiger):
+    Nur über die API kommen Suchanfrage und Seite in derselben Zeile –
+    die Voraussetzung, um Kannibalisierung aus echten Daten zu erkennen.
+    Einrichtung in `scripts/seo/search-data/gsc-api.mjs`.
+
+---
+
 ## A. Ohne diese Angaben kann die Website nicht online gehen
 
 ### A1. Kontaktdaten

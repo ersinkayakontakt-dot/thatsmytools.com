@@ -8,10 +8,16 @@ import CtaBand from '../../components/CtaBand.astro';
 import ContactCard from '../../components/ContactCard.astro';
 import Icon from '../../components/Icon.astro';
 import Todo from '../../components/Todo.astro';
-import { services, relatedServices } from '../../data/services';
-import { relatedGuides } from '../../data/guides';
-import { casesForService } from '../../data/cases';
-import { publishedDistricts } from '../../data/districts';
+import RelatedServiceLinks from '../../components/RelatedServiceLinks.astro';
+import RelatedGuides from '../../components/RelatedGuides.astro';
+import RelevantLocations from '../../components/RelevantLocations.astro';
+import CaseStudyLinks from '../../components/CaseStudyLinks.astro';
+import NextStepPanel from '../../components/NextStepPanel.astro';
+import ContextualCompanyLink from '../../components/ContextualCompanyLink.astro';
+import Figure from '../../components/Figure.astro';
+import { services } from '../../data/services';
+import { seoPage } from '../../data/seo-pages';
+import { heroImage, imagesForPage } from '../../data/images';
 import { serviceIsIndexable, checkService } from '../../lib/publishGuard';
 import { formatDate } from '../../lib/text';
 import {
@@ -41,9 +47,44 @@ const crumbs = [
   { name: service.navLabel, href: path },
 ];
 
-const related = relatedServices(service.slug);
-const guides = relatedGuides(service.guides);
-const cases = casesForService(service.slug);
+const pageId = `service:${service.slug}`;
+const seo = seoPage(pageId);
+
+/**
+ * Die Verweise unter dem Handlungsaufruf kommen aus `requiredOutboundLinks`
+ * der Seitenkarte. Damit steht an einer Stelle, wohin eine Leistungsseite
+ * führen muss – und der Linkgraph prüft, dass es auch passiert.
+ *
+ * Der Linktext ist die H1 der Zielseite. Er beschreibt damit von sich aus,
+ * was dort steht, und kann nie zu „hier" oder „mehr" verkümmern.
+ */
+const nextStepLinks = seo.requiredOutboundLinks
+  .filter((id) => id !== 'angebot-anfragen')
+  .map((id) => {
+    const target = seoPage(id);
+    return { href: target.url, label: target.h1 };
+  });
+
+/**
+ * Der Verweis auf den Betrieb steht nur dort, wo die Frage „wer macht das?"
+ * wirklich aufkommt. Bei einer Kellerentrümpelung interessiert sie nicht.
+ */
+const COMPANY_LINK_ON: Record<string, 'nachlass' | 'senioren' | 'partner'> = {
+  'nachlassaufloesung-berlin': 'nachlass',
+  'seniorenumzug-berlin': 'senioren',
+  'bueroaufloesung-berlin': 'partner',
+  'messiwohnung-raeumen': 'nachlass',
+};
+const companyLinkContext = COMPANY_LINK_ON[service.slug];
+
+/**
+ * Das Hero-Bild ist das LCP-Bild dieser Seite: nicht lazy, mit Vorrang.
+ * Genau eines je Seite – `npm run seo:images` bricht ab, wenn es mehr sind.
+ * Seiten ohne Eintrag in der Bild-Registry bleiben schlicht ohne Bild.
+ */
+const hero = heroImage(pageId);
+const inlineImages = imagesForPage(pageId).filter((img) => img.role === 'inline');
+
 
 const schema = buildGraph([
   organizationNode(),
@@ -96,6 +137,8 @@ const schema = buildGraph([
           <p>{service.answer}</p>
         </div>
 
+        {hero && <Figure image={hero} layout="hero" priority />}
+
         <!-- Situationen, die zu dieser Leistung führen -->
         <section class="sit-box">
           <h2 class="sit-box__head">Wann diese Leistung passt</h2>
@@ -139,25 +182,15 @@ const schema = buildGraph([
 
         <PriceFactors factors={service.priceFactors} id={`pf-${service.slug}`} />
 
-        {
-          cases.length > 0 && (
-            <section>
-              <h2>Einsätze aus der Praxis</h2>
-              <ul class="linklist">
-                {cases.map((c) => (
-                  <li>
-                    <a href={`/einsatzberichte/${c.slug}/`} data-track="case_study_opened">
-                      {c.title}
-                    </a>
-                    <span class="linklist__meta">{c.locationLabel}</span>
-                  </li>
-                ))}
-              </ul>
-            </section>
-          )
-        }
+        {inlineImages.map((img) => <Figure image={img} layout="wide" />)}
+
+        <CaseStudyLinks serviceSlug={service.slug} variant="wide" />
 
         <Faq items={service.faq} id={`faq-${service.slug}`} />
+
+        {companyLinkContext && <ContextualCompanyLink context={companyLinkContext} />}
+
+        <NextStepPanel pageId={pageId} links={nextStepLinks} />
 
         <p class="updated">
           Zuletzt aktualisiert am {formatDate(service.updated)}. Verantwortlich für den Inhalt:
@@ -168,56 +201,13 @@ const schema = buildGraph([
       <div class="sidebar">
         <ContactCard location={`leistung-${service.slug}`} />
 
-        {
-          guides.length > 0 && (
-            <nav class="side-box" aria-labelledby="side-guides">
-              <h2 class="side-box__head" id="side-guides">
-                Passend dazu
-              </h2>
-              <ul>
-                {guides.map((g) => (
-                  <li>
-                    <a href={`/${g.hub}/${g.slug}/`}>{g.h1}</a>
-                  </li>
-                ))}
-              </ul>
-            </nav>
-          )
-        }
+        <RelatedGuides slugs={service.guides} />
 
-        {
-          related.length > 0 && (
-            <nav class="side-box" aria-labelledby="side-related">
-              <h2 class="side-box__head" id="side-related">
-                Verwandte Leistungen
-              </h2>
-              <ul>
-                {related.map((r) => (
-                  <li>
-                    <a href={`/leistungen/${r.slug}/`}>{r.navLabel}</a>
-                  </li>
-                ))}
-              </ul>
-            </nav>
-          )
-        }
+        <RelatedServiceLinks slugs={service.related} current={service.slug} />
 
-        <nav class="side-box" aria-labelledby="side-areas">
-          <h2 class="side-box__head" id="side-areas">Einsatzgebiete</h2>
-          <ul>
-            {
-              publishedDistricts.map((d) => (
-                <li>
-                  <a href={`/berlin/${d.slug}/`} data-track="location_click">
-                    {d.name}
-                  </a>
-                </li>
-              ))
-            }
-            <li><a href="/berlin/">Alle Berliner Bezirke</a></li>
-            <li><a href="/brandenburg/">Berliner Umland</a></li>
-          </ul>
-        </nav>
+        <RelevantLocations
+          intro="Wo wir am häufigsten im Einsatz sind. Was Altbau, Hinterhof und Parksituation für den Aufwand bedeuten, steht auf der jeweiligen Seite."
+        />
 
         <Todo>
           Für diese Leistungsseite fehlen noch echte Einsatzfotos und mindestens ein
@@ -227,7 +217,7 @@ const schema = buildGraph([
     </div>
   </div>
 
-  <CtaBand location={`leistung-${service.slug}`} />
+  <CtaBand location={`leistung-${service.slug}`} pageId={pageId} />
 </Base>
 
 <style>
@@ -284,26 +274,9 @@ const schema = buildGraph([
     color: var(--ink-2);
   }
   .excl li::marker {
-    color: var(--line-strong);
+    color: var(--line-contrast);
   }
 
-  .linklist {
-    list-style: none;
-    padding: 0;
-    margin: var(--sp-4) 0;
-  }
-  .linklist li {
-    padding: var(--sp-3) 0;
-    border-bottom: 1px solid var(--line);
-    display: flex;
-    justify-content: space-between;
-    gap: var(--sp-4);
-    flex-wrap: wrap;
-  }
-  .linklist__meta {
-    color: var(--ink-4);
-    font-size: 0.88rem;
-  }
 
   .sidebar {
     display: grid;
@@ -311,44 +284,4 @@ const schema = buildGraph([
     align-content: start;
   }
 
-  .side-box {
-    border: 1px solid var(--line);
-    border-top: 3px solid var(--ink);
-    padding: var(--sp-4) var(--sp-5);
-    background: var(--white);
-  }
-  .side-box__head {
-    font-family: var(--font-body);
-    font-size: 0.78rem;
-    font-weight: 800;
-    letter-spacing: 0.05em;
-    text-transform: uppercase;
-    color: var(--ink);
-    margin: 0 0 var(--sp-3);
-  }
-  .side-box ul {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-  }
-  .side-box li {
-    margin: 0;
-    border-top: 1px solid var(--paper-3);
-  }
-  .side-box li:first-child {
-    border-top: 0;
-  }
-  .side-box a {
-    display: block;
-    padding: 0.55rem 0;
-    color: var(--ink);
-    text-decoration: none;
-    font-size: 0.94rem;
-    min-height: 2.5rem;
-  }
-  .side-box a:hover {
-    color: var(--accent);
-    text-decoration: underline;
-    text-underline-offset: 0.2em;
-  }
 </style>

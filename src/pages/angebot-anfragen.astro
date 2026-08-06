@@ -4,6 +4,13 @@ import Breadcrumbs from '../components/Breadcrumbs.astro';
 import AufwandCheck from '../components/AufwandCheck.astro';
 import Icon from '../components/Icon.astro';
 import { phone, whatsapp } from '../lib/contact';
+import { seoPage } from '../data/seo-pages';
+
+/* Metadaten kommen aus der zentralen Seitenkarte, damit Title,
+   Description, URL und Sitemap-Datum nur an einer Stelle stehen. */
+const page = seoPage('angebot-anfragen');
+const { url: path, title, metaDescription: description } = page;
+
 import {
   buildGraph,
   organizationNode,
@@ -11,11 +18,6 @@ import {
   webPageNode,
   breadcrumbNode,
 } from '../lib/schema';
-
-const path = '/angebot-anfragen/';
-const title = 'Kostenlose Einschätzung anfordern | Schnellhelfer24';
-const description =
-  'Aufwand-Check: Leistung, Ort, Umfang, Etage und Zeitraum angeben, Fotos anhängen. Sie erhalten eine persönliche Einschätzung, kostenlos und unverbindlich.';
 
 const crumbs = [
   { name: 'Start', href: '/' },

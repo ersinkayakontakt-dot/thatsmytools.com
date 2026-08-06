@@ -16,3 +16,7 @@ public/api/_storage/*
 !public/api/_storage/.htaccess
 !public/api/_storage/.gitkeep
 public/api/config.local.php
+
+# Such- und Betriebsdaten (Search Console, Bing, Serverlogs).
+# Betriebsdaten gehoeren nicht ins Repository.
+data/

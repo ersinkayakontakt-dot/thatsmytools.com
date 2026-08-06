@@ -54,6 +54,25 @@ jobs:
         # Schlägt der Schritt fehl, wird NICHT übertragen.
         run: npm run audit:build
 
+      - name: SEO-System prüfen
+        # Seitenkarte gegen HTML, Linkgraph und interne Autorität,
+        # Kannibalisierung, strukturierte Daten gegen site.ts, Bilder samt
+        # Lizenznachweis, Farbkontraste nach WCAG 2.2 AA.
+        # Warnungen blockieren nicht, Fehler schon.
+        run: npm run seo:all
+
+      - name: Prüfregeln gegenprüfen
+        # Baut absichtlich kaputte Kopien der Website und erwartet, dass die
+        # zuständige Regel daran scheitert. Ohne diesen Schritt könnte eine
+        # defekte Prüfung dauerhaft "in Ordnung" melden.
+        run: npm run seo:selftest
+
+      - name: Mess-Ereignisse abgleichen
+        # Ereignisnamen im Quelltext gegen die Allowlist des Endpunkts.
+        # Eine Abweichung führt sonst dazu, dass Ereignisse stillschweigend
+        # verworfen werden.
+        run: npm run seo:events
+
       - name: Übertragen (FTPS)
         uses: SamKirkland/FTP-Deploy-Action@v4.3.5
         with:

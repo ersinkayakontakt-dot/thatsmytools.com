@@ -1,0 +1,83 @@
+---
+/**
+ * KONTEXTUELLER VERWEIS AUF DAS UNTERNEHMEN
+ * =========================================
+ *
+ * Auftrag § 4: Die Über-uns-Seite braucht sinnvolle interne Links
+ * AUSSERHALB der globalen Navigation. Der Linkgraph hat bestätigt, dass sie
+ * vorher genau einen kontextuellen Eingang hatte – sie war praktisch nur
+ * über das Menü erreichbar und stand deshalb auf Rang 31 von 50.
+ *
+ * Der Verweis ist bewusst ein SATZ und keine Linkliste. Er steht dort, wo
+ * die Frage „wer macht das eigentlich?" tatsächlich aufkommt: bei einem
+ * Nachlass, bei einem Seniorenumzug, bei einer Zusammenarbeit mit einer
+ * Verwaltung. An einer Sperrmüllabholung interessiert das niemanden – dort
+ * steht er auch nicht.
+ *
+ * Jede Fassung hat einen eigenen Linktext. Derselbe Ankertext auf zwanzig
+ * Seiten wäre genau die Überoptimierung, die der Auftrag ausschließt, und
+ * der Linkgraph würde ihn als solchen melden.
+ */
+interface Props {
+  /** Bestimmt Formulierung und Linktext. */
+  context: 'nachlass' | 'senioren' | 'partner' | 'kontakt' | 'allgemein' | 'trauerfall';
+}
+
+const { context } = Astro.props;
+
+const VARIANTS: Record<Props['context'], { text: string; linkText: string; after: string }> = {
+  nachlass: {
+    text: 'Bei einem Nachlass entscheidet weniger die Technik als die Frage, wer die Wohnung betritt. ',
+    linkText: 'Wer wir sind und wie wir mit persönlichen Dingen umgehen',
+    after: ', steht auf unserer Seite über den Betrieb.',
+  },
+  trauerfall: {
+    text: 'Viele Angehörige möchten vorher wissen, mit wem sie es zu tun haben. ',
+    linkText: 'Wie wir arbeiten und worauf wir uns nicht einlassen',
+    after: ' haben wir offen aufgeschrieben.',
+  },
+  senioren: {
+    text: 'Ein Umzug im Alter ist Vertrauenssache. ',
+    linkText: 'Wer den Termin begleitet und wie wir vorgehen',
+    after: ' können Sie vorab nachlesen.',
+  },
+  partner: {
+    text: 'Für eine dauerhafte Zusammenarbeit sollten Sie wissen, mit welchem Betrieb Sie es zu tun haben: ',
+    linkText: 'Firmierung, Arbeitsweise und Grenzen unseres Angebots',
+    after: '.',
+  },
+  kontakt: {
+    text: 'Bevor Sie anrufen, möchten Sie vielleicht wissen, wer abnimmt. ',
+    linkText: 'Über den Betrieb und die Menschen dahinter',
+    after: '.',
+  },
+  allgemein: {
+    text: 'Hinter Schnellhelfer24 steht ein kleiner Berliner Betrieb. ',
+    linkText: 'Was das für den Ablauf Ihres Auftrags bedeutet',
+    after: ', erklären wir auf der Seite über uns.',
+  },
+};
+
+const variant = VARIANTS[context];
+---
+
+<p class="company-link">
+  {variant.text}<a href="/ueber-uns/" data-track="company_link_click" data-track-location={context}
+    >{variant.linkText}</a
+  >{variant.after}
+</p>
+
+<style>
+  .company-link {
+    margin: var(--sp-5) 0;
+    padding-left: var(--sp-4);
+    border-left: 2px solid var(--line-strong);
+    max-width: 42rem;
+    color: var(--ink-2);
+    line-height: 1.6;
+  }
+
+  .company-link a {
+    color: var(--accent-text);
+  }
+</style>

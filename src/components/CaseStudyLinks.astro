@@ -1,0 +1,57 @@
+---
+/**
+ * EINSATZBERICHTE
+ * ===============
+ *
+ * Zeigt ausschließlich echte, freigegebene Einsätze. `caseIsIndexable`
+ * blockiert Musterberichte (`real: false`) und alles, was noch Platzhalter
+ * enthält – so kann hier kein erfundener Fall auftauchen.
+ *
+ * Solange es keine echten Berichte gibt, rendert die Komponente nichts.
+ * Das ist beabsichtigt: Ein leerer Kasten „Referenzen" wäre schlimmer als
+ * gar keiner.
+ */
+import LinkModule from './LinkModule.astro';
+import { cases } from '../data/cases';
+import { caseIsIndexable } from '../lib/publishGuard';
+
+interface Props {
+  /** Nur Berichte zu dieser Leistung. */
+  serviceSlug?: string;
+  /** Nur Berichte aus diesem Bezirk oder Ort. */
+  locationSlug?: string;
+  heading?: string;
+  intro?: string;
+  variant?: 'side' | 'wide';
+  limit?: number;
+}
+
+const {
+  serviceSlug,
+  locationSlug,
+  heading = 'Einsätze aus der Praxis',
+  intro,
+  variant = 'side',
+  limit = 4,
+} = Astro.props;
+
+const items = cases
+  .filter((c) => caseIsIndexable(c))
+  .filter((c) => (serviceSlug ? c.serviceSlug === serviceSlug : true))
+  .filter((c) => (locationSlug ? c.location === locationSlug : true))
+  .slice(0, limit)
+  .map((c) => ({
+    href: `/einsatzberichte/${c.slug}/`,
+    label: c.title,
+    meta: `${c.locationLabel} · ${c.facts.size}`,
+  }));
+---
+
+<LinkModule
+  name="case-studies"
+  heading={heading}
+  intro={intro}
+  items={items}
+  variant={variant}
+  track="case_study_opened"
+/>

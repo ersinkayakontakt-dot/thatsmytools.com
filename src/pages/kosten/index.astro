@@ -6,6 +6,15 @@ import Faq from '../../components/Faq.astro';
 import Todo from '../../components/Todo.astro';
 import { costGuides } from '../../data/guides';
 import { universalPriceFactors, priceDataAvailable, priceDatasets } from '../../data/costs';
+import { seoPage } from '../../data/seo-pages';
+import RelatedServiceLinks from '../../components/RelatedServiceLinks.astro';
+
+
+/* Metadaten kommen aus der zentralen Seitenkarte, damit Title,
+   Description, URL und Sitemap-Datum nur an einer Stelle stehen. */
+const page = seoPage('kosten');
+const { url: path, title, metaDescription: description } = page;
+
 import {
   buildGraph,
   organizationNode,
@@ -14,11 +23,6 @@ import {
   breadcrumbNode,
   faqNode,
 } from '../../lib/schema';
-
-const path = '/kosten/';
-const title = 'Kosten und Ablauf: Was eine Räumung in Berlin bestimmt';
-const description =
-  'Wie sich Preise für Entrümpelung, Haushaltsauflösung und Umzug in Berlin zusammensetzen, welche Faktoren wirken und woran Sie ein unseriöses Angebot erkennen.';
 
 const crumbs = [
   { name: 'Start', href: '/' },
@@ -231,6 +235,21 @@ const schema = buildGraph([
     <div class="wrap wrap--mid">
       <Faq items={faq} title="Fragen zu Preisen und Angeboten" id="faq-kosten" />
     </div>
+  </section>
+
+  <section class="wrap wrap--mid section--tight">
+    <RelatedServiceLinks
+      slugs={[
+        'wohnungsaufloesung-berlin',
+        'haushaltsaufloesung-berlin',
+        'nachlassaufloesung-berlin',
+        'seniorenumzug-berlin',
+        'entruempelung-berlin',
+      ]}
+      heading="Wofür diese Preisfaktoren gelten"
+      intro="Die Faktoren oben wirken bei jedem Auftrag. Wie stark, hängt von der Leistung ab."
+      variant="wide"
+    />
   </section>
 
   <CtaBand

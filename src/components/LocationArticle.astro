@@ -5,10 +5,14 @@ import Faq from './Faq.astro';
 import Icon from './Icon.astro';
 import ContactCard from './ContactCard.astro';
 import Todo from './Todo.astro';
+import RelevantLocations from './RelevantLocations.astro';
+import CaseStudyLinks from './CaseStudyLinks.astro';
+import NextStepPanel from './NextStepPanel.astro';
 import { getService } from '../data/services';
 import { casesForLocation } from '../data/cases';
 import { formatDate } from '../lib/text';
 import { checkLocation } from '../lib/publishGuard';
+import { seoPage } from '../data/seo-pages';
 
 /**
  * Gemeinsame Darstellung für Bezirks- und Ortsseiten.
@@ -25,10 +29,31 @@ interface Props {
 const { loc, hub, indexable } = Astro.props;
 const guard = checkLocation(loc);
 const cases = casesForLocation(loc.slug);
-const focus = loc.focusServices
-  .map((s) => getService(s))
-  .filter((s): s is NonNullable<typeof s> => Boolean(s) && s!.status === 'published');
 const quartersLabel = hub === 'berlin' ? 'Ortsteile im Bezirk' : 'Ortsteile';
+
+const pageId = `${hub === 'berlin' ? 'district' : 'town'}:${loc.slug}`;
+
+/**
+ * Auftrag § 4: Eine Standortseite verlinkt auf die wichtigste dort
+ * tatsächlich angebotene Leistung und auf höchstens zwei weitere.
+ *
+ * WELCHE Leistungen hier stehen, sagt `focusServices` in den Standortdaten.
+ * Das ist eine inhaltliche Aussage über das Gebiet und wird nicht
+ * verändert – eine Leistung hinzuzuerfinden, um den Autoritätsfluss zu
+ * lenken, wäre eine Falschaussage über das Angebot.
+ *
+ * Verändert wird nur die REIHENFOLGE: nach wirtschaftlicher Priorität aus
+ * der Seitenkarte, begrenzt auf drei. Damit steht die wertvollste
+ * tatsächlich angebotene Leistung zuerst und bekommt die stärkste Position
+ * im Fließtext.
+ */
+const focus = loc.focusServices
+  .map((slug) => getService(slug))
+  .filter((s): s is NonNullable<typeof s> => Boolean(s) && s!.status === 'published')
+  .map((s) => ({ service: s, priority: seoPage(`service:${s.slug}`).businessPriority }))
+  .sort((a, b) => b.priority - a.priority)
+  .slice(0, 3)
+  .map(({ service }) => service);
 ---
 
 {
@@ -132,18 +157,7 @@ const quartersLabel = hub === 'berlin' ? 'Ortsteile im Bezirk' : 'Ortsteile';
       <h2>Einsätze in {loc.name}</h2>
       {
         cases.length > 0 ? (
-          <ul class="linklist">
-            {cases.map((c) => (
-              <li>
-                <a href={`/einsatzberichte/${c.slug}/`} data-track="case_study_opened">
-                  {c.title}
-                </a>
-                <span class="linklist__meta">
-                  {c.facts.objectType} · {c.facts.duration}
-                </span>
-              </li>
-            ))}
-          </ul>
+          <CaseStudyLinks locationSlug={loc.slug} variant="wide" heading={`Einsätze in ${loc.name}`} />
         ) : (
           <>
             <p>
@@ -167,6 +181,12 @@ const quartersLabel = hub === 'berlin' ? 'Ortsteile im Bezirk' : 'Ortsteile';
 
     <Faq items={loc.faq} title={`Häufige Fragen zu ${loc.name}`} id={`faq-${loc.slug}`} />
 
+    <NextStepPanel
+      pageId={pageId}
+      heading={`Einsatz in ${loc.name} anfragen`}
+      text={`Schicken Sie Fotos aus jedem Raum, dazu Etage, Aufzug und die Halteposition vor dem Haus. Für ${loc.name} können wir den Aufwand dann ohne Besichtigung einschätzen.`}
+    />
+
     <p class="updated">
       Zuletzt aktualisiert am {formatDate(loc.updated)}. Die Beschreibung fasst typische
       Rahmenbedingungen des Gebiets zusammen und ersetzt keine Prüfung Ihrer konkreten Adresse.
@@ -180,28 +200,13 @@ const quartersLabel = hub === 'berlin' ? 'Ortsteile im Bezirk' : 'Ortsteile';
       text="Schicken Sie Fotos aus jedem Raum, dazu Etage und Aufzug. Dann können wir den Aufwand einschätzen."
     />
 
-    <nav class="side-box" aria-labelledby="side-svc">
-      <h2 class="side-box__head" id="side-svc">Leistungen</h2>
-      <ul>
-        {
-          focus.map((s) => (
-            <li>
-              <a href={`/leistungen/${s.slug}/`}>{s.navLabel}</a>
-            </li>
-          ))
-        }
-        <li><a href="/leistungen/">Alle Leistungen</a></li>
-      </ul>
-    </nav>
+    <RelevantLocations
+      scope={hub}
+      current={loc.slug}
+      heading="Weitere Gebiete"
+      limit={6}
+    />
 
-    <nav class="side-box" aria-labelledby="side-hub">
-      <h2 class="side-box__head" id="side-hub">Weitere Gebiete</h2>
-      <ul>
-        <li><a href="/berlin/">Berliner Bezirke</a></li>
-        <li><a href="/brandenburg/">Berliner Umland</a></li>
-        <li><a href="/kosten/">Kosten und Preisfaktoren</a></li>
-      </ul>
-    </nav>
   </div>
 </div>
 
@@ -265,45 +270,5 @@ const quartersLabel = hub === 'berlin' ? 'Ortsteile im Bezirk' : 'Ortsteile';
     display: grid;
     gap: var(--sp-5);
     align-content: start;
-  }
-  .side-box {
-    border: 1px solid var(--line);
-    border-top: 3px solid var(--ink);
-    padding: var(--sp-4) var(--sp-5);
-    background: var(--white);
-  }
-  .side-box__head {
-    font-family: var(--font-body);
-    font-size: 0.78rem;
-    font-weight: 800;
-    letter-spacing: 0.05em;
-    text-transform: uppercase;
-    color: var(--ink);
-    margin: 0 0 var(--sp-3);
-  }
-  .side-box ul {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-  }
-  .side-box li {
-    margin: 0;
-    border-top: 1px solid var(--paper-3);
-  }
-  .side-box li:first-child {
-    border-top: 0;
-  }
-  .side-box a {
-    display: block;
-    padding: 0.55rem 0;
-    color: var(--ink);
-    text-decoration: none;
-    font-size: 0.94rem;
-    min-height: 2.5rem;
-  }
-  .side-box a:hover {
-    color: var(--accent);
-    text-decoration: underline;
-    text-underline-offset: 0.2em;
   }
 </style>

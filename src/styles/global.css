@@ -21,10 +21,22 @@
    Webfont-Downloads, keine Layoutverschiebung beim Laden, kein
    Datenschutzproblem. Siehe docs/ARCHITEKTUR.md, Abschnitt 7.
 
-   Kontraste: Alle Farbpaare sind gegen WCAG 2.2 AA geprüft. Der Akzent
-   existiert in zwei Werten: --accent für Flächen und Rahmen, --accent-text
-   für Text. Der Unterschied ist mit bloßem Auge kaum sichtbar, sorgt aber
-   dafür, dass kleiner Text auch auf Betongrau die 4,5:1 erreicht.
+   Kontraste: Die Farbpaare werden nicht mehr per Hand behauptet, sondern
+   bei jedem Lauf nachgerechnet:
+
+       npm run seo:contrast
+
+   Das Skript liest die Tokens direkt aus diesem :root-Block, prüft sie gegen
+   WCAG 2.2 (4,5:1 Fließtext, 3:1 große Schrift und Bedienelemente) und
+   blockiert den Build, wenn ein Paar reißt. Es findet auch Regeln, die nur
+   `color` setzen und den Hintergrund erben – dort steckten die meisten
+   Fehler.
+
+   Rollen der Tokens, die sich NICHT vertauschen lassen:
+     --accent        Fläche mit weißem Text (Button, Balken)
+     --accent-text   Text und Symbole auf heller Fläche
+     --line/-strong  dekorative Regeln, ohne Kontrastschwelle
+     --line-contrast Umrisse mit Bedeutung (Eingabefelder), 3:1
    ========================================================================== */
 
 /* ---------------------------------------------------------------- Tokens */
@@ -33,16 +45,28 @@
   --ink: #171717;
   --ink-2: #3f3f3b;
   --ink-3: #666660;
-  --ink-4: #74746e;
+  /* Schwächste Textstufe. Der frühere Wert #74746e erreichte auf --paper nur
+     4,38:1 und auf Karten (--paper-2) 3,97:1 – beides unter AA. Er ist so
+     weit abgedunkelt, dass er auf Grundfläche UND auf Karten besteht. */
+  --ink-4: #6b6b65;
 
   /* Flächen */
   --paper: #f7f7f2;
   --paper-2: #ecece6;
   --paper-3: #dfdfd7;
 
-  /* Linien */
+  /* Linien
+     --line und --line-strong sind DEKORATIV: Trennregeln, Rahmen um Flächen,
+     Gliederung. Für sie gilt keine Kontrastschwelle.
+     --line-contrast trägt Bedeutung: Umrisse von Eingabefeldern, Auswahl-
+     karten, Upload-Flächen und Listenmarken. WCAG 2.2, 1.4.11 verlangt dort
+     mindestens 3:1 gegen die Fläche, sonst ist das Bedienelement für
+     sehschwache Personen nicht als solches erkennbar.
+     Die beiden Rollen zu trennen ist der Grund, warum die feinen Haarlinien
+     der Gestaltung erhalten bleiben konnten. */
   --line: #d5d5cd;
   --line-strong: #9c9c94;
+  --line-contrast: #87877f;
 
   /* Struktur: Schwarz trägt den Aufbau, nicht eine Markenfarbe */
   --brand: #171717;
@@ -50,9 +74,17 @@
   --brand-3: #090909;
   --brand-tint: #e7e7e0;
 
-  /* Handlung */
-  --accent: #e84917;
-  --accent-2: #c9360b;
+  /* Handlung
+     Drei Werte, weil ein einziges Orange die Aufgaben nicht erfüllen kann:
+       --accent       Fläche. Trägt weißen Text (Button, Marke, Balken).
+                      Frühere #e84917 ergaben mit Weiß nur 3,89:1 – der
+                      wichtigste Button der Seite lag damit unter AA.
+       --accent-2     dieselbe Fläche im Hover-/Aktivzustand, dunkler.
+       --accent-text  Text und Symbole auf heller Fläche. NIE --accent für
+                      kleinen Text verwenden: das ergibt auf --paper 4,36:1
+                      und reicht für Fließtext nicht. */
+  --accent: #d2400f;
+  --accent-2: #b8330a;
   --accent-text: #b9340c;
   --accent-tint: #ffe9df;
 

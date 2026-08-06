@@ -10,11 +10,15 @@ import { faqGroups } from '../data/faq';
 import { buildGraph, organizationNode, websiteNode, webPageNode, faqNode } from '../lib/schema';
 import { primaryCta } from '../lib/contact';
 import { site } from '../config/site';
+import { seoPage } from '../data/seo-pages';
+import { formatDate } from '../lib/text';
+import ContextualCompanyLink from '../components/ContextualCompanyLink.astro';
 
-const title = 'Wohnungsauflösung & Seniorenumzug Berlin | Schnellhelfer24';
-const description =
-  'Komplette Wohnungsauflösungen, Nachlässe und Seniorenumzüge in Berlin und im Umland – von der Sichtung bis zur besenreinen Übergabe, persönlich koordiniert.';
-const path = '/';
+
+/* Metadaten kommen aus der zentralen Seitenkarte, damit Title,
+   Description, URL und Sitemap-Datum nur an einer Stelle stehen. */
+const page = seoPage('home');
+const { url: path, title, metaDescription: description } = page;
 
 const homeFaq = [
   faqGroups[0].items[0],
@@ -78,7 +82,7 @@ const singleJobs = [
           <a href={site.ratings.sourceUrl} rel="noopener noreferrer">
             Profil bei Google ansehen <span aria-hidden="true">↗</span>
           </a>
-          <small>Stand 30.07.2026</small>
+          <small>Stand {formatDate(site.ratings.checked)}</small>
         </div>
       </aside>
     )
@@ -224,6 +228,10 @@ const singleJobs = [
       </div>
       <Faq items={homeFaq} title="Häufige Fragen" id="faq-home" openFirst />
     </div>
+  </section>
+
+  <section class="wrap wrap--mid section--tight">
+    <ContextualCompanyLink context="allgemein" />
   </section>
 
   <CtaBand

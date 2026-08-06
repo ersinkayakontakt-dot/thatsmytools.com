@@ -1,0 +1,66 @@
+---
+/**
+ * VERWANDTE LEISTUNGEN
+ * ====================
+ *
+ * Zeigt Leistungen, die zur aktuellen Situation passen – sortiert nach
+ * wirtschaftlicher Priorität aus der SEO-Seitenkarte, nicht alphabetisch
+ * und nicht in der Reihenfolge der Datendatei.
+ *
+ * Damit landet die interne Autorität dort, wo sie hingehört: Eine
+ * Kompletträumung steht vor einer Einzelabholung. Das ist Auftrag § 2 –
+ * und es entspricht auch dem, was Kundschaft in dieser Lage braucht.
+ */
+import LinkModule from './LinkModule.astro';
+import { getService } from '../data/services';
+import { seoPage } from '../data/seo-pages';
+import { serviceIsIndexable } from '../lib/publishGuard';
+
+interface Props {
+  /** Slugs verwandter Leistungen. */
+  slugs: string[];
+  /** Slug der aktuellen Seite – wird nie auf sich selbst verlinkt. */
+  current?: string;
+  heading?: string;
+  intro?: string;
+  variant?: 'side' | 'wide';
+  /** Höchstzahl. Mehr als fünf Empfehlungen liest niemand. */
+  limit?: number;
+}
+
+const {
+  slugs,
+  current,
+  heading = 'Verwandte Leistungen',
+  intro,
+  variant = 'side',
+  limit = 5,
+} = Astro.props;
+
+const items = slugs
+  .filter((slug) => slug !== current)
+  .map((slug) => getService(slug))
+  .filter((svc): svc is NonNullable<typeof svc> => Boolean(svc))
+  // Entwürfe dürfen nicht verlinkt werden – sie stehen auf noindex.
+  .filter((svc) => serviceIsIndexable(svc))
+  .map((svc) => ({
+    svc,
+    priority: seoPage(`service:${svc.slug}`).businessPriority,
+  }))
+  .sort((a, b) => b.priority - a.priority)
+  .slice(0, limit)
+  .map(({ svc }) => ({
+    href: `/leistungen/${svc.slug}/`,
+    label: svc.h1,
+    meta: svc.teaser.length > 90 ? `${svc.teaser.slice(0, 87)}…` : svc.teaser,
+  }));
+---
+
+<LinkModule
+  name="related-services"
+  heading={heading}
+  intro={intro}
+  items={items}
+  variant={variant}
+  track="related_service_click"
+/>

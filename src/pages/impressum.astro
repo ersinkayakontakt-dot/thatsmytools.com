@@ -6,6 +6,12 @@ import { site, realValue, addressLine } from '../config/site';
 import { phone, email } from '../lib/contact';
 import { showInternalNotes } from '../lib/internalNotes';
 import { buildGraph, organizationNode, websiteNode, webPageNode, breadcrumbNode } from '../lib/schema';
+import { seoPage } from '../data/seo-pages';
+
+/* Metadaten kommen aus der zentralen Seitenkarte, damit Title,
+   Description, URL und Sitemap-Datum nur an einer Stelle stehen. */
+const page = seoPage('impressum');
+const { url: path, title, metaDescription: description } = page;
 
 /**
  * Impressum nach § 5 DDG (bis 2024: § 5 TMG) und § 18 MStV.
@@ -15,10 +21,6 @@ import { buildGraph, organizationNode, websiteNode, webPageNode, breadcrumbNode 
  * müssen die Angaben vollständig eingetragen und rechtlich geprüft werden.
  * Fehlende oder falsche Pflichtangaben sind abmahnfähig.
  */
-const path = '/impressum/';
-const title = 'Impressum | Schnellhelfer24';
-const description =
-  'Anbieterkennzeichnung von Schnellhelfer24: Firmierung, Anschrift, Kontaktdaten und Registerangaben für Entrümpelung und Umzug in Berlin.';
 
 const crumbs = [
   { name: 'Start', href: '/' },

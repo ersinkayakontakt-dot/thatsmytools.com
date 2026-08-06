@@ -67,5 +67,5 @@ const schema = buildGraph([
   <div class="wrap section--tight">
     <GuideArticle guide={guide} />
   </div>
-  <CtaBand location={`ratgeber-${guide.slug}`} />
+  <CtaBand location={`ratgeber-${guide.slug}`} pageId={`guide:${guide.slug}`} />
 </Base>

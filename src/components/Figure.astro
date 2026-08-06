@@ -1,0 +1,150 @@
+---
+/**
+ * INHALTSBILD
+ * ===========
+ *
+ * Die einzige Stelle, an der auf dieser Website ein inhaltstragendes Bild
+ * ausgegeben wird. Sie sorgt dafür, dass jedes Bild dieselben Eigenschaften
+ * hat, ohne dass jemand daran denken muss:
+ *
+ *   - AVIF, WebP und ein Rückfallformat über <picture>
+ *   - mehrere Breiten mit srcset, passendes sizes
+ *   - feste Breite und Höhe, damit beim Nachladen nichts springt
+ *   - lazy laden, außer beim ersten sichtbaren Bild
+ *   - Symbolbild-Kennzeichnung bei Stockfotos mit Personen
+ *
+ * Umgesetzt mit `astro:assets`. Das nutzt sharp, das über Astro ohnehin
+ * installiert ist – also keine zusätzliche Abhängigkeit, keine externe
+ * Bild-CDN und keine Kosten pro Aufruf.
+ *
+ * WARUM NICHT ALS CSS-HINTERGRUND
+ * Ein Hintergrundbild hat keinen Alternativtext, taucht in keiner
+ * Bildsuche auf und lässt sich nicht mit `srcset` ausliefern. Für
+ * inhaltstragende Bilder ist es deshalb ausgeschlossen (Auftrag § 10).
+ *
+ * SYMBOLBILD-PFLICHT
+ * Zeigt ein Stockfoto Personen, wird es sichtbar als Symbolbild
+ * gekennzeichnet. Ohne diesen Hinweis könnte der Eindruck entstehen, es
+ * handle sich um eigene Mitarbeitende oder um echte Kundschaft – das wäre
+ * eine Falschaussage und nach § 5 UWG irreführend.
+ */
+import { Picture } from 'astro:assets';
+import type { SiteImage } from '../data/images';
+
+interface Props {
+  image: SiteImage;
+  /**
+   * Bestimmt die ausgelieferten Breiten und das `sizes`-Attribut.
+   *   hero    volle Inhaltsbreite, das LCP-Bild einer Seite
+   *   wide    volle Textspalte
+   *   inline  im Fließtext, halbe Spalte auf großen Bildschirmen
+   */
+  layout?: 'hero' | 'wide' | 'inline';
+  /**
+   * Nur beim tatsächlichen LCP-Bild setzen. Genau eines je Seite –
+   * `npm run seo:images` bricht ab, wenn es mehrere sind.
+   */
+  priority?: boolean;
+  class?: string;
+}
+
+const { image, layout = 'wide', priority = false, class: cls = '' } = Astro.props;
+
+/**
+ * Breiten und `sizes` je Layout.
+ *
+ * `sizes` beschreibt, wie breit das Bild im fertigen Layout DARGESTELLT
+ * wird – nicht, wie groß die Datei ist. Ein falsches `sizes` ist der
+ * häufigste Grund dafür, dass Telefone trotz srcset die Desktop-Datei
+ * laden. Die Werte hier folgen den Containerbreiten aus global.css
+ * (--wrap-narrow 46rem, --wrap-mid 60rem).
+ */
+const LAYOUTS: Record<'hero' | 'wide' | 'inline', { widths: number[]; sizes: string }> = {
+  hero: {
+    widths: [480, 768, 1024, 1440, 1920],
+    sizes: '(min-width: 74rem) 1180px, 100vw',
+  },
+  wide: {
+    widths: [480, 768, 1024, 1280],
+    sizes: '(min-width: 60rem) 900px, 100vw',
+  },
+  inline: {
+    widths: [360, 480, 768, 960],
+    sizes: '(min-width: 60rem) 460px, 100vw',
+  },
+};
+
+const { widths, sizes } = LAYOUTS[layout];
+
+/**
+ * Ein Stockfoto mit Personen wird gekennzeichnet. Bei eigenen, freigegebenen
+ * Bildern entfällt der Hinweis – dort stimmt die Zuordnung ja.
+ */
+const needsSymbolNote = image.imageOrigin === 'stock' && image.showsPeople;
+const caption = image.caption;
+---
+
+<figure class:list={['figure', `figure--${layout}`, cls]}>
+  <Picture
+    src={image.src}
+    formats={['avif', 'webp']}
+    widths={widths}
+    sizes={sizes}
+    alt={image.alt}
+    loading={priority ? 'eager' : 'lazy'}
+    decoding={priority ? 'sync' : 'async'}
+    fetchpriority={priority ? 'high' : 'auto'}
+  />
+
+  {
+    (caption || needsSymbolNote) && (
+      <figcaption class="figure__caption">
+        {caption}
+        {needsSymbolNote && (
+          <span class="figure__symbol">
+            {caption ? ' ' : ''}Symbolbild.
+          </span>
+        )}
+      </figcaption>
+    )
+  }
+</figure>
+
+<style>
+  .figure {
+    margin: var(--sp-6) 0;
+  }
+
+  .figure :global(img) {
+    display: block;
+    width: 100%;
+    height: auto;
+    background: var(--paper-2);
+  }
+
+  /* Feste Seitenverhältnisse verhindern, dass die Seite beim Laden
+     nachrutscht – auch dann, wenn das Bild noch nicht da ist. */
+  .figure--hero :global(img) {
+    aspect-ratio: 16 / 9;
+    object-fit: cover;
+  }
+  .figure--wide :global(img) {
+    aspect-ratio: 3 / 2;
+    object-fit: cover;
+  }
+  .figure--inline :global(img) {
+    aspect-ratio: 4 / 3;
+    object-fit: cover;
+  }
+
+  .figure__caption {
+    margin-top: var(--sp-2);
+    font-size: 0.86rem;
+    line-height: 1.45;
+    color: var(--ink-3);
+  }
+
+  .figure__symbol {
+    font-style: italic;
+  }
+</style>

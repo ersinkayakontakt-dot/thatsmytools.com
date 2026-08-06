@@ -1,0 +1,40 @@
+---
+/**
+ * WEITERFÜHRENDE FRAGEN
+ * =====================
+ *
+ * Fragen, die an dieser Stelle als Nächstes aufkommen – jede mit der Seite
+ * verknüpft, die sie beantwortet.
+ *
+ * Der Unterschied zu einem FAQ-Block: Hier steht keine Antwort, sondern der
+ * Weg zur Antwort. Deshalb wird dieser Block auch NICHT als FAQPage
+ * ausgezeichnet – es wäre eine Auszeichnung ohne sichtbare Antwort und
+ * damit genau die Art von leerem Schema, die der Auftrag ausschließt.
+ *
+ * Die Frage selbst ist der Linktext. Damit ist er automatisch beschreibend
+ * und nie „hier" oder „mehr".
+ */
+import LinkModule from './LinkModule.astro';
+
+interface Props {
+  items: { question: string; href: string; hint?: string }[];
+  heading?: string;
+  variant?: 'side' | 'wide';
+}
+
+const { items, heading = 'Was Sie als Nächstes fragen werden', variant = 'wide' } = Astro.props;
+
+const mapped = items.map((item) => ({
+  href: item.href,
+  label: item.question,
+  meta: item.hint,
+}));
+---
+
+<LinkModule
+  name="related-questions"
+  heading={heading}
+  items={mapped}
+  variant={variant}
+  track="related_question_click"
+/>

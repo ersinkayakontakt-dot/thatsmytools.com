@@ -1,0 +1,209 @@
+---
+/**
+ * NÄCHSTER SCHRITT
+ * ================
+ *
+ * Der Abschluss einer Seite: eine Handlung, klar benannt, plus die zwei
+ * bis drei Wege, die an dieser Stelle wirklich weiterhelfen.
+ *
+ * GENAU EIN PRIMÄRES ZIEL
+ * Welches, steht in der SEO-Seitenkarte unter `conversionGoal`. Es wird
+ * nicht je Seite neu erfunden. Ein Nachlassfall braucht ein anderes
+ * Angebot als eine Sperrmüllabholung: einmal ein vertrauliches Gespräch,
+ * einmal ein schnelles Foto per WhatsApp.
+ *
+ * KEINE WIEDERHOLUNG NACH JEDEM ABSCHNITT
+ * Dieser Block steht einmal am Ende des Hauptinhalts. Aggressive
+ * Wiederholung schließt der Auftrag ausdrücklich aus.
+ *
+ * Deshalb steht hier auch KEIN großer Knopf, sondern ein Textübergang:
+ * Fast jede Seite endet ohnehin mit dem CTA-Band (CtaBand.astro), das
+ * seinerseits das Ziel aus dieser Karte bezieht. Zwei gleich aussehende
+ * Schaltflächen direkt untereinander wären genau die Wiederholung, die
+ * vermieden werden soll – im Test standen an einer Stelle drei
+ * Handlungsaufrufe hintereinander.
+ *
+ * Fällt ein Kontaktweg aus, weil in src/config/site.ts noch ein Platzhalter
+ * steht, verschwindet er lautlos und das Formular übernimmt. Es entsteht
+ * nie ein toter Link.
+ */
+import Icon from './Icon.astro';
+import { phone, whatsapp, primaryCta } from '../lib/contact';
+import { seoPage } from '../data/seo-pages';
+import type { ConversionGoal } from '../data/seo-pages';
+
+interface Props {
+  /** ID der aktuellen Seite in der SEO-Seitenkarte. */
+  pageId: string;
+  /** Überschrift. Ohne Angabe passend zum Conversion-Ziel. */
+  heading?: string;
+  /** Ein bis zwei Sätze über der Handlung. */
+  text?: string;
+  /** Zusätzliche Verweise unter der Handlung. */
+  links?: { href: string; label: string }[];
+}
+
+const { pageId, heading, text, links = [] } = Astro.props;
+const page = seoPage(pageId);
+
+/**
+ * Je Conversion-Ziel eine Formulierung, die zur Lage passt.
+ * `href` zeigt immer auf einen Weg, der auch wirklich existiert.
+ */
+const GOALS: Record<
+  ConversionGoal,
+  { heading: string; text: string; label: string; href: string; track: string; available: boolean }
+> = {
+  complete_project_request: {
+    heading: 'Komplettauftrag anfragen',
+    text: 'Schicken Sie uns Fotos und die Eckdaten. Sie bekommen eine persönliche Einschätzung – kostenlos und unverbindlich.',
+    label: 'Fotos senden und Einschätzung erhalten',
+    href: primaryCta.href,
+    track: 'estimate_cta_click',
+    available: true,
+  },
+  callback: {
+    heading: 'In Ruhe besprechen',
+    text: 'Sie müssen nichts vorbereiten. Wir hören zu, ordnen die Lage ein und sagen Ihnen, was als Nächstes sinnvoll ist.',
+    label: 'Rückruf vereinbaren',
+    href: phone.available ? phone.href : '/kontakt/',
+    track: 'callback_request',
+    available: true,
+  },
+  phone_call: {
+    heading: 'Direkt anrufen',
+    text: 'Für kurze Fragen ist ein Anruf der schnellste Weg.',
+    label: phone.available ? `Anrufen: ${phone.display}` : 'Kontaktmöglichkeiten ansehen',
+    href: phone.available ? phone.href : '/kontakt/',
+    track: 'phone_click',
+    available: true,
+  },
+  whatsapp: {
+    heading: 'Foto schicken, Preis bekommen',
+    text: 'Ein Foto des Gegenstands und die Adresse genügen für eine erste Einschätzung.',
+    label: whatsapp.available ? 'Foto per WhatsApp senden' : 'Fotos über das Formular senden',
+    href: whatsapp.available ? whatsapp.href : primaryCta.href,
+    track: 'whatsapp_click',
+    available: true,
+  },
+  partner_request: {
+    heading: 'Zusammenarbeit besprechen',
+    text: 'Für Verwaltungen, Eigentümer und Makler: feste Ansprechperson, nachvollziehbare Positionen, Rechnung an das Unternehmen.',
+    label: 'Objekt zur Prüfung einreichen',
+    href: primaryCta.href,
+    track: 'partner_request',
+    available: true,
+  },
+  information: {
+    heading: 'Wenn Sie so weit sind',
+    text: 'Dieser Text soll Ihnen erst einmal Klarheit geben. Wenn Sie danach eine Einschätzung möchten, genügen ein paar Fotos.',
+    label: 'Einschätzung anfordern',
+    href: primaryCta.href,
+    track: 'estimate_cta_click',
+    available: true,
+  },
+};
+
+const goal = GOALS[page.conversionGoal];
+const isExternal = goal.href.startsWith('http');
+---
+
+<section class="next-step" data-linkmodule="next-step" aria-labelledby={`next-${page.id}`}>
+  <h2 class="next-step__head" id={`next-${page.id}`}>{heading ?? goal.heading}</h2>
+  <p class="next-step__text">{text ?? goal.text}</p>
+
+  <p class="next-step__go">
+    <a
+      href={goal.href}
+      data-track={goal.track}
+      data-track-location={`next-step-${page.id}`}
+      {...isExternal ? { target: '_blank', rel: 'noopener' } : {}}
+    >
+      {goal.label}
+    </a>
+    <span aria-hidden="true"> →</span>
+  </p>
+
+  {
+    links.length > 0 && (
+      <ul class="next-step__links">
+        {links.map((link) => (
+          <li>
+            <a href={link.href}>
+              <Icon name="arrow" size={15} />
+              <span>{link.label}</span>
+            </a>
+          </li>
+        ))}
+      </ul>
+    )
+  }
+</section>
+
+<style>
+  .next-step {
+    margin: var(--sp-7) 0 var(--sp-6);
+    padding: var(--sp-5) var(--sp-5) var(--sp-5);
+    border: 1px solid var(--line);
+    border-left: 4px solid var(--accent);
+    background: var(--paper-2);
+  }
+
+  .next-step__head {
+    margin: 0 0 var(--sp-2);
+    font-size: 1.22rem;
+    line-height: 1.2;
+  }
+
+  .next-step__text {
+    /* Begrenzte Zeilenlänge: Fließtext über etwa 75 Zeichen liest sich
+       spürbar schlechter. */
+    max-width: 42rem;
+    margin: 0 0 var(--sp-4);
+    color: var(--ink-2);
+    line-height: 1.6;
+  }
+
+  .next-step__go {
+    margin: 0;
+    font-weight: 700;
+    font-size: 1.02rem;
+  }
+
+  .next-step__go a {
+    color: var(--accent-text);
+    text-underline-offset: 0.2em;
+  }
+
+  .next-step__links {
+    list-style: none;
+    margin: var(--sp-4) 0 0;
+    padding: var(--sp-4) 0 0;
+    border-top: 1px solid var(--line);
+    display: grid;
+    gap: 0.15rem;
+  }
+
+  .next-step__links a {
+    display: flex;
+    align-items: center;
+    gap: 0.45rem;
+    min-height: 2.75rem;
+    padding: 0.35rem 0;
+    color: var(--ink);
+    font-size: 0.94rem;
+    text-decoration: none;
+  }
+
+  .next-step__links a:hover span:last-child {
+    color: var(--accent-text);
+    text-decoration: underline;
+    text-underline-offset: 0.2em;
+  }
+
+  @media (max-width: 30em) {
+    .next-step {
+      padding: var(--sp-4);
+    }
+  }
+</style>

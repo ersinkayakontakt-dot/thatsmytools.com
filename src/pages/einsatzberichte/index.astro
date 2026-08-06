@@ -5,6 +5,13 @@ import CtaBand from '../../components/CtaBand.astro';
 import Todo from '../../components/Todo.astro';
 import { publishedCases, sampleCases } from '../../data/cases';
 import { publishedDistricts } from '../../data/districts';
+import { seoPage } from '../../data/seo-pages';
+
+/* Metadaten kommen aus der zentralen Seitenkarte, damit Title,
+   Description, URL und Sitemap-Datum nur an einer Stelle stehen. */
+const page = seoPage('einsatzberichte');
+const { url: path, title, metaDescription: description } = page;
+
 import {
   buildGraph,
   organizationNode,
@@ -12,11 +19,6 @@ import {
   webPageNode,
   breadcrumbNode,
 } from '../../lib/schema';
-
-const path = '/einsatzberichte/';
-const title = 'Einsatzberichte aus Berlin | Schnellhelfer24';
-const description =
-  'Anonymisierte Berichte aus abgeschlossenen Räumungen und Umzügen in Berlin: Bezirk, Objektgröße, Etage, Dauer, enthaltene Leistungen und Art der Übergabe.';
 
 const crumbs = [
   { name: 'Start', href: '/' },

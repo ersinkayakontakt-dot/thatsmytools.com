@@ -6,6 +6,12 @@ import { site, realValue, addressLine } from '../config/site';
 import { email } from '../lib/contact';
 import { showInternalNotes } from '../lib/internalNotes';
 import { buildGraph, organizationNode, websiteNode, webPageNode, breadcrumbNode } from '../lib/schema';
+import { seoPage } from '../data/seo-pages';
+
+/* Metadaten kommen aus der zentralen Seitenkarte, damit Title,
+   Description, URL und Sitemap-Datum nur an einer Stelle stehen. */
+const page = seoPage('datenschutz');
+const { url: path, title, metaDescription: description } = page;
 
 /**
  * Datenschutzerklärung.
@@ -17,9 +23,6 @@ import { buildGraph, organizationNode, websiteNode, webPageNode, breadcrumbNode 
  * Text geprüft werden. Sobald Hosting, Analytics oder ein CRM
  * hinzukommen, muss dieser Text erweitert werden.
  */
-const path = '/datenschutz/';
-const title = 'Datenschutzerklärung | Schnellhelfer24';
-const description = 'Wie Schnellhelfer24 mit personenbezogenen Daten und mit Fotos aus Anfragen umgeht.';
 
 const crumbs = [
   { name: 'Start', href: '/' },

@@ -34,4 +34,23 @@ return [
     // Löschfrist für hochgeladene Fotos in Tagen.
     // Muss mit der Angabe in der Datenschutzerklärung übereinstimmen.
     'retentionDays' => 90,
+
+    /* ---------------------------------------------------------------- */
+    /* Messsystem (events.php)                                          */
+    /* ---------------------------------------------------------------- */
+
+    // Der Ereignis-Endpunkt bleibt inaktiv, bis er hier ausdrücklich
+    // eingeschaltet wird. Ein Messsystem darf nicht dadurch aktiv werden,
+    // dass jemand eine Datei hochlädt.
+    //
+    // VOR DEM EINSCHALTEN:
+    //   1. Datenschutzerklärung um den Abschnitt zur Reichweitenmessung
+    //      ergänzen (Zweck, Kategorien, Aufbewahrung, Rechtsgrundlage).
+    //   2. Anwaltlich prüfen lassen, ob die Messung ohne Einwilligung
+    //      zulässig ist. Technische Datensparsamkeit allein genügt dafür
+    //      nicht – siehe CONTENT-TODO.md.
+    //   3. Nach dem Einschalten eine Testanfrage senden und in
+    //      _storage/events/JJJJ-MM-TT.jsonl prüfen, dass dort weder eine
+    //      IP-Adresse noch Formularinhalte stehen.
+    'eventsEnabled' => false,
 ];

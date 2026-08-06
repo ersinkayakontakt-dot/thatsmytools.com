@@ -1,0 +1,174 @@
+---
+/**
+ * LINKMODUL – gemeinsame Grundform aller Empfehlungsblöcke
+ * ========================================================
+ *
+ * Die Kästen „Passend dazu", „Verwandte Leistungen", „Einsatzgebiete" und
+ * so weiter waren zuvor in fünf Dateien einzeln ausgeschrieben – samt
+ * fünfmal derselben CSS-Regeln. Hier stehen sie einmal.
+ *
+ * WARUM `data-linkmodule`
+ * Der Linkgraph (scripts/seo/linkgraph.mjs) muss unterscheiden können, ob
+ * ein Link redaktionell im Fließtext steht oder aus einem Empfehlungsmodul
+ * stammt. Ein Modul erscheint auf vielen Seiten in gleicher Form und wiegt
+ * deshalb weniger als ein Satz, den jemand bewusst geschrieben hat.
+ *
+ * Das Attribut steht absichtlich im Markup und nicht als Klassennamensliste
+ * im Prüfskript: Eine Liste dort würde beim nächsten CSS-Umbau still falsch
+ * werden, ohne dass es jemand merkt.
+ *
+ * GESTALTUNG
+ * Unverändert der bestehende Kasten: dünner Rahmen, kräftige Oberkante,
+ * weiße Fläche, Großbuchstaben-Überschrift. Kein neues Aussehen – die
+ * Landingpage gibt das Niveau vor.
+ */
+interface Item {
+  href: string;
+  /** Sichtbarer Linktext. Muss die Zielseite beschreiben. */
+  label: string;
+  /** Kurze Zusatzangabe, z. B. Bezirk oder Objektart. */
+  meta?: string;
+}
+
+interface Props {
+  /** Kennung für den Linkgraph, z. B. "related-services". */
+  name: string;
+  /** Überschrift des Kastens. Konkret, nicht „Weitere Links". */
+  heading: string;
+  items: Item[];
+  /** Ein Satz, der erklärt, warum diese Auswahl hier steht. */
+  intro?: string;
+  /** 'side' = schmale Seitenleiste, 'wide' = volle Textbreite. */
+  variant?: 'side' | 'wide';
+  /** Ereignisname für die Messung. */
+  track?: string;
+}
+
+const { name, heading, items, intro, variant = 'side', track } = Astro.props;
+
+/**
+ * Doppelte Ziele im selben Modul entfernen. Zwei Links auf dieselbe Seite
+ * nebeneinander sehen nach Automatik aus und helfen niemandem.
+ */
+const seen = new Set<string>();
+const unique = items.filter((item) => {
+  if (!item.href || seen.has(item.href)) return false;
+  seen.add(item.href);
+  return true;
+});
+
+const headingId = `lm-${name}-${Math.abs(
+  [...heading].reduce((acc, ch) => (acc * 31 + ch.charCodeAt(0)) | 0, 7),
+).toString(36)}`;
+---
+
+{
+  unique.length > 0 && (
+    <nav
+      class:list={['link-module', `link-module--${variant}`]}
+      data-linkmodule={name}
+      aria-labelledby={headingId}
+    >
+      <h2 class="link-module__head" id={headingId}>
+        {heading}
+      </h2>
+      {intro && <p class="link-module__intro">{intro}</p>}
+      <ul>
+        {unique.map((item) => (
+          <li>
+            <a href={item.href} data-track={track}>
+              <span class="link-module__label">{item.label}</span>
+              {item.meta && <span class="link-module__meta">{item.meta}</span>}
+            </a>
+          </li>
+        ))}
+      </ul>
+    </nav>
+  )
+}
+
+<style>
+  .link-module {
+    border: 1px solid var(--line);
+    border-top: 3px solid var(--ink);
+    padding: var(--sp-4) var(--sp-5);
+    background: var(--white);
+  }
+
+  .link-module--wide {
+    margin: var(--sp-6) 0;
+  }
+
+  .link-module__head {
+    font-family: var(--font-body);
+    font-size: 0.78rem;
+    font-weight: 800;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: var(--ink);
+    margin: 0 0 var(--sp-3);
+  }
+
+  .link-module__intro {
+    margin: 0 0 var(--sp-3);
+    font-size: 0.9rem;
+    line-height: 1.5;
+    color: var(--ink-2);
+  }
+
+  .link-module ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .link-module li {
+    margin: 0;
+    border-top: 1px solid var(--paper-3);
+  }
+
+  .link-module li:first-child {
+    border-top: 0;
+  }
+
+  .link-module a {
+    display: block;
+    /* Mindesthöhe: Touch-Ziele unter 44 px sind auf dem Telefon nicht
+       zuverlässig zu treffen (WCAG 2.2, 2.5.8). */
+    min-height: 2.75rem;
+    padding: 0.55rem 0;
+    color: var(--ink);
+    text-decoration: none;
+    font-size: 0.94rem;
+  }
+
+  .link-module a:hover .link-module__label {
+    color: var(--accent-text);
+    text-decoration: underline;
+    text-underline-offset: 0.2em;
+  }
+
+  .link-module__label {
+    display: block;
+  }
+
+  .link-module__meta {
+    display: block;
+    margin-top: 0.15rem;
+    font-size: 0.82rem;
+    color: var(--ink-3);
+  }
+
+  /* In voller Textbreite zweispaltig, damit lange Listen nicht die Seite
+     auseinanderziehen. Auf schmalen Bildschirmen bleibt es einspaltig. */
+  @media (min-width: 40em) {
+    .link-module--wide ul {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      column-gap: var(--sp-5);
+    }
+    .link-module--wide li:nth-child(2) {
+      border-top: 0;
+    }
+  }
+</style>

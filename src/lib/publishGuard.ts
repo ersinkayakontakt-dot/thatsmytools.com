@@ -176,44 +176,22 @@ export function auditContent(): { level: 'error' | 'warn'; where: string; messag
   return out;
 }
 
-/** Alle indexierbaren URLs – Grundlage für Sitemap und IndexNow. */
-export function indexableUrls(): { url: string; lastmod: string }[] {
-  const urls: { url: string; lastmod: string }[] = [];
-
-  // Explizite Änderungsdaten statt eines künstlichen "heute" bei jedem Build.
-  // lastmod wird nur angefasst, wenn sich der sichtbare Hauptinhalt ändert.
-  urls.push(
-    { url: '/', lastmod: '2026-07-30' },
-    { url: '/leistungen/', lastmod: '2026-07-29' },
-    { url: '/berlin/', lastmod: '2026-07-30' },
-    { url: '/brandenburg/', lastmod: '2026-07-29' },
-    { url: '/kosten/', lastmod: '2026-07-30' },
-    { url: '/hausverwaltungen-immobilienpartner/', lastmod: '2026-07-30' },
-    { url: '/ratgeber/', lastmod: '2026-07-30' },
-    { url: '/einsatzberichte/', lastmod: '2026-07-29' },
-    { url: '/fragen/', lastmod: '2026-07-29' },
-    { url: '/ueber-uns/', lastmod: '2026-07-30' },
-    { url: '/kontakt/', lastmod: '2026-07-30' },
-    { url: '/angebot-anfragen/', lastmod: '2026-07-30' },
-    { url: '/impressum/', lastmod: '2026-07-30' },
-    { url: '/datenschutz/', lastmod: '2026-07-30' },
-  );
-
-  for (const s of services) {
-    if (serviceIsIndexable(s)) urls.push({ url: `/leistungen/${s.slug}/`, lastmod: s.updated });
-  }
-  for (const d of districts) {
-    if (locationIsIndexable(d)) urls.push({ url: `/berlin/${d.slug}/`, lastmod: d.updated });
-  }
-  for (const t of towns) {
-    if (locationIsIndexable(t)) urls.push({ url: `/brandenburg/${t.slug}/`, lastmod: t.updated });
-  }
-  for (const g of guides) {
-    if (guideIsIndexable(g)) urls.push({ url: `/${g.hub}/${g.slug}/`, lastmod: g.updated });
-  }
-  for (const c of cases) {
-    if (caseIsIndexable(c)) urls.push({ url: `/einsatzberichte/${c.slug}/`, lastmod: c.updated });
-  }
-
-  return urls;
-}
+/**
+ * WO DIE LISTE DER INDEXIERBAREN URLS STEHT
+ * -----------------------------------------
+ * Früher stand hier `indexableUrls()` mit einer von Hand gepflegten Liste
+ * der vierzehn statischen Seiten samt hartcodierter `lastmod`-Daten.
+ * Sie ist nach `src/data/seo-pages.ts` gewandert und heißt dort weiterhin
+ * `indexableUrls()`.
+ *
+ * Grund: Nur die Seitenkarte weiß, welche Seiten es überhaupt gibt, welche
+ * davon in die Sitemap gehören (die Bestätigungsseite etwa nicht) und wann
+ * sie zuletzt inhaltlich geändert wurden. Zwei getrennte Listen wären
+ * zwangsläufig irgendwann verschieden.
+ *
+ * Diese Datei behält ihre eigentliche Aufgabe: Sie entscheidet, ob ein
+ * INHALT gut genug für die Indexierung ist. Die Karte entscheidet, welche
+ * SEITEN es gibt und wofür sie da sind. Die Karte ruft die Prüfungen von
+ * hier auf – deshalb darf hier nichts aus der Karte importiert werden,
+ * sonst entsteht ein Importzyklus.
+ */

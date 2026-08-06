@@ -1,0 +1,43 @@
+---
+/**
+ * PASSENDE RATGEBER UND KOSTENSEITEN
+ * ==================================
+ *
+ * Führt von einer Leistungs- oder Standortseite zu den erklärenden Texten.
+ * Die Linktexte sind die H1 der Zielseite und damit von sich aus
+ * beschreibend – „Was kostet eine Entrümpelung in Berlin?" statt „mehr".
+ */
+import LinkModule from './LinkModule.astro';
+import { getGuide } from '../data/guides';
+import { guideIsIndexable } from '../lib/publishGuard';
+
+interface Props {
+  slugs: string[] | undefined;
+  heading?: string;
+  intro?: string;
+  variant?: 'side' | 'wide';
+  limit?: number;
+}
+
+const { slugs, heading = 'Passend dazu', intro, variant = 'side', limit = 5 } = Astro.props;
+
+const items = (slugs ?? [])
+  .map((slug) => getGuide(slug))
+  .filter((g): g is NonNullable<typeof g> => Boolean(g))
+  .filter((g) => guideIsIndexable(g))
+  .slice(0, limit)
+  .map((g) => ({
+    href: `/${g.hub}/${g.slug}/`,
+    label: g.h1,
+    meta: g.hub === 'kosten' ? 'Kosten und Aufwand' : 'Ratgeber',
+  }));
+---
+
+<LinkModule
+  name="related-guides"
+  heading={heading}
+  intro={intro}
+  items={items}
+  variant={variant}
+  track="related_guide_click"
+/>

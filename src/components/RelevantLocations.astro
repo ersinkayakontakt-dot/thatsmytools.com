@@ -1,0 +1,68 @@
+---
+/**
+ * EINSATZGEBIETE
+ * ==============
+ *
+ * Verlinkt Bezirke und Umlandorte. Bewusst begrenzt: Ein Block mit
+ * hunderten Ortsnamen ist genau der Linkspam, den der Auftrag ausschließt.
+ * Standardmäßig werden höchstens acht Gebiete gezeigt, dazu ein Verweis auf
+ * die vollständige Gebietsseite.
+ */
+import LinkModule from './LinkModule.astro';
+import { publishedDistricts } from '../data/districts';
+import { publishedTowns } from '../data/towns';
+
+interface Props {
+  scope?: 'berlin' | 'brandenburg' | 'both';
+  heading?: string;
+  intro?: string;
+  variant?: 'side' | 'wide';
+  limit?: number;
+  /** Slug der aktuellen Standortseite – nie auf sich selbst verlinken. */
+  current?: string;
+}
+
+const {
+  scope = 'both',
+  heading = 'Einsatzgebiete',
+  intro,
+  variant = 'side',
+  limit = 8,
+  current,
+} = Astro.props;
+
+const districts =
+  scope === 'brandenburg'
+    ? []
+    : publishedDistricts
+        .filter((d) => d.slug !== current)
+        .map((d) => ({ href: `/berlin/${d.slug}/`, label: d.fullName, meta: d.quarters.slice(0, 3).join(', ') }));
+
+const towns =
+  scope === 'berlin'
+    ? []
+    : publishedTowns
+        .filter((t) => t.slug !== current)
+        .map((t) => ({ href: `/brandenburg/${t.slug}/`, label: t.name, meta: t.county }));
+
+const hub =
+  scope === 'brandenburg'
+    ? [{ href: '/brandenburg/', label: 'Alle Orte im Berliner Umland', meta: 'Übersicht' }]
+    : scope === 'berlin'
+      ? [{ href: '/berlin/', label: 'Alle zwölf Berliner Bezirke', meta: 'Übersicht' }]
+      : [
+          { href: '/berlin/', label: 'Alle zwölf Berliner Bezirke', meta: 'Übersicht' },
+          { href: '/brandenburg/', label: 'Alle Orte im Berliner Umland', meta: 'Übersicht' },
+        ];
+
+const items = [...districts, ...towns].slice(0, limit).concat(hub);
+---
+
+<LinkModule
+  name="relevant-locations"
+  heading={heading}
+  intro={intro}
+  items={items}
+  variant={variant}
+  track="location_click"
+/>

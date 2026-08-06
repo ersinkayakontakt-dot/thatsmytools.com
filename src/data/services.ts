@@ -299,7 +299,15 @@ export const services: Service[] = [
         a: 'Ja, sofern das vereinbart ist. Eine Einbauküche muss demontiert werden, dabei fallen Wasseranschluss, Elektroanschluss und Arbeitsplatte an. Das kalkulieren wir als eigene Position, weil der Aufwand je nach Küche sehr unterschiedlich ist. Klären Sie vorher mit dem Vermieter, ob die Küche überhaupt entfernt werden soll.',
       },
     ],
-    related: ['wohnungsaufloesung-berlin', 'nachlassaufloesung-berlin', 'entruempelung-berlin'],
+    // Der Umzug ins Pflegeheim oder in eine kleinere Wohnung ist der
+    // häufigste Anlass einer Haushaltsauflösung – deshalb steht der
+    // Seniorenumzug hier und nicht nur unter „Umzug".
+    related: [
+      'wohnungsaufloesung-berlin',
+      'nachlassaufloesung-berlin',
+      'seniorenumzug-berlin',
+      'entruempelung-berlin',
+    ],
     guides: ['kosten-haushaltsaufloesung-berlin', 'haushaltsaufloesung-nach-todesfall', 'wohnungsaufloesung-checkliste-pdf'],
     updated: '2026-07-29',
   },
@@ -410,7 +418,15 @@ export const services: Service[] = [
         a: 'Wenn der Termin drängt, rufen Sie an statt zu schreiben. Machbar ist vieles, aber es hängt von Umfang und Auslastung ab. Feste Zusagen wie "innerhalb von 24 Stunden" machen wir nicht, weil sie sich nicht in jedem Fall halten lassen und Sie sich darauf verlassen können müssen.',
       },
     ],
-    related: ['haushaltsaufloesung-berlin', 'entruempelung-berlin', 'nachlassaufloesung-berlin'],
+    // Der Wechsel in eine kleinere Wohnung ist neben dem Todesfall der
+    // zweithäufigste Anlass einer Wohnungsauflösung. Wer danach sucht,
+    // braucht meistens beides: Auflösung und begleiteten Umzug.
+    related: [
+      'haushaltsaufloesung-berlin',
+      'nachlassaufloesung-berlin',
+      'seniorenumzug-berlin',
+      'entruempelung-berlin',
+    ],
     guides: ['wohnungsaufloesung-checkliste-pdf', 'checkliste-wohnungsuebergabe', 'kosten-haushaltsaufloesung-berlin'],
     updated: '2026-07-29',
   },

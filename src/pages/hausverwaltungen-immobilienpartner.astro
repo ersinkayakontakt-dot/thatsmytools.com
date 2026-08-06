@@ -15,6 +15,20 @@ import {
   faqNode,
 } from '../lib/schema';
 import type { FaqItem } from '../data/types';
+import { seoPage } from '../data/seo-pages';
+import RelatedServiceLinks from '../components/RelatedServiceLinks.astro';
+import ContextualCompanyLink from '../components/ContextualCompanyLink.astro';
+import NextStepPanel from '../components/NextStepPanel.astro';
+import Figure from '../components/Figure.astro';
+import { heroImage } from '../data/images';
+
+
+
+/* Metadaten kommen aus der zentralen Seitenkarte, damit Title,
+   Description, URL und Sitemap-Datum nur an einer Stelle stehen. */
+const page = seoPage('hausverwaltungen');
+const partnerHero = heroImage('hausverwaltungen');
+const { url: path, title, metaDescription: description } = page;
 
 /**
  * Einstieg für Hausverwaltungen, Eigentümer, Makler und Nachlasspfleger.
@@ -31,11 +45,6 @@ import type { FaqItem } from '../data/types';
  * formuliert ("kann angefordert werden"), nicht als Erfahrung ("machen wir
  * regelmäßig").
  */
-
-const path = '/hausverwaltungen-immobilienpartner/';
-const title = 'Räumungen für Hausverwaltungen und Eigentümer in Berlin';
-const description =
-  'Wohnungs- und Hausräumungen für Hausverwaltungen, Eigentümer und Makler in Berlin: feste Ansprechperson, Schlüsselübernahme, Fotoprotokoll, Rechnung ans Unternehmen.';
 
 const crumbs = [
   { name: 'Start', href: '/' },
@@ -265,6 +274,21 @@ const steps = [
     </div>
   </section>
 
+  <section class="wrap wrap--mid section--tight">
+    {partnerHero && <Figure image={partnerHero} layout="hero" priority />}
+
+    <RelatedServiceLinks
+      slugs={['wohnungsaufloesung-berlin', 'bueroaufloesung-berlin', 'entruempelung-berlin']}
+      heading="Womit wir für Verwaltungen am häufigsten beauftragt werden"
+      intro="Die drei Leistungen, die bei Objektübergaben und Mieterwechseln tatsächlich anfallen."
+      variant="wide"
+    />
+
+    <ContextualCompanyLink context="partner" />
+
+    <NextStepPanel pageId="hausverwaltungen" />
+  </section>
+
   <CtaBand
     location="partner-footer"
     headline="Objekt zur Prüfung einreichen"
@@ -433,7 +457,7 @@ const steps = [
     color: var(--paper);
   }
   .honest .eyebrow {
-    color: var(--accent);
+    color: var(--accent-text);
   }
   .honest__grid {
     display: grid;

@@ -3,21 +3,44 @@ import type { Guide } from '../data/types';
 import Blocks from './Blocks.astro';
 import Faq from './Faq.astro';
 import ContactCard from './ContactCard.astro';
-import { relatedGuides } from '../data/guides';
-import { getService } from '../data/services';
+import RelatedServiceLinks from './RelatedServiceLinks.astro';
+import RelatedGuides from './RelatedGuides.astro';
+import NextStepPanel from './NextStepPanel.astro';
+import ContextualCompanyLink from './ContextualCompanyLink.astro';
 import { formatDate } from '../lib/text';
 import { site } from '../config/site';
+import { seoPage } from '../data/seo-pages';
 
 interface Props {
   guide: Guide;
 }
 const { guide } = Astro.props;
 
-const related = relatedGuides(guide.related);
-const svcs = guide.services
-  .map((s) => getService(s))
-  .filter((s): s is NonNullable<typeof s> => Boolean(s) && s!.status === 'published');
 const answerParagraphs = guide.answer.split(/\n\s*\n/).filter(Boolean);
+
+const pageId = `guide:${guide.slug}`;
+const seo = seoPage(pageId);
+
+/**
+ * Auftrag § 4: Ein Ratgeber führt auf GENAU EINE passende Leistungsseite,
+ * nicht wahllos auf mehrere. Welche das ist, steht als erster Eintrag in
+ * `requiredOutboundLinks` der Seitenkarte – dort ist die Entscheidung
+ * getroffen und nachlesbar, statt sie in der Reihenfolge eines Arrays in
+ * guides.ts zu verstecken.
+ */
+const nextStepLinks = seo.requiredOutboundLinks
+  .filter((id) => id !== 'angebot-anfragen')
+  .map((id) => {
+    const target = seoPage(id);
+    return { href: target.url, label: target.h1 };
+  });
+
+/** Nur bei Themen, bei denen die Frage nach dem Betrieb wirklich aufkommt. */
+const COMPANY_LINK_ON: Record<string, 'trauerfall' | 'senioren'> = {
+  'haushaltsaufloesung-nach-todesfall': 'trauerfall',
+  'kosten-seniorenumzug-berlin': 'senioren',
+};
+const companyLinkContext = COMPANY_LINK_ON[guide.slug];
 
 // Inhaltsverzeichnis aus den Blocküberschriften
 const toc = guide.blocks.map((b) => ({
@@ -108,6 +131,10 @@ const toc = guide.blocks.map((b) => ({
       )
     }
 
+    {companyLinkContext && <ContextualCompanyLink context={companyLinkContext} />}
+
+    <NextStepPanel pageId={pageId} links={nextStepLinks} />
+
     <p class="updated">
       Zuletzt aktualisiert am {formatDate(guide.updated)}, erstmals veröffentlicht am{' '}
       {formatDate(guide.published)}. Dieser Text beschreibt die Praxis in Berlin und ersetzt keine
@@ -122,39 +149,10 @@ const toc = guide.blocks.map((b) => ({
       text="Allgemeine Erklärungen helfen nur bis zu einem Punkt. Für Ihren Fall schauen wir uns die Fotos an."
     />
 
-    {
-      svcs.length > 0 && (
-        <nav class="side-box" aria-labelledby="side-svc">
-          <h2 class="side-box__head" id="side-svc">
-            Passende Leistungen
-          </h2>
-          <ul>
-            {svcs.map((s) => (
-              <li>
-                <a href={`/leistungen/${s.slug}/`}>{s.navLabel}</a>
-              </li>
-            ))}
-          </ul>
-        </nav>
-      )
-    }
+    <RelatedServiceLinks slugs={guide.services} heading="Passende Leistungen" />
 
-    {
-      related.length > 0 && (
-        <nav class="side-box" aria-labelledby="side-rel">
-          <h2 class="side-box__head" id="side-rel">
-            Weiterlesen
-          </h2>
-          <ul>
-            {related.map((g) => (
-              <li>
-                <a href={`/${g.hub}/${g.slug}/`}>{g.h1}</a>
-              </li>
-            ))}
-          </ul>
-        </nav>
-      )
-    }
+    <RelatedGuides slugs={guide.related} heading="Weiterlesen" />
+
   </div>
 </div>
 
@@ -199,7 +197,7 @@ const toc = guide.blocks.map((b) => ({
     font-size: 0.95rem;
   }
   .toc a:hover {
-    color: var(--accent);
+    color: var(--accent-text);
     text-decoration: underline;
     text-underline-offset: 0.2em;
   }
@@ -238,45 +236,5 @@ const toc = guide.blocks.map((b) => ({
   }
   .sources li {
     margin-bottom: var(--sp-2);
-  }
-  .side-box {
-    border: 1px solid var(--line);
-    border-top: 3px solid var(--ink);
-    padding: var(--sp-4) var(--sp-5);
-    background: var(--white);
-  }
-  .side-box__head {
-    font-family: var(--font-body);
-    font-size: 0.78rem;
-    font-weight: 800;
-    letter-spacing: 0.05em;
-    text-transform: uppercase;
-    color: var(--ink);
-    margin: 0 0 var(--sp-3);
-  }
-  .side-box ul {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-  }
-  .side-box li {
-    margin: 0;
-    border-top: 1px solid var(--paper-3);
-  }
-  .side-box li:first-child {
-    border-top: 0;
-  }
-  .side-box a {
-    display: block;
-    padding: 0.55rem 0;
-    color: var(--ink);
-    text-decoration: none;
-    font-size: 0.94rem;
-    min-height: 2.5rem;
-  }
-  .side-box a:hover {
-    color: var(--accent);
-    text-decoration: underline;
-    text-underline-offset: 0.2em;
   }
 </style>

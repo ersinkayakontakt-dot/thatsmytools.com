@@ -640,7 +640,7 @@ const steps = [
     height: 1.6rem;
     display: grid;
     place-items: center;
-    border: 2px solid var(--line-strong);
+    border: 2px solid var(--line-contrast);
     font-size: 0.8rem;
     font-weight: 800;
     color: var(--ink-3);
@@ -789,7 +789,7 @@ const steps = [
     font-size: 1rem;
     padding: 0.7rem 0.85rem;
     /* 16px verhindert das automatische Zoomen auf iOS */
-    border: 1px solid var(--line-strong);
+    border: 1px solid var(--line-contrast);
     border-radius: var(--r-md);
     background: var(--white);
     color: var(--ink);
@@ -861,7 +861,7 @@ const steps = [
   }
   .choice__body {
     display: block;
-    border: 1px solid var(--line-strong);
+    border: 1px solid var(--line-contrast);
     border-radius: var(--r-md);
     padding: 0.75rem 0.9rem;
     background: var(--white);
@@ -914,7 +914,7 @@ const steps = [
     font: inherit;
     font-size: 0.95rem;
     padding: 0.7rem;
-    border: 2px dashed var(--line-strong);
+    border: 2px dashed var(--line-contrast);
     background: var(--paper-2);
   }
   .filelist {
@@ -1379,7 +1379,10 @@ const steps = [
       } catch (err) {
         /* ignorieren */
       }
-      track('lead_form_submitted', { steps: steps.length });
+      // Kein `steps`-Detail: Die Gesamtzahl der Schritte ist auf jeder
+      // Seite gleich und sagt über die Anfrage nichts aus. Welcher Schritt
+      // erreicht wurde, steht bereits in estimate_step_completed.
+      track('lead_form_submitted', {});
     });
 
     /* ------------------------------------------------------------ Start */
