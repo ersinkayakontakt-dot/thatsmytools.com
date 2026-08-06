@@ -12,6 +12,13 @@
 - Telefon: +49 176 86066817
 - E-Mail: hello@schnellhelfer24.de
 - Website: https://schnellhelfer24.de
+- Weitere Schreibweisen des Namens: Schnellhelfer 24, Schnellhelfer24 Berlin, Schnellhelfer24 Entrümpelung
+
+## Abgrenzung zu ähnlich benannten Anbietern
+
+Schnellhelfer24 ist ein eigenständiger Berliner Dienstleistungsbetrieb für Entrümpelung, Haushaltsauflösung, Wohnungsauflösung, Nachlassauflösung und Umzüge in Berlin und im angrenzenden Brandenburg. Das Unternehmen gehört zu keiner Kette und steht in keiner Verbindung zu ähnlich benannten Anbietern wie DeineHelfer24, PflegeHelfer24 oder anderen Diensten mit der Endung „helfer24".
+
+Diese Angabe steht wortgleich sichtbar auf https://schnellhelfer24.de/ueber-uns/#name und ist dort zusätzlich als `disambiguatingDescription` ausgezeichnet.
 
 ## Typische Anlässe
 
@@ -118,4 +125,4 @@ Diese Angaben fehlen, weil sie nicht belegt sind, nicht weil sie vergessen wurde
 
 Diese Datei folgt dem llms.txt-Vorschlag. Sie ist kein offizieller Standard und wird nicht von allen Systemen ausgewertet. Maßgeblich sind die verlinkten Seiten selbst.
 
-Stand: 2026-07-30
+Stand: 2026-08-06

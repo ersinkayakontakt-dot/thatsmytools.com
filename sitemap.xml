@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
   <url>
     <loc>https://schnellhelfer24.de/</loc>
     <lastmod>2026-07-30</lastmod>
@@ -7,6 +8,10 @@
   <url>
     <loc>https://schnellhelfer24.de/leistungen/</loc>
     <lastmod>2026-07-29</lastmod>
+  </url>
+  <url>
+    <loc>https://schnellhelfer24.de/kosten/</loc>
+    <lastmod>2026-07-30</lastmod>
   </url>
   <url>
     <loc>https://schnellhelfer24.de/berlin/</loc>
@@ -17,20 +22,21 @@
     <lastmod>2026-07-29</lastmod>
   </url>
   <url>
-    <loc>https://schnellhelfer24.de/kosten/</loc>
-    <lastmod>2026-07-30</lastmod>
-  </url>
-  <url>
-    <loc>https://schnellhelfer24.de/hausverwaltungen-immobilienpartner/</loc>
-    <lastmod>2026-07-30</lastmod>
-  </url>
-  <url>
     <loc>https://schnellhelfer24.de/ratgeber/</loc>
     <lastmod>2026-07-30</lastmod>
   </url>
   <url>
     <loc>https://schnellhelfer24.de/einsatzberichte/</loc>
     <lastmod>2026-07-29</lastmod>
+  </url>
+  <url>
+    <loc>https://schnellhelfer24.de/hausverwaltungen-immobilienpartner/</loc>
+    <lastmod>2026-07-30</lastmod>
+    <image:image>
+      <image:loc>https://schnellhelfer24.de/_assets/hausverwaltung-schluessel.QpjdhVI_.jpg</image:loc>
+      <image:title>Person im Anzug hält eine Mappe und einen Schlüsselbund mit Haus-Anhänger</image:title>
+      <image:caption>Schlüsselübernahme, Protokoll und Rückgabe laufen über eine Ansprechperson.</image:caption>
+    </image:image>
   </url>
   <url>
     <loc>https://schnellhelfer24.de/fragen/</loc>
@@ -59,18 +65,43 @@
   <url>
     <loc>https://schnellhelfer24.de/leistungen/entruempelung-berlin/</loc>
     <lastmod>2026-07-29</lastmod>
+    <image:image>
+      <image:loc>https://schnellhelfer24.de/_assets/entruempelung-gestapelte-kartons.DW5pB9IK.jpg</image:loc>
+      <image:title>Aufgestellte Umzugskartons und ein Bücherstapel auf einem Holztisch</image:title>
+      <image:caption>Sortiert statt geschaufelt: Was mitgeht, wird vorher festgelegt.</image:caption>
+    </image:image>
   </url>
   <url>
     <loc>https://schnellhelfer24.de/leistungen/haushaltsaufloesung-berlin/</loc>
     <lastmod>2026-07-29</lastmod>
+    <image:image>
+      <image:loc>https://schnellhelfer24.de/_assets/haushaltsaufloesung-geschirr-einpacken.rrASVIf_.jpg</image:loc>
+      <image:title>Zwei Hände wickeln eine Schale in Packpapier ein</image:title>
+      <image:caption>Zerbrechliches wird einzeln eingeschlagen, nicht gestapelt.</image:caption>
+    </image:image>
   </url>
   <url>
     <loc>https://schnellhelfer24.de/leistungen/wohnungsaufloesung-berlin/</loc>
     <lastmod>2026-07-29</lastmod>
+    <image:image>
+      <image:loc>https://schnellhelfer24.de/_assets/wohnungsaufloesung-leere-wohnung.Btyvz__B.jpg</image:loc>
+      <image:title>Leere Wohnung mit Holzdielen und großen Fenstern, bereit zur Übergabe</image:title>
+      <image:caption>So sieht eine Wohnung am Ende aus: leer, sauber, übergabefertig.</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://schnellhelfer24.de/_assets/schluesseluebergabe-wohnung.H0FJiQTZ.jpg</image:loc>
+      <image:title>Hand hält einen Schlüsselbund mit Haus-Anhänger vor einem hellen Treppenhaus</image:title>
+      <image:caption>Der Schlüssel geht an Vermieter, Verwaltung oder Makler.</image:caption>
+    </image:image>
   </url>
   <url>
     <loc>https://schnellhelfer24.de/leistungen/nachlassaufloesung-berlin/</loc>
     <lastmod>2026-07-29</lastmod>
+    <image:image>
+      <image:loc>https://schnellhelfer24.de/_assets/nachlass-fotokiste.CedglQBl.jpg</image:loc>
+      <image:title>Hand greift in einen Karton mit alten Familienfotos, weitere Fotos liegen daneben</image:title>
+      <image:caption>Fotos, Briefe und Unterlagen werden gesichert, bevor geräumt wird.</image:caption>
+    </image:image>
   </url>
   <url>
     <loc>https://schnellhelfer24.de/leistungen/messiwohnung-raeumen/</loc>
@@ -87,6 +118,11 @@
   <url>
     <loc>https://schnellhelfer24.de/leistungen/seniorenumzug-berlin/</loc>
     <lastmod>2026-07-29</lastmod>
+    <image:image>
+      <image:loc>https://schnellhelfer24.de/_assets/seniorenumzug-gespraech-generationen.Dx_sJcsb.jpg</image:loc>
+      <image:title>Ältere und jüngere Frau sitzen nebeneinander auf einem Sofa und sehen gemeinsam in eine Zeitschrift</image:title>
+      <image:caption>Die Entscheidung fällt selten allein – meistens gemeinsam mit der Familie.</image:caption>
+    </image:image>
   </url>
   <url>
     <loc>https://schnellhelfer24.de/leistungen/kellerentruempelung-berlin/</loc>
@@ -94,6 +130,54 @@
   </url>
   <url>
     <loc>https://schnellhelfer24.de/leistungen/bueroaufloesung-berlin/</loc>
+    <lastmod>2026-07-29</lastmod>
+  </url>
+  <url>
+    <loc>https://schnellhelfer24.de/kosten/was-kostet-eine-entruempelung-in-berlin/</loc>
+    <lastmod>2026-07-30</lastmod>
+  </url>
+  <url>
+    <loc>https://schnellhelfer24.de/kosten/kosten-haushaltsaufloesung-berlin/</loc>
+    <lastmod>2026-07-30</lastmod>
+  </url>
+  <url>
+    <loc>https://schnellhelfer24.de/kosten/kosten-sperrmuellabholung-berlin/</loc>
+    <lastmod>2026-07-30</lastmod>
+  </url>
+  <url>
+    <loc>https://schnellhelfer24.de/kosten/kosten-seniorenumzug-berlin/</loc>
+    <lastmod>2026-07-30</lastmod>
+  </url>
+  <url>
+    <loc>https://schnellhelfer24.de/ratgeber/welche-fotos-fuer-ein-angebot/</loc>
+    <lastmod>2026-07-30</lastmod>
+  </url>
+  <url>
+    <loc>https://schnellhelfer24.de/ratgeber/entruempelung-vorbereiten/</loc>
+    <lastmod>2026-07-30</lastmod>
+  </url>
+  <url>
+    <loc>https://schnellhelfer24.de/ratgeber/checkliste-wohnungsuebergabe/</loc>
+    <lastmod>2026-07-30</lastmod>
+  </url>
+  <url>
+    <loc>https://schnellhelfer24.de/ratgeber/haushaltsaufloesung-nach-todesfall/</loc>
+    <lastmod>2026-07-30</lastmod>
+  </url>
+  <url>
+    <loc>https://schnellhelfer24.de/ratgeber/halteverbotszone-berlin-umzug/</loc>
+    <lastmod>2026-07-30</lastmod>
+  </url>
+  <url>
+    <loc>https://schnellhelfer24.de/ratgeber/umzugskosten-jobcenter-berlin/</loc>
+    <lastmod>2026-07-30</lastmod>
+  </url>
+  <url>
+    <loc>https://schnellhelfer24.de/ratgeber/sperrmuell-moebel-entsorgen-berlin/</loc>
+    <lastmod>2026-07-30</lastmod>
+  </url>
+  <url>
+    <loc>https://schnellhelfer24.de/ratgeber/wohnungsaufloesung-checkliste-pdf/</loc>
     <lastmod>2026-07-30</lastmod>
   </url>
   <url>
@@ -151,53 +235,5 @@
   <url>
     <loc>https://schnellhelfer24.de/brandenburg/falkensee/</loc>
     <lastmod>2026-07-29</lastmod>
-  </url>
-  <url>
-    <loc>https://schnellhelfer24.de/kosten/was-kostet-eine-entruempelung-in-berlin/</loc>
-    <lastmod>2026-07-29</lastmod>
-  </url>
-  <url>
-    <loc>https://schnellhelfer24.de/kosten/kosten-haushaltsaufloesung-berlin/</loc>
-    <lastmod>2026-07-29</lastmod>
-  </url>
-  <url>
-    <loc>https://schnellhelfer24.de/kosten/kosten-sperrmuellabholung-berlin/</loc>
-    <lastmod>2026-07-29</lastmod>
-  </url>
-  <url>
-    <loc>https://schnellhelfer24.de/kosten/kosten-seniorenumzug-berlin/</loc>
-    <lastmod>2026-07-29</lastmod>
-  </url>
-  <url>
-    <loc>https://schnellhelfer24.de/ratgeber/welche-fotos-fuer-ein-angebot/</loc>
-    <lastmod>2026-07-29</lastmod>
-  </url>
-  <url>
-    <loc>https://schnellhelfer24.de/ratgeber/entruempelung-vorbereiten/</loc>
-    <lastmod>2026-07-29</lastmod>
-  </url>
-  <url>
-    <loc>https://schnellhelfer24.de/ratgeber/checkliste-wohnungsuebergabe/</loc>
-    <lastmod>2026-07-29</lastmod>
-  </url>
-  <url>
-    <loc>https://schnellhelfer24.de/ratgeber/haushaltsaufloesung-nach-todesfall/</loc>
-    <lastmod>2026-07-29</lastmod>
-  </url>
-  <url>
-    <loc>https://schnellhelfer24.de/ratgeber/halteverbotszone-berlin-umzug/</loc>
-    <lastmod>2026-07-29</lastmod>
-  </url>
-  <url>
-    <loc>https://schnellhelfer24.de/ratgeber/umzugskosten-jobcenter-berlin/</loc>
-    <lastmod>2026-07-30</lastmod>
-  </url>
-  <url>
-    <loc>https://schnellhelfer24.de/ratgeber/sperrmuell-moebel-entsorgen-berlin/</loc>
-    <lastmod>2026-07-30</lastmod>
-  </url>
-  <url>
-    <loc>https://schnellhelfer24.de/ratgeber/wohnungsaufloesung-checkliste-pdf/</loc>
-    <lastmod>2026-07-30</lastmod>
   </url>
 </urlset>

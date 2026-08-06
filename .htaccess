@@ -89,13 +89,65 @@ ErrorDocument 404 /404.html
   # Die Website lädt keine externen Skripte, Schriften oder Bilder.
   # 'unsafe-inline' für Skripte ist nötig, weil die wenigen kleinen
   # Skripte bewusst inline liegen (keine zusätzlichen Anfragen).
-  # Wenn später ein Analytics-Dienst dazukommt, muss dessen Domain
-  # hier ergänzt werden.
-  Header always set Content-Security-Policy "default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; form-action 'self'; frame-ancestors 'self'; base-uri 'self'; object-src 'none'"
+  #
+  # connect-src 'self' ist ausdrücklich gesetzt, obwohl default-src das
+  # ohnehin abdecken würde: Der Messbeacon (navigator.sendBeacon auf
+  # /api/events.php) soll erkennbar erlaubt sein und nicht stillschweigend
+  # von einer allgemeinen Regel getragen werden. Wer default-src später
+  # verschärft, sieht dann sofort, was davon abhängt.
+  #
+  # Wenn je ein externer Analytics-Dienst dazukommt, gehört seine Domain
+  # in connect-src – und dann ist er zustimmungspflichtig.
+  Header always set Content-Security-Policy "default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'self'; form-action 'self'; frame-ancestors 'self'; base-uri 'self'; object-src 'none'"
 
-  # HSTS erst aktivieren, wenn HTTPS zuverlässig auf allen Subdomains
-  # läuft. Ein zu früh gesetzter Wert sperrt Besucher aus.
-  # Header always set Strict-Transport-Security "max-age=31536000; includeSubDomains"
+  # -------------------------------------------------------------------
+  # HSTS – Strict-Transport-Security
+  # -------------------------------------------------------------------
+  # NOCH NICHT AKTIV. Bewusst.
+  #
+  # HSTS ist die einzige Kopfzeile hier, die sich nicht einfach
+  # zurücknehmen lässt: Browser merken sich die Anweisung für die gesamte
+  # `max-age`. Wer sie zu früh oder zu weit setzt, sperrt Besucherinnen
+  # und Besucher aus, bis die Frist abläuft – ein Rückgängigmachen auf dem
+  # Server hilft dann nicht mehr.
+  #
+  # STAND DER PRÜFUNG (06.08.2026, gegen die Live-Domain gemessen):
+  #
+  #   https://schnellhelfer24.de/       HTTP 200
+  #   https://www.schnellhelfer24.de/   HTTP 301 auf die Hauptdomain
+  #   http://schnellhelfer24.de/        HTTP 301 auf HTTPS
+  #   Strict-Transport-Security         derzeit NICHT gesetzt
+  #   Server                            hcdn (Hostinger-CDN)
+  #
+  #   Geprüfte Subdomains ohne HTTPS-Antwort: mail, webmail, ftp, cpanel,
+  #   staging, test, dev, shop, blog, api.
+  #   ABER: `autodiscover.schnellhelfer24.de` hat einen DNS-Eintrag
+  #   (Mail-Client-Konfiguration). Genau solche Dienste sind der Grund,
+  #   `includeSubDomains` nicht im ersten Schritt zu setzen.
+  #
+  # EMPFOHLENES VORGEHEN IN DREI STUFEN
+  #
+  #   Stufe 1 – fünf Minuten, ohne Subdomains. Eine Woche beobachten.
+  #     Header always set Strict-Transport-Security "max-age=300"
+  #
+  #   Stufe 2 – ein Jahr, weiterhin ohne Subdomains.
+  #     Header always set Strict-Transport-Security "max-age=31536000"
+  #
+  #   Stufe 3 – nur wenn zuvor bestätigt wurde, dass JEDE Subdomain
+  #     dauerhaft HTTPS mit gültigem Zertifikat liefert. Vorher prüfen,
+  #     ob die Mail-Einrichtung (autodiscover) darunter leidet.
+  #     Header always set Strict-Transport-Security "max-age=31536000; includeSubDomains"
+  #
+  # PRELOAD-LISTE: nicht empfohlen. Die Aufnahme ist praktisch dauerhaft
+  # und die Entfernung dauert Monate. Für einen lokalen Handwerksbetrieb
+  # steht der Nutzen in keinem Verhältnis zum Risiko.
+  #
+  # RÜCKNAHME, solange nur Stufe 1 aktiv war: Zeile entfernen und
+  # höchstens fünf Minuten warten. Ab Stufe 2 ist eine Rücknahme faktisch
+  # nicht mehr möglich.
+  #
+  # Prüfen nach dem Aktivieren:
+  #   curl -sI https://schnellhelfer24.de/ | grep -i strict-transport
 </IfModule>
 
 # ---------------------------------------------------------------------
