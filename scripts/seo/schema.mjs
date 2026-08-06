@@ -317,9 +317,26 @@ for (const page of pages) {
   /* Bild-URLs im Schema müssen ausgeliefert werden */
   for (const node of nodes) {
     const urls = [];
+    /**
+     * Nur `url` und `contentUrl` verweisen auf eine Datei.
+     *
+     * `@id` ist eine Kennung, keine Adresse – ein `ImageObject` mit
+     * `"@id": "https://…/#logo"` ist völlig korrekt, obwohl es unter
+     * `/#logo` keine Datei gibt. Wurde diese Unterscheidung nicht gemacht,
+     * meldete die Prüfung auf jeder Seite einen toten Bildverweis, der
+     * keiner war – 68 Warnungen aus einem einzigen richtig gebauten Knoten.
+     */
     const collect = (v) => {
-      if (typeof v === 'string' && v.startsWith(SITE)) urls.push(v.replace(SITE, ''));
-      else if (v && typeof v === 'object') Object.values(v).forEach(collect);
+      if (!v) return;
+      if (typeof v === 'string') {
+        if (v.startsWith(SITE)) urls.push(v.replace(SITE, ''));
+        return;
+      }
+      if (typeof v !== 'object') return;
+      for (const [key, value] of Object.entries(v)) {
+        if (key === '@id' || key === '@type') continue;
+        collect(value);
+      }
     };
     if (node.image) collect(node.image);
     if (node.logo) collect(node.logo);

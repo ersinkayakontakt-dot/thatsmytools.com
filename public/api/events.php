@@ -141,6 +141,11 @@ const ALLOWED_EVENTS = [
     'cost_guide_click',
     'cost_hub_click',
     'guide_download',
+
+    // Klick auf den Bewertungslink von /bewerten/. Diese Seite ist der
+    // kurze, aussprechbare Weg für Rechnungen und QR-Codes; ob er benutzt
+    // wird, lässt sich sonst nicht feststellen.
+    'review_click',
 ];
 
 /** Erlaubte Gerätekategorien – bewusst grob, kein Modell, keine Version. */

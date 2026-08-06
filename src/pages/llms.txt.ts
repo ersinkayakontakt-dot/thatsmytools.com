@@ -42,6 +42,13 @@ ${address ? `- Anschrift: ${address}` : ''}
 ${phone ? `- Telefon: ${phone}` : '- Telefon: (noch nicht veröffentlicht)'}
 ${email ? `- E-Mail: ${email}` : '- E-Mail: (noch nicht veröffentlicht)'}
 - Website: ${site.url}
+- Weitere Schreibweisen des Namens: ${site.alternateNames.join(', ')}
+
+## Abgrenzung zu ähnlich benannten Anbietern
+
+${site.disambiguation}
+
+Diese Angabe steht wortgleich sichtbar auf ${site.url}/ueber-uns/#name und ist dort zusätzlich als \`disambiguatingDescription\` ausgezeichnet.
 
 ## Typische Anlässe
 

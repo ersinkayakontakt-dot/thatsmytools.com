@@ -29,8 +29,8 @@
     "seo:events": "node scripts/seo/events.mjs",
     "seo:events:report": "node scripts/seo/events-report.mjs",
     "seo:opportunities": "node scripts/seo/opportunities.mjs",
-    "seo:opportunities:selftest": "node scripts/seo/search-data/selftest.mjs"
-  },
+    "seo:opportunities:selftest": "node scripts/seo/search-data/selftest.mjs",
+    "kit": "node scripts/eintrags-kit.mjs"  },
   "dependencies": {
     "astro": "^5.6.1"
   },

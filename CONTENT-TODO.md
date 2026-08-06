@@ -453,9 +453,21 @@ mit Freigabe in `cases.ts`.
       Ansprechpartner. Der Abschnitt „Woher wir kommen" ist bewusst kurz
       gehalten und wartet auf echte Angaben.
 - [x] Google-Unternehmensprofil und YouTube in `profiles` eingetragen.
-      Bing Places und weitere Profile bleiben offen. Die URLs fließen als
-      `sameAs` in die strukturierten Daten und sind wichtig dafür, dass
-      Suchmaschinen das Unternehmen eindeutig zuordnen.
+      Die URLs fließen als `sameAs` in die strukturierten Daten.
+- [ ] Restliche `profiles` in `src/config/site.ts`: Bing Places, Apple
+      Business Connect, Branchenverzeichnisse, weitere eigene Kanäle. Ohne
+      mehrere übereinstimmende Nennungen kann kein Suchsystem den Betrieb von
+      ähnlich benannten Anbietern unterscheiden — Begründung und Reihenfolge
+      stehen in `docs/ENTITY-UND-RANKING.md`.
+- [ ] `founder` in `src/config/site.ts`: Name der Gründerin oder des
+      Gründers, falls öffentlich genannt werden soll. Sonst Platzhalter
+      stehen lassen, dann wird das Feld nicht ausgegeben.
+- [ ] `reviewLink` in `src/config/site.ts`: Direktlink zum Google-
+      Bewertungsformular. Im Unternehmensprofil unter „Rezensionen" →
+      „Mehr Rezensionen erhalten"; Google erzeugt einen Link der Form
+      `https://g.page/r/…/review`. Bis dahin öffnet `/bewerten/` nur den
+      Karteneintrag, was zwei zusätzliche Klicks und damit Bewertungen
+      kostet.
 - [ ] Google-Unternehmensprofil nach den vorgenommenen Änderungen erneut
       verifizieren. Bis Google freigibt, kann im öffentlichen Panel noch die
       alte Anschrift Lindenstraße 14 erscheinen; auf Website und im Profil

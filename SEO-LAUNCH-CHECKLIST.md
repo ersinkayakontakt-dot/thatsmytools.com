@@ -255,6 +255,9 @@ der stimmt.** Diese Punkte prüfen:
 Für ein lokales Dienstleistungsunternehmen ist das der wirksamste Hebel
 überhaupt, wirksamer als jede On-Page-Optimierung.
 
+Warum das auch darüber entscheidet, was KI-Antworten über den Betrieb sagen,
+steht in `docs/ENTITY-UND-RANKING.md`.
+
 ### Google-Unternehmensprofil
 - [ ] Profil anlegen oder beanspruchen
 - [ ] Als **Dienstleistungsgebiet-Unternehmen** einrichten, wenn keine
@@ -275,6 +278,14 @@ Für ein lokales Dienstleistungsunternehmen ist das der wirksamste Hebel
 - [ ] Profil anlegen. Der Import aus dem Google-Profil funktioniert und spart
       Zeit
 - [ ] Angaben gegenprüfen, der Import ist nicht immer vollständig
+
+### Apple Business Connect
+- [ ] Profil anlegen. Kostenlos, in wenigen Minuten erledigt und von
+      Mitbewerbern fast nie genutzt. Speist Apple Karten und Siri
+
+### OpenStreetMap
+- [ ] Eintrag mit Name, Website und Telefonnummer anlegen. Wird selten
+      beachtet, wandert aber in zahlreiche Karten und Apps weiter
 
 ### NAP-Konsistenz
 Name, Adresse und Telefonnummer müssen **überall zeichengenau identisch**

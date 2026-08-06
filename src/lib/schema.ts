@@ -153,23 +153,71 @@ function reviewNodes() {
 /* ------------------------------------------------------------------ */
 
 /**
+ * Fachgebiete des Betriebs, abgeleitet aus den veröffentlichten
+ * Leistungen. `knowsAbout` beschreibt, worüber ein Unternehmen etwas weiß –
+ * für Antwortsysteme ist das ein deutlicher Hinweis darauf, zu welchen
+ * Fragen dieser Betrieb überhaupt in Betracht kommt.
+ *
+ * Bewusst aus den echten Leistungen erzeugt statt handgepflegt: So kann
+ * hier nichts stehen, wofür es keine Seite gibt.
+ */
+function knowsAbout() {
+  const fromServices = publishedServices.map((s) => s.serviceType);
+  const extra = [
+    'Entsorgungsnachweis',
+    'Wertanrechnung bei Haushaltsauflösungen',
+    'Besenreine Wohnungsübergabe',
+    'Räumung im Auftrag von Hausverwaltungen',
+    'Räumung im Auftrag von Nachlasspflegschaften',
+  ];
+  return [...new Set([...fromServices, ...extra])];
+}
+
+/**
  * Das Unternehmen. MovingCompany ist ein Subtyp von LocalBusiness und
  * trifft die Tätigkeit (Umzug + Räumung) am genauesten.
+ *
+ * ENTITY-HINWEIS: Die Felder `alternateName`, `disambiguatingDescription`,
+ * `logo` und `knowsAbout` sind hier nicht Zierrat. Der Name
+ * „Schnellhelfer24" steht in einem Feld sehr ähnlicher Namen
+ * (DeineHelfer24, PflegeHelfer24 und weitere „…helfer24"). Wer nichts zur
+ * Unterscheidung anbietet, wird mit dem nächstähnlichen bekannten
+ * Unternehmen verwechselt. Genau das passiert derzeit.
+ *
+ * `disambiguatingDescription` ist die schema.org-Eigenschaft, die exakt
+ * für diesen Fall vorgesehen ist: den Unterschied zu Gleichnamigen.
+ * Der Text steht zusätzlich SICHTBAR auf /ueber-uns/. Auszeichnung ohne
+ * sichtbare Entsprechung wäre wertlos und angreifbar.
  */
 export function organizationNode() {
   return clean({
     '@type': ['MovingCompany', 'LocalBusiness'],
     '@id': ORG_ID,
     name: site.name,
+    alternateName: [...site.alternateNames],
     legalName: realValue(site.legalName),
     url: site.url,
-    image: absoluteUrl('/og-default.png'),
+    // Getrennt gehalten: `logo` ist die Marke (quadratisch, wird von Google
+    // im Wissenspanel verwendet, mindestens 112 × 112 Pixel), `image` das
+    // allgemeine Vorschaubild. Das Icon mit 180 Pixeln reichte für `logo`
+    // nicht aus, deshalb die eigene Datei.
     logo: {
       '@type': 'ImageObject',
-      url: absoluteUrl('/apple-touch-icon.png'),
+      '@id': `${site.url}/#logo`,
+      url: absoluteUrl('/logo.png'),
+      contentUrl: absoluteUrl('/logo.png'),
+      width: 512,
+      height: 512,
+      caption: site.name,
     },
+    image: absoluteUrl('/og-default.png'),
     description:
       'Entrümpelung, Haushaltsauflösung, Wohnungsauflösung und Umzug in Berlin und im Berliner Umland.',
+    disambiguatingDescription: site.disambiguation,
+    knowsAbout: knowsAbout(),
+    founder: realValue(site.founder)
+      ? { '@type': 'Person', name: realValue(site.founder) }
+      : undefined,
     telephone: realValue(site.phone),
     email: realValue(site.email),
     address: postalAddress(),

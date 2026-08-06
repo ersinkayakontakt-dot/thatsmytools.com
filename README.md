@@ -49,8 +49,9 @@ npm run check          # TypeScript- und Astro-Prüfung
 npm run audit:content  # prüft die Inhalte vor dem Build
 npm run audit:build    # prüft die gebaute Website
 npm run indexnow       # meldet geänderte URLs an IndexNow
+npm run kit            # erzeugt docs/EINTRAGS-KIT.md für Portale und Verzeichnisse
 
-node scripts/make-images.mjs   # erzeugt og-default.png und apple-touch-icon.png
+node scripts/make-images.mjs   # erzeugt og-default.png, apple-touch-icon.png und logo.png
 ```
 
 Aktualisierung der Live-Website (Windows, PowerShell):
@@ -120,6 +121,8 @@ zwischen Seiten sind dadurch ausgeschlossen.
 |---|---|
 | `CONTENT-TODO.md` | Alle noch fehlenden echten Angaben, nach Dringlichkeit sortiert |
 | `SEO-LAUNCH-CHECKLIST.md` | Schritt für Schritt zum Livegang, plus Contentplan für 90 Tage |
+| `docs/ENTITY-UND-RANKING.md` | Warum „Schnellhelfer24" noch nicht gefunden wird, und in welcher Reihenfolge das behoben wird |
+| `docs/EINTRAGS-KIT.md` | **Wird erzeugt.** Alle Unternehmensangaben in der Form, in der sie in Portale und Verzeichnisse kopiert werden |
 | `docs/HOSTINGER-AKTUALISIEREN.md` | Website bei Hostinger aktualisieren: PowerShell-Skript und GitHub-Ablauf |
 | `docs/ARCHITEKTUR.md` | Warum Astro, warum PHP fürs Formular, Deployment, Performance-Budget |
 | `docs/KI-CRAWLER.md` | Welche KI-Bots erlaubt sind und warum |

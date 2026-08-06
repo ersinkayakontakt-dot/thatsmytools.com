@@ -1,0 +1,71 @@
+<!doctype html>
+<!--
+  Vorlage für public/logo.png (512 × 512). Siehe scripts/make-images.mjs
+
+  Warum quadratisch und mit Wortmarke: Google liest `logo` aus den
+  strukturierten Daten für Wissenspanel und Suchergebnisse. Verlangt sind
+  mindestens 112 × 112 Pixel; ein quadratisches Format wird von den
+  meisten Oberflächen unbeschnitten übernommen. Der Schriftzug steht mit
+  im Bild, damit die Marke auch dort lesbar bleibt, wo nur das Logo und
+  kein Name angezeigt wird.
+-->
+<html lang="de">
+  <head>
+    <meta charset="utf-8" />
+    <style>
+      * { margin: 0; padding: 0; }
+      body {
+        width: 512px;
+        height: 512px;
+        background: #14171a;
+        position: relative;
+        font-family: 'DejaVu Sans', 'Liberation Sans', Arial, sans-serif;
+      }
+      .wrap {
+        height: 512px;
+        display: grid;
+        place-content: center;
+        justify-items: center;
+        gap: 34px;
+        padding-bottom: 46px;
+      }
+      svg { width: 208px; height: 208px; }
+      .name {
+        color: #ffffff;
+        font-size: 40px;
+        font-weight: 700;
+        letter-spacing: -0.015em;
+        line-height: 1;
+        white-space: nowrap;
+      }
+      .sub {
+        color: #b9bfc4;
+        font-size: 25px;
+        font-weight: 500;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+        line-height: 1;
+      }
+      .bar {
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        height: 46px;
+        background: #d24507;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="wrap">
+      <svg viewBox="0 0 32 32" fill="none" stroke="#ffffff" stroke-width="2.8"
+           stroke-linejoin="miter" stroke-linecap="butt">
+        <path d="M4 13.5 16 5l12 8.5" />
+        <path d="M6.5 15v8.5h19V15" />
+      </svg>
+      <div class="name">Schnellhelfer24</div>
+      <div class="sub">Berlin</div>
+    </div>
+    <div class="bar"></div>
+  </body>
+</html>
