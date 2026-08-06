@@ -50,7 +50,21 @@ erst möglich und sorgen dafür, dass die genannten Angaben stimmen.
       beim Hoster, E-Mail-Anbieter, Datenschutzbeauftragter nach § 38 BDSG)
 - [ ] AV-Vertrag mit Hostinger nach Art. 28 DSGVO tatsächlich abgeschlossen –
       die Datenschutzerklärung behauptet ihn bereits
-- [ ] `public/api/config.local.php` angelegt, Testanfrage kommt an
+- [ ] **DRINGEND – `public/api/config.local.php` fehlt auf dem Server.**
+      Am 06.08.2026 gegen die Live-Domain gemessen: Ein POST auf
+      `/api/anfrage.php` antwortet mit
+      `?fehler=1&grund=nicht-konfiguriert`. Das heißt: **Jede Anfrage über
+      das Formular schlägt fehl.** Die Datei war in keinem der vier
+      Deploy-Commits enthalten – sie ist bewusst nicht im Repository, weil
+      sie die Empfängeradresse trägt, und muss von Hand auf dem Server
+      angelegt werden.
+
+      So beheben (hPanel → Dateimanager → `public_html/api/`):
+      1. `config.example.php` nach `config.local.php` kopieren
+      2. `recipient` und `from` auf echte Adressen der eigenen Domain setzen
+      3. Rechte auf 0600 setzen
+      4. Eine echte Testanfrage senden und prüfen, ob die Mail ankommt
+         und ob Umfang, Anlass, Größe und Zusatzleistungen enthalten sind
 - [ ] **Testanfrage prüfen:** Kommen Umfang, Anlass, Größe und
       Zusatzleistungen in Mail und JSON-Ablage an? Die Felder wurden ergänzt,
       konnten lokal aber nicht gegen PHP getestet werden
