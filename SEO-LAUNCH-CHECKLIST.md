@@ -50,37 +50,29 @@ erst möglich und sorgen dafür, dass die genannten Angaben stimmen.
       beim Hoster, E-Mail-Anbieter, Datenschutzbeauftragter nach § 38 BDSG)
 - [ ] AV-Vertrag mit Hostinger nach Art. 28 DSGVO tatsächlich abgeschlossen –
       die Datenschutzerklärung behauptet ihn bereits
-- [ ] **DRINGEND – `public/api/config.local.php` fehlt auf dem Server.**
-      Am 06.08.2026 gegen die Live-Domain gemessen: Ein POST auf
-      `/api/anfrage.php` antwortet mit
-      `?fehler=1&grund=nicht-konfiguriert`. Das heißt: **Jede Anfrage über
-      das Formular schlägt fehl.** Die Datei war in keinem der vier
-      Deploy-Commits enthalten – sie ist bewusst nicht im Repository, weil
-      sie die Empfängeradresse trägt, und muss von Hand auf dem Server
-      angelegt werden.
-
-      So beheben (hPanel → Dateimanager → `public_html/api/`):
-      1. `config.example.php` nach `config.local.php` kopieren
-      2. `recipient` und `from` auf echte Adressen der eigenen Domain setzen
-      3. Rechte auf 0600 setzen
-      4. Eine echte Testanfrage senden und prüfen, ob die Mail ankommt
-         und ob Umfang, Anlass, Größe und Zusatzleistungen enthalten sind
-- [ ] **Testanfrage prüfen:** Kommen Umfang, Anlass, Größe und
-      Zusatzleistungen in Mail und JSON-Ablage an? Die Felder wurden ergänzt,
-      konnten lokal aber nicht gegen PHP getestet werden
+- [x] `public/api/config.local.php` auf dem Server angelegt.
+      Am 06.08.2026 gegen die Live-Domain bestätigt: Ein POST auf
+      `/api/anfrage.php` leitet auf `/anfrage-erhalten/` weiter statt auf
+      `grund=nicht-konfiguriert`. Geprüft mit gefülltem Honeypot-Feld, das
+      vor jedem Mailversand abbricht – es wurde keine echte Anfrage erzeugt.
+- [ ] Trotzdem noch offen: eine **echte** Testanfrage senden und prüfen, ob
+      die Mail ankommt und ob Umfang, Anlass, Größe und Zusatzleistungen
+      darin und in der JSON-Ablage stehen. Der Honeypot-Test beweist nur,
+      dass ein Empfänger konfiguriert ist – nicht, dass die Zustellung
+      funktioniert (SPF, DKIM, Spam-Ordner).
 - [ ] Keine sichtbaren Platzhalter außer den bewusst markierten in Impressum
       und Datenschutz
 
 ### Sicherheit und Datenschutz auf dem Server *(neu, 06.08.2026)*
 
-- [ ] **Ablage prüfen – das Wichtigste.** Eine Testanfrage mit Foto senden,
-      dann die abgelegte Datei direkt im Browser aufrufen:
-      `https://schnellhelfer24.de/api/_storage/anfragen/<datei>`
-      **Es muss 403 oder 404 kommen.** Kommt das Bild, sind alle
-      hochgeladenen Wohnungsfotos öffentlich abrufbar – dann sofort
-      `storageDir` in `config.local.php` auf einen Pfad **oberhalb** von
-      `public_html` setzen. Der Schutz hängt allein an `.htaccess`; ob
-      Hostinger `AllowOverride` erlaubt, ließ sich lokal nicht prüfen.
+- [x] **Ablage ist geschützt – am 06.08.2026 gegen die Live-Domain geprüft.**
+      Apache wertet die `.htaccess` aus. Alle Pfade antworten mit HTTP 403:
+      `/api/_storage/`, `/api/_storage/.gitkeep`, `/api/_storage/anfragen/`,
+      `/api/config.local.php` und `/api/config.example.php`.
+      Damit ist die größte offene Sicherheitsfrage beantwortet: Hochgeladene
+      Wohnungsfotos sind nicht öffentlich abrufbar.
+      Noch sicherer bliebe `storageDir` oberhalb von `public_html` – dann
+      hinge der Schutz gar nicht erst an einer `.htaccess`.
 - [ ] `php -l` auf dem Server über `anfrage.php` und `events.php` laufen
       lassen, oder beide einmal aufrufen. Beide sind lokal gegen PHP 8.3
       geprüft, die Serverversion kann abweichen.
