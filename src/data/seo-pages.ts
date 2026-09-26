@@ -373,6 +373,18 @@ const servicePriority = (slug: string): BusinessPriority => {
   )
     return 5;
   if (['seniorenumzug-berlin', 'bueroaufloesung-berlin', 'messiwohnung-raeumen'].includes(slug)) return 4;
+  /*
+   * Zusatzleistungen, die an einen anderen Auftrag andocken statt eigene
+   * Aufträge zu gewinnen. Sie verdienen Geld, aber im selben Termin -
+   * ihre Seite ist der Beleg für den Zusatz, nicht der Einstieg.
+   *
+   * Die Unterscheidung ist nicht kosmetisch: Der Linkgraph prüft, dass
+   * wertvollere Seiten mehr interne Autorität tragen als geringere.
+   * Stünde der Rückbau auf derselben Stufe wie die Kellerentrümpelung,
+   * meldete er zu Recht eine Prioritätsumkehr gegen die
+   * Messiwohnungs-Räumung - eine Seite, die eigene Aufträge gewinnt.
+   */
+  if (['demontage-rueckbau'].includes(slug)) return 2;
   return 3;
 };
 

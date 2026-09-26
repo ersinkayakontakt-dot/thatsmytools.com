@@ -60,6 +60,7 @@ export const services: Service[] = [
         p: [
           'Eine Entrümpelung bedeutet: Der vereinbarte Bereich wird vollständig leergeräumt. Dazu zählen Möbel, Hausrat, Kartons, Textilien, Elektrogeräte und alles, was zuvor als zu räumen markiert wurde. Was mitgenommen wird und was bleibt, klären wir vor Beginn und halten es schriftlich fest.',
           'Der Unterschied zur Haushaltsauflösung liegt im Umfang und im Anlass. Eine Entrümpelung kann auch nur den Keller betreffen. Eine Haushaltsauflösung löst dagegen einen kompletten Haushalt auf, meist samt Bewertung dessen, was noch verwertbar ist.',
+          'Ein Sonderfall läuft anders und sollte bei der Anfrage benannt werden: Ist die Wohnung so stark zugestellt, dass Türen und Wege nicht mehr frei sind, brauchen wir mehr Zeit, Schutzausrüstung und ein anderes Vorgehen. Was dann gilt, steht auf der Seite zum [Räumen einer vermüllten Wohnung](/leistungen/messiwohnung-raeumen/).',
         ],
       },
       {
@@ -170,7 +171,7 @@ export const services: Service[] = [
         a: 'Der Preis richtet sich nach Volumen, Etage, Zugang, Materialart und Zusatzarbeiten. Eine seriöse Zahl lässt sich erst nach Fotos oder einer Besichtigung nennen. Wir arbeiten mit einer festen Absprache vor Beginn, damit am Einsatztag keine Überraschung entsteht. Die einzelnen Faktoren sind auf dieser Seite und im Kostenbereich erklärt.',
       },
     ],
-    related: ['haushaltsaufloesung-berlin', 'kellerentruempelung-berlin', 'sperrmuellabholung-berlin'],
+    related: ['haushaltsaufloesung-berlin', 'kellerentruempelung-berlin', 'sperrmuellabholung-berlin', 'demontage-rueckbau'],
     guides: ['was-kostet-eine-entruempelung-in-berlin', 'sperrmuell-moebel-entsorgen-berlin', 'entruempelung-vorbereiten'],
     updated: '2026-07-29',
   },
@@ -315,7 +316,7 @@ export const services: Service[] = [
     related: [
       'wohnungsaufloesung-berlin',
       'nachlassaufloesung-berlin',
-      'seniorenumzug-berlin',
+      'messiwohnung-raeumen',
       'entruempelung-berlin',
     ],
     guides: ['kosten-haushaltsaufloesung-berlin', 'haushaltsaufloesung-nach-todesfall', 'wohnungsaufloesung-checkliste-pdf'],
@@ -373,6 +374,11 @@ export const services: Service[] = [
             ['Lampen entfernt, Anschlüsse gesichert', 'Deckenauslässe abgeklemmt und abgedeckt', 'Ja, nach Absprache'],
             ['Dübel entfernt, Löcher verschlossen', 'Bohrlöcher zugespachtelt', 'Nach Absprache als eigene Position'],
             ['Teppichboden entfernt', 'Boden aufgenommen und entsorgt', 'Ja, gesondert kalkuliert'],
+            [
+              'Einbauten zurückgebaut',
+              'Einbauküche, Einbauschränke, Trennwände raus',
+              'Ja, siehe [Demontage und Rückbau](/leistungen/demontage-rueckbau/)',
+            ],
             ['Schönheitsreparaturen', 'Streichen, Tapezieren', 'Über Partnerbetriebe, nicht in Eigenleistung'],
           ],
         },
@@ -435,7 +441,7 @@ export const services: Service[] = [
       'haushaltsaufloesung-berlin',
       'nachlassaufloesung-berlin',
       'seniorenumzug-berlin',
-      'entruempelung-berlin',
+      'demontage-rueckbau',
     ],
     guides: ['wohnungsaufloesung-checkliste-pdf', 'checkliste-wohnungsuebergabe', 'kosten-haushaltsaufloesung-berlin'],
     updated: '2026-07-29',
