@@ -1,8 +1,9 @@
----
+﻿---
 import Icon from './Icon.astro';
 import { publishedServices } from '../data/services';
 import { site } from '../config/site';
 import { phone, whatsapp } from '../lib/contact';
+import { PLZ_PATTERN, serviceLevelMap, type ServiceLevel } from '../data/serviceAreas';
 
 /**
  * AUFWAND-CHECK
@@ -21,6 +22,42 @@ import { phone, whatsapp } from '../lib/contact';
  *  - Serverseitige Prüfung, Rate Limiting und Upload-Sicherheit:
  *    siehe public/api/anfrage.php
  */
+
+/**
+ * Hinweis zum Einsatzgebiet, sobald eine erfasste PLZ eingetippt wird.
+ *
+ * Rein informativ. Eine nicht bediente oder unbekannte Postleitzahl hält
+ * die Anfrage NICHT auf – sie wird angenommen und beantwortet. Eine
+ * Anfrage abzuweisen, weil eine Tabelle unvollständig ist, wäre schlechter
+ * als gar keine Prüfung.
+ *
+ * `Record<ServiceLevel, string>` erzwingt Vollständigkeit: Kommt in
+ * `serviceAreas.ts` ein Status dazu, schlägt hier die Typprüfung fehl,
+ * statt dass der neue Fall im Browser stillschweigend nichts anzeigt.
+ */
+const plzTexts = {
+  regulaer: 'Diese Postleitzahl liegt in unserem regelmäßigen Einsatzgebiet.',
+  'nach-pruefung':
+    'Dorthin fahren wir. Anfahrt und Termin stimmen wir vorher mit Ihnen ab.',
+  'nicht-bedient':
+    'Diese Postleitzahl liegt außerhalb unseres Einsatzgebiets. Senden Sie die Anfrage trotzdem – wir melden uns und sagen Ihnen ehrlich, ob wir helfen können.',
+} satisfies Record<ServiceLevel, string>;
+
+/**
+ * Kurzfassung desselben Status für Zusammenfassung und Bestätigungsseite.
+ *
+ * Getrennt von `plzTexts`, weil die beiden verschiedene Aufgaben haben:
+ * `plzTexts` beruhigt die Kundschaft in ganzen Sätzen, `plzShort` ist eine
+ * Angabe in einer Liste neben „Etage" und „Aufzug".
+ */
+const plzShort = {
+  regulaer: 'Regelmäßiges Einsatzgebiet',
+  'nach-pruefung': 'Anfahrt wird abgestimmt',
+  'nicht-bedient': 'Außerhalb des Einsatzgebiets',
+} satisfies Record<ServiceLevel, string>;
+
+/** Leer, solange keine geprüften PLZ-Daten vorliegen. Dann zeigt das Formular nichts an. */
+const plzLevels = serviceLevelMap();
 
 const objectTypes = [
   '1-Zimmer-Wohnung',
@@ -144,6 +181,15 @@ const steps = [
     </div>
     <input type="hidden" name="gestartet" data-started value="" />
     <input type="hidden" name="quelle" data-source value="" />
+    <!--
+      Einsatzgebiet zur eingetippten PLZ, vom Skript gesetzt. Überträgt den
+      Statusschlüssel (regulaer / nach-pruefung / nicht-bedient), nicht den
+      Anzeigetext: So bleibt die Leitung stabil, wenn eine der beiden Seiten
+      ihre Formulierung ändert. public/api/anfrage.php prüft gegen dieselbe
+      Liste und verwirft alles andere.
+      Ohne JavaScript bleibt das Feld leer – die Anfrage geht trotzdem durch.
+    -->
+    <input type="hidden" name="gebiet" data-gebiet value="" />
 
     <!-- ================================================= Schritt 1 ===== -->
     <fieldset class="step" data-step="1">
@@ -201,16 +247,22 @@ const steps = [
           id="plz"
           name="plz"
           inputmode="numeric"
-          pattern="[0-9]{5}"
+          pattern={PLZ_PATTERN}
           maxlength="5"
           autocomplete="postal-code"
           required
-          aria-describedby="plz-hint"
+          aria-describedby="plz-hint plz-service"
           data-validate="Bitte geben Sie eine fünfstellige Postleitzahl ein."
         />
         <p class="field__hint" id="plz-hint">
           Fünf Ziffern. Daran erkennen wir Anfahrt und Parksituation.
         </p>
+        <!--
+          Hinweis zum Einsatzgebiet. Bleibt leer und verborgen, solange keine
+          geprüften PLZ-Daten vorliegen. aria-live meldet den Text nach, wenn
+          er beim Tippen erscheint – ohne den Fokus aus dem Feld zu nehmen.
+        -->
+        <p class="field__hint field__hint--service" id="plz-service" data-plz-service aria-live="polite" hidden></p>
       </div>
 
       <div class="field">
@@ -777,6 +829,16 @@ const steps = [
     color: var(--ink-3);
     margin: var(--sp-2) 0 0;
   }
+  /* Hinweis zum Einsatzgebiet: abgesetzt, aber nicht alarmierend – er ist
+     eine Information, keine Fehlermeldung. */
+  .field__hint--service {
+    border-left: 2px solid var(--line-contrast);
+    padding-left: var(--sp-2);
+    color: var(--ink-2);
+  }
+  .field__hint--service[hidden] {
+    display: none;
+  }
 
   input[type='text'],
   input[type='tel'],
@@ -1031,7 +1093,17 @@ const steps = [
   }
 </style>
 
-<script is:inline define:vars={{ maxMb: site.maxUploadMb, maxCount: site.maxUploadCount }}>
+<script
+  is:inline
+  define:vars={{
+    maxMb: site.maxUploadMb,
+    maxCount: site.maxUploadCount,
+    plzPattern: PLZ_PATTERN,
+    plzLevels,
+    plzTexts,
+    plzShort,
+  }}
+>
   (function () {
     var root = document.querySelector('[data-check]');
     if (!root) return;
@@ -1052,6 +1124,14 @@ const steps = [
     var current = 1;
     var maxReached = 1;
 
+    /* ------------------------------------------- Einsatzgebiet zur PLZ */
+    var plzField = root.querySelector('#plz');
+    var plzServiceNote = root.querySelector('[data-plz-service]');
+    var plzGebietField = root.querySelector('[data-gebiet]');
+    /* Das Muster kommt aus src/data/serviceAreas.ts und steckt zugleich im
+       pattern-Attribut des Feldes. Hier nur die Anker ergänzen. */
+    var plzRe = new RegExp('^' + plzPattern + '$');
+
     /* ------------------------------------------------- Hilfsfunktionen */
     function track(name, detail) {
       if (window.sh24 && window.sh24.track) window.sh24.track(name, detail);
@@ -1059,6 +1139,37 @@ const steps = [
 
     function fieldsIn(step) {
       return Array.prototype.slice.call(step.querySelectorAll('[data-validate]'));
+    }
+
+    /**
+     * Zeigt an, ob die eingetippte Postleitzahl im Einsatzgebiet liegt.
+     *
+     * Rein informativ: Der Hinweis blockiert das Absenden NIE, auch nicht
+     * bei 'nicht-bedient'. Ist die Zuordnung leer – weil noch keine
+     * geprüften PLZ-Daten vorliegen – passiert hier gar nichts.
+     */
+    function updateServiceHint() {
+      if (!plzField) return;
+      var value = plzField.value.trim();
+      /* Erst das Format prüfen, dann nachschlagen: Ohne die Ziffernprüfung
+         träfe eine Eingabe wie "toString" auf das Object-Prototyp. */
+      var known = plzRe.test(value) && Object.prototype.hasOwnProperty.call(plzLevels, value);
+      var key = known ? plzLevels[value] : '';
+
+      if (plzServiceNote) {
+        var text = key ? plzTexts[key] : '';
+        plzServiceNote.textContent = text;
+        plzServiceNote.hidden = !text;
+      }
+      /* Denselben Status mitsenden, damit das Büro ihn in der
+         Benachrichtigung sieht, ohne die PLZ nachschlagen zu müssen. */
+      if (plzGebietField) plzGebietField.value = key;
+    }
+
+    /** Kurzfassung des Status für Zusammenfassung und Bestätigungsseite. */
+    function gebietShort() {
+      var key = plzGebietField ? plzGebietField.value : '';
+      return key && Object.prototype.hasOwnProperty.call(plzShort, key) ? plzShort[key] : '';
     }
 
     function labelFor(field) {
@@ -1111,7 +1222,7 @@ const steps = [
           problems.push({ field: field, message: msg });
           return;
         }
-        if (field.id === 'plz' && !/^\d{5}$/.test(field.value.trim())) {
+        if (field.id === 'plz' && !plzRe.test(field.value.trim())) {
           showError(field, msg);
           problems.push({ field: field, message: msg });
         }
@@ -1256,6 +1367,7 @@ const steps = [
         ['umfang', 'Umfang'],
         ['anlass', 'Anlass'],
         ['plz', 'Postleitzahl'],
+        ['gebiet', 'Einsatzgebiet'],
         ['objektart', 'Objekt'],
         ['flaeche', 'Größe'],
         ['fuellgrad', 'Füllgrad'],
@@ -1267,7 +1379,9 @@ const steps = [
       summaryList.innerHTML = '';
       var any = false;
       wanted.forEach(function (pair) {
-        var v = fd.get(pair[0]);
+        /* Das Gebietsfeld überträgt den Schlüssel, angezeigt wird die
+           Kurzfassung – sonst stünde hier "nach-pruefung". */
+        var v = pair[0] === 'gebiet' ? gebietShort() : fd.get(pair[0]);
         if (!v) return;
         any = true;
         var dt = document.createElement('dt');
@@ -1369,6 +1483,10 @@ const steps = [
             if (v) out[k] = v;
           },
         );
+        /* Für die Bestätigungsseite die Kurzfassung ablegen, nicht den
+           Schlüssel: Die Seite zeigt die Werte unverändert an. */
+        var gebiet = gebietShort();
+        if (gebiet) out.gebiet = gebiet;
         var zusatz = fd.getAll('zusatzleistungen[]');
         if (zusatz.length) out.zusatzleistungen = zusatz.join(', ');
         var neben = fd.getAll('nebenraeume[]');
@@ -1396,6 +1514,10 @@ const steps = [
     if (progress) progress.hidden = false;
     show(1, false);
     restore();
+    /* Nach dem Wiederherstellen: Ein aus localStorage zurückgeholter
+       Zwischenstand soll denselben Hinweis zeigen wie frisch getipptes. */
+    updateServiceHint();
+    if (plzField) plzField.addEventListener('input', updateServiceHint);
     track('estimate_started', {});
 
     // Abbruch erfassen, wenn das Formular begonnen, aber nicht abgesendet wurde

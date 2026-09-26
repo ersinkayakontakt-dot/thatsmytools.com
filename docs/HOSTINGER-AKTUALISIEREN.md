@@ -22,7 +22,7 @@ Aktualisierung überschrieben oder gelöscht werden.
 
 | Nur auf dem Server | Warum |
 |---|---|
-| `api/config.local.php` | enthält die Empfängeradresse für Anfragen |
+| `api/config.local.php` | enthält Empfängeradresse und SMTP-Zugangsdaten (Rechte 600) |
 | `api/_storage/` | enthält hochgeladene Wohnungsfotos und eingegangene Anfragen |
 
 Beide Wege unten schließen diese Pfade ausdrücklich aus.
@@ -152,8 +152,23 @@ Nur beim allerersten Mal nötig, danach nie wieder:
    return [
        'recipient' => 'anfrage@schnellhelfer24.de',
        'from'      => 'website@schnellhelfer24.de',
+
+       // Versand über das echte Postfach. OHNE diesen Block verschickt
+       // PHP über mail() – die Mail kommt dann häufig gar nicht an,
+       // weil SPF und DKIM nicht passen. Siehe config.example.php.
+       'smtpHost'  => 'smtp.hostinger.com',
+       'smtpPort'  => 465,
+       'smtpUser'  => 'website@schnellhelfer24.de',
+       'smtpPass'  => 'PASSWORT DES POSTFACHS',
+       'smtpSecure' => 'ssl',
    ];
    ```
+
+   `smtpUser` und `from` müssen dieselbe Adresse sein – weichen sie ab,
+   korrigiert das Skript `from` und vermerkt es in der JSON-Ablage.
+
+   **Die Datei enthält jetzt ein Passwort.** Rechte auf 600 setzen und
+   niemals ins Repository aufnehmen.
 
    Ohne diese Datei nimmt das Formular keine Anfragen an, sondern leitet
    mit einer Fehlermeldung zurück. Das ist Absicht: besser ein sichtbarer
@@ -190,5 +205,6 @@ muss. Sie merkt sich, welche Seiten bereits gemeldet wurden.
 | Alles ohne Gestaltung, nur Text | `_assets/` fehlt oder wurde nicht mit übertragen. |
 | Unterseiten liefern 404 | `.htaccess` fehlt in `public_html`. |
 | Formular meldet einen Fehler | `api/config.local.php` fehlt oder `api/_storage` ist nicht beschreibbar. |
+| Formular meldet Erfolg, aber keine Mail kommt an | Neueste Datei in `api/_storage/anfragen/` öffnen. `mailWeg: mail()` heißt, der SMTP-Block fehlt. `mailFehler` nennt den gescheiterten Schritt. Steht `mailVersand: ok` und die Mail fehlt trotzdem, liegt es an Zustellung oder Spamfilter – SPF und DKIM im Mailkopf prüfen. |
 | `500 Internal Server Error` | Meist eine zu alte PHP-Version. Im hPanel auf 8.0+ stellen. |
 | FTPS-Verbindung schlägt fehl | Im hPanel prüfen, ob der Zugang aktiv ist. Manche Firmennetze blockieren Port 21. |

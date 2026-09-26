@@ -33,6 +33,7 @@ Produktionsausgabe erscheinen sie nicht.
 | `src/data/cases.ts` | Einsatzberichte |
 | `src/data/reviews.ts` | Bewertungen (leer, bis echte vorliegen) |
 | `src/data/costs.ts` | Preisdaten (inaktiv, bis echte vorliegen) |
+| `src/data/serviceAreas.ts` | Einsatzgebiete nach PLZ (inaktiv, bis amtliche Daten und Gebietsentscheidung vorliegen) |
 | `src/lib/publishGuard.ts` | Entscheidet, welche Seite indexiert werden darf |
 | `public/api/anfrage.php` | Endpunkt für das Anfrageformular |
 
@@ -48,6 +49,11 @@ npm run check          # TypeScript- und Astro-Prüfung
 
 npm run audit:content  # prüft die Inhalte vor dem Build
 npm run audit:build    # prüft die gebaute Website
+
+npm run audit:plz:selftest   # beweist, dass die Einsatzgebiets-Prüfung anschlägt
+                             # (13 Gegenbeispiele + 1 Gegenprobe mit sauberen Daten)
+npm run audit:mail:selftest  # fährt ein echtes SMTP-Gespräch gegen einen
+                             # Testserver (14 Fälle). Braucht PHP im PATH.
 npm run indexnow       # meldet geänderte URLs an IndexNow
 npm run kit            # erzeugt docs/EINTRAGS-KIT.md für Portale und Verzeichnisse
 

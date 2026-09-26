@@ -11,8 +11,13 @@
  *   - Gibt es doppelte Title Tags oder Meta Descriptions in den Daten?
  *   - Zeigen interne Verweise auf Inhalte, die es nicht gibt?
  *   - Stehen noch Platzhalter in veröffentlichten Inhalten?
+ *   - Hält die PLZ-Tabelle in src/data/serviceAreas.ts zusammen?
  *
  * Aufruf: npm run audit:content
+ *
+ * Die PLZ-Prüfung selbst ist durch `npm run audit:plz:selftest`
+ * abgesichert. Das ist nicht optional: Solange `serviceAreas` leer ist,
+ * läuft sie über nichts und meldet folgenlos „in Ordnung".
  *
  * Die Prüfung läuft über den TypeScript-Quellcode. Damit sie ohne
  * Build-Schritt funktioniert, wird Astros eigener Loader genutzt.
@@ -53,6 +58,7 @@ import { districts } from '${mod('src/data/districts.ts')}';
 import { towns } from '${mod('src/data/towns.ts')}';
 import { guides } from '${mod('src/data/guides.ts')}';
 import { cases } from '${mod('src/data/cases.ts')}';
+import { validateServiceAreas, serviceAreas, plzDataAvailable } from '${mod('src/data/serviceAreas.ts')}';
 
 const errors: string[] = [];
 const notes: string[] = [];
@@ -194,6 +200,23 @@ for (const loc of [...districts, ...towns].filter((l) => l.status === 'published
   if (placeholder.test(text)) errors.push('Standort ' + loc.name + ': enthält noch Platzhalter im veröffentlichten Text');
 }
 
+/* -------------------------------------- Einsatzgebiete nach PLZ
+ * Die bekannten Slugs werden übergeben, statt sie in serviceAreas.ts zu
+ * importieren – sonst zöge jede Seite, die nur die PLZ-Prüfung braucht,
+ * den gesamten Standortinhalt mit ins Bündel.
+ *
+ * Bewusst ALLE Standorte, nicht nur die veröffentlichten: Eine PLZ darf
+ * auf einen Ortsentwurf zeigen. Ein Bezirk ohne jede PLZ ist ein Fehler,
+ * ein Ortsentwurf ohne PLZ nur ein Hinweis – die Unterscheidung trifft
+ * die Prüffunktion, nicht diese Datei.
+ */
+const plzAudit = validateServiceAreas(
+  districts.map((d) => d.slug),
+  towns.map((t) => t.slug),
+);
+errors.push(...plzAudit.errors);
+notes.push(...plzAudit.warnings);
+
 /* --------------------------------------------------------- Ausgabe */
 console.log('Inhalte geprüft:');
 console.log('  Leistungen:      ' + services.filter((s) => s.status === 'published').length + ' veröffentlicht, ' + services.filter((s) => s.status !== 'published').length + ' Entwurf');
@@ -201,6 +224,7 @@ console.log('  Bezirke:         ' + districts.filter((d) => d.status === 'publis
 console.log('  Orte im Umland:  ' + towns.filter((t) => t.status === 'published').length + ' veröffentlicht, ' + towns.filter((t) => t.status !== 'published').length + ' Entwurf');
 console.log('  Ratgeber:        ' + guides.filter((g) => g.status === 'published').length + ' veröffentlicht');
 console.log('  Einsatzberichte: ' + cases.filter((c) => c.status === 'published' && c.real).length + ' echt und veröffentlicht, ' + cases.filter((c) => !c.real).length + ' Muster');
+console.log('  Einsatzgebiete:  ' + serviceAreas.length + ' Postleitzahlen erfasst' + (plzDataAvailable ? '' : ', aber inaktiv (plzDataAvailable = false)'));
 console.log('');
 
 if (errors.length) {

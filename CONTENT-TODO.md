@@ -49,9 +49,11 @@ Wohnungsauflösung, Nachlass und Seniorenumzug" umgestellt. Umgesetzt sind:
    (Mailtext, JSON-Ablage, Betreff). Umfang und Anlass sind Pflichtfelder im
    Browser, serverseitig optional – so scheitert eine zwischengespeicherte
    alte Seite nicht am Absenden.
-   **Offen:** Das PHP konnte hier nicht geprüft werden (kein PHP auf dem
-   Entwicklungsrechner). Vor dem Livegang eine Testanfrage über den echten
-   Server senden und kontrollieren, ob Umfang, Anlass, Größe und
+   **Offen:** Seit 24.09.2026 ist PHP lokal installiert, Syntax und
+   SMTP-Gespräch sind damit prüfbar (`php -l`,
+   `npm run audit:mail:selftest`). Die tatsächliche Verarbeitung einer
+   Anfrage bleibt ungeprüft – vor dem Livegang eine Testanfrage über den
+   echten Server senden und kontrollieren, ob Umfang, Anlass, Größe und
    Zusatzleistungen in der Mail und in der JSON-Ablage ankommen.
 2. ✅ **Sperrmüll-Informationscluster ergänzt.** Der Ratgeber
    `/ratgeber/sperrmuell-moebel-entsorgen-berlin/` beantwortet die
@@ -60,11 +62,24 @@ Wohnungsauflösung, Nachlass und Seniorenumzug" umgestellt. Umgesetzt sind:
    `/leistungen/sperrmuellabholung-berlin/`. So bleiben Informations- und
    Transaktionsintention getrennt, ohne eine zweite konkurrierende
    Leistungsseite anzulegen.
-3. **Postleitzahlen** (`src/data/serviceAreas.ts` anlegen). Aktuell existieren
-   **keine** PLZ-Daten im Projekt; die PLZ-Prüfung im Formular validiert nur
-   das Format. Benötigt: amtliche Berliner PLZ mit Bezirk, Ortsteilen,
-   bedient ja/nein, Prioritätsgebiet, Umlandprüfung – plus Prüfungen auf
-   Dubletten, ungültige und fehlende PLZ. Keine eigene Seite je PLZ.
+3. **Postleitzahlen.** `src/data/serviceAreas.ts` ist seit 24.09.2026
+   angelegt: Modell, Abfragen und `validateServiceAreas()` stehen, die
+   Prüffunktion ist durch `npm run audit:plz:selftest` abgesichert. Der
+   Audit ruft sie bei jedem Lauf auf und weist den inaktiven Zustand in
+   der Zusammenfassung aus; das Anfrageformular ist ebenfalls
+   angeschlossen: Es zeigt bei erfasster PLZ einen Gebietshinweis und
+   sendet den Status als Feld `gebiet` mit, über alle fünf Schichten
+   einschließlich Datenschutzerklärung.
+   Die Tabelle ist **leer** und `plzDataAvailable` steht auf `false` –
+   deshalb wirkt beides derzeit nicht.
+   **Offen, und nur noch Daten:** amtliche Berliner PLZ-Liste beschaffen
+   und `dataSource` belegen; danach je Gebiet die betriebliche
+   Entscheidung `service` (regulär / nach Prüfung / nicht bedient) und
+   `priority` eintragen; `plzDataAvailable` auf true setzen. Eine
+   Codeänderung ist dafür nicht mehr nötig. Abweichungen vom
+   ursprünglichen Modell (Bezirke als Array, `service` statt zweier
+   Flags) sind in `HANDOFF.md` § Priorität 3 begründet. Keine eigene
+   Seite je PLZ.
 4. ✅ **Alle Berliner Bezirke veröffentlicht.** Seit 30.07.2026 bestehen für
    alle 12 Bezirke eigenständige, indexierbare Seiten. Neun neue Inhalte
    liegen in `src/data/additionalDistricts.ts`; der Publish Guard verlangt

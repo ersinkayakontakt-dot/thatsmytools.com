@@ -8,6 +8,36 @@ Auffindbarkeit hat, in welcher Reihenfolge und woran fertig erkennbar ist.**
 Sie ersetzt keine der beiden Pflichtdateien: offene Inhalte stehen in
 `CONTENT-TODO.md`, der Launchablauf in `SEO-LAUNCH-CHECKLIST.md`.
 
+## ⚠️ Befund 24.09.2026 — drei Quelldateien waren nie im Repository
+
+`.gitignore` enthielt das Muster `data/` ohne führenden Schrägstrich.
+In dieser Form trifft es **jede** Ebene, also auch `src/data/`. Dadurch
+standen drei Dateien nie unter Versionskontrolle:
+
+- `src/data/seo-pages.ts` — ohne sie bricht `npm run seo:metadata` ab
+- `src/data/images.ts`
+- `src/data/serviceAreas.ts` (am 24.09.2026 neu)
+
+**Ein frischer Klon dieses Repositorys ließ sich nicht bauen.** Die
+Live-Website ist davon nicht betroffen: Sie wird aus `dist/` über den
+Branch `hostinger-live` ausgeliefert, und `dist/` entsteht lokal, wo die
+Dateien vorhanden sind. Betroffen war der Quellstand.
+
+Das Muster steht jetzt als `/data/` und ist damit an das
+Wurzelverzeichnis gebunden. **Die drei Dateien müssen noch committet
+werden** – ohne das bleibt der Quellstand unvollständig:
+
+```bash
+git add src/data/seo-pages.ts src/data/images.ts src/data/serviceAreas.ts
+```
+
+Lehre für künftige Datendateien: Nach dem Anlegen einmal
+`git status --short src/data/` prüfen. Eine Datei, die dort nicht als
+`??` auftaucht, ist unsichtbar – und fällt erst beim nächsten frischen
+Klon auf.
+
+---
+
 ## Live-Deployment bei Hostinger
 
 Die Domain `schnellhelfer24.de` ist in Hostinger mit dem Repository
@@ -71,6 +101,25 @@ belastbaren Preisdaten vorliegen.
   und die Zusammenfassung. Wer einen Slug umbenennt, prüft `related`,
   `focusServices`, `situations.ts`, Navigation und Sitemap.
 
+  **Fünfte Stelle seit 24.09.2026:** Wer ein Feld ergänzt, das tatsächlich
+  **übertragen und gespeichert** wird, trägt es zusätzlich in
+  `src/pages/datenschutz.astro` § 4 ein. Die Seite zählt auf, was
+  verarbeitet wird – ein Feld, das dort fehlt, ist kein Schönheitsfehler,
+  sondern eine unvollständige Auskunft. Rein anzeigende Felder betrifft
+  das nicht.
+
+  **Neu seit 24.09.2026:** Auf der Astro-Seite steht das Muster einer
+  Postleitzahl ausschließlich in `PLZ_PATTERN`
+  (`src/data/serviceAreas.ts`). Es speist das `pattern`-Attribut des
+  Feldes und die RegExp im Formularskript. Wer es dort neu hinschreibt,
+  baut die dritte Kopie wieder auf, die gerade entfernt wurde.
+
+  **Zweite, unvermeidbare Kopie:** `public/api/anfrage.php` prüft die PLZ
+  serverseitig mit einem eigenen `preg_match('/^\d{5}$/')`. PHP kann das
+  TypeScript-Modul nicht importieren, und die Serverprüfung darf ohnehin
+  nicht von der Clientseite abhängen. Wer das Muster ändert, ändert beide
+  Stellen.
+
   **Neu seit 06.08.2026 – zwei weitere Schichten:**
   Wer eine Seite anlegt oder umbenennt, braucht auch einen Eintrag in
   `src/data/seo-pages.ts`; ohne ihn schlägt `npm run seo:metadata` fehl.
@@ -93,6 +142,19 @@ belastbaren Preisdaten vorliegen.
   Zusätzlich, wenn Prüfregeln oder Ereignisnamen angefasst wurden:
   `npm run seo:selftest` (14 absichtliche Verletzungen müssen alle
   erkannt werden) und `npm run seo:events`.
+
+  Wer `validateServiceAreas()` in `src/data/serviceAreas.ts` anfasst,
+  führt zusätzlich `npm run audit:plz:selftest` aus – 13 Gegenbeispiele
+  plus eine Gegenprobe mit sauberen Daten. Diese Prüfung ist nicht
+  optional: Solange `serviceAreas` leer ist, läuft jede Schleife der
+  Prüffunktion über nichts und meldet folgenlos „in Ordnung".
+
+  Wer `public/api/lib/smtp.php` anfasst, führt
+  `npm run audit:mail:selftest` aus – 14 Fälle, die ein echtes
+  SMTP-Gespräch gegen einen Testserver fahren. Ebenfalls nicht optional:
+  Ein Fehler im Versand äußert sich als „die Mail kommt nicht an", also
+  als genau das Symptom, das dieser Code beheben soll. Dazu
+  `php -l public/api/anfrage.php` und `php -l public/api/lib/smtp.php`.
 
   Die vollständige Beschreibung des Systems steht in `SEO-SYSTEM.md`.
 
@@ -164,15 +226,99 @@ veröffentlichen, auch nicht anonymisiert erfinden.
 
 ## Priorität 3 — Postleitzahlen als Datei
 
-Es gibt **keine** PLZ-Daten im Projekt; die Formularprüfung testet nur fünf
-Ziffern. Anlegen: `src/data/serviceAreas.ts` mit PLZ, Stadt, Bezirk,
-Ortsteilen, `bedient`, `prioritaet`, `umlandpruefungNoetig`. Amtliche Quelle
-verwenden.
+**Stand 24.09.2026: `src/data/serviceAreas.ts` ist angelegt, an den
+Content-Audit und an das Anfrageformular angeschlossen.** Modell,
+Abfragen und Prüffunktion stehen; `validateServiceAreas()` läuft bei
+jedem `npm run audit:content` mit und ist durch
+`npm run audit:plz:selftest` abgesichert.
 
-Alle Verbraucher greifen auf dieselbe Datei zu: Formularprüfung,
-Einsatzgebietsseite, Standortauswahl, strukturierte Daten. Prüfungen auf
-Dubletten, ungültige PLZ, fehlende Berliner PLZ und widersprüchliche
-Bezirkszuordnung gehören in `scripts/content-audit.mjs`.
+`serviceAreas` ist leer und `plzDataAvailable` steht auf `false`. Der
+Audit weist das in der Zusammenfassung aus, damit der Zustand nicht
+unbemerkt bleibt, und das Formular zeigt in diesem Zustand keinen
+Gebietshinweis an. **Es fehlen nur noch Daten, kein Code.**
+
+**Zwei Abweichungen von der ursprünglichen Beschreibung, bewusst:**
+
+1. `districts` ist ein **Array**, kein Einzelwert `bezirk`.
+   Postleitzahlgebiete folgen Zustellrouten, nicht Verwaltungsgrenzen; in
+   Berlin überschreitet ein erheblicher Teil der PLZ die Bezirksgrenze. Ein
+   Einzelwert würde jede solche PLZ still falsch zuordnen, und die
+   ursprünglich geforderte Prüfung auf „widersprüchliche Bezirkszuordnung"
+   würde die Realität als Fehler melden statt echte Tippfehler. Für die
+   Anzeige gibt es `primaryDistrict`.
+2. `bedient` und `umlandpruefungNoetig` sind zu einem Aufzählungstyp
+   `service: 'regulaer' | 'nach-pruefung' | 'nicht-bedient'` zusammengefasst.
+   Zwei Flags ergäben vier Kombinationen, von denen zwei sinnlos sind
+   („nicht bedient, aber Prüfung nötig").
+
+**Offen, in dieser Reihenfolge:**
+
+1. Amtliche PLZ-Liste beschaffen und `dataSource` ausfüllen (Herausgeber,
+   URL, Abrufdatum). Ohne Herkunftsnachweis keine Daten – `plzDataAvailable`
+   lässt sich dann nicht setzen, ohne dass die Prüfung Fehler meldet.
+2. **Betriebliche Entscheidung:** `service` und `priority` je Gebiet.
+   Dieselbe Frage wie bei den Umlandorten – wohin wird tatsächlich gefahren?
+Mehr ist nicht offen. Sobald beides vorliegt, wirkt es ohne weitere
+Codeänderung: Der Audit prüft die Tabelle, und das Formular zeigt den
+Gebietshinweis an.
+
+**✅ Erledigt am 24.09.2026 — Formular angeschlossen.**
+Das PLZ-Muster steht nur noch an einer Stelle: `PLZ_PATTERN` in
+`serviceAreas.ts` speist das `pattern`-Attribut des Feldes **und** die
+RegExp im Skript. Vorher stand dasselbe Muster dreimal im Projekt.
+
+Sobald eine erfasste PLZ eingetippt wird, erscheint unter dem Feld ein
+Hinweis zum Einsatzgebiet (`aria-live="polite"`). Er ist **rein
+informativ und blockiert das Absenden nie** – auch `nicht-bedient` nicht.
+Wer dort wohnt, bekommt trotzdem eine Antwort. Die Texte stehen als
+`plzTexts` im Frontmatter von `AufwandCheck.astro` und sind über
+`satisfies Record<ServiceLevel, string>` an den Aufzählungstyp gebunden:
+Kommt ein Status dazu, schlägt die Typprüfung fehl, statt dass der neue
+Fall im Browser stillschweigend nichts anzeigt.
+
+Das Skript läuft als `is:inline` und kann deshalb nichts importieren. Es
+bekommt seine Daten über `define:vars` aus `serviceLevelMap()` – nur PLZ
+und Status, keine Ortsteile, keine Bezirke. Im heutigen Zustand steht
+dort `{}`, das Client-Bündel bleibt bei 2,2 kB.
+
+**Der Status wird mitgesendet** – verstecktes Feld `gebiet`, vom Skript
+gesetzt. Übertragen wird der **Schlüssel** (`regulaer` / `nach-pruefung` /
+`nicht-bedient`), nicht der Anzeigetext: So bleibt die Leitung stabil,
+wenn eine der beiden Seiten ihre Formulierung ändert. Alle fünf Schichten
+sind gepflegt:
+
+| Schicht | Was dort steht |
+|---|---|
+| `AufwandCheck.astro` | verstecktes Feld, `plzShort` für die Zwischenzusammenfassung, `sessionStorage` |
+| `anfrage-erhalten.astro` | Beschriftung „Einsatzgebiet" |
+| `public/api/anfrage.php` | `$gebietsLabels`, Mailzeile, JSON-Ablage über `$fields` |
+| `datenschutz.astro` § 4 | Absatz zur abgeleiteten Gebietsangabe |
+
+Das PHP prüft den Wert **gegen eine feste Liste** und verwirft alles
+andere. Das widerspricht nicht der Regel bei den Zusatzleistungen: Die
+sind eine wachsende Auswahl, die am Server nicht scheitern soll; das
+Einsatzgebiet ist ein abgeleiteter Status mit genau drei möglichen
+Werten. Ein leerer Wert ist gültig – ohne JavaScript, bei unbekannter PLZ
+oder solange keine Daten gepflegt sind. Die Anfrage geht trotzdem durch.
+
+**✅ Erledigt am 24.09.2026 — Prüfung angeschlossen.**
+`scripts/content-audit.mjs` ruft `validateServiceAreas()` auf und prüft
+damit bei jedem Build Dubletten, ungültige PLZ, unbekannte Slugs,
+`primaryDistrict` außerhalb der eigenen Liste, Ort gegen Nummernbereich
+und fehlende Gebiete. Fehler blockieren, Warnungen erscheinen als
+Hinweise. Übergeben werden **alle** Bezirks- und Ortsslugs, nicht nur die
+veröffentlichten: Eine PLZ darf auf einen Ortsentwurf zeigen.
+
+Der dritte, optionale Parameter von `validateServiceAreas()` existiert
+ausschließlich für die Selbstprüfung – im Audit bleibt er weg, dann
+gelten die Modulwerte. Die Prüfung selbst ist durch
+`npm run audit:plz:selftest` abgesichert (13 Gegenbeispiele plus
+Gegenprobe, `scripts/service-areas-selftest.mjs`).
+
+`getServiceLevel()` antwortet 'unbekannt', solange keine Daten vorliegen.
+Dieser Fall muss behandelt werden und darf **nicht** auf 'nicht-bedient'
+abgebildet werden: Eine Anfrage abzuweisen, weil eine Tabelle unvollständig
+ist, wäre schlechter als gar keine Prüfung.
 
 **Keine eigene Seite je PLZ.** Postleitzahlen dienen der
 Verfügbarkeitsprüfung, nicht der Seitenerzeugung.
@@ -212,7 +358,14 @@ eine.
 
 Diese brauchen eine Antwort vom Betreiber, nicht Recherche:
 
-- Empfängt `hello@schnellhelfer24.de` tatsächlich? (Testmail)
+- **Postfach für den Versand anlegen** (seit 24.09.2026 der wichtigste
+  offene Punkt). Ein eigenes Postfach, etwa `website@schnellhelfer24.de`,
+  nicht das Arbeitspostfach – dann lässt sich das Passwort wechseln, ohne
+  dass jemand seinen Zugang verliert. Zugangsdaten in `config.local.php`,
+  Rechte 600. Ohne diesen Schritt läuft der Versand weiter über `mail()`,
+  und das ist die Ursache dafür, dass bisher keine Mail ankam.
+- Empfängt `hello@schnellhelfer24.de` tatsächlich? (Testmail – erst
+  aussagekräftig, wenn der SMTP-Block steht)
 - AV-Vertrag mit Hostinger nach Art. 28 DSGVO abgeschlossen?
 - Logfile-Speicherdauer beim Hoster, E-Mail-Anbieter für Anfragen
 - USt-IdNr., Steuernummer oder Kleinunternehmerregelung nach § 19 UStG
@@ -226,7 +379,51 @@ Diese brauchen eine Antwort vom Betreiber, nicht Recherche:
 ## Testanfrage vor dem Livegang
 
 `public/api/anfrage.php` wurde um `umfang`, `flaeche`, `anlass` und
-`zusatzleistungen[]` erweitert, konnte hier aber nicht ausgeführt werden
-(kein PHP auf dem Entwicklungsrechner). Auf dem Server eine echte Anfrage
-senden und prüfen, ob alle vier Angaben in der Mail und in der JSON-Ablage
-unter `api/_storage/anfragen/` ankommen und ob der Betreff den Umfang enthält.
+`zusatzleistungen[]` erweitert, am 24.09.2026 zusätzlich um `gebiet` und
+den SMTP-Versand.
+
+**Seit 24.09.2026 ist PHP auf dem Entwicklungsrechner installiert**
+(PHP 8.3, `winget install --id PHP.PHP.8.3`). Die frühere Aussage „kein
+PHP auf dem Entwicklungsrechner" gilt nicht mehr. Lokal prüfbar sind
+damit **Syntax** (`php -l`) und das **SMTP-Gespräch**
+(`npm run audit:mail:selftest`).
+
+Weiterhin **nicht** lokal prüfbar und nur auf dem Server zu belegen:
+tatsächliche Mailzustellung, Datei-Uploads, `.htaccess`-Verhalten,
+Rate Limiting unter echten Bedingungen.
+
+Auf dem Server eine echte Anfrage senden und prüfen, ob alle Angaben in
+der Mail und in der JSON-Ablage unter `api/_storage/anfragen/` ankommen
+und ob der Betreff den Umfang enthält.
+
+**Zum Versandweg (der Grund, warum bisher keine Mail ankam):**
+
+1. Mail angekommen? Auch den Spam-Ordner ansehen.
+2. Neueste JSON-Datei öffnen: `mailWeg` muss `smtp` sein. Steht dort
+   `mail()`, greift der SMTP-Block in `config.local.php` nicht.
+   `mailVersand` muss `ok` sein; `mailFehler` nennt sonst den
+   gescheiterten Schritt.
+3. Im Kopf der angekommenen Mail `spf=pass` und `dkim=pass` prüfen. Das
+   ist der eigentliche Beweis – eine angekommene Mail allein kann Glück sein.
+4. Rückfallebene: `smtpHost` testweise leeren, Anfrage senden. `mailWeg`
+   muss wieder `mail()` sein und die Anfrage trotzdem durchgehen.
+
+**Wenn weiterhin keine Mail ankommt, grenzt die JSON-Ablage ein:**
+
+| Befund | Bedeutung |
+|---|---|
+| keine Datei | Anfrage erreicht PHP nicht – Routing, 403 oder Deployment |
+| `mailWeg: mail()` | `config.local.php` greift nicht oder der SMTP-Block fehlt |
+| `mailVersand: fehlgeschlagen` + `mailFehler` | SMTP-Problem, der Text nennt den Schritt |
+| `mailVersand: ok`, Mail fehlt | Zustellung/Spamfilter – SPF und DKIM prüfen |
+| `mailHinweis` vorhanden | `from` wich von `smtpUser` ab und wurde korrigiert |
+
+**Zusätzlich für `gebiet` (erst sinnvoll, wenn PLZ-Daten gepflegt sind):**
+
+1. Mit einer erfassten PLZ absenden – die Mailzeile „Einsatzgebiet:" muss
+   den ausgeschriebenen Text zeigen, die JSON-Ablage den Schlüssel.
+2. Mit einer unbekannten PLZ absenden – es muss „(nicht ermittelt)"
+   dastehen und die Anfrage trotzdem durchgehen.
+3. **Adversativ:** mit abgeschaltetem JavaScript oder manipuliertem Feld
+   (`gebiet=<beliebiger Text>`) absenden. Erwartet wird „(nicht
+   ermittelt)"; es darf kein fremder Text in der Mail landen.

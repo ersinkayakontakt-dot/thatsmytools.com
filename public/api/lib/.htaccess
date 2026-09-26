@@ -1,0 +1,18 @@
+# Vollständige Sperre für den Programmcode.
+#
+# Hier liegen nur Funktionsdefinitionen, die anfrage.php einbindet.
+# Direkt aufgerufen würden sie nichts tun – aber es gibt keinen Grund,
+# sie von außen erreichbar zu machen. Gleiche Sperre wie für _storage/.
+#
+# Bei nginx muss dasselbe in der Serverkonfiguration abgebildet werden,
+# siehe docs/ARCHITEKTUR.md.
+
+Options -Indexes
+
+<IfModule mod_authz_core.c>
+  Require all denied
+</IfModule>
+<IfModule !mod_authz_core.c>
+  Order allow,deny
+  Deny from all
+</IfModule>
