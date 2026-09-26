@@ -125,6 +125,7 @@ zwischen Seiten sind dadurch ausgeschlossen.
 
 | Datei | Inhalt |
 |---|---|
+| `CLAUDE.md` | **Betriebsanleitung.** Die drei tragenden Regeln, das Pflicht-Gate, die Cross-Layer-Karte, Deployment-Werte, bekannte Fallen. Zuerst lesen. |
 | `CONTENT-TODO.md` | Alle noch fehlenden echten Angaben, nach Dringlichkeit sortiert |
 | `SEO-LAUNCH-CHECKLIST.md` | Schritt für Schritt zum Livegang, plus Contentplan für 90 Tage |
 | `docs/ENTITY-UND-RANKING.md` | Warum „Schnellhelfer24" noch nicht gefunden wird, und in welcher Reihenfolge das behoben wird |

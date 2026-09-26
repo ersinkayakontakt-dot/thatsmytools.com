@@ -79,6 +79,11 @@ belastbaren Preisdaten vorliegen.
 
 ## Zuerst lesen
 
+0. **`CLAUDE.md`** – seit 26.09.2026 die Betriebsanleitung des Projekts:
+   die drei tragenden Regeln, das vollständige Pflicht-Gate, die
+   Cross-Layer-Karte, die geprüften Deployment-Werte und die Fallen, die
+   schon einmal Zeit gekostet haben. Die Regeln unten in dieser Datei
+   bleiben gültig; `CLAUDE.md` ordnet sie und ergänzt, was dort fehlte.
 1. `CONTENT-TODO.md` § 0 – was beim Umbau auf Komplettaufträge schon
    umgesetzt ist und was offen blieb.
 2. `SEO-LAUNCH-CHECKLIST.md` – Kopfabschnitt „Was in KI-Antworten wirklich
