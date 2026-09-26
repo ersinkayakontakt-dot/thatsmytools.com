@@ -40,7 +40,17 @@ export const services: Service[] = [
       'Besenreine Übergabe, wenn vereinbart',
     ],
     notIncluded: [
-      'Renovierungsarbeiten wie Malern, Tapetenabriss oder Bodenaufnahme (auf Anfrage möglich)',
+      /*
+     * HANDWERKSRECHT, 26.09.2026: Die Klammer hieß hier "(auf Anfrage
+     * möglich)". Das war kein Ausschluss mehr, sondern ein Angebot für
+     * Malerarbeiten - und Malen ist Anlage A Nr. 10. Nach Auslegung der
+     * Handwerkskammern genügt bereits das Anbieten und Bewerben; ein
+     * ausgeführter Auftrag ist nicht nötig.
+     * Angeglichen an die Formulierung, die bei der Wohnungsauflösung
+     * ohnehin schon steht. Siehe docs/HANDWERKSRECHT.md.
+     * NICHT auf Eigenleistung umstellen, solange keine Eintragung besteht.
+     */
+    'Renovierungsarbeiten wie Tapetenabriss oder Bodenaufnahme (auf Anfrage über Partnerbetriebe)',
       'Entsorgung von Sondermüll, für den ein eigener Nachweis nötig ist',
       'Grundreinigung im Sinne einer Endreinigung mit Reinigungsmitteln',
     ],

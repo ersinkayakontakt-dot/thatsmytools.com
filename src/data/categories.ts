@@ -71,21 +71,38 @@ export const categories: ServiceCategory[] = [
 
   /* ================================================================== */
   /*
-   * INNENAUSBAU – Entwurf, bewusst leer.
+   * INNENAUSBAU – Entwurf, bewusst leer. Recherchiert am 26.09.2026.
    *
-   * Diese Familie ist angelegt, damit die Struktur steht, aber sie ist
-   * `draft` und hat noch keine Leistungen. Zwei Dinge fehlen, und beide
-   * kann kein Code beantworten:
+   * RECHTLICHER RAHMEN, belegt in docs/HANDWERKSRECHT.md:
+   * Ohne Eintragung in die Handwerksrolle zulässig sind Trockenbau
+   * (Grenze: kein Putz), Bodenlegen einschließlich Laminat und Vinyl
+   * (Anlage B2 Nr. 3, Verzeichniseintragung nötig), Montage genormter
+   * Bauteile (B2 Nr. 24) und einfache Tätigkeiten nach § 1 Abs. 2 S. 2
+   * HwO. NICHT zulässig sind Malern, Fliesen, Parkett, Estrich,
+   * Tischlerarbeiten, Stuckateur, Raumausstatter und Rollläden.
    *
-   *   1. WELCHE GEWERKE das Unternehmen anbieten darf. Mehrere der in
-   *      Frage kommenden Arbeiten sind nach Anlage A der Handwerksordnung
-   *      zulassungspflichtig – unter anderem Maler-, Fliesenleger- und
-   *      Parkettlegerarbeiten. Werden sie über eingetragene
-   *      Nachunternehmer erbracht, muss das die Seite auch sagen dürfen.
-   *      Stand 26.09.2026 ungeprüft, siehe CONTENT-TODO.md.
-   *   2. OB die Familie eine eigene Hub-Seite verdient. Das entscheidet
-   *      sich an der Suchintention, nicht am Wunsch. Erst nach der
-   *      Marktrecherche.
+   * Der Betreiber hat am 26.09.2026 EIGENAUSFÜHRUNG ohne Nachunternehmer
+   * festgelegt. Das schließt die Anlage-A-Gewerke aus, solange keine
+   * Eintragung besteht – Koordination wäre frei gewesen, Eigenausführung
+   * ist es nicht.
+   *
+   * ACHTUNG, DIE FALLE LIEGT IN DER BÜNDELUNG: § 1 Abs. 2 S. 3 HwO lässt
+   * mehrere einfache Tätigkeiten nur zu, solange die Gesamtbetrachtung
+   * sie nicht einem zulassungspflichtigen Handwerk zuordnet. Jede
+   * Einzelleistung kann erlaubt sein und eine Seite, die sie zu
+   * „Komplettrenovierung" bündelt, trotzdem unzulässig. Das Bündeln
+   * passiert genau hier, in der Kategorie-Ebene.
+   *
+   * OFFEN:
+   *   1. Schriftliche Auskunft der HWK Berlin zum konkreten Zuschnitt.
+   *      Vier ungeklärte Punkte, Fragenliste in docs/HANDWERKSRECHT.md.
+   *   2. Ob die Familie eine Hub-Seite verdient. Die Recherche sagt für
+   *      Stufe 1 NEIN: „innenausbau berlin" gehört dem Objektgeschäft,
+   *      nicht dem Wohnungsmarkt. Wiedervorlage erst bei drei
+   *      veröffentlichten Leistungen plus Nachfragebeleg.
+   *   3. Der Name. Empfohlen ist `herrichten` statt `innenausbau` –
+   *      passt zur Verb-Systematik der anderen Familien und behauptet
+   *      kein Gewerk.
    *
    * Solange `services` leer ist, erscheint die Familie nirgends – weder
    * auf /leistungen/ noch in der Navigation. Der Publish Guard verhindert
