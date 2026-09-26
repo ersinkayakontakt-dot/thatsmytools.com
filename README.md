@@ -3,7 +3,7 @@
 Website für Schnellhelfer24: Entrümpelung, Auflösung und Umzug in Berlin und
 im Berliner Umland.
 
-Astro 5, TypeScript, statisch ausgeliefert. Eine einzige Abhängigkeit. Kein
+Astro 7, TypeScript, statisch ausgeliefert. Eine einzige Laufzeitabhängigkeit. Kein
 Framework im Browser, keine externen Schriften, keine Drittanbieter-Skripte.
 
 ---
@@ -34,6 +34,8 @@ Produktionsausgabe erscheinen sie nicht.
 | `src/data/reviews.ts` | Bewertungen (leer, bis echte vorliegen) |
 | `src/data/costs.ts` | Preisdaten (inaktiv, bis echte vorliegen) |
 | `src/data/serviceAreas.ts` | Einsatzgebiete nach PLZ (inaktiv, bis amtliche Daten und Gebietsentscheidung vorliegen) |
+| `src/data/seo-pages.ts` | Zentrale Seitenkarte für Metadaten, Indexierung und SEO-Prüfungen |
+| `src/data/images.ts` | Zentrale Zuordnung der dokumentierten Inhaltsbilder |
 | `src/lib/publishGuard.ts` | Entscheidet, welche Seite indexiert werden darf |
 | `public/api/anfrage.php` | Endpunkt für das Anfrageformular |
 
@@ -63,11 +65,15 @@ node scripts/make-images.mjs   # erzeugt og-default.png, apple-touch-icon.png un
 Aktualisierung der Live-Website (Windows, PowerShell):
 
 ```powershell
-.\scripts\deploy.ps1 -Server ftp.schnellhelfer24.de -Benutzer BENUTZER -Zielverzeichnis /public_html -Probelauf
+.\scripts\deploy.ps1 -Server srv2025.hstgr.io -Benutzer u906625645.schnellhelfer24 -Zielverzeichnis /
 ```
 
-Ohne `-Probelauf` wird tatsächlich übertragen. Ausführlich in
-`docs/HOSTINGER-AKTUALISIEREN.md`.
+Diese Werte sind geprüft. **Nicht** `ftp.schnellhelfer24.de` verwenden – dessen
+FTPS-Zertifikat lautet auf `*.hstgr.io` und die Verbindung wird abgelehnt. Und
+`-Zielverzeichnis /`, weil der Zugang bereits in `public_html` startet.
+
+Mit `-Probelauf` wird nichts übertragen, nur angezeigt. Begründung aller Werte
+und die bekannten Fallen in `docs/HOSTINGER-AKTUALISIEREN.md`.
 
 ---
 

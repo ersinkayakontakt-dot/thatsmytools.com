@@ -4,9 +4,10 @@ Betriebsanleitung für dieses Projekt. Gilt zusätzlich zu den globalen Regeln
 in `~/.claude/CLAUDE.md`, nicht statt ihrer. Wo beide etwas sagen, gewinnt
 die globale Datei.
 
-**Stack:** Astro 5 (`^5.6.1`), TypeScript, PHP 8 für zwei Endpunkte.
-Statisch ausgeliefert bei Hostinger. Node `>=22.18.0` ist Pflicht – die
-Prüfskripte importieren TypeScript direkt, ohne Buildschritt.
+**Stack:** Astro 7 (`^7.3.5`, seit 26.09.2026 – davor 5.6.1), TypeScript,
+PHP 8 für zwei Endpunkte. Statisch ausgeliefert bei Hostinger. Node
+`>=22.18.0` ist Pflicht – die Prüfskripte importieren TypeScript direkt,
+ohne Buildschritt.
 
 Für diesen Stack gibt es **kein Canon** in `~/.claude/`. Die dort liegenden
 `REACT_FIREBASE_*.md` gehören zu einem anderen Projekt und gelten hier

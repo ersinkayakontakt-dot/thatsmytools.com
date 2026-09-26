@@ -18,12 +18,6 @@ public/api/_storage/*
 public/api/config.local.php
 
 # Such- und Betriebsdaten (Search Console, Bing, Serverlogs).
-# Betriebsdaten gehoeren nicht ins Repository.
-#
-# ACHTUNG, am 24.09.2026 korrigiert: Das Muster stand hier ohne fuehrenden
-# Schraegstrich als "data/" und trifft in dieser Form JEDE Ebene - also auch
-# src/data/. Dadurch waren src/data/seo-pages.ts, src/data/images.ts und
-# src/data/serviceAreas.ts nie im Repository. Ein frischer Klon liess sich
-# damit nicht bauen: npm run seo:metadata bricht ohne seo-pages.ts ab.
-# Der fuehrende Schraegstrich bindet das Muster an das Wurzelverzeichnis.
+# Nur das Datenverzeichnis im Projektstamm ignorieren. `src/data/` enthält
+# dagegen versionierte Inhalts- und SEO-Daten und darf nie erfasst werden.
 /data/
