@@ -34,6 +34,53 @@ Beide Wege unten schließen diese Pfade ausdrücklich aus.
 Voraussetzung: Node.js ist installiert, das Repository liegt lokal.
 Zusätzliche Software wird **nicht** gebraucht, kein FileZilla, kein WinSCP.
 
+### Die geprüften Werte für schnellhelfer24.de (Stand 26.09.2026)
+
+```powershell
+.\scripts\deploy.ps1 -Server srv2025.hstgr.io -Benutzer u906625645.schnellhelfer24 -Zielverzeichnis /
+```
+
+Drei Fallen stecken in dieser Zeile. Jede hat beim ersten Anlauf zugeschlagen:
+
+**1. Nicht `ftp.schnellhelfer24.de` als Server.** Der Name zeigt zwar auf
+einen Hostinger-Rechner, aber dessen FTPS-Zertifikat ist auf `*.hstgr.io`
+ausgestellt. Windows lehnt die Verbindung deshalb ab:
+„Das Remotezertifikat ist laut Validierungsverfahren ungültig."
+Das Zertifikat ist in Ordnung – nur der Name passt nicht dazu.
+
+Den richtigen Namen findet man notfalls im Kopf einer Mail, die der Server
+verschickt hat: Dort steht `Received: from srvNNNN.main-hosting.eu`. Der
+gleichnamige `hstgr.io`-Eintrag zeigt auf denselben Rechner und passt zum
+Zertifikat. Hier: `srv2025.hstgr.io` → `92.113.22.154`.
+
+**Niemals** die Zertifikatsprüfung abschalten, um das zu umgehen. Über diese
+Verbindung geht das FTP-Passwort.
+
+**2. `-Zielverzeichnis /`, nicht `/public_html`.** Der domainspezifische
+FTP-Zugang startet bereits in `public_html`. Mit `/public_html` landeten die
+Dateien in `public_html/public_html`. Im Zweifel vorher auflisten lassen –
+sind `index.html` und `api` direkt sichtbar, ist `/` richtig.
+
+**3. Der Benutzername ist nicht der aus der Doku.** Er steht im hPanel unter
+Dateien → FTP-Konten und sieht bei jedem Konto anders aus.
+
+### Wenn einzelne Dateien mit „450" scheitern
+
+Hostinger begrenzt gleichzeitige FTP-Verbindungen, und das Skript baut je
+Datei eine neue auf. Bei über 200 Dateien läuft man in dieses Limit; der
+Server meldet dann „450 Datei nicht verfügbar", obwohl mit der Datei nichts
+ist. Am 26.09.2026 traf das 61 von 229 Dateien – einen zusammenhängenden
+Block Bilder.
+
+Das Skript versucht seither **jede Datei bis zu dreimal** mit 1 und 3
+Sekunden Pause. Damit lief derselbe Stand im zweiten Anlauf vollständig
+durch. Bleiben trotzdem Dateien übrig, hilft ein erneuter Aufruf – das
+Skript überschreibt und löscht nichts.
+
+Ein Abbruch mitten in der Übertragung macht die Website nicht kaputt: Die
+alten Dateien bleiben liegen, und alte HTML-Seiten verweisen auf alte
+Bildnamen, die weiterhin vorhanden sind.
+
 ### Einmalig: FTP-Zugang im hPanel holen
 
 1. hPanel öffnen → **Dateien** → **FTP-Konten**

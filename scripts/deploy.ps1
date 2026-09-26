@@ -153,7 +153,17 @@ function Neue-Anfrage {
     return $anfrage
 }
 
-$Basis = "ftp://$Server" + '/' + $Zielverzeichnis.Trim('/')
+# Zielverzeichnis kann leer sein. Das ist der Normalfall, wenn der
+# FTP-Zugang bereits in public_html startet - Hostinger legt das je
+# Domain so an. Ohne diese Fallunterscheidung entstuende "ftp://host//datei"
+# mit doppeltem Schraegstrich, und der Pfad waere je nach Server
+# absolut statt relativ zum Anmeldeverzeichnis.
+$ZielRelativ = $Zielverzeichnis.Trim('/')
+if ($ZielRelativ -ne '') {
+    $Basis = "ftp://$Server/$ZielRelativ"
+} else {
+    $Basis = "ftp://$Server"
+}
 $AngelegteOrdner = New-Object 'System.Collections.Generic.HashSet[string]'
 
 function Stelle-OrdnerSicher {
@@ -195,21 +205,52 @@ foreach ($datei in $Dateien) {
         -Status ("{0} von {1}: {2}" -f $nummer, $Dateien.Count, $datei.Relativ) `
         -PercentComplete (($nummer / $Dateien.Count) * 100)
 
-    try {
-        $anfrage = Neue-Anfrage "$Basis/$($datei.Relativ)" ([System.Net.WebRequestMethods+Ftp]::UploadFile)
-        $inhalt = [System.IO.File]::ReadAllBytes($datei.Voll)
-        $anfrage.ContentLength = $inhalt.Length
+    <#
+        Bis zu drei Versuche je Datei.
 
-        $strom = $anfrage.GetRequestStream()
-        $strom.Write($inhalt, 0, $inhalt.Length)
-        $strom.Close()
+        Hostinger begrenzt die Zahl der FTP-Verbindungen. Da fuer jede
+        Datei eine neue aufgebaut wird, laeuft man bei einigen hundert
+        Dateien in dieses Limit - der Server antwortet dann mit
+        "450 Datei nicht verfuegbar", obwohl mit der Datei nichts ist.
+        Am 26.09.2026 sind so 61 von 229 Dateien gescheitert, allesamt
+        Bilder am Stueck. Eine kurze Pause und ein zweiter Anlauf
+        genuegen in diesen Faellen.
+    #>
+    $versuche = 0
+    $geschafft = $false
+    $letzterFehler = ''
 
-        $antwort = $anfrage.GetResponse()
-        $antwort.Close()
+    while (-not $geschafft -and $versuche -lt 3) {
+        $versuche++
+        try {
+            $anfrage = Neue-Anfrage "$Basis/$($datei.Relativ)" ([System.Net.WebRequestMethods+Ftp]::UploadFile)
+            $inhalt = [System.IO.File]::ReadAllBytes($datei.Voll)
+            $anfrage.ContentLength = $inhalt.Length
+
+            $strom = $anfrage.GetRequestStream()
+            $strom.Write($inhalt, 0, $inhalt.Length)
+            $strom.Close()
+
+            $antwort = $anfrage.GetResponse()
+            $antwort.Close()
+            $geschafft = $true
+        }
+        catch {
+            $letzterFehler = $_.Exception.Message
+            if ($versuche -lt 3) {
+                # Wartezeit steigt: 1 s, dann 3 s. Das gibt dem Server
+                # Zeit, belegte Verbindungen freizugeben.
+                Start-Sleep -Seconds ($versuche * 2 - 1)
+            }
+        }
     }
-    catch {
-        $fehler += [pscustomobject]@{ Datei = $datei.Relativ; Meldung = $_.Exception.Message }
-        Write-Host ("  FEHLER bei {0}: {1}" -f $datei.Relativ, $_.Exception.Message) -ForegroundColor Red
+
+    if (-not $geschafft) {
+        $fehler += [pscustomobject]@{ Datei = $datei.Relativ; Meldung = $letzterFehler }
+        Write-Host ("  FEHLER bei {0} (nach {1} Versuchen): {2}" -f $datei.Relativ, $versuche, $letzterFehler) -ForegroundColor Red
+    }
+    elseif ($versuche -gt 1) {
+        Write-Host ("  {0}: erst im {1}. Versuch uebertragen" -f $datei.Relativ, $versuche) -ForegroundColor DarkYellow
     }
 }
 
