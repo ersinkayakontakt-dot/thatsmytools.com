@@ -266,8 +266,9 @@ Ohne Telefonnummer fehlt der zweitwichtigste Conversion-Weg der ganzen Seite.
 - `register.vatId` **oder** `register.taxNumber`. Bei Kleinunternehmerregelung
   nach § 19 UStG stattdessen einen entsprechenden Hinweis
 - ~~`register.court` / `register.number`~~ – entfällt, da Einzelunternehmen.
-  Der Abschnitt rendert im Build aber weiterhin seinen Platzhaltertext und
-  muss aus der Impressum-Vorlage entfernt werden
+  ✅ Die Impressum-Vorlage blendet den Abschnitt ohne echte Werte aus
+  (geprüft 26.09.2026: `dist/impressum/` enthält weder „Registereintrag"
+  noch „Registergericht")
 - `register.supervisoryAuthority`: **prüfen.** Güterkraftverkehr mit Fahrzeugen
   über 3,5 t zulässigem Gesamtgewicht ist nach § 3 GüKG erlaubnispflichtig.
   Falls einschlägig, gehört die Erlaubnis ins Impressum.

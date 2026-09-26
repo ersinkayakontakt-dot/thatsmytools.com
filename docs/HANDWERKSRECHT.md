@@ -158,10 +158,21 @@ Diese fünf Punkte sind die konkrete Fragenliste für die HWK Berlin.
    das Projekt macht das bei Leistungen ohnehin schon (`notIncluded`).
 4. **Bestehende Seiten vor jedem Ausbau prüfen.**
 
-### Prüfung des Bestands am 26.09.2026 — Entwarnung
+### Prüfung des Bestands am 26.09.2026 — erste Fassung war falsch
 
-Alle 50 gebauten Seiten wurden auf Anlage-A-Gewerksbegriffe durchsucht.
-**Kein einziger Treffer ist ein Leistungsversprechen:**
+> **Korrektur.** Die erste Prüfung meldete „Entwarnung" und hat eine
+> Fundstelle übersehen: `src/data/services.ts:43`, live auf
+> `/leistungen/entruempelung-berlin/`, bot „Renovierungsarbeiten wie
+> Malern, Tapetenabriss oder Bodenaufnahme (**auf Anfrage möglich**)" an.
+> Gesucht war nach „Malerarbeit", nicht nach „Malern" – der Treffer lag
+> außerhalb des angesehenen Ausschnitts. Behoben in `d4d8d57`
+> („auf Anfrage über Partnerbetriebe", ohne „Malern").
+>
+> **Lehre:** nach Wortstämmen suchen, nicht nach ganzen Wörtern, und
+> jeden Treffer im vollen Satz lesen. Die Nachprüfung unten tut das.
+
+Ursprünglicher Befund (unvollständig) – alle 50 gebauten Seiten auf
+Anlage-A-Gewerksbegriffe durchsucht:
 
 - „Malerarbeiten" steht in einer Mietrechts-FAQ, ausdrücklich gefolgt von
   *„Wir übernehmen die Räumung, die rechtliche Einordnung können wir nicht
@@ -183,6 +194,30 @@ Betreiberaussage vom 26.09.2026, es werde alles selbst ausgeführt.
 **Wird auf Eigenleistung umgestellt, wird diese Zeile unwahr — und das
 Risiko entsteht.** Die Zeile darf nicht geändert werden, bevor die
 Eintragungsfrage geklärt ist.
+
+### Nachprüfung am 26.09.2026 nach Wortstämmen (Quellstand `d4d8d57`)
+
+Gebauter Text aller HTML-Seiten in `dist/` (ohne Skripte, Stile, Markup),
+durchsucht nach den Stämmen `maler`, `streich`, `lackier`, `lasier`,
+`tapez`, `fliese`, `parkett`, `estrich`, `putz`, `spachtel`, `tischler`,
+`schreiner`, `rollläd`, `jalousie`, `polster`, `teppich`, `renovier`,
+`sanier`, `schönheitsrep`, `aus einer hand`, `bodenaufnahme`,
+`bodenbel`, `elektr`, `sanitär`, `installat`, `stuck`, `trockenbau`,
+`laminat`, `herricht`, `instand`. Jeder Treffer im Satzzusammenhang
+gelesen.
+
+**Ergebnis: kein weiteres Leistungsversprechen für ein Anlage-A-Gewerk.**
+
+| Treffergruppe | Einordnung |
+|---|---|
+| „Malern" | kommt nicht mehr vor. Übrige „maler"-Treffer sind „Malerarbeiten" in den Mietrechts-FAQs oder „normaler" |
+| „Streichen, Tapezieren" (`wohnungsaufloesung-berlin`) | nur in `notIncluded` bzw. der Übergabetabelle, jeweils „über Partnerbetriebe, nicht in Eigenleistung" – siehe oben |
+| „Teppichboden aufnehmen", „Bodenbeläge", „Bodenaufnahme" | Entfernen und Entsorgen, nicht Verlegen – Rückbau, kein Anlage-A-Gewerk |
+| „Bohrlöcher zugespachtelt" (`wohnungsaufloesung-berlin`, Übergabetabelle) | kleine Löcher spachteln = A4, zulässig **als Nebenleistung**. Steht dort als „nach Absprache als eigene Position" – Grenzfall der Formulierung, gehört mit auf die Fragenliste für die HWK |
+| „Komplettservice aus einer Hand" (Startseite, `/leistungen/`) | bezieht sich auf Räumung, Transport und Entsorgung – nicht auf Renovierung. Wird eine Innenausbau-Familie ergänzt, muss dieser Satz erneut geprüft werden (Bündelungsfalle) |
+| „Renovierung", „Sanierung" | Anlass (Formular, Auslagerung während einer Renovierung), Abfallart (`bau-renovierungsabfaelle`, Entwurf/noindex) oder ausdrücklicher Ausschluss (`haushaltsaufloesung`, `messiwohnung`) |
+| „Elektro-/Sanitärinstallationen" | ausschließlich als ausgeschlossene Leistung (`bueroaufloesung`, `demontage-rueckbau`) |
+| „Fliesen", „Parkett", „Stuck", „Laminat" | Entsorgungs-, Mietrechts- oder Gebäudebeschreibung, kein Angebot |
 
 ---
 
