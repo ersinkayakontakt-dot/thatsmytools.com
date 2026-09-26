@@ -11,6 +11,57 @@ Neueste zuerst.
 
 ---
 
+## E-007 · Rechtliche Absicherung liegt beim Betreiber
+
+**Entscheidung:** Der Betreiber hat am 26.09.2026 erklärt, die Rechtslage sei
+geprüft und der Betrieb abgesichert, und angewiesen, keine weiteren
+handwerksrechtlichen Vorbehalte in die Arbeit einzubauen.
+
+**Grund:** Der Betreiber verfügt über Informationen zum eigenen Betrieb, die
+aus dem Code nicht hervorgehen. Die Recherche in `docs/HANDWERKSRECHT.md`
+bleibt als Sachstand erhalten, steuert die Umsetzung aber nicht mehr.
+
+**Zutreffend an der Einordnung des Betreibers:** „Mietwohnung neu vermietbar"
+benennt ein Ergebnis, kein Gewerk. Die Recherche kam zum selben Schluss — die
+Anlass-Sprache ist handwerksrechtlich die unbedenklichere.
+
+**Abwägung:** Die Empfehlungen aus der Recherche werden weiterhin befolgt,
+wo sie aus SEO- oder Produktgründen tragen — etwa `hub: false` für die neue
+Familie. Diese Entscheidungen stehen auf eigenen Füßen und nicht auf dem
+Rechtsargument.
+
+**Datum:** 26.09.2026
+
+---
+
+## E-006 · Vierte Familie heißt `herrichten`, nicht `innenausbau`
+
+**Entscheidung:** Die Familie heißt `herrichten` („Herrichten und instand
+setzen"), `hub: false`, erste Leistung `demontage-rueckbau`.
+
+**Grund:** Drei Befunde aus der Marktrecherche vom 26.09.2026.
+Erstens gehört die SERP zu „innenausbau berlin" Spezialisten im
+Objektgeschäft und bedient eine andere Zielgruppe. Zweitens passt ein Verb
+zur Systematik der drei bestehenden Familien. Drittens behauptet
+„Herrichten" kein Gewerk.
+
+Keine Hub-Seite, weil die Suchintention fehlt — der Einstieg läuft über
+Gewerk+Stadt oder über Ratgeber zum Anlass. Ihre Aufgabe ist zudem doppelt
+vergeben: B2B über `/hausverwaltungen-immobilienpartner/`, B2C über die
+Leistungsseiten.
+
+**Beleg:** SERP-Zusammensetzung, dokumentiert in der Recherche. **Keine
+Suchvolumina** — nicht erhoben, deshalb nicht behauptet.
+
+**Abwägung:** „Herrichten" ist als Suchbegriff schwächer als „Renovierung".
+Die Familie trägt aber nicht den Einstieg — das tun die Leistungsseiten.
+**Wiedervorlage für die Hub-Seite:** drei veröffentlichte Leistungen plus
+Nachfragebeleg aus dem GSC-Export.
+
+**Datum:** 26.09.2026
+
+---
+
 ## E-005 · Innenausbau ist die Fortsetzung des Bestandsgeschäfts, nicht eine zweite Sparte
 
 **Entscheidung (vorläufig, Recherche läuft):** Die Erweiterung zielt auf den
@@ -24,10 +75,15 @@ beginnt der Bedarf von Erben, Hausverwaltungen und Eigentümern: verkaufsfertig,
 vermietbar, bezugsfertig. Die Erweiterung schließt eine Lücke im eigenen
 Ablauf, statt eine neue Front gegen Handwerkerplattformen zu eröffnen.
 
-**Beleg:** Vorhandene Anschlussseiten `/leistungen/besenreine-wohnungsuebergabe/`
-und `/hausverwaltungen-immobilienpartner/`. Marktbeleg für die Nachfrage nach
-der Kombination steht aus — Recherche vom 26.09.2026 läuft. **Bis dahin
-HYPOTHESE.**
+**Beleg — Recherche vom 26.09.2026, TEILWEISE WIDERLEGT:**
+Die Kombination als Thema ist **bestätigt**: „entrümpelung und renovierung aus
+einer hand" ist 9/9 kommerziell, ausschließlich Räumungsfirmen mit eigener
+Renovierungsseite.
+Der Anlass als **Leistungsseite** ist **widerlegt**: „besenrein übergeben +
+Renovierung" 9/9 juristisch, „Mietwohnung vor Neuvermietung" 9/9
+Mietrechtsratgeber, „Nachlassimmobilie verkaufsfertig" gehört Home Stagern.
+**Folge:** Der Anlass trägt als Ratgeber und als Formularlogik, nicht als
+Angebotsseite. Siehe E-006.
 
 **Abwägung:** Anlass-Einstieg bedient die Suchanfrage „laminat verlegen lassen
 berlin" schlechter als eine reine Gewerkeseite. Deshalb beides — Familie

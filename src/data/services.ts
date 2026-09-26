@@ -1289,28 +1289,115 @@ export const services: Service[] = [
   },
   {
     slug: 'demontage-rueckbau',
-    status: 'draft',
-    h1: 'Demontage und Rückbau',
+    status: 'published',
+    h1: 'Demontage und Rückbau in Berlin',
     navLabel: 'Demontage & Rückbau',
-    metaTitle: 'Demontage und Rückbau Berlin',
-    metaDescription: 'Demontage von Einbauten und Rückbau in Berlin.',
+    metaTitle: 'Demontage & Rückbau Berlin: Küche, Einbauten, Böden',
+    metaDescription:
+      'Einbauküche, Einbauschränke, Trennwände und Bodenbeläge zurückbauen in Berlin. Was die Rückbaupflicht verlangt und warum der Termin mit der Räumung günstiger ist.',
     answer:
-      'Wir demontieren Einbauküchen, Einbauschränke, Trennwände und einfache Einbauten und entsorgen das Material getrennt. Statische Eingriffe und Arbeiten an Elektro- und Sanitärinstallationen gehören nicht dazu.',
-    teaser: 'Einbauküchen, Einbauschränke und einfache Einbauten demontieren.',
+      'Wir bauen zurück, was vor der Übergabe raus muss: Einbauküche, Einbauschränke, Trennwände, Regalsysteme, Bodenbeläge und Tapeten. Das Material wird getrennt und entsorgt, Schraub- und Dübellöcher werden verschlossen. Nicht dazu gehören Eingriffe in die Statik sowie Arbeiten an Strom-, Gas- und Wasserleitungen, die über das Abklemmen vorhandener Anschlüsse hinausgehen. Am günstigsten ist der Rückbau im selben Termin wie die Räumung.',
+    teaser: 'Einbauküche, Einbauten, Trennwände und Bodenbeläge zurückbauen und entsorgen.',
     icon: 'tools',
     serviceType: 'Demontage',
-    situations: ['Eine Einbauküche muss raus.', 'Trennwände sollen zurückgebaut werden.'],
-    includes: ['Demontage einfacher Einbauten', 'Abtransport und getrennte Entsorgung'],
+    situations: [
+      'Die Einbauküche muss vor der Übergabe raus.',
+      'Der Vermieter verlangt den Rückbau von Einbauten des Vormieters.',
+      'Ein Ladenlokal oder Büro wird zurückgebaut.',
+      'Alter Teppichboden oder Laminat soll raus.',
+    ],
+    includes: [
+      'Demontage von Einbauküchen einschließlich Arbeitsplatte und Fliesenspiegel',
+      'Rückbau von Einbauschränken, Regalsystemen und Trennwänden',
+      'Aufnehmen von Teppichboden, Laminat und Vinyl samt Sockelleisten',
+      'Tapeten entfernen',
+      'Schraub- und Dübellöcher verschließen',
+      'Abtransport und getrennte Entsorgung mit Nachweis',
+    ],
+    notIncluded: [
+      'Eingriffe in die Statik, also das Entfernen tragender Wände',
+      'Arbeiten an Strom-, Gas- und Wasserleitungen über das Abklemmen vorhandener Anschlüsse hinaus',
+      'Neuverlegen von Böden, Verputzen und Malerarbeiten',
+      'Entsorgung von Asbest, künstlicher Mineralfaser und anderem Gefahrstoff',
+    ],
     blocks: [
       {
-        h: 'Diese Seite ist ein Entwurf',
-        p: ['Vor der Veröffentlichung müssen der genaue Leistungsumfang und die Abgrenzung zum Handwerk geklärt werden.'],
+        h: 'Was beim Auszug tatsächlich zurückgebaut werden muss',
+        p: [
+          'Die Frage entscheidet über einen erheblichen Teil der Kosten, und sie wird oft zu spät gestellt. Grundsätzlich gilt: Was der Mieter selbst eingebaut hat, muss er bei Auszug auch wieder entfernen und den ursprünglichen Zustand herstellen. Was schon bei Einzug da war, bleibt.',
+          'In der Praxis ist das selten eindeutig. Eine Küche, die der Vormieter verkauft hat und die nie in den Mietvertrag aufgenommen wurde, ist ein klassischer Streitfall. Ebenso Trennwände, die vor Jahren mit mündlicher Zustimmung entstanden sind.',
+          'Wir sind kein Rechtsberater und sagen Ihnen nicht, was Sie schulden. Aber wir sehen bei der Besichtigung, was mit welchem Aufwand rückbaubar ist, und halten es schriftlich fest. Das ist in einer Auseinandersetzung mit dem Vermieter oft die nützlichere Information.',
+        ],
+        note: {
+          title: 'Vor dem Auftrag klären',
+          text: 'Prüfen Sie den Mietvertrag und das Übergabeprotokoll vom Einzug, bevor Sie Rückbau beauftragen. Ein Mieterverein beurteilt das kostengünstig. Was Sie nicht zurückbauen müssen, muss auch niemand bezahlen.',
+          tone: 'caution',
+        },
+      },
+      {
+        h: 'Einbauküche ausbauen, ohne Folgeschäden zu erzeugen',
+        p: [
+          'Eine Einbauküche ist der häufigste Rückbau vor einer Übergabe und der, bei dem am meisten schiefgehen kann. Die Anschlüsse für Wasser, Abwasser und Strom bleiben in der Wand, die Geräte müssen fachgerecht getrennt werden, und der Fliesenspiegel sitzt oft so fest verklebt, dass beim Abnehmen der Putz mitkommt.',
+          'Wir klemmen vorhandene Anschlüsse ab und verschließen sie, demontieren Korpusse und Arbeitsplatte zerstörungsfrei, soweit das möglich ist, und nehmen den Fliesenspiegel kontrolliert ab. Elektrogeräte gehen getrennt in die Verwertung, Spanplatte und Metall ebenfalls getrennt.',
+        ],
+        list: [
+          'Geräte abklemmen, ausbauen und getrennt verwerten',
+          'Arbeitsplatte und Korpusse demontieren',
+          'Fliesenspiegel abnehmen, Untergrund so weit wie möglich erhalten',
+          'Anschlüsse verschließen, Wand besenrein hinterlassen',
+        ],
+      },
+      {
+        h: 'Warum der Rückbau in denselben Termin gehört wie die Räumung',
+        p: [
+          'Rückbau und Räumung getrennt zu beauftragen kostet doppelt: zweimal Anfahrt, zweimal Halteverbotszone, zweimal Aufbau der Wege, und das anfallende Material muss zwischengelagert oder zweimal abgefahren werden.',
+          'Wenn ohnehin eine Wohnung oder ein Gewerbeobjekt geräumt wird, ist der Rückbau der Einbauten meist der kleinere Teil des Aufwands. Er verlängert den Termin um Stunden, nicht um Tage. Sagen Sie deshalb bei der Anfrage gleich mit, was raus muss, und schicken Sie Fotos von Küche, Einbauten und Bodenbelag mit.',
+        ],
       },
     ],
-    priceFactors: [{ name: 'Art des Einbaus', effect: 'hoch', why: 'Küche, Trennwand oder Bodenbelag sind sehr unterschiedlich.' }],
-    faq: [],
-    related: ['bueroaufloesung-berlin', 'entruempelung-berlin'],
-    updated: '2026-07-29',
+    priceFactors: [
+      {
+        name: 'Art und Anzahl der Einbauten',
+        effect: 'bestimmend',
+        why: 'Eine Küchenzeile von drei Metern ist ein anderer Aufwand als eine Wohnküche mit Insel, Hochschränken und Fliesenspiegel über zwei Wände.',
+      },
+      {
+        name: 'Befestigung und Untergrund',
+        effect: 'hoch',
+        why: 'Verschraubt und wieder lösbar oder vollflächig verklebt entscheidet darüber, ob demontiert oder abgestemmt werden muss. Bei verklebtem Bodenbelag auf Estrich ist das der größte Einzelposten.',
+      },
+      {
+        name: 'Etage und Trageweg',
+        effect: 'hoch',
+        why: 'Rückbaumaterial ist schwer und sperrig. Arbeitsplatten, Korpusse und Fliesenschutt werden von Hand getragen. Vierter Stock ohne Aufzug schlägt hier stärker durch als beim Räumen.',
+      },
+      {
+        name: 'Menge und Trennbarkeit des Materials',
+        effect: 'mittel bis hoch',
+        why: 'Bauschutt wird nach Gewicht abgerechnet, Holz und Metall nach Volumen. Sauber getrenntes Material ist günstiger zu entsorgen als ein gemischter Container.',
+      },
+    ],
+    faq: [
+      {
+        q: 'Müssen wir die Einbauküche wirklich zurückbauen?',
+        a: 'Das hängt davon ab, wer sie eingebaut hat und was im Mietvertrag und im Übergabeprotokoll steht. Hat der Mieter sie selbst eingebaut, ist er in der Regel zum Rückbau verpflichtet. Gehörte sie schon zur Wohnung, nicht. Bei Küchen, die vom Vormieter übernommen und nie schriftlich geregelt wurden, ist die Lage oft strittig. Klären Sie das, bevor Sie uns beauftragen.',
+      },
+      {
+        q: 'Können Sie Rückbau und Räumung in einem Termin erledigen?',
+        a: 'Ja, und das ist fast immer die günstigere Variante. Anfahrt, Halteverbotszone und Wege fallen nur einmal an, und das Material geht in einem Zug weg. Sagen Sie bei der Anfrage, was zurückgebaut werden soll, damit wir Zeit und Fahrzeug richtig planen.',
+      },
+      {
+        q: 'Was passiert mit Strom- und Wasseranschlüssen?',
+        a: 'Vorhandene Anschlüsse klemmen wir ab und verschließen sie. Neue Leitungen verlegen, Anschlüsse versetzen oder Installationen verändern gehört nicht dazu. Wenn an der Elektrik oder der Sanitärinstallation gearbeitet werden muss, sagen wir das vorher und nicht am Einsatztag.',
+      },
+      {
+        q: 'Bleiben nach dem Rückbau Löcher und Schäden zurück?',
+        a: 'Schraub- und Dübellöcher verschließen wir. Wo Fliesenspiegel oder vollflächig verklebte Beläge abgenommen werden, bleibt der Untergrund aufgeraut, und einzelne Stellen können ausbrechen. Das lässt sich nicht vollständig vermeiden. Wir sagen Ihnen bei der Besichtigung, womit zu rechnen ist, statt Sie am Einsatztag damit zu überraschen.',
+      },
+    ],
+    related: ['entruempelung-berlin', 'bueroaufloesung-berlin', 'wohnungsaufloesung-berlin'],
+    guides: ['checkliste-wohnungsuebergabe'],
+    updated: '2026-09-26',
   },
   {
     slug: 'kleintransport-moebeltransport-berlin',

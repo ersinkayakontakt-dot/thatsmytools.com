@@ -62,12 +62,29 @@ const CASES = [
     name: 'Link von einer indexierbaren Seite auf einen Entwurf',
     guard: 'linkgraph.mjs',
     expect: 'verlinkt auf einen Entwurf',
+    /*
+     * Die Entwurfsseite wird GESUCHT, nicht fest eingetragen.
+     *
+     * Hier stand einmal /leistungen/demontage-rueckbau/. Als diese Seite
+     * am 26.09.2026 veröffentlicht wurde, war das Gegenbeispiel kein
+     * Gegenbeispiel mehr: Der Fall lief durch, ohne etwas zu prüfen, und
+     * die Selbstprüfung fiel still von 14/14 auf 13/14.
+     *
+     * Ein Prüffall, der an einem Inhaltszustand hängt, veraltet mit dem
+     * Inhalt. Deshalb sucht er sich seinen Entwurf jetzt selbst: die
+     * erste Leistungsseite in dist/, die noindex trägt.
+     */
     break: (dir) => {
+      const entwurf = findeEntwurfsseite(dir);
+      if (!entwurf) {
+        throw new Error(
+          'Keine Entwurfsseite unter /leistungen/ gefunden. Ohne eine solche ' +
+            'lässt sich dieser Fall nicht bauen – entweder ist jede Leistung ' +
+            'veröffentlicht, oder der noindex-Nachweis hat sich geändert.',
+        );
+      }
       patch(join(dir, 'kontakt', 'index.html'), (html) =>
-        html.replace(
-          '<main',
-          '<main><p><a href="/leistungen/demontage-rueckbau/">Demontage und Rückbau</a></p>',
-        ),
+        html.replace('<main', `<main><p><a href="${entwurf}">Entwurfsseite</a></p>`),
       );
     },
   },
@@ -210,6 +227,26 @@ const CASES = [
 
 function patch(file, fn) {
   writeFileSync(file, fn(readFileSync(file, 'utf8')));
+}
+
+/**
+ * Sucht eine Leistungsseite, die als Entwurf gebaut wurde.
+ *
+ * Entwürfe erkennt man in der Ausgabe am noindex in der robots-Angabe.
+ * Gibt den URL-Pfad zurück, so wie er in einem href stehen würde, oder
+ * null, wenn es keinen Entwurf mehr gibt.
+ */
+function findeEntwurfsseite(dir) {
+  const { readdirSync, statSync } = require('node:fs');
+  const basis = join(dir, 'leistungen');
+  if (!existsSync(basis)) return null;
+  for (const eintrag of readdirSync(basis)) {
+    const datei = join(basis, eintrag, 'index.html');
+    if (!existsSync(datei) || !statSync(join(basis, eintrag)).isDirectory()) continue;
+    const html = readFileSync(datei, 'utf8');
+    if (/name="robots"[^>]*noindex/i.test(html)) return `/leistungen/${eintrag}/`;
+  }
+  return null;
 }
 
 function forEachHtml(dir, fn) {
