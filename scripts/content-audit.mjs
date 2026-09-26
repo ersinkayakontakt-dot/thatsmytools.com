@@ -59,6 +59,7 @@ import { towns } from '${mod('src/data/towns.ts')}';
 import { guides } from '${mod('src/data/guides.ts')}';
 import { cases } from '${mod('src/data/cases.ts')}';
 import { validateServiceAreas, serviceAreas, plzDataAvailable } from '${mod('src/data/serviceAreas.ts')}';
+import { categories, validateCategories } from '${mod('src/data/categories.ts')}';
 
 const errors: string[] = [];
 const notes: string[] = [];
@@ -200,6 +201,17 @@ for (const loc of [...districts, ...towns].filter((l) => l.status === 'published
   if (placeholder.test(text)) errors.push('Standort ' + loc.name + ': enthält noch Platzhalter im veröffentlichten Text');
 }
 
+/* ------------------------------------------- Leistungsfamilien
+ * Die Kategorien pruefen sich gegen den Leistungsbestand: unbekannte
+ * Slugs, Mehrfachzuordnung, Slug-Kollision mit statischen Seiten und
+ * Hub-Seiten ohne Inhalt. Ohne diese Pruefung faellt eine Leistung, die
+ * aus allen Familien herausfaellt, erst im Browser auf - sie erscheint
+ * dann schlicht nicht mehr auf /leistungen/.
+ */
+const katAudit = validateCategories();
+errors.push(...katAudit.errors);
+notes.push(...katAudit.warnings);
+
 /* -------------------------------------- Einsatzgebiete nach PLZ
  * Die bekannten Slugs werden übergeben, statt sie in serviceAreas.ts zu
  * importieren – sonst zöge jede Seite, die nur die PLZ-Prüfung braucht,
@@ -224,6 +236,7 @@ console.log('  Bezirke:         ' + districts.filter((d) => d.status === 'publis
 console.log('  Orte im Umland:  ' + towns.filter((t) => t.status === 'published').length + ' veröffentlicht, ' + towns.filter((t) => t.status !== 'published').length + ' Entwurf');
 console.log('  Ratgeber:        ' + guides.filter((g) => g.status === 'published').length + ' veröffentlicht');
 console.log('  Einsatzberichte: ' + cases.filter((c) => c.status === 'published' && c.real).length + ' echt und veröffentlicht, ' + cases.filter((c) => !c.real).length + ' Muster');
+console.log('  Familien:        ' + categories.filter((c) => c.status === 'published').length + ' veroeffentlicht, ' + categories.filter((c) => c.status !== 'published').length + ' Entwurf');
 console.log('  Einsatzgebiete:  ' + serviceAreas.length + ' Postleitzahlen erfasst' + (plzDataAvailable ? '' : ', aber inaktiv (plzDataAvailable = false)'));
 console.log('');
 

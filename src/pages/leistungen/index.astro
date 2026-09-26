@@ -4,6 +4,7 @@ import Breadcrumbs from '../../components/Breadcrumbs.astro';
 import Icon from '../../components/Icon.astro';
 import CtaBand from '../../components/CtaBand.astro';
 import { publishedServices } from '../../data/services';
+import { publishedCategories } from '../../data/categories';
 import { universalPriceFactors } from '../../data/costs';
 import { seoPage } from '../../data/seo-pages';
 
@@ -32,50 +33,30 @@ const schema = buildGraph([
   webPageNode({ url: path, name: title, description, dateModified: '2026-07-29' }),
 ]);
 
-// Gruppierung, damit die Übersicht nicht als beliebige Kachelwand wirkt
-const groups = [
-  {
-    id: 'raeumen',
-    title: 'Räumen und auflösen',
-    text: 'Von einem einzelnen Kellerabteil bis zur kompletten Auflösung eines Haushalts.',
-    slugs: [
-      'entruempelung-berlin',
-      'haushaltsaufloesung-berlin',
-      'wohnungsaufloesung-berlin',
-      'nachlassaufloesung-berlin',
-      'messiwohnung-raeumen',
-      'kellerentruempelung-berlin',
-    ],
-  },
-  {
-    id: 'transport',
-    title: 'Transportieren und entsorgen',
-    text: 'Einzelne Stücke oder ganze Haushalte bewegen, getrennt entsorgen, sicher übergeben.',
-    slugs: ['umzug-berlin', 'seniorenumzug-berlin', 'sperrmuellabholung-berlin'],
-  },
-  {
-    id: 'gewerbe',
-    title: 'Für Betriebe und Verwaltungen',
-    text: 'Gewerbeflächen räumen, Akten gesondert behandeln, termingerecht übergeben.',
-    slugs: ['bueroaufloesung-berlin'],
-  },
-];
-
 /**
  * Die Gruppen sind redaktionell gesetzt – sie erklären, wofür eine Leistung
  * da ist. INNERHALB einer Gruppe entscheidet die wirtschaftliche Priorität
  * aus der Seitenkarte über die Reihenfolge, damit die wertvollste Leistung
  * zuerst steht und die stärkste Position bekommt.
+ *
+ * Die Gruppen selbst stehen seit dem 26.09.2026 in `src/data/categories.ts`
+ * und nicht mehr hier. Vorher waren sie an dieser Stelle fest verdrahtet –
+ * damit unsichtbar für jede Prüfung und nicht erweiterbar. Familien ohne
+ * Leistung werden übersprungen, Entwürfe erscheinen nicht.
  */
-const byGroup = groups.map((g) => ({
-  ...g,
-  items: g.slugs
-    .map((s) => publishedServices.find((x) => x.slug === s))
-    .filter((x): x is NonNullable<typeof x> => Boolean(x))
-    .map((svc) => ({ svc, priority: seoPage(`service:${svc.slug}`).businessPriority }))
-    .sort((a, b) => b.priority - a.priority)
-    .map(({ svc }) => svc),
-}));
+const byGroup = publishedCategories
+  .map((c) => ({
+    id: c.slug,
+    title: c.title,
+    text: c.teaser,
+    items: c.services
+      .map((s) => publishedServices.find((x) => x.slug === s))
+      .filter((x): x is NonNullable<typeof x> => Boolean(x))
+      .map((svc) => ({ svc, priority: seoPage(`service:${svc.slug}`).businessPriority }))
+      .sort((a, b) => b.priority - a.priority)
+      .map(({ svc }) => svc),
+  }))
+  .filter((g) => g.items.length > 0);
 ---
 
 <Base title={title} description={description} path={path} schema={schema}>

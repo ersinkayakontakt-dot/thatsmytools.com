@@ -105,6 +105,44 @@ Wohnungsauflösung, Nachlass und Seniorenumzug" umgestellt. Umgesetzt sind:
 
 ---
 
+## 0b. Innenausbau als zweite Leistungsfamilie (Stand 26.09.2026)
+
+Die Kategorie-Ebene ist angelegt (`src/data/categories.ts`). Die drei
+bestehenden Gruppen sind aus `leistungen/index.astro` ins Datenmodell
+gewandert; die Übersichtsseite rendert unverändert (byte-gleich geprüft).
+`innenausbau` existiert als **Entwurf ohne Leistungen** – die Struktur
+steht, der Inhalt fehlt.
+
+**Zwei Fragen blockieren den Inhalt. Beide kann kein Code beantworten:**
+
+1. **Welche Gewerke darf das Unternehmen anbieten?**
+   Mehrere in Frage kommende Arbeiten dürften nach Anlage A der
+   Handwerksordnung zulassungspflichtig sein – unter anderem Maler-,
+   Fliesenleger- und Parkettlegerarbeiten. Zulassungsfrei wären wohl
+   Trockenbaumontage, Bodenlegen und Möbelmontage.
+   **Diese Einordnung ist UNGEPRÜFT** und muss gegen die aktuelle
+   Anlage A belegt werden, bevor eine Seite eine Leistung bewirbt.
+   Gesetzt ist bislang nur die Konstruktion: eigene Leistung, wobei
+   zulassungspflichtige Arbeiten über eingetragene Nachunternehmer
+   erbracht werden. Was die Seiten daraufhin versprechen dürfen, ist
+   ebenfalls offen.
+
+2. **Verdient die Familie eine eigene Hub-Seite?**
+   `hub: true` ist gesetzt, `status: 'draft'`. Ob sich eine Hub-Seite
+   lohnt, entscheidet die Suchintention, nicht der Wunsch – zu klären in
+   der Marktrecherche. Eine Hub-Seite, die mit den Leistungsseiten um
+   dieselbe Intention konkurriert, schadet; `npm run seo:cannibalization`
+   würde das melden.
+
+Solange `services` leer ist, erscheint die Familie nirgends. Der
+Content-Audit meldet sie als Hinweis, nicht als Fehler.
+
+**Noch nicht gebaut:** die Hub-Route `/<slug>/`, die Breadcrumb-Ebene auf
+Leistungsseiten und die Einträge in `seo-pages.ts`. Das folgt, sobald die
+Taxonomie steht – vorher wäre es Arbeit auf Verdacht.
+
+---
+
 ## 0a. Offene Entscheidungen aus dem SEO-Ausbau (Stand 06.08.2026)
 
 Diese Punkte hat der technische Ausbau aufgedeckt. Sie lassen sich **nicht

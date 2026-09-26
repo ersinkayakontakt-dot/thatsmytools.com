@@ -42,9 +42,74 @@ export interface PriceFactor {
   why: string;
 }
 
+/**
+ * Leistungsfamilie – die Ebene über den einzelnen Leistungen.
+ *
+ * WARUM ES DIESEN TYP GIBT:
+ * Die Gruppierung existierte bereits, stand aber fest verdrahtet in
+ * `src/pages/leistungen/index.astro`. Damit hatte sie kein Datenmodell,
+ * keine URL, kein Schema und keinen Breadcrumb – und liesse sich nicht
+ * prüfen. Eine zweite Leistungsfamilie (Innenausbau) braucht genau das.
+ *
+ * ZWEI ARTEN VON KATEGORIEN, unterschieden durch `hub`:
+ *   hub: false  reine Gruppierung auf /leistungen/. Keine eigene Seite.
+ *               Das ist der richtige Zustand für eine Familie, die keine
+ *               eigenständige Suchintention bedient.
+ *   hub: true   eigene Hub-Seite. Muss dann inhaltlich tragen – der
+ *               Publish Guard verlangt dieselbe Tiefe wie bei einer
+ *               Standortseite, damit keine dünne Kachelwand entsteht.
+ *
+ * Eine Kategorie ohne eigene Suchintention bekommt KEINE Hub-Seite.
+ * Das ist die Indexierbarkeitsregel dieser Ebene.
+ */
+export interface ServiceCategory {
+  slug: string;
+  status: PublishStatus;
+  /** Eigene Hub-Seite unter /<slug>/ – oder nur Gruppierung auf /leistungen/? */
+  hub: boolean;
+  /** Kurzform für Navigation und Breadcrumb */
+  name: string;
+  /** Überschrift der Gruppe auf /leistungen/ */
+  title: string;
+  /** Ein Satz, der erklärt, wofür die Gruppe da ist */
+  teaser: string;
+  /**
+   * Slugs der zugehörigen Leistungen, redaktionell gesetzt.
+   * Die Reihenfolge INNERHALB der Gruppe bestimmt die wirtschaftliche
+   * Priorität aus der Seitenkarte, nicht diese Liste.
+   */
+  services: string[];
+
+  /* ------ Nur für hub: true. Ohne diese Felder bleibt die Seite Entwurf. ---- */
+
+  h1?: string;
+  metaTitle?: string;
+  metaDescription?: string;
+  /** Direkte Antwort unter der H1 (40–100 Wörter), zitierfähig */
+  answer?: string;
+  /** Eigene Einleitung, mindestens zwei Absätze */
+  intro?: string[];
+  blocks?: ContentBlock[];
+  faq?: FaqItem[];
+  /** Was diese Familie von den anderen unterscheidet (Redaktionsnotiz) */
+  differentiator?: string;
+
+  updated: string;
+}
+
 export interface Service {
   slug: string;
   status: PublishStatus;
+  /**
+   * Slug der Leistungsfamilie aus `categories.ts`.
+   *
+   * Optional, damit die fünfzehn bestehenden Leistungen unverändert gültig
+   * bleiben. `validateCategories()` prüft, dass jede veröffentlichte
+   * Leistung genau einer Familie zugeordnet ist – die Zuordnung steht auf
+   * der Kategorieseite in `services`, nicht hier, damit die Reihenfolge
+   * innerhalb einer Familie redaktionell bleibt.
+   */
+  category?: string;
   /** H1 der Seite */
   h1: string;
   /** Kurzer Name für Navigation, Kacheln, Breadcrumbs */
