@@ -358,12 +358,13 @@ eine.
 
 Diese brauchen eine Antwort vom Betreiber, nicht Recherche:
 
-- **Postfach für den Versand anlegen** (seit 24.09.2026 der wichtigste
-  offene Punkt). Ein eigenes Postfach, etwa `website@schnellhelfer24.de`,
-  nicht das Arbeitspostfach – dann lässt sich das Passwort wechseln, ohne
-  dass jemand seinen Zugang verliert. Zugangsdaten in `config.local.php`,
-  Rechte 600. Ohne diesen Schritt läuft der Versand weiter über `mail()`,
-  und das ist die Ursache dafür, dass bisher keine Mail ankam.
+- **SMTP-Block in `config.local.php` eintragen** (seit 24.09.2026 der
+  einzige offene Schritt für den Mailversand). Das Postfach
+  `hello@schnellhelfer24.de` existiert bereits und wird verwendet –
+  zugleich als `recipient`, `from` und `smtpUser`. Nötig ist nur noch das
+  Passwort in `config.local.php`, Rechte 600. Ohne diesen Block läuft der
+  Versand weiter über `mail()`, und das ist die Ursache dafür, dass
+  bisher keine Mail ankam.
 - Empfängt `hello@schnellhelfer24.de` tatsächlich? (Testmail – erst
   aussagekräftig, wenn der SMTP-Block steht)
 - AV-Vertrag mit Hostinger nach Art. 28 DSGVO abgeschlossen?
@@ -395,6 +396,20 @@ Rate Limiting unter echten Bedingungen.
 Auf dem Server eine echte Anfrage senden und prüfen, ob alle Angaben in
 der Mail und in der JSON-Ablage unter `api/_storage/anfragen/` ankommen
 und ob der Betreff den Umfang enthält.
+
+**DNS-Stand, am 24.09.2026 gemessen — hier ist nichts mehr zu tun:**
+
+| Prüfung | Befund |
+|---|---|
+| MX | `mx1/mx2.hostinger.com` → Hostinger Mail, nicht Titan |
+| SPF | `v=spf1 include:_spf.mail.hostinger.com ~all` |
+| DKIM | `hostingermail-a`, `-b`, `-c` alle im DNS |
+| `smtp.hostinger.com:465` | erreichbar |
+
+Der SPF-Eintrag deckt Hostingers **Mailserver** ab – nicht den Webserver,
+über den `mail()` verschickt. Genau darin liegt die Ursache: Die Domain
+ist sauber eingerichtet, nur nahm der bisherige Versandweg einen Weg
+daran vorbei.
 
 **Zum Versandweg (der Grund, warum bisher keine Mail ankam):**
 

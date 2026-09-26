@@ -150,22 +150,28 @@ Nur beim allerersten Mal nötig, danach nie wieder:
    ```php
    <?php
    return [
-       'recipient' => 'anfrage@schnellhelfer24.de',
-       'from'      => 'website@schnellhelfer24.de',
+       'recipient' => 'hello@schnellhelfer24.de',
+       'from'      => 'hello@schnellhelfer24.de',
 
        // Versand über das echte Postfach. OHNE diesen Block verschickt
        // PHP über mail() – die Mail kommt dann häufig gar nicht an,
        // weil SPF und DKIM nicht passen. Siehe config.example.php.
-       'smtpHost'  => 'smtp.hostinger.com',
-       'smtpPort'  => 465,
-       'smtpUser'  => 'website@schnellhelfer24.de',
-       'smtpPass'  => 'PASSWORT DES POSTFACHS',
+       'smtpHost'   => 'smtp.hostinger.com',
+       'smtpPort'   => 465,
+       'smtpUser'   => 'hello@schnellhelfer24.de',
+       'smtpPass'   => 'PASSWORT DES POSTFACHS hello@',
        'smtpSecure' => 'ssl',
    ];
    ```
 
    `smtpUser` und `from` müssen dieselbe Adresse sein – weichen sie ab,
    korrigiert das Skript `from` und vermerkt es in der JSON-Ablage.
+
+   Am 24.09.2026 für die Domain geprüft: MX zeigt auf
+   `mx1/mx2.hostinger.com` (Hostinger Mail, nicht Titan), SPF
+   (`include:_spf.mail.hostinger.com`) und alle drei DKIM-Selektoren
+   (`hostingermail-a/-b/-c`) sind im DNS gesetzt, `smtp.hostinger.com:465`
+   ist erreichbar. Am DNS ist also nichts mehr zu tun.
 
    **Die Datei enthält jetzt ein Passwort.** Rechte auf 600 setzen und
    niemals ins Repository aufnehmen.
