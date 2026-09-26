@@ -25,6 +25,7 @@ Referenzdokumente, Ingenieursurteil.
 | `src/lib/publishGuard.ts` | Entscheidet, ob eine Seite überhaupt indexiert wird | vor jeder Inhaltsarbeit |
 | `SEO-SYSTEM.md` | Was `npm run seo:all` prüft und warum | vor Änderungen an Metadaten, Links, Schema |
 | `SEO-LAUNCH-CHECKLIST.md` | Ablauf bis zum Livegang | vor einem Livegang |
+| `docs/ENTSCHEIDUNGEN.md` | Getroffene Architektur- und Produktentscheidungen samt Begründung und Abwägung | **bevor du eine davon umwirfst** |
 | `docs/ARCHITEKTUR.md` | Warum Astro, warum PHP fürs Formular, Performance-Budget | vor Architekturentscheidungen |
 | `docs/HOSTINGER-AKTUALISIEREN.md` | Deployment, geprüfte FTP-Werte, bekannte Fallen | vor jedem Deployment |
 | `docs/KI-CRAWLER.md` | Welche KI-Bots erlaubt sind | vor Änderungen an `robots.txt` / `llms.txt` |
