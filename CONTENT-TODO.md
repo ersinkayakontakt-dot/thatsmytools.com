@@ -79,9 +79,11 @@ Wohnungsauflösung, Nachlass und Seniorenumzug" umgestellt. Umgesetzt sind:
    und Ratgeberseiten nutzen noch das ältere Kartenlayout. Wiederverwendbare
    Bausteine (Hero, Direktantwort, Prozess, Szenarien, Fallbeispiel, Sprung-
    navigation) fehlen als gemeinsames System.
-7. **Bildsprache.** Es gibt keine Fotos im Projekt. Vor der Auswahl von
-   Stockfotos muss `IMAGE-SOURCES.md` angelegt werden (Datei, Plattform,
-   Fotograf, Quelle, Datum, Lizenz, Verwendung). Echte Fotos haben Vorrang.
+7. ✅ **Bildsystem und erste Bildsprache umgesetzt.** Sieben dokumentierte
+   Stockfotos sind zentral in `src/data/images.ts` zugeordnet und vollständig
+   in `IMAGE-SOURCES.md` nachgewiesen. Offen bleiben das Bild für die
+   Büroauflösung und der schrittweise Austausch gegen echte, freigegebene
+   Einsatzbilder; siehe Abschnitt 0a.
 8. **Einsatzberichte.** Datenstruktur steht (`src/data/cases.ts`), es gibt
    drei Muster, die korrekt auf noindex stehen. Echte, freigegebene Fälle
    fehlen vollständig.
@@ -147,6 +149,27 @@ Prüfung durch den Betreiber. Keiner davon wurde eigenmächtig geändert.
    `public/.htaccess`, Abschnitt 3, enthält nur auskommentierte Beispiele.
    Ohne echte Weiterleitungen verliert jede alte Adresse ihre Signale.
    Quellen: Search Console, Bing Webmaster Tools, alte Sitemap, Serverlogs.
+
+## 0b. Technikstatus und verbleibende Prüfwarnungen (Stand 26.09.2026)
+
+- ✅ **TECH-2026-01 – Buildquelle wieder vollständig versioniert.**
+  `src/data/seo-pages.ts` und `src/data/images.ts` sind wiederhergestellt.
+  Die Ursache war die zu breite Ignore-Regel `data/`; sie ignoriert jetzt
+  nur noch `/data/` im Projektstamm. Build, Typprüfung und alle SEO-Guards
+  laufen wieder durch.
+- ✅ **SEC-2026-01 – Abhängigkeiten aktualisiert.** Astro 7.3.5,
+  `@astrojs/check` 0.9.10 und TypeScript 6.0.3; `npm audit` meldet keine
+  bekannten Schwachstellen.
+- **SEO-2026-01 – Suchintention der Angebotsseite redaktionell prüfen.**
+  Title und H1 decken die derzeit hinterlegte primäre Suchanfrage nur
+  teilweise ab. Entweder Text oder Suchanfrage fachlich präzisieren.
+- **SEO-2026-02 – Interne Autorität der Priorität-4-Seiten stärken.**
+  Seniorenumzug, Büroauflösung, Messiwohnung und die Partnerseite liegen im
+  Linkgraph teilweise hinter weniger wichtigen Leistungsseiten. Zusätzliche
+  sinnvolle Kontextlinks erst nach redaktioneller Prüfung setzen.
+- **A11Y-2026-01 – Kontrastreserve bei der nächsten Farbanpassung erhöhen.**
+  Alle geprüften Paare erfüllen WCAG 2.2 AA, drei liegen jedoch nahe an der
+  jeweiligen Mindestgrenze.
 
 ### Daten, die die Werkzeuge brauchen
 

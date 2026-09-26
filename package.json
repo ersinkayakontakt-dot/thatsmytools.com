@@ -15,7 +15,6 @@
     "indexnow": "node scripts/indexnow.mjs",
     "images:og": "node scripts/make-og-images.mjs",
     "images:fetch": "node scripts/fetch-stock-images.mjs",
-
     "seo:metadata": "node scripts/seo/metadata.mjs",
     "seo:linkgraph": "node scripts/seo/linkgraph.mjs",
     "seo:cannibalization": "node scripts/seo/cannibalization.mjs",
@@ -30,13 +29,14 @@
     "seo:events:report": "node scripts/seo/events-report.mjs",
     "seo:opportunities": "node scripts/seo/opportunities.mjs",
     "seo:opportunities:selftest": "node scripts/seo/search-data/selftest.mjs",
-    "kit": "node scripts/eintrags-kit.mjs"  },
+    "kit": "node scripts/eintrags-kit.mjs"
+  },
   "dependencies": {
-    "astro": "^5.6.1"
+    "astro": "^7.3.5"
   },
   "devDependencies": {
-    "@astrojs/check": "^0.9.4",
-    "typescript": "^5.8.3"
+    "@astrojs/check": "^0.9.10",
+    "typescript": "^6.0.3"
   },
   "engines": {
     "//": "Ab 22.18 führt Node TypeScript ohne Buildschritt aus. Die SEO-Guards importieren src/data/seo-pages.ts direkt und brauchen das.",

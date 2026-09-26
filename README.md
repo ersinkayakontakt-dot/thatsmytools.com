@@ -3,7 +3,7 @@
 Website für Schnellhelfer24: Entrümpelung, Auflösung und Umzug in Berlin und
 im Berliner Umland.
 
-Astro 5, TypeScript, statisch ausgeliefert. Eine einzige Abhängigkeit. Kein
+Astro 7, TypeScript, statisch ausgeliefert. Eine einzige Laufzeitabhängigkeit. Kein
 Framework im Browser, keine externen Schriften, keine Drittanbieter-Skripte.
 
 ---
@@ -33,6 +33,8 @@ Produktionsausgabe erscheinen sie nicht.
 | `src/data/cases.ts` | Einsatzberichte |
 | `src/data/reviews.ts` | Bewertungen (leer, bis echte vorliegen) |
 | `src/data/costs.ts` | Preisdaten (inaktiv, bis echte vorliegen) |
+| `src/data/seo-pages.ts` | Zentrale Seitenkarte für Metadaten, Indexierung und SEO-Prüfungen |
+| `src/data/images.ts` | Zentrale Zuordnung der dokumentierten Inhaltsbilder |
 | `src/lib/publishGuard.ts` | Entscheidet, welche Seite indexiert werden darf |
 | `public/api/anfrage.php` | Endpunkt für das Anfrageformular |
 

@@ -1,6 +1,6 @@
 # SEO-Auditbericht
 
-Der gemessene Teil wurde am 2026-08-06 mit `npm run seo:report` erzeugt.
+Der gemessene Teil wurde am 2026-09-26 mit `npm run seo:report` erzeugt.
 Er ist eine Momentaufnahme des gebauten Standes in `dist/` – nicht der
 Quelldateien. Der Abschnitt „Ausgangslage" darüber ist redaktionell
 und stammt aus `docs/audit-ausgangslage.md`.
@@ -159,7 +159,7 @@ ohne die Selbstprüfungen unbemerkt geblieben:
 ==================================================================
 Metadaten und Seitenkarte
 ==================================================================
-  70 gebaute Seiten, 70 Einträge in der Karte
+  71 gebaute Seiten, 71 Einträge in der Karte
   50 indexierbar, 50 in der Sitemap
 
 WARNUNGEN (1)
@@ -174,53 +174,53 @@ WARNUNGEN (1)
 ==================================================================
 Linkgraph und interne Autorität
 ==================================================================
-  4767 interne Seitenverweise, 50 indexierbare Seiten
+  4802 interne Seitenverweise, 50 indexierbare Seiten
   Stärkste zehn Seiten nach internem Authority-Score:
-       100  P4  /angebot-anfragen/  (175 kontextuell / 450 gesamt)
-      23.1  P3  /einsatzberichte/  (27 kontextuell / 237 gesamt)
-      20.5  P5  /  (1 kontextuell / 137 gesamt)
-      16.5  P5  /leistungen/entruempelung-berlin/  (41 kontextuell / 110 gesamt)
-      14.8  P3  /berlin/  (33 kontextuell / 252 gesamt)
-      11.9  P3  /brandenburg/  (30 kontextuell / 111 gesamt)
-      11.7  P5  /leistungen/haushaltsaufloesung-berlin/  (30 kontextuell / 99 gesamt)
-      11.3  P3  /ueber-uns/  (13 kontextuell / 220 gesamt)
-      10.9  P5  /leistungen/wohnungsaufloesung-berlin/  (30 kontextuell / 99 gesamt)
-       8.8  P3  /leistungen/  (1 kontextuell / 223 gesamt)
-  Durchschnittlicher Score je Priorität (nur Leistungsseiten, muss fallen): P5=11.7  P4=3.9  P3=5.8
+       100  P4  /angebot-anfragen/  (176 kontextuell / 455 gesamt)
+      22.7  P3  /einsatzberichte/  (27 kontextuell / 240 gesamt)
+      20.3  P5  /  (1 kontextuell / 138 gesamt)
+      16.5  P5  /leistungen/entruempelung-berlin/  (41 kontextuell / 111 gesamt)
+      14.3  P3  /berlin/  (30 kontextuell / 252 gesamt)
+        12  P3  /brandenburg/  (30 kontextuell / 112 gesamt)
+      11.6  P5  /leistungen/haushaltsaufloesung-berlin/  (30 kontextuell / 100 gesamt)
+      10.6  P5  /leistungen/wohnungsaufloesung-berlin/  (29 kontextuell / 99 gesamt)
+      10.6  P3  /ueber-uns/  (10 kontextuell / 220 gesamt)
+       8.9  P3  /leistungen/  (1 kontextuell / 226 gesamt)
+  Durchschnittlicher Score je Priorität (nur Leistungsseiten, muss fallen): P5=11.6  P4=3.8  P3=5.7
 
 WARNUNGEN (11)
   • /hausverwaltungen-immobilienpartner/
-      Priorität 4, aber nur 2 kontextuelle Eingänge
+      Priorität 4, aber nur 1 kontextuelle Eingänge
       → Für eine Seite dieser Bedeutung sind mindestens drei redaktionelle Eingänge angemessen
-  • /hausverwaltungen-immobilienpartner/ (P4) hinter /leistungen/kellerentruempelung-berlin/ (P3)
-      Prioritätsumkehr: die wichtigere Seite hat 4.9 Punkte, die unwichtigere 7.7
-      → Prüfen, ob /hausverwaltungen-immobilienpartner/ zusätzliche kontextuelle Eingänge verdient – oder ob die Priorität in src/data/seo-pages.ts nicht mehr stimmt
-  • /hausverwaltungen-immobilienpartner/ (P4) hinter /leistungen/umzug-berlin/ (P3)
-      Prioritätsumkehr: die wichtigere Seite hat 4.9 Punkte, die unwichtigere 5
-      → Prüfen, ob /hausverwaltungen-immobilienpartner/ zusätzliche kontextuelle Eingänge verdient – oder ob die Priorität in src/data/seo-pages.ts nicht mehr stimmt
   • /leistungen/seniorenumzug-berlin/ (P4) hinter /leistungen/kellerentruempelung-berlin/ (P3)
-      Prioritätsumkehr: die wichtigere Seite hat 4.8 Punkte, die unwichtigere 7.7
+      Prioritätsumkehr: die wichtigere Seite hat 4.8 Punkte, die unwichtigere 7.6
       → Prüfen, ob /leistungen/seniorenumzug-berlin/ zusätzliche kontextuelle Eingänge verdient – oder ob die Priorität in src/data/seo-pages.ts nicht mehr stimmt
   • /leistungen/seniorenumzug-berlin/ (P4) hinter /leistungen/umzug-berlin/ (P3)
       Prioritätsumkehr: die wichtigere Seite hat 4.8 Punkte, die unwichtigere 5
       → Prüfen, ob /leistungen/seniorenumzug-berlin/ zusätzliche kontextuelle Eingänge verdient – oder ob die Priorität in src/data/seo-pages.ts nicht mehr stimmt
+  • /hausverwaltungen-immobilienpartner/ (P4) hinter /leistungen/kellerentruempelung-berlin/ (P3)
+      Prioritätsumkehr: die wichtigere Seite hat 4.7 Punkte, die unwichtigere 7.6
+      → Prüfen, ob /hausverwaltungen-immobilienpartner/ zusätzliche kontextuelle Eingänge verdient – oder ob die Priorität in src/data/seo-pages.ts nicht mehr stimmt
+  • /hausverwaltungen-immobilienpartner/ (P4) hinter /leistungen/umzug-berlin/ (P3)
+      Prioritätsumkehr: die wichtigere Seite hat 4.7 Punkte, die unwichtigere 5
+      → Prüfen, ob /hausverwaltungen-immobilienpartner/ zusätzliche kontextuelle Eingänge verdient – oder ob die Priorität in src/data/seo-pages.ts nicht mehr stimmt
   • /leistungen/bueroaufloesung-berlin/ (P4) hinter /leistungen/kellerentruempelung-berlin/ (P3)
-      Prioritätsumkehr: die wichtigere Seite hat 3.2 Punkte, die unwichtigere 7.7
+      Prioritätsumkehr: die wichtigere Seite hat 3.2 Punkte, die unwichtigere 7.6
       → Prüfen, ob /leistungen/bueroaufloesung-berlin/ zusätzliche kontextuelle Eingänge verdient – oder ob die Priorität in src/data/seo-pages.ts nicht mehr stimmt
   • /leistungen/bueroaufloesung-berlin/ (P4) hinter /leistungen/umzug-berlin/ (P3)
       Prioritätsumkehr: die wichtigere Seite hat 3.2 Punkte, die unwichtigere 5
       → Prüfen, ob /leistungen/bueroaufloesung-berlin/ zusätzliche kontextuelle Eingänge verdient – oder ob die Priorität in src/data/seo-pages.ts nicht mehr stimmt
   • /leistungen/bueroaufloesung-berlin/ (P4) hinter /leistungen/sperrmuellabholung-berlin/ (P3)
-      Prioritätsumkehr: die wichtigere Seite hat 3.2 Punkte, die unwichtigere 4.6
+      Prioritätsumkehr: die wichtigere Seite hat 3.2 Punkte, die unwichtigere 4.5
       → Prüfen, ob /leistungen/bueroaufloesung-berlin/ zusätzliche kontextuelle Eingänge verdient – oder ob die Priorität in src/data/seo-pages.ts nicht mehr stimmt
   • /leistungen/messiwohnung-raeumen/ (P4) hinter /leistungen/kellerentruempelung-berlin/ (P3)
-      Prioritätsumkehr: die wichtigere Seite hat 2.5 Punkte, die unwichtigere 7.7
+      Prioritätsumkehr: die wichtigere Seite hat 2.4 Punkte, die unwichtigere 7.6
       → Prüfen, ob /leistungen/messiwohnung-raeumen/ zusätzliche kontextuelle Eingänge verdient – oder ob die Priorität in src/data/seo-pages.ts nicht mehr stimmt
   • /leistungen/messiwohnung-raeumen/ (P4) hinter /leistungen/umzug-berlin/ (P3)
-      Prioritätsumkehr: die wichtigere Seite hat 2.5 Punkte, die unwichtigere 5
+      Prioritätsumkehr: die wichtigere Seite hat 2.4 Punkte, die unwichtigere 5
       → Prüfen, ob /leistungen/messiwohnung-raeumen/ zusätzliche kontextuelle Eingänge verdient – oder ob die Priorität in src/data/seo-pages.ts nicht mehr stimmt
   • /leistungen/messiwohnung-raeumen/ (P4) hinter /leistungen/sperrmuellabholung-berlin/ (P3)
-      Prioritätsumkehr: die wichtigere Seite hat 2.5 Punkte, die unwichtigere 4.6
+      Prioritätsumkehr: die wichtigere Seite hat 2.4 Punkte, die unwichtigere 4.5
       → Prüfen, ob /leistungen/messiwohnung-raeumen/ zusätzliche kontextuelle Eingänge verdient – oder ob die Priorität in src/data/seo-pages.ts nicht mehr stimmt
 ```
 
@@ -232,10 +232,10 @@ Keyword-Kannibalisierung
 ==================================================================
   50 indexierbare Seiten im Vergleich
   1225 Seitenpaare verglichen. Ähnlichste Paare (Grenze: Standort 0.45/0.9, sonst 0.3/0.8):
-     Jaccard 0.015  Cosinus 0.548  Überschr. 0.14  /kosten/kosten-sperrmuellabholung-berlin/ ↔ /leistungen/sperrmuellabholung-berlin/
-     Jaccard 0.033  Cosinus 0.512  Überschr. 0.67  /kosten/kosten-seniorenumzug-berlin/ ↔ /leistungen/seniorenumzug-berlin/
+     Jaccard 0.015  Cosinus 0.544  Überschr. 0.14  /kosten/kosten-sperrmuellabholung-berlin/ ↔ /leistungen/sperrmuellabholung-berlin/
+     Jaccard 0.033  Cosinus 0.497  Überschr. 0.67  /kosten/kosten-seniorenumzug-berlin/ ↔ /leistungen/seniorenumzug-berlin/
      Jaccard 0.089  Cosinus 0.453  Überschr. 0.20  /kosten/kosten-sperrmuellabholung-berlin/ ↔ /ratgeber/sperrmuell-moebel-entsorgen-berlin/
-     Jaccard 0.045  Cosinus 0.439  Überschr. 0.00  /brandenburg/ ↔ /brandenburg/potsdam/
+     Jaccard 0.045  Cosinus 0.440  Überschr. 0.00  /brandenburg/ ↔ /brandenburg/potsdam/
      Jaccard 0.198  Cosinus 0.424  Überschr. 0.11  /kosten/ ↔ /leistungen/
 
   Keine Auffälligkeiten.
@@ -247,7 +247,7 @@ Keyword-Kannibalisierung
 ==================================================================
 Strukturierte Daten und Unternehmens-Entity
 ==================================================================
-  70 Seiten, Unternehmensquelle: src/config/site.ts
+  71 Seiten, Unternehmensquelle: src/config/site.ts
   erwartet: Telefon +49 176 86066817, E-Mail hello@schnellhelfer24.de, Ort Berlin
   1 Unternehmens-@id im Einsatz (erwartet: genau eine)
 
@@ -265,7 +265,7 @@ Bilder
 
 WARNUNGEN (1)
   • /leistungen/bueroaufloesung-berlin/
-      Priorität 4 mit hinterlegtem Bildmotiv ("geräumte, saubere Gewerbefläche; Übergabe an Verwaltung"), aber ohne Inhaltsbild
+      Priorität 4 mit hinterlegtem Bildmotiv ("geordnetes, leergeräumtes Büro vor der Übergabe"), aber ohne Inhaltsbild
       → Passendes Bild ergänzen – siehe imageTheme in src/data/seo-pages.ts und IMAGE-SOURCES.md
 ```
 
