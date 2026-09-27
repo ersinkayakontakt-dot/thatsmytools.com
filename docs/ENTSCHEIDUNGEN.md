@@ -11,6 +11,39 @@ Neueste zuerst.
 
 ---
 
+## E-008 · P4-Ebene wird durch Fließtext gestärkt, nicht durch Umpriorisierung
+
+**Entscheidung:** Die vier P4-Seiten (`messiwohnung`, `bueroaufloesung`,
+`seniorenumzug`, `hausverwaltungen`) bekommen kontextuelle Verweise aus dem
+Fließtext starker Seiten. Prioritäten bleiben unverändert.
+
+**Grund:** Der Linkgraph erwartet fallende Autorität von P5 über P4 zu P3.
+Tatsächlich lag P4 bei 3,8 und P3 bei 5,8 — die vier Seiten, die das
+Unternehmen selbst als wertvoll einstuft, waren intern schwächer angebunden
+als Nebenleistungen. `hausverwaltungen` hatte genau **einen** kontextuellen
+Eingang.
+
+**Beleg:** Vier Verweise, alle inhaltlich begründet — Nachlass → B2B-Einstieg,
+Wohnungsauflösung → B2B als Hinweiskasten, Haushaltsauflösung → Seniorenumzug
+als Abgrenzung, Rückbau → Büroauflösung bei Gewerbeflächen. Ergebnis:
+Warnungen 16 → 12, P4-Durchschnitt 3,8 → 5,2.
+
+**Wichtig für die Wiederholung:** Nur **Fließtextverweise** zählen.
+`related`-Einträge und Seitenleisten wertet der Linkgraph als navigational;
+sie bewegen den Score nicht. Das wurde erst nach mehreren wirkungslosen
+Versuchen klar.
+
+**Abwägung — warum hier Schluss ist:** Die verbleibenden sieben Umkehrungen
+richten sich überwiegend gegen `kellerentruempelung` mit 7,7 Punkten. Die
+Seite ist so stark, weil alle zwölf Bezirksseiten den Keller erwähnen. Das
+aufzuholen bräuchte so viele weitere Verweise, dass es in Linkstopfen
+umschlüge. Ihre Priorität zu senken wäre schlechter: Als P2 mit 7,7 stünde
+sie gegen jede P3-Seite.
+
+**Datum:** 27.09.2026
+
+---
+
 ## E-007 · Rechtliche Absicherung liegt beim Betreiber
 
 **Entscheidung:** Der Betreiber hat am 26.09.2026 erklärt, die Rechtslage sei

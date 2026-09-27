@@ -85,8 +85,13 @@ Torwächter: Metadaten, Linkgraph, Kannibalisierung, Schema, Bilder,
 Kontrast. **FEHLER blockieren die Veröffentlichung, Warnungen brauchen eine
 redaktionelle Entscheidung.**
 
-Stand 26.09.2026: 0 Fehler, **16 vorbestehende Warnungen**. Diese Zahl ist
-die Messlatte – steigt sie durch eine Änderung, ist die Änderung schuld.
+Stand 27.09.2026: 0 Fehler, **12 Warnungen**. Diese Zahl ist die Messlatte –
+steigt sie durch eine Änderung, ist die Änderung schuld.
+
+Sie lag bis zum 27.09.2026 bei 16. Vier Warnungen sind durch gezielte
+kontextuelle Verlinkung entfallen, nicht durch Nachgeben: Der P4-Durchschnitt
+im Linkgraph stieg von 3,8 auf 5,2. Wer die Zahl senkt, schreibt hier den
+neuen Stand hin und begründet ihn – wer sie steigen lässt, sucht die Ursache.
 
 ### Zusätzlich, je nach Bereich
 

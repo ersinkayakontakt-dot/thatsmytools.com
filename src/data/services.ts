@@ -257,6 +257,7 @@ export const services: Service[] = [
       {
         h: 'Was gehört bei einer Auflösung besonders beachtet?',
         list: [
+          'Zieht die Person in eine kleinere Wohnung oder ins Heim, statt den Haushalt ganz aufzulösen, ist der [Seniorenumzug](/leistungen/seniorenumzug-berlin/) der passendere Auftrag – dort wird ausgewählt und mitgenommen, nicht nur geräumt',
           'Versicherungsunterlagen, Rentenbescheide und Verträge werden häufig noch gebraucht',
           'Schlüssel für Keller, Briefkasten, Garage und Nebenräume sammeln',
           'Zählerstände für Strom, Gas und Wasser vor der Übergabe ablesen',
@@ -385,6 +386,11 @@ export const services: Service[] = [
         p: [
           'Nicht jede Forderung im Übergabeprotokoll ist automatisch berechtigt. Ob Schönheitsreparaturen geschuldet sind, hängt vom Mietvertrag ab. Prüfen Sie das, bevor Sie Leistungen beauftragen, die Sie möglicherweise nicht schulden.',
         ],
+        note: {
+          title: 'Sie sind Verwaltung, Eigentümer oder Makler?',
+          text: 'Dann läuft die Beauftragung anders: mehrere Einheiten als ein Einsatz, Rechnung an das Unternehmen, dokumentierte Schlüsselübernahme und auf Wunsch ein Fotoprotokoll für die Akte. Was dabei gilt, steht unter [Hausverwaltungen und Immobilienpartner](/hausverwaltungen-immobilienpartner/).',
+          tone: 'info',
+        },
       },
       {
         h: 'Was tun, wenn die Zeit knapp ist?',
@@ -505,6 +511,7 @@ export const services: Service[] = [
         p: [
           'Wir arbeiten regelmäßig mit gerichtlich bestellten Nachlasspflegern, rechtlichen Betreuerinnen und Hausverwaltungen zusammen. In diesen Fällen brauchen wir eine schriftliche Beauftragung, eine klare Regelung zur Schlüsselübergabe und eine Absprache, wie Fundstücke dokumentiert werden.',
           'Auf Wunsch erstellen wir eine Fotodokumentation des Zustands vor und nach der Räumung sowie eine Liste der gesicherten Unterlagen. Das erleichtert die Abrechnung gegenüber dem Nachlassgericht.',
+          'Wenn Sie beruflich mit solchen Objekten zu tun haben und nicht als Angehöriger: Für Verwaltungen, Eigentümer und Makler gibt es einen eigenen Einstieg mit Sammelaufträgen, Rechnung an das Unternehmen und dokumentierter Schlüsselverantwortung – siehe [Hausverwaltungen und Immobilienpartner](/hausverwaltungen-immobilienpartner/).',
         ],
       },
       {
@@ -1358,6 +1365,7 @@ export const services: Service[] = [
         p: [
           'Rückbau und Räumung getrennt zu beauftragen kostet doppelt: zweimal Anfahrt, zweimal Halteverbotszone, zweimal Aufbau der Wege, und das anfallende Material muss zwischengelagert oder zweimal abgefahren werden.',
           'Wenn ohnehin eine Wohnung oder ein Gewerbeobjekt geräumt wird, ist der Rückbau der Einbauten meist der kleinere Teil des Aufwands. Er verlängert den Termin um Stunden, nicht um Tage. Sagen Sie deshalb bei der Anfrage gleich mit, was raus muss, und schicken Sie Fotos von Küche, Einbauten und Bodenbelag mit.',
+          'Bei Gewerbeflächen ist der Rückbau oft der eigentliche Auftrag: Trennwände, Theken, Ladeneinbauten und Beschriftungen müssen vor der Rückgabe weg. Was dabei zusätzlich zu beachten ist – Aktenvernichtung, IT-Geräte und Betriebsausstattung –, steht unter [Büroauflösung](/leistungen/bueroaufloesung-berlin/).',
         ],
       },
     ],
