@@ -219,6 +219,83 @@ const steps = [
     </div>
   </section>
 
+  <!--
+    Abgrenzung der Zustände.
+
+    Der häufigste Missverständnispunkt zwischen Verwaltung und
+    Räumungsbetrieb: „besenrein" ist ein enger Begriff und schließt
+    Renovierung gerade AUS. Wer eine Einheit neu vermieten will, braucht
+    mehr als besenrein – weiß aber oft nicht, wo die Grenze liegt.
+
+    Die Tabelle benennt drei Zustände und sagt je Zustand, was davon zum
+    Auftrag gehört. Sie folgt der Regel im Kopf dieser Datei: Leistungen
+    stehen als Angebot, nicht als Erfahrung.
+  -->
+  <section class="states" aria-labelledby="zustaende">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="eyebrow">Abgrenzung</p>
+        <h2 id="zustaende">Besenrein, zurückgebaut oder übergabefertig?</h2>
+        <p class="lede">
+          Die drei Begriffe werden oft gleichbedeutend verwendet und bedeuten sehr
+          Unterschiedliches. Weil daran die Kalkulation hängt, hier die Abgrenzung, die wir
+          verwenden.
+        </p>
+      </div>
+
+      <div class="table-scroll">
+        <table>
+          <thead>
+            <tr>
+              <th scope="col">Zustand</th>
+              <th scope="col">Was das heißt</th>
+              <th scope="col">Im Auftrag</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row">Besenrein</th>
+              <td>
+                Leer, gefegt, grober Schmutz entfernt. Bohrlöcher, Tapeten und Bodenbeläge bleiben,
+                wie sie sind. <strong>Renovierung ist ausdrücklich nicht enthalten</strong> – das
+                ist der Punkt, an dem die meisten Missverständnisse entstehen.
+              </td>
+              <td>Standard bei jeder Räumung</td>
+            </tr>
+            <tr>
+              <th scope="row">Geräumt und zurückgebaut</th>
+              <td>
+                Zusätzlich raus, was der Vormieter eingebaut hat: Einbauküche, Einbauschränke,
+                Trennwände, Regalsysteme, Teppichboden und Laminat. Dübellöcher verschlossen,
+                Anschlüsse abgeklemmt und verschlossen.
+              </td>
+              <td>
+                Eigene Position, siehe
+                <a href="/leistungen/demontage-rueckbau/">Demontage und Rückbau</a>
+              </td>
+            </tr>
+            <tr>
+              <th scope="row">Übergabefertig</th>
+              <td>
+                Zusätzlich Wände und Böden in einen Zustand gebracht, in dem die Einheit gezeigt
+                und vermietet werden kann. Was dazugehört, hängt vom Objekt ab und wird vor dem
+                Auftrag Position für Position festgelegt.
+              </td>
+              <td>Auf Anfrage, Umfang je Objekt</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <p class="states__note">
+        Für die Akte ist die Unterscheidung ebenfalls nützlich: Verlangt ein Mietvertrag
+        „besenrein", ist damit keine Renovierung geschuldet. Was darüber hinaus hergerichtet
+        wird, ist eine Entscheidung des Eigentümers und keine Forderung, die sich auf die
+        Übergabepflicht stützen lässt.
+      </p>
+    </div>
+  </section>
+
   <section class="flow" aria-labelledby="ablauf">
     <div class="wrap flow__grid">
       <div class="flow__intro">
@@ -227,6 +304,11 @@ const steps = [
         <p>
           Der Ablauf ist bei einer Einheit derselbe wie bei zwölf. Was sich ändert, ist die
           Planung davor.
+        </p>
+        <p>
+          Bei gemischt genutzten Objekten gilt er ebenso für Gewerbeflächen. Was dort zusätzlich
+          zu beachten ist – Aktenvernichtung, IT und Betriebsausstattung –, steht unter
+          <a href="/leistungen/bueroaufloesung-berlin/">Büroauflösung</a>.
         </p>
       </div>
       <ol class="flow__steps">
@@ -342,12 +424,14 @@ const steps = [
     margin-bottom: clamp(2.2rem, 4vw, 3.5rem);
   }
   .scope,
+  .states,
   .flow,
   .honest,
   .faq-section {
     padding-block: clamp(3.5rem, 7vw, 6.5rem);
   }
   .scope h2,
+  .states h2,
   .flow h2,
   .honest h2,
   .faq-section h2 {
@@ -359,6 +443,21 @@ const steps = [
 
   .scope {
     border-bottom: 1px solid var(--line-strong);
+  }
+
+  /* Abgrenzung der Zustaende: schlichte Tabelle, kein eigenes Muster.
+     Die Trennlinie unten setzt den Abschnitt gegen den Ablauf ab, wie
+     es .scope gegen diesen hier tut. */
+  .states {
+    border-bottom: 1px solid var(--line-strong);
+  }
+  .states__note {
+    max-width: 44rem;
+    margin: var(--sp-5) 0 0;
+    font-size: 0.95rem;
+    color: var(--ink-2);
+    border-left: 2px solid var(--line-contrast);
+    padding-left: var(--sp-4);
   }
   .scope__grid {
     display: grid;
