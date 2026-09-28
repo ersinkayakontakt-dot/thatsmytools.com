@@ -58,6 +58,30 @@ $config = [
     'maxFileBytes'   => 8 * 1024 * 1024,
     'maxTotalBytes'  => 60 * 1024 * 1024,
 
+    /*
+     * Versandweg.
+     *
+     * Solange 'smtpHost' leer ist, wird PHPs mail() verwendet. Das
+     * übergibt die Mail dem lokalen Postprogramm des Hosters. Auf Shared
+     * Hosting kommt sie damit häufig nicht an: Der Server ist im
+     * SPF-Eintrag der Domain oft nicht genannt und signiert nicht mit
+     * DKIM, also stufen Postfächer die Mail als Fälschung ein und
+     * verwerfen sie – ohne Fehlermeldung, denn mail() meldet nur, dass
+     * die Mail übernommen wurde, nicht dass sie zugestellt wurde.
+     *
+     * Mit gesetztem 'smtpHost' wird stattdessen am echten Postfach
+     * angemeldet und darüber versendet. Dann stimmen SPF und DKIM, weil
+     * der Mailanbieter selbst verschickt.
+     *
+     * Die Zugangsdaten gehören ausschließlich in config.local.php.
+     */
+    'smtpHost'       => '',
+    'smtpPort'       => 465,
+    'smtpUser'       => '',
+    'smtpPass'       => '',
+    'smtpSecure'     => 'ssl',  // 'ssl' = Port 465, 'tls' = STARTTLS auf Port 587
+    'smtpTimeout'    => 15,     // Sekunden je Schritt
+
     // Rate Limiting
     'rateWindow'     => 3600,   // Sekunden
     'rateMax'        => 5,      // Anfragen je IP im Zeitfenster
@@ -76,6 +100,26 @@ if (is_file(__DIR__ . '/config.local.php')) {
     if (is_array($local)) {
         $config = array_merge($config, $local);
     }
+}
+
+/*
+ * Absender an das SMTP-Konto koppeln.
+ *
+ * Beim Versand über ein Postfach muss der Absender dieses Postfach sein.
+ * Viele Mailserver weisen ein abweichendes MAIL FROM zurück oder schreiben
+ * es still um – im zweiten Fall passt die DKIM-Signatur nicht mehr zur
+ * Kopfzeile und die Mail landet wieder im Spam. Genau das Problem, das der
+ * SMTP-Versand lösen soll.
+ *
+ * Kein Abbruch: Eine Anfrage darf nicht an einer Konfigurationsunsauberkeit
+ * scheitern. Die Korrektur wird in der JSON-Ablage vermerkt, damit sie
+ * auffindbar ist.
+ */
+$fromKorrigiert = '';
+if ((string) $config['smtpHost'] !== '' && (string) $config['smtpUser'] !== ''
+    && $config['from'] !== $config['smtpUser']) {
+    $fromKorrigiert = 'from war ' . $config['from'] . ', auf smtpUser gesetzt';
+    $config['from'] = $config['smtpUser'];
 }
 
 /* ------------------------------------------------------------------ */
@@ -118,11 +162,12 @@ function clean(?string $value, int $maxLength = 500): string
     return $value;
 }
 
-/** Verhindert Header-Injection in E-Mail-Kopfzeilen. */
-function headerSafe(string $value): string
-{
-    return trim(str_replace(["\r", "\n", "\0"], ' ', $value));
-}
+/*
+ * Kopfzeilen-Hygiene und SMTP-Versand liegen in einer eigenen Datei,
+ * damit die Selbstprüfung sie aufrufen kann, ohne diese Verarbeitung
+ * auszulösen. Siehe lib/smtp.php.
+ */
+require_once __DIR__ . '/lib/smtp.php';
 
 /** Pseudonymisierter IP-Schlüssel für das Rate Limiting. */
 function ipKey(): string
@@ -242,6 +287,33 @@ $fields = [
     'kontaktart'  => clean($_POST['kontaktart'] ?? '', 30),
     'quelle'      => clean($_POST['quelle'] ?? '', 120),
 ];
+
+/*
+ * Einsatzgebiet zur Postleitzahl.
+ *
+ * Der Wert kommt aus dem Formular und ist damit NICHT vertrauenswürdig.
+ * Anders als bei den Zusatzleistungen wird hier gegen eine feste Liste
+ * geprüft, und das ist kein Widerspruch: Zusatzleistungen sind eine
+ * wachsende Auswahl, die am Server nicht scheitern soll. Das Einsatzgebiet
+ * ist kein Nutzereintrag, sondern ein abgeleiteter Status mit genau drei
+ * möglichen Werten. Alles andere wird verworfen, damit manipulierter Text
+ * nicht in die Benachrichtigung gelangt.
+ *
+ * Die Schlüssel stammen aus ServiceLevel in src/data/serviceAreas.ts. Wer
+ * dort einen Status ergänzt, trägt ihn hier nach – sonst verschwindet er
+ * stillschweigend.
+ *
+ * Leer ist ein gültiger Zustand: ohne JavaScript, bei unbekannter PLZ oder
+ * solange keine PLZ-Daten gepflegt sind. Die Anfrage wird trotzdem
+ * angenommen.
+ */
+$gebietsLabels = [
+    'regulaer'      => 'im regelmäßigen Einsatzgebiet',
+    'nach-pruefung' => 'erreichbar, Anfahrt wird abgestimmt',
+    'nicht-bedient' => 'AUSSERHALB des Einsatzgebiets',
+];
+$gebietRoh = clean($_POST['gebiet'] ?? '', 20);
+$fields['gebiet'] = isset($gebietsLabels[$gebietRoh]) ? $gebietRoh : '';
 
 $nebenraeume = [];
 if (isset($_POST['nebenraeume']) && is_array($_POST['nebenraeume'])) {
@@ -421,6 +493,7 @@ $lines = [
     'Umfang:          ' . ($fields['umfang'] !== '' ? $fields['umfang'] : '(nicht angegeben)'),
     'Anlass:          ' . ($fields['anlass'] !== '' ? $fields['anlass'] : '(nicht angegeben)'),
     'PLZ / Ort:       ' . $fields['plz'] . ($fields['ort'] !== '' ? ' ' . $fields['ort'] : ''),
+    'Einsatzgebiet:   ' . ($fields['gebiet'] !== '' ? $gebietsLabels[$fields['gebiet']] : '(nicht ermittelt)'),
     'Objektart:       ' . $fields['objektart'],
     'Größe:           ' . ($fields['flaeche'] !== '' ? $fields['flaeche'] : '(nicht angegeben)'),
     'Zusatzleistungen:' . ' ' . ($zusatzleistungen !== [] ? implode(', ', $zusatzleistungen) : '(keine gewählt)'),
@@ -472,30 +545,62 @@ $subject = sprintf(
 
 $from = $config['from'] !== '' ? $config['from'] : $config['recipient'];
 
-$headers = [
-    'From: ' . headerSafe($config['fromName']) . ' <' . headerSafe($from) . '>',
-    'MIME-Version: 1.0',
-    'Content-Type: text/plain; charset=UTF-8',
-    'Content-Transfer-Encoding: 8bit',
-    'X-Anfrage-Referenz: ' . $ref,
-];
+/*
+ * Versand. SMTP, sobald ein Host konfiguriert ist – sonst mail().
+ *
+ * Die Rückfallebene bleibt bestehen, damit eine Installation ohne
+ * SMTP-Zugangsdaten weiterhin funktioniert. Welcher Weg genommen wurde,
+ * steht in der JSON-Ablage: Ohne diese Angabe lässt sich später nicht
+ * unterscheiden, ob eine fehlende Mail am Versandweg oder an der
+ * Zustellung lag.
+ *
+ * Die Kopfzeilen baut jeder Weg selbst. Bei mail() steuert PHP To und
+ * Subject bei, bei SMTP müssen sie im Datenteil stehen – ein gemeinsamer
+ * Satz Kopfzeilen wäre für beide Wege falsch.
+ */
+if ((string) $config['smtpHost'] !== '') {
+    $transport  = 'smtp';
+    $smtpResult = sendViaSmtp(
+        $config,
+        headerSafe($config['recipient']),
+        $subject,
+        $body,
+        $from,
+        (string) $config['fromName'],
+        $fields['mail'],
+        $ref
+    );
+    $sent      = $smtpResult['ok'];
+    $sendError = $smtpResult['error'];
+} else {
+    $transport = 'mail()';
 
-// Antwort-an nur setzen, wenn eine gültige Adresse vorliegt.
-if ($fields['mail'] !== '') {
-    $headers[] = 'Reply-To: ' . headerSafe($fields['mail']);
+    $headers = [
+        'From: ' . headerSafe($config['fromName']) . ' <' . headerSafe($from) . '>',
+        'MIME-Version: 1.0',
+        'Content-Type: text/plain; charset=UTF-8',
+        'Content-Transfer-Encoding: 8bit',
+        'X-Anfrage-Referenz: ' . $ref,
+    ];
+
+    // Antwort-an nur setzen, wenn eine gültige Adresse vorliegt.
+    if ($fields['mail'] !== '') {
+        $headers[] = 'Reply-To: ' . headerSafe($fields['mail']);
+    }
+
+    // Envelope-Absender nur setzen, wenn es eine saubere Adresse ist.
+    // Ungeprüft in die Kommandozeile von sendmail zu reichen wäre riskant.
+    $envelope = filter_var($from, FILTER_VALIDATE_EMAIL) ? '-f' . $from : '';
+
+    $sent = @mail(
+        headerSafe($config['recipient']),
+        headerSafe($subject),
+        $body,
+        implode("\r\n", $headers),
+        $envelope
+    );
+    $sendError = $sent ? '' : 'mail() hat die Nachricht nicht uebernommen';
 }
-
-// Envelope-Absender nur setzen, wenn es eine saubere Adresse ist.
-// Ungeprüft in die Kommandozeile von sendmail zu reichen wäre riskant.
-$envelope = filter_var($from, FILTER_VALIDATE_EMAIL) ? '-f' . $from : '';
-
-$sent = @mail(
-    headerSafe($config['recipient']),
-    headerSafe($subject),
-    $body,
-    implode("\r\n", $headers),
-    $envelope
-);
 
 // Immer zusätzlich als Datei sichern. Wenn der Mailversand auf dem
 // Hosting nicht funktioniert, geht die Anfrage trotzdem nicht verloren.
@@ -508,6 +613,18 @@ if (ensureDir($inboxDir)) {
     $record['zeit']        = date('c');
     $record['fotos']       = array_map('basename', $saved);
     $record['mailVersand'] = $sent ? 'ok' : 'fehlgeschlagen';
+    $record['mailWeg']     = $transport;
+    /*
+     * Der Grund steht nur bei Misserfolg in der Ablage. Er enthält die
+     * Antwort des Mailservers, nie den gesendeten Befehl – bei der
+     * Anmeldung stünde dort sonst das Passwort.
+     */
+    if ($sendError !== '') {
+        $record['mailFehler'] = $sendError;
+    }
+    if ($fromKorrigiert !== '') {
+        $record['mailHinweis'] = $fromKorrigiert;
+    }
 
     @file_put_contents(
         $inboxDir . '/' . date('Y-m-d') . '-' . $ref . '.json',
