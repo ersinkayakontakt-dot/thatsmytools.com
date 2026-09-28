@@ -14,6 +14,7 @@
     "audit:build": "node scripts/build-audit.mjs",
     "audit:plz:selftest": "node scripts/service-areas-selftest.mjs",
     "audit:mail:selftest": "node scripts/mail-selftest.mjs",
+    "audit:config:selftest": "php scripts/config-path-selftest.php",
     "indexnow": "node scripts/indexnow.mjs",
     "images:og": "node scripts/make-og-images.mjs",
     "images:fetch": "node scripts/fetch-stock-images.mjs",

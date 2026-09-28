@@ -232,11 +232,19 @@ Prüfung durch den Betreiber. Keiner davon wurde eigenmächtig geändert.
   Alle geprüften Paare erfüllen WCAG 2.2 AA, drei liegen jedoch nahe an der
   jeweiligen Mindestgrenze.
 
-- **OPS-2026-01 – `config.local.php` außerhalb von `public_html` (offen, hoch).**
+- **OPS-2026-01 – `config.local.php` außerhalb von `public_html` (Code fertig 28.09.2026, nicht deployt; Betreiber-Schritt offen, hoch).**
   Ein Push auf `hostinger-live` hat am 28.09.2026 die Datei gelöscht und
-  das Formular lahmgelegt. `anfrage.php` sollte die Konfiguration
-  zusätzlich eine Ebene oberhalb des Webverzeichnisses suchen, damit kein
-  Deployment sie treffen kann. Details: `docs/HOSTINGER-AKTUALISIEREN.md`.
+  das Formular lahmgelegt. **Live erneut gemessen am 28.09.2026 abends:**
+  `config.local.php` 404, Honeypot-Probe → `grund=nicht-konfiguriert` –
+  das Formular nimmt weiterhin **keine** Anfragen an.
+  Code: `public/api/lib/config.php` sucht zuerst
+  `domains/schnellhelfer24.de/sh24-config.php`, dann den alten Ort; genutzt
+  von `anfrage.php` und `events.php`; `npm run audit:config:selftest`
+  (6 Fälle, Gegenprobe mit vertauschter Reihenfolge schlägt fehl).
+  **Betreiber:** Datei mit Empfänger und SMTP-Zugang dort anlegen (Rechte
+  600), per `deploy.ps1` deployen, Honeypot-Probe muss danach auf die
+  Bestätigungsseite statt auf `nicht-konfiguriert` führen. Das Passwort
+  kennt nur der Betreiber. Details: `docs/HOSTINGER-AKTUALISIEREN.md`.
 
 ### Daten, die die Werkzeuge brauchen
 

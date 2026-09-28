@@ -101,7 +101,8 @@ neuen Stand hin und begründet ihn – wer sie steigen lässt, sucht die Ursache
 | Prüfregeln oder Ereignisnamen | `npm run seo:selftest` (14 Verletzungen) und `npm run seo:events` |
 | `src/data/serviceAreas.ts` | `npm run audit:plz:selftest` (13 Gegenbeispiele + Gegenprobe) |
 | `public/api/lib/smtp.php` | `npm run audit:mail:selftest` (14 Fälle, echtes SMTP-Gespräch) |
-| irgendein PHP | `php -l public/api/anfrage.php` und `php -l public/api/lib/smtp.php` |
+| `public/api/lib/config.php` | `npm run audit:config:selftest` (6 Fälle, Suchreihenfolge und „Deploy löscht die alte Datei“) |
+| irgendein PHP | `php -l` auf `public/api/anfrage.php`, `events.php`, `lib/smtp.php`, `lib/config.php` |
 
 **Die Selbsttests sind nicht optional.** Zwei von ihnen prüfen Code, der über
 leeren Daten läuft: Solange `serviceAreas` leer ist, läuft jede Schleife der
@@ -139,8 +140,12 @@ genannten Stellen an.
   `config.local.php` auf einen Pfad **oberhalb** des Webverzeichnisses.
 - **Löschfrist** der Uploads: `retentionDays` (90). Muss mit der Angabe in
   `datenschutz.astro` übereinstimmen.
-- **`config.local.php`** enthält seit dem SMTP-Versand ein Passwort. Niemals
-  einchecken, auf dem Server Rechte 600.
+- **Konfiguration** enthält seit dem SMTP-Versand ein Passwort. Niemals
+  einchecken, auf dem Server Rechte 600. Seit 28.09.2026 (OPS-2026-01) sucht
+  `public/api/lib/config.php` zuerst `sh24-config.php` **oberhalb** von
+  `public_html`, erst danach `api/config.local.php`. Die erste gefundene
+  Datei gilt allein, es wird nichts zusammengeführt. Dort oben kann kein
+  Deployment sie löschen.
 - **Kein Geheimnis in Fehlertexten oder der JSON-Ablage.** Der SMTP-Client
   hält nur die Antwort des Servers fest, nie den gesendeten Befehl – bei
   `AUTH LOGIN` stünde dort sonst das Passwort. Ein Selbsttestfall sichert das ab.

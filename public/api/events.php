@@ -86,12 +86,10 @@ $config = [
     'respectDnt'     => true,
 ];
 
-if (is_file(__DIR__ . '/config.local.php')) {
-    $local = require __DIR__ . '/config.local.php';
-    if (is_array($local)) {
-        $config = array_merge($config, $local);
-    }
-}
+// Sucht zuerst oberhalb von public_html, dann neben dieser Datei (OPS-2026-01).
+require_once __DIR__ . '/lib/config.php';
+[$local, $configPath] = sh24_load_local_config(__DIR__);
+$config = array_merge($config, $local);
 
 /* ------------------------------------------------------------------ */
 /* Allowlists                                                          */

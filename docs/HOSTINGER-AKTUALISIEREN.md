@@ -188,10 +188,11 @@ Konfiguration landet sie stumm im Spam-Pfad, ohne Mail und ohne Ablage.
 1. Deployment **nur** über Weg A (`deploy.ps1`) – das Skript löscht nie.
 2. Wer doch über `hostinger-live` deployt, legt `config.local.php`
    danach neu an und führt die Honeypot-Probe aus.
-3. Dauerhafte Lösung: `config.local.php` und `storageDir` **oberhalb**
+3. Dauerhafte Lösung: Konfiguration und `storageDir` **oberhalb**
    von `public_html` ablegen, dann kann kein Deployment sie treffen.
-   Erfordert eine kleine Änderung in `anfrage.php` (Suchpfad) – offen,
-   siehe `CONTENT-TODO.md`.
+   Der Suchpfad ist seit 28.09.2026 im Code (`api/lib/config.php`,
+   OPS-2026-01): Datei `domains/schnellhelfer24.de/sh24-config.php`.
+   `storageDir` darin auf `domains/schnellhelfer24.de/sh24-daten` setzen.
 
 Ob beim selben Abgleich auch Inhalte aus `api/_storage/` (gespeicherte
 Anfragen, Fotos) verloren gingen, ist von außen nicht prüfbar – im
@@ -219,8 +220,12 @@ Nur beim allerersten Mal nötig, danach nie wieder:
    manchen Programmen ausgeblendet. Ohne sie fehlen Weiterleitungen,
    Sicherheitskopfzeilen und der Schutz des Ablageverzeichnisses.
 
-2. **`public_html/api/config.local.php` anlegen.** Vorlage ist die daneben
-   liegende `config.example.php`. Mindestens eintragen:
+2. **`sh24-config.php` eine Ebene oberhalb von `public_html` anlegen**
+   (also `domains/schnellhelfer24.de/sh24-config.php`, Rechte 600). Vorlage
+   ist `public_html/api/config.example.php`. Seit OPS-2026-01 (28.09.2026)
+   wird dieser Ort zuerst gelesen; `public_html/api/config.local.php` gilt
+   nur noch, wenn oben nichts liegt – und kann von einem Deployment
+   gelöscht werden. Mindestens eintragen:
 
    ```php
    <?php
