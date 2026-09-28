@@ -169,6 +169,34 @@ auskommentiert — er kann später aktiviert werden.
 
 ---
 
+## ⚠️ Push auf `hostinger-live` löscht `config.local.php` (28.09.2026)
+
+Hostingers Git-Anbindung ist aktiv und zieht `hostinger-live` binnen
+etwa 20 Sekunden nach einem Push nach `public_html`. Dabei war danach
+`api/config.local.php` **weg** – die Datei ist nicht versioniert, der
+Git-Abgleich hat sie entfernt. Folge: Das Formular antwortete mit
+`?fehler=1&grund=nicht-konfiguriert` und nahm keine Anfragen an.
+
+Gemessen, nicht vermutet: `config.example.php` liefert 403,
+`config.local.php` lieferte 404, und eine Honeypot-Probe
+(`curl -X POST -F webseite=probe …/api/anfrage.php`) endete in
+`nicht-konfiguriert`. Die Probe ist gefahrlos – bei vorhandener
+Konfiguration landet sie stumm im Spam-Pfad, ohne Mail und ohne Ablage.
+
+**Regeln daraus:**
+
+1. Deployment **nur** über Weg A (`deploy.ps1`) – das Skript löscht nie.
+2. Wer doch über `hostinger-live` deployt, legt `config.local.php`
+   danach neu an und führt die Honeypot-Probe aus.
+3. Dauerhafte Lösung: `config.local.php` und `storageDir` **oberhalb**
+   von `public_html` ablegen, dann kann kein Deployment sie treffen.
+   Erfordert eine kleine Änderung in `anfrage.php` (Suchpfad) – offen,
+   siehe `CONTENT-TODO.md`.
+
+Ob beim selben Abgleich auch Inhalte aus `api/_storage/` (gespeicherte
+Anfragen, Fotos) verloren gingen, ist von außen nicht prüfbar – im
+Dateimanager nachsehen.
+
 ## Was Hostingers eigene Git-Funktion nicht kann
 
 Im hPanel gibt es unter **Erweitert → GIT** eine Anbindung an ein

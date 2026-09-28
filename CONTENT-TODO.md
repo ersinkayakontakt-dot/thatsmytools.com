@@ -232,6 +232,12 @@ Prüfung durch den Betreiber. Keiner davon wurde eigenmächtig geändert.
   Alle geprüften Paare erfüllen WCAG 2.2 AA, drei liegen jedoch nahe an der
   jeweiligen Mindestgrenze.
 
+- **OPS-2026-01 – `config.local.php` außerhalb von `public_html` (offen, hoch).**
+  Ein Push auf `hostinger-live` hat am 28.09.2026 die Datei gelöscht und
+  das Formular lahmgelegt. `anfrage.php` sollte die Konfiguration
+  zusätzlich eine Ebene oberhalb des Webverzeichnisses suchen, damit kein
+  Deployment sie treffen kann. Details: `docs/HOSTINGER-AKTUALISIEREN.md`.
+
 ### Daten, die die Werkzeuge brauchen
 
 8. **Search-Console-Export** nach `data/gsc/`, **Bing-Export** nach
