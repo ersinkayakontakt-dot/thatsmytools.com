@@ -1330,7 +1330,7 @@ export const services: Service[] = [
     notIncluded: [
       'Eingriffe in die Statik, also das Entfernen tragender Wände',
       'Arbeiten an Strom-, Gas- und Wasserleitungen über das Abklemmen vorhandener Anschlüsse hinaus',
-      'Neuverlegen von Böden, Verputzen und Malerarbeiten',
+      'Verputzen und Malerarbeiten',
       'Entsorgung von Asbest, künstlicher Mineralfaser und anderem Gefahrstoff',
     ],
     blocks: [
@@ -1366,6 +1366,7 @@ export const services: Service[] = [
           'Rückbau und Räumung getrennt zu beauftragen kostet doppelt: zweimal Anfahrt, zweimal Halteverbotszone, zweimal Aufbau der Wege, und das anfallende Material muss zwischengelagert oder zweimal abgefahren werden.',
           'Wenn ohnehin eine Wohnung oder ein Gewerbeobjekt geräumt wird, ist der Rückbau der Einbauten meist der kleinere Teil des Aufwands. Er verlängert den Termin um Stunden, nicht um Tage. Sagen Sie deshalb bei der Anfrage gleich mit, was raus muss, und schicken Sie Fotos von Küche, Einbauten und Bodenbelag mit.',
           'Bei Gewerbeflächen ist der Rückbau oft der eigentliche Auftrag: Trennwände, Theken, Ladeneinbauten und Beschriftungen müssen vor der Rückgabe weg. Was dabei zusätzlich zu beachten ist – Aktenvernichtung, IT-Geräte und Betriebsausstattung –, steht unter [Büroauflösung](/leistungen/bueroaufloesung-berlin/).',
+          'Nach dem Rückbau ist die Fläche frei, aber selten übergabefertig. Wo der alte Teppich oder das Laminat raus ist, liegt der nackte Untergrund, und unter einer ausgebauten Küche fehlt oft jeder Belag. Soll die Wohnung danach vermietet oder verkauft werden, schließen [Bodenbelag verlegen](/leistungen/bodenbelag-verlegen-berlin/) und die [Küchenmontage](/leistungen/kuechenmontage-berlin/) direkt an denselben Ablauf an.',
         ],
       },
     ],
@@ -1411,7 +1412,240 @@ export const services: Service[] = [
     ],
     related: ['entruempelung-berlin', 'bueroaufloesung-berlin', 'wohnungsaufloesung-berlin'],
     guides: ['checkliste-wohnungsuebergabe'],
-    updated: '2026-09-26',
+    updated: '2026-09-28',
+  },
+  {
+    slug: 'bodenbelag-verlegen-berlin',
+    status: 'published',
+    h1: 'Bodenbelag verlegen lassen in Berlin',
+    navLabel: 'Bodenbelag verlegen',
+    metaTitle: 'Bodenbelag verlegen Berlin: Laminat, Vinyl, Teppich',
+    metaDescription:
+      'Laminat, Klick-Vinyl oder Teppichboden in Berlin verlegen lassen: nach der Räumung, vor Übergabe oder Neuvermietung. Alter Belag raus, neuer rein.',
+    answer:
+      'Wir verlegen Laminat, Klick-Vinyl und Teppichboden in Berliner Wohnungen und Gewerbeflächen, meist direkt nach einer Räumung oder vor einer Neuvermietung. Dazu gehören das Aufnehmen des alten Belags, die Prüfung des Untergrunds, Trittschalldämmung und Sockelleisten. Nicht dazu gehören Parkett, Estrich und Fliesen. Ob der Untergrund ohne Ausgleich trägt, sehen wir bei der Besichtigung und sagen es vor dem Auftrag.',
+    teaser: 'Laminat, Klick-Vinyl und Teppichboden verlegen, alten Belag aufnehmen und entsorgen.',
+    icon: 'home',
+    serviceType: 'Bodenverlegung',
+    situations: [
+      'Die Wohnung ist geräumt, der alte Teppich ist für die Neuvermietung verschlissen.',
+      'Eine geerbte Wohnung soll vor dem Verkauf einen einheitlichen Boden bekommen.',
+      'Nach dem Rückbau der Küche fehlt darunter der Bodenbelag.',
+      'Eine Gewerbefläche wird für den Nachmieter hergerichtet.',
+    ],
+    includes: [
+      'Aufnehmen und Entsorgen des alten Belags samt Sockelleisten',
+      'Prüfen des Untergrunds auf Ebenheit, Feuchtigkeit und Tragfähigkeit',
+      'Trittschalldämmung und, wo nötig, Dampfbremse',
+      'Verlegen von Laminat, Klick-Vinyl oder Teppichboden',
+      'Sockelleisten, Übergangs- und Abschlussprofile',
+      'Abtransport von Verschnitt und Verpackung',
+    ],
+    notIncluded: [
+      'Parkett, Dielen und andere Holzböden',
+      'Estrich einbringen oder größere Unebenheiten ausgleichen',
+      'Fliesen und Natursteinbeläge',
+      'Schleifen und Versiegeln vorhandener Holzböden',
+      'Aufnehmen asbesthaltiger Beläge wie alter Floor-Flex-Platten',
+    ],
+    blocks: [
+      {
+        h: 'Welcher Belag passt zu welchem Zweck?',
+        p: [
+          'Die Frage wird meist vom Material her gestellt. Sinnvoller ist sie vom Zweck her: Eine Wohnung, die neu vermietet wird, braucht einen robusten, neutralen Boden, der die nächsten Mieter übersteht. Eine Wohnung, die verkauft wird, braucht vor allem einen einheitlichen Eindruck auf den Besichtigungsfotos.',
+        ],
+        table: {
+          caption: 'Die drei Beläge im Vergleich',
+          head: ['Belag', 'Stärken', 'Grenzen'],
+          rows: [
+            ['Laminat', 'Robust gegen Kratzer, günstig, große Auswahl', 'Empfindlich gegen stehendes Wasser, lauter im Raum'],
+            ['Klick-Vinyl', 'Unempfindlich gegen Feuchtigkeit, leiser, auch für Küche und Flur', 'Braucht einen sehr ebenen Untergrund, dünne Platten zeichnen Unebenheiten ab'],
+            ['Teppichboden', 'Warm, dämpft Trittschall, günstig in Schlafräumen', 'Bei Neuvermietung oft nicht gewünscht, schwerer zu reinigen'],
+          ],
+        },
+      },
+      {
+        h: 'Der Untergrund entscheidet, nicht der Belag',
+        p: [
+          'Unter einem alten Teppich in einer Berliner Wohnung kann fast alles liegen: Holzdielen im Altbau, Estrich im Neubau, Betonplatten im Plattenbau oder mehrere Schichten früherer Beläge übereinander. Was darunter liegt, bestimmt, ob ein neuer Belag direkt verlegt werden kann oder ob der Untergrund erst vorbereitet werden muss.',
+          'Deshalb nehmen wir bei der Besichtigung an einer unauffälligen Stelle den alten Belag hoch, wenn Sie einverstanden sind. Knarrende Dielen, Höhenunterschiede zwischen den Räumen und Feuchtigkeit fallen dann vor dem Auftrag auf und nicht am Einsatztag.',
+        ],
+        note: {
+          title: 'Alte Bodenplatten nicht selbst herausreißen',
+          text: 'In Gebäuden aus den 1960er bis 1980er Jahren liegen unter Teppich oder Linoleum manchmal kleine, meist graue oder beige Bodenplatten, sogenannte Floor-Flex-Platten. Sie und ihr schwarzer Kleber können Asbest enthalten. Finden wir solche Platten, unterbrechen wir die Arbeit an dieser Stelle. Aufnehmen darf sie nur ein dafür zugelassener Fachbetrieb.',
+          tone: 'caution',
+        },
+      },
+      {
+        h: 'Warum der Boden in denselben Ablauf gehört wie Räumung und Rückbau',
+        p: [
+          'Die Reihenfolge vor einer Übergabe ist immer dieselbe: räumen, zurückbauen, Boden verlegen, übergeben. Wer diese Schritte an drei Firmen vergibt, wartet zwischen jedem Schritt auf den nächsten Termin, und die Wohnung steht leer, ohne Miete zu bringen.',
+          'Wenn wir eine Wohnung ohnehin räumen, ist der alte Belag beim Rückbau schon aufgenommen und entsorgt. Nach der Räumung einer [stark zugestellten Wohnung](/leistungen/messiwohnung-raeumen/) ist er häufig ohnehin nicht mehr zu retten: Feuchtigkeit, Flecken und Geruch sitzen im Teppich und oft auch darunter. Der neue Boden kann direkt folgen. Besonders deutlich wird das unter einer ausgebauten Einbauküche: Dort fehlt oft jeder Belag, weil die Küche einst auf den nackten Estrich gestellt wurde. Soll danach eine neue Küche hinein, kommt zuerst der Boden und dann die [Küchenmontage](/leistungen/kuechenmontage-berlin/).',
+          'Für Erben, die eine [Wohnungsauflösung](/leistungen/wohnungsaufloesung-berlin/) beauftragen, heißt das: Sagen Sie bei der Anfrage gleich mit, ob die Wohnung danach vermietbar oder verkaufsfertig sein soll. Dann planen wir den Boden in denselben Ablauf ein. Wer als [Hausverwaltung](/hausverwaltungen-immobilienpartner/) mehrere Wohnungen im Jahr neu vermietet, kann Räumung, Rückbau und Boden als festen Ablauf mit uns abstimmen, statt jede Wohnung neu zu erklären.',
+          'Bei Gewerbeflächen gilt dasselbe in größerem Maßstab. Nach einer [Büroauflösung](/leistungen/bueroaufloesung-berlin/) bleiben oft abgenutzte Teppichfliesen zurück, den der Nachmieter nicht übernehmen will. Sie sind meist lose verlegt oder nur leicht fixiert und lassen sich im selben Termin aufnehmen, bevor der neue Belag kommt.',
+        ],
+      },
+    ],
+    priceFactors: [
+      {
+        name: 'Fläche und Raumzuschnitt',
+        effect: 'bestimmend',
+        why: 'Ein rechteckiges Zimmer ist schneller verlegt als ein Altbauflur mit Nischen, Heizungsrohren und vielen Türen. Jede Aussparung kostet Zeit.',
+      },
+      {
+        name: 'Zustand des Untergrunds',
+        effect: 'hoch',
+        why: 'Ein ebener, trockener Estrich braucht nur Dämmung. Unebene Dielen oder Höhenunterschiede müssen vorbereitet werden, bevor der Belag liegt.',
+      },
+      {
+        name: 'Alter Belag',
+        effect: 'mittel bis hoch',
+        why: 'Lose verlegter Teppich ist schnell aufgenommen. Vollflächig verklebter Belag muss abgelöst werden, und die Kleberreste müssen runter.',
+      },
+      {
+        name: 'Material',
+        effect: 'hoch',
+        why: 'Ob Sie das Material selbst kaufen oder wir es beschaffen, und welche Qualität es sein soll, verändert den Gesamtpreis stärker als die Arbeitszeit.',
+      },
+      {
+        name: 'Etage und Trageweg',
+        effect: 'mittel',
+        why: 'Laminat- und Vinylpakete sind schwer. Im vierten Stock ohne Aufzug schlägt das Tragen spürbar durch.',
+      },
+    ],
+    faq: [
+      {
+        q: 'Können wir das Material selbst kaufen?',
+        a: 'Ja. Planen Sie zur gemessenen Fläche Verschnitt ein, bei vielen Ecken und Türen mehr als bei einem rechteckigen Raum. Kaufen Sie Trittschalldämmung und Sockelleisten passend zum Belag. Schicken Sie uns vorher die Produktbezeichnung, dann sagen wir Ihnen, ob der Belag zum Untergrund passt.',
+      },
+      {
+        q: 'Kann der neue Boden einfach auf den alten gelegt werden?',
+        a: 'Manchmal. Auf festem, ebenem Linoleum oder PVC lässt sich Klick-Vinyl oder Laminat oft schwimmend verlegen. Auf Teppich nie, auf unebenem Altbelag auch nicht. Jede zusätzliche Schicht hebt den Boden an, und dann schließen Türen möglicherweise nicht mehr. Das prüfen wir bei der Besichtigung.',
+      },
+      {
+        q: 'Was passiert, wenn unter dem alten Belag Asbest vermutet wird?',
+        a: 'Dann unterbrechen wir die Arbeit an dieser Stelle und sagen es Ihnen sofort. Verdächtige Platten und schwarzer Kleber aus den 1960er bis 1980er Jahren gehören in die Hände eines dafür zugelassenen Fachbetriebs. Eine Materialprobe schafft Klarheit, bevor weitergearbeitet wird.',
+      },
+      {
+        q: 'Wie lange dauert das Verlegen?',
+        a: 'Das hängt vor allem von Fläche, Raumzuschnitt und Untergrund ab, weniger vom Belag. Nach der Besichtigung nennen wir Ihnen einen Zeitrahmen. Wird im selben Termin geräumt und zurückgebaut, planen wir den Boden direkt dahinter ein.',
+      },
+    ],
+    related: ['demontage-rueckbau', 'kuechenmontage-berlin', 'wohnungsaufloesung-berlin'],
+    guides: ['checkliste-wohnungsuebergabe'],
+    updated: '2026-09-28',
+  },
+  {
+    slug: 'kuechenmontage-berlin',
+    status: 'published',
+    h1: 'Küchenmontage in Berlin',
+    navLabel: 'Küchenmontage',
+    metaTitle: 'Küchenmontage Berlin: Einbauküche aufbauen lassen',
+    metaDescription:
+      'Einbauküche in Berlin aufbauen lassen: Schränke ausrichten, Arbeitsplatte auflegen, Geräte einsetzen. Alte Küche raus, neue rein in einem Ablauf.',
+    answer:
+      'Wir bauen Einbauküchen aus dem Handel in Berliner Wohnungen auf: Unterschränke stellen und ausrichten, Hängeschränke sicher an der Wand befestigen, Fronten einstellen, die gelieferte Arbeitsplatte auflegen und Einbaugeräte einsetzen. Spüle und Steckergeräte schließen wir an vorhandene Anschlüsse an. Herd und Kochfeld an der Anschlussdose braucht eine Elektrofachkraft. Muss die alte Küche vorher raus, erledigen wir beides in einem Ablauf.',
+    teaser: 'Einbauküche aufbauen, ausrichten und Geräte einsetzen. Auf Wunsch mit Abbau der alten Küche.',
+    icon: 'tools',
+    serviceType: 'Küchenmontage',
+    situations: [
+      'Die Wohnung wird nach der Räumung mit neuer Küche vermietet.',
+      'Die alte Einbauküche ist raus, die neue steht in Kartons im Flur.',
+      'Der Händler liefert die Küche nur bis zur Bordsteinkante.',
+      'Die Hausverwaltung stattet eine leerstehende Wohnung vor der Neuvermietung aus.',
+    ],
+    includes: [
+      'Tragen der Küchenkartons in die Wohnung, auch ohne Aufzug',
+      'Aufbau und Ausrichten der Unterschränke, Befestigen der Hängeschränke',
+      'Einsetzen von Fronten, Griffen und Sockelblenden',
+      'Auflegen und Befestigen der gelieferten Arbeitsplatte',
+      'Einsetzen der Einbaugeräte, Anschluss von Spüle und Steckergeräten an vorhandene Anschlüsse',
+      'Entsorgung der Verpackung, auf Wunsch Abbau und Entsorgung der alten Küche',
+    ],
+    notIncluded: [
+      'Anschluss von Herd und Kochfeld an die Herdanschlussdose, dafür braucht es eine Elektrofachkraft',
+      'Neue Leitungen verlegen, Anschlüsse versetzen oder Steckdosen setzen',
+      'Arbeitsplatten nach Maß anfertigen oder Küchenmöbel umbauen',
+      'Fliesenspiegel neu verlegen',
+      'Küchenplanung und Verkauf von Küchen',
+    ],
+    blocks: [
+      {
+        h: 'Was vor dem Montagetermin stehen muss',
+        p: [
+          'Die meisten Verzögerungen bei einer Küchenmontage entstehen nicht beim Aufbau, sondern davor: Ein Karton fehlt, die Arbeitsplatte ist zu kurz, oder der Wasseranschluss sitzt dort, wo laut Plan der Kühlschrank steht. Wenn diese Punkte vorher geklärt sind, lässt sich die Montage verlässlich planen.',
+        ],
+        list: [
+          'Lieferung vollständig: Kartons mit der Stückliste des Händlers abgleichen, bevor der Termin feststeht',
+          'Anschlüsse passen zum Plan: Wasser, Abwasser, Steckdosen und Herdanschlussdose sitzen dort, wo die Küche sie braucht',
+          'Arbeitsplatte passend geliefert: am einfachsten mit Ausschnitten für Spüle und Kochfeld ab Werk',
+          'Boden liegt: Unter einer neuen Küche sollte der Bodenbelag vor der Montage fertig sein',
+          'Elektrofachkraft für Herd und Kochfeld ist für den Tag danach verabredet',
+        ],
+      },
+      {
+        h: 'Altbau, Plattenbau, Neubau: die Wand entscheidet über die Hängeschränke',
+        p: [
+          'Hängeschränke tragen im Alltag viel Gewicht: Geschirr, Gläser, Vorräte. Ob sie sicher hängen, entscheidet die Wand, nicht der Schrank. In Berliner Wohnungen gibt es dafür ganz unterschiedliche Voraussetzungen.',
+          'Im Altbau sind Wände oft uneben und das Mauerwerk hat Hohlräume, dazu kommen schiefe Böden, die wir an den Stellfüßen der Unterschränke ausgleichen. Im Plattenbau sind die Betonwände hart und gut tragfähig, aber aufwendiger zu bohren. Leichte Trennwände aus Gipskarton tragen Hängeschränke nur mit passenden Hohlraumdübeln oder einer Montageschiene. Wir sehen uns die Wand vorher an und wählen die Befestigung danach.',
+        ],
+      },
+      {
+        h: 'Alte Küche raus, neue Küche rein: ein Ablauf statt drei Termine',
+        p: [
+          'Bei einer Neuvermietung oder nach einer Wohnungsauflösung ist die neue Küche selten der erste Schritt. Die alte Küche muss zuerst ab, das erledigt der Rückbau im selben Termin. Darunter fehlt oft der Bodenbelag, weil die alte Küche einst direkt auf den Estrich gestellt wurde. Dann kommt zuerst der [neue Boden](/leistungen/bodenbelag-verlegen-berlin/) und erst danach die Montage.',
+          'Wer die drei Schritte getrennt vergibt, koordiniert drei Firmen und drei Termine, und die Wohnung steht in dieser Zeit leer. Aus einer Hand laufen sie direkt hintereinander, und das Material der alten Küche geht mit derselben Fahrt in die Entsorgung, mit der die Kartons der neuen gekommen sind.',
+        ],
+      },
+    ],
+    priceFactors: [
+      {
+        name: 'Umfang der Küche',
+        effect: 'bestimmend',
+        why: 'Eine Küchenzeile mit fünf Schränken ist ein anderer Aufwand als eine L-Küche mit Hochschränken, Eckunterschrank und Insel.',
+      },
+      {
+        name: 'Wand und Befestigung',
+        effect: 'hoch',
+        why: 'Beton, hohles Altbaumauerwerk und Gipskarton verlangen unterschiedliche Dübel und unterschiedlich viel Zeit je Hängeschrank.',
+      },
+      {
+        name: 'Etage und Trageweg',
+        effect: 'hoch',
+        why: 'Eine Küche kommt in vielen schweren Kartons. Arbeitsplatten sind lang und sperrig, im Treppenhaus ohne Aufzug schlägt das deutlich durch.',
+      },
+      {
+        name: 'Abbau der alten Küche',
+        effect: 'mittel bis hoch',
+        why: 'Muss vorher eine alte Küche abgebaut und entsorgt werden, kommt dieser Aufwand hinzu. Im selben Termin ist er günstiger als getrennt.',
+      },
+      {
+        name: 'Lieferzustand',
+        effect: 'mittel',
+        why: 'Vormontierte Schränke gehen schneller als zerlegte Korpusse. Fehlende oder beschädigte Teile verlängern den Termin.',
+      },
+    ],
+    faq: [
+      {
+        q: 'Bauen Sie auch Küchen aus dem Möbelhaus oder aus dem Onlinehandel auf?',
+        a: 'Ja, genau dafür ist die Leistung gedacht. Schicken Sie uns bei der Anfrage den Küchenplan und die Stückliste des Händlers, dazu Fotos der Wand mit den Anschlüssen. Dann sehen wir vorab, ob der Plan zum Raum passt.',
+      },
+      {
+        q: 'Schließen Sie auch den Herd an?',
+        a: 'Herd und Kochfeld werden an der Herdanschlussdose angeschlossen, und das ist Arbeit für eine Elektrofachkraft. Einbaugeräte setzen wir ein, Kühlschrank, Geschirrspüler und andere Geräte mit Stecker schließen wir an, ebenso die Spüle an vorhandene Wasseranschlüsse. Den Herdanschluss verabreden Sie am besten für den Tag nach der Montage.',
+      },
+      {
+        q: 'Können Sie die alte Küche abbauen und die neue im selben Termin aufbauen?',
+        a: 'Ja, das ist meist die günstigste Variante. Prüfen Sie aber vorher, ob unter der alten Küche ein Bodenbelag liegt. Fehlt er, sollte zuerst der Boden verlegt werden, sonst steht die neue Küche wieder auf dem nackten Estrich.',
+      },
+      {
+        q: 'Was passiert, wenn die Arbeitsplatte nicht passt?',
+        a: 'Am planbarsten ist eine Arbeitsplatte, die der Händler mit den Ausschnitten für Spüle und Kochfeld passend liefert. Passt sie nicht zum Raum, sagen wir es Ihnen vor dem Einbau, statt eine Notlösung einzubauen, die später auffällt.',
+      },
+    ],
+    related: ['demontage-rueckbau', 'bodenbelag-verlegen-berlin', 'umzug-berlin'],
+    guides: ['checkliste-wohnungsuebergabe'],
+    updated: '2026-09-28',
   },
   {
     slug: 'kleintransport-moebeltransport-berlin',

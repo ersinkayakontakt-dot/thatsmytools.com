@@ -107,6 +107,14 @@ Wohnungsauflösung, Nachlass und Seniorenumzug" umgestellt. Umgesetzt sind:
 
 ## 0b. Innenausbau als zweite Leistungsfamilie (Stand 26.09.2026)
 
+> **Überholt (28.09.2026).** Die Familie heißt `herrichten` (E-006), die
+> Rechtsfrage hat der Betreiber übernommen (E-007), und sie hat drei
+> veröffentlichte Leistungen: `demontage-rueckbau`,
+> `bodenbelag-verlegen-berlin`, `kuechenmontage-berlin` (E-009).
+> **Offen bleibt nur:** Hub-Seite erst mit GSC-Beleg für
+> Kombinationsanfragen – siehe § 0b Daten, Punkt 8. Der Text unten ist
+> der historische Stand.
+
 Die Kategorie-Ebene ist angelegt (`src/data/categories.ts`). Die drei
 bestehenden Gruppen sind aus `leistungen/index.astro` ins Datenmodell
 gewandert; die Übersichtsseite rendert unverändert (byte-gleich geprüft).

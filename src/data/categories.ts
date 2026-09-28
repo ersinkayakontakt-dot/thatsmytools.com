@@ -88,6 +88,8 @@ export const categories: ServiceCategory[] = [
    * B2C erledigen die Leistungsseiten.
    * WIEDERVORLAGE, wenn drei Leistungen veröffentlicht sind UND der
    * GSC-Export echte Nachfrage nach Kombinationsanfragen zeigt.
+   * Stand 28.09.2026: die erste Bedingung ist erfüllt (drei Leistungen),
+   * die zweite nicht – es liegt kein GSC-Export vor. `hub` bleibt false.
    *
    * WAS DIE ANLASS-EBENE NICHT IST:
    * „Nachlassimmobilie verkaufsfertig", „Mietwohnung neu vermietbar" und
@@ -106,9 +108,9 @@ export const categories: ServiceCategory[] = [
     name: 'Herrichten und instand setzen',
     title: 'Herrichten und instand setzen',
     teaser:
-      'Nach der Räumung: Einbauten zurückbauen, Böden und Wände in den Zustand bringen, den die Übergabe verlangt.',
-    services: ['demontage-rueckbau'],
-    updated: '2026-09-26',
+      'Nach der Räumung: Einbauten zurückbauen, neuen Boden verlegen, die neue Küche aufbauen – bis die Wohnung übergabefertig ist.',
+    services: ['demontage-rueckbau', 'bodenbelag-verlegen-berlin', 'kuechenmontage-berlin'],
+    updated: '2026-09-28',
   },
 ];
 

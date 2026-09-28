@@ -383,8 +383,12 @@ const servicePriority = (slug: string): BusinessPriority => {
    * Stünde der Rückbau auf derselben Stufe wie die Kellerentrümpelung,
    * meldete er zu Recht eine Prioritätsumkehr gegen die
    * Messiwohnungs-Räumung - eine Seite, die eigene Aufträge gewinnt.
+   *
+   * Boden und Küche folgen derselben Logik: Sie setzen die Kette nach
+   * der Räumung fort (Familie `herrichten`, E-005/E-006) und stehen
+   * deshalb auf derselben Stufe wie der Rückbau, nicht darüber.
    */
-  if (['demontage-rueckbau'].includes(slug)) return 2;
+  if (['demontage-rueckbau', 'bodenbelag-verlegen-berlin', 'kuechenmontage-berlin'].includes(slug)) return 2;
   return 3;
 };
 

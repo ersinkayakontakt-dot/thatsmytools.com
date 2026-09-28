@@ -8,7 +8,40 @@ Auffindbarkeit hat, in welcher Reihenfolge und woran fertig erkennbar ist.**
 Sie ersetzt keine der beiden Pflichtdateien: offene Inhalte stehen in
 `CONTENT-TODO.md`, der Launchablauf in `SEO-LAUNCH-CHECKLIST.md`.
 
+## Erledigt am 28.09.2026 — Familie „Herrichten" auf drei Leistungen ausgebaut
+
+Die Leistungskette endet nicht mehr bei „besenrein". Zu
+`demontage-rueckbau` sind zwei veröffentlichte Leistungen gekommen:
+
+- `/leistungen/bodenbelag-verlegen-berlin/` – Laminat, Klick-Vinyl,
+  Teppichboden. Ausdrücklich **nicht**: Parkett, Estrich, Fliesen,
+  asbestverdächtige Floor-Flex-Platten
+- `/leistungen/kuechenmontage-berlin/` – Einbauküche aus dem Handel
+  aufbauen. Ausdrücklich **nicht**: Herdanschluss an der Anschlussdose
+  (Elektrofachkraft), neue Leitungen, Arbeitsplatten nach Maß
+
+Beide stehen auf P2 wie der Rückbau. Begründung und die Linkstrategie
+dahinter: `docs/ENTSCHEIDUNGEN.md` E-009. Das Anfrageformular hat drei
+neue Zusatzleistungen („Rückbau von Einbauten", „Neuen Bodenbelag
+verlegen", „Küchenmontage") – der Rückbau fehlte dort seit seiner
+Veröffentlichung.
+
+Gate: 73 Seiten (53 indexierbar), 0 Fehler, **unverändert 12 Warnungen**,
+P4-Durchschnitt 5,2 → 5,4.
+
+**Noch nicht live.** Deployment nach `docs/HOSTINGER-AKTUALISIEREN.md`,
+danach beide URLs in der Search Console zur Indexierung einreichen.
+
+**Hub-Seite `/herrichten/`:** erste Wiedervorlage-Bedingung (drei
+Leistungen) erfüllt, zweite (GSC-Nachfrage nach Kombinationsanfragen)
+nicht belegt – es liegt kein Export vor. Bleibt `hub: false`.
+
+---
+
 ## ⚠️ Befund 24.09.2026 — drei Quelldateien waren nie im Repository
+
+> ✅ Erledigt: Alle drei Dateien sind inzwischen versioniert
+> (`git ls-files` am 28.09.2026 geprüft).
 
 `.gitignore` enthielt das Muster `data/` ohne führenden Schrägstrich.
 In dieser Form trifft es **jede** Ebene, also auch `src/data/`. Dadurch
@@ -363,15 +396,9 @@ eine.
 
 Diese brauchen eine Antwort vom Betreiber, nicht Recherche:
 
-- **SMTP-Block in `config.local.php` eintragen** (seit 24.09.2026 der
-  einzige offene Schritt für den Mailversand). Das Postfach
-  `hello@schnellhelfer24.de` existiert bereits und wird verwendet –
-  zugleich als `recipient`, `from` und `smtpUser`. Nötig ist nur noch das
-  Passwort in `config.local.php`, Rechte 600. Ohne diesen Block läuft der
-  Versand weiter über `mail()`, und das ist die Ursache dafür, dass
-  bisher keine Mail ankam.
-- Empfängt `hello@schnellhelfer24.de` tatsächlich? (Testmail – erst
-  aussagekräftig, wenn der SMTP-Block steht)
+- ✅ **Mailversand erledigt (28.09.2026).** Der Betreiber hat bestätigt,
+  dass Anfragen per Mail ankommen. Der SMTP-Block in `config.local.php`
+  steht damit auf dem Server.
 - AV-Vertrag mit Hostinger nach Art. 28 DSGVO abgeschlossen?
 - Logfile-Speicherdauer beim Hoster, E-Mail-Anbieter für Anfragen
 - USt-IdNr., Steuernummer oder Kleinunternehmerregelung nach § 19 UStG

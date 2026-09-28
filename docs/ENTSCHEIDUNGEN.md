@@ -11,6 +11,45 @@ Neueste zuerst.
 
 ---
 
+## E-009 · Zweite und dritte Herrichten-Leistung: Boden und Küche, nicht Trockenbau und Möbelmontage
+
+**Entscheidung:** `bodenbelag-verlegen-berlin` und `kuechenmontage-berlin`
+werden veröffentlicht, beide P2. Trockenbau und allgemeine Möbelmontage
+werden **nicht** angelegt.
+
+**Grund:** Beide Leistungen setzen die Kette nach der Räumung direkt fort
+(E-005): räumen → zurückbauen → Boden → Küche → übergeben. Der
+Familienteaser versprach „Böden … in den Zustand bringen", ohne dass es
+dafür eine Leistung gab. Trockenbau bedient die SERP der
+Objekt-Spezialisten (dasselbe Argument wie gegen „Innenausbau", E-006).
+Allgemeine Möbelmontage hätte mit `/leistungen/umzug-berlin/`
+konkurriert, dessen Meta Description „Möbelmontage" bereits nennt.
+
+**Leistungsgrenzen:** Beide Seiten bleiben innerhalb der Liste A in
+`docs/HANDWERKSRECHT.md` (A2 Bodenlegen ohne Parkett/Estrich, A3 Montage
+genormter Fertigteile ohne Änderung daran). Das steht als `notIncluded`
+im Datensatz, nicht als rechtlicher Vorbehalt im Text – im Einklang mit
+E-007. Der Herdanschluss ist aus Sicherheitsgründen ausgenommen, nicht
+aus handwerksrechtlichen.
+
+**Linkstrategie – und warum zwei Links wieder entfernt wurden:** Der
+erste Entwurf verlinkte aus beiden neuen Seiten im Fließtext auf den
+Rückbau. Das hob den Rückbau (P2) auf 5,0 Punkte, über drei P4-Seiten
+und eine P3-Seite: 12 → 16 Warnungen. Die Verweise auf den Rückbau stehen
+jetzt nur noch in `related` (navigational, zählt nicht). Stattdessen
+verweist die Bodenseite im Fließtext auf `messiwohnung-raeumen`,
+`bueroaufloesung-berlin` und `/hausverwaltungen-immobilienpartner/` –
+jeweils dort, wo der Zusammenhang sachlich trägt. Ergebnis: 12 Warnungen
+wie vorher, P4-Durchschnitt 5,2 → 5,4.
+
+**Lehre für die nächste Leistung:** Eine neue P2-Seite darf ihre
+Geschwister nicht im Fließtext verlinken, sonst überholt die Familie die
+P4-Ebene. Fließtextverweise aus neuen Seiten gehören an P4-Seiten.
+
+**Datum:** 28.09.2026
+
+---
+
 ## E-008 · P4-Ebene wird durch Fließtext gestärkt, nicht durch Umpriorisierung
 
 **Entscheidung:** Die vier P4-Seiten (`messiwohnung`, `bueroaufloesung`,
