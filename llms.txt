@@ -128,4 +128,4 @@ Diese Angaben fehlen, weil sie nicht belegt sind, nicht weil sie vergessen wurde
 
 Diese Datei folgt dem llms.txt-Vorschlag. Sie ist kein offizieller Standard und wird nicht von allen Systemen ausgewertet. Maßgeblich sind die verlinkten Seiten selbst.
 
-Stand: 2026-09-28
+Stand: 2026-10-01

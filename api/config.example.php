@@ -2,9 +2,14 @@
 /**
  * VORLAGE FÜR DIE LOKALE KONFIGURATION
  * ====================================
- * Kopieren nach config.local.php und ausfüllen.
+ * Kopieren und ausfüllen. Bevorzugter Ort seit 28.09.2026 (OPS-2026-01):
  *
- *   cp config.example.php config.local.php
+ *   /home/<benutzer>/domains/schnellhelfer24.de/sh24-config.php
+ *
+ * also EINE Ebene oberhalb von public_html. Dort kann kein Deployment die
+ * Datei löschen – ein Push auf hostinger-live hat genau das mit
+ * api/config.local.php getan. Der alte Ort neben anfrage.php wird weiter
+ * gelesen, aber nur, wenn oben keine Datei liegt.
  *
  * config.local.php ist in .gitignore ausgenommen und gehört nicht ins
  * Repository. Seit dem SMTP-Versand enthält sie ein Passwort – sie darf
