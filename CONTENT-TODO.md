@@ -221,18 +221,24 @@ Prüfung durch den Betreiber. Keiner davon wurde eigenmächtig geändert.
 - ✅ **SEC-2026-01 – Abhängigkeiten aktualisiert.** Astro 7.3.5,
   `@astrojs/check` 0.9.10 und TypeScript 6.0.3; `npm audit` meldet keine
   bekannten Schwachstellen.
-- **SEO-2026-01 – Suchintention der Angebotsseite redaktionell prüfen.**
-  Title und H1 decken die derzeit hinterlegte primäre Suchanfrage nur
-  teilweise ab. Entweder Text oder Suchanfrage fachlich präzisieren.
+- ✅ **SEO-2026-01 – Suchintention der Angebotsseite (erledigt 01.10.2026).**
+  Title jetzt „Angebot für Entrümpelung in Berlin anfordern", H1 bleibt
+  „Kostenlose Einschätzung anfordern". Das Formular spricht selbst von
+  schriftlichen Angeboten, der Begriff ist also gedeckt.
 - **SEO-2026-02 – Interne Autorität der Priorität-4-Seiten stärken.**
   Seniorenumzug, Büroauflösung, Messiwohnung und die Partnerseite liegen im
   Linkgraph teilweise hinter weniger wichtigen Leistungsseiten. Zusätzliche
   sinnvolle Kontextlinks erst nach redaktioneller Prüfung setzen.
-- **A11Y-2026-01 – Kontrastreserve bei der nächsten Farbanpassung erhöhen.**
-  Alle geprüften Paare erfüllen WCAG 2.2 AA, drei liegen jedoch nahe an der
-  jeweiligen Mindestgrenze.
+- ✅ **A11Y-2026-01 – Kontrastreserve (erledigt 01.10.2026).**
+  `--ink-4` = `--ink-3` (#666660, 4,87:1 auf Karten), `--line-contrast`
+  #7f7f77 (3,40:1), `--accent` #c93c0d (Weiß darauf 5,08:1). Begründung
+  in `src/styles/global.css`. Kontrastprüfung ohne Warnung.
 
-- **OPS-2026-01 – `config.local.php` außerhalb von `public_html` (Code fertig 28.09.2026, nicht deployt; Betreiber-Schritt offen, hoch).**
+- **OPS-2026-01 – `config.local.php` außerhalb von `public_html` (Code live seit 01.10.2026 über `hostinger-live` 8a0ebea; Betreiber-Schritt offen, hoch).**
+  **01.10.2026 nach dem Deploy gemessen:** Honeypot-Probe weiterhin
+  `nicht-konfiguriert` – `sh24-config.php` liegt noch nicht in
+  `domains/schnellhelfer24.de/`. Sobald sie dort liegt, ist jeder weitere
+  Push auf `hostinger-live` ungefährlich für die Konfiguration.
   Ein Push auf `hostinger-live` hat am 28.09.2026 die Datei gelöscht und
   das Formular lahmgelegt. **Live erneut gemessen am 28.09.2026 abends:**
   `config.local.php` 404, Honeypot-Probe → `grund=nicht-konfiguriert` –

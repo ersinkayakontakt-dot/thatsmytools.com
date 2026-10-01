@@ -217,7 +217,7 @@ const staticPages: StaticPage[] = [
     id: 'angebot-anfragen',
     url: '/angebot-anfragen/',
     pageType: 'conversion',
-    title: 'Kostenlose Einschätzung anfordern | Schnellhelfer24',
+    title: 'Angebot für Entrümpelung in Berlin anfordern | Schnellhelfer24',
     metaDescription:
       'Aufwand-Check: Leistung, Ort, Umfang, Etage und Zeitraum angeben, Fotos anhängen. Sie erhalten eine persönliche Einschätzung, kostenlos und unverbindlich.',
     h1: 'Kostenlose Einschätzung anfordern',

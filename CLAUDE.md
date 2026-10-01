@@ -85,8 +85,11 @@ Torwächter: Metadaten, Linkgraph, Kannibalisierung, Schema, Bilder,
 Kontrast. **FEHLER blockieren die Veröffentlichung, Warnungen brauchen eine
 redaktionelle Entscheidung.**
 
-Stand 28.09.2026: 0 Fehler, **12 Warnungen** (73 Seiten, 53 indexierbar,
-nach zwei neuen Leistungen unverändert). Diese Zahl ist die Messlatte –
+Stand 01.10.2026: 0 Fehler, **8 Warnungen** (73 Seiten, 53 indexierbar).
+Von 12 auf 8 durch A11Y-2026-01 (drei Farbtokens mit Reserve) und
+SEO-2026-01 (Title der Angebotsseite trägt die Suchanfrage). Übrig: 7
+Linkgraph-Umkehrungen gegen die Kellerentrümpelung (bewusst, E-008) und
+das fehlende echte Bild der Büroauflösung. Diese Zahl ist die Messlatte –
 steigt sie durch eine Änderung, ist die Änderung schuld.
 
 Sie lag bis zum 27.09.2026 bei 16. Vier Warnungen sind durch gezielte

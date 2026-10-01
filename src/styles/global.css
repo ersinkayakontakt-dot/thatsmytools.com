@@ -47,8 +47,12 @@
   --ink-3: #666660;
   /* Schwächste Textstufe. Der frühere Wert #74746e erreichte auf --paper nur
      4,38:1 und auf Karten (--paper-2) 3,97:1 – beides unter AA. Er ist so
-     weit abgedunkelt, dass er auf Grundfläche UND auf Karten besteht. */
-  --ink-4: #6b6b65;
+     weit abgedunkelt, dass er auf Grundfläche UND auf Karten besteht.
+     Seit 01.10.2026 gleich --ink-3 (A11Y-2026-01): #6b6b65 lag auf Karten
+     bei 4,52:1, ohne Reserve. Jeder Wert mit 0,3 Reserve ist so dunkel wie
+     --ink-3 – die zwei Stufen waren ohnehin kaum unterscheidbar. Das Token
+     bleibt, damit die Rolle im Markup lesbar bleibt. */
+  --ink-4: #666660;
 
   /* Flächen */
   --paper: #f7f7f2;
@@ -66,7 +70,8 @@
      der Gestaltung erhalten bleiben konnten. */
   --line: #d5d5cd;
   --line-strong: #9c9c94;
-  --line-contrast: #87877f;
+  /* #7f7f77 seit 01.10.2026: 3,40:1 auf Karten statt 3,05:1 (A11Y-2026-01). */
+  --line-contrast: #7f7f77;
 
   /* Struktur: Schwarz trägt den Aufbau, nicht eine Markenfarbe */
   --brand: #171717;
@@ -82,8 +87,11 @@
        --accent-2     dieselbe Fläche im Hover-/Aktivzustand, dunkler.
        --accent-text  Text und Symbole auf heller Fläche. NIE --accent für
                       kleinen Text verwenden: das ergibt auf --paper 4,36:1
-                      und reicht für Fließtext nicht. */
-  --accent: #d2400f;
+                      und reicht für Fließtext nicht.
+     --accent seit 01.10.2026 #c93c0d statt #d2400f: Weiß darauf 5,08:1
+     statt 4,69:1 (A11Y-2026-01). Kaum sichtbar dunkler, --accent-2 bleibt
+     als gedrückter Zustand deutlich dunkler. */
+  --accent: #c93c0d;
   --accent-2: #b8330a;
   --accent-text: #b9340c;
   --accent-tint: #ffe9df;
