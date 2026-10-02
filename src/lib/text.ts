@@ -51,3 +51,15 @@ export function formatDate(iso: string): string {
     timeZone: 'UTC',
   }).format(d);
 }
+
+/**
+ * Anker-ID aus einer Überschrift. EINZIGE Stelle für diese Regel:
+ * Blocks.astro vergibt damit die IDs, Toc.astro verlinkt darauf. Liefen
+ * beide auseinander, zeigten die Sprunglinks ins Leere.
+ */
+export function headingId(heading: string): string {
+  return heading
+    .toLowerCase()
+    .replace(/[^a-z0-9äöüß]+/g, '-')
+    .replace(/^-|-$/g, '');
+}

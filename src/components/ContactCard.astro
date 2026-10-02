@@ -5,20 +5,30 @@ import { phone, whatsapp, primaryCta } from '../lib/contact';
 /**
  * Kompakter Kontaktblock für die Seitenspalte.
  * Zeigt nur Wege, die tatsächlich hinterlegt sind.
+ *
+ * `follow`: zweite Instanz am ENDE der Seitenspalte, die am Desktop
+ * mitläuft. Die erste Instanz oben bleibt statisch – machte man sie
+ * sticky, liefen die Linklisten darunter beim Scrollen unter ihr durch.
+ * Die mitlaufende erscheint erst, wenn die obere längst weggescrollt ist,
+ * also nie beide zugleich. Unter 62em ausgeblendet: dort trägt die
+ * StickyBar dieselbe Aufgabe. Damit sticky überhaupt greift, streckt
+ * global.css die Seitenspalte auf Artikelhöhe (`.grid--sidebar > .sidebar`).
  */
 interface Props {
   location?: string;
   headline?: string;
   text?: string;
+  follow?: boolean;
 }
 const {
   location = 'sidebar',
   headline = 'Aufwand einschätzen lassen',
   text = 'Fotos schicken oder Besichtigung vereinbaren. Kostenlos und unverbindlich.',
+  follow = false,
 } = Astro.props;
 ---
 
-<aside class="ccard" aria-labelledby={`ccard-${location}`}>
+<aside class:list={['ccard', { 'ccard--follow': follow }]} aria-labelledby={`ccard-${location}`}>
   <h2 class="ccard__head" id={`ccard-${location}`}>{headline}</h2>
   <p class="ccard__text">{text}</p>
 
@@ -115,10 +125,15 @@ const {
     font-size: 0.82rem;
   }
 
+  .ccard--follow {
+    display: none;
+  }
   @media (min-width: 62em) {
-    .ccard {
+    .ccard--follow {
+      display: block;
       position: sticky;
-      top: var(--sp-5);
+      /* Unter dem fixierten Header, gleicher Abstand wie scroll-padding-top. */
+      top: 5.5rem;
     }
   }
 </style>

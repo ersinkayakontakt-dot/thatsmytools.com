@@ -15,11 +15,12 @@ import CaseStudyLinks from '../../components/CaseStudyLinks.astro';
 import NextStepPanel from '../../components/NextStepPanel.astro';
 import ContextualCompanyLink from '../../components/ContextualCompanyLink.astro';
 import Figure from '../../components/Figure.astro';
+import Toc from '../../components/Toc.astro';
 import { services } from '../../data/services';
 import { seoPage } from '../../data/seo-pages';
 import { heroImage, imagesForPage } from '../../data/images';
 import { serviceIsIndexable, checkService } from '../../lib/publishGuard';
-import { formatDate } from '../../lib/text';
+import { formatDate, headingId } from '../../lib/text';
 import {
   buildGraph,
   organizationNode,
@@ -48,6 +49,15 @@ const crumbs = [
 ];
 
 const pageId = `service:${service.slug}`;
+
+// Sprungnavigation. Die IDs müssen zu denen passen, die die Komponenten
+// vergeben: PriceFactors und Faq hängen „-head" an ihre id an.
+const toc = [
+  { label: 'Was enthalten ist', id: 'enthalten' },
+  ...service.blocks.map((b) => ({ label: b.h, id: headingId(b.h) })),
+  ...(service.priceFactors.length > 0 ? [{ label: 'Was den Preis bestimmt', id: `pf-${service.slug}-head` }] : []),
+  ...(service.faq.length > 0 ? [{ label: 'Häufige Fragen', id: `faq-${service.slug}-head` }] : []),
+];
 const seo = seoPage(pageId);
 
 /**
@@ -139,6 +149,8 @@ const schema = buildGraph([
 
         {hero && <Figure image={hero} layout="hero" priority />}
 
+        <Toc items={toc} />
+
         <!-- Situationen, die zu dieser Leistung führen -->
         <section class="sit-box">
           <h2 class="sit-box__head">Wann diese Leistung passt</h2>
@@ -149,7 +161,7 @@ const schema = buildGraph([
 
         <!-- Enthalten / nicht enthalten -->
         <section>
-          <h2>Was enthalten ist</h2>
+          <h2 id="enthalten">Was enthalten ist</h2>
           <ul class="incl">
             {
               service.includes.map((i) => (
@@ -213,6 +225,8 @@ const schema = buildGraph([
           Für diese Leistungsseite fehlen noch echte Einsatzfotos und mindestens ein
           veröffentlichter Einsatzbericht aus einem abgeschlossenen Auftrag.
         </Todo>
+
+        <ContactCard location={`leistung-${service.slug}-folgend`} follow />
       </div>
     </div>
   </div>

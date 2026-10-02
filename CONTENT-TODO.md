@@ -94,6 +94,17 @@ Wohnungsauflösung, Nachlass und Seniorenumzug" umgestellt. Umgesetzt sind:
    und Ratgeberseiten nutzen noch das ältere Kartenlayout. Wiederverwendbare
    Bausteine (Hero, Direktantwort, Prozess, Szenarien, Fallbeispiel, Sprung-
    navigation) fehlen als gemeinsames System.
+   **Teilweise erledigt 02.10.2026:**
+   - ✅ Sprungnavigation als `Toc.astro`, gemeinsam für Ratgeber und
+     Leistungsseiten; Anker-Regel nur noch in `headingId()`
+     (`src/lib/text.ts`). 29 Seiten, 162 Sprunglinks, alle auflösbar.
+   - ✅ Mitlaufender Kontaktblock am Desktop (`ContactCard follow`) auf
+     Leistungs-, Standort-, Ratgeber- und Einsatzberichtseiten. Ersetzt ein
+     nie wirksames `sticky` auf der oberen Box: Die Seitenspalte war nur so
+     hoch wie ihr Inhalt, rechts blieben auf einer Leistungsseite rund
+     2.500 px leer.
+   - Offen: Prozess-, Szenario- und Fallbeispiel-Bausteine. Das Fallbeispiel
+     braucht echte Einsatzberichte (§ E), sonst bleibt es leer.
 7. ✅ **Bildsystem und erste Bildsprache umgesetzt.** Sieben dokumentierte
    Stockfotos sind zentral in `src/data/images.ts` zugeordnet und vollständig
    in `IMAGE-SOURCES.md` nachgewiesen. Offen bleiben das Bild für die

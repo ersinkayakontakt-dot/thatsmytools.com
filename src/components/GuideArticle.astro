@@ -7,7 +7,8 @@ import RelatedServiceLinks from './RelatedServiceLinks.astro';
 import RelatedGuides from './RelatedGuides.astro';
 import NextStepPanel from './NextStepPanel.astro';
 import ContextualCompanyLink from './ContextualCompanyLink.astro';
-import { formatDate } from '../lib/text';
+import Toc from './Toc.astro';
+import { formatDate, headingId } from '../lib/text';
 import { site } from '../config/site';
 import { seoPage } from '../data/seo-pages';
 
@@ -43,13 +44,10 @@ const COMPANY_LINK_ON: Record<string, 'trauerfall' | 'senioren'> = {
 const companyLinkContext = COMPANY_LINK_ON[guide.slug];
 
 // Inhaltsverzeichnis aus den Blocküberschriften
-const toc = guide.blocks.map((b) => ({
-  label: b.h,
-  id: b.h
-    .toLowerCase()
-    .replace(/[^a-z0-9äöüß]+/g, '-')
-    .replace(/^-|-$/g, ''),
-}));
+const toc = [
+  ...guide.blocks.map((b) => ({ label: b.h, id: headingId(b.h) })),
+  ...(guide.faq.length > 0 ? [{ label: 'Häufige Fragen', id: 'fragen-head' }] : []),
+];
 ---
 
 <div class="grid grid--sidebar">
@@ -64,27 +62,7 @@ const toc = guide.blocks.map((b) => ({
       {answerParagraphs.map((paragraph) => <p>{paragraph}</p>)}
     </div>
 
-    {
-      toc.length > 2 && (
-        <nav class="toc" aria-labelledby="toc-head">
-          <p class="toc__head" id="toc-head">
-            Auf dieser Seite
-          </p>
-          <ol>
-            {toc.map((t) => (
-              <li>
-                <a href={`#${t.id}`}>{t.label}</a>
-              </li>
-            ))}
-            {guide.faq.length > 0 && (
-              <li>
-                <a href="#fragen-head">Häufige Fragen</a>
-              </li>
-            )}
-          </ol>
-        </nav>
-      )
-    }
+    <Toc items={toc} />
 
     <Blocks blocks={guide.blocks} />
 
@@ -153,6 +131,11 @@ const toc = guide.blocks.map((b) => ({
 
     <RelatedGuides slugs={guide.related} heading="Weiterlesen" />
 
+    <ContactCard
+      location={`ratgeber-${guide.slug}-folgend`}
+      headline="Ihre Situation einschätzen lassen"
+      follow
+    />
   </div>
 </div>
 
@@ -162,44 +145,6 @@ const toc = guide.blocks.map((b) => ({
     color: var(--ink-4);
     margin-top: -0.5rem;
     margin-bottom: var(--sp-5);
-  }
-
-  .toc {
-    border: 1px solid var(--line);
-    border-top: 3px solid var(--ink);
-    padding: var(--sp-4) var(--sp-5);
-    background: var(--paper-2);
-    margin-bottom: var(--sp-6);
-  }
-  .toc__head {
-    font-family: var(--font-body);
-    font-size: 0.78rem;
-    letter-spacing: 0.05em;
-    text-transform: uppercase;
-    color: var(--ink);
-    margin: 0 0 var(--sp-3);
-    font-weight: 800;
-  }
-  .toc ol {
-    margin: 0;
-    padding-left: 1.15rem;
-  }
-  .toc li {
-    margin-bottom: 0.35rem;
-  }
-  .toc li::marker {
-    color: var(--ink-4);
-    font-size: 0.85rem;
-  }
-  .toc a {
-    color: var(--ink);
-    text-decoration: none;
-    font-size: 0.95rem;
-  }
-  .toc a:hover {
-    color: var(--accent-text);
-    text-decoration: underline;
-    text-underline-offset: 0.2em;
   }
 
   .sidebar {

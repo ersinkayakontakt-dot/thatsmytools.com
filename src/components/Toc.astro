@@ -1,0 +1,71 @@
+---
+/**
+ * Sprungnavigation „Auf dieser Seite".
+ *
+ * Aus GuideArticle herausgelöst, damit Ratgeber und Leistungsseiten
+ * dieselbe Navigation tragen (CONTENT-TODO § 0, Punkt 6). Erscheint erst
+ * ab drei Einträgen – bei kurzen Seiten wäre sie nur Rauschen.
+ * IDs entstehen über headingId() in src/lib/text.ts, wie in Blocks.astro.
+ */
+interface Props {
+  items: { label: string; id: string }[];
+}
+const { items } = Astro.props;
+---
+
+{
+  items.length > 2 && (
+    <nav class="toc" aria-labelledby="toc-head">
+      <p class="toc__head" id="toc-head">
+        Auf dieser Seite
+      </p>
+      <ol>
+        {items.map((t) => (
+          <li>
+            <a href={`#${t.id}`}>{t.label}</a>
+          </li>
+        ))}
+      </ol>
+    </nav>
+  )
+}
+
+<style>
+  .toc {
+    border: 1px solid var(--line);
+    border-top: 3px solid var(--ink);
+    padding: var(--sp-4) var(--sp-5);
+    background: var(--paper-2);
+    margin-bottom: var(--sp-6);
+  }
+  .toc__head {
+    font-family: var(--font-body);
+    font-size: 0.78rem;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: var(--ink);
+    margin: 0 0 var(--sp-3);
+    font-weight: 800;
+  }
+  .toc ol {
+    margin: 0;
+    padding-left: 1.15rem;
+  }
+  .toc li {
+    margin-bottom: 0.35rem;
+  }
+  .toc li::marker {
+    color: var(--ink-4);
+    font-size: 0.85rem;
+  }
+  .toc a {
+    color: var(--ink);
+    text-decoration: none;
+    font-size: 0.95rem;
+  }
+  .toc a:hover {
+    color: var(--accent-text);
+    text-decoration: underline;
+    text-underline-offset: 0.2em;
+  }
+</style>

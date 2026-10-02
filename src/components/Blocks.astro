@@ -1,6 +1,6 @@
 ---
 import type { ContentBlock } from '../data/types';
-import { inline } from '../lib/text';
+import { inline, headingId } from '../lib/text';
 
 /**
  * Rendert die Inhaltsblöcke aus den Datendateien.
@@ -20,7 +20,7 @@ const SubHead = `h${level + 1}` as 'h3' | 'h4';
 {
   blocks.map((block) => (
     <section class="block">
-      <Head id={block.h.toLowerCase().replace(/[^a-z0-9äöüß]+/g, '-').replace(/^-|-$/g, '')}>
+      <Head id={headingId(block.h)}>
         {block.h}
       </Head>
 

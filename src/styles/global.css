@@ -389,6 +389,12 @@ abbr[title] {
     gap: var(--sp-7);
     align-items: start;
   }
+  /* Die Seitenspalte reicht über die ganze Artikelhöhe, sonst hat der
+     mitlaufende Kontaktblock (ContactCard follow) keinen Raum zum
+     Mitlaufen. Ihr Inhalt bleibt über align-content: start oben. */
+  .grid--sidebar > .sidebar {
+    align-self: stretch;
+  }
 }
 
 /* --------------------------------------------------------------- Buttons
