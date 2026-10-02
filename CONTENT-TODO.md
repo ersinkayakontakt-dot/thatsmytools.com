@@ -125,6 +125,10 @@ Wohnungsauflösung, Nachlass und Seniorenumzug" umgestellt. Umgesetzt sind:
      60 px Lücke zwischen Kicker und Überschrift auf Leistungs-, Bezirks-,
      Ratgeber-, Kosten- und Einsatzberichtsübersicht (83 Stellen, 66 Seiten);
      jetzt 12 px, mobil und Desktop gemessen.
+   - ✅ Bezirks-Schnellauswahl auf `/berlin/` (02.10.2026): 12 Chips,
+     alphabetisch, 44 px hoch, springen zur Bezirkskarte (markiert per
+     `:target`). Bewusst Sprunglinks statt direkter Links – siehe Kommentar
+     in `src/pages/berlin/index.astro`.
    - Offen: Szenario- und Fallbeispiel-Bausteine. Das Fallbeispiel
      braucht echte Einsatzberichte (§ E), sonst bleibt es leer.
 7. ✅ **Bildsystem und erste Bildsprache umgesetzt.** Sieben dokumentierte

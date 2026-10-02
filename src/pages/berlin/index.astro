@@ -84,10 +84,34 @@ const schema = buildGraph([
         Vorbereitung; das konkrete Angebot basiert immer auf Ihrem Objekt.
       </p>
 
+      {/*
+        Schnellauswahl: springt INNERHALB der Seite zur Bezirkskarte, nicht
+        direkt auf die Bezirksseite. Zwölf Links im oberen Seiteninhalt
+        zählen im Linkgraph als kontextuell mit vollem Gewicht und hoben die
+        Bezirksseiten über die P4-Leistungen (vgl. E-008). Sprunglinks auf
+        dieselbe Seite bewegen den Linkgraph nicht. Die Karte wird über
+        :target markiert und trägt den Link zur Bezirksseite.
+      */}
+      <nav class="dist-pick" aria-label="Bezirk wählen">
+        <ul class="chips">
+          {
+            // Alphabetisch: Wer den eigenen Bezirk sucht, liest nach Namen.
+            // Die Karten darunter bleiben in der redaktionellen Reihenfolge.
+            [...publishedDistricts].sort((a, b) => a.name.localeCompare(b.name, 'de')).map((d) => (
+              <li>
+                <a class="chip" href={`#bezirk-${d.slug}`}>
+                  {d.name}
+                </a>
+              </li>
+            ))
+          }
+        </ul>
+      </nav>
+
       <ul class="dist-grid">
         {
           publishedDistricts.map((d) => (
-            <li>
+            <li id={`bezirk-${d.slug}`}>
               <a class="card card--link card--plan" href={`/berlin/${d.slug}/`} data-track="location_click">
                 <span class="card__title">{d.name}</span>
                 <span class="card__text">{d.answer.split('.').slice(0, 2).join('.') + '.'}</span>
@@ -162,6 +186,21 @@ const schema = buildGraph([
   }
   .dist-grid li {
     margin: 0;
+  }
+  .dist-pick .chips {
+    margin-bottom: 0;
+  }
+  /* Die Chips sind Tippziele: auf 44 px Höhe gebracht (WCAG 2.5.5). */
+  .dist-pick .chip {
+    display: inline-flex;
+    align-items: center;
+    min-height: 2.75rem;
+    padding-inline: 0.9rem;
+  }
+  /* Nach dem Sprung: die gewählte Karte ist sofort erkennbar. */
+  .dist-grid li:target a {
+    outline: 3px solid var(--accent);
+    outline-offset: 2px;
   }
   .dist-grid a {
     height: 100%;

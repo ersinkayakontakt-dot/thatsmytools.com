@@ -97,6 +97,14 @@ kontextuelle Verlinkung entfallen, nicht durch Nachgeben: Der P4-Durchschnitt
 im Linkgraph stieg von 3,8 auf 5,2. Wer die Zahl senkt, schreibt hier den
 neuen Stand hin und begründet ihn – wer sie steigen lässt, sucht die Ursache.
 
+**Absolute Linkgraph-Werte sind relativ.** Sie sind auf die stärkste Seite
+(`/angebot-anfragen/` = 100) normiert. Seit dem mitlaufenden Kontaktblock
+(02.10.2026, 56 Seiten) hat diese mehr Eingänge, und alle anderen Werte
+sanken optisch (P5 11,9 → 9,3, P4 5,2 → 4,4, P3 5,8 → 4,6) – bei
+unveränderter Reihenfolge und Warnungszahl. Vergleiche nur das Verhältnis
+der Stufen und die Warnungen, nicht absolute Werte über so eine Änderung
+hinweg. Sprunglinks innerhalb einer Seite (`#…`) zählt der Linkgraph nicht.
+
 ### Zusätzlich, je nach Bereich
 
 | Angefasst | Zusätzlich ausführen |
