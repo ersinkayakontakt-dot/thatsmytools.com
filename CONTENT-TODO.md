@@ -129,6 +129,10 @@ Wohnungsauflösung, Nachlass und Seniorenumzug" umgestellt. Umgesetzt sind:
      alphabetisch, 44 px hoch, springen zur Bezirkskarte (markiert per
      `:target`). Bewusst Sprunglinks statt direkter Links – siehe Kommentar
      in `src/pages/berlin/index.astro`.
+   - ✅ Knopfreihen (`.btn-row`) mobil global gleich breit; Leistungskarten
+     der Hausverwaltungsseite mit Symbol in der Titelzeile, 1.170 → 1.031 px
+     (02.10.2026). Handy-Menü geprüft: Links 48 px, Panel passt auf den
+     Bildschirm – keine Änderung nötig.
    - Offen: Szenario- und Fallbeispiel-Bausteine. Das Fallbeispiel
      braucht echte Einsatzberichte (§ E), sonst bleibt es leer.
 7. ✅ **Bildsystem und erste Bildsprache umgesetzt.** Sieben dokumentierte

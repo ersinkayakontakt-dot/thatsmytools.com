@@ -487,6 +487,30 @@ const steps = [
     font-size: 0.94rem;
     line-height: 1.55;
   }
+  /* Handy, eine Spalte: Symbol links neben dem Titel statt auf eigener
+     Zeile – dasselbe Muster wie die Situationskarten der Startseite. */
+  @media (max-width: 45.99em) {
+    .scope__grid li {
+      grid-template-columns: 1.75rem minmax(0, 1fr);
+      grid-template-areas:
+        'icon title'
+        '.    text';
+      column-gap: 0.85rem;
+      row-gap: 0.4rem;
+    }
+    .scope__grid li > :global(svg) {
+      grid-area: icon;
+      width: 1.5rem;
+      height: 1.5rem;
+      margin-top: 0.1rem;
+    }
+    .scope__grid h3 {
+      grid-area: title;
+    }
+    .scope__grid p {
+      grid-area: text;
+    }
+  }
   @media (min-width: 46em) {
     .scope__grid {
       grid-template-columns: repeat(2, minmax(0, 1fr));

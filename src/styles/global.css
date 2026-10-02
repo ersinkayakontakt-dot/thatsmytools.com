@@ -490,6 +490,14 @@ abbr[title] {
   flex-wrap: wrap;
   gap: var(--sp-3);
 }
+/* Handy: Knöpfe einer Reihe gleich breit. Sonst richtet sich jede Breite
+   nach der Beschriftung (gemessen 296 und 292 px) – eine ausgefranste
+   Kante und ungleiche Tippflächen. Wie der Hero der Startseite. */
+@media (max-width: 35.99em) {
+  .btn-row > .btn {
+    flex: 1 1 100%;
+  }
+}
 
 /* ---------------------------------------------------------- Kartenmotiv
    Kein Schatten, kein Radius, keine Grundriss-Ecken. Stattdessen ein
