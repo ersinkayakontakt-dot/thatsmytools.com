@@ -195,10 +195,12 @@ const prep = [
     margin: 0;
     font-size: 0.95rem;
   }
-  .recap dt {
+  /* :global am Kind: Das Skript erzeugt diese Elemente zur Laufzeit ohne
+     data-astro-cid-Attribut, scoped Regeln griffen deshalb nie. */
+  .recap :global(dt) {
     color: var(--ink-3);
   }
-  .recap dd {
+  .recap :global(dd) {
     margin: 0;
     font-weight: 600;
   }

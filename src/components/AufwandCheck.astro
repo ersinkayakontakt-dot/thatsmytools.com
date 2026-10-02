@@ -994,7 +994,9 @@ const steps = [
     margin: var(--sp-3) 0 0;
     padding: 0;
   }
-  .filelist li {
+  /* :global am Kind: Das Skript erzeugt diese Elemente zur Laufzeit ohne
+     data-astro-cid-Attribut, scoped Regeln griffen deshalb nie. */
+  .filelist :global(li) {
     display: flex;
     justify-content: space-between;
     gap: var(--sp-3);
@@ -1004,7 +1006,7 @@ const steps = [
     color: var(--ink-2);
     margin: 0;
   }
-  .filelist li[data-too-big] {
+  .filelist :global(li[data-too-big]) {
     color: #a02318;
     font-weight: 600;
   }
@@ -1050,10 +1052,10 @@ const steps = [
     margin: 0;
     font-size: 0.9rem;
   }
-  .summary dt {
+  .summary :global(dt) {
     color: var(--ink-3);
   }
-  .summary dd {
+  .summary :global(dd) {
     margin: 0;
     font-weight: 600;
     color: var(--ink);
