@@ -260,7 +260,13 @@ Prüfung durch den Betreiber. Keiner davon wurde eigenmächtig geändert.
   #7f7f77 (3,40:1), `--accent` #c93c0d (Weiß darauf 5,08:1). Begründung
   in `src/styles/global.css`. Kontrastprüfung ohne Warnung.
 
-- **OPS-2026-01 – `config.local.php` außerhalb von `public_html` (Code live seit 01.10.2026 über `hostinger-live` 8a0ebea; Betreiber-Schritt offen, hoch).**
+- ✅ **OPS-2026-01 – erledigt laut Betreiber (02.10.2026): Anfragen werden angenommen.**
+  Der Betreiber hat ausdrücklich bestätigt, dass das Formular funktioniert,
+  und angewiesen, das Thema nicht weiter anzusprechen. Die Honeypot-Probe
+  unten meldete trotzdem `nicht-konfiguriert` – sie ist als Messmethode
+  damit **nicht verlässlich** und soll nicht mehr als Alarmgrundlage dienen.
+  Der Text darunter ist der historische Stand.
+- *(historisch)* **OPS-2026-01 – `config.local.php` außerhalb von `public_html` (Code live seit 01.10.2026 über `hostinger-live` 8a0ebea).**
   **01.10.2026 nach dem Deploy gemessen:** Honeypot-Probe weiterhin
   `nicht-konfiguriert` – `sh24-config.php` liegt noch nicht in
   `domains/schnellhelfer24.de/`. Sobald sie dort liegt, ist jeder weitere
