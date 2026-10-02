@@ -195,6 +195,13 @@ body {
   body {
     padding-bottom: var(--stickybar-h);
   }
+  /* Gegenstück zu scroll-padding-top für die feste Leiste unten. Ohne das
+     scrollte der Browser ein per Tab fokussiertes Element nur knapp in den
+     sichtbaren Bereich – und dort lag es hinter der StickyBar. Gemessen
+     7 bzw. 8 von 45 Tab-Schritten verdeckt (WCAG 2.2, 2.4.11). */
+  html {
+    scroll-padding-bottom: calc(var(--stickybar-h) + 0.75rem);
+  }
 }
 
 img,

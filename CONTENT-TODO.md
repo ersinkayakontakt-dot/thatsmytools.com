@@ -133,6 +133,12 @@ Wohnungsauflösung, Nachlass und Seniorenumzug" umgestellt. Umgesetzt sind:
      der Hausverwaltungsseite mit Symbol in der Titelzeile, 1.170 → 1.031 px
      (02.10.2026). Handy-Menü geprüft: Links 48 px, Panel passt auf den
      Bildschirm – keine Änderung nötig.
+   - ✅ Barrierefreiheit geprüft (02.10.2026), 9 Seitentypen: Sprache, eine h1,
+     keine übersprungenen Ebenen, Alt-Texte, Feldbeschriftungen, Sprunglink,
+     eindeutige Linktexte – alles in Ordnung. Fokusrahmen 3 px überall.
+     **Behoben:** auf dem Handy verdeckte die StickyBar den Tastaturfokus
+     (WCAG 2.2, 2.4.11; 15 von 135 Tab-Schritten) – `scroll-padding-bottom`.
+     Danach 0 verdeckt, mobil und Desktop.
    - Offen: Szenario- und Fallbeispiel-Bausteine. Das Fallbeispiel
      braucht echte Einsatzberichte (§ E), sonst bleibt es leer.
 7. ✅ **Bildsystem und erste Bildsprache umgesetzt.** Sieben dokumentierte
