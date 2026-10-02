@@ -121,6 +121,10 @@ Wohnungsauflösung, Nachlass und Seniorenumzug" umgestellt. Umgesetzt sind:
    - ✅ Startseite mobil (02.10.2026): Hero-Knöpfe volle Breite statt
      274/312/286 px; Situationskarten mit Symbol und Pfeil in der Titelzeile,
      1.497 → 1.268 px. Desktop gemessen unverändert.
+   - ✅ Kicker-Abstand (02.10.2026): `.kicker + h2` ohne oberen Rand. Vorher
+     60 px Lücke zwischen Kicker und Überschrift auf Leistungs-, Bezirks-,
+     Ratgeber-, Kosten- und Einsatzberichtsübersicht (83 Stellen, 66 Seiten);
+     jetzt 12 px, mobil und Desktop gemessen.
    - Offen: Szenario- und Fallbeispiel-Bausteine. Das Fallbeispiel
      braucht echte Einsatzberichte (§ E), sonst bleibt es leer.
 7. ✅ **Bildsystem und erste Bildsprache umgesetzt.** Sieben dokumentierte

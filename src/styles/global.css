@@ -353,6 +353,15 @@ abbr[title] {
 .section--brand .kicker {
   color: var(--white);
 }
+/* Kicker und Überschrift sind eine Einheit. Die h2 bringt sonst ihren
+   oberen Abstand (--sp-7) mit; weil der Kicker inline-block ist, fällt er
+   nicht mit dessen unterem Abstand zusammen. Gemessen 60 px Lücke auf
+   Leistungs-, Bezirks-, Ratgeber-, Kosten- und Einsatzberichtsübersicht –
+   der Kicker stand wie ein verwaister Rest über einer Leerzeile. */
+.kicker + h2,
+.kicker + h3 {
+  margin-top: 0;
+}
 
 .lede {
   font-size: 1.12rem;
