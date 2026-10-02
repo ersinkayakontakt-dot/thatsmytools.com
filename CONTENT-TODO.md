@@ -118,6 +118,9 @@ Wohnungsauflösung, Nachlass und Seniorenumzug" umgestellt. Umgesetzt sind:
      Ablauf der Startseite; Schritt 3 dort in neutraler Fassung.
    - Formular-Tippflächen gemessen (390 px): in Ordnung. Die Auswahlkarten
      sind die Ziele, die nativen Felder sind bewusst 1×1 versteckt.
+   - ✅ Startseite mobil (02.10.2026): Hero-Knöpfe volle Breite statt
+     274/312/286 px; Situationskarten mit Symbol und Pfeil in der Titelzeile,
+     1.497 → 1.268 px. Desktop gemessen unverändert.
    - Offen: Szenario- und Fallbeispiel-Bausteine. Das Fallbeispiel
      braucht echte Einsatzberichte (§ E), sonst bleibt es leer.
 7. ✅ **Bildsystem und erste Bildsprache umgesetzt.** Sieben dokumentierte

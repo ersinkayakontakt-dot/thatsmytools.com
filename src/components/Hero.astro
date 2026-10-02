@@ -152,6 +152,14 @@ import { phone, whatsapp, primaryCta } from '../lib/contact';
     min-height: 3.5rem;
     padding-inline: 1.6rem;
   }
+  /* Handy: Die drei Knöpfe hatten je nach Beschriftung 274, 312 und
+     286 px Breite – eine ausgefranste Kante und ungleiche Tippflächen.
+     Volle Breite macht sie gleich groß. */
+  @media (max-width: 35.99em) {
+    .hero__actions :global(.btn) {
+      flex: 1 1 100%;
+    }
+  }
   .hero__facts {
     display: grid;
     grid-template-columns: repeat(3, minmax(0, 1fr));
