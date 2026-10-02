@@ -164,7 +164,7 @@ const steps = [
   </div>
 
   <!-- Fehlerübersicht, wird bei Validierungsfehlern gefüllt -->
-  <div class="errors" data-errors role="alert" hidden>
+  <div class="errors" data-errors role="alert" tabindex="-1" hidden>
     <p class="errors__head">Bitte prüfen Sie diese Angaben:</p>
     <ul data-errors-list></ul>
   </div>
@@ -751,8 +751,12 @@ const steps = [
     margin: 0;
     padding-left: 1.2rem;
   }
-  .errors a {
+  .errors :global(a) {
     color: #7d1a12;
+  }
+  .errors:focus {
+    outline: 3px solid #a02318;
+    outline-offset: 2px;
   }
 
   /* ----------------------------------------------------------- Schritte */
@@ -886,7 +890,10 @@ const steps = [
     max-width: 9rem;
   }
 
-  .field__error {
+  /* :global, weil showError() die Meldung zur Laufzeit erzeugt. Solchen
+     Elementen fehlt das data-astro-cid-Attribut, und die scoped Regel griff
+     nie – die Fehlermeldung erschien als schwarzer Hilfetext. */
+  .form :global(.field__error) {
     display: block;
     color: #a02318;
     font-size: 0.88rem;
@@ -1255,7 +1262,10 @@ const steps = [
         var li = document.createElement('li');
         var a = document.createElement('a');
         a.href = '#';
-        a.textContent = labelFor(p.field) + ': ' + p.message;
+        // „Geht es?: Bitte …" vermeiden: Endet die Beschriftung schon mit
+        // einem Satzzeichen, folgt nur ein Leerzeichen.
+        var lbl = labelFor(p.field);
+        a.textContent = lbl + (/[?!.:]$/.test(lbl) ? ' ' : ': ') + p.message;
         a.addEventListener('click', function (e) {
           e.preventDefault();
           p.field.focus();
@@ -1264,7 +1274,15 @@ const steps = [
         errorList.appendChild(li);
       });
       errorBox.hidden = false;
-      errorBox.scrollIntoView({ block: 'nearest' });
+      // Direkt springen und den Fokus auf die Übersicht setzen. Das frühere
+      // scrollIntoView({ block: 'nearest' }) kam neben scroll-behavior: smooth
+      // nicht an: Wer in einem langen Schritt unten „Weiter" drückte, blieb
+      // dort stehen, die Übersicht lag außerhalb des Bildes, und es schien
+      // nichts zu passieren. Gleicher Weg wie beim Schrittwechsel in show().
+      var header = document.querySelector('.site-header');
+      var offset = (header ? header.offsetHeight : 0) + 16;
+      window.scrollTo({ top: errorBox.getBoundingClientRect().top + window.pageYOffset - offset, behavior: 'auto' });
+      errorBox.focus({ preventScroll: true });
     }
 
     /* ------------------------------------------------------ Navigation */

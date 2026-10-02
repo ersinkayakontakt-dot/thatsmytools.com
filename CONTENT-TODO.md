@@ -139,6 +139,12 @@ Wohnungsauflösung, Nachlass und Seniorenumzug" umgestellt. Umgesetzt sind:
      **Behoben:** auf dem Handy verdeckte die StickyBar den Tastaturfokus
      (WCAG 2.2, 2.4.11; 15 von 135 Tab-Schritten) – `scroll-padding-bottom`.
      Danach 0 verdeckt, mobil und Desktop.
+   - ✅ Formular-Fehlerführung (02.10.2026): Bei leeren Pflichtfeldern blieb man
+     unten beim Knopf stehen, die Fehlerübersicht lag außerhalb des Bildes, der
+     Fokus blieb auf BODY. Jetzt Sprung zur Übersicht unter dem Header, Fokus
+     dorthin. Feldfehler waren nie rot (scoped Style gegen zur Laufzeit
+     erzeugte Elemente) – jetzt `:global`. **Merksatz:** Was ein Skript per
+     createElement erzeugt, erreichen scoped Astro-Styles nicht.
    - Offen: Szenario- und Fallbeispiel-Bausteine. Das Fallbeispiel
      braucht echte Einsatzberichte (§ E), sonst bleibt es leer.
 7. ✅ **Bildsystem und erste Bildsprache umgesetzt.** Sieben dokumentierte
