@@ -299,6 +299,15 @@ Prüfung durch den Betreiber. Keiner davon wurde eigenmächtig geändert.
   Bestätigungsseite statt auf `nicht-konfiguriert` führen. Das Passwort
   kennt nur der Betreiber. Details: `docs/HOSTINGER-AKTUALISIEREN.md`.
 
+- **PERF-2026-01 – Messgröße des HTML-Budgets klären (offen, niedrig).**
+  `docs/ARCHITEKTUR.md` § 8 verlangt HTML < 60 KB unkomprimiert; Leistungsseiten
+  liegen bei rund 80 KB, das Formular bei 94 KB – seit dem 06.08.2026. Über die
+  Leitung gehen 15–17 KB, LCP 0,55–0,76 s, CLS 0 (gemessen 02.10.2026). Entweder
+  das Budget auf die übertragene Größe umstellen oder Rohgröße senken. Der
+  größte Hebel wäre `scopedStyleStrategy` in `astro.config.mjs` (rund 11 KB
+  `data-astro-cid` je Seite) – ändert aber die Spezifität aller scoped Styles
+  und braucht deshalb einen eigenen, visuell geprüften Schritt.
+
 ### Daten, die die Werkzeuge brauchen
 
 8. **Search-Console-Export** nach `data/gsc/`, **Bing-Export** nach

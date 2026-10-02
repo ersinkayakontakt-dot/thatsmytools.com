@@ -286,9 +286,30 @@ Zielwerte für die Startseite auf einem mittleren Mobilgerät:
 | Cumulative Layout Shift | < 0,05 |
 | Interaction to Next Paint | < 150 ms |
 
-Diese Werte sind derzeit eingehalten, weil es keine externen Ressourcen,
-keine Webfonts und kein Hero-Bild gibt. **Beim Ergänzen echter Fotos ist das
-Budget der kritische Punkt.** Regeln dafür:
+**Gemessen am 02.10.2026** (Handy 390 px, gedrosseltes 4G mit 150 ms Latenz
+und 1,6 Mbit/s, CPU 4-fach verlangsamt, leerer Cache, Live-Seite):
+
+| Seite | LCP | CLS | Anfragen | übertragen | HTML roh / Brotli |
+|---|---|---|---|---|---|
+| Startseite | 0,71 s (Kaltstart 1,95 s) | 0 | 6 | 21 KB | 54 / 11 KB |
+| Leistung Entrümpelung | 0,62–0,72 s | 0 | 6 | 43 KB | 81 / 15 KB |
+| Formular | 0,55–0,66 s | 0 | 6 | 28 KB | 94 / 17 KB |
+| Berlin | 0,63–0,76 s | 0 | 5 | 20 KB | – |
+
+Der Kaltstart enthält den ersten DNS- und TLS-Aufbau des Browsers.
+**Eingehalten:** LCP, CLS, Anfragen, JavaScript (2,4 KB), CSS auf
+Leistungsseiten (20,8 KB).
+**Gerissen, seit dem SEO-Ausbau vom 06.08.2026:**
+- *HTML unkomprimiert:* Leistungsseiten rund 80 KB, Formular 94 KB. Die
+  Rohgröße treiben Astros `data-astro-cid`-Attribute (rund 11 KB je Seite),
+  strukturierte Daten (bis 10 KB) und Inline-Skripte. Über die Leitung
+  gehen davon 15–17 KB (Brotli). Offene Entscheidung: PERF-2026-01 in
+  `CONTENT-TODO.md`.
+- *CSS der Startseite:* 20,8 + 11,3 = 32 KB roh, 6,9 KB gzip.
+
+Es gibt keine externen Ressourcen, keine Webfonts und kein Hero-Bild.
+**Beim Ergänzen echter Fotos ist das Budget der kritische Punkt.** Regeln
+dafür:
 
 - Bilder als AVIF mit WebP-Rückfall, JPEG nur als letzte Stufe.
 - `<img>` immer mit `width`, `height` und `loading="lazy"` unterhalb des
