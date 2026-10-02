@@ -145,6 +145,13 @@ Wohnungsauflösung, Nachlass und Seniorenumzug" umgestellt. Umgesetzt sind:
      dorthin. Feldfehler waren nie rot (scoped Style gegen zur Laufzeit
      erzeugte Elemente) – jetzt `:global`. **Merksatz:** Was ein Skript per
      createElement erzeugt, erreichen scoped Astro-Styles nicht.
+   - Formular Schritte 1–6 mobil durchgespielt (02.10.2026, ohne Absenden): ohne
+     weiteren Befund. Einwilligung 22 px, aber in klickbarer Beschriftung
+     292 × 130 px – erfüllt WCAG 2.5.8. Schritt 3 ist mit 25 Feldern und
+     2.027 px dreimal so lang wie die anderen; **nicht** eigenmächtig geteilt,
+     weil die Schrittzahl in SEO-LAUNCH-CHECKLIST.md als A/B-Test vorgesehen
+     ist (Abschlussquote) und Fortschritt sowie `estimate_step_completed`
+     an der Nummerierung hängen.
    - Offen: Szenario- und Fallbeispiel-Bausteine. Das Fallbeispiel
      braucht echte Einsatzberichte (§ E), sonst bleibt es leer.
 7. ✅ **Bildsystem und erste Bildsprache umgesetzt.** Sieben dokumentierte
