@@ -48,21 +48,28 @@ const SubHead = `h${level + 1}` as 'h3' | 'h4';
       )}
 
       {block.table && (
-        <div class="table-scroll">
-          <table>
+        <div class="table-scroll table-stack">
+          {/* Rollen ausdrücklich: Die gestapelte Handy-Darstellung (global.css,
+              .table-stack) setzt display:block, und manche Screenreader
+              verlieren dann die Tabellensemantik. */}
+          <table role="table">
             {block.table.caption && <caption>{block.table.caption}</caption>}
-            <thead>
-              <tr>
+            <thead role="rowgroup">
+              <tr role="row">
                 {block.table.head.map((h) => (
-                  <th scope="col">{h}</th>
+                  <th scope="col" role="columnheader">{h}</th>
                 ))}
               </tr>
             </thead>
-            <tbody>
+            <tbody role="rowgroup">
               {block.table.rows.map((row) => (
-                <tr>
+                <tr role="row">
                   {row.map((cell, i) =>
-                    i === 0 ? <th scope="row" set:html={inline(cell)} /> : <td set:html={inline(cell)} />,
+                    i === 0 ? (
+                      <th scope="row" role="rowheader" set:html={inline(cell)} />
+                    ) : (
+                      <td role="cell" data-label={block.table!.head[i] ?? ''} set:html={inline(cell)} />
+                    ),
                   )}
                 </tr>
               ))}

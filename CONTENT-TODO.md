@@ -103,6 +103,14 @@ Wohnungsauflösung, Nachlass und Seniorenumzug" umgestellt. Umgesetzt sind:
      nie wirksames `sticky` auf der oberen Box: Die Seitenspalte war nur so
      hoch wie ihr Inhalt, rechts blieben auf einer Leistungsseite rund
      2.500 px leer.
+   - ✅ Tabellen auf dem Handy gestapelt (`.table-stack`, global.css), seit
+     02.10.2026. Vorher scrollten alle Tabellen unter 40em seitlich, und die
+     dritte Spalte („Warum" bei jedem Preisfaktor, „Grenzen" im
+     Belagvergleich) lag ohne Hinweis hinter dem Rand. Gemessen per
+     Geräteemulation (390 px): keine Tabelle versteckt mehr eine Spalte; am
+     Desktop unverändert. ARIA-Rollen im Markup erhalten die
+     Tabellensemantik. **Neue Tabellen:** Wrapper `table-scroll table-stack`
+     und je `td` ein `data-label` mit der Spaltenüberschrift.
    - Offen: Prozess-, Szenario- und Fallbeispiel-Bausteine. Das Fallbeispiel
      braucht echte Einsatzberichte (§ E), sonst bleibt es leer.
 7. ✅ **Bildsystem und erste Bildsprache umgesetzt.** Sieben dokumentierte

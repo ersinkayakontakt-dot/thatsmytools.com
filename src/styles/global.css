@@ -922,6 +922,64 @@ a.chip:hover {
   max-width: none;
 }
 
+/* Gestapelte Tabellen auf dem Handy.
+   Ohne das scrollten alle Tabellen (min-width 34rem) unter 40em seitlich,
+   und die dritte Spalte – „Grenzen" im Belagvergleich, „Warum" bei jedem
+   Preisfaktor – lag ohne Hinweis hinter dem rechten Rand. Gestapelt wird
+   jede Zeile eine Karte: Zeilenkopf als Titel, jede Zelle mit ihrer
+   Spaltenbeschriftung aus data-label. Die ARIA-Rollen im Markup halten
+   die Tabellensemantik für Screenreader trotz display:block. */
+@media (max-width: 39.99em) {
+  .table-stack {
+    overflow-x: visible;
+  }
+  .table-stack table {
+    min-width: 0;
+  }
+  .table-stack thead {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    white-space: nowrap;
+  }
+  .table-stack tr {
+    display: block;
+    padding: var(--sp-3) var(--sp-4);
+    border-bottom: var(--rule) solid var(--line);
+  }
+  .table-stack tbody tr:last-child {
+    border-bottom: 0;
+  }
+  .table-stack th[scope='row'],
+  .table-stack td {
+    display: block;
+    padding: 0;
+    border: 0;
+    background: none;
+    white-space: normal;
+  }
+  .table-stack th[scope='row'] {
+    font-size: 1rem;
+    margin-bottom: var(--sp-2);
+  }
+  .table-stack td + td,
+  .table-stack th + td {
+    margin-top: var(--sp-2);
+  }
+  .table-stack td[data-label]::before {
+    content: attr(data-label);
+    display: block;
+    font-size: 0.74rem;
+    font-weight: 800;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: var(--ink-3);
+    margin-bottom: 0.15rem;
+  }
+}
+
 /* Druckausgabe: Kontaktdaten sichtbar machen */
 @media print {
   .site-header,
