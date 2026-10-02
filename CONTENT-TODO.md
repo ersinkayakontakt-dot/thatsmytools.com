@@ -111,7 +111,14 @@ Wohnungsauflösung, Nachlass und Seniorenumzug" umgestellt. Umgesetzt sind:
      Desktop unverändert. ARIA-Rollen im Markup erhalten die
      Tabellensemantik. **Neue Tabellen:** Wrapper `table-scroll table-stack`
      und je `td` ein `data-label` mit der Spaltenüberschrift.
-   - Offen: Prozess-, Szenario- und Fallbeispiel-Bausteine. Das Fallbeispiel
+   - ✅ Ablauf-Baustein auf Leistungsseiten (`ProcessInline.astro`), seit
+     02.10.2026: „So kommen Sie zu einem festen Preis" direkt nach den
+     Preisfaktoren, ohne eigenen Knopf (keine CTA-Wiederholung, siehe
+     NextStepPanel). Texte aus `src/data/process.ts`, dieselbe Quelle wie der
+     Ablauf der Startseite; Schritt 3 dort in neutraler Fassung.
+   - Formular-Tippflächen gemessen (390 px): in Ordnung. Die Auswahlkarten
+     sind die Ziele, die nativen Felder sind bewusst 1×1 versteckt.
+   - Offen: Szenario- und Fallbeispiel-Bausteine. Das Fallbeispiel
      braucht echte Einsatzberichte (§ E), sonst bleibt es leer.
 7. ✅ **Bildsystem und erste Bildsprache umgesetzt.** Sieben dokumentierte
    Stockfotos sind zentral in `src/data/images.ts` zugeordnet und vollständig

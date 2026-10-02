@@ -16,6 +16,7 @@ import NextStepPanel from '../../components/NextStepPanel.astro';
 import ContextualCompanyLink from '../../components/ContextualCompanyLink.astro';
 import Figure from '../../components/Figure.astro';
 import Toc from '../../components/Toc.astro';
+import ProcessInline from '../../components/ProcessInline.astro';
 import { services } from '../../data/services';
 import { seoPage } from '../../data/seo-pages';
 import { heroImage, imagesForPage } from '../../data/images';
@@ -56,6 +57,7 @@ const toc = [
   { label: 'Was enthalten ist', id: 'enthalten' },
   ...service.blocks.map((b) => ({ label: b.h, id: headingId(b.h) })),
   ...(service.priceFactors.length > 0 ? [{ label: 'Was den Preis bestimmt', id: `pf-${service.slug}-head` }] : []),
+  { label: 'So kommen Sie zu einem festen Preis', id: 'ablauf' },
   ...(service.faq.length > 0 ? [{ label: 'Häufige Fragen', id: `faq-${service.slug}-head` }] : []),
 ];
 const seo = seoPage(pageId);
@@ -193,6 +195,8 @@ const schema = buildGraph([
         <Blocks blocks={service.blocks} />
 
         <PriceFactors factors={service.priceFactors} id={`pf-${service.slug}`} />
+
+        <ProcessInline />
 
         {inlineImages.map((img) => <Figure image={img} layout="wide" />)}
 

@@ -12,6 +12,7 @@ import { primaryCta } from '../lib/contact';
 import { site } from '../config/site';
 import { seoPage } from '../data/seo-pages';
 import { formatDate } from '../lib/text';
+import { processSteps } from '../data/process';
 import ContextualCompanyLink from '../components/ContextualCompanyLink.astro';
 
 
@@ -174,24 +175,15 @@ const singleJobs = [
         <h2 id="ablauf">Erst ansehen.<br />Dann fest absprechen.</h2>
       </div>
       <ol class="process__steps">
-        <li>
-          <span>01</span>
-          <h3>Zeigen</h3>
-          <p>
-            Fotos und Eckdaten schicken. Sie erhalten eine kostenlose telefonische
-            Ersteinschätzung; bei Komplettaufträgen sehen wir uns das Objekt vorher an.
-          </p>
-        </li>
-        <li>
-          <span>02</span>
-          <h3>Klären</h3>
-          <p>Sie erfahren vorab, was gemacht wird, wie lange es dauert und was enthalten ist.</p>
-        </li>
-        <li>
-          <span>03</span>
-          <h3>Machen</h3>
-          <p>Wir räumen, transportieren ab und übergeben wie vereinbart – auf Wunsch besenrein.</p>
-        </li>
+        {
+          processSteps.map((step) => (
+            <li>
+              <span>{step.nr}</span>
+              <h3>{step.title}</h3>
+              <p>{step.text}</p>
+            </li>
+          ))
+        }
       </ol>
       <a class="btn btn--primary process__cta" href={primaryCta.href}>
         <Icon name="camera" size={19} />
