@@ -8,6 +8,12 @@ import apartmentHandover from '../assets/schluesseluebergabe-wohnung.jpg';
 import seniorMoveConversation from '../assets/seniorenumzug-gespraech-generationen.jpg';
 import emptyApartment from '../assets/wohnungsaufloesung-leere-wohnung.jpg';
 
+import constructionInterior from '../assets/innenausbau-heller-raum.jpg';
+import constructionDrywall from '../assets/trockenbau-innenraum.jpg';
+import constructionDemolition from '../assets/rueckbau-bestandsraum.jpg';
+import constructionFloor from '../assets/boden-laminat-verlegung.jpg';
+import constructionKitchen from '../assets/kuechenmontage-einbaukueche.jpg';
+
 export type ImageOrigin = 'stock' | 'company' | 'customer-approved';
 export type ImageRole = 'hero' | 'inline';
 
@@ -30,6 +36,11 @@ export interface SiteImage {
  * IMAGE-SOURCES.md.
  */
 export const siteImages: readonly SiteImage[] = [
+  { pageId: 'service:innenausbau-berlin', role: 'hero', src: constructionInterior, alt: 'Heller Raum mit weißen Wänden und geschütztem Boden während einer Renovierung', caption: 'Beispielbild: ein Innenraum in der Ausbauphase.', imageOrigin: 'stock', showsPeople: false },
+  { pageId: 'service:trockenbau-berlin', role: 'hero', src: constructionDrywall, alt: 'Unfertiger Innenraum mit weißen Wandflächen, Türöffnungen und offener Decke', caption: 'Beispielbild: Wandflächen und Raumübergänge im Innenausbau.', imageOrigin: 'stock', showsPeople: false },
+  { pageId: 'service:demontage-rueckbau', role: 'hero', src: constructionDemolition, alt: 'Entkernter Bestandsraum mit freigelegtem Mauerwerk und Baumaterial', caption: 'Beispielbild: freigelegter Bestand vor dem weiteren Ausbau.', imageOrigin: 'stock', showsPeople: false },
+  { pageId: 'service:bodenbelag-verlegen-berlin', role: 'hero', src: constructionFloor, alt: 'Handwerker verlegt dunkle Laminatdielen mit Schlagholz und Gummihammer', caption: 'Beispielbild: Laminatdielen werden passgenau verlegt.', imageOrigin: 'stock', showsPeople: true },
+  { pageId: 'service:kuechenmontage-berlin', role: 'hero', src: constructionKitchen, alt: 'Helle Einbauküche mit weißen Schränken, Arbeitsfläche und Fenster', caption: 'Beispielbild: angeordnete Küchenmöbel mit zusammenhängender Arbeitsfläche.', imageOrigin: 'stock', showsPeople: false },
   {
     pageId: 'service:wohnungsaufloesung-berlin',
     role: 'hero',

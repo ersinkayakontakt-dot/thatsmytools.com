@@ -1,5 +1,7 @@
 # Handoff: maximale Auffindbarkeit weiterbauen
 
+Objektbilder live am 19.10.2026: fünf Motive auf Startseite und Bauleistungsseiten, Deployment 904524d. Live geprüft; Bildquellen in IMAGE-SOURCES.md, Status BILD-2026-01/02 im Tracker.
+
 Live bestätigt: hostinger-live f7c5148; Startseite, Innenausbau, Trockenbau und Sitemap liefern die Erweiterung aus. Alle fünf Prüfungen erfolgreich.
 
 ## Innenausbau-Erweiterung am 19.10.2026

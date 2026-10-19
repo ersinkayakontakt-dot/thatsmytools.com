@@ -25,7 +25,7 @@ Alles eigene Erzeugnisse. Keine Nachweispflicht gegenüber Dritten.
 
 ## Stockfotos
 
-Alle sieben stammen von **Pexels**. Die Pexels-Lizenz erlaubt die
+Die folgenden Stockfotos stammen von **Pexels**. Die Pexels-Lizenz erlaubt die
 kostenlose Nutzung, auch kommerziell, ohne Namensnennung
 (<https://www.pexels.com/license/>). Die Namensnennung erfolgt hier
 trotzdem – sie kostet nichts und macht den Nachweis prüfbar.
@@ -47,9 +47,21 @@ Lizenzstatus beim Abruf, wörtlich von der Quellseite: *„Free to use.
 Attribution is not required. Modification allowed."*
 
 Alle Dateien liegen in `src/assets/` und werden über `astro:assets` als
-AVIF, WebP und JPEG in vier Breiten ausgeliefert. Die Originale wurden auf
+AVIF, WebP und JPEG in mehreren zum Layout passenden Breiten ausgeliefert. Die Originale wurden auf
 2400 px Breite reduziert – die Quelldateien haben 6000 bis 8000 px und
 hätten das Repository unnötig aufgebläht.
+
+### Bauleistungen: ergänzt am 19.10.2026
+
+Fünf Pexels-Motive vor der Übernahme visuell geprüft. Auf Startseite und Leistungsseiten sichtbar als Beispielbild bezeichnet; keine eigenen Referenzaufträge. Lizenz beim Abruf: Pexels-Lizenz, kostenlose Nutzung und Bearbeitung, Namensnennung nicht erforderlich. Quelle: https://www.pexels.com/license/
+
+| Datei | Fotograf | Originalseite | Abruf | Verwendung | Personen | Austausch |
+|---|---|---|---|---|---|---|
+| `innenausbau-heller-raum.jpg` | Josh Kobayashi | [Pexels](https://www.pexels.com/photo/room-during-renovation-5404462/) | 2026-10-19 | Startseite und `/leistungen/innenausbau-berlin/` | nein | eigene Auftragsfotos offen |
+| `trockenbau-innenraum.jpg` | Pavel Danilyuk | [Pexels](https://www.pexels.com/photo/interior-of-unfinished-building-with-white-paint-7937303/) | 2026-10-19 | Startseite und `/leistungen/trockenbau-berlin/` | nein | eigene Auftragsfotos offen |
+| `rueckbau-bestandsraum.jpg` | Francesco Ungaro | [Pexels](https://www.pexels.com/photo/major-home-renovation-15798781/) | 2026-10-19 | Startseite und `/leistungen/demontage-rueckbau/` | nein | eigene Auftragsfotos offen |
+| `boden-laminat-verlegung.jpg` | 8 K (Kelly) | [Pexels](https://www.pexels.com/photo/crop-man-installing-laminate-flooring-4263067/) | 2026-10-19 | Startseite und `/leistungen/bodenbelag-verlegen-berlin/` | ja | eigene Auftragsfotos offen |
+| `kuechenmontage-einbaukueche.jpg` | Peter Vang | [Pexels](https://www.pexels.com/photo/bright-modern-kitchen-with-wood-flooring-35618257/) | 2026-10-19 | Startseite und `/leistungen/kuechenmontage-berlin/` | nein | eigene Auftragsfotos offen |
 
 ### Was aussortiert wurde – und warum
 
@@ -71,7 +83,7 @@ Aussortiert wurden unter anderem:
 
 | Seite | Grund |
 |---|---|
-| Startseite | Der Hero ist rein typografisch aufgebaut. Ein Foto dort würde genau die Gestaltung verändern, die als Referenz für alle Unterseiten dient. Das Vorschaubild für soziale Netzwerke gibt es trotzdem. |
+| Startseiten-Hero | Bleibt typografisch. Der folgende Bauleistungsbereich enthält seit 19.10.2026 fünf Beispielbilder. |
 | `/leistungen/messiwohnung-raeumen/` | Jedes verfügbare Motiv wäre entweder beschönigend oder bloßstellend. In `src/data/seo-pages.ts` ist für diese Seite deshalb gar kein Bildmotiv hinterlegt. |
 | `/leistungen/bueroaufloesung-berlin/` | Noch offen. Der Bild-Guard weist als Warnung darauf hin. |
 

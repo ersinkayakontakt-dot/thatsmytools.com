@@ -1,6 +1,8 @@
 ---
 import Base from '../layouts/Base.astro';
 import Hero from '../components/Hero.astro';
+import Figure from '../components/Figure.astro';
+import { heroImage } from '../data/images';
 import Icon from '../components/Icon.astro';
 import Faq from '../components/Faq.astro';
 import CtaBand from '../components/CtaBand.astro';
@@ -81,8 +83,9 @@ const singleJobs = [
       <p class="lede">Rückbau, Trockenbau, neue Böden und Küchenmontage: Fragen Sie Ihr gesamtes Vorhaben bei uns an. Wir stimmen Umfang, Reihenfolge und erforderliche Fachbetriebe vor dem Auftrag mit Ihnen ab.</p>
       <a class="btn btn--primary" href="/leistungen/innenausbau-berlin/">Innenausbau entdecken ↗</a>
       <ul class="construction__grid">
-        {constructionJobs.map((service) => (
+        {constructionJobs.map((service, index) => (
           <li><a class="card card--link" href={"/leistungen/" + service.slug + "/"}>
+            {heroImage('service:' + service.slug) && <Figure image={heroImage('service:' + service.slug)!} layout="inline" priority={index === 0} class="construction__image" />}
             <h3>{service.navLabel}</h3><p>{service.teaser}</p><span class="text-link">Leistung ansehen →</span>
           </a></li>
         ))}
@@ -257,6 +260,8 @@ const singleJobs = [
   .construction__grid { list-style: none; padding: 0; margin: var(--sp-6) 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 16rem), 1fr)); gap: var(--sp-4); }
   .construction__grid li { min-width: 0; }
   .construction__grid a { display: flex; flex-direction: column; height: 100%; padding: var(--sp-5); text-decoration: none; border-top: 4px solid var(--accent); }
+  .construction__grid :global(.construction__image) { margin: 0 0 var(--sp-4); }
+  .construction__grid :global(.figure__caption) { font-size: .75rem; }
   .construction__grid h3 { font-size: 1.2rem; }
   .construction__grid p { flex: 1; }
 

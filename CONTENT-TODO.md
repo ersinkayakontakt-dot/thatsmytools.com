@@ -6,6 +6,14 @@ Umgesetzt im Quellstand: Startseitenbereich mit fünf Einstiegen, Menüeintrag I
 
 Veröffentlicht über hostinger-live (f7c5148). Live-Prüfung am 19.10.2026: Startseite, beide neuen Leistungsseiten und Sitemap mit HTTP 200 und neuen Inhalten. Build, Check, Inhaltsaudit, Buildaudit und SEO-Prüfung bestanden (0 Fehler; 20 redaktionell bewertete Warnungen, siehe E-010). Responsive-Prüfung von 320 bis 1920 px ohne horizontalen Überlauf. Betriebliche Zuständigkeiten und Nachweise gemäß docs/HANDWERKSRECHT.md bleiben vor konkreten Auftragszusagen zu klären; die Seiten behaupten keine pauschale Eigenleistung sämtlicher Gewerke. Der frühere Mailversand-Auftrag wird durch diese Inhaltsänderung nicht als erledigt markiert.
 
+## Shipped · BILD-2026-01 · Objektbilder für Bauleistungen
+
+Fünf lizenzierte Beispielbilder für Startseite und die Seiten Innenausbau, Trockenbau, Rückbau, Boden und Küche ergänzt. Quellen in IMAGE-SOURCES.md. Live über hostinger-live 904524d. Alle fünf Projektprüfungen erfolgreich, 0 Fehler und unverändert 20 dokumentierte Hinweise. Bild- und Layoutprüfung auf sechs Seiten in fünf Breiten (320 bis 1920 px) ohne Fehler. Anschließende Live-Prüfung: sechs Seiten HTTP 200, alle Bilder geladen, sichtbare Beispielbild-Kennzeichnung, kein horizontaler Überlauf.
+
+## Offen · BILD-2026-02 · Eigene Referenzfotos
+
+Für Innenausbau, Trockenbau, Rückbau, Boden und Küche fehlen eigene, zur Veröffentlichung freigegebene Auftragsfotos. Nach Bereitstellung ersetzen sie die jeweils als Beispielbild gekennzeichneten Stockfotos. Keine fremden Objekte als eigene Referenz ausgeben.
+
 ---
 
 Diese Website ist inhaltlich vollständig gebaut, aber sie enthält bewusst
