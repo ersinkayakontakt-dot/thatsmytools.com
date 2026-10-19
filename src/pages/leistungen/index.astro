@@ -30,7 +30,7 @@ const schema = buildGraph([
   organizationNode(),
   websiteNode(),
   breadcrumbNode(path, crumbs),
-  webPageNode({ url: path, name: title, description, dateModified: '2026-07-29' }),
+  webPageNode({ url: path, name: title, description, dateModified: page.lastmod }),
 ]);
 
 /**
@@ -68,8 +68,9 @@ const byGroup = publishedCategories
       <div class="answer">
         <p>
           Schnellhelfer24 räumt, löst auf, transportiert und entsorgt in Berlin und im Berliner
-          Umland. Alle Leistungen kommen aus einer Hand, damit Räumung, Transport und Entsorgung
-          nicht auf mehrere Betriebe verteilt werden müssen. Der Aufwand wird vorher anhand von
+          Umland. Dazu kommen Bauleistungen für den Innenausbau: Rückbau, Trockenbau,
+          Bodenverlegung und Küchenmontage. Umfang, Eigenleistungen und erforderliche Fachbetriebe
+          werden vor der Beauftragung geklärt. Der Aufwand wird anhand von
           Fotos oder bei einer Besichtigung eingeschätzt und schriftlich festgehalten.
         </p>
       </div>

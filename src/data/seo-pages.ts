@@ -87,16 +87,16 @@ const staticPages: StaticPage[] = [
     ],
     allowedSchemaTypes: ['WebPage', 'FAQPage'],
     ownOgImage: true,
-    lastmod: '2026-07-30',
+    lastmod: '2026-10-19',
     indexable: true,
   },
   {
     id: 'leistungen',
     url: '/leistungen/',
     pageType: 'hub',
-    title: 'Leistungen: Entrümpelung, Auflösung und Umzug in Berlin',
+    title: 'Leistungen Berlin: Räumung, Umzug und Innenausbau',
     metaDescription:
-      'Alle Leistungen im Überblick: Entrümpelung, Haushalts- und Wohnungsauflösung, Nachlass, Keller, Büro, Sperrmüll, Umzug und Seniorenumzug in Berlin.',
+      'Unsere Leistungen in Berlin: Wohnungsauflösung, Umzug und Innenausbau. Rückbau, Trockenbau, Bodenverlegung und Küchenmontage passend zum Vorhaben anfragen.',
     h1: 'Leistungen',
     primaryQuery: 'entruempelung aufloesung umzug berlin leistungen',
     searchIntent: 'commercial',
@@ -104,7 +104,7 @@ const staticPages: StaticPage[] = [
     conversionGoal: 'complete_project_request',
     targetRegion: ['Berlin', 'Berliner Umland'],
     allowedSchemaTypes: [...HUB_SCHEMA, 'FAQPage'],
-    lastmod: '2026-07-29',
+    lastmod: '2026-10-19',
     indexable: true,
   },
   {

@@ -1,5 +1,13 @@
 # CONTENT-TODO: Was noch an echten Daten fehlt
 
+## Shipped · BAU-2026-01 · Innenausbau-Bereich, 19.10.2026
+
+Umgesetzt im Quellstand: Startseitenbereich mit fünf Einstiegen, Menüeintrag Innenausbau, neue Leistungsseiten innenausbau-berlin und trockenbau-berlin. Bodenverlegung, Küchenmontage und Rückbau bleiben erhalten und sind gemeinsam verlinkt. Leistungen werden automatisch in Anfrageformular und Sitemap übernommen.
+
+Veröffentlicht über hostinger-live (f7c5148). Live-Prüfung am 19.10.2026: Startseite, beide neuen Leistungsseiten und Sitemap mit HTTP 200 und neuen Inhalten. Build, Check, Inhaltsaudit, Buildaudit und SEO-Prüfung bestanden (0 Fehler; 20 redaktionell bewertete Warnungen, siehe E-010). Responsive-Prüfung von 320 bis 1920 px ohne horizontalen Überlauf. Betriebliche Zuständigkeiten und Nachweise gemäß docs/HANDWERKSRECHT.md bleiben vor konkreten Auftragszusagen zu klären; die Seiten behaupten keine pauschale Eigenleistung sämtlicher Gewerke. Der frühere Mailversand-Auftrag wird durch diese Inhaltsänderung nicht als erledigt markiert.
+
+---
+
 Diese Website ist inhaltlich vollständig gebaut, aber sie enthält bewusst
 **keine erfundenen Unternehmensdaten**. Keine Telefonnummer, keine Adresse,
 keine Bewertungen, keine Preise, keine Referenzfälle.

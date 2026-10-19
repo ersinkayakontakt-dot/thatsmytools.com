@@ -1,4 +1,5 @@
 import type { Service } from './types.ts';
+import { constructionServices } from './constructionServices.ts';
 
 /**
  * LEISTUNGEN
@@ -1722,6 +1723,7 @@ export const services: Service[] = [
     related: ['sperrmuellabholung-berlin', 'demontage-rueckbau'],
     updated: '2026-07-29',
   },
+  ...constructionServices,
 ];
 
 /** Nur veröffentlichte Leistungen – für Navigation, Übersichten, Sitemap. */

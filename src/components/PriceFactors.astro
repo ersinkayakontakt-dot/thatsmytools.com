@@ -67,4 +67,8 @@ const {
     color: var(--ink-3);
     max-width: 42rem;
   }
+  @media (max-width: 39.99em) {
+    .pf__effect { white-space: normal; }
+    .pf :global(table) { table-layout: fixed; overflow-wrap: anywhere; }
+  }
 </style>

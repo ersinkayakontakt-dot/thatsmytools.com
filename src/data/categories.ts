@@ -11,10 +11,7 @@ import { services } from './services.ts';
  * unsichtbar für jede Prüfung, hatte kein Schema und keinen Breadcrumb.
  * Hier ist sie jetzt Daten und damit prüfbar, verlinkbar und erweiterbar.
  *
- * WAS SICH DADURCH NICHT ÄNDERT: Die drei bestehenden Familien behalten
- * Titel, Text und Reihenfolge exakt. Die Übersichtsseite sieht aus wie
- * vorher. Das ist Absicht – diese Änderung soll die Struktur öffnen, nicht
- * das Aussehen verändern.
+ * Weiterentwicklung der Bauleistungsfamilie: siehe E-010.
  *
  * KEINE EIGENE SEITE JE FAMILIE. Eine Familie bekommt nur dann eine
  * Hub-Seite (`hub: true`), wenn sie eine eigenständige Suchintention
@@ -70,47 +67,19 @@ export const categories: ServiceCategory[] = [
   },
 
   /* ================================================================== */
-  /*
-   * HERRICHTEN UND INSTAND SETZEN – die vierte Familie, seit 26.09.2026.
-   *
-   * WARUM DER NAME NICHT „INNENAUSBAU" IST:
-   * Die SERP zu „innenausbau berlin" gehört Innenausbau-Spezialisten im
-   * Objektgeschäft und bedient eine andere Zielgruppe als Erben,
-   * Mieter und Hausverwaltungen. Dazu passt „Herrichten und instand
-   * setzen" zur Verb-Systematik der anderen drei Familien und behauptet
-   * kein Gewerk. Belegt in der Marktrecherche vom 26.09.2026.
-   *
-   * WARUM KEINE HUB-SEITE (`hub: false`):
-   * Nicht aus Vorsicht, sondern weil die Suchintention fehlt. Der
-   * Einstieg läuft über Gewerk+Stadt oder über Ratgeber zum Anlass –
-   * beides führt an einer Hub-Seite vorbei. Ihre Aufgabe ist zudem
-   * doppelt vergeben: B2B erledigt /hausverwaltungen-immobilienpartner/,
-   * B2C erledigen die Leistungsseiten.
-   * WIEDERVORLAGE, wenn drei Leistungen veröffentlicht sind UND der
-   * GSC-Export echte Nachfrage nach Kombinationsanfragen zeigt.
-   * Stand 28.09.2026: die erste Bedingung ist erfüllt (drei Leistungen),
-   * die zweite nicht – es liegt kein GSC-Export vor. `hub` bleibt false.
-   *
-   * WAS DIE ANLASS-EBENE NICHT IST:
-   * „Nachlassimmobilie verkaufsfertig", „Mietwohnung neu vermietbar" und
-   * „besenrein übergeben" sind als LEISTUNGSSEITEN widerlegt – die
-   * jeweiligen SERPs sind durchgängig informationell (Mietrecht, Home
-   * Staging). Der Anlass trägt als Ratgeber und als Formularlogik,
-   * nicht als Angebotsseite. Wer hier eine Leistungsseite anlegt, baut
-   * eine Seite, die nicht rankt.
-   *
-   * Rechtlicher Rahmen und Leistungsgrenzen: docs/HANDWERKSRECHT.md.
-   */
+  /* Bauleistungen erweitert am 19.10.2026 gemäß E-010.
+   * Gemeinsamer Einstieg ist die Leistungsseite Innenausbau; keine doppelte Hub-URL.
+   * Leistungsgrenzen: docs/HANDWERKSRECHT.md. */
   {
     slug: 'herrichten',
     status: 'published',
     hub: false,
-    name: 'Herrichten und instand setzen',
-    title: 'Herrichten und instand setzen',
+    name: 'Bauleistungen & Innenausbau',
+    title: 'Bauleistungen & Innenausbau',
     teaser:
-      'Nach der Räumung: Einbauten zurückbauen, neuen Boden verlegen, die neue Küche aufbauen – bis die Wohnung übergabefertig ist.',
-    services: ['demontage-rueckbau', 'bodenbelag-verlegen-berlin', 'kuechenmontage-berlin'],
-    updated: '2026-09-28',
+      'Innenausbau zusammen planen: Rückbau, Trockenbau, neue Böden und Küchenmontage mit klar vereinbarten Zuständigkeiten.',
+    services: ['innenausbau-berlin', 'trockenbau-berlin', 'demontage-rueckbau', 'bodenbelag-verlegen-berlin', 'kuechenmontage-berlin'],
+    updated: '2026-10-19',
   },
 ];
 

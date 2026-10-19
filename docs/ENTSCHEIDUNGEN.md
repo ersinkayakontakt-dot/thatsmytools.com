@@ -1,5 +1,15 @@
 # Entscheidungsprotokoll
 
+## E-010 · Bauleistungen und Innenausbau sichtbar auf der Startseite (19.10.2026)
+
+Expliziter Betreiberauftrag: Innenausbau komplett auf der Landingpage auffindbar machen und mehrere Unterseiten anbieten. Dies erweitert die bisherige Entscheidung E-009: Innenausbau und Trockenbau werden eigenständige Leistungsseiten in der vorhandenen Familie herrichten; Boden, Küche und Rückbau bleiben unter ihren bestehenden URLs. Keine zusätzliche Kategorie-URL, keine Duplikate. Die Familie trägt sichtbar den Namen Bauleistungen & Innenausbau. Ein eigener Startseitenabschnitt und ein Menüeintrag machen das Angebot auffindbar.
+
+Die neue Leistungsgruppe nutzt weiterhin Service-Vorlage, Publish Guard, automatische Seitenkarte und Sitemap. Komplett bedeutet einen abgestimmten Leistungsumfang, keine pauschale Eigenleistungszusage für alle Gewerke. Die Grenzen aus docs/HANDWERKSRECHT.md bleiben in den Ausschlüssen und den Antworten sichtbar. Keine Meistertitel, Zertifikate, Preise oder Referenzaufträge erfunden.
+
+Die zusätzliche Startseiten- und Menüverlinkung stärkt bewusst die neue Bauleistungsgruppe. Der SEO-Lauf zeigt dadurch 19 Linkgraph-Warnungen statt bisher 7 (zusätzlich bleibt ein Bildhinweis). Ursache sind mehr Eingänge für Innenausbau und Rückbau sowie die relative Gewichtung gegenüber bisherigen P4-Seiten. Für diesen Betreiberauftrag redaktionell akzeptiert; Prioritäten und Prüfregeln werden nicht künstlich verändert.
+
+---
+
 Architektur- und Produktentscheidungen mit ihrer Begründung. Zweck: dieselbe
 Frage nicht zweimal verhandeln.
 

@@ -1,5 +1,13 @@
 # Handoff: maximale Auffindbarkeit weiterbauen
 
+Live bestätigt: hostinger-live f7c5148; Startseite, Innenausbau, Trockenbau und Sitemap liefern die Erweiterung aus. Alle fünf Prüfungen erfolgreich.
+
+## Innenausbau-Erweiterung am 19.10.2026
+
+Der Betreiber hat die bisher zurückgestellte Innenausbau-Sparte ausdrücklich beauftragt (E-010). Zwei neue Seiten ergänzen Bodenverlegung, Küchenmontage und Rückbau. Startseitenabschnitt direkt nach dem Hero und Navigation führen in den Bereich. Status und offene Schritte: CONTENT-TODO.md, BAU-2026-01. Ältere Aussagen zur ausschließlich ergänzenden Rolle dieser Familie sind historisch.
+
+---
+
 Stand: 30.07.2026, Branch `claude/schnellhelfer24-rebuild-nn7fwd`.
 Inhaltsaudit, Typprüfung, Produktionsbuild und Build-Audit sind grün.
 

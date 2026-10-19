@@ -35,7 +35,7 @@ const schema = buildGraph([
     url: path,
     name: title,
     description,
-    dateModified: '2026-07-30',
+    dateModified: '2026-10-19',
   }),
   faqNode(path, homeFaq),
 ]);
@@ -62,6 +62,8 @@ const completeJobs = [
   'umzug-berlin',
 ].map(serviceBySlug);
 
+const constructionJobs = ['innenausbau-berlin', 'trockenbau-berlin', 'demontage-rueckbau', 'bodenbelag-verlegen-berlin', 'kuechenmontage-berlin'].map(serviceBySlug);
+
 const singleJobs = [
   'entruempelung-berlin',
   'kellerentruempelung-berlin',
@@ -72,6 +74,22 @@ const singleJobs = [
 
 <Base title={title} description={description} path={path} schema={schema}>
   <Hero />
+  <section class="construction section" aria-labelledby="innenausbau">
+    <div class="wrap">
+      <p class="eyebrow">Bauleistungen · Berlin &amp; Umland</p>
+      <h2 id="innenausbau">Innenausbau komplett.<br />Vom leeren Raum zur neuen Nutzung.</h2>
+      <p class="lede">Rückbau, Trockenbau, neue Böden und Küchenmontage: Fragen Sie Ihr gesamtes Vorhaben bei uns an. Wir stimmen Umfang, Reihenfolge und erforderliche Fachbetriebe vor dem Auftrag mit Ihnen ab.</p>
+      <a class="btn btn--primary" href="/leistungen/innenausbau-berlin/">Innenausbau entdecken ↗</a>
+      <ul class="construction__grid">
+        {constructionJobs.map((service) => (
+          <li><a class="card card--link" href={"/leistungen/" + service.slug + "/"}>
+            <h3>{service.navLabel}</h3><p>{service.teaser}</p><span class="text-link">Leistung ansehen →</span>
+          </a></li>
+        ))}
+      </ul>
+      <p>Welche Arbeiten wir selbst ausführen und welche geeignete Fachbetriebe übernehmen, wird im Angebot ausdrücklich festgehalten.</p>
+    </div>
+  </section>
 
   {
     site.ratings.verified && site.ratings.ratingValue && site.ratings.reviewCount && (
@@ -234,6 +252,14 @@ const singleJobs = [
 </Base>
 
 <style>
+  .construction { border-block: 3px solid var(--ink); background: var(--paper-2); }
+  .construction .lede { max-width: 65ch; }
+  .construction__grid { list-style: none; padding: 0; margin: var(--sp-6) 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 16rem), 1fr)); gap: var(--sp-4); }
+  .construction__grid li { min-width: 0; }
+  .construction__grid a { display: flex; flex-direction: column; height: 100%; padding: var(--sp-5); text-decoration: none; border-top: 4px solid var(--accent); }
+  .construction__grid h3 { font-size: 1.2rem; }
+  .construction__grid p { flex: 1; }
+
   .google-proof {
     background: var(--ink);
     color: var(--white);

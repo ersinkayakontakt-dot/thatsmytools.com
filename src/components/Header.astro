@@ -10,6 +10,7 @@ import { phone, primaryCta } from '../lib/contact';
  */
 const nav = [
   { href: '/leistungen/', label: 'Leistungen' },
+  { href: '/leistungen/innenausbau-berlin/', label: 'Innenausbau' },
   { href: '/berlin/', label: 'Einsatzgebiete' },
   { href: '/kosten/', label: 'Kosten & Ablauf' },
   { href: '/hausverwaltungen-immobilienpartner/', label: 'Für Verwaltungen' },
@@ -111,7 +112,7 @@ const isCurrent = (href: string) => (href === '/' ? path === '/' : path.startsWi
     min-height: 4.5rem;
     padding-block: 0.7rem;
     padding-inline: var(--sp-5);
-    max-width: 88rem;
+    max-width: 110rem;
     margin-inline: auto;
   }
 
@@ -328,20 +329,18 @@ const isCurrent = (href: string) => (href === '/' ? path === '/' : path.startsWi
     }
   }
 
-  /* Die Vollnavigation erscheint erst, wenn alle sieben Punkte plus
+  /* Die Vollnavigation erscheint erst, wenn alle Menüpunkte plus
      Telefonnummer und Handlungsaufruf nebeneinander passen – gemessen
      inklusive Bildlaufleiste. Darunter bleibt das Menü eingeklappt; das
      ist verlässlicher als eine zweizeilige oder gestauchte Leiste. */
-  @media (min-width: 82em) {
+  @media (min-width: 104em) {
     .nav-desktop {
       display: block;
     }
     .site-header__actions {
       margin-left: 0;
     }
-    /* Zwischen 76em und 88em ist die Zeile knapp. Der Handlungsaufruf wird
-       dort kompakter gesetzt, damit er nicht über den Rand läuft, sobald
-       eine Bildlaufleiste Platz wegnimmt. */
+    /* Kompakter Handlungsaufruf für die vollständige Navigation. */
     .header-cta {
       display: inline-flex;
       white-space: nowrap;
