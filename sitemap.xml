@@ -3,11 +3,11 @@
         xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
   <url>
     <loc>https://schnellhelfer24.de/</loc>
-    <lastmod>2026-07-30</lastmod>
+    <lastmod>2026-10-19</lastmod>
   </url>
   <url>
     <loc>https://schnellhelfer24.de/leistungen/</loc>
-    <lastmod>2026-07-29</lastmod>
+    <lastmod>2026-10-19</lastmod>
   </url>
   <url>
     <loc>https://schnellhelfer24.de/kosten/</loc>
@@ -143,6 +143,14 @@
   <url>
     <loc>https://schnellhelfer24.de/leistungen/kuechenmontage-berlin/</loc>
     <lastmod>2026-09-28</lastmod>
+  </url>
+  <url>
+    <loc>https://schnellhelfer24.de/leistungen/innenausbau-berlin/</loc>
+    <lastmod>2026-10-19</lastmod>
+  </url>
+  <url>
+    <loc>https://schnellhelfer24.de/leistungen/trockenbau-berlin/</loc>
+    <lastmod>2026-10-19</lastmod>
   </url>
   <url>
     <loc>https://schnellhelfer24.de/berlin/pankow/</loc>
