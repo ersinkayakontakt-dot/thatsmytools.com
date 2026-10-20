@@ -14,6 +14,14 @@ Fünf lizenzierte Beispielbilder für Startseite und die Seiten Innenausbau, Tro
 
 Für Innenausbau, Trockenbau, Rückbau, Boden und Küche fehlen eigene, zur Veröffentlichung freigegebene Auftragsfotos. Nach Bereitstellung ersetzen sie die jeweils als Beispielbild gekennzeichneten Stockfotos. Keine fremden Objekte als eigene Referenz ausgeben.
 
+## RENO-2026-01 · Trockenbau korrigieren, Maler und Tapezieren ergänzen
+
+Betreiberauftrag vom 20.10.2026: fachlich erkennbaren Trockenbau statt unfertigem Raum zeigen; Malerarbeiten und Tapezieren als eigene Seiten und Startseitenkarten ergänzen. Facharbeiten werden ausdrücklich gesondert über geeignete Fachbetriebe abgestimmt (Leistungsgrenzen A1/B1 aus docs/HANDWERKSRECHT.md). Weitere Fotos für Büroauflösung und Umzug sowie Ausbau-Details auf Innenausbau und Trockenbau. Umsetzung geprüft: Build, Check, Inhaltsaudit, Buildaudit und SEO ohne Fehler; 26 Linkgraph-Hinweise redaktionell in E-011 bewertet. Sieben Seiten bei sechs Breiten von 320 bis 1920 px ohne defekte Bilder oder horizontalen Überlauf geprüft. Fertige Seiten auf hostinger-live ff010f0 veröffentlicht. Live-Kontrolle am 20.10.2026 liefert jedoch weiterhin den Stand vom 19.10.2026; neue URLs noch HTTP 404, altes Trockenbau-Foto weiterhin sichtbar. Damit ist die Live-Übernahme offen (DEPLOY-2026-02), nicht als abgeschlossen markiert. Eigene Auftragsfotos bleiben unter BILD-2026-02 offen.
+
+## Offen · DEPLOY-2026-02 · Hostinger übernimmt aktuellen Live-Zweig nicht
+
+GitHub hostinger-live steht auf ff010f0. Die öffentliche Domain liefert trotz frischer URL und ohne Browsercache weiterhin den Stand vom 19.10.2026 (Startseite mit fünf statt sieben Baukarten; Maler- und Tapezierseite 404). Keine HOSTINGER_FTP-Secrets in GitHub vorhanden. Browser- und Computer-Use-Zugriff starten in dieser Sitzung nicht. Nächster Schritt: hPanel → Deployments → aktuellen Branch hostinger-live manuell deployen, danach alle sieben betroffenen URLs und Bilder erneut live prüfen. api/config.local.php und api/_storage bleiben geschützt.
+
 ---
 
 Diese Website ist inhaltlich vollständig gebaut, aber sie enthält bewusst

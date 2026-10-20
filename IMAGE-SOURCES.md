@@ -58,10 +58,25 @@ Fünf Pexels-Motive vor der Übernahme visuell geprüft. Auf Startseite und Leis
 | Datei | Fotograf | Originalseite | Abruf | Verwendung | Personen | Austausch |
 |---|---|---|---|---|---|---|
 | `innenausbau-heller-raum.jpg` | Josh Kobayashi | [Pexels](https://www.pexels.com/photo/room-during-renovation-5404462/) | 2026-10-19 | Startseite und `/leistungen/innenausbau-berlin/` | nein | eigene Auftragsfotos offen |
-| `trockenbau-innenraum.jpg` | Pavel Danilyuk | [Pexels](https://www.pexels.com/photo/interior-of-unfinished-building-with-white-paint-7937303/) | 2026-10-19 | Startseite und `/leistungen/trockenbau-berlin/` | nein | eigene Auftragsfotos offen |
+| `trockenbau-innenraum.jpg` | Pavel Danilyuk | [Pexels](https://www.pexels.com/photo/interior-of-unfinished-building-with-white-paint-7937303/) | 2026-10-19 | nicht mehr eingesetzt (20.10.2026) | nein | fachlich ersetzt |
 | `rueckbau-bestandsraum.jpg` | Francesco Ungaro | [Pexels](https://www.pexels.com/photo/major-home-renovation-15798781/) | 2026-10-19 | Startseite und `/leistungen/demontage-rueckbau/` | nein | eigene Auftragsfotos offen |
 | `boden-laminat-verlegung.jpg` | 8 K (Kelly) | [Pexels](https://www.pexels.com/photo/crop-man-installing-laminate-flooring-4263067/) | 2026-10-19 | Startseite und `/leistungen/bodenbelag-verlegen-berlin/` | ja | eigene Auftragsfotos offen |
 | `kuechenmontage-einbaukueche.jpg` | Peter Vang | [Pexels](https://www.pexels.com/photo/bright-modern-kitchen-with-wood-flooring-35618257/) | 2026-10-19 | Startseite und `/leistungen/kuechenmontage-berlin/` | nein | eigene Auftragsfotos offen |
+
+### Korrektur und Erweiterung am 20.10.2026
+
+Sechs weitere Motive visuell geprüft. Das bisherige Foto trockenbau-innenraum.jpg zeigt lediglich einen unfertigen Raum und ist für Trockenbau fachlich nicht aussagekräftig; am 20.10.2026 aus der Bild-Registry entfernt. Ersatz: erkennbarer Gipskartonzuschnitt und Plattenfugen. Das Tapeziermotiv wurde auf Hände und Tapetenrollen zugeschnitten. Alle Motive bleiben sichtbar als Beispielbilder gekennzeichnet.
+
+Lizenz beim Abruf: Pexels-Lizenz, kostenlose Nutzung und Bearbeitung; Namensnennung nicht erforderlich. https://www.pexels.com/license/
+
+| Datei | Fotograf | Originalseite | Abruf | Verwendung | Personen | Austausch |
+|---|---|---|---|---|---|---|
+| `trockenbau-gipskarton-zuschnitt.jpg` | Jimmy Nilsson Masth | [Pexels](https://www.pexels.com/photo/man-cutting-a-plasterboard-11427405/) | 2026-10-20 | Trockenbau, Startseite | ja | eigene Auftragsfotos offen |
+| `trockenbau-plattenfugen.jpg` | Antoni Shkraba | [Pexels](https://www.pexels.com/photo/a-construction-worker-working-at-site-5493673/) | 2026-10-20 | Trockenbau, Innenausbau | ja | eigene Auftragsfotos offen |
+| `malerarbeiten-farbrolle.jpg` | Blue Bird | [Pexels](https://www.pexels.com/photo/person-painting-the-wall-with-a-roller-7218578/) | 2026-10-20 | Malerarbeiten, Innenausbau, Startseite | ja | eigene Auftragsfotos offen |
+| `tapezieren-tapetenrollen.jpg` | Nataliya Vaitkevich | [Pexels](https://www.pexels.com/photo/woman-carrying-rolls-of-wallpaper-5641758/) | 2026-10-20 | Tapezieren, Startseite | ja (Hände) | eigene Auftragsfotos offen |
+| `bueroaufloesung-arbeitsflaeche.jpg` | cottonbro studio | [Pexels](https://www.pexels.com/photo/an-empty-office-5483236/) | 2026-10-20 | Büroauflösung | nein | eigene Auftragsfotos offen |
+| `umzug-kartons-tragen.jpg` | Ketut Subiyanto | [Pexels](https://www.pexels.com/photo/man-and-woman-carrying-carton-box-4246009/) | 2026-10-20 | Umzug | ja | eigene Auftragsfotos offen |
 
 ### Was aussortiert wurde – und warum
 
@@ -85,7 +100,7 @@ Aussortiert wurden unter anderem:
 |---|---|
 | Startseiten-Hero | Bleibt typografisch. Der folgende Bauleistungsbereich enthält seit 19.10.2026 fünf Beispielbilder. |
 | `/leistungen/messiwohnung-raeumen/` | Jedes verfügbare Motiv wäre entweder beschönigend oder bloßstellend. In `src/data/seo-pages.ts` ist für diese Seite deshalb gar kein Bildmotiv hinterlegt. |
-| `/leistungen/bueroaufloesung-berlin/` | Noch offen. Der Bild-Guard weist als Warnung darauf hin. |
+| `/leistungen/bueroaufloesung-berlin/` | Seit 20.10.2026 mit Beispielbild einer Bürofläche ausgestattet; eigenes Auftragsfoto weiterhin offen. |
 
 ---
 

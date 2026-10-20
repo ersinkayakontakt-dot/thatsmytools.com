@@ -1,5 +1,13 @@
 # Entscheidungsprotokoll
 
+## E-011 · Malerarbeiten, Tapezieren und fachlich passende Fotos (20.10.2026)
+
+Auf ausdrücklichen Betreiberauftrag werden Malerarbeiten und Tapezieren als eigenständige, vollständige Leistungsseiten in der Familie herrichten ergänzt. Es handelt sich um die Aufnahme und Abstimmung von Fachbetriebsleistungen, nicht um das Versprechen eigener Malerausführung oder einer bereits bestätigten Verfügbarkeit. Das führt die bestehende Formulierung über Partnerbetriebe fort; die Einschränkungen aus HANDWERKSRECHT.md (A1/B1) gelten weiter. Kein Nachweis einer eigenen Handwerksrolleneintragung wird behauptet.
+
+Die Trockenbau-Fotos müssen erkennbare Gipskartonarbeiten zeigen. Kein allgemeiner Rohbau als Beleg für Trockenbau. Stockmotive bleiben Beispielbilder, alle Bildnachweise werden zentral geführt. Bestehende Vorlagen, Formularauswahl und Sitemap übernehmen die beiden neuen Seiten.
+
+Prüfstand: 77 HTML-Seiten, 57 indexierbar, 0 Fehler. Der fehlende Bürobild-Hinweis ist erledigt. Die zwei neuen Startseitenkarten und kontextuellen Verbindungen erhöhen die Linkgraph-Hinweise von 19 auf 26; insbesondere Innenausbau erhält durch die beiden neuen Detailseiten mehr Gewicht. Diese Verschiebung zugunsten der ausdrücklich ausgebauten Leistung wird redaktionell akzeptiert. Prioritäten und Prüfregeln bleiben unverändert; keine Abschwächung des Guards.
+
 ## E-010 · Bauleistungen und Innenausbau sichtbar auf der Startseite (19.10.2026)
 
 Expliziter Betreiberauftrag: Innenausbau komplett auf der Landingpage auffindbar machen und mehrere Unterseiten anbieten. Dies erweitert die bisherige Entscheidung E-009: Innenausbau und Trockenbau werden eigenständige Leistungsseiten in der vorhandenen Familie herrichten; Boden, Küche und Rückbau bleiben unter ihren bestehenden URLs. Keine zusätzliche Kategorie-URL, keine Duplikate. Die Familie trägt sichtbar den Namen Bauleistungen & Innenausbau. Ein eigener Startseitenabschnitt und ein Menüeintrag machen das Angebot auffindbar.

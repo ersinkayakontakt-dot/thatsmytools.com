@@ -85,9 +85,10 @@ Torwächter: Metadaten, Linkgraph, Kannibalisierung, Schema, Bilder,
 Kontrast. **FEHLER blockieren die Veröffentlichung, Warnungen brauchen eine
 redaktionelle Entscheidung.**
 
-Stand 19.10.2026: 0 Fehler, **20 Warnungen** (75 Seiten, 55 indexierbar).
-19 Linkgraph-Hinweise durch die sichtbar ergänzte Bauleistungsgruppe und ein
-fehlendes Bürobild; redaktionelle Entscheidung und Ursache siehe E-010.
+Stand 20.10.2026: 0 Fehler, **26 Warnungen** (77 Seiten, 57 indexierbar).
+Alle Hinweise betreffen die Linkgewichtung nach der Erweiterung um Maler- und
+Tapezierseiten; redaktionelle Entscheidung und Ursache siehe E-011.
+Der bisherige Bürobild-Hinweis ist durch ein passendes Beispielbild behoben.
 
 Historischer Stand 01.10.2026: 8 Warnungen (73 Seiten, 53 indexierbar).
 Von 12 auf 8 durch A11Y-2026-01 (drei Farbtokens mit Reserve) und

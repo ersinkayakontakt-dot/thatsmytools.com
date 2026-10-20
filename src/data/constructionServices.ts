@@ -4,7 +4,7 @@ export const constructionServices: Service[] = [
     "category": "herrichten",
     "status": "published",
     "icon": "home",
-    "updated": "2026-10-19",
+    "updated": "2026-10-20",
     "slug": "innenausbau-berlin",
     "h1": "Innenausbau in Berlin – komplett geplant",
     "navLabel": "Innenausbau komplett",
@@ -33,14 +33,16 @@ export const constructionServices: Service[] = [
       {
         "h": "Welche Bauleistungen gehören zu Ihrem Innenausbau?",
         "p": [
-          "Ein kompletter Innenausbau beginnt mit der späteren Nutzung: Soll eine Wohnung bezogen, eine Küche erneuert oder ein Arbeitsbereich getrennt werden? Daraus ergibt sich, welche Arbeiten zusammengehören. Ein Bodenwechsel braucht einen anderen Ablauf als ein leergeräumtes Objekt mit neuen Raumtrennungen.",
+          "Ein kompletter Innenausbau beginnt mit der späteren Nutzung: Soll eine Wohnung bezogen, eine Küche erneuert oder ein Arbeitsbereich getrennt werden? Daraus ergibt sich, welche Arbeiten zusammengehören. Ein Bodenwechsel braucht einen anderen Ablauf als ein leergeräumtes Objekt mit neuen Raumtrennungen. Auch Maler- und Tapezierarbeiten können als gesonderte Fachbetriebsleistungen in die Abstimmung aufgenommen werden.",
           "Wir halten fest, welche Bauteile bleiben, was entfernt werden soll und welche Oberflächen am Ende erwartet werden. Komplett bedeutet: Der vereinbarte Umfang wird zusammenhängend geplant. Notwendige Fachplanung und Leistungen anderer Betriebe werden vorab benannt."
         ],
         "list": [
           "[Demontage und Rückbau](/leistungen/demontage-rueckbau/): Platz für die neue Nutzung schaffen.",
           "[Trockenbau](/leistungen/trockenbau-berlin/): nichttragende Wände und Decken abstimmen.",
           "[Bodenbelag verlegen](/leistungen/bodenbelag-verlegen-berlin/): Laminat, Klick-Vinyl oder Teppich auswählen.",
-          "[Küchenmontage](/leistungen/kuechenmontage-berlin/): die neue Küche nach vorbereitetem Aufstellplan aufbauen."
+          "[Küchenmontage](/leistungen/kuechenmontage-berlin/): die neue Küche nach vorbereitetem Aufstellplan aufbauen.",
+          "[Malerarbeiten](/leistungen/malerarbeiten-berlin/): Wand- und Deckenanstriche gesondert mit einem Fachbetrieb abstimmen.",
+          "[Tapezieren](/leistungen/tapezieren-berlin/): neue Wandbeläge und Vorbereitung über einen Fachbetrieb planen."
         ]
       },
       {
@@ -127,14 +129,16 @@ export const constructionServices: Service[] = [
       "trockenbau-berlin",
       "demontage-rueckbau",
       "bodenbelag-verlegen-berlin",
-      "kuechenmontage-berlin"
+      "kuechenmontage-berlin",
+      "malerarbeiten-berlin",
+      "tapezieren-berlin"
     ]
   },
   {
     "category": "herrichten",
     "status": "published",
     "icon": "home",
-    "updated": "2026-10-19",
+    "updated": "2026-10-20",
     "slug": "trockenbau-berlin",
     "h1": "Trockenbau in Berlin",
     "navLabel": "Trockenbau",
@@ -255,7 +259,244 @@ export const constructionServices: Service[] = [
     "related": [
       "innenausbau-berlin",
       "demontage-rueckbau",
-      "bodenbelag-verlegen-berlin"
+      "bodenbelag-verlegen-berlin",
+      "malerarbeiten-berlin",
+      "tapezieren-berlin"
+    ]
+  },
+  {
+    "category": "herrichten",
+    "status": "published",
+    "icon": "home",
+    "updated": "2026-10-20",
+    "slug": "malerarbeiten-berlin",
+    "h1": "Malerarbeiten in Berlin – mit Fachbetrieb abstimmen",
+    "navLabel": "Malerarbeiten",
+    "metaTitle": "Malerarbeiten Berlin: Wände und Decken | Schnellhelfer24",
+    "metaDescription": "Malerarbeiten in Berlin über einen geeigneten Fachbetrieb abstimmen: Wände und Decken streichen, Untergrund, Farbton und Termine gemeinsam vorbereiten.",
+    "serviceType": "Koordination von Malerarbeiten",
+    "teaser": "Wände und Decken streichen lassen: Umfang, Farbton und Ausführung mit einem Fachbetrieb abstimmen.",
+    "answer": "Neue Farbe verändert einen Raum erst dann dauerhaft zum Guten, wenn Untergrund und Beschichtung zusammenpassen. Für Malerarbeiten in Berlin nehmen wir Ihre Wünsche zu Wänden, Decken und Farbtönen auf und stimmen die Ausführung gesondert mit einem geeigneten Fachbetrieb ab. Schnellhelfer24 bietet diese Facharbeiten nicht als eigene Ausführung an. Im Angebot werden Auftragnehmer, Vorbereitung, Materialien und Übergabezustand vor Beginn eindeutig festgelegt.",
+    "situations": [
+      "Nach einer Wohnungsauflösung sollen Wände und Decken neu gestaltet werden.",
+      "Vor dem Einzug stehen ein Farbwechsel und ein neuer Boden an.",
+      "Nach Trockenbauarbeiten fehlt noch die passende Schlussbeschichtung."
+    ],
+    "includes": [
+      "Aufnahme der betroffenen Räume, Flächen und gewünschten Farbtöne",
+      "Abstimmung von Untergrundprüfung, Abdeckung und Beschichtung mit einem Fachbetrieb",
+      "Koordination der Übergänge zu Räumung, Trockenbau und Bodenverlegung",
+      "Klärung von Auftragnehmer, Leistungsumfang und Übergabezustand vor der Beauftragung"
+    ],
+    "notIncluded": [
+      "Malerarbeiten in Eigenleistung durch Schnellhelfer24",
+      "Automatisch enthaltene Fassaden-, Lackier- oder Spezialbeschichtungsarbeiten",
+      "Schimmel-, Feuchtigkeits- oder Schadstoffsanierung ohne gesonderte Fachprüfung"
+    ],
+    "blocks": [
+      {
+        "h": "Welche Malerarbeiten sollen ausgeführt werden?",
+        "p": [
+          "Bei einer Anfrage unterscheiden wir zwischen einem frischen Anstrich in derselben Farbe, einem deutlichen Farbwechsel und einer vollständig neuen Oberfläche. Auch Decken, Laibungen und schwer zugängliche Stellen gehören in die Flächenaufnahme. Fotos von den ganzen Wänden und von erkennbaren Schäden helfen bei der ersten Einordnung.",
+          "Die Auswahl richtet sich nach der Raumnutzung und dem Untergrund. Ob vorhandene Tapeten tragfähig sind, ein Voranstrich gebraucht wird oder alte Schichten entfernt werden müssen, entscheidet der ausführende Fachbetrieb. Die Zahl der notwendigen Arbeitsgänge wird deshalb nicht pauschal versprochen."
+        ],
+        "list": [
+          "Wände und Decken: Flächen, Raumhöhe und Farbton festhalten.",
+          "Untergrund: lose Stellen, alte Beschichtungen und Risse zeigen.",
+          "Schutz: Möbel, Bodenbeläge, Türen und bewohnte Bereiche berücksichtigen."
+        ]
+      },
+      {
+        "h": "Vom Farbwunsch bis zur Übergabe",
+        "steps": [
+          {
+            "title": "Flächen und Bestand aufnehmen",
+            "text": "Räume, Maße, Fotos und bisherige Wandoberflächen zusammentragen. Auffälligkeiten nicht überstreichen, sondern vorab klären."
+          },
+          {
+            "title": "Fachbetrieb und Ausführung abstimmen",
+            "text": "Geeigneten Fachbetrieb, Auftragnehmer und Umfang festlegen. Farbton, Material und Vorbereitung vor der Bestellung schriftlich bestätigen."
+          },
+          {
+            "title": "Terminfolge planen",
+            "text": "Räumung und staubintensive Arbeiten zuerst einplanen. Trocknung, Beschichtung und spätere Montage aufeinander abstimmen."
+          },
+          {
+            "title": "Ergebnis durchgehen",
+            "text": "Vereinbarte Flächen und Übergabezustand gemeinsam kontrollieren. Restarbeiten und Freigabe der Raumnutzung festhalten."
+          }
+        ]
+      },
+      {
+        "h": "Malerarbeiten, Tapezieren und Trockenbau unterscheiden",
+        "p": [
+          "Ein Anstrich ersetzt keine neue Wandbekleidung und keine Reparatur einer beschädigten Konstruktion. Soll eine Tapete entfernt oder neu angebracht werden, beschreiben Sie das unter [Tapezieren](/leistungen/tapezieren-berlin/). Neue Raumtrennungen und Gipskartonbekleidungen gehören zum [Trockenbau](/leistungen/trockenbau-berlin/).",
+          "Beim [Innenausbau komplett](/leistungen/innenausbau-berlin/) werden diese Arbeitsschritte zusammen betrachtet. Im Einzelangebot bleibt erkennbar, welche Arbeiten Schnellhelfer24 ausführt und welche der benannte Fachbetrieb übernimmt."
+        ]
+      },
+      {
+        "h": "Was wir für Ihre Anfrage brauchen",
+        "list": [
+          "Fotos der Räume und Detailbilder des vorhandenen Anstrichs",
+          "Ungefähre Wand- und Deckenflächen oder Raummaße",
+          "Gewünschte Farben, Materialwünsche und Terminfenster",
+          "Hinweis auf Möbel, neuen Boden und bereits beauftragte Betriebe"
+        ],
+        "p": [
+          "Über [Angebot anfragen](/angebot-anfragen/) können Sie Malerarbeiten gemeinsam mit Räumung oder Innenausbau beschreiben. Ein Preis wird erst aus dem geklärten Umfang abgeleitet. Feuchte Stellen, Schimmel oder unbekannte Altmaterialien benötigen vorher eine gesonderte fachliche Bewertung."
+        ]
+      }
+    ],
+    "priceFactors": [
+      {
+        "name": "Fläche und Zugang",
+        "effect": "Räume und Decken getrennt erfassen",
+        "why": "Wandfläche, Raumhöhe und möblierte Bereiche beeinflussen Abdeckung und Arbeitszeit."
+      },
+      {
+        "name": "Untergrund und Vorbereitung",
+        "effect": "Mehr als die sichtbare Fläche zählt",
+        "why": "Lose Beschichtungen, Risse oder Tapeten können zusätzliche Vorbereitung durch den Fachbetrieb erfordern."
+      },
+      {
+        "name": "Material und Farbwechsel",
+        "effect": "Gewünschtes Ergebnis festlegen",
+        "why": "Farbton, Beschichtung und erforderliche Arbeitsgänge werden aufeinander abgestimmt."
+      }
+    ],
+    "faq": [
+      {
+        "q": "Führt Schnellhelfer24 die Malerarbeiten selbst aus?",
+        "a": "Die hier beschriebenen Malerarbeiten werden nicht als Eigenleistung angeboten. Wir nehmen den Bedarf im Zusammenhang mit Ihrem Vorhaben auf und stimmen die Ausführung gesondert mit einem geeigneten Fachbetrieb ab. Vor einem Auftrag müssen der ausführende Betrieb, Vertragspartner, Leistungsumfang und Termine feststehen. Eine konkrete Verfügbarkeit wird erst nach dieser Abstimmung bestätigt."
+      },
+      {
+        "q": "Kann eine dunkle Wand einfach weiß überstrichen werden?",
+        "a": "Ob eine vorhandene Beschichtung überarbeitet werden kann, hängt von ihrer Haftung, dem Untergrund und dem gewünschten Ergebnis ab. Bei einem deutlichen Farbwechsel können mehrere Arbeitsgänge erforderlich sein. Eine bestimmte Deckung wird nicht allein anhand eines Fotos zugesagt. Der Fachbetrieb klärt den Aufbau und die nötige Vorbereitung vor der Ausführung."
+      },
+      {
+        "q": "Sind Tapezieren und Lackierarbeiten automatisch enthalten?",
+        "a": "Nein. Wand- und Deckenanstrich, neue Tapeten, Türen und Heizkörper sind unterschiedliche Leistungen. Nennen Sie alle gewünschten Arbeiten, damit der Fachbetrieb sie getrennt aufnehmen kann. Welche Vorbereitung und Materialien enthalten sind, muss im Angebot stehen. Auch Schutzmaßnahmen und die Nutzung der Räume während der Arbeiten werden vor Beginn vereinbart."
+      }
+    ],
+    "related": [
+      "tapezieren-berlin",
+      "trockenbau-berlin",
+      "innenausbau-berlin"
+    ]
+  },
+  {
+    "category": "herrichten",
+    "status": "published",
+    "icon": "home",
+    "updated": "2026-10-20",
+    "slug": "tapezieren-berlin",
+    "h1": "Tapezieren in Berlin – Tapeten und Untergrund abstimmen",
+    "navLabel": "Tapezieren",
+    "metaTitle": "Tapezieren Berlin: Tapeten und Vorbereitung | Schnellhelfer24",
+    "metaDescription": "Tapezieren in Berlin mit Fachbetrieb abstimmen: Raufaser, Vlies- und Mustertapeten, alte Beläge, Untergrundvorbereitung und Übergabe gemeinsam planen.",
+    "serviceType": "Koordination von Tapezierarbeiten",
+    "teaser": "Raufaser, Vlies- und Mustertapeten mit einem Fachbetrieb passend zu Raum und Untergrund planen.",
+    "answer": "Beim Tapezieren müssen Tapete, Kleister und Wanduntergrund zusammenpassen. In Berlin können Sie den Wechsel Ihrer Wandbekleidung gemeinsam mit Räumung oder Innenausbau bei uns anfragen. Wir nehmen die betroffenen Räume und Ihre Materialwünsche auf; die Tapezierarbeiten werden gesondert mit einem geeigneten Fachbetrieb abgestimmt. Ob alte Beläge entfernt werden müssen und welche Vorbereitung nötig ist, wird vor der Beauftragung geklärt. Eine eigene Fachausführung durch Schnellhelfer24 wird hier nicht angeboten.",
+    "situations": [
+      "Alte Tapeten sollen vor dem Einzug erneuert werden.",
+      "Eine einzelne Wand soll eine Muster- oder Vliestapete erhalten.",
+      "Nach einer Räumung werden neue Tapeten und ein Anstrich benötigt."
+    ],
+    "includes": [
+      "Erfassung von Flächen, vorhandenen Wandbelägen und gewünschter Tapetenart",
+      "Abstimmung von Altbelagentfernung und Untergrundvorbereitung mit dem Fachbetrieb",
+      "Klärung von Materialbeschaffung, Musterverlauf und Übergabezustand",
+      "Koordination mit Räumung, Bodenarbeiten und anschließendem Anstrich"
+    ],
+    "notIncluded": [
+      "Tapezierarbeiten in Eigenleistung durch Schnellhelfer24",
+      "Ungeprüftes Überkleben loser, feuchter oder unbekannter Altbeläge",
+      "Automatisch enthaltener Anstrich, Spezialbeschichtungen oder Schadstoffsanierung"
+    ],
+    "blocks": [
+      {
+        "h": "Raufaser, Vlies oder Muster: Was ist gewünscht?",
+        "p": [
+          "Eine Raufasertapete, eine glatte Vliesbekleidung und eine gemusterte Tapete erfüllen unterschiedliche Gestaltungswünsche. Bei Mustern müssen Rapport und Bahnenaufteilung bei der Materialmenge berücksichtigt werden. Geben Sie deshalb die genaue Produktbezeichnung an, falls Sie die Tapete bereits ausgesucht oder gekauft haben.",
+          "Ob das Produkt zum vorhandenen Untergrund passt, muss der ausführende Fachbetrieb prüfen. Stark saugende, ungleichmäßige oder beschädigte Flächen können eine andere Vorbereitung verlangen als eine bereits geeignete Wand. Bestellen Sie größere Mengen erst, wenn Flächen und Verarbeitung abgestimmt sind."
+        ],
+        "list": [
+          "Raufaser: gewünschten Endzustand und einen möglichen Anstrich mit aufnehmen.",
+          "Vliestapete: Produkt, Untergrund und Klebesystem aufeinander abstimmen.",
+          "Mustertapete: Rapport, Ausrichtung und Verschnitt vorab kalkulieren."
+        ]
+      },
+      {
+        "h": "Alte Tapeten entfernen und den Untergrund prüfen",
+        "p": [
+          "Neue Tapete sollte nicht einfach auf ungeklärte Altbeläge geklebt werden. Lose Bahnen, mehrere Schichten, Kleisterreste und erkennbare Risse beeinflussen die Vorbereitung. Ob Entfernen, Ausbessern oder eine zusätzliche Untergrundbehandlung notwendig sind, wird im Angebot des Fachbetriebs getrennt beschrieben.",
+          "Feuchtigkeit, Schimmel und verdächtige Altmaterialien sind keine gewöhnlichen Tapezierarbeiten. Solche Stellen müssen vorab fachlich untersucht und die Ursache geklärt werden. Ein neuer Wandbelag beseitigt weder einen Wasserschaden noch einen ungeeigneten Untergrund."
+        ]
+      },
+      {
+        "h": "So wird der Tapezierauftrag vorbereitet",
+        "steps": [
+          {
+            "title": "Bestand zeigen",
+            "text": "Gesamtansichten, Detailfotos und Raummaße senden. Alte Tapeten, Schäden und bereits vorhandenes Material nennen."
+          },
+          {
+            "title": "Ausführung abstimmen",
+            "text": "Fachbetrieb, Tapete, Vorbereitung und Lieferumfang festlegen. Musterverlauf und Materialmenge vor der Bestellung prüfen lassen."
+          },
+          {
+            "title": "Räume vorbereiten",
+            "text": "Möbel, Zugänge und Schutz des Bodens abstimmen. Bereits beauftragte Gewerke und deren Termine berücksichtigen."
+          },
+          {
+            "title": "Übergabe vereinbaren",
+            "text": "Tapezierte Flächen und Anschlussdetails durchgehen. Einen zusätzlichen Anstrich nur einplanen, wenn er ausdrücklich beauftragt ist."
+          }
+        ]
+      },
+      {
+        "h": "Tapezieren mit weiteren Ausbauarbeiten verbinden",
+        "p": [
+          "Soll anschließend gestrichen werden, finden Sie den ergänzenden Umfang unter [Malerarbeiten](/leistungen/malerarbeiten-berlin/). Bei neu aufgebauten Wänden muss der Übergabezustand aus dem [Trockenbau](/leistungen/trockenbau-berlin/) zur späteren Wandbekleidung passen.",
+          "Über [Angebot anfragen](/angebot-anfragen/) nennen Sie Tapetenart, Flächen, Wunschtermin und weitere Arbeiten. Für mehrere Räume kann [Innenausbau komplett](/leistungen/innenausbau-berlin/) der passende gemeinsame Einstieg sein. Vor dem Auftrag werden Ausführung und Zuständigkeiten schriftlich festgehalten."
+        ]
+      }
+    ],
+    "priceFactors": [
+      {
+        "name": "Fläche und Zuschnitt",
+        "effect": "Bahnen statt nur Quadratmeter planen",
+        "why": "Raumhöhe, Fenster, Türen und Musterwiederholungen beeinflussen den Materialbedarf."
+      },
+      {
+        "name": "Altbeläge und Untergrund",
+        "effect": "Vorbereitung separat aufnehmen",
+        "why": "Entfernen alter Schichten und die erforderliche Wandvorbereitung können den Aufwand deutlich verändern."
+      },
+      {
+        "name": "Tapetenart und Endzustand",
+        "effect": "Material und Folgearbeiten abstimmen",
+        "why": "Raufaser, Vlies und Musterbeläge unterscheiden sich; ein späterer Anstrich ist eine zusätzliche Leistung."
+      }
+    ],
+    "faq": [
+      {
+        "q": "Wer übernimmt die Tapezierarbeiten?",
+        "a": "Die fachliche Ausführung wird gesondert mit einem geeigneten Fachbetrieb abgestimmt. Schnellhelfer24 nimmt Ihre Anfrage und die Schnittstellen zum gesamten Vorhaben auf. Vor der Beauftragung werden der konkrete Auftragnehmer, Leistungsumfang und Termin genannt. Eine bestimmte Firma oder kurzfristige Verfügbarkeit ist durch das Absenden der Anfrage noch nicht zugesagt."
+      },
+      {
+        "q": "Kann ich selbst gekaufte Tapete verwenden?",
+        "a": "Nennen Sie Produkt, vorhandene Menge und nach Möglichkeit die Artikel- und Chargenangaben. Der Fachbetrieb muss prüfen, ob die Tapete geeignet ist und für die Flächen einschließlich Verschnitt ausreicht. Unterschiedliche Chargen können im Ergebnis auffallen. Klären Sie daher vor dem Kauf oder Nachbestellen, welche Mengen und Materialien benötigt werden."
+      },
+      {
+        "q": "Ist nach dem Tapezieren alles fertig gestrichen?",
+        "a": "Ein Anstrich ist nur enthalten, wenn er ausdrücklich vereinbart wurde. Manche Wandbekleidungen werden gestrichen, andere bleiben in ihrer fertigen Gestaltung sichtbar. Tapetenart, Übergabezustand und Trocknungsablauf werden mit dem Fachbetrieb abgestimmt. Die anschließende Nutzung und mögliche Folgearbeiten sollten deshalb bereits vor Beginn feststehen."
+      }
+    ],
+    "related": [
+      "malerarbeiten-berlin",
+      "trockenbau-berlin",
+      "innenausbau-berlin"
     ]
   }
 ];

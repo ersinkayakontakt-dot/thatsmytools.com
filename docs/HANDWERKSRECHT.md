@@ -186,6 +186,10 @@ Eintragungsfrage geklärt ist.
 
 ---
 
+## Umsetzung vom 20.10.2026: Fachbetriebsleistungen (E-011)
+
+Die zusätzlich beauftragten Seiten Malerarbeiten und Tapezieren beschreiben die Aufnahme und gesonderte Abstimmung mit einem geeigneten Fachbetrieb. Sie behaupten weder Eigenleistung noch eine nachgewiesene eigene Eintragung. Vor dem Auftrag sind tatsächlicher Auftragnehmer, Umfang und Verfügbarkeit zu klären. Die Leistungsgrenzen B1 und der bestehende Partnerhinweis bleiben maßgeblich. Trockenbau-Fotos zeigen Gipskarton statt nur einen unfertigen Raum; keine Gleichsetzung mit Putzarbeiten (A1).
+
 ## Wiederholen, wenn
 
 - die HWK Berlin geantwortet hat (dann diese Datei mit der Auskunft

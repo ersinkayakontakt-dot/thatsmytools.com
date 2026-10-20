@@ -87,7 +87,7 @@ const staticPages: StaticPage[] = [
     ],
     allowedSchemaTypes: ['WebPage', 'FAQPage'],
     ownOgImage: true,
-    lastmod: '2026-10-19',
+    lastmod: '2026-10-20',
     indexable: true,
   },
   {

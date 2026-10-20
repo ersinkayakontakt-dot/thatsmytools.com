@@ -1,5 +1,11 @@
 # Handoff: maximale Auffindbarkeit weiterbauen
 
+## Aktuell 20.10.2026: RENO-2026-01 / DEPLOY-2026-02
+
+Trockenbau-Motiv durch Gipskartonzuschnitt ersetzt, zweites Detailfoto ergänzt. Vollständige Seiten für Malerarbeiten und Tapezieren (Fachbetriebsabstimmung), sechs neue Bilddateien insgesamt, zusätzliche Motive auf Büroauflösung und Umzug. 77 Seiten / 57 indexierbar; alle fünf Prüfungen erfolgreich, 26 Linkgraph-Hinweise in E-011 bewertet. Sieben Seiten bei sechs Breiten ohne Bild-/Layoutfehler. Beide neuen Radiooptionen und Sitemap vorhanden.
+
+Deployment ff010f0 nach hostinger-live gepusht, aber NICHT live bestätigt: Domain liefert noch Stand 19.10., neue Seiten 404. hPanel-Deployment manuell auslösen. GitHub enthält keine FTP-Secrets; Browsersteuerung startet nicht. Alte Live-Meldungen darunter betreffen den vorherigen Stand.
+
 Objektbilder live am 19.10.2026: fünf Motive auf Startseite und Bauleistungsseiten, Deployment 904524d. Live geprüft; Bildquellen in IMAGE-SOURCES.md, Status BILD-2026-01/02 im Tracker.
 
 Live bestätigt: hostinger-live f7c5148; Startseite, Innenausbau, Trockenbau und Sitemap liefern die Erweiterung aus. Alle fünf Prüfungen erfolgreich.

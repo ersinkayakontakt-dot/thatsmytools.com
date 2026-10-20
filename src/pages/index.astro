@@ -37,7 +37,7 @@ const schema = buildGraph([
     url: path,
     name: title,
     description,
-    dateModified: '2026-10-19',
+    dateModified: '2026-10-20',
   }),
   faqNode(path, homeFaq),
 ]);
@@ -64,7 +64,7 @@ const completeJobs = [
   'umzug-berlin',
 ].map(serviceBySlug);
 
-const constructionJobs = ['innenausbau-berlin', 'trockenbau-berlin', 'demontage-rueckbau', 'bodenbelag-verlegen-berlin', 'kuechenmontage-berlin'].map(serviceBySlug);
+const constructionJobs = ['innenausbau-berlin', 'trockenbau-berlin', 'demontage-rueckbau', 'bodenbelag-verlegen-berlin', 'kuechenmontage-berlin', 'malerarbeiten-berlin', 'tapezieren-berlin'].map(serviceBySlug);
 
 const singleJobs = [
   'entruempelung-berlin',
@@ -80,7 +80,7 @@ const singleJobs = [
     <div class="wrap">
       <p class="eyebrow">Bauleistungen · Berlin &amp; Umland</p>
       <h2 id="innenausbau">Innenausbau komplett.<br />Vom leeren Raum zur neuen Nutzung.</h2>
-      <p class="lede">Rückbau, Trockenbau, neue Böden und Küchenmontage: Fragen Sie Ihr gesamtes Vorhaben bei uns an. Wir stimmen Umfang, Reihenfolge und erforderliche Fachbetriebe vor dem Auftrag mit Ihnen ab.</p>
+      <p class="lede">Rückbau, Trockenbau, neue Böden, Küchenmontage sowie Malerarbeiten und Tapezieren über Fachbetriebe: Fragen Sie Ihr gesamtes Vorhaben bei uns an. Wir stimmen Umfang, Reihenfolge und erforderliche Fachbetriebe vor dem Auftrag mit Ihnen ab.</p>
       <a class="btn btn--primary" href="/leistungen/innenausbau-berlin/">Innenausbau entdecken ↗</a>
       <ul class="construction__grid">
         {constructionJobs.map((service, index) => (

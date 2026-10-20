@@ -9,10 +9,16 @@ import seniorMoveConversation from '../assets/seniorenumzug-gespraech-generation
 import emptyApartment from '../assets/wohnungsaufloesung-leere-wohnung.jpg';
 
 import constructionInterior from '../assets/innenausbau-heller-raum.jpg';
-import constructionDrywall from '../assets/trockenbau-innenraum.jpg';
+import constructionDrywall from '../assets/trockenbau-gipskarton-zuschnitt.jpg';
 import constructionDemolition from '../assets/rueckbau-bestandsraum.jpg';
 import constructionFloor from '../assets/boden-laminat-verlegung.jpg';
 import constructionKitchen from '../assets/kuechenmontage-einbaukueche.jpg';
+
+import drywallJoints from '../assets/trockenbau-plattenfugen.jpg';
+import paintingRoller from '../assets/malerarbeiten-farbrolle.jpg';
+import wallpaperRolls from '../assets/tapezieren-tapetenrollen.jpg';
+import officeSpace from '../assets/bueroaufloesung-arbeitsflaeche.jpg';
+import movingBoxes from '../assets/umzug-kartons-tragen.jpg';
 
 export type ImageOrigin = 'stock' | 'company' | 'customer-approved';
 export type ImageRole = 'hero' | 'inline';
@@ -36,8 +42,15 @@ export interface SiteImage {
  * IMAGE-SOURCES.md.
  */
 export const siteImages: readonly SiteImage[] = [
+  { pageId: 'service:trockenbau-berlin', role: 'hero', src: constructionDrywall, alt: 'Handwerker schneidet eine Gipskartonplatte vor einer bereits beplankten Wand', caption: 'Beispielbild: Zuschnitt von Gipskartonplatten für den Trockenbau.', imageOrigin: 'stock', showsPeople: true },
+  { pageId: 'service:trockenbau-berlin', role: 'inline', src: drywallJoints, alt: 'Handwerker bearbeitet Fugen einer Wand aus grünen Gipskartonplatten', caption: 'Beispielbild: Fugenbearbeitung an einer beplankten Trockenbauwand.', imageOrigin: 'stock', showsPeople: true },
+  { pageId: 'service:malerarbeiten-berlin', role: 'hero', src: paintingRoller, alt: 'Hand führt eine Farbrolle über eine helle Wandfläche', caption: 'Beispielbild: Wandbeschichtung mit der Farbrolle.', imageOrigin: 'stock', showsPeople: true },
+  { pageId: 'service:tapezieren-berlin', role: 'hero', src: wallpaperRolls, alt: 'Hände halten verschiedene Tapetenrollen vor einer gemusterten Wand', caption: 'Beispielbild: unterschiedliche Tapeten für die Materialauswahl.', imageOrigin: 'stock', showsPeople: true },
+  { pageId: 'service:bueroaufloesung-berlin', role: 'hero', src: officeSpace, alt: 'Unbesetzte Bürofläche mit Schreibtischen, Stühlen und großen Fenstern', caption: 'Beispielbild: Bürofläche mit Arbeitsplätzen vor einer möglichen Räumung.', imageOrigin: 'stock', showsPeople: false },
+  { pageId: 'service:umzug-berlin', role: 'hero', src: movingBoxes, alt: 'Zwei Personen tragen einen großen Umzugskarton durch ein Wohnzimmer', caption: 'Beispielbild: gemeinsames Tragen eines Umzugskartons.', imageOrigin: 'stock', showsPeople: true },
+  { pageId: 'service:innenausbau-berlin', role: 'inline', src: drywallJoints, alt: 'Handwerker bearbeitet Plattenfugen an einer Trockenbauwand', caption: 'Beispielbild: Plattenfugen vor weiteren Oberflächenarbeiten.', imageOrigin: 'stock', showsPeople: true },
+  { pageId: 'service:innenausbau-berlin', role: 'inline', src: paintingRoller, alt: 'Farbrolle beschichtet eine helle Wand', caption: 'Beispielbild: der Anstrich folgt der abgestimmten Wandvorbereitung.', imageOrigin: 'stock', showsPeople: true },
   { pageId: 'service:innenausbau-berlin', role: 'hero', src: constructionInterior, alt: 'Heller Raum mit weißen Wänden und geschütztem Boden während einer Renovierung', caption: 'Beispielbild: ein Innenraum in der Ausbauphase.', imageOrigin: 'stock', showsPeople: false },
-  { pageId: 'service:trockenbau-berlin', role: 'hero', src: constructionDrywall, alt: 'Unfertiger Innenraum mit weißen Wandflächen, Türöffnungen und offener Decke', caption: 'Beispielbild: Wandflächen und Raumübergänge im Innenausbau.', imageOrigin: 'stock', showsPeople: false },
   { pageId: 'service:demontage-rueckbau', role: 'hero', src: constructionDemolition, alt: 'Entkernter Bestandsraum mit freigelegtem Mauerwerk und Baumaterial', caption: 'Beispielbild: freigelegter Bestand vor dem weiteren Ausbau.', imageOrigin: 'stock', showsPeople: false },
   { pageId: 'service:bodenbelag-verlegen-berlin', role: 'hero', src: constructionFloor, alt: 'Handwerker verlegt dunkle Laminatdielen mit Schlagholz und Gummihammer', caption: 'Beispielbild: Laminatdielen werden passgenau verlegt.', imageOrigin: 'stock', showsPeople: true },
   { pageId: 'service:kuechenmontage-berlin', role: 'hero', src: constructionKitchen, alt: 'Helle Einbauküche mit weißen Schränken, Arbeitsfläche und Fenster', caption: 'Beispielbild: angeordnete Küchenmöbel mit zusammenhängender Arbeitsfläche.', imageOrigin: 'stock', showsPeople: false },
