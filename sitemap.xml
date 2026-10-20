@@ -3,7 +3,7 @@
         xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
   <url>
     <loc>https://schnellhelfer24.de/</loc>
-    <lastmod>2026-10-19</lastmod>
+    <lastmod>2026-10-20</lastmod>
   </url>
   <url>
     <loc>https://schnellhelfer24.de/leistungen/</loc>
@@ -114,6 +114,11 @@
   <url>
     <loc>https://schnellhelfer24.de/leistungen/umzug-berlin/</loc>
     <lastmod>2026-07-29</lastmod>
+    <image:image>
+      <image:loc>https://schnellhelfer24.de/_assets/umzug-kartons-tragen.h2fy8iL6.jpg</image:loc>
+      <image:title>Zwei Personen tragen einen großen Umzugskarton durch ein Wohnzimmer</image:title>
+      <image:caption>Beispielbild: gemeinsames Tragen eines Umzugskartons.</image:caption>
+    </image:image>
   </url>
   <url>
     <loc>https://schnellhelfer24.de/leistungen/seniorenumzug-berlin/</loc>
@@ -131,6 +136,11 @@
   <url>
     <loc>https://schnellhelfer24.de/leistungen/bueroaufloesung-berlin/</loc>
     <lastmod>2026-07-30</lastmod>
+    <image:image>
+      <image:loc>https://schnellhelfer24.de/_assets/bueroaufloesung-arbeitsflaeche.CAlyDqIi.jpg</image:loc>
+      <image:title>Unbesetzte Bürofläche mit Schreibtischen, Stühlen und großen Fenstern</image:title>
+      <image:caption>Beispielbild: Bürofläche mit Arbeitsplätzen vor einer möglichen Räumung.</image:caption>
+    </image:image>
   </url>
   <url>
     <loc>https://schnellhelfer24.de/leistungen/demontage-rueckbau/</loc>
@@ -161,7 +171,17 @@
   </url>
   <url>
     <loc>https://schnellhelfer24.de/leistungen/innenausbau-berlin/</loc>
-    <lastmod>2026-10-19</lastmod>
+    <lastmod>2026-10-20</lastmod>
+    <image:image>
+      <image:loc>https://schnellhelfer24.de/_assets/trockenbau-plattenfugen.B2l0rCwu.jpg</image:loc>
+      <image:title>Handwerker bearbeitet Plattenfugen an einer Trockenbauwand</image:title>
+      <image:caption>Beispielbild: Plattenfugen vor weiteren Oberflächenarbeiten.</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://schnellhelfer24.de/_assets/malerarbeiten-farbrolle.mpOyUCQu.jpg</image:loc>
+      <image:title>Farbrolle beschichtet eine helle Wand</image:title>
+      <image:caption>Beispielbild: der Anstrich folgt der abgestimmten Wandvorbereitung.</image:caption>
+    </image:image>
     <image:image>
       <image:loc>https://schnellhelfer24.de/_assets/innenausbau-heller-raum.K2MH-dNg.jpg</image:loc>
       <image:title>Heller Raum mit weißen Wänden und geschütztem Boden während einer Renovierung</image:title>
@@ -170,11 +190,34 @@
   </url>
   <url>
     <loc>https://schnellhelfer24.de/leistungen/trockenbau-berlin/</loc>
-    <lastmod>2026-10-19</lastmod>
+    <lastmod>2026-10-20</lastmod>
     <image:image>
-      <image:loc>https://schnellhelfer24.de/_assets/trockenbau-innenraum.BxLKVVJ1.jpg</image:loc>
-      <image:title>Unfertiger Innenraum mit weißen Wandflächen, Türöffnungen und offener Decke</image:title>
-      <image:caption>Beispielbild: Wandflächen und Raumübergänge im Innenausbau.</image:caption>
+      <image:loc>https://schnellhelfer24.de/_assets/trockenbau-gipskarton-zuschnitt.Bi7K-Eb7.jpg</image:loc>
+      <image:title>Handwerker schneidet eine Gipskartonplatte vor einer bereits beplankten Wand</image:title>
+      <image:caption>Beispielbild: Zuschnitt von Gipskartonplatten für den Trockenbau.</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://schnellhelfer24.de/_assets/trockenbau-plattenfugen.B2l0rCwu.jpg</image:loc>
+      <image:title>Handwerker bearbeitet Fugen einer Wand aus grünen Gipskartonplatten</image:title>
+      <image:caption>Beispielbild: Fugenbearbeitung an einer beplankten Trockenbauwand.</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://schnellhelfer24.de/leistungen/malerarbeiten-berlin/</loc>
+    <lastmod>2026-10-20</lastmod>
+    <image:image>
+      <image:loc>https://schnellhelfer24.de/_assets/malerarbeiten-farbrolle.mpOyUCQu.jpg</image:loc>
+      <image:title>Hand führt eine Farbrolle über eine helle Wandfläche</image:title>
+      <image:caption>Beispielbild: Wandbeschichtung mit der Farbrolle.</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://schnellhelfer24.de/leistungen/tapezieren-berlin/</loc>
+    <lastmod>2026-10-20</lastmod>
+    <image:image>
+      <image:loc>https://schnellhelfer24.de/_assets/tapezieren-tapetenrollen.CmmjchpQ.jpg</image:loc>
+      <image:title>Hände halten verschiedene Tapetenrollen vor einer gemusterten Wand</image:title>
+      <image:caption>Beispielbild: unterschiedliche Tapeten für die Materialauswahl.</image:caption>
     </image:image>
   </url>
   <url>
