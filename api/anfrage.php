@@ -341,6 +341,8 @@ if (isset($_POST['zusatzleistungen']) && is_array($_POST['zusatzleistungen'])) {
 
 $errors = [];
 
+if ($fields['kontaktart'] === 'E-Mail' && $fields['mail'] === '') { $errors[] = 'mail'; }
+
 if ($fields['leistung'] === '')            { $errors[] = 'leistung'; }
 if (!preg_match('/^\d{5}$/', $fields['plz'])) { $errors[] = 'plz'; }
 if ($fields['objektart'] === '')           { $errors[] = 'objektart'; }
@@ -475,6 +477,25 @@ if (random_int(1, 20) === 1) {
 
 $ref = sprintf('SH-%s-%s', date('ymd'), strtoupper(substr(bin2hex(random_bytes(3)), 0, 5)));
 
+$inboxDir = $storage . '/anfragen';
+$recordFile = $inboxDir . '/' . date('Y-m-d') . '-' . $ref . '.json';
+$record = $fields;
+$record['nebenraeume'] = $nebenraeume;
+$record['zusatzleistungen'] = $zusatzleistungen;
+$record['referenz'] = $ref;
+$record['zeit'] = date('c');
+$record['fotos'] = array_map('basename', $saved);
+$photoCount = isset($_FILES['fotos']['name']) && is_array($_FILES['fotos']['name']) ? count(array_filter($_FILES['fotos']['name'], static fn($name) => $name !== '')) : 0;
+$record['fotosAbgelehnt'] = max(0, $photoCount - count($saved));
+$record['mailVersand'] = 'ausstehend';
+$record['mailWeg'] = (string) $config['smtpHost'] !== '' ? 'smtp' : 'mail()';
+$encodedRecord = json_encode($record, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES | JSON_INVALID_UTF8_SUBSTITUTE);
+if (!ensureDir($inboxDir) || $encodedRecord === false || @file_put_contents($recordFile, $encodedRecord, LOCK_EX) !== strlen($encodedRecord)) {
+    foreach ($saved as $uploadedFile) { @unlink($uploadedFile); }
+    fail('speicher-nicht-verfuegbar', $config, 500);
+}
+
+
 $lines = [
     'Neue Anfrage über schnellhelfer24.de',
     'Referenz: ' . $ref,
@@ -493,7 +514,7 @@ $lines = [
     'PLZ / Ort:       ' . $fields['plz'] . ($fields['ort'] !== '' ? ' ' . $fields['ort'] : ''),
     'Einsatzgebiet:   ' . ($fields['gebiet'] !== '' ? $gebietsLabels[$fields['gebiet']] : '(nicht ermittelt)'),
     'Objektart:       ' . $fields['objektart'],
-    'Größe:           ' . ($fields['flaeche'] !== '' ? $fields['flaeche'] : '(nicht angegeben)'),
+    (in_array($fields['leistung'], ['Malerarbeiten', 'Tapezieren'], true) ? 'Wand-/Deckenfläche: ' : 'Größe / Umfang:  ') . ($fields['flaeche'] !== '' ? $fields['flaeche'] : '(nicht angegeben)'),
     'Zusatzleistungen:' . ' ' . ($zusatzleistungen !== [] ? implode(', ', $zusatzleistungen) : '(keine gewählt)'),
     'Füllgrad:        ' . $fields['fuellgrad'],
     'Etage:           ' . $fields['etage'],
@@ -600,35 +621,16 @@ if ((string) $config['smtpHost'] !== '') {
     $sendError = $sent ? '' : 'mail() hat die Nachricht nicht uebernommen';
 }
 
-// Immer zusätzlich als Datei sichern. Wenn der Mailversand auf dem
-// Hosting nicht funktioniert, geht die Anfrage trotzdem nicht verloren.
-$inboxDir = $storage . '/anfragen';
-if (ensureDir($inboxDir)) {
-    $record = $fields;
-    $record['nebenraeume']      = $nebenraeume;
-    $record['zusatzleistungen'] = $zusatzleistungen;
-    $record['referenz']    = $ref;
-    $record['zeit']        = date('c');
-    $record['fotos']       = array_map('basename', $saved);
-    $record['mailVersand'] = $sent ? 'ok' : 'fehlgeschlagen';
-    $record['mailWeg']     = $transport;
-    /*
-     * Der Grund steht nur bei Misserfolg in der Ablage. Er enthält die
-     * Antwort des Mailservers, nie den gesendeten Befehl – bei der
-     * Anmeldung stünde dort sonst das Passwort.
-     */
-    if ($sendError !== '') {
-        $record['mailFehler'] = $sendError;
-    }
-    if ($fromKorrigiert !== '') {
-        $record['mailHinweis'] = $fromKorrigiert;
-    }
-
-    @file_put_contents(
-        $inboxDir . '/' . date('Y-m-d') . '-' . $ref . '.json',
-        json_encode($record, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES),
-        LOCK_EX
-    );
+// Empfang ist bereits gespeichert. Den Benachrichtigungsstatus anschließend aktualisieren.
+$record['mailVersand'] = $sent ? 'ok' : 'fehlgeschlagen';
+$record['mailWeg'] = $transport;
+if ($sendError !== '') { $record['mailFehler'] = $sendError; }
+if ($fromKorrigiert !== '') { $record['mailHinweis'] = $fromKorrigiert; }
+$statusJson = json_encode($record, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES | JSON_INVALID_UTF8_SUBSTITUTE);
+$statusFile = $recordFile . '.tmp-' . bin2hex(random_bytes(4));
+if ($statusJson === false || @file_put_contents($statusFile, $statusJson, LOCK_EX) !== strlen($statusJson) || !@rename($statusFile, $recordFile)) {
+    @unlink($statusFile);
+    error_log('[schnellhelfer24] Benachrichtigungsstatus nicht aktualisiert fuer ' . $ref);
 }
 
 if (!$sent) {
@@ -639,5 +641,7 @@ if (!$sent) {
 /* 8. Weiterleiten                                                     */
 /* ------------------------------------------------------------------ */
 
-header('Location: ' . $config['siteUrl'] . $config['successPath']);
+$successUrl = $config['siteUrl'] . $config['successPath'];
+$separator = str_contains($successUrl, '?') ? '&' : '?';
+header('Location: ' . $successUrl . $separator . 'fotos=' . count($saved) . '&fotoHinweis=' . ($record['fotosAbgelehnt'] > 0 ? '1' : '0') . '&ref=' . rawurlencode($ref), true, 303);
 exit;
