@@ -1,5 +1,11 @@
 # Entscheidungsprotokoll
 
+## E-015 · Komplettpakete als Abschnitt, Kostenseiten erst mit Preisdaten (21.10.2026)
+
+**Komplettpakete.** Der Tracker (§ 0 Nr. 5) sah drei Hauptprodukte als eigene Seiten vor: Nachlass-Komplettservice, Senioren-Wohnwechsel, Immobilie übergabefertig. Eigene URLs würden mit `/leistungen/nachlassaufloesung-berlin/`, `/leistungen/seniorenumzug-berlin/` und `/hausverwaltungen-immobilienpartner/` um dieselbe Suchabsicht konkurrieren – genau der Fall, den `seo:cannibalization` verhindern soll, und die bestehenden Seiten tragen bereits Linkgewicht. Umgesetzt deshalb als Abschnitt „Was ein Komplettauftrag … umfassen kann" mit Baustein-Tabelle auf Nachlass und Seniorenumzug. Die übergabefertige Immobilie ist durch die Abgrenzung auf der Partnerseite (besenrein / zurückgebaut / übergabefertig) und den Ratgeber `geerbte-wohnung-verkaufsfertig-machen` abgedeckt. Maler- und Tapezierbausteine stehen ausdrücklich als Fachbetriebsleistung (E-011). Wiedervorlage: wenn GSC-Daten eine eigene Paket-Suchanfrage mit Volumen zeigen.
+
+**Kostenseiten für Boden, Küche, Trockenbau, Möbelmontage: zurückgestellt.** `priceDataAvailable` steht auf `false`; jede dieser Leistungsseiten hat bereits ihre Preisfaktoren. Eine Kostenseite ohne Zahlen wäre inhaltlich fast deckungsgleich und würde mit der Leistungsseite konkurrieren – und enttäuscht eine Suche nach „was kostet", die eine Zahl erwartet. Wiedervorlage: sobald echte Preisdaten nach CONTENT-TODO § D vorliegen.
+
 ## E-014 · Öffentliche Formular-Grundkonfiguration übersteht Deployment (21.10.2026)
 
 Betreiber meldet vorher funktionierenden Versand und fordert sofortige Reparatur. Der Programmvergleich zeigt unveränderten SMTP-/mail()-Transport und Konfigurationslader; der beobachtete Abbruch erfolgt vorher wegen leerem Empfänger. Hostingers Git-Abgleich kann unversionierte lokale Konfiguration löschen. Die konkrete entfernte Datei lässt sich ohne Serverzugriff nicht rekonstruieren.

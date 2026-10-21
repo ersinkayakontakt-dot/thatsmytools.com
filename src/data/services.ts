@@ -525,6 +525,28 @@ export const services: Service[] = [
         ],
       },
       {
+        h: 'Was ein Komplettauftrag nach einem Nachlass umfassen kann',
+        p: [
+          'Viele Erben wollen nicht nur eine leere Wohnung, sondern eine, die sich verkaufen oder neu vermieten lässt. Die Bausteine dafür lassen sich in einem gemeinsamen Ablauf planen. Im Angebot steht jeder Baustein als eigene Position, damit Sie sehen, was entfällt, wenn Sie einen streichen.',
+        ],
+        table: {
+          caption: 'Bausteine eines Komplettauftrags nach einem Nachlass',
+          head: ['Baustein', 'Wann er dazugehört'],
+          rows: [
+            ['Sichten, Sichern und Räumen', 'Immer. Unterlagen, Erinnerungsstücke und Wertsachen werden vor der Räumung gesichert'],
+            ['Wertanrechnung', 'Wenn verwertbarer Hausrat vorhanden ist; der Betrag erscheint als eigene Position'],
+            ['Rückbau von Einbauten', 'Wenn Einbauküche, Einbauschränke oder alter Teppich nicht bleiben sollen'],
+            ['Wände streichen oder tapezieren', 'Wenn die Wohnung verkaufs- oder vermietfertig sein soll; gesondert mit einem Fachbetrieb abgestimmt'],
+            ['Neuer Bodenbelag und Küche', 'Wenn der Boden verschlissen ist oder unter der alten Küche fehlt'],
+            ['Besenreine Übergabe', 'Immer, mit Schlüsselübergabe und auf Wunsch Fotodokumentation'],
+          ],
+        },
+        note: {
+          title: 'Reihenfolge',
+          text: 'Wie die Arbeiten nacheinander geplant werden, damit die Wohnung nicht zwischen zwei Terminen leer steht, beschreibt der Ratgeber [Geerbte Wohnung verkaufs- oder vermietfertig machen](/ratgeber/geerbte-wohnung-verkaufsfertig-machen/).',
+        },
+      },
+      {
         h: 'Wie viel Zeit sollten Sie einplanen?',
         p: [
           'Wenn es die Umstände zulassen, planen Sie zwei bis vier Wochen zwischen erster Anfrage und Räumung. Diese Zeit brauchen Sie, um Unterlagen zu sichten, Verträge zu kündigen und in Ruhe zu entscheiden, was bleiben soll.',
@@ -1017,6 +1039,24 @@ export const services: Service[] = [
           'In den meisten Fällen folgt auf den Seniorenumzug die Auflösung der bisherigen Wohnung. Beides in einem Auftrag zu planen, ist einfacher und meist günstiger, weil wir Fahrten und Team zusammenlegen können.',
           'Der Ablauf: erst der Umzug mit allem, was mitkommt, dann in Ruhe die Sichtung der verbliebenen Sachen, dann die Räumung. Zwischen beiden Schritten sollte etwas Zeit liegen, damit noch etwas nachgeholt werden kann.',
         ],
+      },
+      {
+        h: 'Was ein Komplettauftrag beim Wohnwechsel umfassen kann',
+        p: [
+          'Beim Wechsel in eine kleinere Wohnung, ins betreute Wohnen oder ins Heim hängen mehrere Aufgaben aneinander. Sie lassen sich in einem Auftrag planen, mit einer Ansprechperson für Angehörige und einem Angebot mit getrennten Positionen.',
+        ],
+        table: {
+          caption: 'Bausteine eines Komplettauftrags beim Seniorenumzug',
+          head: ['Baustein', 'Wann er dazugehört'],
+          rows: [
+            ['Auswahl und Umzug', 'Immer. Was mitkommt, wird vorher gemeinsam festgelegt'],
+            ['[Möbel am neuen Ort aufbauen](/leistungen/moebelmontage-berlin/)', 'Wenn das neue Zimmer am Einzugstag fertig eingerichtet sein soll'],
+            ['Kleinere Küche einbauen', 'Wenn in der neuen Wohnung eine passende Küche fehlt; Aufstellmaße werden vorher geklärt'],
+            ['[Auflösung der bisherigen Wohnung](/leistungen/haushaltsaufloesung-berlin/)', 'Wenn nach dem Umzug der übrige Hausrat gesichtet, verwertet und geräumt werden muss'],
+            ['Rückbau und besenreine Übergabe', 'Wenn der Vermieter Einbauten entfernt und die Wohnung geräumt zurückhaben möchte'],
+            ['Prüffähiger Kostenvoranschlag', 'Wenn eine Beteiligung von Pflegekasse oder Sozialamt beantragt werden soll'],
+          ],
+        },
       },
       {
         h: 'Beteiligung von Pflegekasse oder Sozialamt',

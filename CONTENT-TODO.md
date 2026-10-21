@@ -159,7 +159,10 @@ Wohnungsauflösung, Nachlass und Seniorenumzug" umgestellt. Umgesetzt sind:
    zusätzlich mindestens zwei Inhaltsblöcke und 1.800 Zeichen Gesamtinhalt.
    Offen bleiben 10 Umlandorte, bis das tatsächliche Einsatzgebiet bestätigt
    ist.
-5. **Drei Hauptprodukte als eigene Seiten** (Nachlass-Komplettservice,
+5. ✅ **Drei Hauptprodukte – umgesetzt als Abschnitt statt eigener URL (E-015, 21.10.2026).**
+   Baustein-Tabellen „Komplettauftrag" auf Nachlass und Seniorenumzug; die
+   übergabefertige Immobilie über Partnerseite und Ratgeber. Ursprünglicher Punkt:
+   **Drei Hauptprodukte als eigene Seiten** (Nachlass-Komplettservice,
    Senioren-Wohnwechsel, Immobilie übergabefertig). Die Leistungsseiten decken
    die Themen ab, sind aber als Einzelleistungen aufgebaut, nicht als
    Komplettpakete mit Zusatzleistungen.
