@@ -108,7 +108,7 @@ const THEMES = {
   keller: {
     forPage: 'service:kellerentruempelung-berlin',
     theme: 'Kellerabteil mit Regalen und Kartons, geordnet statt verwahrlost',
-    queries: ['basement storage shelves boxes', 'cellar storage room europe', 'storage unit shelves cardboard'],
+    queries: ['basement storage room shelves home', 'cluttered storage room boxes', 'storage room metal shelving boxes', 'attic storage boxes old furniture'],
   },
   bodenvergleich: {
     forPage: 'guide:laminat-oder-vinyl-mietwohnung',

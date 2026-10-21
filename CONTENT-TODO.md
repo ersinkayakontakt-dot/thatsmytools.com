@@ -31,9 +31,9 @@ Veröffentlicht über hostinger-live (f7c5148). Live-Prüfung am 19.10.2026: Sta
 
 Fünf lizenzierte Beispielbilder für Startseite und die Seiten Innenausbau, Trockenbau, Rückbau, Boden und Küche ergänzt. Quellen in IMAGE-SOURCES.md. Live über hostinger-live 904524d. Alle fünf Projektprüfungen erfolgreich, 0 Fehler und unverändert 20 dokumentierte Hinweise. Bild- und Layoutprüfung auf sechs Seiten in fünf Breiten (320 bis 1920 px) ohne Fehler. Anschließende Live-Prüfung: sechs Seiten HTTP 200, alle Bilder geladen, sichtbare Beispielbild-Kennzeichnung, kein horizontaler Überlauf.
 
-## Offen · BILD-2026-03 · Stockfotos für Seiten ohne Bild
+## Shipped (Quelle) · BILD-2026-03 · Stockfotos für Seiten ohne Bild, 21.10.2026
 
-Ohne Bild sind noch: `/leistungen/messiwohnung-raeumen/`, `/leistungen/sperrmuellabholung-berlin/`, `/leistungen/kellerentruempelung-berlin/` sowie alle Ratgeber (die Ratgeber-Vorlage rendert bisher keine Bilder). Suchthemen dafür stehen seit 21.10.2026 in `scripts/fetch-stock-images.mjs` (`messiwohnung`, `sperrmuell`, `keller`, `bodenvergleich`, `verkaufsfertig`). Am 21.10. nicht umsetzbar: Die Cloud-Umgebung sperrt pexels.com, unsplash.com, pixabay.com und wikimedia.org, und es liegt kein `PEXELS_API_KEY` vor. Ablauf, sobald beides da ist: `npm run images:fetch -- --theme <thema>`, Kandidaten ansehen (keine erkennbaren Bewohner, kein Elendsmotiv, keine fremden Logos), Auswahl nach `src/assets/`, Eintrag in `src/data/images.ts` und Zeile in `IMAGE-SOURCES.md`. Für Ratgeber zusätzlich die Vorlage um `heroImage('guide:<slug>')` erweitern.
+Fünf Pexels-Beispielbilder eingebaut: Messiwohnung, Sperrmüllabholung, Kellerentrümpelung sowie die Ratgeber „Laminat oder Vinyl" und „Geerbte Wohnung verkaufsfertig". Die Ratgeber-Vorlage (`GuideArticle.astro`) zeigt jetzt ein Titelbild aus `images.ts` (`guide:<slug>`) und meldet es als `primaryImageOfPage`. Auswahl, Aussortiertes und Lizenz in `IMAGE-SOURCES.md`. Gate 0 Fehler / 0 Warnungen; alle fünf Seiten bei 375 und 1280 px ohne Überlauf, Bilder geladen, Beispiel- und Symbolbild-Kennzeichnung sichtbar. Die übrigen Ratgeber und Kostenseiten haben weiterhin kein Bild. Der Pexels-Schlüssel liegt nur lokal in `.env.local`. Node braucht hinter dem Proxy `NODE_USE_ENV_PROXY=1`. **Noch nicht live.**
 
 ## Offen · BILD-2026-02 · Eigene Referenzfotos
 

@@ -86,6 +86,25 @@ Lizenz beim Abruf: Pexels-Lizenz, kostenlose Nutzung und Bearbeitung; Namensnenn
 
 Motiv vor Einbau angesehen, als Beispielbild gekennzeichnet; kein eigener Referenzauftrag.
 
+### Seiten ohne Bild und Ratgeber: ergänzt am 21.10.2026 (BILD-2026-03)
+
+76 Kandidaten über `npm run images:fetch` geholt (Themen `messiwohnung`, `sperrmuell`, `keller`, `bodenvergleich`, `verkaufsfertig`), jeden als Kontaktbogen und die Favoriten in voller Größe angesehen. Abruf in 2400 px Breite über die Pexels-Bild-URL. Alle als Beispielbild gekennzeichnet; Bilder mit Personen erhalten zusätzlich automatisch den Symbolbild-Hinweis.
+
+| Datei | Fotograf | Originalseite | Abruf | Verwendung | Lizenz | Personen |
+|---|---|---|---|---|---|---|
+| `messiwohnung-muellsack-handschuhe.jpg` | Carlos Daniel | [Pexels 12316616](https://www.pexels.com/photo/trash-on-the-garbage-bag-12316616/) | 2026-10-21 | `/leistungen/messiwohnung-raeumen/` | Pexels-Lizenz: kostenlose Nutzung und Bearbeitung, Namensnennung nicht erforderlich | ja (Hände) |
+| `sperrmuell-tisch-heraustragen.jpg` | Blue Bird | [Pexels 7218131](https://www.pexels.com/photo/man-carrying-a-wooden-table-7218131/) | 2026-10-21 | `/leistungen/sperrmuellabholung-berlin/` | Pexels-Lizenz: kostenlose Nutzung und Bearbeitung, Namensnennung nicht erforderlich | ja (Gesicht, klein) |
+| `keller-kartons-hinter-gitter.jpg` | Mathias Reding | [Pexels 11666897](https://www.pexels.com/photo/bars-in-a-window-11666897/) | 2026-10-21 | `/leistungen/kellerentruempelung-berlin/` | Pexels-Lizenz: kostenlose Nutzung und Bearbeitung, Namensnennung nicht erforderlich | nein |
+| `boden-dielenmuster-vergleich.jpg` | Gerzon Piñata | [Pexels 24366011](https://www.pexels.com/photo/close-up-of-a-woman-holding-wood-samples-24366011/) | 2026-10-21 | `/ratgeber/laminat-oder-vinyl-mietwohnung/` | Pexels-Lizenz: kostenlose Nutzung und Bearbeitung, Namensnennung nicht erforderlich | ja (Hände) |
+| `verkaufsfertig-leere-wohnung.jpg` | Max Vakhtbovych | [Pexels 8146335](https://www.pexels.com/photo/spacious-empty-room-with-parquet-flooring-8146335/) | 2026-10-21 | `/ratgeber/geerbte-wohnung-verkaufsfertig-machen/` | Pexels-Lizenz: kostenlose Nutzung und Bearbeitung, Namensnennung nicht erforderlich | nein |
+
+Auswahlgründe und Aussortiertes:
+
+- **Messiwohnung:** nur Handschuhe und Müllsack – weder Bewohner noch Wohnräume, also weder beschönigend noch bloßstellend (der frühere Grund für „bewusst ohne Bild"). Der rote Ärmelaufdruck ist unscharf und nicht lesbar, kein erkennbares Fremdlogo. Aussortiert: Schutzanzug im Wohnzimmer (dramatisierend, wirkt wie Desinfektion), Sortieranlagen und Straßenszenen (kein Wohnungsbezug).
+- **Sperrmüll:** Aussortiert: Sofas und Sessel auf der Straße vor Graffiti oder Bruchbuden (Elendsmotiv, erkennbar nicht Berlin) und Gefängniszellen-Treffer der Suche „old mattress".
+- **Keller:** Der erste Lauf brachte nur Weinkeller und Lagerhallen. Zweiter Lauf mit neuen Suchbegriffen; gewählt das vergitterte Kellerfenster, weil es einem deutschen Kellerabteil am nächsten kommt. Aussortiert: US-Hobbykeller, Lagerhallen, englisch beschriftete Kartons.
+- **Leere Wohnung:** Nr. 04 der Kandidaten war dieselbe Wohnung wie `wohnungsaufloesung-leere-wohnung.jpg` – aussortiert, damit nicht zwei Seiten dasselbe Objekt zeigen. Gewählt eine andere Wohnung mit europäischen Heizkörpern.
+
 ### Was aussortiert wurde – und warum
 
 Die Auswahl bestand nicht darin, die ersten sieben Treffer zu nehmen.
@@ -107,7 +126,7 @@ Aussortiert wurden unter anderem:
 | Seite | Grund |
 |---|---|
 | Startseiten-Hero | Bleibt typografisch. Der folgende Bauleistungsbereich enthält seit 19.10.2026 fünf Beispielbilder. |
-| `/leistungen/messiwohnung-raeumen/` | Jedes verfügbare Motiv wäre entweder beschönigend oder bloßstellend. In `src/data/seo-pages.ts` ist für diese Seite deshalb gar kein Bildmotiv hinterlegt. |
+| `/leistungen/messiwohnung-raeumen/` | Bis 21.10.2026 bewusst ohne Bild (jedes Motiv beschönigend oder bloßstellend). Seitdem neutrales Arbeitsmotiv ohne Bewohner und Räume, siehe BILD-2026-03 oben. |
 | `/leistungen/bueroaufloesung-berlin/` | Seit 20.10.2026 mit Beispielbild einer Bürofläche ausgestattet; eigenes Auftragsfoto weiterhin offen. |
 
 ---
