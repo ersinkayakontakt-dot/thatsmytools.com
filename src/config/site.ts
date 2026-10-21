@@ -97,12 +97,12 @@ export const site = {
    * Telefonnummer in internationaler Schreibweise.
    * Muss identisch sein mit Google-Unternehmensprofil und Bing Places.
    */
-  phone: '+49 176 86066817',
+  phone: '+49 176 44457385',
   /** Anzeigeform der Telefonnummer (darf Leerzeichen enthalten). */
-  phoneDisplay: '0176 86066817',
+  phoneDisplay: '0176 44457385',
 
   /** WhatsApp-Nummer. Häufig identisch mit der Mobilnummer. */
-  whatsapp: '+49 176 86066817',
+  whatsapp: '+49 176 44457385',
 
   /**
    * E-Mail unter eigener Domain (kein gmail/web.de – Vertrauensfaktor).

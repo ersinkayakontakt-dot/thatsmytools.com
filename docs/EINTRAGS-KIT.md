@@ -23,9 +23,9 @@ Warum das der zweitgrößte Hebel überhaupt ist, steht in
 | Vollständige Firmierung | Schnellhelfer24 – Inhaber Ersin Kaya |
 | Rechtsform | Einzelunternehmen |
 | Inhaber | Ersin Kaya |
-| Telefon (international) | +49 176 86066817 |
-| Telefon (Anzeigeform) | 0176 86066817 |
-| WhatsApp | +49 176 86066817 |
+| Telefon (international) | +49 176 44457385 |
+| Telefon (Anzeigeform) | 0176 44457385 |
+| WhatsApp | +49 176 44457385 |
 | E-Mail | hello@schnellhelfer24.de |
 | Anschrift | Lindenstr. 16, 10969 Berlin |
 | Website | https://schnellhelfer24.de |

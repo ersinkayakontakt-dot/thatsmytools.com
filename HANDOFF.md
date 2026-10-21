@@ -1,5 +1,7 @@
 # Handoff: maximale Auffindbarkeit weiterbauen
 
+Kontaktänderung am 21.10.2026 live bestätigt: Telefon und WhatsApp +49 176 44457385, sichtbare Anzeige 0176 44457385. Deployment 26c3c2b. Zentrale Quelle src/config/site.ts; Eintrags-Kit abgeglichen. Details und Generatorhinweis: KONTAKT-2026-01 / TOOL-2026-01 im Tracker.
+
 ## Live bestätigt · 21.10.2026
 
 Hostinger übernimmt 3ea7c30. Alle 58 indexierbaren Seiten HTTP 200 und aktuelle Titel, Möbelmontage/Maler/Tapezieren erreichbar, Trockenbau korrigiert. Startseite mit acht Baukarten, Bildprüfung live ohne Fehler, Möbelmontage einmal im Formular. robots.txt und IndexNow-Schlüsseldatei korrekt. 53 neue/geänderte URLs anschließend per IndexNow gemeldet, HTTP 200 angenommen. DEPLOY-2026-02, RENO-2026-01, SEO-2026-03 und SEC-2026-03 im Tracker erledigt. Noch offen: echte Suchdaten, 13 Linkgewichtungs-Hinweise, echte Referenzfotos und weitere bestätigte Unternehmensprofile. Frühere Deployment-Blockaden darunter sind historisch.

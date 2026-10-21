@@ -34,6 +34,14 @@ Gefunden: Einzelne spezifische Suchbots erhielten Allow: / ohne die Ausschlüsse
 
 Keine Exporte aus Google Search Console oder Bing Webmaster Tools vorhanden; kein belegter Ranking-/Klickverlauf. Erst reale Daten importieren, dann Suchbegriffe, Klickrate und indexierte URLs datenbasiert priorisieren. Noch 13 redaktionelle Linkgewichtungs-Hinweise zwischen Ausbau und etablierten Angeboten; keine isolierten Seiten, keine defekten Links, keine Metadaten-, Schema-, Bild- oder Kontrastfehler. Ranking-/KI-Nennungen bleiben außerhalb technischer Zusagen. Einzelheiten: docs/SEO-STATUS-2026-10-21.md.
 
+## Shipped · KONTAKT-2026-01 · Neue Rufnummer, 21.10.2026
+
+Telefon, sichtbare Nummer und WhatsApp zentral auf +49 176 44457385 umgestellt. Build, Check, Inhaltsaudit, Buildaudit und SEO bestanden (0 Fehler, unverändert 13 Linkhinweise). Alle 78 HTML-Seiten geprüft: 436 Telefon- und 353 WhatsApp-Verweise mit korrektem Ziel, alte Nummer nicht vorhanden. Live-Deployment 26c3c2b auf Startseite, Kontakt, Impressum, Formular und llms.txt mit neuer Nummer bestätigt. Vorhandenes Eintrags-Kit ebenfalls manuell abgeglichen. Keine Änderung von Schema-Struktur, Formularfeldern oder Datenbank.
+
+## Offen · TOOL-2026-01 · Eintrags-Kit unter Windows
+
+Beim Regenerieren mit npm run kit schlägt der Dateipfad auf diesem Rechner fehl (doppeltes Laufwerkspräfix C:\C:\...). Bestehendes docs/EINTRAGS-KIT.md für KONTAKT-2026-01 manuell abgeglichen. Generator in einer gesonderten Werkzeugkorrektur auf fileURLToPath statt URL.pathname prüfen. Kein Hindernis für Website-Build oder Deployment.
+
 ---
 
 Diese Website ist inhaltlich vollständig gebaut, aber sie enthält bewusst
