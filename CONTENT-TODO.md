@@ -63,9 +63,9 @@ Keine Exporte aus Google Search Console oder Bing Webmaster Tools vorhanden; kei
 
 Telefon, sichtbare Nummer und WhatsApp zentral auf +49 176 44457385 umgestellt. Build, Check, Inhaltsaudit, Buildaudit und SEO bestanden (0 Fehler, unverändert 13 Linkhinweise). Alle 78 HTML-Seiten geprüft: 436 Telefon- und 353 WhatsApp-Verweise mit korrektem Ziel, alte Nummer nicht vorhanden. Live-Deployment 26c3c2b auf Startseite, Kontakt, Impressum, Formular und llms.txt mit neuer Nummer bestätigt. Vorhandenes Eintrags-Kit ebenfalls manuell abgeglichen. Keine Änderung von Schema-Struktur, Formularfeldern oder Datenbank.
 
-## Offen · TOOL-2026-01 · Eintrags-Kit unter Windows
+## Shipped (Quelle) · TOOL-2026-01 · Eintrags-Kit unter Windows
 
-Beim Regenerieren mit npm run kit schlägt der Dateipfad auf diesem Rechner fehl (doppeltes Laufwerkspräfix C:\C:\...). Bestehendes docs/EINTRAGS-KIT.md für KONTAKT-2026-01 manuell abgeglichen. Generator in einer gesonderten Werkzeugkorrektur auf fileURLToPath statt URL.pathname prüfen. Kein Hindernis für Website-Build oder Deployment.
+Ursache: `scripts/eintrags-kit.mjs` schrieb nach `file:///C:/…` minus `file://`, also `/C:/…`; Windows macht daraus `C:\C:\…`. Jetzt wird der Dateisystempfad über `path.join` gebildet und per `JSON.stringify` in das generierte Modul geschrieben (Backslashes maskiert). Unter Linux geprüft: `npm run kit` läuft und hat `docs/EINTRAGS-KIT.md` neu erzeugt – die acht seit Juli ergänzten Leistungen standen dort noch nicht. **Unter Windows noch nicht ausgeführt**; beim nächsten `npm run kit` auf dem Rechner bestätigen. Hinweis: Das Kit führt jetzt auch „Malerarbeiten“ und „Tapezieren“ als Leistung – in Portalprofilen nur mit dem Fachbetriebs-Zusatz eintragen (E-011, `docs/HANDWERKSRECHT.md`).
 
 ## Shipped · KONTAKT-2026-02 · Allgemeiner WhatsApp-Text
 

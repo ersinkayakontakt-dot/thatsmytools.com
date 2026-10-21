@@ -3,7 +3,7 @@
 > **Diese Datei wird erzeugt.** Sie nicht von Hand ändern —
 > `npm run kit` überschreibt sie. Quelle ist `src/config/site.ts`.
 >
-> Erzeugt am 30.7.2026.
+> Erzeugt am 21.10.2026.
 
 Beim Anlegen eines Profils **nichts abtippen, sondern von hier kopieren.**
 Eine einzige abweichende Schreibweise macht die Nennung wertlos: Sie wird
@@ -88,6 +88,14 @@ als Fließtext.
 | Seniorenumzug in Berlin | Umzug in kleinere Wohnung, betreutes Wohnen oder Pflegeheim. Mit mehr Zeit und Absprache. |
 | Keller entrümpeln lassen in Berlin | Kellerabteile und ganze Kellergeschosse leerräumen, auch für Hausverwaltungen. |
 | Büroauflösung in Berlin | Gewerbeflächen räumen, Akten gesondert behandeln, termingerecht übergeben. |
+| Demontage und Rückbau in Berlin | Einbauküche, Einbauten, Trennwände und Bodenbeläge zurückbauen und entsorgen. |
+| Bodenbelag verlegen lassen in Berlin | Laminat, Klick-Vinyl und Teppichboden verlegen, alten Belag aufnehmen und entsorgen. |
+| Küchenmontage in Berlin | Einbauküche aufbauen, ausrichten und Geräte einsetzen. Auf Wunsch mit Abbau der alten Küche. |
+| Innenausbau in Berlin – komplett geplant | Rückbau, Raumaufteilung, Boden und Montage als zusammenhängendes Projekt planen. |
+| Trockenbau in Berlin | Nichttragende Raumtrennungen, Vorsatzschalen und abgehängte Decken passend zur Nutzung planen. |
+| Malerarbeiten in Berlin – mit Fachbetrieb abstimmen | Wände und Decken streichen lassen: Umfang, Farbton und Ausführung mit einem Fachbetrieb abstimmen. |
+| Tapezieren in Berlin – Tapeten und Untergrund abstimmen | Raufaser, Vlies- und Mustertapeten mit einem Fachbetrieb passend zu Raum und Untergrund planen. |
+| Möbelmontage in Berlin – Schränke, Betten und Regale | Fertigmöbel, Schränke, Betten und Regale nach Anleitung aufbauen oder für den Umzug abbauen. |
 
 ## Bilder
 

@@ -261,7 +261,10 @@ Noch offen in \\\`site.profiles\\\`:
 \${profileOffen.length ? profileOffen.join('\\n') : '- keines'}
 \`;
 
-writeFileSync('${mod('docs/EINTRAGS-KIT.md').replace('file://', '')}', md, 'utf8');
+// Zielpfad als Dateisystempfad, nicht als URL: Aus 'file:///C:/…' wurde
+// nach dem Abschneiden von 'file://' unter Windows '/C:/…' und daraus
+// 'C:\\C:\\…' (TOOL-2026-01). JSON.stringify maskiert die Backslashes.
+writeFileSync(${JSON.stringify(join(root, 'docs', 'EINTRAGS-KIT.md'))}, md, 'utf8');
 
 console.log('erzeugt: docs/EINTRAGS-KIT.md');
 if (fehlend.length) {
