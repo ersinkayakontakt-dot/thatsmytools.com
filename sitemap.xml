@@ -106,10 +106,20 @@
   <url>
     <loc>https://schnellhelfer24.de/leistungen/messiwohnung-raeumen/</loc>
     <lastmod>2026-07-29</lastmod>
+    <image:image>
+      <image:loc>https://schnellhelfer24.de/_assets/messiwohnung-muellsack-handschuhe.D35NyZ2f.jpg</image:loc>
+      <image:title>Hände in Arbeitshandschuhen halten einen offenen schwarzen Müllsack mit gemischtem Abfall</image:title>
+      <image:caption>Beispielbild: Abfall wird mit Schutzhandschuhen gesammelt und getrennt.</image:caption>
+    </image:image>
   </url>
   <url>
     <loc>https://schnellhelfer24.de/leistungen/sperrmuellabholung-berlin/</loc>
     <lastmod>2026-10-21</lastmod>
+    <image:image>
+      <image:loc>https://schnellhelfer24.de/_assets/sperrmuell-tisch-heraustragen.C-wSuGUH.jpg</image:loc>
+      <image:title>Mann trägt einen Holztisch durch ein Wohnzimmer, das Sofa ist mit Folie abgedeckt</image:title>
+      <image:caption>Beispielbild: ein ausrangiertes Möbelstück wird aus der Wohnung getragen.</image:caption>
+    </image:image>
   </url>
   <url>
     <loc>https://schnellhelfer24.de/leistungen/umzug-berlin/</loc>
@@ -132,6 +142,11 @@
   <url>
     <loc>https://schnellhelfer24.de/leistungen/kellerentruempelung-berlin/</loc>
     <lastmod>2026-07-29</lastmod>
+    <image:image>
+      <image:loc>https://schnellhelfer24.de/_assets/keller-kartons-hinter-gitter.BHfmwNce.jpg</image:loc>
+      <image:title>Gestapelte Kartons und ein Kanister hinter einem vergitterten Kellerfenster</image:title>
+      <image:caption>Beispielbild: eingelagerte Kartons hinter einem Kellerfenster.</image:caption>
+    </image:image>
   </url>
   <url>
     <loc>https://schnellhelfer24.de/leistungen/bueroaufloesung-berlin/</loc>
@@ -332,5 +347,23 @@
   <url>
     <loc>https://schnellhelfer24.de/ratgeber/wohnungsaufloesung-checkliste-pdf/</loc>
     <lastmod>2026-07-30</lastmod>
+  </url>
+  <url>
+    <loc>https://schnellhelfer24.de/ratgeber/geerbte-wohnung-verkaufsfertig-machen/</loc>
+    <lastmod>2026-10-21</lastmod>
+    <image:image>
+      <image:loc>https://schnellhelfer24.de/_assets/verkaufsfertig-leere-wohnung.DXADGuCu.jpg</image:loc>
+      <image:title>Leerer, heller Raum mit hellem Holzdekorboden, Heizkörpern und grau gestrichener Wand</image:title>
+      <image:caption>Beispielbild: eine geräumte, hergerichtete Wohnung vor Verkauf oder Vermietung.</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://schnellhelfer24.de/ratgeber/laminat-oder-vinyl-mietwohnung/</loc>
+    <lastmod>2026-10-21</lastmod>
+    <image:image>
+      <image:loc>https://schnellhelfer24.de/_assets/boden-dielenmuster-vergleich.B3ahSome.jpg</image:loc>
+      <image:title>Hände halten drei Dielenmuster in hellen und mittleren Holzdekoren zum Vergleich</image:title>
+      <image:caption>Beispielbild: Dielenmuster werden vor der Auswahl verglichen.</image:caption>
+    </image:image>
   </url>
 </urlset>
