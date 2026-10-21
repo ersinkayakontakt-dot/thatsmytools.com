@@ -1,6 +1,6 @@
 # Produktprüfung · 21.10.2026
 
-Lokaler Entwurf gemäß E-013. Nicht veröffentlicht; keine Testanfrage an echte Postfächer geschickt.
+Lokaler Entwurf gemäß E-013. Inzwischen mit Betreiberfreigabe veröffentlicht: Quelle ee14bf7 / Build 676e39e. Nachfolgende lokale Prüfungen wurden vor Freigabe ausgeführt; anschließend regulärer Live-Test, siehe unten.
 
 ## Ergebnis
 
@@ -28,6 +28,12 @@ Screenshots befinden sich in C:/Users/enter/.codex/visualizations/2026/09/11/01a
 - ux-erste-ansicht-375.png / ux-erste-ansicht-768.png / ux-erste-ansicht-1440.png
 - ux-fehlerzustand-1440.png / ux-empfang-fotohinweis-1440.png
 
+## Live-Abgleich nach Freigabe
+
+58 indexierbare URLs HTTP 200; Startseite, neutrale Empfangsseite und neue CSS-Dateien bestätigt. Drei Formularzweige (Montage/Maler/Räumung) bei 375/768/1440 px, alle Bilder geladen, kein Überlauf oder JavaScript-Fehler. Private Ablage liefert 403. Regulärer vollständiger POST ohne Honeypot mit eindeutiger Testkennzeichnung wurde auf nicht-konfiguriert umgeleitet. Keine erfolgreiche Speicherung oder Zustellung behauptet; OPS-2026-02 erfasst die Abhängigkeit. Die frühere Honeypot-Probe wurde nicht als Funktionsbeweis verwendet.
+
+Vier-Hut-Releaseprüfung: Staff – gültigen Build übertragen; Architektur – Astro/PHP und bestehende URLs erhalten; Daten – keine serverseitigen Laufzeitdaten oder Zugangsdaten versioniert; QA – Live-Frontend geprüft, echtes Backend-Defizit separat ausgewiesen. Sicherheitscheck: geschützte Ablage, keine persönlichen Daten in Testausgaben, keine Authentifizierungs-/Konfigurationsänderung.
+
 ## Noch offen
 
-Freigabe des Betreibers vor Veröffentlichung. Anschließend tatsächliche SMTP-Zustellung, Fotoannahme und private JSON-Ablage beim Hoster kontrollieren. Lokale Protokolltests beweisen keine Zustellung ins echte Postfach. Bei Mailausfall muss die gespeicherte Anfrage betrieblich bearbeitet werden. Keine vorhandene automatische Disposition, authentifizierte Projektverfolgung oder Sofortbuchung; deshalb keine solche Zusage in der Oberfläche. Ziele und Benchmarkgrenzen: docs/PRODUKT-UND-DESIGN.md.
+SMTP-Konfiguration beim Hoster wiederherstellen. Anschließend tatsächliche SMTP-Zustellung, Fotoannahme und private JSON-Ablage kontrollieren. Lokale Protokolltests beweisen keine Zustellung ins echte Postfach. Bei Mailausfall muss die gespeicherte Anfrage betrieblich bearbeitet werden. Keine vorhandene automatische Disposition, authentifizierte Projektverfolgung oder Sofortbuchung; deshalb keine solche Zusage in der Oberfläche. Ziele und Benchmarkgrenzen: docs/PRODUKT-UND-DESIGN.md.

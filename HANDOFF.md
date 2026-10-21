@@ -1,8 +1,8 @@
-# Aktueller lokaler Produktentwurf · 21.10.2026
+# Produktfreigabe und Live-Abgleich · 21.10.2026
 
-Startseite und zentraler Anfrageweg wurden gemäß E-013 überarbeitet. Noch NICHT veröffentlicht und nicht gepusht. Betreiberfreigabe vor Veröffentlichung abwarten (UX-2026-01). Gemeinsame Projektregeln in AGENTS.md und CLAUDE.md, Produkt-/Benchmarkdokument docs/PRODUKT-UND-DESIGN.md. FLOW-2026-01 behebt Empfang ohne gespeicherte Anfrage. Pflichtprüfungen plus npm run audit:request:selftest / audit:mail:selftest / seo:events verwenden. 78 Seiten / 58 indexierbar, 0 Fehler, 11 Linkgraph-Hinweise im Entwurf; SEO-2026-04 bleibt offen. Bestehende Rufnummer und allgemeiner WhatsApp-Text unverändert.
+Startseite und zentraler Anfrageweg wurden gemäß E-013 überarbeitet. Vom Betreiber am 21.10. mit „ok go“ freigegeben, Quelle ee14bf7 gesichert und Build 676e39e live bestätigt (UX-2026-01). 58 indexierbare URLs HTTP 200 und responsive Formularführung geprüft. Reguläre Testanfrage meldet fehlende Konfiguration: OPS-2026-02 ist offen; tatsächlicher Mailversand nicht bestätigt. Gemeinsame Projektregeln in AGENTS.md und CLAUDE.md, Produkt-/Benchmarkdokument docs/PRODUKT-UND-DESIGN.md. FLOW-2026-01 behebt Empfang ohne gespeicherte Anfrage. Pflichtprüfungen plus npm run audit:request:selftest / audit:mail:selftest / seo:events verwenden. 78 Seiten / 58 indexierbar, 0 Fehler, 11 Linkgraph-Hinweise im Entwurf; SEO-2026-04 bleibt offen. Bestehende Rufnummer und allgemeiner WhatsApp-Text unverändert.
 
-Die folgenden Abschnitte dokumentieren frühere Live-Stände; sie beschreiben nicht den unveröffentlichten Entwurf.
+Die folgenden Abschnitte dokumentieren frühere Live-Stände; maßgeblich ist der aktuelle Status oben.
 
 # Handoff: maximale Auffindbarkeit weiterbauen
 

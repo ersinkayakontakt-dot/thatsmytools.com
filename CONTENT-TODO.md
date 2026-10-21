@@ -1,13 +1,19 @@
 # CONTENT-TODO: Was noch an echten Daten fehlt
 
-## Offen · UX-2026-01 · Freigegebenen Produktentwurf veröffentlichen und prüfen
+## Shipped · UX-2026-01 · Neue Startseite und Anfrageführung live
 
-Startseite und Anfrageweg am 21.10.2026 lokal überarbeitet. Umsetzung und Quellen: docs/PRODUKT-UND-DESIGN.md, Entscheidung E-013. Betreiberfreigabe am 21.10.2026 mit „ok go“ erhalten. Veröffentlichung und Live-Abgleich laufen. Danach echte Mailzustellung und Serverablage prüfen; lokale Tests ersetzen den Posteingang nicht. Richtwerte für Nutzungsmetriken sind Ziele, keine nachgewiesenen Steigerungen. Authentifizierter Projektstatus und direkte Montagebuchung bleiben bis zu echten Kapazitäts-/Preis-/Prozessdaten zurückgestellt.
+Startseite und Anfrageweg am 21.10.2026 lokal überarbeitet. Umsetzung und Quellen: docs/PRODUKT-UND-DESIGN.md, Entscheidung E-013. Betreiberfreigabe am 21.10.2026 mit „ok go“ erhalten. Live über 676e39e bestätigt: 58 indexierbare URLs HTTP 200, drei adaptive Formularzweige bei 375/768/1440 px ohne Überlauf oder JavaScript-Fehler, alle Bilder geladen. Vollständige Testanfrage wird wegen fehlender Konfiguration abgewiesen; gesondert OPS-2026-02. Lokale Tests ersetzen den Posteingang nicht. Richtwerte für Nutzungsmetriken sind Ziele, keine nachgewiesenen Steigerungen. Authentifizierter Projektstatus und direkte Montagebuchung bleiben bis zu echten Kapazitäts-/Preis-/Prozessdaten zurückgestellt.
 
-## Shipped im lokalen Quellstand · FLOW-2026-01 · Empfang nur nach Speicherung
+## Shipped · FLOW-2026-01 · Empfang nur nach Speicherung
 
-Anfrage vor Mailversand gespeichert, Speicherfehler führen zum Fehlerweg, Statusaktualisierung erhält ursprünglichen Datensatz. Entwurf bleibt bei Fehler erhalten. Antwortweg E-Mail erfordert Adresse. Bestätigung zeigt tatsächliche angenommene Fotozahl und Hinweis bei fehlenden Fotos. Sechs lokale Endpoint-Szenarien und bestehende 14 SMTP-Fälle bestanden; Veröffentlichung gehört zu UX-2026-01.
+Anfrage vor Mailversand gespeichert, Speicherfehler führen zum Fehlerweg, Statusaktualisierung erhält ursprünglichen Datensatz. Entwurf bleibt bei Fehler erhalten. Antwortweg E-Mail erfordert Adresse. Bestätigung zeigt tatsächliche angenommene Fotozahl und Hinweis bei fehlenden Fotos. Sechs lokale Endpoint-Szenarien und bestehende 14 SMTP-Fälle bestanden; Code mit UX-2026-01 veröffentlicht; tatsächlicher Formularempfang bleibt durch OPS-2026-02 blockiert.
 
+
+## Offen · OPS-2026-02 · Vollständige Live-Testanfrage meldet fehlende Konfiguration
+
+Am 21.10.2026 nach Deployment 676e39e eine regulär ausgefüllte, ausdrücklich als technischer Test markierte Anfrage ohne Honeypot und mit gültigen Betreiber-Kontaktdaten abgeschickt. Ergebnis: HTTP 302 auf /angebot-anfragen/?fehler=1&grund=nicht-konfiguriert. Keine Empfangsreferenz, kein Nachweis einer gespeicherten Anfrage oder Mailzustellung. Dies ist ein anderer Befund als die unter OPS-2026-01 als unzuverlässig dokumentierte Honeypot-Probe; die damalige Betreiberbestätigung bleibt als historische Aussage bestehen.
+
+Keine Hostinger-/FTP-Zugangsdaten in den vorgesehenen Umgebungsvariablen, keine lokalen Konfigurationsdateien und keine GitHub-Deploy-Secrets verfügbar. Browsersteuerung startet nicht. Benötigt wird autorisierter Serverzugang, um domains/schnellhelfer24.de/sh24-config.php nach config.example.php mit echtem SMTP-Postfach und privater Ablage einzurichten. Keine Geheimnisse ins Repository oder in Chat-/Befehlsausgaben übernehmen. Danach reguläre Testanfrage, JSON-Ablage und tatsächlichen Posteingang prüfen. Der Fehlerweg zeigt jetzt einen verständlichen Hinweis und verweist auf Telefon/WhatsApp; Entwurf bleibt erhalten.
 
 ## Shipped · BAU-2026-01 · Innenausbau-Bereich, 19.10.2026
 

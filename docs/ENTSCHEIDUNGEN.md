@@ -8,7 +8,7 @@ Leistungsspezifische Profile verkürzen Montage/Beratung auf vier Schritte und A
 
 Speicherung wird vor Versand zwingend geprüft, Entwurf erst nach Empfangsweiterleitung gelöscht. Referenz und angenommene Fotozahl erlauben eine ehrliche Rückmeldung, ohne öffentliche Kundendatenabfrage. Nachteile: keine automatische Disposition und keine Zustellgarantie; Bearbeitung einer gespeicherten Anfrage bei ausgefallenem Mailversand bleibt betrieblich erforderlich.
 
-Lokal umgesetzt, nicht veröffentlicht. Neues Pflicht-Selbsttestskript: npm run audit:request:selftest. 78 Seiten / 58 indexierbar; elf redaktionelle Linkgraph-Hinweise bleiben (SEO-2026-04), keine SEO-Prioritäten oder Prüfschwellen geändert. Freigabe vor Veröffentlichung erforderlich.
+Am 21.10.2026 freigegeben und über 676e39e live geprüft. Reguläre Testanfrage meldet fehlende Serverkonfiguration (OPS-2026-02). Neues Pflicht-Selbsttestskript: npm run audit:request:selftest. 78 Seiten / 58 indexierbar; elf redaktionelle Linkgraph-Hinweise bleiben (SEO-2026-04), keine SEO-Prioritäten oder Prüfschwellen geändert. Die Freigabe für diesen Stand liegt vor.
 
 
 ## E-012 · Möbelmontage und überprüfbare Suchauffindbarkeit (21.10.2026)

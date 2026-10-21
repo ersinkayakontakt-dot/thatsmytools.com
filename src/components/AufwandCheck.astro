@@ -169,6 +169,11 @@ const steps = [
     <p class="progress__text" data-progress-text aria-live="polite">Schritt 1 von 6</p>
   </div>
 
+  <div class="errors" data-server-error role="alert" tabindex="-1" hidden>
+    <p class="errors__head">Ihre Anfrage konnte nicht übermittelt werden.</p>
+    <p>Ihre Textangaben bleiben als Entwurf in diesem Browser erhalten. Bitte versuchen Sie es später erneut oder nutzen Sie unsere <a href="/kontakt/">Telefon- und WhatsApp-Kontakte</a>. Fotos müssen Sie erneut auswählen.</p>
+  </div>
+
   <!-- Fehlerübersicht, wird bei Validierungsfehlern gefüllt -->
   <div class="errors" data-errors role="alert" tabindex="-1" hidden>
     <p class="errors__head">Bitte prüfen Sie diese Angaben:</p>
@@ -1675,6 +1680,9 @@ const steps = [
        Zwischenstand soll denselben Hinweis zeigen wie frisch getipptes. */
     updateServiceHint();
     if (plzField) plzField.addEventListener('input', updateServiceHint);
+    if (new URLSearchParams(window.location.search).get('fehler') === '1') {
+      var serverError = root.querySelector('[data-server-error]');serverError.hidden=false;serverError.focus({preventScroll:true});var errorHeader=document.querySelector('.site-header');window.scrollTo({top:serverError.getBoundingClientRect().top+window.pageYOffset-(errorHeader?errorHeader.offsetHeight:0)-24,behavior:'auto'});
+    }
     track('estimate_started', {});
 
     // Abbruch erfassen, wenn das Formular begonnen, aber nicht abgesendet wurde

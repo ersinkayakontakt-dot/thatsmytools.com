@@ -1,6 +1,6 @@
 # Schnellhelfer24: Produkt und Gestaltung
 
-Stand und Quellenabruf: 21.10.2026. Gemeinsame Arbeitsgrundlage für Codex und Claude. Entscheidung E-013; Tracker UX-2026-01 / FLOW-2026-01. Implementiert im lokalen Entwurf, nicht veröffentlicht.
+Stand und Quellenabruf: 21.10.2026. Gemeinsame Arbeitsgrundlage für Codex und Claude. Entscheidung E-013; Tracker UX-2026-01 / FLOW-2026-01. Betreiberfreigabe am 21.10.2026 erhalten; erste Veröffentlichung 676e39e live geprüft. Formularempfang durch fehlende Serverkonfiguration blockiert (OPS-2026-02).
 
 ## Produkt und Menschen
 
@@ -74,7 +74,7 @@ Prüfergebnis und Screenshot-Inventar: docs/PRODUKT-QA-2026-10-21.md.
 
 Vorschlag: zunächst zwei Wochen belastbare Ausgangsdaten, dann vier Wochen Entwurf vergleichen. Ziele sind Hypothesen: relative Anfrageabschlussquote +15 %, Abbruch vor Kontakt -15 %, Rückfragen zu fehlendem Umfang -20 %. Erst reale Stichprobe und saisonale/Traffic-Unterschiede prüfen; keine erreichte Steigerung behaupten. Bestehende estimate-/lead-Ereignisse verwenden; keine personenbezogenen Freitexte in Analysen. Fehlgeschlagene Übertragung darf nicht als eingegangene Anfrage zählen.
 
-Vor Veröffentlichung benötigt: Betreiberfreigabe des konkreten Entwurfs. Danach kontrollierte Live-Testanfrage mit Posteingang und JSON-Ablage prüfen. Echtes SMTP-Postfach und Zustellbarkeit können lokale Tests nicht beweisen. Für weitere Vorteile fehlen belastbare Preise/Kapazitäten, echte Einsatzfotos und reale GSC/Bing-/Conversiondaten; diese Punkte stehen im Tracker. Kein Kontozugang wird in Dokumentation abgelegt.
+Betreiberfreigabe liegt vor. Die reguläre Live-Testanfrage nach Veröffentlichung wurde mit nicht-konfiguriert abgewiesen. Serverzugang und SMTP-Konfiguration fehlen; nach Behebung Posteingang und JSON-Ablage prüfen (OPS-2026-02). Echtes SMTP-Postfach und Zustellbarkeit können lokale Tests nicht beweisen. Für weitere Vorteile fehlen belastbare Preise/Kapazitäten, echte Einsatzfotos und reale GSC/Bing-/Conversiondaten; diese Punkte stehen im Tracker. Kein Kontozugang wird in Dokumentation abgelegt.
 
 ## Quellen
 
