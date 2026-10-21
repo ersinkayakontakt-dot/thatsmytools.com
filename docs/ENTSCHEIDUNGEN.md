@@ -1,5 +1,16 @@
 # Entscheidungsprotokoll
 
+## E-013 · Menschliche Startseite und verlässliche Anfrage (21.10.2026)
+
+Betreiberauftrag: warme, hochwertige Gestaltung und zusammenhängender Weg von der Startseite bis zum echten Eingang. Ersetzt die frühere rein eckige Schwarz/Orange-Gestaltungsrichtung; keine Änderung von Geschäftsmodell, URLs oder Technologie. Gemeinsame Regeln, Benchmark mit Quellen und Priorisierung: docs/PRODUKT-UND-DESIGN.md.
+
+Leistungsspezifische Profile verkürzen Montage/Beratung auf vier Schritte und Ausbau auf fünf; Räumungen behalten sechs. Kostenbestandteile werden erklärt, keine Sofortpreise oder Buchungen erfunden. Die Startseite adressiert nun das gesamte vorhandene Angebot; ihre primäre Suchintention ist die Marke Schnellhelfer24 Berlin. Spezifische Leistungsintentionen bleiben bei den bestehenden Leistungsseiten.
+
+Speicherung wird vor Versand zwingend geprüft, Entwurf erst nach Empfangsweiterleitung gelöscht. Referenz und angenommene Fotozahl erlauben eine ehrliche Rückmeldung, ohne öffentliche Kundendatenabfrage. Nachteile: keine automatische Disposition und keine Zustellgarantie; Bearbeitung einer gespeicherten Anfrage bei ausgefallenem Mailversand bleibt betrieblich erforderlich.
+
+Lokal umgesetzt, nicht veröffentlicht. Neues Pflicht-Selbsttestskript: npm run audit:request:selftest. 78 Seiten / 58 indexierbar; elf redaktionelle Linkgraph-Hinweise bleiben (SEO-2026-04), keine SEO-Prioritäten oder Prüfschwellen geändert. Freigabe vor Veröffentlichung erforderlich.
+
+
 ## E-012 · Möbelmontage und überprüfbare Suchauffindbarkeit (21.10.2026)
 
 Möbelmontage erhält eine eigene Leistungsseite für Fertigmöbel nach Anleitung, eine Startseitenkarte, ein lizenziertes Beispielbild sowie Verbindungen zu Umzug, Seniorenwohnen, Küche und Innenausbau. Keine individuelle Tischlerfertigung und keine ungeprüften Anschluss- oder Befestigungszusagen. Bestehende Vorlagen und zentrale Service-/Bild-/SEO-Daten bleiben die Quellen.

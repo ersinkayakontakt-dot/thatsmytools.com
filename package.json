@@ -32,7 +32,8 @@
     "seo:events:report": "node scripts/seo/events-report.mjs",
     "seo:opportunities": "node scripts/seo/opportunities.mjs",
     "seo:opportunities:selftest": "node scripts/seo/search-data/selftest.mjs",
-    "kit": "node scripts/eintrags-kit.mjs"
+    "kit": "node scripts/eintrags-kit.mjs",
+    "audit:request:selftest": "node scripts/request-selftest.mjs"
   },
   "dependencies": {
     "astro": "^7.3.5"

@@ -40,7 +40,7 @@ erst möglich und sorgen dafür, dass die genannten Angaben stimmen.
 ### Inhalte und Recht
 - [ ] `CONTENT-TODO.md` Abschnitt A vollständig abgearbeitet
 - [x] Kontaktdaten in `src/config/site.ts` eingetragen: Telefon und WhatsApp
-      `+49 176 86066817`, E-Mail `hello@schnellhelfer24.de`, Anschrift
+      `+49 176 44457385`, E-Mail `hello@schnellhelfer24.de`, Anschrift
       Lindenstr. 16, 10969 Berlin, Firmierung „Schnellhelfer24 – Inhaber
       Ersin Kaya", Einzelunternehmen *(Stand 30.07.2026)*
 - [ ] Postfach `hello@schnellhelfer24.de` empfängt tatsächlich – mit einer
@@ -304,7 +304,7 @@ lokales Unternehmen nicht eindeutig zugeordnet wird.
 Schnellhelfer24 – Inhaber Ersin Kaya
 Lindenstr. 16
 10969 Berlin
-Telefon: +49 176 86066817   (Anzeigeform: 0176 86066817)
+Telefon: +49 176 44457385   (Anzeigeform: 0176 44457385)
 E-Mail:  hello@schnellhelfer24.de
 Web:     https://schnellhelfer24.de
 ```

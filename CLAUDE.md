@@ -20,6 +20,7 @@ Referenzdokumente, Ingenieursurteil.
 
 | Datei | Wofür | Wann |
 |---|---|---|
+| `docs/PRODUKT-UND-DESIGN.md` | Gemeinsame Produkt- und Designregeln, Benchmark, Anfragevertrag (E-013) | vor Produkt-/UI-Arbeit |
 | `HANDOFF.md` | Was als Nächstes den größten Effekt hat, Deployment-Wahrheit, Testpläne | **immer** |
 | `CONTENT-TODO.md` | Der Tracker. Alles Offene steht hier | **vor jedem Plan** |
 | `src/lib/publishGuard.ts` | Entscheidet, ob eine Seite überhaupt indexiert wird | vor jeder Inhaltsarbeit |
@@ -85,9 +86,9 @@ Torwächter: Metadaten, Linkgraph, Kannibalisierung, Schema, Bilder,
 Kontrast. **FEHLER blockieren die Veröffentlichung, Warnungen brauchen eine
 redaktionelle Entscheidung.**
 
-Stand 21.10.2026: 0 Fehler, **13 Warnungen** (78 Seiten, 58 indexierbar).
-Durch natürliche Kontextlinks aus passenden Leistungen und Ratgebern von 26
-auf 13 reduziert. Alle Hinweise betreffen weiter die Linkgewichtung, siehe E-012.
+Stand 21.10.2026: 0 Fehler, **11 Warnungen** (78 Seiten, 58 indexierbar).
+Mit der neuen Startseitenführung nach E-013 von 13 auf 11 reduziert, ohne Prioritäten
+oder Prüfschwellen zu ändern. Alle Hinweise betreffen weiter die Linkgewichtung.
 Der bisherige Bürobild-Hinweis ist durch ein passendes Beispielbild behoben.
 
 Historischer Stand 01.10.2026: 8 Warnungen (73 Seiten, 53 indexierbar).

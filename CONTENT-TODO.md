@@ -1,5 +1,14 @@
 # CONTENT-TODO: Was noch an echten Daten fehlt
 
+## Offen · UX-2026-01 · Freigegebenen Produktentwurf veröffentlichen und prüfen
+
+Startseite und Anfrageweg am 21.10.2026 lokal überarbeitet. Umsetzung und Quellen: docs/PRODUKT-UND-DESIGN.md, Entscheidung E-013. Betreiberfreigabe am 21.10.2026 mit „ok go“ erhalten. Veröffentlichung und Live-Abgleich laufen. Danach echte Mailzustellung und Serverablage prüfen; lokale Tests ersetzen den Posteingang nicht. Richtwerte für Nutzungsmetriken sind Ziele, keine nachgewiesenen Steigerungen. Authentifizierter Projektstatus und direkte Montagebuchung bleiben bis zu echten Kapazitäts-/Preis-/Prozessdaten zurückgestellt.
+
+## Shipped im lokalen Quellstand · FLOW-2026-01 · Empfang nur nach Speicherung
+
+Anfrage vor Mailversand gespeichert, Speicherfehler führen zum Fehlerweg, Statusaktualisierung erhält ursprünglichen Datensatz. Entwurf bleibt bei Fehler erhalten. Antwortweg E-Mail erfordert Adresse. Bestätigung zeigt tatsächliche angenommene Fotozahl und Hinweis bei fehlenden Fotos. Sechs lokale Endpoint-Szenarien und bestehende 14 SMTP-Fälle bestanden; Veröffentlichung gehört zu UX-2026-01.
+
+
 ## Shipped · BAU-2026-01 · Innenausbau-Bereich, 19.10.2026
 
 Umgesetzt im Quellstand: Startseitenbereich mit fünf Einstiegen, Menüeintrag Innenausbau, neue Leistungsseiten innenausbau-berlin und trockenbau-berlin. Bodenverlegung, Küchenmontage und Rückbau bleiben erhalten und sind gemeinsam verlinkt. Leistungen werden automatisch in Anfrageformular und Sitemap übernommen.
@@ -32,7 +41,7 @@ Gefunden: Einzelne spezifische Suchbots erhielten Allow: / ohne die Ausschlüsse
 
 ## Offen · SEO-2026-04 · Messdaten und nächste Gewichtungsrunde
 
-Keine Exporte aus Google Search Console oder Bing Webmaster Tools vorhanden; kein belegter Ranking-/Klickverlauf. Erst reale Daten importieren, dann Suchbegriffe, Klickrate und indexierte URLs datenbasiert priorisieren. Noch 13 redaktionelle Linkgewichtungs-Hinweise zwischen Ausbau und etablierten Angeboten; keine isolierten Seiten, keine defekten Links, keine Metadaten-, Schema-, Bild- oder Kontrastfehler. Ranking-/KI-Nennungen bleiben außerhalb technischer Zusagen. Einzelheiten: docs/SEO-STATUS-2026-10-21.md.
+Keine Exporte aus Google Search Console oder Bing Webmaster Tools vorhanden; kein belegter Ranking-/Klickverlauf. Erst reale Daten importieren, dann Suchbegriffe, Klickrate und indexierte URLs datenbasiert priorisieren. Im neuen Produktentwurf noch 11 redaktionelle Linkgewichtungs-Hinweise zwischen Ausbau und etablierten Angeboten; keine isolierten Seiten, keine defekten Links, keine Metadaten-, Schema-, Bild- oder Kontrastfehler. Ranking-/KI-Nennungen bleiben außerhalb technischer Zusagen. Einzelheiten: docs/SEO-STATUS-2026-10-21.md.
 
 ## Shipped · KONTAKT-2026-01 · Neue Rufnummer, 21.10.2026
 

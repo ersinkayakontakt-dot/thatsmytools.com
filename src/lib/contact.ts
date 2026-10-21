@@ -32,6 +32,6 @@ export const email = {
 /** Primärer Handlungsaufruf: immer verfügbar, führt zum Aufwand-Check. */
 export const primaryCta = {
   href: '/angebot-anfragen/',
-  label: 'Fotos senden & Einschätzung erhalten',
-  labelShort: 'Einschätzung anfordern',
+  label: 'Vorhaben unverbindlich anfragen',
+  labelShort: 'Projekt anfragen',
 };

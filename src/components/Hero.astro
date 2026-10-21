@@ -1,212 +1,72 @@
 ---
 import Icon from './Icon.astro';
-import { phone, whatsapp, primaryCta } from '../lib/contact';
+import Figure from './Figure.astro';
+import { heroImage } from '../data/images';
+import { publishedServices } from '../data/services';
+import { publishedCategories } from '../data/categories';
+import { phone } from '../lib/contact';
+const image = heroImage('service:wohnungsaufloesung-berlin');
+if (!image) throw new Error('Startseitenmotiv fehlt in der Bild-Registry.');
 ---
-
-<section class="hero">
-  <div class="hero__label" aria-hidden="true">
-    <span>BERLIN + UMLAND</span>
-    <span>AUFLÖSEN · UMZIEHEN · ÜBERGEBEN</span>
-  </div>
-
-  <div class="wrap hero__inner">
-    <p class="hero__place">Komplettservice aus einer Hand</p>
-    <h1>
-      Wohnungsauflösung,<br />
-      Nachlass und<br />
-      <span>Seniorenumzug</span> in Berlin
-    </h1>
-    <p class="hero__sub">
-      Wir organisieren komplette Räumungen und Wohnungswechsel – von der ersten Sichtung bis zur
-      besenreinen Übergabe. Persönlich koordiniert, diskret durchgeführt und auch für Angehörige
-      außerhalb Berlins.
-    </p>
-
-    <div class="hero__actions">
-      <a class="btn btn--primary" href={primaryCta.href} data-track="estimate_cta_click" data-track-location="hero">
-        Komplettauftrag anfragen
-        <span aria-hidden="true">→</span>
-      </a>
-      {
-        phone.available ? (
-          <a class="btn btn--secondary" href={phone.href} data-track="phone_click" data-track-location="hero">
-            <Icon name="phone" size={19} />
-            Projekt telefonisch besprechen
-          </a>
-        ) : (
-          <a class="btn btn--secondary" href="/kontakt/">
-            <Icon name="phone" size={19} />
-            Projekt telefonisch besprechen
-          </a>
-        )
-      }
-      {
-        whatsapp.available && (
-          <a
-            class="btn btn--ghost"
-            href={whatsapp.href}
-            target="_blank"
-            rel="noopener"
-            data-track="whatsapp_click"
-            data-track-location="hero"
-          >
-            <Icon name="whatsapp" size={19} />
-            Fotos und Eckdaten senden
-          </a>
-        )
-      }
+<section class="hero" aria-labelledby="hero-title">
+  <div class="wrap hero__layout">
+    <div class="hero__copy">
+      <p class="hero__place"><span aria-hidden="true">●</span> Berlin &amp; Umland · persönlich anfragen</p>
+      <h1 id="hero-title">Hilfe fürs <em>Zuhause.</em> <span>Direkt in Berlin.</span></h1>
+      <p class="hero__sub">Möbel aufbauen, Räume verändern oder eine Wohnung auflösen: Sie erzählen uns, was ansteht. Wir helfen Ihnen, den nächsten Schritt zu klären.</p>
+      <form class="project-start" action="/angebot-anfragen/" method="get">
+        <label for="home-service">Wobei können wir helfen?</label>
+        <div class="project-start__row">
+          <select id="home-service" name="leistung">
+            <option value="">Ich brauche noch Beratung</option>
+            {publishedCategories.map(category => <optgroup label={category.title}>{publishedServices.filter(service => category.services.includes(service.slug)).map(service => <option value={service.slug}>{service.navLabel}</option>)}</optgroup>)}
+          </select>
+          <button class="btn btn--primary" type="submit">Vorhaben anfragen <span aria-hidden="true">↗</span></button>
+        </div>
+        <p>Kostenlos und unverbindlich. Ohne Registrierung.</p>
+      </form>
+      <div class="hero__quick" aria-label="Direkt zur passenden Anfrage">
+        <a href="/angebot-anfragen/?leistung=moebelmontage-berlin">Möbelmontage anfragen <span aria-hidden="true">↗</span></a>
+        <a href="/angebot-anfragen/?leistung=wohnungsaufloesung-berlin">Wohnungsauflösung anfragen <span aria-hidden="true">↗</span></a>
+        <a href="/angebot-anfragen/?leistung=malerarbeiten-berlin">Malerarbeiten anfragen <span aria-hidden="true">↗</span></a>
+      </div>
+      {phone.available && <p class="hero__human"><Icon name="phone" size={17} /> Lieber erst sprechen? <a href={phone.href} data-track="phone_click" data-track-location="hero">{phone.display}</a></p>}
     </div>
-
-    <ul class="hero__facts">
-      <li><strong>01</strong><span>Eine Ansprechperson<br />vom Termin bis zur Übergabe</span></li>
-      <li><strong>02</strong><span>Fester Leistungsumfang<br />vor Beginn abgestimmt</span></li>
-      <li><strong>03</strong><span>Besenrein übergeben,<br />auf Wunsch mit Fotoprotokoll</span></li>
-    </ul>
+    <div class="hero__visual">
+      <Figure image={{...image, caption: 'Beispielbild · Raum für Ihren nächsten Schritt.'}} layout="hero" priority class="hero__photo" />
+      <div class="hero__promise"><span class="hero__promise-icon" aria-hidden="true">✓</span><div><strong>Erst verstehen. Dann anbieten.</strong><p>Umfang, Kosten und Termin stimmen wir vor einem Auftrag mit Ihnen ab.</p></div></div>
+      <span class="hero__photo-note">Neue Pläne beginnen zu Hause.</span>
+    </div>
   </div>
 </section>
-
 <style>
-  .hero {
-    position: relative;
-    overflow: hidden;
-    min-height: min(49rem, calc(100vh - 4.5rem));
-    background: #eef0ed;
-    border-bottom: 0;
-  }
-  .hero::after {
-    content: '24';
-    position: absolute;
-    right: -0.04em;
-    bottom: -0.24em;
-    color: rgba(23, 49, 58, 0.055);
-    font-size: clamp(18rem, 42vw, 42rem);
-    font-weight: 900;
-    line-height: 0.8;
-    letter-spacing: -0.11em;
-    pointer-events: none;
-  }
-  .hero__label {
-    display: flex;
-    justify-content: space-between;
-    gap: 1rem;
-    padding: 0.65rem var(--sp-5);
-    background: var(--ink);
-    color: var(--white);
-    font: 700 0.68rem/1.2 var(--font-mono);
-    letter-spacing: 0.1em;
-  }
-  .hero__inner {
-    position: relative;
-    z-index: 1;
-    padding-block: clamp(3.5rem, 7vw, 7rem) 2.5rem;
-  }
-  .hero__place {
-    margin: 0 0 1.3rem;
-    color: var(--accent-text);
-    font-size: 0.8rem;
-    font-weight: 850;
-    letter-spacing: 0.13em;
-    text-transform: uppercase;
-  }
-  /*
-   * Die Zeile trägt jetzt die Positionierung statt eines Zweiwortclaims.
-   * Damit sie in drei Zeilen lesbar bleibt, ist der Schriftgrad kleiner und
-   * die Zeilenhöhe größer als beim vorherigen "WIR MACHEN PLATZ" – der
-   * Charakter (fett, versal, eng, Akzentwort) bleibt erhalten.
-   */
-  .hero h1 {
-    /*
-     * Keine Breitenbegrenzung und kein automatischer Umbruch: "Wohnungs-
-     * auflösung" ist 17 Zeichen lang und würde sonst mitten im Wort brechen.
-     * Die Zeilen setzt das Markup per <br />, der Schriftgrad ist so
-     * gewählt, dass die längste Zeile auch auf 360 px Breite passt.
-     */
-    max-width: none;
-    margin: 0 0 1.75rem;
-    font-size: clamp(1.85rem, 4.9vw, 4.2rem);
-    font-weight: 900;
-    line-height: 0.96;
-    letter-spacing: -0.045em;
-    text-transform: uppercase;
-    overflow-wrap: normal;
-    word-break: keep-all;
-  }
-  .hero h1 span {
-    color: var(--accent);
-  }
-  .hero__sub {
-    max-width: 36rem;
-    margin-bottom: 2rem;
-    color: var(--ink-2);
-    font-size: clamp(1.15rem, 2vw, 1.4rem);
-    line-height: 1.45;
-  }
-  .hero__actions {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    gap: 0.9rem;
-  }
-  .hero__actions :global(.btn) {
-    border-radius: 0;
-    min-height: 3.5rem;
-    padding-inline: 1.6rem;
-  }
-  /* Handy: Die drei Knöpfe hatten je nach Beschriftung 274, 312 und
-     286 px Breite – eine ausgefranste Kante und ungleiche Tippflächen.
-     Volle Breite macht sie gleich groß. */
-  @media (max-width: 35.99em) {
-    .hero__actions :global(.btn) {
-      flex: 1 1 100%;
-    }
-  }
-  .hero__facts {
-    display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 0;
-    max-width: 43rem;
-    margin: clamp(3.5rem, 8vw, 6rem) 0 0;
-    padding: 0;
-    list-style: none;
-    border-top: 1px solid var(--ink);
-  }
-  .hero__facts li {
-    display: flex;
-    gap: 0.7rem;
-    margin: 0;
-    padding: 1rem 0.75rem 0 0;
-    color: var(--ink-2);
-    font-size: 0.8rem;
-    line-height: 1.35;
-  }
-  .hero__facts li + li {
-    padding-left: 0.75rem;
-    border-left: 1px solid var(--line-strong);
-  }
-  .hero__facts strong {
-    color: var(--accent-text);
-    font: 800 0.7rem/1.35 var(--font-mono);
-  }
-  @media (max-width: 34em) {
-    .hero {
-      min-height: auto;
-    }
-    .hero h1 {
-      /* "Wohnungsauflösung" bleibt ungetrennt und passt auch in den
-         realen 327-px-Inhaltsbereich eines 375-px-Smartphones. */
-      font-size: 1.65rem;
-    }
-    .hero__label span:last-child {
-      display: none;
-    }
-    .hero__facts {
-      grid-template-columns: 1fr;
-    }
-    .hero__facts li,
-    .hero__facts li + li {
-      padding: 0.8rem 0;
-      border-left: 0;
-      border-bottom: 1px solid var(--line-strong);
-    }
-  }
+.hero{padding:clamp(2rem,5vw,5rem) 0 3rem;overflow:hidden;background:var(--paper);}
+.hero__layout{display:grid;gap:3rem;align-items:center;}
+.hero__place{display:flex;gap:.6rem;align-items:center;font-size:.82rem;font-weight:700;color:var(--brand);margin:0 0 1.5rem;}
+.hero__place span{color:var(--accent-text);font-size:.6rem;}
+.hero h1{font-size:clamp(2.8rem,5.2vw,4.7rem);line-height:1.04;letter-spacing:-.055em;font-weight:760;margin:0 0 1.5rem;max-width:12ch;}
+.hero h1 em{display:block;font-family:Georgia,'Times New Roman',serif;font-weight:500;color:var(--accent-text);letter-spacing:-.045em;}
+.hero h1>span{display:block;font-size:.52em;line-height:1.3;letter-spacing:-.025em;margin-top:.35em;}
+.hero__sub{font-size:1.1rem;line-height:1.65;max-width:37rem;color:var(--ink-2);margin:0 0 1.7rem;}
+.project-start{background:var(--white);border:1px solid var(--line);border-radius:var(--r-lg);padding:1.1rem;box-shadow:0 12px 35px rgba(35,49,42,.06);}
+.project-start label{display:block;font-size:.8rem;font-weight:750;margin-bottom:.65rem;}
+.project-start__row{display:grid;gap:.65rem;}
+.project-start select{width:100%;min-width:0;min-height:3.2rem;padding:.65rem 2rem .65rem .8rem;border:1px solid var(--line-contrast);border-radius:var(--r-sm);background:var(--paper);font:inherit;color:var(--ink);}
+.project-start p{font-size:.75rem;color:var(--ink-3);margin:.7rem 0 0;}
+.hero__quick{display:flex;flex-wrap:wrap;gap:.5rem;margin:1rem 0;}
+.hero__quick a{display:flex;gap:.7rem;align-items:center;min-height:2.75rem;padding:.45rem .8rem;border:1px solid var(--line);border-radius:2rem;font-size:.78rem;font-weight:600;text-decoration:none;background:var(--paper-2);}
+.hero__quick a:hover{border-color:var(--accent-text);}
+.hero__human{display:flex;align-items:center;flex-wrap:wrap;gap:.4rem;font-size:.84rem;margin-top:1.3rem;color:var(--ink-2);}
+.hero__human a{font-weight:700;}
+.hero__visual{position:relative;min-width:0;padding-bottom:2.5rem;}
+.hero__visual :global(.hero__photo){margin:0;}
+.hero__visual :global(.hero__photo img){height:32rem;aspect-ratio:auto;object-fit:cover;border-radius:6rem 1.5rem 1.5rem 1.5rem;}
+.hero__visual :global(.figure__caption){position:absolute;top:1rem;right:1rem;font-size:.66rem;background:var(--white);color:var(--ink);padding:.35rem .55rem;border-radius:.4rem;max-width:75%;}
+.hero__promise{display:flex;gap:1rem;position:relative;margin:-6.5rem 1rem 0;background:var(--white);padding:1.2rem;border:1px solid var(--line);border-radius:var(--r-md);box-shadow:0 15px 35px rgba(35,49,42,.10);}
+.hero__promise-icon{background:var(--brand-tint);color:var(--brand);display:grid;place-items:center;width:2.4rem;height:2.4rem;border-radius:50%;flex:none;font-weight:800;}
+.hero__promise strong{font-size:.95rem;}
+.hero__promise p{font-size:.82rem;line-height:1.5;margin:.35rem 0 0;color:var(--ink-2);}
+.hero__photo-note{display:block;text-align:right;font-family:Georgia,serif;font-style:italic;font-size:.85rem;margin:1rem 1.2rem 0;color:var(--ink-3);}
+@media(min-width:64em){.hero__layout{grid-template-columns:1.1fr 1fr;gap:4rem;}.project-start__row{grid-template-columns:minmax(0,1fr) auto;}.project-start__row .btn{padding-inline:1rem;white-space:nowrap;}}
+@media(max-width:39.99em){.hero__visual :global(.hero__photo img){height:19rem;border-radius:3.5rem 1rem 1rem 1rem;}.hero__layout{gap:1.5rem;}.hero__promise{margin:-4.8rem .75rem 0;}.hero__photo-note{margin-top:.7rem;}}
 </style>

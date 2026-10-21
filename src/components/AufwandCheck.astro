@@ -1,8 +1,12 @@
 ﻿---
 import Icon from './Icon.astro';
 import { publishedServices } from '../data/services';
+import { requestProfileFor, adviceProfile } from '../data/requestProfiles';
+const profiles = Object.fromEntries(publishedServices.map(s => [s.navLabel, requestProfileFor(s.slug)]));
+const quickSlugs = ['moebelmontage-berlin','wohnungsaufloesung-berlin','innenausbau-berlin','umzug-berlin','malerarbeiten-berlin','entruempelung-berlin'];
 import { site } from '../config/site';
 import { phone, whatsapp } from '../lib/contact';
+import { categoryOfService } from '../data/categories';
 import { PLZ_PATTERN, serviceLevelMap, type ServiceLevel } from '../data/serviceAreas';
 
 /**
@@ -60,6 +64,8 @@ const plzShort = {
 const plzLevels = serviceLevelMap();
 
 const objectTypes = [
+  'Wohnung / Haus',
+  'Arbeitsort noch offen',
   '1-Zimmer-Wohnung',
   '2-Zimmer-Wohnung',
   '3-Zimmer-Wohnung',
@@ -119,13 +125,13 @@ const fillLevels = [
   { value: 'sehr-voll', label: 'Sehr voll', hint: 'Kaum Bewegungsfläche, stark zugestellt' },
 ];
 
-const floors = ['Erdgeschoss', '1. Stock', '2. Stock', '3. Stock', '4. Stock', '5. Stock oder höher', 'Keller / Untergeschoss'];
+const floors = ['Noch zu klären', 'Erdgeschoss', '1. Stock', '2. Stock', '3. Stock', '4. Stock', '5. Stock oder höher', 'Keller / Untergeschoss'];
 
 const timeframes = [
   { value: 'dringend', label: 'So schnell wie möglich', hint: 'Es gibt einen festen Termin, der drückt' },
   { value: '2-wochen', label: 'In den nächsten zwei Wochen' },
   { value: '1-monat', label: 'Im nächsten Monat' },
-  { value: 'flexibel', label: 'Ich bin zeitlich flexibel', hint: 'Günstiger, weil wir es mit anderen Fahrten kombinieren können' },
+  { value: 'flexibel', label: 'Ich bin zeitlich flexibel', hint: 'Wir stimmen einen passenden Termin mit Ihnen ab.' },
 ];
 
 const contactPrefs = [
@@ -204,11 +210,17 @@ const steps = [
         Wenn Sie unsicher sind, wählen Sie das, was am ehesten passt. Wir ordnen es richtig zu.
       </p>
 
+      <div class="service-filter" data-service-filter hidden role="group" aria-label="Leistungen eingrenzen">
+        <button type="button" data-service-filter-value="start" aria-pressed="true">Schnellauswahl</button>
+        <button type="button" data-service-filter-value="build" aria-pressed="false">Montage &amp; Ausbau</button>
+        <button type="button" data-service-filter-value="clearance" aria-pressed="false">Räumen &amp; Umziehen</button>
+        <button type="button" data-service-filter-value="all" aria-pressed="false">Alle Leistungen</button>
+      </div>
       <div class="choices choices--cards">
         {
           publishedServices.map((s) => (
-            <label class="choice">
-              <input type="radio" name="leistung" value={s.navLabel} required data-validate="Bitte wählen Sie eine Leistung." />
+            <label class="choice" data-service-choice data-service-slug={s.slug} data-service-group={categoryOfService(s.slug)?.slug === 'herrichten' ? 'build' : 'clearance'} data-service-quick={quickSlugs.includes(s.slug) ? 'yes' : 'no'}>
+              <input data-service-slug={s.slug} type="radio" name="leistung" value={s.navLabel} required data-validate="Bitte wählen Sie eine Leistung." />
               <span class="choice__body">
                 <span class="choice__icon" aria-hidden="true">
                   <Icon name={s.icon} size={19} />
@@ -240,9 +252,10 @@ const steps = [
     <fieldset class="step" data-step="2">
       <legend>
         <span class="step__n">Schritt 2</span>
-        Wo ist das Objekt?
+        Wo können wir helfen?
       </legend>
 
+      <p class="profile-note" data-profile-note hidden></p>
       <div class="field field--short">
         <label for="plz">Postleitzahl <span class="req">Pflichtfeld</span></label>
         <input
@@ -275,7 +288,7 @@ const steps = [
       </div>
 
       <div class="field">
-        <label for="objektart">Um was für ein Objekt geht es? <span class="req">Pflichtfeld</span></label>
+        <label for="objektart">Wo findet die Arbeit statt? <span class="req">Pflichtfeld</span></label>
         <select id="objektart" name="objektart" required data-validate="Bitte wählen Sie die Objektart.">
           <option value="">Bitte wählen</option>
           {objectTypes.map((t) => <option value={t}>{t}</option>)}
@@ -319,6 +332,7 @@ const steps = [
           Eine Schätzung genügt, zum Beispiel „3 Zimmer, etwa 75 m²". Wenn Sie es nicht wissen,
           lassen Sie das Feld leer.
         </p>
+        <button type="button" class="area-unknown" data-area-unknown>Weiß ich noch nicht</button>
       </div>
 
       <div class="nav-row">
@@ -334,7 +348,7 @@ const steps = [
         Wie viel ist zu tun?
       </legend>
       <p class="step__hint">
-        Der wichtigste Teil. Etage und Aufzug verändern den Aufwand stärker als die Quadratmeter.
+        Damit wir Zugang und Aufwand richtig einordnen können. Unbekannte Angaben klären wir gemeinsam.
       </p>
 
       <fieldset class="subfield">
@@ -496,8 +510,7 @@ const steps = [
           data-photos
         />
         <p class="field__hint" id="fotos-hint">
-          Ein Foto pro Raum, von der Tür aus. Volle Schränke bitte geöffnet. Keller und Dachboden
-          nicht vergessen. Maximal {site.maxUploadCount} Bilder, je bis {site.maxUploadMb} MB.
+          <span data-photo-advice>Raumübersichten und betroffene Möbel helfen. Persönliche Unterlagen und Personen bitte nicht fotografieren.</span> Maximal {site.maxUploadCount} Bilder, je bis {site.maxUploadMb} MB.
         </p>
         <ul class="filelist" data-filelist></ul>
         <p class="field__hint">
@@ -516,8 +529,7 @@ const steps = [
           placeholder="Zum Beispiel: schmales Treppenhaus, Hinterhof, Einbauküche soll raus, bestimmte Möbel bleiben."
         ></textarea>
         <p class="field__hint" id="beschreibung-hint">
-          Alles, was ungewöhnlich ist. Auch Dinge, die Ihnen unangenehm sind, helfen uns bei der
-          Planung mehr, als sie schaden.
+          Beschreiben Sie, was ansteht. Was Sie noch nicht wissen, können Sie offenlassen.
         </p>
       </div>
 
@@ -610,6 +622,7 @@ const steps = [
         <dl data-summary-list></dl>
       </div>
 
+      <p class="request-boundary">Mit dieser Anfrage buchen Sie noch keinen Termin. Preis, Umfang und Ausführung bestätigen wir gesondert mit Ihnen.</p>
       <div class="nav-row">
         <button type="button" class="btn btn--ghost" data-prev>Zurück</button>
         <button type="submit" class="btn btn--primary" data-submit>
@@ -620,8 +633,7 @@ const steps = [
 
       <p class="after">
         Danach: Wir sehen uns Ihre Angaben an und melden uns auf dem Weg, den Sie gewählt haben. Für
-        eine belastbare Zahl fragen wir gegebenenfalls nach oder schlagen eine kurze Besichtigung
-        vor. Beides kostet nichts.
+        eine belastbare Zahl klären wir offene Fragen und bei Bedarf eine Besichtigung. Ein verbindliches Angebot und ein Termin folgen erst nach der Abstimmung.
       </p>
     </fieldset>
   </form>
@@ -1103,6 +1115,8 @@ const steps = [
     padding-top: var(--sp-4);
     border-top: 1px solid var(--line);
   }
+.draft-hint{font-size:.75rem;color:var(--ink-3);margin:0 0 1.2rem;}
+.progress__steps li[hidden]{display:none;}.service-filter{display:flex;flex-wrap:wrap;gap:.5rem;margin-bottom:1.4rem;}.service-filter[hidden]{display:none;}.service-filter button{border:1px solid var(--line-contrast);border-radius:2rem;min-height:2.75rem;padding:.5rem .85rem;background:var(--white);font:inherit;font-size:.8rem;color:var(--ink);cursor:pointer;}.service-filter button[aria-pressed="true"]{background:var(--brand);border-color:var(--brand);color:var(--white);}.choice[hidden],.field[hidden],.subfield[hidden]{display:none;}.profile-note{border-left:3px solid var(--accent);background:var(--accent-tint);padding:1rem;border-radius:var(--r-sm);font-size:.85rem;}.area-unknown{font:inherit;font-size:.82rem;border:0;background:none;color:var(--accent-text);text-decoration:underline;cursor:pointer;padding:.6rem 0;min-height:2.75rem;}.request-boundary{font-size:.85rem;background:var(--brand-tint);padding:1rem;border-radius:var(--r-sm);}.summary :global(.summary__edits){display:flex;flex-wrap:wrap;gap:.5rem;margin-top:1rem;}.summary :global(.summary__edits button){font:inherit;font-size:.78rem;border:1px solid var(--line-contrast);border-radius:2rem;background:var(--white);color:var(--ink);min-height:2.75rem;padding:.45rem .8rem;cursor:pointer;}.photo-fields>.field:first-of-type{margin-top:1.5rem;}.step{padding:clamp(1rem,3vw,2rem);}.step>legend{font-size:1.5rem;line-height:1.25;}.choices--cards .choice__hint{font-size:.78rem;line-height:1.5;}.choice{border-radius:var(--r-md);}.choice__icon{border-radius:.5rem;}.nav-row{border-top-color:var(--line);}.summary{border-left:0;border-radius:var(--r-md);}.progress__num{border-radius:50%;}.progress__bar{border-radius:1rem;overflow:hidden;}
 </style>
 
 <script
@@ -1114,6 +1128,8 @@ const steps = [
     plzLevels,
     plzTexts,
     plzShort,
+    profiles,
+    adviceProfile,
   }}
 >
   (function () {
@@ -1135,6 +1151,8 @@ const steps = [
     var STORE = 'sh24_check';
     var current = 1;
     var maxReached = 1;
+    var activeSteps = [1,2,4,6];
+    var activeProfile = adviceProfile;
 
     /* ------------------------------------------- Einsatzgebiet zur PLZ */
     var plzField = root.querySelector('#plz');
@@ -1144,13 +1162,77 @@ const steps = [
        pattern-Attribut des Feldes. Hier nur die Anker ergänzen. */
     var plzRe = new RegExp('^' + plzPattern + '$');
 
+    var clearanceGroups = ['umfang','fuellgrad','anlass','zusatzleistungen[]','nebenraeume[]'].map(function(name) {
+      var field = Array.prototype.find.call(form.elements, function(el){ return el.name === name; });
+      return field ? field.closest('.subfield, .field') : null;
+    }).filter(Boolean);
+    var areaField = root.querySelector('#flaeche');
+    var areaGroup = areaField.closest('.field');
+    var note = root.querySelector('[data-profile-note]');
+    var floorGroup = root.querySelector('#etage').closest('.field');
+    var liftGroup = root.querySelector('input[name="aufzug"]').closest('.subfield');
+    var accessMarker = document.createComment('access-origin');
+    floorGroup.before(accessMarker);
+    var access = document.createElement('div');
+    access.className = 'access-fields';
+    floorGroup.before(access);
+    access.append(floorGroup,liftGroup);
+    var photoStep = steps[4];
+    var photoMarker = document.createComment('photo-origin');
+    photoStep.querySelector('.step__hint').before(photoMarker);
+    var photoFields = document.createElement('div');
+    photoFields.className = 'photo-fields';
+    photoMarker.after(photoFields);
+    Array.prototype.slice.call(photoStep.children).forEach(function(child){
+      if (child.matches('.field, .step__hint')) photoFields.appendChild(child);
+    });
+    function enableGroup(group, enabled) {
+      group.hidden = !enabled;
+      group.querySelectorAll('input,select,textarea').forEach(function(field){
+        if (!field.hasAttribute('data-original-required')) field.setAttribute('data-original-required', field.required ? 'yes' : 'no');
+        field.required = enabled && field.getAttribute('data-original-required') === 'yes';
+        field.disabled = !enabled;
+        if (!enabled) clearError(field);
+      });
+    }
+    function filterServices(group) {
+      root.querySelectorAll('[data-service-choice]').forEach(function(label){
+        var checked = label.querySelector('input').checked;
+        label.hidden = !(checked || group === 'all' || (group === 'start' ? label.dataset.serviceQuick === 'yes' : label.dataset.serviceGroup === group));
+      });
+      root.querySelectorAll('[data-service-filter-value]').forEach(function(button){ button.setAttribute('aria-pressed',String(button.dataset.serviceFilterValue === group)); });
+    }
+    function updateProfile() {
+      var selected = form.querySelector('input[name="leistung"]:checked');
+      activeProfile = selected && Object.prototype.hasOwnProperty.call(profiles,selected.value) ? profiles[selected.value] : adviceProfile;
+      var isClearance = activeProfile.kind === 'clearance';
+      var isAssembly = activeProfile.kind === 'assembly' || activeProfile.kind === 'advice';
+      activeSteps = isClearance ? [1,2,3,4,5,6] : isAssembly ? [1,2,4,6] : [1,2,4,5,6];
+      clearanceGroups.forEach(function(group){ enableGroup(group,isClearance); });
+      enableGroup(areaGroup, activeProfile.kind !== 'assembly');
+      if (isClearance) accessMarker.after(access); else steps[1].querySelector('.nav-row').before(access);
+      if (isAssembly) steps[3].querySelector('.nav-row').before(photoFields); else photoMarker.after(photoFields);
+      root.querySelector('label[for="flaeche"]').textContent = activeProfile.areaLabel;
+      root.querySelector('#flaeche-hint').textContent = activeProfile.areaHint;
+      areaField.placeholder = activeProfile.areaPlaceholder;
+      root.querySelector('#beschreibung-hint').textContent = activeProfile.description;
+      root.querySelector('#beschreibung').placeholder = activeProfile.description;
+      root.querySelector('[data-photo-advice]').textContent = activeProfile.photoHint;
+      note.textContent = activeProfile.note;
+      note.hidden = !activeProfile.note;
+      var mail = root.querySelector('#mail');
+      var preferred = form.querySelector('input[name="kontaktart"]:checked');
+      mail.required = !!preferred && preferred.value === 'E-Mail';
+      root.querySelector('#mail-hint').textContent = mail.required ? 'Bitte angeben, damit wir Ihnen per E-Mail antworten können.' : 'Freiwillig. Nötig, wenn Sie eine Antwort per E-Mail wünschen.';
+    }
+
     /* ------------------------------------------------- Hilfsfunktionen */
     function track(name, detail) {
       if (window.sh24 && window.sh24.track) window.sh24.track(name, detail);
     }
 
     function fieldsIn(step) {
-      return Array.prototype.slice.call(step.querySelectorAll('[data-validate]'));
+      return Array.prototype.slice.call(step.querySelectorAll('[data-validate]')).filter(function(field) { return !field.disabled && field.required && !(field.name === 'leistung' && field.closest('label').hidden); });
     }
 
     /**
@@ -1234,6 +1316,7 @@ const steps = [
           problems.push({ field: field, message: msg });
           return;
         }
+        if (field.id === 'telefon' && field.value.replace(/\D/g,'').length < 7) { showError(field, msg); problems.push({field:field,message:msg}); }
         if (field.id === 'plz' && !plzRe.test(field.value.trim())) {
           showError(field, msg);
           problems.push({ field: field, message: msg });
@@ -1242,8 +1325,8 @@ const steps = [
 
       // E-Mail nur prüfen, wenn etwas eingetragen wurde (Feld ist freiwillig)
       var mail = step.querySelector('#mail');
-      if (mail && mail.value.trim() && mail.value.indexOf('@') < 1) {
-        var m = 'Bitte prüfen Sie die E-Mail-Adresse.';
+      if (mail && ((mail.required && !mail.value.trim()) || (mail.value.trim() && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(mail.value.trim())))) {
+        var m = mail.required && !mail.value.trim() ? 'Bitte geben Sie eine E-Mail-Adresse für die gewünschte Antwort an.' : 'Bitte prüfen Sie die E-Mail-Adresse.';
         clearError(mail);
         showError(mail, m);
         problems.push({ field: mail, message: m });
@@ -1289,16 +1372,30 @@ const steps = [
 
     /* ------------------------------------------------------ Navigation */
     function show(n, focus) {
+      if (activeSteps.indexOf(n) < 0) n = activeSteps[0];
       current = n;
       maxReached = Math.max(maxReached, n);
       steps.forEach(function (s) {
         s.hidden = Number(s.getAttribute('data-step')) !== n;
       });
-      if (fill) fill.style.width = (n / steps.length) * 100 + '%';
-      if (progressText) progressText.textContent = 'Schritt ' + n + ' von ' + steps.length;
+      var position = activeSteps.indexOf(n) + 1;
+      var progressList = progress ? progress.querySelector('ol') : null;
+      if (progressList) progressList.style.gridTemplateColumns = 'repeat(' + activeSteps.length + ', minmax(0,1fr))';
+      if (fill) fill.style.width = (position / activeSteps.length) * 100 + '%';
+      if (progressText) progressText.textContent = 'Schritt ' + position + ' von ' + activeSteps.length + (activeProfile.kind === 'assembly' ? ' · Montageanfrage' : '');
       progressSteps.forEach(function (li, i) {
+        li.hidden = activeSteps.indexOf(i+1) < 0;
+        var number = li.querySelector('.progress__num');
+        if (number) number.textContent = String(activeSteps.indexOf(i+1)+1);
         li.removeAttribute('data-current');
         li.removeAttribute('data-done');
+        var stepNumber = steps[i].querySelector('.step__n');
+        if (stepNumber && activeSteps.indexOf(i+1)>=0) stepNumber.textContent = 'Schritt ' + (activeSteps.indexOf(i+1)+1);
+        var label = li.querySelector('.progress__label');
+        if (label) {
+          if (!label.dataset.original) label.dataset.original=label.textContent;
+          label.textContent = i===1 ? 'Ort & Details' : i===3 && (activeProfile.kind==='assembly'||activeProfile.kind==='advice') ? 'Fotos & Wunschzeit' : i===5 ? 'Prüfen & Senden' : label.dataset.original;
+        }
         if (i + 1 === n) li.setAttribute('data-current', '');
         else if (i + 1 < n) li.setAttribute('data-done', '');
       });
@@ -1309,23 +1406,29 @@ const steps = [
           lg.setAttribute('tabindex', '-1');
           lg.focus({ preventScroll: true });
         }
-        var top = root.getBoundingClientRect().top + window.pageYOffset - 16;
+        var header = document.querySelector('.site-header');
+        var top = root.getBoundingClientRect().top + window.pageYOffset - (header ? header.offsetHeight : 0) - 24;
         window.scrollTo({ top: top, behavior: 'auto' });
       }
     }
 
     root.addEventListener('click', function (e) {
+      var filter = e.target.closest('[data-service-filter-value]');
+      if (filter) { filterServices(filter.dataset.serviceFilterValue); return; }
+      var edit = e.target.closest('[data-edit-step]');
+      if (edit) { show(Number(edit.dataset.editStep)); return; }
+      if (e.target.closest('[data-area-unknown]')) { areaField.value = 'Noch zu klären'; save(); return; }
       var next = e.target.closest('[data-next]');
       var prev = e.target.closest('[data-prev]');
       if (next) {
         if (!validateStep(steps[current - 1])) return;
         save();
         track('estimate_step_completed', { step: current });
-        show(current + 1);
+        show(activeSteps[activeSteps.indexOf(current) + 1]);
       }
       if (prev) {
         renderErrors([]);
-        show(current - 1);
+        show(activeSteps[activeSteps.indexOf(current) - 1]);
       }
     });
 
@@ -1341,6 +1444,11 @@ const steps = [
           } else {
             data[key] = value;
           }
+        });
+        form.querySelectorAll('[disabled][name]').forEach(function(field){
+          if ((field.type === 'checkbox' || field.type === 'radio') && !field.checked) return;
+          if (field.name.slice(-2) === '[]') { data[field.name] = data[field.name] || []; data[field.name].push(field.value); }
+          else data[field.name] = field.value;
         });
         localStorage.setItem(STORE, JSON.stringify({ data: data, step: current, ts: Date.now() }));
       } catch (err) {
@@ -1361,7 +1469,7 @@ const steps = [
         Object.keys(saved.data).forEach(function (key) {
           var values = [].concat(saved.data[key]);
           values.forEach(function (value) {
-            var els = form.querySelectorAll('[name="' + key.replace(/"/g, '') + '"]');
+            var els = Array.prototype.filter.call(form.elements,function(el){ return el.name === key; });
             Array.prototype.forEach.call(els, function (el) {
               if (el.type === 'radio' || el.type === 'checkbox') {
                 if (el.value === value) el.checked = true;
@@ -1371,14 +1479,17 @@ const steps = [
             });
           });
         });
-        if (saved.step > 1) show(saved.step, false);
+        updateProfile();
+        if (saved.step > 1 && activeSteps.indexOf(saved.step) >= 0) show(saved.step, false);
       } catch (err) {
         /* ignorieren */
       }
     }
 
     form.addEventListener('change', function (e) {
+      if (e.target.name === 'leistung' || e.target.name === 'kontaktart') { updateProfile(); show(current, false); }
       save();
+      if (current === 6) buildSummary();
       if (e.target.hasAttribute && e.target.hasAttribute('data-validate')) clearError(e.target);
     });
 
@@ -1392,11 +1503,16 @@ const steps = [
         ['plz', 'Postleitzahl'],
         ['gebiet', 'Einsatzgebiet'],
         ['objektart', 'Objekt'],
-        ['flaeche', 'Größe'],
+        ['flaeche', activeProfile.areaLabel],
         ['fuellgrad', 'Füllgrad'],
         ['etage', 'Etage'],
         ['aufzug', 'Aufzug'],
-        ['zeitraum', 'Zeitraum'],
+        ['zeitraum', 'Wunschzeitraum'],
+        ['stichtag', 'Wunschtermin'],
+        ['beschreibung', 'Ihr Vorhaben'],
+        ['kontaktart', 'Antwort per'],
+        ['telefon', 'Telefon'],
+        ['mail', 'E-Mail'],
       ];
       var fd = new FormData(form);
       summaryList.innerHTML = '';
@@ -1442,8 +1558,16 @@ const steps = [
         summaryList.appendChild(dd3);
         any = true;
       }
+      var edits = document.createElement('div');
+      edits.className = 'summary__edits';
+      [[1,'Leistung ändern'],[2,'Angaben ändern'],[4,'Wunschzeit ändern']].forEach(function(pair){
+        var button = document.createElement('button');button.type='button';button.textContent=pair[1];button.dataset.editStep=String(pair[0]);edits.appendChild(button);
+      });
+      var oldEdits = summary.querySelector('.summary__edits');if(oldEdits)oldEdits.remove();summary.appendChild(edits);
       summary.hidden = !any;
     }
+
+    form.addEventListener('input', function(){ save(); if(current === 6) buildSummary(); });
 
     /* ---------------------------------------------------------- Fotos */
     if (fileInput && fileList) {
@@ -1454,7 +1578,7 @@ const steps = [
           var warn = document.createElement('li');
           warn.setAttribute('data-too-big', '');
           warn.textContent =
-            'Bitte höchstens ' + maxCount + ' Bilder auswählen. Die übrigen schicken wir später per WhatsApp.';
+            'Bitte höchstens ' + maxCount + ' Bilder auswählen. Weitere Bilder können Sie separat über einen Kontaktweg nachreichen.';
           fileList.appendChild(warn);
         }
         files.slice(0, maxCount + 4).forEach(function (f) {
@@ -1480,10 +1604,10 @@ const steps = [
     form.addEventListener('submit', function (e) {
       var ok = true;
       // Alle Schritte prüfen, nicht nur den aktuellen
-      for (var i = 0; i < steps.length; i++) {
-        if (!validateStep(steps[i])) {
+      for (var i = 0; i < activeSteps.length; i++) {
+        if (!validateStep(steps[activeSteps[i]-1])) {
           ok = false;
-          show(i + 1);
+          show(activeSteps[i]);
           break;
         }
       }
@@ -1491,6 +1615,7 @@ const steps = [
         e.preventDefault();
         return;
       }
+      submitted = true;
       var btn = form.querySelector('[data-submit]');
       if (btn) {
         btn.setAttribute('aria-disabled', 'true');
@@ -1516,13 +1641,11 @@ const steps = [
         if (neben.length) out.nebenraeume = neben.join(', ');
         out.fotos = fileInput && fileInput.files ? fileInput.files.length : 0;
         sessionStorage.setItem('sh24_anfrage', JSON.stringify(out));
-        localStorage.removeItem(STORE);
+        /* Entwurf erst nach serverseitig bestätigter Speicherung löschen. */
       } catch (err) {
         /* ignorieren */
       }
-      // Kein `steps`-Detail: Die Gesamtzahl der Schritte ist auf jeder
-      // Seite gleich und sagt über die Anfrage nichts aus. Welcher Schritt
-      // erreicht wurde, steht bereits in estimate_step_completed.
+      // Keine personenbezogenen Angaben in Analyseereignissen.
       track('lead_form_submitted', {});
     });
 
@@ -1535,8 +1658,19 @@ const steps = [
     }
 
     if (progress) progress.hidden = false;
+    var draftHint = document.createElement('p');draftHint.className='draft-hint';draftHint.textContent='Ihre Textangaben bleiben in diesem Browser als Entwurf erhalten. Fotos müssen Sie nach einem Neuladen erneut auswählen.';progress.after(draftHint);
+    updateProfile();
     show(1, false);
     restore();
+    var requested = new URLSearchParams(window.location.search).get('leistung');
+    if (requested !== null) {
+      var requestedInput = Array.prototype.find.call(form.querySelectorAll('input[name="leistung"][data-service-slug]'),function(input){ return input.dataset.serviceSlug === requested; });
+      if (requestedInput) { requestedInput.checked = true; updateProfile(); show(1,false); }
+      else if (requested === '') { form.querySelector('input[name="leistung"][value="Weiß ich noch nicht"]').checked = true; updateProfile(); show(1,false); }
+    }
+    var filterBar = root.querySelector('[data-service-filter]');
+    if (filterBar) filterBar.hidden = false;
+    filterServices('start');
     /* Nach dem Wiederherstellen: Ein aus localStorage zurückgeholter
        Zwischenstand soll denselben Hinweis zeigen wie frisch getipptes. */
     updateServiceHint();
@@ -1545,9 +1679,6 @@ const steps = [
 
     // Abbruch erfassen, wenn das Formular begonnen, aber nicht abgesendet wurde
     var submitted = false;
-    form.addEventListener('submit', function () {
-      submitted = true;
-    });
     window.addEventListener('pagehide', function () {
       if (!submitted && maxReached > 1) track('estimate_abandoned', { lastStep: maxReached });
     });

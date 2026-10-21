@@ -1,63 +1,21 @@
-/* ==========================================================================
-   SCHNELLHELFER24 – DESIGNSYSTEM  "Werkstatt & Signal"
-   ==========================================================================
-
-   Gestaltungsabsicht: Handwerk, Transporter, Baustelle. Sachlich, laut genug,
-   wo es um Handlung geht, und sonst ruhig. Die Seite soll aussehen wie von
-   einem Betrieb, der arbeitet, nicht wie ein Magazin.
-
-   Tragende Entscheidungen:
-   - Kühles Weiß und Betongrau als Flächen. Kein cremefarbenes Papierweiß.
-   - Tiefschwarz als Struktur: Balken, Regeln, Rahmen. Keine Haarlinien in
-     warmem Grau.
-   - Ein gesättigtes Arbeitsorange, ausschließlich für Handlungen und
-     Markierungen. Nie flächig, nie dekorativ.
-   - Durchgehend Grotesk, keine Serifen. Überschriften schwer und eng
-     gesetzt.
-   - Eckige Kanten. Radius 0, außer wo eine Form es zwingend braucht.
-   - Keine Schatten, keine Verläufe, keine schwebenden Elemente.
-
-   Schriften: bewusst System-Stacks. Kein externer Font-Dienst, keine
-   Webfont-Downloads, keine Layoutverschiebung beim Laden, kein
-   Datenschutzproblem. Siehe docs/ARCHITEKTUR.md, Abschnitt 7.
-
-   Kontraste: Die Farbpaare werden nicht mehr per Hand behauptet, sondern
-   bei jedem Lauf nachgerechnet:
-
-       npm run seo:contrast
-
-   Das Skript liest die Tokens direkt aus diesem :root-Block, prüft sie gegen
-   WCAG 2.2 (4,5:1 Fließtext, 3:1 große Schrift und Bedienelemente) und
-   blockiert den Build, wenn ein Paar reißt. Es findet auch Regeln, die nur
-   `color` setzen und den Hintergrund erben – dort steckten die meisten
-   Fehler.
-
-   Rollen der Tokens, die sich NICHT vertauschen lassen:
-     --accent        Fläche mit weißem Text (Button, Balken)
-     --accent-text   Text und Symbole auf heller Fläche
-     --line/-strong  dekorative Regeln, ohne Kontrastschwelle
-     --line-contrast Umrisse mit Bedeutung (Eingabefelder), 3:1
-   ========================================================================== */
+/* Schnellhelfer24 · Zuhause & Zuversicht.
+   Warme Flächen, Waldgrün für Orientierung, Terrakotta für Handlung.
+   Produkt- und Designprinzipien: docs/PRODUKT-UND-DESIGN.md (E-013).
+   Systemschriften, sichtbare Fokuszustände und automatischer AA-Kontrastcheck bleiben verbindlich. */
 
 /* ---------------------------------------------------------------- Tokens */
 :root {
   /* Text */
-  --ink: #171717;
-  --ink-2: #3f3f3b;
-  --ink-3: #666660;
-  /* Schwächste Textstufe. Der frühere Wert #74746e erreichte auf --paper nur
-     4,38:1 und auf Karten (--paper-2) 3,97:1 – beides unter AA. Er ist so
-     weit abgedunkelt, dass er auf Grundfläche UND auf Karten besteht.
-     Seit 01.10.2026 gleich --ink-3 (A11Y-2026-01): #6b6b65 lag auf Karten
-     bei 4,52:1, ohne Reserve. Jeder Wert mit 0,3 Reserve ist so dunkel wie
-     --ink-3 – die zwei Stufen waren ohnehin kaum unterscheidbar. Das Token
-     bleibt, damit die Rolle im Markup lesbar bleibt. */
-  --ink-4: #666660;
+  --ink: #233b32;
+  --ink-2: #405047;
+  --ink-3: #5c6258;
+  /* Zurückhaltender Text muss auf allen hellen Flächen AA erfüllen. */
+  --ink-4: #5c6258;
 
   /* Flächen */
-  --paper: #f7f7f2;
-  --paper-2: #ecece6;
-  --paper-3: #dfdfd7;
+  --paper: #fbf8f1;
+  --paper-2: #f0ece2;
+  --paper-3: #e4dfd2;
 
   /* Linien
      --line und --line-strong sind DEKORATIV: Trennregeln, Rahmen um Flächen,
@@ -68,35 +26,24 @@
      sehschwache Personen nicht als solches erkennbar.
      Die beiden Rollen zu trennen ist der Grund, warum die feinen Haarlinien
      der Gestaltung erhalten bleiben konnten. */
-  --line: #d5d5cd;
-  --line-strong: #9c9c94;
-  /* #7f7f77 seit 01.10.2026: 3,40:1 auf Karten statt 3,05:1 (A11Y-2026-01). */
-  --line-contrast: #7f7f77;
+  --line: #d9d4c8;
+  --line-strong: #9b9d90;
+  /* Bedeutungsvolle Konturen: mindestens 3:1 zu ihrer Fläche. */
+  --line-contrast: #777b6c;
 
-  /* Struktur: Schwarz trägt den Aufbau, nicht eine Markenfarbe */
-  --brand: #171717;
-  --brand-2: #292929;
-  --brand-3: #090909;
-  --brand-tint: #e7e7e0;
+  /* Struktur: Waldgrün für Orientierung */
+  --brand: #233f34;
+  --brand-2: #1d352b;
+  --brand-3: #15271f;
+  --brand-tint: #e2eadd;
 
-  /* Handlung
-     Drei Werte, weil ein einziges Orange die Aufgaben nicht erfüllen kann:
-       --accent       Fläche. Trägt weißen Text (Button, Marke, Balken).
-                      Frühere #e84917 ergaben mit Weiß nur 3,89:1 – der
-                      wichtigste Button der Seite lag damit unter AA.
-       --accent-2     dieselbe Fläche im Hover-/Aktivzustand, dunkler.
-       --accent-text  Text und Symbole auf heller Fläche. NIE --accent für
-                      kleinen Text verwenden: das ergibt auf --paper 4,36:1
-                      und reicht für Fließtext nicht.
-     --accent seit 01.10.2026 #c93c0d statt #d2400f: Weiß darauf 5,08:1
-     statt 4,69:1 (A11Y-2026-01). Kaum sichtbar dunkler, --accent-2 bleibt
-     als gedrückter Zustand deutlich dunkler. */
-  --accent: #c93c0d;
-  --accent-2: #b8330a;
-  --accent-text: #b9340c;
-  --accent-tint: #ffe9df;
+  /* Handlung: Terrakotta; getrennte Rollen für Fläche, Hover und Text. */
+  --accent: #a33f2b;
+  --accent-2: #873120;
+  --accent-text: #973923;
+  --accent-tint: #fae8df;
 
-  /* Auf schwarzem Grund */
+  /* Auf dunklem Grund */
   --on-dark: #c9cfd3;
   --on-dark-mute: #a8b1b7;
   --on-dark-accent: #ffa06b;
@@ -135,11 +82,10 @@
   --sp-8: 4rem;
   --sp-9: 6rem;
 
-  /* Eckige Kanten. Der Radius bleibt als Token bestehen, damit sich die
-     Entscheidung an einer Stelle zurücknehmen lässt. */
-  --r-sm: 0;
-  --r-md: 0;
-  --r-lg: 0;
+  /* Ruhige Rundungen für Karten und Bedienelemente (E-013). */
+  --r-sm: .65rem;
+  --r-md: 1rem;
+  --r-lg: 1.5rem;
 
   /* Linienstärken */
   --rule: 1px;
@@ -414,7 +360,7 @@ abbr[title] {
 }
 
 /* --------------------------------------------------------------- Buttons
-   Eckig, kräftiger Rahmen, kein Radius. Weiß auf Orange erreicht 4,57:1
+   Klarer Handlungsakzent mit abgerundeten Kanten. Kontrast wird geprüft.
    und ist damit auch für fetten 16-px-Text ausreichend.                 */
 .btn {
   display: inline-flex;
@@ -507,7 +453,7 @@ abbr[title] {
 }
 
 /* ---------------------------------------------------------- Kartenmotiv
-   Kein Schatten, kein Radius, keine Grundriss-Ecken. Stattdessen ein
+   Ruhige Flächen und Rundungen; zur Gliederung dient ein
    kräftiger Balken oben, wie eine Beschriftung an einer Kiste.         */
 .card {
   position: relative;

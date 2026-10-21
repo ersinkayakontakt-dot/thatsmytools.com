@@ -1,3 +1,9 @@
+# Aktueller lokaler Produktentwurf · 21.10.2026
+
+Startseite und zentraler Anfrageweg wurden gemäß E-013 überarbeitet. Noch NICHT veröffentlicht und nicht gepusht. Betreiberfreigabe vor Veröffentlichung abwarten (UX-2026-01). Gemeinsame Projektregeln in AGENTS.md und CLAUDE.md, Produkt-/Benchmarkdokument docs/PRODUKT-UND-DESIGN.md. FLOW-2026-01 behebt Empfang ohne gespeicherte Anfrage. Pflichtprüfungen plus npm run audit:request:selftest / audit:mail:selftest / seo:events verwenden. 78 Seiten / 58 indexierbar, 0 Fehler, 11 Linkgraph-Hinweise im Entwurf; SEO-2026-04 bleibt offen. Bestehende Rufnummer und allgemeiner WhatsApp-Text unverändert.
+
+Die folgenden Abschnitte dokumentieren frühere Live-Stände; sie beschreiben nicht den unveröffentlichten Entwurf.
+
 # Handoff: maximale Auffindbarkeit weiterbauen
 
 Kontaktänderung am 21.10.2026 live bestätigt: Telefon und WhatsApp +49 176 44457385, sichtbare Anzeige 0176 44457385. Deployment 26c3c2b. Zentrale Quelle src/config/site.ts; Eintrags-Kit abgeglichen. Details und Generatorhinweis: KONTAKT-2026-01 / TOOL-2026-01 im Tracker.

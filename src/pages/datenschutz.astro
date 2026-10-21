@@ -119,7 +119,7 @@ const dpo = realValue(site.dataProtectionOfficer);
       <p>
         Wenn Sie das Anfrageformular nutzen, verarbeiten wir die Angaben, die Sie eintragen: Art der
         Leistung, Postleitzahl, Objektart, Umfang, Etage, Aufzug, Wunschzeitraum, Ihre Beschreibung,
-        Name, Telefonnummer, optional E-Mail-Adresse und bevorzugter Kontaktweg.
+        Name, Telefonnummer, E-Mail-Adresse (freiwillig, bei gewünschter Antwort per E-Mail erforderlich) und bevorzugter Kontaktweg.
       </p>
       <p>
         Zusätzlich vermerken wir zu Ihrer Anfrage automatisch, ob die angegebene Postleitzahl in
@@ -159,7 +159,9 @@ const dpo = realValue(site.dataProtectionOfficer);
       <p>
         Ihre Zwischeneingaben im mehrstufigen Formular werden ausschließlich lokal in Ihrem Browser
         gespeichert (localStorage), damit die Angaben beim versehentlichen Schließen nicht verloren
-        gehen. Diese Daten werden nicht übertragen und beim Absenden gelöscht.
+        gehen. Der Entwurf wird nicht automatisch an uns übertragen. Nach bestätigtem Eingang wird er
+        gelöscht; Entwürfe älter als sieben Tage werden beim nächsten Formularaufruf verworfen.
+        Fotos werden nicht im Browserentwurf gespeichert.
       </p>
 
       <h2>5. Fotos aus Wohnräumen</h2>

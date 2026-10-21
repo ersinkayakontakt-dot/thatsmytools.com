@@ -38,13 +38,11 @@ const schema = buildGraph([
   <div class="wrap section--tight">
     <div class="intro">
       <div>
-        <h1>Kostenlose Einschätzung anfordern</h1>
+        <p class="eyebrow">Ein guter Anfang</p>
+        <h1>Erzählen Sie uns, was ansteht.</h1>
         <div class="answer">
           <p>
-            Sechs kurze Schritte, danach wissen wir genug für eine erste Einschätzung. Wichtig sind
-            vor allem Etage, Aufzug und Fotos aus jedem Raum. Die Anfrage ist kostenlos und
-            unverbindlich. Sie bekommen von uns keinen automatisch berechneten Festpreis, sondern
-            eine Rückmeldung von jemandem, der die Bilder angesehen hat.
+            Ein Möbelstück oder ein ganzes Objekt: Wir stellen Ihnen die passenden Fragen. Was noch offen ist, klären wir gemeinsam. Kostenlos, unverbindlich und ohne Registrierung.
           </p>
         </div>
       </div>
@@ -95,37 +93,13 @@ const schema = buildGraph([
       <AufwandCheck />
 
       <aside class="tips">
-        <h2 class="tips__head">Damit die Einschätzung stimmt</h2>
-        <ul>
-          <li>
-            <strong>Nebenräume nicht vergessen.</strong> Keller, Dachboden, Balkon und Garage sind der
-            häufigste Grund, warum eine Schätzung am Einsatztag nicht mehr passt.
-          </li>
-          <li>
-            <strong>Nicht aufräumen vor den Fotos.</strong> Wir müssen den echten Zustand sehen.
-            Aufgeräumte Bilder führen zu einer zu niedrigen Einschätzung.
-          </li>
-          <li>
-            <strong>Volle Schränke öffnen.</strong> Von außen sieht ein leerer Schrank aus wie ein
-            voller. Der Unterschied sind mehrere Kubikmeter.
-          </li>
-          <li>
-            <strong>Licht anmachen.</strong> Auch tagsüber. Dunkle Fotos verschlucken die Hälfte.
-          </li>
-          <li>
-            <strong>Termindruck nennen.</strong> Wenn ein Übergabetermin feststeht, sagen Sie ihn
-            gleich. Wir planen rückwärts davon.
-          </li>
-        </ul>
-        <p class="tips__link">
-          <a href="/ratgeber/welche-fotos-fuer-ein-angebot/">Ausführliche Foto-Anleitung</a>
-        </p>
-
+        <p class="eyebrow">Was passiert danach?</p>
+        <h2 class="tips__head">Erst verstehen. Dann abstimmen.</h2>
+        <ol class="request-next"><li><strong>Wir sehen uns Ihr Vorhaben an.</strong><span>Bei offenen Punkten fragen wir persönlich nach.</span></li><li><strong>Sie bekommen Klarheit zum Umfang.</strong><span>Arbeit, Material, Anfahrt und weitere Leistungen werden besprochen.</span></li><li><strong>Sie entscheiden über den Auftrag.</strong><span>Preis und Termin werden gesondert bestätigt.</span></li></ol>
+        <p class="tips__link"><a href="/ratgeber/welche-fotos-fuer-ein-angebot/">Welche Fotos sind hilfreich? →</a></p>
         <h2 class="tips__head">Was mit Ihren Fotos passiert</h2>
         <p>
-          Fotos aus Wohnungen sind sensibel. Sie werden ausschließlich für die Einschätzung Ihrer
-          Anfrage verwendet, nicht veröffentlicht, nicht weitergegeben und nach der Bearbeitung
-          gelöscht. Näheres in der <a href="/datenschutz/">Datenschutzerklärung</a>.
+          Sie entscheiden, welche Fotos Sie schicken. Bitte persönliche Unterlagen und unnötige Personenaufnahmen weglassen. Details zu Verarbeitung und Löschung stehen in der <a href="/datenschutz/">Datenschutzerklärung</a>.
         </p>
       </aside>
     </div>
@@ -226,4 +200,5 @@ const schema = buildGraph([
   .tips__link {
     margin-bottom: var(--sp-6);
   }
+.intro .answer{border:0;padding:0;background:none;font-size:1.05rem;line-height:1.7;max-width:42rem;}.intro h1{font-size:clamp(2rem,4vw,3.3rem);letter-spacing:-.045em;line-height:1.12;max-width:15ch;}.tips{border-radius:var(--r-lg);background:var(--paper-2);border:1px solid var(--line);padding:1.5rem;align-self:start;}.request-next{list-style:none;padding:0;counter-reset:next;display:grid;gap:1.3rem;margin:1.5rem 0;}.request-next li{counter-increment:next;display:grid;grid-template-columns:1.7rem 1fr;gap:.2rem .65rem;font-size:.84rem;}.request-next li::before{content:counter(next);grid-row:1/3;width:1.6rem;height:1.6rem;border-radius:50%;background:var(--white);display:grid;place-items:center;font-size:.75rem;font-weight:700;}.request-next span{grid-column:2;color:var(--ink-2);line-height:1.55;}.tips__head{font-size:1.25rem;text-transform:none;letter-spacing:-.025em;}.tips p{font-size:.84rem;line-height:1.65;}.side{background:var(--white);}
 </style>
