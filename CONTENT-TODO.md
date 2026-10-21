@@ -228,8 +228,11 @@ Wohnungsauflösung, Nachlass und Seniorenumzug" umgestellt. Umgesetzt sind:
      weil die Schrittzahl in SEO-LAUNCH-CHECKLIST.md als A/B-Test vorgesehen
      ist (Abschlussquote) und Fortschritt sowie `estimate_step_completed`
      an der Nummerierung hängen.
-   - Offen: Szenario- und Fallbeispiel-Bausteine. Das Fallbeispiel
-     braucht echte Einsatzberichte (§ E), sonst bleibt es leer.
+   - Geprüft 21.10.2026: Der Szenario-Baustein ist auf Leistungsseiten durch
+     „Wann diese Leistung passt" und seit E-015 durch die Komplettauftrag-
+     Tabellen abgedeckt; ein weiterer Baustein brächte keinen eigenen Inhalt.
+     Offen bleibt allein das Fallbeispiel – es braucht echte, freigegebene
+     Einsatzberichte (§ E), sonst bleibt es leer. Kein Codeauftrag mehr.
 7. ✅ **Bildsystem und erste Bildsprache umgesetzt.** Sieben dokumentierte
    Stockfotos sind zentral in `src/data/images.ts` zugeordnet und vollständig
    in `IMAGE-SOURCES.md` nachgewiesen. Offen bleiben das Bild für die
