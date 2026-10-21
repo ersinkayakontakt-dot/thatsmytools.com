@@ -3,7 +3,7 @@
         xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
   <url>
     <loc>https://schnellhelfer24.de/</loc>
-    <lastmod>2026-10-20</lastmod>
+    <lastmod>2026-10-21</lastmod>
   </url>
   <url>
     <loc>https://schnellhelfer24.de/leistungen/</loc>
@@ -64,7 +64,7 @@
   </url>
   <url>
     <loc>https://schnellhelfer24.de/leistungen/entruempelung-berlin/</loc>
-    <lastmod>2026-07-29</lastmod>
+    <lastmod>2026-10-21</lastmod>
     <image:image>
       <image:loc>https://schnellhelfer24.de/_assets/entruempelung-gestapelte-kartons.DW5pB9IK.jpg</image:loc>
       <image:title>Aufgestellte Umzugskartons und ein Bücherstapel auf einem Holztisch</image:title>
@@ -109,11 +109,11 @@
   </url>
   <url>
     <loc>https://schnellhelfer24.de/leistungen/sperrmuellabholung-berlin/</loc>
-    <lastmod>2026-07-29</lastmod>
+    <lastmod>2026-10-21</lastmod>
   </url>
   <url>
     <loc>https://schnellhelfer24.de/leistungen/umzug-berlin/</loc>
-    <lastmod>2026-07-29</lastmod>
+    <lastmod>2026-10-21</lastmod>
     <image:image>
       <image:loc>https://schnellhelfer24.de/_assets/umzug-kartons-tragen.h2fy8iL6.jpg</image:loc>
       <image:title>Zwei Personen tragen einen großen Umzugskarton durch ein Wohnzimmer</image:title>
@@ -144,7 +144,7 @@
   </url>
   <url>
     <loc>https://schnellhelfer24.de/leistungen/demontage-rueckbau/</loc>
-    <lastmod>2026-09-28</lastmod>
+    <lastmod>2026-10-21</lastmod>
     <image:image>
       <image:loc>https://schnellhelfer24.de/_assets/rueckbau-bestandsraum.QdEaeo9B.jpg</image:loc>
       <image:title>Entkernter Bestandsraum mit freigelegtem Mauerwerk und Baumaterial</image:title>
@@ -162,7 +162,7 @@
   </url>
   <url>
     <loc>https://schnellhelfer24.de/leistungen/kuechenmontage-berlin/</loc>
-    <lastmod>2026-09-28</lastmod>
+    <lastmod>2026-10-21</lastmod>
     <image:image>
       <image:loc>https://schnellhelfer24.de/_assets/kuechenmontage-einbaukueche.BKmw74nU.jpg</image:loc>
       <image:title>Helle Einbauküche mit weißen Schränken, Arbeitsfläche und Fenster</image:title>
@@ -171,7 +171,7 @@
   </url>
   <url>
     <loc>https://schnellhelfer24.de/leistungen/innenausbau-berlin/</loc>
-    <lastmod>2026-10-20</lastmod>
+    <lastmod>2026-10-21</lastmod>
     <image:image>
       <image:loc>https://schnellhelfer24.de/_assets/trockenbau-plattenfugen.B2l0rCwu.jpg</image:loc>
       <image:title>Handwerker bearbeitet Plattenfugen an einer Trockenbauwand</image:title>
@@ -218,6 +218,15 @@
       <image:loc>https://schnellhelfer24.de/_assets/tapezieren-tapetenrollen.CmmjchpQ.jpg</image:loc>
       <image:title>Hände halten verschiedene Tapetenrollen vor einer gemusterten Wand</image:title>
       <image:caption>Beispielbild: unterschiedliche Tapeten für die Materialauswahl.</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://schnellhelfer24.de/leistungen/moebelmontage-berlin/</loc>
+    <lastmod>2026-10-21</lastmod>
+    <image:image>
+      <image:loc>https://schnellhelfer24.de/_assets/moebelmontage-anleitung-werkzeug.Dywx6r4a.jpg</image:loc>
+      <image:title>Montageanleitung mit Schraubendrehern, Holzdübeln und Verbindungsschrauben</image:title>
+      <image:caption>Beispielbild: Anleitung und Beschläge für den Aufbau von Fertigmöbeln.</image:caption>
     </image:image>
   </url>
   <url>
@@ -278,7 +287,7 @@
   </url>
   <url>
     <loc>https://schnellhelfer24.de/kosten/was-kostet-eine-entruempelung-in-berlin/</loc>
-    <lastmod>2026-07-29</lastmod>
+    <lastmod>2026-10-21</lastmod>
   </url>
   <url>
     <loc>https://schnellhelfer24.de/kosten/kosten-haushaltsaufloesung-berlin/</loc>
@@ -294,15 +303,15 @@
   </url>
   <url>
     <loc>https://schnellhelfer24.de/ratgeber/welche-fotos-fuer-ein-angebot/</loc>
-    <lastmod>2026-07-29</lastmod>
+    <lastmod>2026-10-21</lastmod>
   </url>
   <url>
     <loc>https://schnellhelfer24.de/ratgeber/entruempelung-vorbereiten/</loc>
-    <lastmod>2026-07-29</lastmod>
+    <lastmod>2026-10-21</lastmod>
   </url>
   <url>
     <loc>https://schnellhelfer24.de/ratgeber/checkliste-wohnungsuebergabe/</loc>
-    <lastmod>2026-07-29</lastmod>
+    <lastmod>2026-10-21</lastmod>
   </url>
   <url>
     <loc>https://schnellhelfer24.de/ratgeber/haushaltsaufloesung-nach-todesfall/</loc>

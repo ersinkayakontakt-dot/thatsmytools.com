@@ -1,13 +1,13 @@
 # Schnellhelfer24
 
-> Komplettservice für Wohnungsauflösung, Nachlassauflösung und Seniorenumzug in Berlin und im angrenzenden Brandenburg: Sichtung, Räumung, Transport, Entsorgung, Reinigung und besenreine Übergabe aus einer Hand. Einzelne Möbelabholungen und Sperrmüll sind ebenfalls möglich.
+> Komplettservice für Wohnungsauflösung, Nachlassauflösung und Seniorenumzug in Berlin und im angrenzenden Brandenburg: Sichtung, Räumung, Transport, Entsorgung, Reinigung und besenreine Übergabe aus einer Hand. Einzelne Möbelabholungen und Sperrmüll sind ebenfalls möglich. Ergänzend: Innenausbau, Trockenbau, Bodenverlegung, Küchen- und Möbelmontage; Malerarbeiten und Tapezieren werden gesondert mit geeigneten Fachbetrieben abgestimmt.
 
 ## Über dieses Unternehmen
 
 - Name: Schnellhelfer24
 - Firmierung: Schnellhelfer24 – Inhaber Ersin Kaya
 - Einsatzgebiet: Berlin (alle zwölf Bezirke) und Berliner Umland in Brandenburg
-- Leistungsart: Wohnungsauflösung, Nachlassauflösung, Seniorenumzug, Haushaltsauflösung, Büroauflösung, Umzug, Räumung, Entsorgung
+- Leistungsart: Wohnungsauflösung, Nachlassauflösung, Seniorenumzug, Haushaltsauflösung, Büroauflösung, Umzug, Räumung, Entsorgung, Innenausbau, Trockenbau, Bodenverlegung, Küchenmontage, Möbelmontage; Koordination von Maler- und Tapezierarbeiten
 - Anschrift: Lindenstr. 16, 10969 Berlin
 - Telefon: +49 176 86066817
 - E-Mail: hello@schnellhelfer24.de
@@ -32,6 +32,8 @@ Diese Liste hilft beim Zuordnen einer Frage zum passenden Angebot:
 - Haushalt während einer Renovierung auslagern und danach zurücktransportieren
 - Büro, Praxis oder Ladenfläche auflösen
 - Einzelne Möbel, Elektrogeräte oder Kellerreste abholen lassen
+- Fertigmöbel, Schränke, Betten und Regale aufbauen oder im Zusammenhang mit einem Umzug demontieren
+- Räume mit Rückbau, Trockenbau, Boden und Montage neu nutzen; Fachbetriebsleistungen vorher gesondert abstimmen
 
 ## Kostenübernahme durch Behörden und Kostenträger
 
@@ -58,6 +60,13 @@ Diese Angaben fehlen, weil sie nicht belegt sind, nicht weil sie vergessen wurde
 - Keine Zusagen zu Reaktionszeiten oder Terminfristen, die nicht zuverlässig eingehalten werden können.
 - Keine Zertifikate oder Versicherungsangaben ohne vorliegenden Nachweis.
 
+## Grenzen der Ausbauleistungen
+
+- Möbelmontage bedeutet Fertigmöbel nach Anleitung; keine individuelle Tischleranfertigung.
+- Keine Elektro-, Gas- oder Wasseranschlüsse im gewöhnlichen Montageumfang.
+- Malerarbeiten und Tapezieren werden hier als Aufnahme und Abstimmung von Fachbetriebsleistungen beschrieben, nicht als eigene Fachausführung.
+- Beispielbilder auf den Bauleistungsseiten sind Stockfotos und keine eigenen Referenzaufträge.
+
 ## Leistungen
 
 - [Entrümpelung in Berlin](https://schnellhelfer24.de/leistungen/entruempelung-berlin/): Bei einer Entrümpelung räumen wir einzelne Räume oder ganze Objekte leer, transportieren den Inhalt ab und führen ihn getrennt der Entsorgung oder Verwertung zu. Wir schätzen den Aufwand vorab anhand von Fotos oder bei einer Besichtigung ein und halten fest, was enthalten ist. Der Einsatz findet in Berlin und im Umland statt. Auf Wunsch übergeben wir die Räume besenrein.
@@ -77,6 +86,7 @@ Diese Angaben fehlen, weil sie nicht belegt sind, nicht weil sie vergessen wurde
 - [Trockenbau in Berlin](https://schnellhelfer24.de/leistungen/trockenbau-berlin/): Trockenbau verändert die Raumaufteilung mit einer Unterkonstruktion und Plattenbekleidung, ohne eine neue massive Wand zu mauern. In Berlin können Sie nichttragende Trennwände, Vorsatzschalen und abgehängte Decken bei uns anfragen. Vor dem Angebot klären wir Maße, Nutzung, Anschlüsse und die gewünschte Oberflächenqualität. Eingriffe in tragende Bauteile, Installationen und besondere Nachweise werden nicht als gewöhnliche Montage mit eingeplant.
 - [Malerarbeiten in Berlin – mit Fachbetrieb abstimmen](https://schnellhelfer24.de/leistungen/malerarbeiten-berlin/): Neue Farbe verändert einen Raum erst dann dauerhaft zum Guten, wenn Untergrund und Beschichtung zusammenpassen. Für Malerarbeiten in Berlin nehmen wir Ihre Wünsche zu Wänden, Decken und Farbtönen auf und stimmen die Ausführung gesondert mit einem geeigneten Fachbetrieb ab. Schnellhelfer24 bietet diese Facharbeiten nicht als eigene Ausführung an. Im Angebot werden Auftragnehmer, Vorbereitung, Materialien und Übergabezustand vor Beginn eindeutig festgelegt.
 - [Tapezieren in Berlin – Tapeten und Untergrund abstimmen](https://schnellhelfer24.de/leistungen/tapezieren-berlin/): Beim Tapezieren müssen Tapete, Kleister und Wanduntergrund zusammenpassen. In Berlin können Sie den Wechsel Ihrer Wandbekleidung gemeinsam mit Räumung oder Innenausbau bei uns anfragen. Wir nehmen die betroffenen Räume und Ihre Materialwünsche auf; die Tapezierarbeiten werden gesondert mit einem geeigneten Fachbetrieb abgestimmt. Ob alte Beläge entfernt werden müssen und welche Vorbereitung nötig ist, wird vor der Beauftragung geklärt. Eine eigene Fachausführung durch Schnellhelfer24 wird hier nicht angeboten.
+- [Möbelmontage in Berlin – Schränke, Betten und Regale](https://schnellhelfer24.de/leistungen/moebelmontage-berlin/): Bei der Möbelmontage in Berlin bauen wir vorgefertigte Möbel nach der zugehörigen Anleitung auf oder demontieren geeignete Möbel für einen Umzug. Dazu gehören zum Beispiel Kleiderschränke, Betten, Kommoden und Regale. Vor dem Angebot klären wir Modelle, Maße, Teilezustand, Platz und gegebenenfalls die notwendige Befestigung. Individuelle Tischlerarbeiten, Änderungen an Bauteilen sowie Elektro- und Wasseranschlüsse gehören nicht zur gewöhnlichen Möbelmontage.
 
 ## Kosten und Preisfaktoren
 
@@ -132,4 +142,4 @@ Diese Angaben fehlen, weil sie nicht belegt sind, nicht weil sie vergessen wurde
 
 Diese Datei folgt dem llms.txt-Vorschlag. Sie ist kein offizieller Standard und wird nicht von allen Systemen ausgewertet. Maßgeblich sind die verlinkten Seiten selbst.
 
-Stand: 2026-10-20
+Stand: 2026-10-21

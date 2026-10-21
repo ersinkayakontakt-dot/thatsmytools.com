@@ -21,29 +21,61 @@ Disallow: /*?grund=
 # ChatGPT Search: soll die Seite finden und als Quelle nennen können
 User-agent: OAI-SearchBot
 Allow: /
+Disallow: /api/
+Disallow: /anfrage-erhalten/
+Disallow: /*?fehler=
+Disallow: /*?grund=
 
 # Abruf im Auftrag eines Menschen im Gespräch
 User-agent: ChatGPT-User
 Allow: /
+Disallow: /api/
+Disallow: /anfrage-erhalten/
+Disallow: /*?fehler=
+Disallow: /*?grund=
 
 # Perplexity
 User-agent: PerplexityBot
 Allow: /
+Disallow: /api/
+Disallow: /anfrage-erhalten/
+Disallow: /*?fehler=
+Disallow: /*?grund=
 
 # Claude: Suchindex und Abruf im Auftrag eines Menschen
 User-agent: Claude-SearchBot
 Allow: /
+Disallow: /api/
+Disallow: /anfrage-erhalten/
+Disallow: /*?fehler=
+Disallow: /*?grund=
 
 User-agent: Claude-User
 Allow: /
+Disallow: /api/
+Disallow: /anfrage-erhalten/
+Disallow: /*?fehler=
+Disallow: /*?grund=
 
 # DuckDuckGo-Antworten
 User-agent: DuckAssistBot
 Allow: /
+Disallow: /api/
+Disallow: /anfrage-erhalten/
+Disallow: /*?fehler=
+Disallow: /*?grund=
 
-# Apple Intelligence / Siri
-User-agent: Applebot-Extended
+# Apple-Suche / Siri
+User-agent: Applebot
 Allow: /
+Disallow: /api/
+Disallow: /anfrage-erhalten/
+Disallow: /*?fehler=
+Disallow: /*?grund=
+
+# Nutzung zum Training von Apples Modellen bleibt ausgeschlossen
+User-agent: Applebot-Extended
+Disallow: /
 
 # ------------------------------------------------------------------
 # Trainingsdaten-Sammler
