@@ -32,17 +32,26 @@ darauf keinen Einfluss.
 | Bot | Zweck | Entscheidung |
 |---|---|---|
 | `PerplexityBot` | Suche und Zitation in Perplexity | Erlaubt |
-| `Applebot-Extended` | Apple Intelligence und Siri | Erlaubt |
-| `Google-Extended` | Training für Google-Modelle, **nicht** die Google-Suche | Gesperrt |
+| `Applebot` | Apple-Suche und Siri | Erlaubt |
+| `Applebot-Extended` | Nutzung für das Training von Apple-Modellen, kein eigener Suchcrawler | Gesperrt |
+| `Google-Extended` | Training und bestimmte Grounding-Nutzungen in Gemini Apps/Vertex AI, **nicht** die Google-Suche | Gesperrt |
 | `CCBot` | Common Crawl, allgemeiner Datensatz für Modelltraining | Gesperrt |
 | `meta-externalagent` | Training für Meta-Modelle | Gesperrt |
 | `Bytespider` | ByteDance, Training | Gesperrt |
 
-Wichtig zu `Google-Extended`: Diese Kennung steuert **nur** die
-Trainingsnutzung. Die normale Google-Suche nutzt den `Googlebot` und ist
+Wichtig zu `Google-Extended`: Diese Kennung steuert Training und bestimmte Grounding-Nutzungen
+in Gemini Apps und Vertex AI. Die normale Google-Suche nutzt den `Googlebot` und ist
 davon nicht betroffen. Ein Ranking-Nachteil entsteht durch die Sperre nicht.
 
 ---
+
+## Verifikation am 21.10.2026
+
+Primärquellen: [OpenAI-Crawler](https://developers.openai.com/api/docs/bots), [Google-KI-Suche](https://developers.google.com/search/docs/appearance/ai-features), [Google-Extended](https://developers.google.com/crawling/docs/crawlers-fetchers/google-common-crawlers), [Applebot](https://support.apple.com/en-us/119829), [Perplexity](https://docs.perplexity.ai/docs/resources/perplexity-crawlers).
+
+Korrektur: Applebot-Extended ist eine Steuerung für Modelltraining, keine Voraussetzung für Apple-Suchergebnisse. Applebot bleibt erlaubt. Google-Extended steuert neben Training auch bestimmte Grounding-Nutzungen außerhalb der Google-Suche; die bestehende Sperre bleibt erhalten. ChatGPT-User bestimmt nicht die Aufnahme in ChatGPT Search; maßgeblich ist OAI-SearchBot.
+
+Alle erlaubten spezifischen Botgruppen erhalten die Ausschlüsse für API, Anfragebestätigung und Fehlerparameter ausdrücklich. Spezifische Gruppen erben die Regeln der Stern-Gruppe nicht. robots.txt ersetzt dabei keine serverseitige Zugriffssperre.
 
 ## Wie diese Entscheidung geändert wird
 

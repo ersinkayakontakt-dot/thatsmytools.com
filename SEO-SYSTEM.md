@@ -92,6 +92,10 @@ Ergänzt wurde:
 
 ---
 
+### Crawler-Prüfung (21.10.2026)
+
+Die Buildprüfung wertet spezifische robots-Gruppen und die längste passende Pfadregel aus (`scripts/robots-policy.mjs`). Alle indexierbaren Seiten müssen für Suchbots erreichbar bleiben; API, Bestätigung und Fehlerparameter bleiben ausgeschlossen. Zwei zusätzliche Gegenbeispiele prüfen eine vollständige OAI-Sperre und einen verlorenen API-Ausschluss. Sichtbarkeit und Modelltraining bleiben getrennte Entscheidungen.
+
 ## 2. Prioritätslogik
 
 `businessPriority` von 1 bis 5, vergeben nach der Rangfolge aus dem
@@ -219,7 +223,7 @@ entschieden wird redaktionell.
 ```bash
 npm run seo:all           # alle Guards, blockiert bei Fehlern
 npm run seo:report        # dasselbe, schreibt SEO-AUDIT-REPORT.md
-npm run seo:selftest      # 14 absichtliche Verletzungen, alle müssen greifen
+npm run seo:selftest      # 16 absichtliche Verletzungen, alle müssen greifen
 
 npm run seo:metadata          # Karte gegen gebautes HTML
 npm run seo:linkgraph         # Linkgraph und Authority-Score

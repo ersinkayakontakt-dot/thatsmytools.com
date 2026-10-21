@@ -1,5 +1,13 @@
 # Handoff: maximale Auffindbarkeit weiterbauen
 
+## Aktuell 21.10.2026: SEO-2026-03 / SEC-2026-03
+
+Möbelmontage vollständig ergänzt, acht Baukarten auf Startseite, Foto, Formular und Sitemap. Natürliche Kontextlinks in fünf Leistungen und vier Ratgebern; Suchbegriffe, Bildschema und llms.txt präzisiert. Suchbots korrekt auf öffentliche Inhalte begrenzt, Applebot und Apple-Training getrennt. Crawler-Prüfung durch Regelgruppen/Pfadabgleich ersetzt; Gegenbeispiele ergänzt.
+
+78 Seiten / 58 indexierbar, 0 Fehler, 13 Linkgraph-Hinweise statt vorher 26. Build, Check, Inhalt, Buildaudit, SEO, 16/16 SEO-Selbsttests, Ereignisprüfung und 83 Crawlerchecks bestanden. Darstellung bei sechs Breiten ohne Fehler. Vollständiger Status und Quellen: docs/SEO-STATUS-2026-10-21.md.
+
+Live-Zweig 3ea7c30 bereitgestellt. Hostinger weiterhin gesondert prüfen und bei alter Version manuell deployen; Browserzugriff startet hier weiterhin nicht, keine FTP-Secrets vorhanden. IndexNow bewusst nur vorbereitet, nicht gesendet. Suchleistungsdaten aus GSC/Bing fehlen.
+
 ## Aktuell 20.10.2026: RENO-2026-01 / DEPLOY-2026-02
 
 Trockenbau-Motiv durch Gipskartonzuschnitt ersetzt, zweites Detailfoto ergänzt. Vollständige Seiten für Malerarbeiten und Tapezieren (Fachbetriebsabstimmung), sechs neue Bilddateien insgesamt, zusätzliche Motive auf Büroauflösung und Umzug. 77 Seiten / 57 indexierbar; alle fünf Prüfungen erfolgreich, 26 Linkgraph-Hinweise in E-011 bewertet. Sieben Seiten bei sechs Breiten ohne Bild-/Layoutfehler. Beide neuen Radiooptionen und Sitemap vorhanden.

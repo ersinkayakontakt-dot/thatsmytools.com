@@ -18,13 +18,14 @@
  * Aufruf:
  *   npm run build && npm run audit:build
  */
+import { canCrawl } from './robots-policy.mjs';
 import { existsSync, readFileSync, readdirSync, statSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 import { dirname, join, resolve, relative } from 'node:path';
 
 const here = dirname(fileURLToPath(import.meta.url));
 const root = resolve(here, '..');
-const dist = join(root, 'dist');
+const dist = process.env.SEO_DIST ? resolve(process.env.SEO_DIST) : join(root, 'dist');
 const SITE = 'https://schnellhelfer24.de';
 
 if (!existsSync(dist)) {
@@ -177,8 +178,14 @@ if (!existsSync(robotsFile)) {
 } else {
   const txt = readFileSync(robotsFile, 'utf8');
   if (!txt.includes('Sitemap:')) add('error', '/robots.txt', 'kein Sitemap-Verweis in der robots.txt');
-  if (/User-agent:\s*OAI-SearchBot[\s\S]{0,80}Disallow:\s*\//i.test(txt))
-    add('error', '/robots.txt', 'OAI-SearchBot ist gesperrt, damit ist die Seite in ChatGPT Search nicht auffindbar');
+  for (const agent of ['Googlebot', 'bingbot', 'OAI-SearchBot', 'ChatGPT-User', 'PerplexityBot', 'Claude-SearchBot', 'Claude-User', 'DuckAssistBot', 'Applebot']) {
+    const blocked = indexable.find(p => !canCrawl(txt, agent, p.url));
+    if (blocked) add('error', '/robots.txt', agent + ' blockiert öffentliche Seite ' + blocked.url);
+    for (const path of ['/api/anfrage.php', '/api/_storage/uploads/foto.jpg', '/anfrage-erhalten/', '/angebot-anfragen/?fehler=1']) {
+      if (canCrawl(txt, agent, path)) add('error', '/robots.txt', agent + ' darf internen Pfad crawlen: ' + path);
+    }
+  }
+
 }
 
 /* ----------------------------------------------- Bilder und Schema */

@@ -20,6 +20,8 @@ import wallpaperRolls from '../assets/tapezieren-tapetenrollen.jpg';
 import officeSpace from '../assets/bueroaufloesung-arbeitsflaeche.jpg';
 import movingBoxes from '../assets/umzug-kartons-tragen.jpg';
 
+import furnitureAssembly from '../assets/moebelmontage-anleitung-werkzeug.jpg';
+
 export type ImageOrigin = 'stock' | 'company' | 'customer-approved';
 export type ImageRole = 'hero' | 'inline';
 
@@ -42,6 +44,7 @@ export interface SiteImage {
  * IMAGE-SOURCES.md.
  */
 export const siteImages: readonly SiteImage[] = [
+  { pageId: 'service:moebelmontage-berlin', role: 'hero', src: furnitureAssembly, alt: 'Montageanleitung mit Schraubendrehern, Holzdübeln und Verbindungsschrauben', caption: 'Beispielbild: Anleitung und Beschläge für den Aufbau von Fertigmöbeln.', imageOrigin: 'stock', showsPeople: false },
   { pageId: 'service:trockenbau-berlin', role: 'hero', src: constructionDrywall, alt: 'Handwerker schneidet eine Gipskartonplatte vor einer bereits beplankten Wand', caption: 'Beispielbild: Zuschnitt von Gipskartonplatten für den Trockenbau.', imageOrigin: 'stock', showsPeople: true },
   { pageId: 'service:trockenbau-berlin', role: 'inline', src: drywallJoints, alt: 'Handwerker bearbeitet Fugen einer Wand aus grünen Gipskartonplatten', caption: 'Beispielbild: Fugenbearbeitung an einer beplankten Trockenbauwand.', imageOrigin: 'stock', showsPeople: true },
   { pageId: 'service:malerarbeiten-berlin', role: 'hero', src: paintingRoller, alt: 'Hand führt eine Farbrolle über eine helle Wandfläche', caption: 'Beispielbild: Wandbeschichtung mit der Farbrolle.', imageOrigin: 'stock', showsPeople: true },

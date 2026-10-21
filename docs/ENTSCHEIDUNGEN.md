@@ -1,5 +1,15 @@
 # Entscheidungsprotokoll
 
+## E-012 · Möbelmontage und überprüfbare Suchauffindbarkeit (21.10.2026)
+
+Möbelmontage erhält eine eigene Leistungsseite für Fertigmöbel nach Anleitung, eine Startseitenkarte, ein lizenziertes Beispielbild sowie Verbindungen zu Umzug, Seniorenwohnen, Küche und Innenausbau. Keine individuelle Tischlerfertigung und keine ungeprüften Anschluss- oder Befestigungszusagen. Bestehende Vorlagen und zentrale Service-/Bild-/SEO-Daten bleiben die Quellen.
+
+SEO wird durch hilfreiche Kontextabschnitte in fünf Leistungen und vier Ratgebern, präzisere Suchintentionen der Bauseiten und das primäre sichtbare Bild im WebPage-Schema verbessert. Die Linkgraph-Hinweise sinken von 26 auf 13, ohne Prioritäten oder Schwellen zu ändern. Verbleibende Umkehrungen zwischen Ausbauleistungen und etablierten Seiten sind als weitere redaktionelle Aufgabe dokumentiert; kein Rankingwert wird behauptet.
+
+Spezifische Suchbot-Gruppen behalten öffentliche Seiten, Bilder und Styles zugänglich, schließen aber API, Bestätigung und Fehlerparameter aus. Applebot-Extended wurde nach Abgleich mit der Apple-Dokumentation als Trainingssteuerung korrigiert; Applebot bleibt für die Suche erlaubt. Die bestehende Trainingspolitik wird beibehalten. Die Buildprüfung prüft nun die tatsächlich wirksamen Gruppen/Pfadregeln statt eines falschen Regex-Präfixtreffers. Zwei zusätzliche Gegenbeispiele und 83 semantische Checks bestätigen öffentliche Zugänglichkeit, interne Ausschlüsse und Vorrangregeln.
+
+Grenze: Hostinger liefert noch Stand 19.10.2026. IndexNow ist vorbereitet, aber wird vor erfolgreicher Live-Übernahme nicht an Suchdienste gesendet. Es liegen keine GSC-/Bing-Leistungsdaten vor; Einträge und Nennungen werden nicht erfunden. Offizielle Grundlagen siehe docs/SEO-STATUS-2026-10-21.md.
+
 ## E-011 · Malerarbeiten, Tapezieren und fachlich passende Fotos (20.10.2026)
 
 Auf ausdrücklichen Betreiberauftrag werden Malerarbeiten und Tapezieren als eigenständige, vollständige Leistungsseiten in der Familie herrichten ergänzt. Es handelt sich um die Aufnahme und Abstimmung von Fachbetriebsleistungen, nicht um das Versprechen eigener Malerausführung oder einer bereits bestätigten Verfügbarkeit. Das führt die bestehende Formulierung über Partnerbetriebe fort; die Einschränkungen aus HANDWERKSRECHT.md (A1/B1) gelten weiter. Kein Nachweis einer eigenen Handwerksrolleneintragung wird behauptet.

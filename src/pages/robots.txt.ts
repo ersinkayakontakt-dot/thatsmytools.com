@@ -27,6 +27,7 @@ import { site } from '../config/site';
  * entschieden wurde.
  */
 export const GET: APIRoute = () => {
+  const privateRules = 'Disallow: /api/\nDisallow: /anfrage-erhalten/\nDisallow: /*?fehler=\nDisallow: /*?grund=';
   const body = `# robots.txt für ${site.domain}
 
 # ------------------------------------------------------------------
@@ -50,29 +51,40 @@ Disallow: /*?grund=
 # ChatGPT Search: soll die Seite finden und als Quelle nennen können
 User-agent: OAI-SearchBot
 Allow: /
+${privateRules}
 
 # Abruf im Auftrag eines Menschen im Gespräch
 User-agent: ChatGPT-User
 Allow: /
+${privateRules}
 
 # Perplexity
 User-agent: PerplexityBot
 Allow: /
+${privateRules}
 
 # Claude: Suchindex und Abruf im Auftrag eines Menschen
 User-agent: Claude-SearchBot
 Allow: /
+${privateRules}
 
 User-agent: Claude-User
 Allow: /
+${privateRules}
 
 # DuckDuckGo-Antworten
 User-agent: DuckAssistBot
 Allow: /
+${privateRules}
 
-# Apple Intelligence / Siri
-User-agent: Applebot-Extended
+# Apple-Suche / Siri
+User-agent: Applebot
 Allow: /
+${privateRules}
+
+# Nutzung zum Training von Apples Modellen bleibt ausgeschlossen
+User-agent: Applebot-Extended
+Disallow: /
 
 # ------------------------------------------------------------------
 # Trainingsdaten-Sammler

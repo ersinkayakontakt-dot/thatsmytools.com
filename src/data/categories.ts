@@ -77,9 +77,9 @@ export const categories: ServiceCategory[] = [
     name: 'Bauleistungen & Innenausbau',
     title: 'Bauleistungen & Innenausbau',
     teaser:
-      'Innenausbau zusammen planen: Rückbau, Trockenbau, neue Böden, Küchenmontage sowie Maler- und Tapezierarbeiten über Fachbetriebe.',
-    services: ['innenausbau-berlin', 'trockenbau-berlin', 'demontage-rueckbau', 'bodenbelag-verlegen-berlin', 'kuechenmontage-berlin', 'malerarbeiten-berlin', 'tapezieren-berlin'],
-    updated: '2026-10-19',
+      'Innenausbau zusammen planen: Rückbau, Trockenbau, neue Böden, Küchen- und Möbelmontage sowie Maler- und Tapezierarbeiten über Fachbetriebe.',
+    services: ['innenausbau-berlin', 'trockenbau-berlin', 'demontage-rueckbau', 'bodenbelag-verlegen-berlin', 'kuechenmontage-berlin', 'malerarbeiten-berlin', 'tapezieren-berlin', 'moebelmontage-berlin'],
+    updated: '2026-10-21',
   },
 ];
 

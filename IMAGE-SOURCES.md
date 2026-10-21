@@ -78,6 +78,14 @@ Lizenz beim Abruf: Pexels-Lizenz, kostenlose Nutzung und Bearbeitung; Namensnenn
 | `bueroaufloesung-arbeitsflaeche.jpg` | cottonbro studio | [Pexels](https://www.pexels.com/photo/an-empty-office-5483236/) | 2026-10-20 | Büroauflösung | nein | eigene Auftragsfotos offen |
 | `umzug-kartons-tragen.jpg` | Ketut Subiyanto | [Pexels](https://www.pexels.com/photo/man-and-woman-carrying-carton-box-4246009/) | 2026-10-20 | Umzug | ja | eigene Auftragsfotos offen |
 
+### Möbelmontage: ergänzt am 21.10.2026
+
+| Datei | Fotograf | Originalseite | Abruf | Verwendung | Lizenz | Personen |
+|---|---|---|---|---|---|---|
+| `moebelmontage-anleitung-werkzeug.jpg` | Athena Sandrini | [Pexels 5805485](https://www.pexels.com/photo/instruction-to-furniture-assembly-with-instruments-5805485/) | 2026-10-21 | Startseite und Möbelmontage | Pexels-Lizenz: kostenlose Nutzung und Bearbeitung, Namensnennung nicht erforderlich | nein |
+
+Motiv vor Einbau angesehen, als Beispielbild gekennzeichnet; kein eigener Referenzauftrag.
+
 ### Was aussortiert wurde – und warum
 
 Die Auswahl bestand nicht darin, die ersten sieben Treffer zu nehmen.

@@ -107,6 +107,7 @@ const schema = buildGraph([
     name: service.metaTitle,
     description: service.metaDescription,
     dateModified: service.updated,
+    primaryImage: hero?.src.src,
     breadcrumbId: `https://schnellhelfer24.de${path}#breadcrumb`,
   }),
   serviceNode({

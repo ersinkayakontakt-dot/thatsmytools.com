@@ -20,7 +20,19 @@ Betreiberauftrag vom 20.10.2026: fachlich erkennbaren Trockenbau statt unfertige
 
 ## Offen · DEPLOY-2026-02 · Hostinger übernimmt aktuellen Live-Zweig nicht
 
-GitHub hostinger-live steht auf ff010f0. Die öffentliche Domain liefert trotz frischer URL und ohne Browsercache weiterhin den Stand vom 19.10.2026 (Startseite mit fünf statt sieben Baukarten; Maler- und Tapezierseite 404). Keine HOSTINGER_FTP-Secrets in GitHub vorhanden. Browser- und Computer-Use-Zugriff starten in dieser Sitzung nicht. Nächster Schritt: hPanel → Deployments → aktuellen Branch hostinger-live manuell deployen, danach alle sieben betroffenen URLs und Bilder erneut live prüfen. api/config.local.php und api/_storage bleiben geschützt.
+GitHub hostinger-live steht seit 21.10.2026 auf 3ea7c30 (einschließlich Möbelmontage und SEO-Ausbau). Die öffentliche Domain liefert trotz frischer URL und ohne Browsercache weiterhin den Stand vom 19.10.2026 (Startseite mit fünf statt sieben Baukarten; Maler- und Tapezierseite 404). Keine HOSTINGER_FTP-Secrets in GitHub vorhanden. Browser- und Computer-Use-Zugriff starten in dieser Sitzung nicht. Nächster Schritt: hPanel → Deployments → aktuellen Branch hostinger-live manuell deployen, danach alle sieben betroffenen URLs und Bilder erneut live prüfen. api/config.local.php und api/_storage bleiben geschützt.
+
+## SEO-2026-03 · Möbelmontage und Auffindbarkeit, 21.10.2026
+
+Möbelmontage als vollständige Leistungsseite mit Foto und Startseitenkarte ergänzen; mit Umzug, Seniorenumzug, Küche und Innenausbau verbinden. Suchbegriffe der Bauseiten präzisieren, primäres Inhaltsbild im WebPage-Schema ausweisen, llms.txt um Ausbau und Leistungsgrenzen ergänzen. Kontextuelle Verweise aus passenden vorhandenen Leistungen stärken. Keine Rang- oder KI-Nennungsgarantie. Quellstand geprüft: 78 HTML-Seiten, 58 indexierbar, 0 Fehler, 13 Linkgraph-Hinweise statt vorher 26. Build, Check, Inhalt, Buildaudit, SEO, 16/16 SEO-Gegenbeispiele und Ereignisabgleich bestanden. 83 semantische Crawlerchecks und Darstellung auf sechs Breiten erfolgreich, genau eine Möbelmontage-Formularoption. Bereitgestellt über hostinger-live 3ea7c30. Live-Übernahme bleibt unter DEPLOY-2026-02 offen; bisherige Domainantworten liefern Stand 19.10., neue URLs 404. IndexNow nur als Probelauf, kein Versand vor Live-Kontrolle.
+
+## SEC-2026-03 · Spezifische Crawlergruppen
+
+Gefunden: Einzelne spezifische Suchbots erhielten Allow: / ohne die Ausschlüsse der allgemeinen Gruppe; Applebot-Extended war fälschlich als Suchkennung behandelt. Korrektur im Quellstand vorbereitet: private Pfade je erlaubter Gruppe ausschließen, Applebot-Suche erlauben und Apple-Training entsprechend bestehender Betreiberpolitik sperren. Semantische Prüfung bestanden (83 Fälle); zusätzlich erkennt die Buildprüfung eine vollständige OAI-Sperre und einen verlorenen API-Ausschluss als echte Fehler (16/16 SEO-Gegenbeispiele). Live-Übernahme bleibt offen (DEPLOY-2026-02). Keine Änderung an tatsächlichen Serverberechtigungen.
+
+## Offen · SEO-2026-04 · Messdaten und nächste Gewichtungsrunde
+
+Keine Exporte aus Google Search Console oder Bing Webmaster Tools vorhanden; kein belegter Ranking-/Klickverlauf. Erst reale Daten importieren, dann Suchbegriffe, Klickrate und indexierte URLs datenbasiert priorisieren. Noch 13 redaktionelle Linkgewichtungs-Hinweise zwischen Ausbau und etablierten Angeboten; keine isolierten Seiten, keine defekten Links, keine Metadaten-, Schema-, Bild- oder Kontrastfehler. Ranking-/KI-Nennungen bleiben außerhalb technischer Zusagen. Einzelheiten: docs/SEO-STATUS-2026-10-21.md.
 
 ---
 

@@ -5,8 +5,8 @@
  * Meldet neue, geänderte und gelöschte URLs an IndexNow. Bing, Yandex,
  * Seznam und Naver teilen die Meldungen untereinander. Für Bing ist das
  * der schnellste Weg, damit neue Seiten überhaupt erst gefunden werden,
- * und Bing wiederum ist die Datengrundlage für Copilot und für ChatGPT
- * Search. Deshalb steht IndexNow hier vor Google.
+ * und unterstützt damit insbesondere die Aktualisierung bei teilnehmenden
+ * Suchdiensten. Eine Meldung garantiert keine Indexierung oder KI-Nennung.
  *
  * Aufruf nach jedem Deployment:
  *

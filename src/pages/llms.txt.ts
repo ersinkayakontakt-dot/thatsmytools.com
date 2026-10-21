@@ -30,14 +30,14 @@ export const GET: APIRoute = () => {
 
   const body = `# ${site.name}
 
-> Komplettservice für Wohnungsauflösung, Nachlassauflösung und Seniorenumzug in Berlin und im angrenzenden Brandenburg: Sichtung, Räumung, Transport, Entsorgung, Reinigung und besenreine Übergabe aus einer Hand. Einzelne Möbelabholungen und Sperrmüll sind ebenfalls möglich.
+> Komplettservice für Wohnungsauflösung, Nachlassauflösung und Seniorenumzug in Berlin und im angrenzenden Brandenburg: Sichtung, Räumung, Transport, Entsorgung, Reinigung und besenreine Übergabe aus einer Hand. Einzelne Möbelabholungen und Sperrmüll sind ebenfalls möglich. Ergänzend: Innenausbau, Trockenbau, Bodenverlegung, Küchen- und Möbelmontage; Malerarbeiten und Tapezieren werden gesondert mit geeigneten Fachbetrieben abgestimmt.
 
 ## Über dieses Unternehmen
 
 - Name: ${site.name}
 ${legalName ? `- Firmierung: ${legalName}` : ''}
 - Einsatzgebiet: Berlin (alle zwölf Bezirke) und Berliner Umland in Brandenburg
-- Leistungsart: Wohnungsauflösung, Nachlassauflösung, Seniorenumzug, Haushaltsauflösung, Büroauflösung, Umzug, Räumung, Entsorgung
+- Leistungsart: Wohnungsauflösung, Nachlassauflösung, Seniorenumzug, Haushaltsauflösung, Büroauflösung, Umzug, Räumung, Entsorgung, Innenausbau, Trockenbau, Bodenverlegung, Küchenmontage, Möbelmontage; Koordination von Maler- und Tapezierarbeiten
 ${address ? `- Anschrift: ${address}` : ''}
 ${phone ? `- Telefon: ${phone}` : '- Telefon: (noch nicht veröffentlicht)'}
 ${email ? `- E-Mail: ${email}` : '- E-Mail: (noch nicht veröffentlicht)'}
@@ -62,6 +62,8 @@ Diese Liste hilft beim Zuordnen einer Frage zum passenden Angebot:
 - Haushalt während einer Renovierung auslagern und danach zurücktransportieren
 - Büro, Praxis oder Ladenfläche auflösen
 - Einzelne Möbel, Elektrogeräte oder Kellerreste abholen lassen
+- Fertigmöbel, Schränke, Betten und Regale aufbauen oder im Zusammenhang mit einem Umzug demontieren
+- Räume mit Rückbau, Trockenbau, Boden und Montage neu nutzen; Fachbetriebsleistungen vorher gesondert abstimmen
 
 ## Kostenübernahme durch Behörden und Kostenträger
 
@@ -87,6 +89,13 @@ Diese Angaben fehlen, weil sie nicht belegt sind, nicht weil sie vergessen wurde
 - Keine Einsatzberichte ohne tatsächlich stattgefundenen und freigegebenen Auftrag.
 - Keine Zusagen zu Reaktionszeiten oder Terminfristen, die nicht zuverlässig eingehalten werden können.
 - Keine Zertifikate oder Versicherungsangaben ohne vorliegenden Nachweis.
+
+## Grenzen der Ausbauleistungen
+
+- Möbelmontage bedeutet Fertigmöbel nach Anleitung; keine individuelle Tischleranfertigung.
+- Keine Elektro-, Gas- oder Wasseranschlüsse im gewöhnlichen Montageumfang.
+- Malerarbeiten und Tapezieren werden hier als Aufnahme und Abstimmung von Fachbetriebsleistungen beschrieben, nicht als eigene Fachausführung.
+- Beispielbilder auf den Bauleistungsseiten sind Stockfotos und keine eigenen Referenzaufträge.
 
 ## Leistungen
 

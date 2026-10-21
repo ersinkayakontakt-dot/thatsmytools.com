@@ -40,6 +40,14 @@ if (!existsSync(dist)) {
 /** Ein Fall: Verletzung einbauen, erwarteten Text nennen. */
 const CASES = [
   {
+    name: 'Suchbot wird für öffentliche Seiten gesperrt', guard: '../build-audit.mjs', expect: 'OAI-SearchBot blockiert öffentliche Seite',
+    break: (dir) => patch(join(dir, 'robots.txt'), txt => txt.replace(/User-agent: OAI-SearchBot[\s\S]*?(?=User-agent:|$)/, 'User-agent: OAI-SearchBot\nDisallow: /\n\n')),
+  },
+  {
+    name: 'Spezifische Botgruppe verliert API-Ausschluss', guard: '../build-audit.mjs', expect: 'OAI-SearchBot darf internen Pfad crawlen',
+    break: (dir) => patch(join(dir, 'robots.txt'), txt => txt.replace(/User-agent: OAI-SearchBot[\s\S]*?(?=User-agent:|$)/, block => block.replace('Disallow: /api/', ''))),
+  },
+  {
     name: 'toter interner Link',
     guard: 'linkgraph.mjs',
     expect: 'Link ins Leere',

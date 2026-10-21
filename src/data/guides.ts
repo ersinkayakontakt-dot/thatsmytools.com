@@ -28,6 +28,13 @@ export const guides: Guide[] = [
     teaser: 'Woraus sich der Preis zusammensetzt und woran Sie ein unseriöses Angebot erkennen.',
     blocks: [
       {
+        "h": "Warum besondere Räumungen getrennt aufgenommen werden",
+        "p": [
+          "Eine [Büroauflösung](/leistungen/bueroaufloesung-berlin/) erfordert die Unterscheidung zwischen weitergenutztem Inventar, Entsorgung und gesondert zu behandelnden Akten. Bei einer [Messiwohnungs-Räumung](/leistungen/messiwohnung-raeumen/) sind Zugang, Zustand und Materialtrennung ebenfalls vor einer belastbaren Kalkulation zu klären.",
+          "Die Auflösung eines geerbten Haushalts wird unter [Nachlassauflösung](/leistungen/nachlassaufloesung-berlin/) mit der vorherigen Sicherung persönlicher Dinge beschrieben. Ein niedriger Einzelpreis ohne diese Abgrenzung sagt noch nicht, ob tatsächlich derselbe Umfang angeboten wird."
+        ]
+      },
+      {
         h: 'Warum wir hier keine Pauschalpreise nennen',
         p: [
           'Auf vielen Websites stehen Preistabellen der Art "2-Zimmer-Wohnung ab 690 Euro". Solche Zahlen sind bequem, aber sie sagen wenig, weil sie den entscheidenden Faktor auslassen: wie viel tatsächlich in der Wohnung ist.',
@@ -117,7 +124,7 @@ export const guides: Guide[] = [
     related: ['kosten-haushaltsaufloesung-berlin', 'welche-fotos-fuer-ein-angebot', 'entruempelung-vorbereiten'],
     services: ['entruempelung-berlin', 'kellerentruempelung-berlin'],
     published: '2026-07-29',
-    updated: '2026-07-29',
+    updated: '2026-10-21',
   },
 
   /* ================================================================== */
@@ -425,6 +432,13 @@ export const guides: Guide[] = [
     teaser: 'Zwölf Fotos genügen. Diese zwölf sollten es sein.',
     blocks: [
       {
+        "h": "Welche Fotos helfen bei Montage und Innenausbau?",
+        "p": [
+          "Für die [Möbelmontage](/leistungen/moebelmontage-berlin/) helfen Modellbezeichnung, Paketetiketten, Beschläge und ein Foto des geplanten Aufstellorts. Beim [Trockenbau](/leistungen/trockenbau-berlin/) werden Raumübersicht, Maße, Anschlüsse und spätere Befestigungspunkte benötigt. Persönliche Dokumente und unnötige Personenaufnahmen sollten auf den Bildern nicht zu sehen sein.",
+          "Für [Malerarbeiten](/leistungen/malerarbeiten-berlin/) und [Tapezieren](/leistungen/tapezieren-berlin/) zeigen Sie die vorhandene Wandoberfläche und erkennbare Schäden zusätzlich zur gesamten Fläche. Die Ausführung wird mit einem geeigneten Fachbetrieb abgestimmt; Fotos ersetzen keine notwendige Prüfung des Untergrunds."
+        ]
+      },
+      {
         h: 'Die Foto-Checkliste',
         steps: [
           {
@@ -503,7 +517,7 @@ export const guides: Guide[] = [
     related: ['entruempelung-vorbereiten', 'was-kostet-eine-entruempelung-in-berlin'],
     services: ['entruempelung-berlin', 'haushaltsaufloesung-berlin'],
     published: '2026-07-29',
-    updated: '2026-07-29',
+    updated: '2026-10-21',
   },
 
   /* ================================================================== */
@@ -520,6 +534,13 @@ export const guides: Guide[] = [
       'Vor einer Entrümpelung sollten Sie drei Dinge klären: Was bleibt, wer aufschließt und wo das Fahrzeug stehen kann.\n\nMarkieren Sie Gegenstände, die nicht mitgehen, und sichern Sie Dokumente, Schlüssel und Wertsachen selbst. Angaben zu Etage, Aufzug und Halteposition verhindern die meisten Überraschungen am Einsatztag.',
     teaser: 'Drei Dinge klären, dann läuft der Einsatztag ohne Überraschungen.',
     blocks: [
+      {
+        "h": "Den passenden Umfang vor dem Sortieren festlegen",
+        "p": [
+          "Bei einer [Messiwohnungs-Räumung](/leistungen/messiwohnung-raeumen/) sollten Zugang, stark zugestellte Bereiche und erkennbare Auffälligkeiten zuerst abgestimmt werden. Niemand muss für eine Anfrage allein schwere oder unbekannte Materialien bewegen.",
+          "Für den Wechsel ins betreute Wohnen werden die mitgenommenen Möbel im [Seniorenumzug](/leistungen/seniorenumzug-berlin/) vor der Räumung festgelegt. Bei betrieblichen Räumen trennt die [Büroauflösung](/leistungen/bueroaufloesung-berlin/) Möbel und Inventar von Akten sowie Datenträgern."
+        ]
+      },
       {
         h: 'Zwei Wochen vorher',
         list: [
@@ -589,7 +610,7 @@ export const guides: Guide[] = [
     related: ['welche-fotos-fuer-ein-angebot', 'checkliste-wohnungsuebergabe', 'was-kostet-eine-entruempelung-in-berlin'],
     services: ['entruempelung-berlin', 'kellerentruempelung-berlin', 'haushaltsaufloesung-berlin'],
     published: '2026-07-29',
-    updated: '2026-07-29',
+    updated: '2026-10-21',
   },
 
   /* ================================================================== */
@@ -606,6 +627,13 @@ export const guides: Guide[] = [
       'Vor der Wohnungsübergabe sollte die Wohnung geräumt und besenrein sein. Lesen Sie alle Zählerstände ab, sammeln Sie sämtliche Schlüssel und dokumentieren Sie vorhandene Mängel.\n\nBestehen Sie auf einem schriftlichen Übergabeprotokoll mit Datum, Zählerständen und Schlüsselanzahl. Prüfen Sie alles vor der Unterschrift und fotografieren Sie den Zustand jedes Raums.',
     teaser: 'Zählerstände, Schlüssel, Protokoll: was am Übergabetag erledigt sein muss.',
     blocks: [
+      {
+        "h": "Räumung, Wohnwechsel und Ausbau getrennt aufnehmen",
+        "p": [
+          "Eine [Nachlassauflösung](/leistungen/nachlassaufloesung-berlin/) beginnt mit der Zuordnung von Unterlagen, Erinnerungsstücken und weiterzugebendem Hausrat. Bei einem [Seniorenumzug](/leistungen/seniorenumzug-berlin/) muss vor der Übergabe klar sein, welche Möbel am neuen Wohnort gebraucht und aufgebaut werden.",
+          "Bei stark zugestellten Räumen wird der Umfang über [Messiwohnung räumen](/leistungen/messiwohnung-raeumen/) gesondert abgestimmt. Weitere Bau- oder Oberflächenarbeiten sind eigene Leistungspositionen und gehören ausdrücklich in die Vereinbarung. Wiederkehrende Objektübergaben finden [Hausverwaltungen und Immobilienpartner](/hausverwaltungen-immobilienpartner/) im Ablauf für Verwaltungen."
+        ]
+      },
       {
         h: 'Vor dem Übergabetermin',
         list: [
@@ -689,7 +717,7 @@ export const guides: Guide[] = [
     related: ['wohnungsaufloesung-checkliste-pdf', 'entruempelung-vorbereiten', 'kosten-haushaltsaufloesung-berlin'],
     services: ['wohnungsaufloesung-berlin', 'umzug-berlin', 'haushaltsaufloesung-berlin'],
     published: '2026-07-29',
-    updated: '2026-07-29',
+    updated: '2026-10-21',
   },
 
   /* ================================================================== */

@@ -85,9 +85,9 @@ Torwächter: Metadaten, Linkgraph, Kannibalisierung, Schema, Bilder,
 Kontrast. **FEHLER blockieren die Veröffentlichung, Warnungen brauchen eine
 redaktionelle Entscheidung.**
 
-Stand 20.10.2026: 0 Fehler, **26 Warnungen** (77 Seiten, 57 indexierbar).
-Alle Hinweise betreffen die Linkgewichtung nach der Erweiterung um Maler- und
-Tapezierseiten; redaktionelle Entscheidung und Ursache siehe E-011.
+Stand 21.10.2026: 0 Fehler, **13 Warnungen** (78 Seiten, 58 indexierbar).
+Durch natürliche Kontextlinks aus passenden Leistungen und Ratgebern von 26
+auf 13 reduziert. Alle Hinweise betreffen weiter die Linkgewichtung, siehe E-012.
 Der bisherige Bürobild-Hinweis ist durch ein passendes Beispielbild behoben.
 
 Historischer Stand 01.10.2026: 8 Warnungen (73 Seiten, 53 indexierbar).
@@ -114,7 +114,7 @@ hinweg. Sprunglinks innerhalb einer Seite (`#…`) zählt der Linkgraph nicht.
 
 | Angefasst | Zusätzlich ausführen |
 |---|---|
-| Prüfregeln oder Ereignisnamen | `npm run seo:selftest` (14 Verletzungen) und `npm run seo:events` |
+| Prüfregeln oder Ereignisnamen | `npm run seo:selftest` (16 Verletzungen) und `npm run seo:events` |
 | `src/data/serviceAreas.ts` | `npm run audit:plz:selftest` (13 Gegenbeispiele + Gegenprobe) |
 | `public/api/lib/smtp.php` | `npm run audit:mail:selftest` (14 Fälle, echtes SMTP-Gespräch) |
 | `public/api/lib/config.php` | `npm run audit:config:selftest` (6 Fälle, Suchreihenfolge und „Deploy löscht die alte Datei“) |

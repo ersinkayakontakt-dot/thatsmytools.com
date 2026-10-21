@@ -87,7 +87,7 @@ const staticPages: StaticPage[] = [
     ],
     allowedSchemaTypes: ['WebPage', 'FAQPage'],
     ownOgImage: true,
-    lastmod: '2026-10-20',
+    lastmod: '2026-10-21',
     indexable: true,
   },
   {
@@ -415,6 +415,45 @@ const ownOgServices = new Set([
   'seniorenumzug-berlin',
 ]);
 
+/* Suchbegriffe beschreiben die Absicht; Gesprächsfragen sind keine Keywords. */
+const serviceQueries: Record<string, string[]> = {
+  "innenausbau-berlin": [
+    "innenausbau berlin",
+    "innenausbau komplett berlin",
+    "bauleistungen berlin"
+  ],
+  "trockenbau-berlin": [
+    "trockenbau berlin",
+    "gipskartonwand berlin",
+    "trockenbaudecke berlin"
+  ],
+  "malerarbeiten-berlin": [
+    "malerarbeiten berlin",
+    "wände streichen berlin",
+    "decken streichen berlin"
+  ],
+  "tapezieren-berlin": [
+    "tapezieren berlin",
+    "vliestapete berlin",
+    "raufaser tapezieren berlin"
+  ],
+  "moebelmontage-berlin": [
+    "möbelmontage berlin",
+    "möbel aufbauen berlin",
+    "schrankmontage berlin"
+  ],
+  "bodenbelag-verlegen-berlin": [
+    "bodenbelag verlegen berlin",
+    "laminat verlegen berlin",
+    "klick vinyl verlegen berlin"
+  ],
+  "kuechenmontage-berlin": [
+    "küchenmontage berlin",
+    "einbauküche aufbauen berlin",
+    "küchenaufbau berlin"
+  ]
+};
+
 const servicePages: SeoPage[] = services.map((service) => {
   const indexable = serviceIsIndexable(service);
   const id = `service:${service.slug}`;
@@ -425,8 +464,8 @@ const servicePages: SeoPage[] = services.map((service) => {
     title: service.metaTitle,
     metaDescription: service.metaDescription,
     h1: service.h1,
-    primaryQuery: service.h1.toLocaleLowerCase('de-DE'),
-    secondaryQueries: service.situations.slice(0, 2).map((item) => item.toLocaleLowerCase('de-DE')),
+    primaryQuery: serviceQueries[service.slug]?.[0] ?? service.h1.toLocaleLowerCase('de-DE'),
+    secondaryQueries: serviceQueries[service.slug]?.slice(1) ?? service.situations.slice(0, 2).map((item) => item.toLocaleLowerCase('de-DE')),
     searchIntent: 'transactional',
     businessPriority: servicePriority(service.slug),
     conversionGoal: serviceGoal(service.slug),

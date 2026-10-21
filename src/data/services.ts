@@ -57,6 +57,13 @@ export const services: Service[] = [
     ],
     blocks: [
       {
+        "h": "Welche Räumung passt zu Ihrer Situation?",
+        "p": [
+          "Bei einer geerbten Wohnung verbindet die [Nachlassauflösung](/leistungen/nachlassaufloesung-berlin/) die Räumung mit dem vorherigen Sichern von Unterlagen und Erinnerungsstücken. Für den Wechsel ins betreute Wohnen ist der [Seniorenumzug](/leistungen/seniorenumzug-berlin/) der Einstieg, wenn Transport und Auflösung zusammen geplant werden sollen.",
+          "Geht es um stark zugestellte oder vermüllte Räume, beschreibt [Messiwohnung räumen](/leistungen/messiwohnung-raeumen/) den gesonderten Umfang und die Grenzen des Auftrags. Betriebliche Räume, Akten und weitergenutztes Inventar werden unter [Büroauflösung](/leistungen/bueroaufloesung-berlin/) getrennt betrachtet."
+        ]
+      },
+      {
         h: 'Was gehört zu einer Entrümpelung?',
         p: [
           'Eine Entrümpelung bedeutet: Der vereinbarte Bereich wird vollständig leergeräumt. Dazu zählen Möbel, Hausrat, Kartons, Textilien, Elektrogeräte und alles, was zuvor als zu räumen markiert wurde. Was mitgenommen wird und was bleibt, klären wir vor Beginn und halten es schriftlich fest.',
@@ -174,7 +181,7 @@ export const services: Service[] = [
     ],
     related: ['haushaltsaufloesung-berlin', 'kellerentruempelung-berlin', 'sperrmuellabholung-berlin', 'demontage-rueckbau'],
     guides: ['was-kostet-eine-entruempelung-in-berlin', 'sperrmuell-moebel-entsorgen-berlin', 'entruempelung-vorbereiten'],
-    updated: '2026-07-29',
+    updated: '2026-10-21',
   },
 
   /* ================================================================== */
@@ -724,6 +731,13 @@ export const services: Service[] = [
     ],
     blocks: [
       {
+        "h": "Einzelne Stücke abholen oder einen ganzen Haushalt planen?",
+        "p": [
+          "Sollen Möbel erhalten bleiben und an eine neue Adresse kommen, ist ein [Umzug](/leistungen/umzug-berlin/) mit gegebenenfalls ergänzender [Möbelmontage](/leistungen/moebelmontage-berlin/) passender als eine Entsorgungsanfrage.",
+          "Für vollständig zugestellte Räume ist eine einzelne Abholung häufig zu eng gefasst. Unter [Messiwohnung räumen](/leistungen/messiwohnung-raeumen/) werden Zugang, Trennung der Materialien und ein abgestimmter Räumungsumfang beschrieben."
+        ]
+      },
+      {
         h: 'Wann lohnt sich eine private Abholung gegenüber der BSR?',
         p: [
           'Die Berliner Stadtreinigung bietet eine kostenpflichtige Sperrmüllabholung an. Sie ist in der Regel günstiger als eine private Abholung, hat aber Einschränkungen: Der Sperrmüll muss meist an einer zugänglichen Stelle bereitgestellt werden, es gibt Wartezeiten auf einen Termin und der Umfang ist begrenzt.',
@@ -807,7 +821,7 @@ export const services: Service[] = [
     ],
     related: ['entruempelung-berlin', 'kellerentruempelung-berlin', 'kleintransport-moebeltransport-berlin'],
     guides: ['sperrmuell-moebel-entsorgen-berlin', 'kosten-sperrmuellabholung-berlin'],
-    updated: '2026-07-29',
+    updated: '2026-10-21',
   },
 
   /* ================================================================== */
@@ -843,6 +857,13 @@ export const services: Service[] = [
       'Einlagerung, sofern nicht gesondert vereinbart',
     ],
     blocks: [
+      {
+        "h": "Möbelaufbau und besondere Wohnwechsel mitplanen",
+        "p": [
+          "Sollen Schrank, Bett oder Regal am Zielort wieder aufgebaut werden, nehmen Sie die [Möbelmontage](/leistungen/moebelmontage-berlin/) ausdrücklich in die Anfrage auf. Modelle, Zustand und Aufstellmaße müssen vor dem Abbau geklärt sein.",
+          "Beim Wechsel in eine kleinere Wohnung oder ins betreute Wohnen verbindet der [Seniorenumzug](/leistungen/seniorenumzug-berlin/) den Transport mit der Auswahl der mitgenommenen Möbel und der Übergabe des bisherigen Haushalts."
+        ]
+      },
       {
         h: 'Was Sie vor dem Umzugstag klären sollten',
         steps: [
@@ -940,7 +961,7 @@ export const services: Service[] = [
     ],
     related: ['seniorenumzug-berlin', 'kleintransport-moebeltransport-berlin', 'entruempelung-berlin'],
     guides: ['umzugskosten-jobcenter-berlin', 'halteverbotszone-berlin-umzug', 'checkliste-wohnungsuebergabe'],
-    updated: '2026-07-29',
+    updated: '2026-10-21',
   },
 
   /* ================================================================== */
@@ -1336,6 +1357,13 @@ export const services: Service[] = [
     ],
     blocks: [
       {
+        "h": "Rückbau im Büro und bei Objektübergaben",
+        "p": [
+          "Geht es um Büroeinbauten, alte Küchenzeilen oder nicht mehr benötigte Möbel, kann die [Büroauflösung](/leistungen/bueroaufloesung-berlin/) der passende Gesamtauftrag sein. Vor dem Abbau wird getrennt festgelegt, was erhalten, transportiert oder entsorgt werden soll.",
+          "Für mehrere Objekte oder eine Übergabe mit Schlüsselkoordination finden [Hausverwaltungen und Immobilienpartner](/hausverwaltungen-immobilienpartner/) den gemeinsamen Ablauf mit Leistungspositionen und Fotoprotokoll."
+        ]
+      },
+      {
         h: 'Was beim Auszug tatsächlich zurückgebaut werden muss',
         p: [
           'Die Frage entscheidet über einen erheblichen Teil der Kosten, und sie wird oft zu spät gestellt. Grundsätzlich gilt: Was der Mieter selbst eingebaut hat, muss er bei Auszug auch wieder entfernen und den ursprünglichen Zustand herstellen. Was schon bei Einzug da war, bleibt.',
@@ -1413,7 +1441,7 @@ export const services: Service[] = [
     ],
     related: ['entruempelung-berlin', 'bueroaufloesung-berlin', 'wohnungsaufloesung-berlin'],
     guides: ['checkliste-wohnungsuebergabe'],
-    updated: '2026-09-28',
+    updated: '2026-10-21',
   },
   {
     slug: 'bodenbelag-verlegen-berlin',
@@ -1572,6 +1600,13 @@ export const services: Service[] = [
     ],
     blocks: [
       {
+        "h": "Küchenmontage beim Wohnwechsel oder im Büro",
+        "p": [
+          "Eine kleinere Küche nach einem [Seniorenumzug](/leistungen/seniorenumzug-berlin/) braucht vorher geklärte Aufstellmaße und erreichbare Stauraumlösungen. Ob vorhandene Komponenten übernommen werden können, wird anhand der Planung und ihres Zustands abgestimmt.",
+          "Bei einer [Büroauflösung](/leistungen/bueroaufloesung-berlin/) kann auch die Demontage der bisherigen Teeküche nötig sein. Der Aufbau anderer Fertigmöbel wird gesondert unter [Möbelmontage](/leistungen/moebelmontage-berlin/) erfasst."
+        ]
+      },
+      {
         h: 'Was vor dem Montagetermin stehen muss',
         p: [
           'Die meisten Verzögerungen bei einer Küchenmontage entstehen nicht beim Aufbau, sondern davor: Ein Karton fehlt, die Arbeitsplatte ist zu kurz, oder der Wasseranschluss sitzt dort, wo laut Plan der Kühlschrank steht. Wenn diese Punkte vorher geklärt sind, lässt sich die Montage verlässlich planen.',
@@ -1646,7 +1681,7 @@ export const services: Service[] = [
     ],
     related: ['demontage-rueckbau', 'bodenbelag-verlegen-berlin', 'umzug-berlin'],
     guides: ['checkliste-wohnungsuebergabe'],
-    updated: '2026-09-28',
+    updated: '2026-10-21',
   },
   {
     slug: 'kleintransport-moebeltransport-berlin',

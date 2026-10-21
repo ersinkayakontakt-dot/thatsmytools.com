@@ -4,7 +4,7 @@ export const constructionServices: Service[] = [
     "category": "herrichten",
     "status": "published",
     "icon": "home",
-    "updated": "2026-10-20",
+    "updated": "2026-10-21",
     "slug": "innenausbau-berlin",
     "h1": "Innenausbau in Berlin – komplett geplant",
     "navLabel": "Innenausbau komplett",
@@ -42,7 +42,8 @@ export const constructionServices: Service[] = [
           "[Bodenbelag verlegen](/leistungen/bodenbelag-verlegen-berlin/): Laminat, Klick-Vinyl oder Teppich auswählen.",
           "[Küchenmontage](/leistungen/kuechenmontage-berlin/): die neue Küche nach vorbereitetem Aufstellplan aufbauen.",
           "[Malerarbeiten](/leistungen/malerarbeiten-berlin/): Wand- und Deckenanstriche gesondert mit einem Fachbetrieb abstimmen.",
-          "[Tapezieren](/leistungen/tapezieren-berlin/): neue Wandbeläge und Vorbereitung über einen Fachbetrieb planen."
+          "[Tapezieren](/leistungen/tapezieren-berlin/): neue Wandbeläge und Vorbereitung über einen Fachbetrieb planen.",
+          "[Möbelmontage](/leistungen/moebelmontage-berlin/): Fertigmöbel nach Fertigstellung der Räume aufbauen."
         ]
       },
       {
@@ -92,6 +93,13 @@ export const constructionServices: Service[] = [
         "p": [
           "Unter [Angebot anfragen](/angebot-anfragen/) wählen Sie Innenausbau komplett und beschreiben das Vorhaben. Falls vorher noch Hausrat entfernt werden muss, können Sie auch die [Wohnungsauflösung](/leistungen/wohnungsaufloesung-berlin/) mit anfragen."
         ]
+      },
+      {
+        "h": "Wenn vor dem Ausbau noch geräumt werden muss",
+        "p": [
+          "Bei einer geerbten Wohnung beginnt der Ausbau häufig erst nach der [Nachlassauflösung](/leistungen/nachlassaufloesung-berlin/). Persönliche Unterlagen, Erinnerungsstücke und weiterzugebende Möbel werden vorher festgelegt. Ein [Seniorenumzug](/leistungen/seniorenumzug-berlin/) benötigt wiederum die Abstimmung zwischen neuer Wohnung, mitgenommenen Möbeln und der Übergabe des bisherigen Haushalts.",
+          "Für Gewerberäume verbindet die [Büroauflösung](/leistungen/bueroaufloesung-berlin/) die Räumung mit der Klärung von Akten, Inventar und weitergenutzten Arbeitsplätzen. Eigentümer und Verwaltungen finden die gemeinsame Objektkoordination unter [Hausverwaltungen und Immobilienpartner](/hausverwaltungen-immobilienpartner/)."
+        ]
       }
     ],
     "priceFactors": [
@@ -131,7 +139,8 @@ export const constructionServices: Service[] = [
       "bodenbelag-verlegen-berlin",
       "kuechenmontage-berlin",
       "malerarbeiten-berlin",
-      "tapezieren-berlin"
+      "tapezieren-berlin",
+      "moebelmontage-berlin"
     ]
   },
   {
@@ -496,6 +505,131 @@ export const constructionServices: Service[] = [
     "related": [
       "malerarbeiten-berlin",
       "trockenbau-berlin",
+      "innenausbau-berlin"
+    ]
+  },
+  {
+    "category": "herrichten",
+    "status": "published",
+    "icon": "home",
+    "updated": "2026-10-21",
+    "slug": "moebelmontage-berlin",
+    "h1": "Möbelmontage in Berlin – Schränke, Betten und Regale",
+    "navLabel": "Möbelmontage",
+    "metaTitle": "Möbelmontage Berlin: Aufbau und Abbau | Schnellhelfer24",
+    "metaDescription": "Möbelmontage in Berlin: Fertigmöbel, Schränke, Betten und Regale aufbauen oder für den Umzug abbauen. Modelle, Teile, Zugang und Befestigung vorab klären.",
+    "serviceType": "Montage und Demontage von Fertigmöbeln",
+    "teaser": "Fertigmöbel, Schränke, Betten und Regale nach Anleitung aufbauen oder für den Umzug abbauen.",
+    "answer": "Bei der Möbelmontage in Berlin bauen wir vorgefertigte Möbel nach der zugehörigen Anleitung auf oder demontieren geeignete Möbel für einen Umzug. Dazu gehören zum Beispiel Kleiderschränke, Betten, Kommoden und Regale. Vor dem Angebot klären wir Modelle, Maße, Teilezustand, Platz und gegebenenfalls die notwendige Befestigung. Individuelle Tischlerarbeiten, Änderungen an Bauteilen sowie Elektro- und Wasseranschlüsse gehören nicht zur gewöhnlichen Möbelmontage.",
+    "situations": [
+      "Neue Möbel sind geliefert, müssen aber noch aufgebaut werden.",
+      "Beim Umzug sollen Schrank und Bett ab- und wieder aufgebaut werden.",
+      "Nach dem Innenausbau fehlen noch Regale, Kommoden und weitere Fertigmöbel."
+    ],
+    "includes": [
+      "Aufbau vereinbarter Fertigmöbel nach vorhandener Herstelleranleitung",
+      "Abstimmung des Zustands und der Vollständigkeit von Bauteilen und Beschlägen",
+      "Demontage und Wiederaufbau geeigneter Möbel im vereinbarten Umfang",
+      "Klärung von Aufstellort, Zugang und erforderlichen Sicherungen vor Beginn"
+    ],
+    "notIncluded": [
+      "Maßanfertigung, Zuschnitt oder bauliche Änderung von Möbelteilen",
+      "Elektro-, Gas- oder Wasseranschlüsse",
+      "Ungeprüfte Befestigung an unbekannten Wänden oder beschädigten Untergründen",
+      "Automatisch enthaltene Beschaffung fehlender Ersatzteile oder Abtransport von Verpackung"
+    ],
+    "blocks": [
+      {
+        "h": "Welche Möbel können montiert werden?",
+        "p": [
+          "Fertigmöbel aus dem Handel werden anhand ihrer Anleitung und der mitgelieferten Beschläge montiert. Für ein Angebot reichen Modellbezeichnung, Stückzahl und Fotos der Pakete oder vorhandenen Möbel als erster Überblick. Schubladen, Türen, Auszüge und besondere Einbauten sollten in der Beschreibung genannt werden.",
+          "Ein kleines Regal und ein großer Kleiderschrank benötigen unterschiedlich viel Stell- und Arbeitsfläche. Entscheidend ist auch, ob die Möbel bereits ausgepackt, gebraucht oder beschädigt sind. Eine fehlende Schraubentüte oder eine aufgequollene Rückwand kann den geplanten Ablauf verändern."
+        ],
+        "list": [
+          "Schränke und Kommoden: Modell, Türen, Schubladen und Aufstellmaß nennen.",
+          "Betten und Regale: vorhandene Anleitung und alle Beschläge bereitlegen.",
+          "Büromöbel: Anzahl der Arbeitsplätze und Einbauten erfassen.",
+          "Küchenmöbel: gesondert über [Küchenmontage](/leistungen/kuechenmontage-berlin/) anfragen."
+        ]
+      },
+      {
+        "h": "Abbau und Wiederaufbau beim Umzug",
+        "p": [
+          "Nicht jedes gebrauchte Möbel lässt sich beliebig oft zerlegen. Verbindungen, Rückwände und vorhandene Schäden werden deshalb vor der Demontage betrachtet. Beschläge und kleine Bauteile müssen dem jeweiligen Möbel zugeordnet bleiben; die Anleitung oder vorhandene Modellangaben erleichtern den späteren Wiederaufbau.",
+          "Beim [Umzug in Berlin](/leistungen/umzug-berlin/) können Abbau, Transport und Wiederaufbau zusammen aufgenommen werden. Für einen [Seniorenumzug](/leistungen/seniorenumzug-berlin/) ist zusätzlich wichtig, welche Möbel tatsächlich in die neue Wohnung passen und dort benötigt werden. Nicht mehr benötigter Hausrat gehört in einen gesondert vereinbarten Räumungsumfang."
+        ]
+      },
+      {
+        "h": "Wandbefestigung und Kippsicherung vorab klären",
+        "p": [
+          "Hohe oder wandhängende Möbel können nach Herstellerangaben eine Sicherung benötigen. Wandart, vorgesehener Aufstellort und mögliche verdeckte Leitungen müssen vor der Befestigung geklärt sein. Eine Montage an einer unbekannten Wand wird nicht allein nach einem Foto freigegeben.",
+          "Bei neuen [Trockenbauwänden](/leistungen/trockenbau-berlin/) müssen Befestigungspunkte und Lasten möglichst schon vor dem Schließen der Konstruktion geplant werden. Fehlen geeignete Voraussetzungen, wird die Sicherung gesondert abgestimmt; ein Möbel darf nicht einfach ohne erforderliche Sicherung als fertig übergeben werden."
+        ]
+      },
+      {
+        "h": "So bereiten Sie die Möbelmontage vor",
+        "steps": [
+          {
+            "title": "Modelle und Umfang senden",
+            "text": "Produktlinks, Stückzahl, Maße und Fotos bereitstellen. Aufbau, Abbau oder Wiederaufbau eindeutig benennen."
+          },
+          {
+            "title": "Teile und Zugang prüfen",
+            "text": "Anleitung, Beschläge und Bauteile bereitlegen. Etage, Aufzug und Arbeitsfläche angeben."
+          },
+          {
+            "title": "Aufstellung abstimmen",
+            "text": "Position der Möbel und mögliche Wandbefestigungen vor Beginn klären. Fehlteile und erkennbare Schäden festhalten."
+          },
+          {
+            "title": "Funktionen gemeinsam prüfen",
+            "text": "Vereinbarten Aufbau, Türen und Schubladen durchgehen. Offene Teile, Sicherungen und weitere Schritte dokumentieren."
+          }
+        ]
+      },
+      {
+        "h": "Möbelmontage als Teil Ihres gesamten Vorhabens",
+        "p": [
+          "Beim [Innenausbau](/leistungen/innenausbau-berlin/) sollte die Montage erst stattfinden, wenn Boden und Oberflächen im benötigten Zustand sind. Bei einer [Büroauflösung](/leistungen/bueroaufloesung-berlin/) wird dagegen vorher geklärt, welche Möbel weitergenutzt, abgebaut oder getrennt entsorgt werden.",
+          "Senden Sie Ihre Eckdaten über [Angebot anfragen](/angebot-anfragen/). Geben Sie neben den Möbeln auch Zugang, Wunschtermin und Zusatzwünsche an. Das Angebot unterscheidet Montage, Transport, Befestigung und Verpackungsentsorgung, damit der beauftragte Umfang nachvollziehbar bleibt."
+        ]
+      }
+    ],
+    "priceFactors": [
+      {
+        "name": "Modelle und Stückzahl",
+        "effect": "Aufbauumfang nachvollziehbar machen",
+        "why": "Viele Schubladen, große Schrankelemente und mehrere Möbel benötigen andere Arbeitsschritte als ein einzelnes Regal."
+      },
+      {
+        "name": "Zustand und Vollständigkeit",
+        "effect": "Fehlteile vor dem Termin klären",
+        "why": "Gebrauchte Verbindungen, Schäden und fehlende Beschläge können Wiederaufbau und Terminplanung beeinflussen."
+      },
+      {
+        "name": "Zugang und Befestigung",
+        "effect": "Aufstellort und Wand prüfen",
+        "why": "Tragewege, Platz im Raum und die Voraussetzungen einer Kippsicherung bestimmen den zusätzlichen Aufwand."
+      }
+    ],
+    "faq": [
+      {
+        "q": "Können Sie Möbel aller Hersteller aufbauen?",
+        "a": "Entscheidend ist, ob es vorgefertigte Möbel mit geeigneten, vollständigen Bauteilen und einer nachvollziehbaren Montageanleitung sind. Senden Sie den Produktlink oder die genaue Modellbezeichnung. Ob der gewünschte Aufbau übernommen werden kann, wird anhand des Umfangs und der Bedingungen vor Ort geklärt. Individuelle Maßanfertigungen oder Änderungen an Möbelteilen sind kein Bestandteil dieses Angebots."
+      },
+      {
+        "q": "Ist eine Befestigung an der Wand enthalten?",
+        "a": "Eine notwendige Sicherung muss ausdrücklich in den Montageumfang aufgenommen werden. Wandart, Leitungsverlauf und Herstellerangaben sind dafür vor Beginn zu klären. Dübel und Befestigungsmittel müssen zum Untergrund passen. Bei ungeeigneten oder unbekannten Voraussetzungen wird eine gesonderte Lösung abgestimmt; eine sichere Befestigung wird nicht pauschal für jede Wand zugesagt."
+      },
+      {
+        "q": "Kann ich Abbau, Transport und Wiederaufbau zusammen anfragen?",
+        "a": "Ja. Nennen Sie Möbel, Start- und Zieladresse sowie die Etagen und Aufzüge. Vor der Demontage muss geklärt werden, ob der Zustand der Möbel einen Wiederaufbau zulässt und ob sie am neuen Aufstellort passen. Im Angebot werden Montage und Transport als nachvollziehbarer Umfang festgehalten. Fehlende Bauteile oder sichtbare Schäden sollten schon bei der Anfrage angegeben werden."
+      }
+    ],
+    "related": [
+      "umzug-berlin",
+      "seniorenumzug-berlin",
+      "kuechenmontage-berlin",
       "innenausbau-berlin"
     ]
   }
