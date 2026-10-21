@@ -34,6 +34,8 @@ Screenshots befinden sich in C:/Users/enter/.codex/visualizations/2026/09/11/01a
 
 Vier-Hut-Releaseprüfung: Staff – gültigen Build übertragen; Architektur – Astro/PHP und bestehende URLs erhalten; Daten – keine serverseitigen Laufzeitdaten oder Zugangsdaten versioniert; QA – Live-Frontend geprüft, echtes Backend-Defizit separat ausgewiesen. Sicherheitscheck: geschützte Ablage, keine persönlichen Daten in Testausgaben, keine Authentifizierungs-/Konfigurationsänderung.
 
+Die Fehlerrückmeldung wurde anschließend über 4e8105b veröffentlicht und per Live-HTML bestätigt. Lokaler Browsercheck: sichtbarer Hinweis bei fehler=1, Kontaktlink, kein Überlauf und kein JavaScript-Fehler.
+
 ## Noch offen
 
 SMTP-Konfiguration beim Hoster wiederherstellen. Anschließend tatsächliche SMTP-Zustellung, Fotoannahme und private JSON-Ablage kontrollieren. Lokale Protokolltests beweisen keine Zustellung ins echte Postfach. Bei Mailausfall muss die gespeicherte Anfrage betrieblich bearbeitet werden. Keine vorhandene automatische Disposition, authentifizierte Projektverfolgung oder Sofortbuchung; deshalb keine solche Zusage in der Oberfläche. Ziele und Benchmarkgrenzen: docs/PRODUKT-UND-DESIGN.md.
