@@ -88,7 +88,13 @@ Torwächter: Metadaten, Linkgraph, Kannibalisierung, Schema, Bilder,
 Kontrast. **FEHLER blockieren die Veröffentlichung, Warnungen brauchen eine
 redaktionelle Entscheidung.**
 
-Stand 21.10.2026: 0 Fehler, **11 Warnungen** (78 Seiten, 58 indexierbar).
+Stand 21.10.2026 (SEO-2026-05): 0 Fehler, **0 Warnungen** (80 Seiten, 60 indexierbar).
+Von 11 auf 0 durch kontextuelle Verweise im Fließtext von Leistungsseiten und
+zwei neue Ratgeber – ohne Prioritäten oder Prüfschwellen zu ändern.
+Stufenmittel P5 9,2 · P4 6,7 · P3 5,0 · P2 3,8. Jede neue Warnung ist damit
+eine Verschlechterung, die begründet werden muss.
+
+Vorheriger Stand 21.10.2026: 0 Fehler, 11 Warnungen (78 Seiten, 58 indexierbar).
 Mit der neuen Startseitenführung nach E-013 von 13 auf 11 reduziert, ohne Prioritäten
 oder Prüfschwellen zu ändern. Alle Hinweise betreffen weiter die Linkgewichtung.
 Der bisherige Bürobild-Hinweis ist durch ein passendes Beispielbild behoben.

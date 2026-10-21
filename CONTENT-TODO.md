@@ -51,9 +51,13 @@ Möbelmontage als vollständige Leistungsseite mit Foto und Startseitenkarte erg
 
 Gefunden: Einzelne spezifische Suchbots erhielten Allow: / ohne die Ausschlüsse der allgemeinen Gruppe; Applebot-Extended war fälschlich als Suchkennung behandelt. Korrektur im Quellstand vorbereitet: private Pfade je erlaubter Gruppe ausschließen, Applebot-Suche erlauben und Apple-Training entsprechend bestehender Betreiberpolitik sperren. Semantische Prüfung bestanden (83 Fälle); zusätzlich erkennt die Buildprüfung eine vollständige OAI-Sperre und einen verlorenen API-Ausschluss als echte Fehler (16/16 SEO-Gegenbeispiele). Live-Übernahme am 21.10. bestätigt, robots.txt entspricht exakt dem geprüften Quellstand. Keine Änderung an tatsächlichen Serverberechtigungen.
 
+## Shipped (Quelle) · SEO-2026-05 · Linkgewichtung und Ausbau-Ratgeber, 21.10.2026
+
+Alle 11 Linkgraph-Hinweise ohne Prioritäts- oder Regeländerung aufgelöst: kontextuelle Verweise dort, wo der Text die Folgefrage ohnehin stellt (Wohnungs-, Nachlass-, Haushaltsauflösung, Seniorenumzug, Keller, Büro, Rückbau, Boden, Küche, Möbelmontage, Trockenbau, zwei bestehende Ratgeber). Maler- und Tapezierverweise tragen durchgängig den Fachbetriebshinweis (E-011). Zwei neue Ratgeber: `/ratgeber/geerbte-wohnung-verkaufsfertig-machen/` (Reihenfolge Räumung → Rückbau → Trockenbau → Wände → Boden → Küche/Möbel → Übergabe) und `/ratgeber/laminat-oder-vinyl-mietwohnung/` (vertieft den Vergleich der Leistungsseite um Kernaufbau, Nutzungsklasse, Fußbodenheizung, Reserve; keine Preise). Keine neuen Rechtsbehauptungen ohne Quelle. 80 Seiten / 60 indexierbar, 0 Fehler, 0 Warnungen, Kannibalisierung 0, 16/16 Selbsttests. **Noch nicht live:** Deployment und anschließend IndexNow sowie Indexierungsantrag der zwei Ratgeber in der Search Console.
+
 ## Offen · SEO-2026-04 · Messdaten und nächste Gewichtungsrunde
 
-Keine Exporte aus Google Search Console oder Bing Webmaster Tools vorhanden; kein belegter Ranking-/Klickverlauf. Erst reale Daten importieren, dann Suchbegriffe, Klickrate und indexierte URLs datenbasiert priorisieren. Im neuen Produktentwurf noch 11 redaktionelle Linkgewichtungs-Hinweise zwischen Ausbau und etablierten Angeboten; keine isolierten Seiten, keine defekten Links, keine Metadaten-, Schema-, Bild- oder Kontrastfehler. Ranking-/KI-Nennungen bleiben außerhalb technischer Zusagen. Einzelheiten: docs/SEO-STATUS-2026-10-21.md.
+Keine Exporte aus Google Search Console oder Bing Webmaster Tools vorhanden; kein belegter Ranking-/Klickverlauf. Erst reale Daten importieren, dann Suchbegriffe, Klickrate und indexierte URLs datenbasiert priorisieren. Die Linkgewichtungs-Hinweise sind mit SEO-2026-05 auf 0 gesunken; keine isolierten Seiten, keine defekten Links, keine Metadaten-, Schema-, Bild- oder Kontrastfehler. Ranking-/KI-Nennungen bleiben außerhalb technischer Zusagen. Einzelheiten: docs/SEO-STATUS-2026-10-21.md.
 
 ## Shipped · KONTAKT-2026-01 · Neue Rufnummer, 21.10.2026
 

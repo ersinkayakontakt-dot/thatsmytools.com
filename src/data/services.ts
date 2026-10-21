@@ -271,6 +271,7 @@ export const services: Service[] = [
           'Zählerstände für Strom, Gas und Wasser vor der Übergabe ablesen',
           'Eingebaute Küchen: klären, ob sie bleiben oder mit ausgebaut werden',
           'Bei Mietwohnungen: den Übergabetermin des Vermieters kennen, bevor der Einsatz geplant wird',
+          'Ist die Wohnung so stark zugestellt, dass Türen und Wege nicht mehr frei sind, gilt ein anderes Vorgehen mit mehr Zeit und Schutzausrüstung – beschrieben unter [Messiwohnung räumen](/leistungen/messiwohnung-raeumen/)',
         ],
       },
     ],
@@ -405,6 +406,7 @@ export const services: Service[] = [
         p: [
           'Rufen Sie an und nennen Sie das Übergabedatum zuerst. Wir sagen Ihnen ehrlich, ob es sich ausgeht. Wenn nicht, ist es besser, Sie wissen es früh genug, um mit dem Vermieter über eine Verlängerung zu sprechen.',
           'Wenn nur ein Teil der Wohnung geräumt werden muss, weil Sie den Rest selbst schaffen, sagen Sie das. Ein Teilauftrag ist oft schneller planbar als eine komplette Räumung.',
+          'Soll die Wohnung nach der Räumung frisch gestrichen oder neu tapeziert übergeben werden, nennen Sie das gleich in der Anfrage. [Malerarbeiten](/leistungen/malerarbeiten-berlin/) und [Tapezieren](/leistungen/tapezieren-berlin/) stimmen wir gesondert mit einem geeigneten Fachbetrieb ab. So lassen sich Räumung, Wandarbeiten und Übergabetermin in einem gemeinsamen Zeitplan prüfen.',
         ],
       },
     ],
@@ -527,6 +529,8 @@ export const services: Service[] = [
         p: [
           'Wenn es die Umstände zulassen, planen Sie zwei bis vier Wochen zwischen erster Anfrage und Räumung. Diese Zeit brauchen Sie, um Unterlagen zu sichten, Verträge zu kündigen und in Ruhe zu entscheiden, was bleiben soll.',
           'Wenn der Vermieter zügig übergeben haben möchte oder Miete weiterläuft, geht es auch schneller. Sagen Sie uns, unter welchem Zeitdruck Sie stehen, dann planen wir danach.',
+          'Soll die Wohnung danach verkauft oder neu vermietet werden, sagen Sie das bei der Anfrage mit. Nach der Räumung kann der Boden im selben Ablauf folgen, siehe [Bodenbelag verlegen](/leistungen/bodenbelag-verlegen-berlin/). Streichen und Tapezieren werden über einen Fachbetrieb abgestimmt; was dabei vorab zu klären ist, steht unter [Malerarbeiten in Berlin](/leistungen/malerarbeiten-berlin/).',
+          'War die Wohnung über lange Zeit stark zugestellt, braucht die Räumung mehr Vorbereitung als ein gewöhnlicher Nachlass. Worauf es dann ankommt, steht auf der Seite zum [Räumen einer vermüllten Wohnung](/leistungen/messiwohnung-raeumen/).',
         ],
       },
     ],
@@ -576,7 +580,7 @@ export const services: Service[] = [
       },
     ],
     related: ['haushaltsaufloesung-berlin', 'wohnungsaufloesung-berlin', 'messiwohnung-raeumen'],
-    guides: ['haushaltsaufloesung-nach-todesfall', 'wohnungsaufloesung-checkliste-pdf', 'kosten-haushaltsaufloesung-berlin'],
+    guides: ['haushaltsaufloesung-nach-todesfall', 'wohnungsaufloesung-checkliste-pdf', 'kosten-haushaltsaufloesung-berlin', 'geerbte-wohnung-verkaufsfertig-machen'],
     updated: '2026-07-29',
   },
 
@@ -1004,6 +1008,7 @@ export const services: Service[] = [
         p: [
           'Beim Einzug in ein Heim gibt es oft feste Vorgaben: Welche Möbel dürfen mit, wie groß darf der Schrank sein, wann ist Einzug möglich. Klären Sie das mit der Einrichtung, bevor Sie den Umzug planen.',
           'Praktisch bewährt hat sich, das neue Zimmer möglichst am selben Tag fertig einzurichten. Bett aufgebaut, Schrank eingeräumt, vertraute Bilder aufgehängt. Ein Zimmer voller Kartons ist am ersten Abend eine zusätzliche Belastung.',
+          'Damit das gelingt, gehört der Aufbau am neuen Ort ausdrücklich in die Anfrage: welche Möbel, welche Modelle, wo sie stehen sollen. Was dabei vorab geklärt werden muss, steht unter [Möbelmontage](/leistungen/moebelmontage-berlin/).',
         ],
       },
       {
@@ -1108,6 +1113,7 @@ export const services: Service[] = [
         p: [
           'Ein Keller enthält weniger Volumen als eine Wohnung, macht aber pro Kubikmeter mehr Arbeit. Die Gründe: enge Gänge, schmale Treppen, oft schlechtes Licht und Gegenstände, die seit Jahren nicht bewegt wurden.',
           'Dazu kommt, dass in Kellern überdurchschnittlich viel Material anfällt, das getrennt entsorgt werden muss: alte Farben, Autoteile, Elektroschrott, Holz, Metall. Das Sortieren macht bei Kellerräumungen einen größeren Anteil aus als bei Wohnungen.',
+          'Liegen im Abteil nur einzelne große Stücke wie alte Möbel, Matratzen oder Teppiche, ist oft keine vollständige Räumung nötig. Dann genügt eine [Sperrmüllabholung](/leistungen/sperrmuellabholung-berlin/) für genau diese Teile.',
         ],
       },
       {
@@ -1115,6 +1121,7 @@ export const services: Service[] = [
         p: [
           'Wenn in einem Haus mehrere Abteile geräumt werden sollen, planen wir das als einen Einsatz. Das ist deutlich günstiger als einzelne Termine, weil Anfahrt und Rüstzeit nur einmal anfallen.',
           'Was wir dafür brauchen: eine Liste der zu räumenden Abteile, Zugang zum Kellergeschoss und eine Klärung, welche Abteile ausdrücklich nicht angefasst werden dürfen. Auf Wunsch dokumentieren wir jedes Abteil vor und nach der Räumung mit Fotos.',
+          'Verwaltungen, Eigentümer und Makler, die regelmäßig Räumungen, Rückbau und Übergaben vergeben, finden die Abläufe und Absprachen dafür gebündelt unter [Hausverwaltungen und Immobilienpartner](/hausverwaltungen-immobilienpartner/).',
         ],
         note: {
           title: 'Vor der Räumung verwaister Abteile',
@@ -1213,6 +1220,7 @@ export const services: Service[] = [
         p: [
           'Bei Büroauflösungen zählt vor allem der Termin. Übergabefristen im Gewerbemietvertrag sind meist hart, und der Rückbau in den vertraglich vereinbarten Zustand kann umfangreicher sein als bei Wohnraum.',
           'Der zweite Unterschied liegt beim Zugang. In Bürogebäuden gibt es Lastenaufzüge mit begrenzten Zeiten, Anmeldungen beim Facility Management und Auflagen für Anlieferzonen. Klären Sie das früh, es bestimmt die Planung stärker als die Menge.',
+          'Sollen Teile der Fläche weitergenutzt oder neu aufgeteilt werden, etwa durch eine zusätzliche Raumtrennung für den Nachmieter, ist das kein Teil der Auflösung. Wie eine neue Wand oder Vorsatzschale geplant wird, beschreibt die Seite [Trockenbau in Berlin](/leistungen/trockenbau-berlin/).',
         ],
       },
       {
@@ -1232,6 +1240,7 @@ export const services: Service[] = [
         p: [
           'Büromöbel in gutem Zustand lassen sich weitergeben. Bei größeren Mengen einheitlicher Möbel ist eine Verwertung realistisch und wird auf den Auftrag angerechnet. Bei gemischten Einzelstücken ist das seltener der Fall.',
           'Was wir vorher wissen müssen: Menge, Hersteller und Zustand. Ein Foto pro Möbeltyp genügt für eine erste Einschätzung.',
+          'Sollen Schreibtische, Schränke oder Regale am neuen Standort weitergenutzt werden, gehört der Wiederaufbau ausdrücklich in den Auftrag. Was dafür vorab feststehen muss, beschreibt die Seite [Möbelmontage](/leistungen/moebelmontage-berlin/).',
         ],
       },
     ],
@@ -1396,6 +1405,8 @@ export const services: Service[] = [
           'Wenn ohnehin eine Wohnung oder ein Gewerbeobjekt geräumt wird, ist der Rückbau der Einbauten meist der kleinere Teil des Aufwands. Er verlängert den Termin um Stunden, nicht um Tage. Sagen Sie deshalb bei der Anfrage gleich mit, was raus muss, und schicken Sie Fotos von Küche, Einbauten und Bodenbelag mit.',
           'Bei Gewerbeflächen ist der Rückbau oft der eigentliche Auftrag: Trennwände, Theken, Ladeneinbauten und Beschriftungen müssen vor der Rückgabe weg. Was dabei zusätzlich zu beachten ist – Aktenvernichtung, IT-Geräte und Betriebsausstattung –, steht unter [Büroauflösung](/leistungen/bueroaufloesung-berlin/).',
           'Nach dem Rückbau ist die Fläche frei, aber selten übergabefertig. Wo der alte Teppich oder das Laminat raus ist, liegt der nackte Untergrund, und unter einer ausgebauten Küche fehlt oft jeder Belag. Soll die Wohnung danach vermietet oder verkauft werden, schließen [Bodenbelag verlegen](/leistungen/bodenbelag-verlegen-berlin/) und die [Küchenmontage](/leistungen/kuechenmontage-berlin/) direkt an denselben Ablauf an.',
+          'Werden Trennwände entfernt oder Räume neu aufgeteilt, schließt der [Trockenbau](/leistungen/trockenbau-berlin/) an den Rückbau an. Sind danach die Wände neu zu gestalten, werden [Malerarbeiten](/leistungen/malerarbeiten-berlin/) und [Tapezieren](/leistungen/tapezieren-berlin/) gesondert mit einem Fachbetrieb abgestimmt.',
+          'Nicht jedes ausgebaute Teil ist Bauabfall. Alte Schränke, Regale oder Teppiche ohne Bauschutt können wie Sperrmüll behandelt werden; was dafür gilt, steht unter [Sperrmüllabholung](/leistungen/sperrmuellabholung-berlin/).',
         ],
       },
     ],
@@ -1440,7 +1451,7 @@ export const services: Service[] = [
       },
     ],
     related: ['entruempelung-berlin', 'bueroaufloesung-berlin', 'wohnungsaufloesung-berlin'],
-    guides: ['checkliste-wohnungsuebergabe'],
+    guides: ['checkliste-wohnungsuebergabe', 'geerbte-wohnung-verkaufsfertig-machen'],
     updated: '2026-10-21',
   },
   {
@@ -1509,6 +1520,7 @@ export const services: Service[] = [
         h: 'Warum der Boden in denselben Ablauf gehört wie Räumung und Rückbau',
         p: [
           'Die Reihenfolge vor einer Übergabe ist immer dieselbe: räumen, zurückbauen, Boden verlegen, übergeben. Wer diese Schritte an drei Firmen vergibt, wartet zwischen jedem Schritt auf den nächsten Termin, und die Wohnung steht leer, ohne Miete zu bringen.',
+          'Werden zusätzlich die Wände erneuert, kommen sie vor dem neuen Boden an die Reihe: Farbe und Tapetenkleister sollen nicht auf den frisch verlegten Belag gelangen. [Malerarbeiten](/leistungen/malerarbeiten-berlin/) und [Tapezieren](/leistungen/tapezieren-berlin/) werden dafür gesondert mit einem Fachbetrieb abgestimmt und in denselben Zeitplan eingeordnet.',
           'Wenn wir eine Wohnung ohnehin räumen, ist der alte Belag beim Rückbau schon aufgenommen und entsorgt. Nach der Räumung einer [stark zugestellten Wohnung](/leistungen/messiwohnung-raeumen/) ist er häufig ohnehin nicht mehr zu retten: Feuchtigkeit, Flecken und Geruch sitzen im Teppich und oft auch darunter. Der neue Boden kann direkt folgen. Besonders deutlich wird das unter einer ausgebauten Einbauküche: Dort fehlt oft jeder Belag, weil die Küche einst auf den nackten Estrich gestellt wurde. Soll danach eine neue Küche hinein, kommt zuerst der Boden und dann die [Küchenmontage](/leistungen/kuechenmontage-berlin/).',
           'Für Erben, die eine [Wohnungsauflösung](/leistungen/wohnungsaufloesung-berlin/) beauftragen, heißt das: Sagen Sie bei der Anfrage gleich mit, ob die Wohnung danach vermietbar oder verkaufsfertig sein soll. Dann planen wir den Boden in denselben Ablauf ein. Wer als [Hausverwaltung](/hausverwaltungen-immobilienpartner/) mehrere Wohnungen im Jahr neu vermietet, kann Räumung, Rückbau und Boden als festen Ablauf mit uns abstimmen, statt jede Wohnung neu zu erklären.',
           'Bei Gewerbeflächen gilt dasselbe in größerem Maßstab. Nach einer [Büroauflösung](/leistungen/bueroaufloesung-berlin/) bleiben oft abgenutzte Teppichfliesen zurück, den der Nachmieter nicht übernehmen will. Sie sind meist lose verlegt oder nur leicht fixiert und lassen sich im selben Termin aufnehmen, bevor der neue Belag kommt.',
@@ -1561,7 +1573,7 @@ export const services: Service[] = [
       },
     ],
     related: ['demontage-rueckbau', 'kuechenmontage-berlin', 'wohnungsaufloesung-berlin'],
-    guides: ['checkliste-wohnungsuebergabe'],
+    guides: ['checkliste-wohnungsuebergabe', 'laminat-oder-vinyl-mietwohnung'],
     updated: '2026-09-28',
   },
   {
@@ -1624,6 +1636,7 @@ export const services: Service[] = [
         p: [
           'Hängeschränke tragen im Alltag viel Gewicht: Geschirr, Gläser, Vorräte. Ob sie sicher hängen, entscheidet die Wand, nicht der Schrank. In Berliner Wohnungen gibt es dafür ganz unterschiedliche Voraussetzungen.',
           'Im Altbau sind Wände oft uneben und das Mauerwerk hat Hohlräume, dazu kommen schiefe Böden, die wir an den Stellfüßen der Unterschränke ausgleichen. Im Plattenbau sind die Betonwände hart und gut tragfähig, aber aufwendiger zu bohren. Leichte Trennwände aus Gipskarton tragen Hängeschränke nur mit passenden Hohlraumdübeln oder einer Montageschiene. Wir sehen uns die Wand vorher an und wählen die Befestigung danach.',
+          'Soll die Küche an einer neuen Gipskartonwand hängen, müssen Lasten und Position der Hängeschränke schon beim Bau der Wand feststehen, damit die nötige Verstärkung eingeplant wird. Wie das abgestimmt wird, steht unter [Trockenbau](/leistungen/trockenbau-berlin/).',
         ],
       },
       {

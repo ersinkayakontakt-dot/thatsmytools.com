@@ -133,6 +133,7 @@ export const constructionServices: Service[] = [
         "a": "Solche Facharbeiten werden vor der Beauftragung gesondert mit geeigneten Fachbetrieben abgestimmt. Sie werden hier nicht als eigene Ausführung angeboten. Teilen Sie mit, ob bereits Betriebe beauftragt sind und welche Termine feststehen. Dann lassen sich die Übergänge zwischen Vorbereitung, Installation und Montage im Gesamtprojekt berücksichtigen."
       }
     ],
+    "guides": ["geerbte-wohnung-verkaufsfertig-machen"],
     "related": [
       "trockenbau-berlin",
       "demontage-rueckbau",
@@ -217,7 +218,9 @@ export const constructionServices: Service[] = [
         "h": "Trockenbau mit anderen Arbeiten verbinden",
         "p": [
           "Raumtrennungen und Decken werden mit dem späteren Bodenaufbau und der Möblierung abgestimmt. Für einen zusammenhängenden Auftrag führt die Seite [Innenausbau komplett](/leistungen/innenausbau-berlin/) durch die möglichen Arbeitsschritte.",
-          "Müssen zuerst alte Einbauten entfernt werden, beginnt das Projekt mit [Demontage und Rückbau](/leistungen/demontage-rueckbau/). Die anschließende [Bodenverlegung](/leistungen/bodenbelag-verlegen-berlin/) wird passend zum gewählten System eingeplant. Die tatsächliche Reihenfolge wird für das Objekt festgelegt."
+          "Müssen zuerst alte Einbauten entfernt werden, beginnt das Projekt mit [Demontage und Rückbau](/leistungen/demontage-rueckbau/). Die anschließende [Bodenverlegung](/leistungen/bodenbelag-verlegen-berlin/) wird passend zum gewählten System eingeplant. Die tatsächliche Reihenfolge wird für das Objekt festgelegt.",
+          "Neue Gipskartonflächen sind nach dem Verspachteln der Fugen noch nicht fertig gestaltet. Ob sie gestrichen oder tapeziert werden, wird vorher festgelegt; [Malerarbeiten](/leistungen/malerarbeiten-berlin/) und [Tapezieren](/leistungen/tapezieren-berlin/) stimmen wir dafür gesondert mit einem Fachbetrieb ab.",
+          "Wird eine Gewerbefläche neu aufgeteilt, muss die alte Ausstattung meist zuerst heraus. Akten, Mobiliar und Einbauten werden dann im Rahmen einer [Büroauflösung](/leistungen/bueroaufloesung-berlin/) getrennt geplant."
         ]
       },
       {
@@ -265,6 +268,7 @@ export const constructionServices: Service[] = [
         "a": "Ja, beide Arbeiten lassen sich gemeinsam anfragen. Die Reihenfolge hängt vom Wand- und Bodensystem, den Anschlussdetails und der späteren Nutzung ab. Bereits gekaufte Materialien oder beauftragte Betriebe sollten bei der Anfrage genannt werden. So können Übergänge und Termine vor Beginn passend abgestimmt werden."
       }
     ],
+    "guides": ["geerbte-wohnung-verkaufsfertig-machen"],
     "related": [
       "innenausbau-berlin",
       "demontage-rueckbau",
@@ -387,6 +391,7 @@ export const constructionServices: Service[] = [
         "a": "Nein. Wand- und Deckenanstrich, neue Tapeten, Türen und Heizkörper sind unterschiedliche Leistungen. Nennen Sie alle gewünschten Arbeiten, damit der Fachbetrieb sie getrennt aufnehmen kann. Welche Vorbereitung und Materialien enthalten sind, muss im Angebot stehen. Auch Schutzmaßnahmen und die Nutzung der Räume während der Arbeiten werden vor Beginn vereinbart."
       }
     ],
+    "guides": ["geerbte-wohnung-verkaufsfertig-machen"],
     "related": [
       "tapezieren-berlin",
       "trockenbau-berlin",
@@ -502,6 +507,7 @@ export const constructionServices: Service[] = [
         "a": "Ein Anstrich ist nur enthalten, wenn er ausdrücklich vereinbart wurde. Manche Wandbekleidungen werden gestrichen, andere bleiben in ihrer fertigen Gestaltung sichtbar. Tapetenart, Übergabezustand und Trocknungsablauf werden mit dem Fachbetrieb abgestimmt. Die anschließende Nutzung und mögliche Folgearbeiten sollten deshalb bereits vor Beginn feststehen."
       }
     ],
+    "guides": ["geerbte-wohnung-verkaufsfertig-machen"],
     "related": [
       "malerarbeiten-berlin",
       "trockenbau-berlin",
@@ -591,7 +597,8 @@ export const constructionServices: Service[] = [
         "h": "Möbelmontage als Teil Ihres gesamten Vorhabens",
         "p": [
           "Beim [Innenausbau](/leistungen/innenausbau-berlin/) sollte die Montage erst stattfinden, wenn Boden und Oberflächen im benötigten Zustand sind. Bei einer [Büroauflösung](/leistungen/bueroaufloesung-berlin/) wird dagegen vorher geklärt, welche Möbel weitergenutzt, abgebaut oder getrennt entsorgt werden.",
-          "Senden Sie Ihre Eckdaten über [Angebot anfragen](/angebot-anfragen/). Geben Sie neben den Möbeln auch Zugang, Wunschtermin und Zusatzwünsche an. Das Angebot unterscheidet Montage, Transport, Befestigung und Verpackungsentsorgung, damit der beauftragte Umfang nachvollziehbar bleibt."
+          "Senden Sie Ihre Eckdaten über [Angebot anfragen](/angebot-anfragen/). Geben Sie neben den Möbeln auch Zugang, Wunschtermin und Zusatzwünsche an. Das Angebot unterscheidet Montage, Transport, Befestigung und Verpackungsentsorgung, damit der beauftragte Umfang nachvollziehbar bleibt.",
+          "Ersetzen neue Möbel alte, sollten die alten Stücke gleich mit geplant werden. Werden sie nicht weitergegeben, können sie im selben Zug abgeholt werden – siehe [Sperrmüllabholung](/leistungen/sperrmuellabholung-berlin/)."
         ]
       }
     ],
