@@ -1,6 +1,6 @@
 # Schnellhelfer24: Produkt und Gestaltung
 
-Stand und Quellenabruf: 21.10.2026. Gemeinsame Arbeitsgrundlage für Codex und Claude. Entscheidung E-013; Tracker UX-2026-01 / FLOW-2026-01. Betreiberfreigabe am 21.10.2026 erhalten; erste Veröffentlichung 676e39e live geprüft. Konfigurationsabbruch inzwischen nach E-014 repariert, reguläre Live-Anfrage gespeichert und Mailübergabe bestätigt; Inbox-Bestätigung noch offen (OPS-2026-02).
+Stand und Quellenabruf: 21.10.2026. Gemeinsame Arbeitsgrundlage für Codex und Claude. Entscheidung E-013; Tracker UX-2026-01 / FLOW-2026-01. Betreiberfreigabe am 21.10.2026 erhalten; erste Veröffentlichung 676e39e live geprüft. Konfigurationsabbruch inzwischen nach E-014 repariert, reguläre Live-Anfrage gespeichert und Mailübergabe bestätigt; Betreiber bestätigt tatsächlichen Empfang im Spamordner; verbleibende Zustellqualität unter MAIL-2026-01.
 
 ## Produkt und Menschen
 
