@@ -13,6 +13,8 @@ Anfrage vor Mailversand gespeichert, Speicherfehler führen zum Fehlerweg, Statu
 
 Am 21.10.2026 nach Deployment 676e39e eine regulär ausgefüllte, ausdrücklich als technischer Test markierte Anfrage ohne Honeypot und mit gültigen Betreiber-Kontaktdaten abgeschickt. Ergebnis: HTTP 302 auf /angebot-anfragen/?fehler=1&grund=nicht-konfiguriert. Keine Empfangsreferenz, kein Nachweis einer gespeicherten Anfrage oder Mailzustellung. Dies ist ein anderer Befund als die unter OPS-2026-01 als unzuverlässig dokumentierte Honeypot-Probe; die damalige Betreiberbestätigung bleibt als historische Aussage bestehen.
 
+Reparatur nach E-014: Öffentliche Empfänger-/Absenderadresse als deployfester Standard, vorhandene private SMTP-Konfiguration gewinnt. Ohne sie bestehender mail()-Transport; Mailfehler auf Empfangsseite ausdrücklich sichtbar. Sieben lokale Anfragefälle einschließlich fehlender privater Kontaktwerte und zentralem Adressabgleich bestanden. Live-Ergebnis folgt. Inbox-Zustellung bleibt separat zu bestätigen.
+
 Keine Hostinger-/FTP-Zugangsdaten in den vorgesehenen Umgebungsvariablen, keine lokalen Konfigurationsdateien und keine GitHub-Deploy-Secrets verfügbar. Browsersteuerung startet nicht. Benötigt wird autorisierter Serverzugang, um domains/schnellhelfer24.de/sh24-config.php nach config.example.php mit echtem SMTP-Postfach und privater Ablage einzurichten. Keine Geheimnisse ins Repository oder in Chat-/Befehlsausgaben übernehmen. Danach reguläre Testanfrage, JSON-Ablage und tatsächlichen Posteingang prüfen. Der Fehlerweg zeigt jetzt einen verständlichen Hinweis und verweist auf Telefon/WhatsApp; Entwurf bleibt erhalten.
 
 ## Shipped · BAU-2026-01 · Innenausbau-Bereich, 19.10.2026

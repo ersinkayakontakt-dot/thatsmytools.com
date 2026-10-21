@@ -5,10 +5,13 @@ import {mkdtempSync,mkdirSync,cpSync,writeFileSync,readdirSync,readFileSync} fro
 import {tmpdir} from 'node:os';
 import {join,resolve,dirname} from 'node:path';
 import assert from 'node:assert/strict';
+import {site} from '../src/config/site.ts';
 const phpCandidate=['php',join(process.env.LOCALAPPDATA||'','Microsoft/WinGet/Packages/PHP.PHP.8.3_Microsoft.Winget.Source_8wekyb3d8bbwe/php.exe')].find(p=>spawnSync(p,['-r','echo 1;']).status===0);
 assert.ok(phpCandidate,'PHP 8 required');
 const php=spawnSync(phpCandidate,['-r','echo PHP_BINARY;'],{encoding:'utf8'}).stdout.trim();
 const root=resolve(import.meta.dirname,'..');
+const endpoint=readFileSync(join(root,'public/api/anfrage.php'),'utf8');
+for(const field of ['recipient','from']){const line=endpoint.split(/\r?\n/).find(l=>l.trim().startsWith("'"+field+"'"));assert.equal(line?.match(/=>\s*'([^']+)'/)?.[1],site.email,'Public PHP contact must match central site.email');}
 const dir=mkdtempSync(join(tmpdir(),'sh24-request-'));
 const web=join(dir,'site');mkdirSync(web);cpSync(join(root,'public/api'),join(web,'api'),{recursive:true,filter:p=>!p.includes('_storage')&&!p.endsWith('config.local.php')});
 const storage=join(dir,'private');let rejectMail=false,mailCount=0;
@@ -32,5 +35,7 @@ const blocked=join(dir,'blocked');mkdirSync(blocked);writeFileSync(join(blocked,
 r=await send();assert.match(r.headers.get('location'),/grund=speicher-nicht-verfuegbar/);assert.equal(mailCount,1);passed++;
 config.storageDir=storage;writeFileSync(join(web,'api/config.local.php'),'<?php return json_decode(base64_decode(\''+Buffer.from(JSON.stringify(config)).toString('base64')+'\'),true);');
 r=await send({},true);assert.equal(r.status,303);assert.match(r.headers.get('location'),/fotoHinweis=1/);assert.equal(records().length,3);assert.ok(records().some(x=>x.fotosAbgelehnt===1 && x.fotos.length===0));passed++;
+delete config.recipient;delete config.from;rejectMail=false;writeFileSync(join(web,'api/config.local.php'),'<?php return json_decode(base64_decode(\''+Buffer.from(JSON.stringify(config)).toString('base64')+'\'),true);');
+r=await send();assert.equal(r.status,303);assert.match(r.headers.get('location'),/versand=ok/);assert.equal(records().length,4);assert.equal(mailCount,2);passed++;
 console.log(passed+' request integration cases passed; no external mail; synthetic files: '+dir);
 }finally{const stopped=new Promise(r=>server.once('exit',r));server.kill();await stopped;await new Promise(r=>smtp.close(r));}

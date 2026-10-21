@@ -65,6 +65,8 @@ Unternehmensdaten ausschließlich in `src/config/site.ts`. Nie im Markup
 wiederholen. Steht dort ein Platzhalter, wird der Kontaktweg überall
 ausgeblendet statt einen toten Link zu erzeugen.
 
+PHP-Ausnahme für die öffentlichen Kontaktdaten: recipient/from in anfrage.php sind deployfeste Standardwerte nach E-014. audit:request:selftest gleicht sie mit site.email ab; private SMTP-Konfiguration hat Vorrang. Keine Zugangsdaten versionieren.
+
 ### 3. Publish Guard
 
 `src/lib/publishGuard.ts` entscheidet über Indexierbarkeit. Wer `status:

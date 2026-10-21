@@ -256,9 +256,10 @@ Nur beim allerersten Mal nötig, danach nie wieder:
    **Die Datei enthält jetzt ein Passwort.** Rechte auf 600 setzen und
    niemals ins Repository aufnehmen.
 
-   Ohne diese Datei nimmt das Formular keine Anfragen an, sondern leitet
-   mit einer Fehlermeldung zurück. Das ist Absicht: besser ein sichtbarer
-   Fehler als Anfragen, die still verschwinden.
+   Seit E-014 ist die öffentliche Firmenadresse als Standard im Endpunkt vorhanden.
+   Ohne private Datei werden Anfragen gespeichert und über den vorhandenen PHP-mail()-Weg
+   versendet. SMTP benötigt weiterhin die private Konfiguration. Eine explizit leere
+   Empfängeradresse bleibt ein Fehler. Die tatsächliche Zustellung ist separat zu prüfen.
 
 3. **Schreibrechte für `api/_storage`** setzen (0700 genügt).
    Noch sicherer: `storageDir` in `config.local.php` auf ein Verzeichnis

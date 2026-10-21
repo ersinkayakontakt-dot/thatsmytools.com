@@ -1,5 +1,16 @@
 # Entscheidungsprotokoll
 
+## E-014 · Öffentliche Formular-Grundkonfiguration übersteht Deployment (21.10.2026)
+
+Betreiber meldet vorher funktionierenden Versand und fordert sofortige Reparatur. Der Programmvergleich zeigt unveränderten SMTP-/mail()-Transport und Konfigurationslader; der beobachtete Abbruch erfolgt vorher wegen leerem Empfänger. Hostingers Git-Abgleich kann unversionierte lokale Konfiguration löschen. Die konkrete entfernte Datei lässt sich ohne Serverzugriff nicht rekonstruieren.
+
+Die bereits öffentliche Firmenadresse hello@schnellhelfer24.de ist deshalb jetzt deployfester Standard für Empfänger und Absender im PHP-Endpunkt. Der Anfrage-Selbsttest gleicht beide mit site.email ab. Jede vorhandene private Konfiguration hat unverändert Vorrang; ein dort explizit leer gesetzter Empfänger bleibt ein Konfigurationsfehler. Keine SMTP-Passwörter, neuen Empfänger oder Messfreigaben im Repository. Ohne SMTP-Konfiguration wird der bestehende mail()-Weg genutzt. Das stellt die Anfrageannahme wieder her, ist aber keine Zusage tatsächlicher Inbox-Zustellung.
+
+Die Speicherung vor Versand bleibt verbindlich. Bei abgelehnter Mailübergabe zeigt die Empfangsseite einen Hinweis und direkte Kontaktmöglichkeiten; eine Mailübergabe wird nicht als Inbox-Zustellung ausgegeben. OPS-2026-02 bleibt bis zur Live-Prüfung und Inbox-Bestätigung entsprechend differenziert.
+
+Vier Hüte: Staff – öffentliche Grundwerte von geheimen Zugangsdaten getrennt; Architektur – vorhandener Endpunkt und Transport, keine neue API; Daten – gleiche geschützte Ablage, Aufbewahrung und Empfänger; QA – sieben lokale Integrationsfälle plus SMTP-, Konfigurations- und Live-Tests. Sicherheitscheck: Empfänger nicht aus Requestdaten, keine Clientkonfiguration und keine Geheimnisse im Status; Restproblem Zustellbarkeit dokumentiert.
+
+
 ## E-013 · Menschliche Startseite und verlässliche Anfrage (21.10.2026)
 
 Betreiberauftrag: warme, hochwertige Gestaltung und zusammenhängender Weg von der Startseite bis zum echten Eingang. Ersetzt die frühere rein eckige Schwarz/Orange-Gestaltungsrichtung; keine Änderung von Geschäftsmodell, URLs oder Technologie. Gemeinsame Regeln, Benchmark mit Quellen und Priorisierung: docs/PRODUKT-UND-DESIGN.md.

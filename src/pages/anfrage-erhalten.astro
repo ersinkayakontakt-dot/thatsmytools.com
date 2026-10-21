@@ -33,6 +33,7 @@ const prep = [
       <p class="lede" data-receipt-message>Nach einer erfolgreich übermittelten Anfrage finden Sie hier die nächsten Schritte. Ein Auftrag oder Termin wird erst gesondert bestätigt.</p>
       <p class="receipt-reference" data-receipt-reference hidden></p>
       <p data-receipt-photos hidden></p>
+      <p data-mail-warning hidden></p>
       <a class="btn btn--primary" data-receipt-start href="/angebot-anfragen/">Vorhaben anfragen</a>
       <noscript><p>Wenn Sie direkt nach dem Absenden hierhin weitergeleitet wurden, wurde Ihre Anfrage auf dem Server angenommen. Preis und Termin sind damit noch nicht bestätigt.</p></noscript>
     </div>
@@ -287,6 +288,9 @@ const prep = [
     var accepted = new URLSearchParams(window.location.search).get('fotos');
     if (/^\d{1,2}$/.test(accepted || '')) {photoMessage.textContent=accepted+' Fotos auf dem Server angenommen.';photoMessage.hidden=false;}
     if (new URLSearchParams(window.location.search).get('fotoHinweis') === '1') {photoMessage.textContent+=' Nicht alle Bilder konnten angenommen werden. Ihre Textanfrage ist gespeichert. Bitte reichen Sie fehlende Fotos über einen Kontaktweg nach und nennen Sie Ihre Referenz.';photoMessage.hidden=false;}
+    if (new URLSearchParams(window.location.search).get('versand') === 'fehlgeschlagen') {
+      var mailWarning=document.querySelector('[data-mail-warning]');mailWarning.textContent='Ihre Anfrage wurde gespeichert, aber die E-Mail-Benachrichtigung konnte nicht versendet werden. Bitte melden Sie sich zusätzlich telefonisch oder per WhatsApp und nennen Sie Ihre Referenz.';mailWarning.hidden=false;
+    }
     try { localStorage.removeItem('sh24_check'); } catch (err) { /* lokaler Speicher kann gesperrt sein */ }
     try {
       var raw = sessionStorage.getItem('sh24_anfrage');
