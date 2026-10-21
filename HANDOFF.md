@@ -1,3 +1,7 @@
+# Deployment 21.10.2026: hostinger-live 5c0aad0 (Quelle e6858ad), Live-Prüfung offen
+
+Auf ausdrücklichen Betreiberauftrag („deploy und push“) und in Kenntnis der Falle aus `docs/HOSTINGER-AKTUALISIEREN.md` über `hostinger-live` bereitgestellt: SEO-2026-05, E-015, BILD-2026-03 und TOOL-2026-01. Aus der Cloud-Umgebung war die Domain nicht erreichbar, deshalb **nicht live geprüft** und **kein IndexNow** gesendet. Offen: Übernahme durch Hostinger prüfen (neue Ratgeber HTTP 200, Bilder geladen), Honeypot-Probe und eine Testanfrage, im Dateimanager `api/_storage/` auf vorhandene Anfragen prüfen, danach `npm run indexnow` und `.indexnow-state.json` committen, beide Ratgeber in der Search Console einreichen.
+
 # SEO-Runde 21.10.2026 (Quellstand, noch nicht live)
 
 Branch `claude/schnellhelfer24-fortsetzung-w5m31t` (auf Quellstand c506629 aufgesetzt): SEO-2026-05 (Linkgraph 11 → 0 Warnungen, zwei Ratgeber: geerbte Wohnung verkaufsfertig, Laminat oder Vinyl), E-015 (Komplettauftrag-Abschnitte auf Nachlass und Seniorenumzug; Kostenseiten erst mit Preisdaten), TOOL-2026-01 (Eintrags-Kit-Pfad unter Windows) und die korrigierte Handwerksrecht-Bestandsprüfung. 80 Seiten / 60 indexierbar, 0 Fehler, 0 Warnungen. **Vor dem Deployment in den Quellbranch übernehmen**, dann bauen, deployen, IndexNow, und in der Search Console die beiden neuen Ratgeber zur Indexierung einreichen.
