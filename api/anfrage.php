@@ -38,12 +38,13 @@ declare(strict_types=1);
 /* ------------------------------------------------------------------ */
 
 $config = [
-    // Empfänger der Anfragen. MUSS in config.local.php gesetzt werden.
-    'recipient'      => '',
+    // Öffentliche Firmenadresse als deployfester Standard. Private Konfiguration
+    // hat Vorrang; SMTP-Zugangsdaten bleiben ausschließlich dort.
+    'recipient'      => 'hello@schnellhelfer24.de',
 
     // Absender. Sollte eine Adresse der eigenen Domain sein, sonst
     // landen die Mails im Spam (SPF/DKIM).
-    'from'           => '',
+    'from'           => 'hello@schnellhelfer24.de',
     'fromName'       => 'Schnellhelfer24 Website',
 
     'siteUrl'        => 'https://schnellhelfer24.de',
@@ -643,5 +644,5 @@ if (!$sent) {
 
 $successUrl = $config['siteUrl'] . $config['successPath'];
 $separator = str_contains($successUrl, '?') ? '&' : '?';
-header('Location: ' . $successUrl . $separator . 'fotos=' . count($saved) . '&fotoHinweis=' . ($record['fotosAbgelehnt'] > 0 ? '1' : '0') . '&ref=' . rawurlencode($ref), true, 303);
+header('Location: ' . $successUrl . $separator . 'fotos=' . count($saved) . '&fotoHinweis=' . ($record['fotosAbgelehnt'] > 0 ? '1' : '0') . '&versand=' . ($sent ? 'ok' : 'fehlgeschlagen') . '&ref=' . rawurlencode($ref), true, 303);
 exit;
