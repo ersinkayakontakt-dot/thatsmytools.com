@@ -1,12 +1,16 @@
 # Handoff: maximale Auffindbarkeit weiterbauen
 
+## Live bestätigt · 21.10.2026
+
+Hostinger übernimmt 3ea7c30. Alle 58 indexierbaren Seiten HTTP 200 und aktuelle Titel, Möbelmontage/Maler/Tapezieren erreichbar, Trockenbau korrigiert. Startseite mit acht Baukarten, Bildprüfung live ohne Fehler, Möbelmontage einmal im Formular. robots.txt und IndexNow-Schlüsseldatei korrekt. 53 neue/geänderte URLs anschließend per IndexNow gemeldet, HTTP 200 angenommen. DEPLOY-2026-02, RENO-2026-01, SEO-2026-03 und SEC-2026-03 im Tracker erledigt. Noch offen: echte Suchdaten, 13 Linkgewichtungs-Hinweise, echte Referenzfotos und weitere bestätigte Unternehmensprofile. Frühere Deployment-Blockaden darunter sind historisch.
+
 ## Aktuell 21.10.2026: SEO-2026-03 / SEC-2026-03
 
 Möbelmontage vollständig ergänzt, acht Baukarten auf Startseite, Foto, Formular und Sitemap. Natürliche Kontextlinks in fünf Leistungen und vier Ratgebern; Suchbegriffe, Bildschema und llms.txt präzisiert. Suchbots korrekt auf öffentliche Inhalte begrenzt, Applebot und Apple-Training getrennt. Crawler-Prüfung durch Regelgruppen/Pfadabgleich ersetzt; Gegenbeispiele ergänzt.
 
 78 Seiten / 58 indexierbar, 0 Fehler, 13 Linkgraph-Hinweise statt vorher 26. Build, Check, Inhalt, Buildaudit, SEO, 16/16 SEO-Selbsttests, Ereignisprüfung und 83 Crawlerchecks bestanden. Darstellung bei sechs Breiten ohne Fehler. Vollständiger Status und Quellen: docs/SEO-STATUS-2026-10-21.md.
 
-Live-Zweig 3ea7c30 bereitgestellt. Hostinger weiterhin gesondert prüfen und bei alter Version manuell deployen; Browserzugriff startet hier weiterhin nicht, keine FTP-Secrets vorhanden. IndexNow bewusst nur vorbereitet, nicht gesendet. Suchleistungsdaten aus GSC/Bing fehlen.
+Live-Zweig 3ea7c30 bereitgestellt. Live-Prüfung und IndexNow inzwischen abgeschlossen, siehe aktuellen Status oben. Suchleistungsdaten aus GSC/Bing fehlen.
 
 ## Aktuell 20.10.2026: RENO-2026-01 / DEPLOY-2026-02
 

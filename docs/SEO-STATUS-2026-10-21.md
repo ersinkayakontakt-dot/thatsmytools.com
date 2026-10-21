@@ -11,13 +11,17 @@
 
 78 HTML-Seiten, 58 indexierbar. Build, Typecheck, Inhaltsaudit, Buildaudit und SEO erfolgreich; 16/16 absichtlich eingebaute SEO-Verletzungen erkannt. 83 semantische Crawlerprüfungen bestanden. Layout-/Bildprüfung bei 320, 375, 768, 1280, 1664 und 1920 px ohne Fehler.
 
+## Live-Kontrolle und Indexmeldung
+
+Hostinger hat den Branch hostinger-live 3ea7c30 inzwischen übernommen. Alle 58 indexierbaren URLs liefern HTTP 200 und stimmen in ihren Titeln mit dem Build überein. robots.txt und IndexNow-Schlüsseldatei live korrekt. Die Startseite zeigt acht bebilderte Baukarten, Trockenbau die beiden korrigierten Bilder; Möbelmontage, Maler und Tapezieren sind erreichbar. Browserkontrolle ohne defekte Bilder oder mobilen Überlauf.
+
+IndexNow wurde erst danach ausgeführt: 53 neue/geänderte URLs mit HTTP 200 angenommen. Das bestätigt den Empfang der Meldung, keine Aufnahme in einen Index oder eine Rangposition. .indexnow-state.json aktualisiert.
+
 ## Noch offen
 
-1. Hostinger muss den bereitgestellten Branch hostinger-live übernehmen. Die Domain lieferte am 21.10.2026 weiterhin den Stand vom 19.10.; Malerarbeiten waren noch 404. Das ist derzeit der wichtigste Sichtbarkeitsblocker.
-2. Danach Live-Seiten, Fotos, robots.txt, Sitemap und IndexNow-Schlüsseldatei kontrollieren und erst dann IndexNow ausführen. Der vorbereitete Probelauf sendet nichts.
-3. Reale Daten aus Google Search Console und Bing Webmaster Tools fehlen. Ohne sie sind Ranking, Sichtbarkeit und Entwicklung einzelner Suchanfragen unbekannt.
-4. 13 Linkgewichtungs-Hinweise verbleiben, vor allem zwischen neuen Ausbauleistungen und Rückbau sowie zwischen Innenausbau und etablierten Räumungsangeboten. Inhalte nur dort weiter verknüpfen, wo dies Nutzerfragen beantwortet; Prüfregeln nicht absenken.
-5. Bing-/Apple-Unternehmensprofile und eigene freigegebene Referenzfotos bleiben anhand echter Betreiberangaben zu vervollständigen. Keine Einträge wurden angelegt oder fremde Referenzen behauptet.
+1. Reale Daten aus Google Search Console und Bing Webmaster Tools fehlen. Ohne sie sind Ranking, Sichtbarkeit und Entwicklung einzelner Suchanfragen unbekannt.
+2. 13 Linkgewichtungs-Hinweise verbleiben, vor allem zwischen neuen Ausbauleistungen und Rückbau sowie zwischen Innenausbau und etablierten Räumungsangeboten. Inhalte nur dort weiter verknüpfen, wo dies Nutzerfragen beantwortet; Prüfregeln nicht absenken.
+3. Bing-/Apple-Unternehmensprofile und eigene freigegebene Referenzfotos bleiben anhand echter Betreiberangaben zu vervollständigen. Keine Einträge wurden angelegt oder fremde Referenzen behauptet.
 
 ## Überprüfte Primärquellen
 

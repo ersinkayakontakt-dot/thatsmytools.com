@@ -8,7 +8,7 @@ SEO wird durch hilfreiche Kontextabschnitte in fünf Leistungen und vier Ratgebe
 
 Spezifische Suchbot-Gruppen behalten öffentliche Seiten, Bilder und Styles zugänglich, schließen aber API, Bestätigung und Fehlerparameter aus. Applebot-Extended wurde nach Abgleich mit der Apple-Dokumentation als Trainingssteuerung korrigiert; Applebot bleibt für die Suche erlaubt. Die bestehende Trainingspolitik wird beibehalten. Die Buildprüfung prüft nun die tatsächlich wirksamen Gruppen/Pfadregeln statt eines falschen Regex-Präfixtreffers. Zwei zusätzliche Gegenbeispiele und 83 semantische Checks bestätigen öffentliche Zugänglichkeit, interne Ausschlüsse und Vorrangregeln.
 
-Grenze: Hostinger liefert noch Stand 19.10.2026. IndexNow ist vorbereitet, aber wird vor erfolgreicher Live-Übernahme nicht an Suchdienste gesendet. Es liegen keine GSC-/Bing-Leistungsdaten vor; Einträge und Nennungen werden nicht erfunden. Offizielle Grundlagen siehe docs/SEO-STATUS-2026-10-21.md.
+Live-Verifikation am 21.10.: Hostinger hat 3ea7c30 übernommen, alle 58 indexierbaren Seiten und Crawlerdatei stimmen. IndexNow erst danach gesendet: 53 URLs mit HTTP 200 angenommen. Es liegen keine GSC-/Bing-Leistungsdaten vor; Einträge und Nennungen werden nicht erfunden. Offizielle Grundlagen siehe docs/SEO-STATUS-2026-10-21.md.
 
 ## E-011 · Malerarbeiten, Tapezieren und fachlich passende Fotos (20.10.2026)
 
