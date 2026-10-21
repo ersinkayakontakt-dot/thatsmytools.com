@@ -42,6 +42,10 @@ Telefon, sichtbare Nummer und WhatsApp zentral auf +49 176 44457385 umgestellt. 
 
 Beim Regenerieren mit npm run kit schlägt der Dateipfad auf diesem Rechner fehl (doppeltes Laufwerkspräfix C:\C:\...). Bestehendes docs/EINTRAGS-KIT.md für KONTAKT-2026-01 manuell abgeglichen. Generator in einer gesonderten Werkzeugkorrektur auf fileURLToPath statt URL.pathname prüfen. Kein Hindernis für Website-Build oder Deployment.
 
+## Shipped · KONTAKT-2026-02 · Allgemeiner WhatsApp-Text
+
+Am 21.10.2026 den zentralen Nachrichtentext auf „Hallo, ich interessiere mich für Ihre Dienstleistungen und möchte mein Vorhaben mit Ihnen besprechen.“ geändert. Alle fünf Projektprüfungen bestanden; alle 353 WhatsApp-Links führen mit dem neuen Text zur aktuellen Nummer. Deployment 270dc20 auf Startseite, Kontakt und Möbelmontage live bestätigt.
+
 ---
 
 Diese Website ist inhaltlich vollständig gebaut, aber sie enthält bewusst

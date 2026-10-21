@@ -10,7 +10,7 @@ import { site, realValue, telHref, whatsappHref } from '../config/site';
  */
 
 const waText =
-  'Hallo, ich möchte eine Einschätzung für eine Räumung bzw. einen Umzug. Ich schicke Ihnen gleich Fotos.';
+  'Hallo, ich interessiere mich für Ihre Dienstleistungen und möchte mein Vorhaben mit Ihnen besprechen.';
 
 export const phone = {
   available: Boolean(realValue(site.phone)),
