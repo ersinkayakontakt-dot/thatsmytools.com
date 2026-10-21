@@ -1,6 +1,6 @@
 # Schnellhelfer24: Produkt und Gestaltung
 
-Stand und Quellenabruf: 21.10.2026. Gemeinsame Arbeitsgrundlage für Codex und Claude. Entscheidung E-013; Tracker UX-2026-01 / FLOW-2026-01. Betreiberfreigabe am 21.10.2026 erhalten; erste Veröffentlichung 676e39e live geprüft. Formularempfang durch fehlende Serverkonfiguration blockiert (OPS-2026-02).
+Stand und Quellenabruf: 21.10.2026. Gemeinsame Arbeitsgrundlage für Codex und Claude. Entscheidung E-013; Tracker UX-2026-01 / FLOW-2026-01. Betreiberfreigabe am 21.10.2026 erhalten; erste Veröffentlichung 676e39e live geprüft. Konfigurationsabbruch inzwischen nach E-014 repariert, reguläre Live-Anfrage gespeichert und Mailübergabe bestätigt; Inbox-Bestätigung noch offen (OPS-2026-02).
 
 ## Produkt und Menschen
 
@@ -74,7 +74,7 @@ Prüfergebnis und Screenshot-Inventar: docs/PRODUKT-QA-2026-10-21.md.
 
 Vorschlag: zunächst zwei Wochen belastbare Ausgangsdaten, dann vier Wochen Entwurf vergleichen. Ziele sind Hypothesen: relative Anfrageabschlussquote +15 %, Abbruch vor Kontakt -15 %, Rückfragen zu fehlendem Umfang -20 %. Erst reale Stichprobe und saisonale/Traffic-Unterschiede prüfen; keine erreichte Steigerung behaupten. Bestehende estimate-/lead-Ereignisse verwenden; keine personenbezogenen Freitexte in Analysen. Fehlgeschlagene Übertragung darf nicht als eingegangene Anfrage zählen.
 
-Betreiberfreigabe liegt vor. Die reguläre Live-Testanfrage nach Veröffentlichung wurde mit nicht-konfiguriert abgewiesen. Serverzugang und SMTP-Konfiguration fehlen; nach Behebung Posteingang und JSON-Ablage prüfen (OPS-2026-02). Echtes SMTP-Postfach und Zustellbarkeit können lokale Tests nicht beweisen. Für weitere Vorteile fehlen belastbare Preise/Kapazitäten, echte Einsatzfotos und reale GSC/Bing-/Conversiondaten; diese Punkte stehen im Tracker. Kein Kontozugang wird in Dokumentation abgelegt.
+Betreiberfreigabe liegt vor. Die erste reguläre Live-Testanfrage wurde mit nicht-konfiguriert abgewiesen. E-014 ergänzt deployfeste öffentliche Kontaktwerte, ohne private SMTP-Einstellungen zu überschreiben. Nach Reparatur: Browser-Test SH-261021-DAF10 gespeichert und Mailübergabe vom Server angenommen. Tatsächlichen Posteingang noch bestätigen (OPS-2026-02); bei ausbleibender Zustellung SMTP-Konfiguration über privaten Serverzugang prüfen. Echtes SMTP-Postfach und Zustellbarkeit können lokale Tests nicht beweisen. Für weitere Vorteile fehlen belastbare Preise/Kapazitäten, echte Einsatzfotos und reale GSC/Bing-/Conversiondaten; diese Punkte stehen im Tracker. Kein Kontozugang wird in Dokumentation abgelegt.
 
 ## Quellen
 

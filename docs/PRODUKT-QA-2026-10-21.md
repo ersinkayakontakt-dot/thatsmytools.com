@@ -36,6 +36,12 @@ Vier-Hut-Releaseprüfung: Staff – gültigen Build übertragen; Architektur –
 
 Die Fehlerrückmeldung wurde anschließend über 4e8105b veröffentlicht und per Live-HTML bestätigt. Lokaler Browsercheck: sichtbarer Hinweis bei fehler=1, Kontaktlink, kein Überlauf und kein JavaScript-Fehler.
 
+## Reparaturprüfung E-014
+
+Live 2a8a55f / Quelle 5051448. Sieben lokale HTTP-/PHP-Fälle bestanden, einschließlich Standardkontaktwerte ohne private Empfänger-/Absenderangaben; beide PHP-Adressen werden gegen zentrale site.email geprüft. SMTP-Selbsttest 14/14, Konfigurations-Selbsttest 6/6, PHP-Syntax, Build, Astro-Check, Inhalts-/Build-/SEO-Audits bestanden. Darstellung eines echten Mailfehlers auf Empfangsseite bei 375 px ohne Überlauf oder JavaScript-Fehler geprüft.
+
+Ein schneller erster Browsertest endete ohne Referenz und zählt nicht als Erfolg. Weitere Live-Testanfrage wurde zunächst durch automatische Freigabeprüfung blockiert; Betreiber hat sie anschließend ausdrücklich erlaubt. Danach komplette Formularbedienung im Browser: leerer Honeypot, über zehn Sekunden Ausfüllzeit, Empfangsreferenz SH-261021-DAF10, versand=ok und korrekte Empfangsüberschrift ohne Mailwarnung. Belegt Speicherung vor Mailversand und erfolgreiche Mailübergabe; tatsächlicher Posteingang wird separat beim Betreiber erfragt. Screenshot reparatur-live-empfang.png liegt im gleichen Screenshotverzeichnis.
+
 ## Noch offen
 
-SMTP-Konfiguration beim Hoster wiederherstellen. Anschließend tatsächliche SMTP-Zustellung, Fotoannahme und private JSON-Ablage kontrollieren. Lokale Protokolltests beweisen keine Zustellung ins echte Postfach. Bei Mailausfall muss die gespeicherte Anfrage betrieblich bearbeitet werden. Keine vorhandene automatische Disposition, authentifizierte Projektverfolgung oder Sofortbuchung; deshalb keine solche Zusage in der Oberfläche. Ziele und Benchmarkgrenzen: docs/PRODUKT-UND-DESIGN.md.
+Tatsächlichen Eingang der freigegebenen Testmail im Betreiberpostfach bestätigen. Bei ausbleibender Zustellung private SMTP-Konfiguration beim Hoster prüfen. Fotoannahme war nicht Bestandteil dieses letzten Tests. Lokale Protokolltests beweisen keine Zustellung ins echte Postfach. Bei Mailausfall muss die gespeicherte Anfrage betrieblich bearbeitet werden. Keine vorhandene automatische Disposition, authentifizierte Projektverfolgung oder Sofortbuchung; deshalb keine solche Zusage in der Oberfläche. Ziele und Benchmarkgrenzen: docs/PRODUKT-UND-DESIGN.md.
