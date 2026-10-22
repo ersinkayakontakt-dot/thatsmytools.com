@@ -1,4 +1,6 @@
-# Wachstumsphase 22.10.2026 (Quellstand, noch nicht live)
+# Wachstumsphase 22.10.2026 · bereitgestellt, Live-Prüfung offen
+
+Betreiberfreigabe „go“ am 22.10.2026. Quelle c2610ca, hostinger-live 0a6afbd. Aus der Cloud-Umgebung war die Domain nicht erreichbar: **nicht live geprüft, kein IndexNow gesendet.** Offen in dieser Reihenfolge: (1) Übernahme prüfen – `/leistungen/wohnungsaufloesung-berlin/` zeigt „Wohnung zum festen Termin übergeben“, `/anfrage-erhalten/` mobil ohne Ein-Wort-Zeilen, `/api/betrieb.php` liefert 503 „nicht eingerichtet“ bis zur Einrichtung, `/api/lib/nachfrage.php` 403; (2) Zugang einrichten (docs/NACHFRAGE-SYSTEM.md § 6) und eine markierte Testanfrage senden; (3) `npm run indexnow`, `.indexnow-state.json` committen.
 
 GROW-2026-01 Nachfrageregister + Betriebsbereich, GROW-2026-02 Übergabe zum festen Termin, UX-2026-02 Bestätigungsseite. Gemeinsame Quelle: docs/NACHFRAGE-SYSTEM.md (Hypothesen, Betrieb, Entscheidungskriterien), E-016. Vor Veröffentlichung: Betreiberfreigabe, danach Zugang einrichten (§ 6). Zusätzlicher Pflicht-Selbsttest: `npm run audit:demand:selftest`.
 

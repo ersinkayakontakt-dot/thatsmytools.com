@@ -1,14 +1,14 @@
 # CONTENT-TODO: Was noch an echten Daten fehlt
 
-## Shipped (Quelle) · GROW-2026-01 · Nachfrageregister und Betriebsbereich, 22.10.2026
+## Shipped (bereitgestellt 0a6afbd, Live-Prüfung offen) · GROW-2026-01 · Nachfrageregister und Betriebsbereich, 22.10.2026
 
 Personenfreier Registereintrag je Anfrage (`lib/nachfrage.php`), freiwillige Frage „Ist vor Ihrer Entscheidung noch etwas offen?“, Betriebsbereich `/api/betrieb.php` mit Ergebniserfassung, Nachfrageverzeichnis und CSV. Anonymisierung nach 180 Tagen. Datenschutzerklärung § 4 ergänzt. `audit:demand:selftest` (Listenabgleich, 53 Einheitsfälle, Integration) und 33 Browserprüfungen bestanden. **Offen:** Betreiberfreigabe und Deployment; Zugang einrichten (`php scripts/betrieb-passwort.php`, docs/NACHFRAGE-SYSTEM.md § 6); Datenschutzabschnitt anwaltlich mitprüfen (A5). Erfolg: ≥ 80 % Ergebnisse binnen 14 Tagen, ≥ 2 Entscheidungen aus ≥ 5 Anfragen in 8 Wochen.
 
-## Shipped (Quelle) · GROW-2026-02 · Übergabe zum festen Termin, 22.10.2026
+## Shipped (bereitgestellt 0a6afbd, Live-Prüfung offen) · GROW-2026-02 · Übergabe zum festen Termin, 22.10.2026
 
 Baustein `HandoverOffer.astro` auf Wohnungs-, Nachlass-, Haushaltsauflösung und Partnerseite; Formularschalter bei Räumungsleistungen mit Pflicht-Übergabetermin und Anforderungsliste (Zuständigkeit eigen/Fachbetrieb/nicht angeboten); Mail gruppiert, Betreff „Übergabe“; Bestätigungsseite mit Ablauf ohne Termin-/Preiszusage. Messung im Verzeichnis gegen alle übrigen Anfragen. Entscheidung nach 10 Pilotfällen oder 12 Wochen (Kriterien docs/NACHFRAGE-SYSTEM.md § 4). Ereignis `handover_cta_click` ergänzt (wirksam erst mit aktivierter Messung). **Offen:** Fachbetrieb für Übergaben benennen.
 
-## Shipped (Quelle) · UX-2026-02 · Bestätigungsseite: Schritttext in schmaler Spalte
+## Shipped (bereitgestellt 0a6afbd, Live-Prüfung offen) · UX-2026-02 · Bestätigungsseite: Schritttext in schmaler Spalte
 
 „Wie es weitergeht“ auf `/anfrage-erhalten/` brach mobil Wort für Wort um (Absatz fiel in die Ziffernspalte; 3.694 → 853 px). Eine CSS-Regel in `.steps`; betraf auch Einsatzberichte. Ratgeber-Schritte unverändert.
 
