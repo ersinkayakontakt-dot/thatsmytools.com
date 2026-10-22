@@ -22,6 +22,12 @@ import movingBoxes from '../assets/umzug-kartons-tragen.jpg';
 
 import furnitureAssembly from '../assets/moebelmontage-anleitung-werkzeug.jpg';
 
+import clutterBag from '../assets/messiwohnung-muellsack-handschuhe.jpg';
+import bulkyTable from '../assets/sperrmuell-tisch-heraustragen.jpg';
+import cellarBoxes from '../assets/keller-kartons-hinter-gitter.jpg';
+import floorSamples from '../assets/boden-dielenmuster-vergleich.jpg';
+import readyApartment from '../assets/verkaufsfertig-leere-wohnung.jpg';
+
 export type ImageOrigin = 'stock' | 'company' | 'customer-approved';
 export type ImageRole = 'hero' | 'inline';
 
@@ -44,6 +50,11 @@ export interface SiteImage {
  * IMAGE-SOURCES.md.
  */
 export const siteImages: readonly SiteImage[] = [
+  { pageId: 'service:messiwohnung-raeumen', role: 'hero', src: clutterBag, alt: 'Hände in Arbeitshandschuhen halten einen offenen schwarzen Müllsack mit gemischtem Abfall', caption: 'Beispielbild: Abfall wird mit Schutzhandschuhen gesammelt und getrennt.', imageOrigin: 'stock', showsPeople: true },
+  { pageId: 'service:sperrmuellabholung-berlin', role: 'hero', src: bulkyTable, alt: 'Mann trägt einen Holztisch durch ein Wohnzimmer, das Sofa ist mit Folie abgedeckt', caption: 'Beispielbild: ein ausrangiertes Möbelstück wird aus der Wohnung getragen.', imageOrigin: 'stock', showsPeople: true },
+  { pageId: 'service:kellerentruempelung-berlin', role: 'hero', src: cellarBoxes, alt: 'Gestapelte Kartons und ein Kanister hinter einem vergitterten Kellerfenster', caption: 'Beispielbild: eingelagerte Kartons hinter einem Kellerfenster.', imageOrigin: 'stock', showsPeople: false },
+  { pageId: 'guide:laminat-oder-vinyl-mietwohnung', role: 'hero', src: floorSamples, alt: 'Hände halten drei Dielenmuster in hellen und mittleren Holzdekoren zum Vergleich', caption: 'Beispielbild: Dielenmuster werden vor der Auswahl verglichen.', imageOrigin: 'stock', showsPeople: true },
+  { pageId: 'guide:geerbte-wohnung-verkaufsfertig-machen', role: 'hero', src: readyApartment, alt: 'Leerer, heller Raum mit hellem Holzdekorboden, Heizkörpern und grau gestrichener Wand', caption: 'Beispielbild: eine geräumte, hergerichtete Wohnung vor Verkauf oder Vermietung.', imageOrigin: 'stock', showsPeople: false },
   { pageId: 'service:moebelmontage-berlin', role: 'hero', src: furnitureAssembly, alt: 'Montageanleitung mit Schraubendrehern, Holzdübeln und Verbindungsschrauben', caption: 'Beispielbild: Anleitung und Beschläge für den Aufbau von Fertigmöbeln.', imageOrigin: 'stock', showsPeople: false },
   { pageId: 'service:trockenbau-berlin', role: 'hero', src: constructionDrywall, alt: 'Handwerker schneidet eine Gipskartonplatte vor einer bereits beplankten Wand', caption: 'Beispielbild: Zuschnitt von Gipskartonplatten für den Trockenbau.', imageOrigin: 'stock', showsPeople: true },
   { pageId: 'service:trockenbau-berlin', role: 'inline', src: drywallJoints, alt: 'Handwerker bearbeitet Fugen einer Wand aus grünen Gipskartonplatten', caption: 'Beispielbild: Fugenbearbeitung an einer beplankten Trockenbauwand.', imageOrigin: 'stock', showsPeople: true },

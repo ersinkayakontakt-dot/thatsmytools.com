@@ -512,7 +512,7 @@ export const guides: Guide[] = [
       {
         h: 'Wann Fotos nicht ausreichen',
         p: [
-          'Bei einer kompletten Haushaltsauflösung, bei Häusern mit Grundstück und bei stark zugestellten Wohnungen empfehlen wir eine Besichtigung. Fotos zeigen solche Objekte erfahrungsgemäß deutlich harmloser, als sie sind.',
+          'Bei einer kompletten Haushaltsauflösung, bei Häusern mit Grundstück und bei stark zugestellten Wohnungen empfehlen wir eine Besichtigung. Fotos zeigen solche Objekte erfahrungsgemäß deutlich harmloser, als sie sind. Was bei stark zugestellten Räumen anders geplant wird, steht unter [Messiwohnung räumen](/leistungen/messiwohnung-raeumen/).',
           'Eine Besichtigung kostet Sie nichts und dauert je nach Objekt zwanzig bis sechzig Minuten. Sie führt zu einer Zahl, auf die Sie sich verlassen können.',
         ],
       },
@@ -648,7 +648,7 @@ export const guides: Guide[] = [
         "h": "Räumung, Wohnwechsel und Ausbau getrennt aufnehmen",
         "p": [
           "Eine [Nachlassauflösung](/leistungen/nachlassaufloesung-berlin/) beginnt mit der Zuordnung von Unterlagen, Erinnerungsstücken und weiterzugebendem Hausrat. Bei einem [Seniorenumzug](/leistungen/seniorenumzug-berlin/) muss vor der Übergabe klar sein, welche Möbel am neuen Wohnort gebraucht und aufgebaut werden.",
-          "Bei stark zugestellten Räumen wird der Umfang über [Messiwohnung räumen](/leistungen/messiwohnung-raeumen/) gesondert abgestimmt. Weitere Bau- oder Oberflächenarbeiten sind eigene Leistungspositionen und gehören ausdrücklich in die Vereinbarung. Wiederkehrende Objektübergaben finden [Hausverwaltungen und Immobilienpartner](/hausverwaltungen-immobilienpartner/) im Ablauf für Verwaltungen."
+          "Bei stark zugestellten Räumen wird der Umfang über [Messiwohnung räumen](/leistungen/messiwohnung-raeumen/) gesondert abgestimmt. Weitere Bau- oder Oberflächenarbeiten sind eigene Leistungspositionen und gehören ausdrücklich in die Vereinbarung. Sollen Wände vor der Übergabe gestrichen oder neu tapeziert werden, werden [Malerarbeiten](/leistungen/malerarbeiten-berlin/) und [Tapezieren](/leistungen/tapezieren-berlin/) gesondert mit einem Fachbetrieb abgestimmt. Wiederkehrende Objektübergaben finden [Hausverwaltungen und Immobilienpartner](/hausverwaltungen-immobilienpartner/) im Ablauf für Verwaltungen."
         ]
       },
       {
@@ -1370,6 +1370,185 @@ export const guides: Guide[] = [
     },
     published: '2026-07-30',
     updated: '2026-07-30',
+  },
+  /* ================================================================== */
+  {
+    slug: 'geerbte-wohnung-verkaufsfertig-machen',
+    status: 'published',
+    hub: 'ratgeber',
+    h1: 'Geerbte Wohnung verkaufs- oder vermietfertig machen',
+    navLabel: 'Wohnung verkaufsfertig machen',
+    metaTitle: 'Geerbte Wohnung verkaufsfertig machen: Reihenfolge in Berlin',
+    metaDescription:
+      'Geerbte Wohnung in Berlin verkaufen oder vermieten: in welcher Reihenfolge Räumung, Rückbau, Wände, Boden und Küche geplant werden und was vorher geklärt sein muss.',
+    answer:
+      'Eine geerbte Wohnung wird in einer festen Reihenfolge hergerichtet: zuerst klären, wer verfügen darf, dann räumen, zurückbauen, Wände erneuern, Boden verlegen und zuletzt Küche und Möbel montieren.\n\nWer diese Schritte in einem Zeitplan bündelt, vermeidet Leerstand zwischen den Arbeiten. Ob verkauft oder vermietet wird, bestimmt, wie weit die Arbeiten gehen sollten.',
+    teaser: 'Von der Räumung bis zur Küche: welche Arbeiten in welcher Reihenfolge anstehen.',
+    blocks: [
+      {
+        h: 'Was vor dem ersten Handgriff geklärt sein muss',
+        p: [
+          'Solange nicht feststeht, wer über den Nachlass verfügen darf, sollte weder geräumt noch umgebaut werden. Was in welcher Reihenfolge zu klären ist, beschreibt der Ratgeber zur [Haushaltsauflösung nach einem Todesfall](/ratgeber/haushaltsaufloesung-nach-todesfall/).',
+          'Danach entscheidet das Ziel über den Umfang. Bei einem Verkauf kann es genügen, die Wohnung zu räumen und den Zustand zu dokumentieren, wenn Käufer ohnehin selbst umbauen wollen. Ob sich Arbeiten vor dem Verkauf lohnen, kann eine Maklerin oder ein Sachverständiger einschätzen. Bei einer Neuvermietung muss die Wohnung dagegen in einem bewohnbaren Zustand übergeben werden.',
+        ],
+      },
+      {
+        h: 'Die Reihenfolge: von grob nach fein',
+        steps: [
+          {
+            title: 'Räumen und sichern',
+            text: 'Unterlagen, Erinnerungsstücke und Wertsachen werden vor der Räumung gesichert. Wie das abläuft, steht unter [Nachlassauflösung](/leistungen/nachlassaufloesung-berlin/). War die Wohnung stark zugestellt, gilt ein eigenes Vorgehen, siehe [Messiwohnung räumen](/leistungen/messiwohnung-raeumen/).',
+          },
+          {
+            title: 'Zurückbauen',
+            text: 'Alte Teppiche, Einbauschränke, Küchen und Lampen kommen heraus, bevor neu gebaut wird. Das ist die [Demontage und der Rückbau](/leistungen/demontage-rueckbau/).',
+          },
+          {
+            title: 'Räume verändern',
+            text: 'Soll eine Raumtrennung entstehen oder eine Wand verkleidet werden, folgt der [Trockenbau](/leistungen/trockenbau-berlin/), solange noch kein neuer Boden liegt.',
+          },
+          {
+            title: 'Wände erneuern',
+            text: 'Streichen und Tapezieren kommen vor dem Boden, damit Farbe und Kleister nicht auf den neuen Belag gelangen. [Malerarbeiten](/leistungen/malerarbeiten-berlin/) und [Tapezieren](/leistungen/tapezieren-berlin/) werden gesondert mit einem Fachbetrieb abgestimmt.',
+          },
+          {
+            title: 'Boden verlegen',
+            text: 'Laminat, Klick-Vinyl oder Teppichboden werden auf den geprüften Untergrund gelegt, siehe [Bodenbelag verlegen](/leistungen/bodenbelag-verlegen-berlin/).',
+          },
+          {
+            title: 'Küche und Möbel montieren',
+            text: 'Zuletzt kommen die [Küchenmontage](/leistungen/kuechenmontage-berlin/) und, wenn die Wohnung möbliert übergeben wird, die [Möbelmontage](/leistungen/moebelmontage-berlin/).',
+          },
+          {
+            title: 'Reinigen und übergeben',
+            text: 'Am Ende stehen Endreinigung, Zählerstände und Schlüssel. Was dabei nicht fehlen darf, steht in der [Checkliste zur Wohnungsübergabe](/ratgeber/checkliste-wohnungsuebergabe/).',
+          },
+        ],
+      },
+      {
+        h: 'Warum ein gemeinsamer Zeitplan Leerstand spart',
+        p: [
+          'Jeder Schritt wartet auf den vorherigen. Werden Räumung, Rückbau, Boden und Küche an verschiedene Betriebe vergeben, entstehen zwischen den Terminen Lücken, in denen die Wohnung leer steht.',
+          'Während dieser Zeit laufen Kosten wie Hausgeld, Grundsteuer oder Versorgungsverträge weiter. Ein abgestimmter Ablauf mit festen Übergaben zwischen den Arbeitsschritten verkürzt diese Phase, auch wenn einzelne Arbeiten über einen Fachbetrieb laufen.',
+        ],
+      },
+      {
+        h: 'Was in Berliner Altbau- und Plattenbauwohnungen zu prüfen ist',
+        list: [
+          'Unter altem Teppich können Holzdielen, Estrich, Betonplatten oder mehrere frühere Beläge liegen. Der Untergrund entscheidet, ob ein neuer Boden direkt verlegt werden kann.',
+          'Feuchte Stellen und Schimmel werden vor Wand- und Bodenarbeiten geklärt, nicht überdeckt.',
+          'Arbeiten an Elektro-, Gas- und Wasserleitungen gehören zu einer zugelassenen Fachfirma.',
+          'Bei älteren Häusern Zugang, Treppenhaus und Parkmöglichkeit für Material und Abtransport vorab klären.',
+        ],
+        note: {
+          title: 'Verdacht auf Schadstoffe',
+          text: 'Alte Bodenplatten und dunkle Kleberschichten können Asbest oder andere Schadstoffe enthalten. Bei Verdacht nichts aufnehmen oder anbohren, bevor das Material von einer Fachfirma geprüft ist.',
+          tone: 'caution',
+        },
+      },
+      {
+        h: 'Was Sie für eine Anfrage zusammenstellen sollten',
+        list: [
+          'Ziel: Verkauf, Neuvermietung oder Eigennutzung',
+          'Fester Termin, etwa ein Notar- oder Mietbeginn',
+          'Fotos aller Räume, auch von Böden und Wänden. Hinweise dazu stehen im Ratgeber [Welche Fotos für ein Angebot?](/ratgeber/welche-fotos-fuer-ein-angebot/)',
+          'Welche Arbeiten anstehen und welche Sie selbst oder andere Betriebe übernehmen',
+          'Wer Schlüssel hat und wer Entscheidungen treffen darf',
+        ],
+      },
+    ],
+    faq: [
+      {
+        q: 'Muss eine geerbte Wohnung vor dem Verkauf renoviert werden?',
+        a: 'Eine allgemeine Pflicht dazu gibt es nicht. Ob sich Arbeiten vor dem Verkauf lohnen, hängt von Lage, Zustand und Käuferkreis ab. Eine Maklerin oder ein Sachverständiger kann einschätzen, welche Maßnahmen sinnvoll sind.',
+      },
+      {
+        q: 'Kann alles in einem Auftrag geplant werden?',
+        a: 'Räumung, Rückbau, Trockenbau, Bodenverlegung sowie Küchen- und Möbelmontage können in einem gemeinsamen Ablauf geplant werden. Maler- und Tapezierarbeiten werden gesondert mit einem geeigneten Fachbetrieb abgestimmt und im Angebot getrennt ausgewiesen.',
+      },
+      {
+        q: 'Wie lange dauert es, eine Wohnung herzurichten?',
+        a: 'Das hängt vom Umfang ab und lässt sich erst nach einer Besichtigung oder aussagekräftigen Fotos seriös einschätzen. Planen Sie zwischen den Arbeitsschritten Puffer ein, etwa für Lieferzeiten von Boden und Küche.',
+      },
+    ],
+    related: ['haushaltsaufloesung-nach-todesfall', 'checkliste-wohnungsuebergabe', 'laminat-oder-vinyl-mietwohnung'],
+    services: ['nachlassaufloesung-berlin', 'innenausbau-berlin', 'bodenbelag-verlegen-berlin'],
+    published: '2026-10-21',
+    updated: '2026-10-21',
+  },
+
+  /* ================================================================== */
+  {
+    slug: 'laminat-oder-vinyl-mietwohnung',
+    status: 'published',
+    hub: 'ratgeber',
+    h1: 'Laminat oder Klick-Vinyl in der Mietwohnung?',
+    navLabel: 'Laminat oder Vinyl',
+    metaTitle: 'Laminat oder Vinyl in der Mietwohnung? Vergleich für Vermieter',
+    metaDescription:
+      'Laminat oder Klick-Vinyl für eine Mietwohnung in Berlin: Unterschiede bei Feuchtigkeit, Raumschall, Untergrund und Austausch – und wann welcher Belag passt.',
+    answer:
+      'Für Küche, Flur und stark genutzte Mietwohnungen ist Klick-Vinyl mit Kunststoffkern meist die robustere Wahl, weil es Feuchtigkeit besser verträgt. Laminat bewährt sich in trockenen Wohn- und Schlafräumen.\n\nEntscheidend sind außerdem Untergrund, Trittschalldämmung und die Nutzungsklasse des Produkts. Diese Punkte werden vor dem Verlegen geprüft.',
+    teaser: 'Feuchtigkeit, Raumschall, Untergrund: worin sich die beiden Beläge im Alltag unterscheiden.',
+    blocks: [
+      {
+        h: 'Worin sich Laminat und Klick-Vinyl unterscheiden',
+        table: {
+          caption: 'Laminat und Klick-Vinyl im Vergleich',
+          head: ['Merkmal', 'Laminat', 'Klick-Vinyl'],
+          rows: [
+            ['Aufbau', 'Trägerplatte aus Holzwerkstoff mit Dekor- und Schutzschicht', 'Kunststoffbelag, je nach Produkt mit Kunststoff- oder Holzwerkstoffkern'],
+            ['Feuchtigkeit', 'An Fugen und Kanten empfindlich gegen stehendes Wasser', 'Mit Kunststoffkern deutlich unempfindlicher, mit Holzwerkstoffkern ähnlich wie Laminat'],
+            ['Geräusch im Raum', 'Härter, beim Gehen hörbarer', 'Weicher, im Raum meist leiser'],
+            ['Untergrund', 'Verzeiht kleine Unebenheiten eher', 'Dünne Dielen zeichnen Unebenheiten ab, Untergrund muss sehr eben sein'],
+            ['Einzelne Diele tauschen', 'Möglich, Klickreihen werden vom Rand her aufgenommen', 'Möglich, gleiches Vorgehen'],
+          ],
+        },
+      },
+      {
+        h: 'Welcher Belag in welchen Raum gehört',
+        p: [
+          'In Küche und Flur, wo Wasser verschüttet und nasse Schuhe abgestellt werden, ist Klick-Vinyl mit Kunststoffkern die sicherere Wahl. In Wohn- und Schlafräumen ohne Feuchtebelastung ist Laminat eine bewährte Lösung.',
+          'Ein einheitlicher Belag in der ganzen Wohnung wirkt ruhiger und spart Übergangsprofile. Wer das will, wählt das Material nach dem anspruchsvollsten Raum. Für Bäder gilt: nur Produkte, die der Hersteller ausdrücklich für Nassbereiche freigibt.',
+        ],
+      },
+      {
+        h: 'Worauf Vermieter beim Kauf achten sollten',
+        list: [
+          '**Nutzungsklasse:** Die Einstufung nach EN ISO 10874 zeigt, für welche Beanspruchung ein Belag gedacht ist. Bei wechselnden Mietern kann sich eine Klasse lohnen, die auch für leichte gewerbliche Nutzung ausgewiesen ist.',
+          '**Kern bei Vinyl:** Nicht jedes Klick-Vinyl ist wasserfest. Steht dort eine Trägerplatte aus Holzwerkstoff, reagiert es an den Fugen ähnlich wie Laminat.',
+          '**Fußbodenheizung:** Nur Produkte verwenden, die der Hersteller für Fußbodenheizung freigibt, samt passender Dämmunterlage.',
+          '**Trittschall:** Im Mehrfamilienhaus gehört eine Dämmunterlage dazu, die der Hersteller für den Belag vorsieht. In Eigentumswohnungen kann die Gemeinschaftsordnung zusätzliche Vorgaben machen.',
+          '**Reserve:** Ein Paket derselben Charge aufbewahren. Spätere Nachkäufe weichen in Farbe oder Klickprofil oft ab.',
+        ],
+      },
+      {
+        h: 'Was der Untergrund entscheidet',
+        p: [
+          'Beide Beläge werden schwimmend verlegt, also nicht verklebt. Der Untergrund muss trotzdem fest, trocken und eben sein. Alte Holzdielen im Altbau dürfen nicht federn oder knarren, neuer Estrich muss ausreichend trocken sein.',
+          'Ob ein Ausgleich nötig ist, zeigt sich erst, wenn der alte Belag entfernt ist. Deshalb wird der Untergrund vor dem Verlegen geprüft und ein nötiger Ausgleich vorher benannt. Wie Aufnahme, Prüfung und Verlegung ablaufen, steht unter [Bodenbelag verlegen](/leistungen/bodenbelag-verlegen-berlin/).',
+          'Der alte Teppich oder eine Einbauküche werden vorher im selben Ablauf ausgebaut und entsorgt. Parkett-, Estrich- und Fliesenarbeiten gehören nicht zu unserem Leistungsumfang.',
+        ],
+      },
+    ],
+    faq: [
+      {
+        q: 'Ist Klick-Vinyl immer wasserfest?',
+        a: 'Nein. Produkte mit Kunststoffkern vertragen Feuchtigkeit deutlich besser. Klick-Vinyl mit einer Trägerplatte aus Holzwerkstoff kann an den Fugen ähnlich wie Laminat aufquellen. Maßgeblich ist die Angabe des Herstellers.',
+      },
+      {
+        q: 'Kann man Laminat oder Vinyl auf alte Dielen legen?',
+        a: 'Häufig ja, wenn die Dielen fest, trocken und eben genug sind. Lose oder stark unebene Dielen müssen vorher befestigt oder ausgeglichen werden. Das wird vor dem Angebot am Untergrund geprüft.',
+      },
+      {
+        q: 'Wird auch Parkett verlegt?',
+        a: 'Nein. Parkett- und Estricharbeiten gehören nicht zu unserem Leistungsumfang. Verlegt werden Laminat, Klick-Vinyl und Teppichboden.',
+      },
+    ],
+    related: ['geerbte-wohnung-verkaufsfertig-machen', 'checkliste-wohnungsuebergabe', 'welche-fotos-fuer-ein-angebot'],
+    services: ['bodenbelag-verlegen-berlin'],
+    published: '2026-10-21',
+    updated: '2026-10-21',
   },
 ];
 

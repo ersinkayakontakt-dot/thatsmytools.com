@@ -88,7 +88,13 @@ Torwächter: Metadaten, Linkgraph, Kannibalisierung, Schema, Bilder,
 Kontrast. **FEHLER blockieren die Veröffentlichung, Warnungen brauchen eine
 redaktionelle Entscheidung.**
 
-Stand 21.10.2026: 0 Fehler, **11 Warnungen** (78 Seiten, 58 indexierbar).
+Stand 21.10.2026 (SEO-2026-05): 0 Fehler, **0 Warnungen** (80 Seiten, 60 indexierbar).
+Von 11 auf 0 durch kontextuelle Verweise im Fließtext von Leistungsseiten und
+zwei neue Ratgeber – ohne Prioritäten oder Prüfschwellen zu ändern.
+Stufenmittel P5 9,2 · P4 6,7 · P3 5,0 · P2 3,8. Jede neue Warnung ist damit
+eine Verschlechterung, die begründet werden muss.
+
+Vorheriger Stand 21.10.2026: 0 Fehler, 11 Warnungen (78 Seiten, 58 indexierbar).
 Mit der neuen Startseitenführung nach E-013 von 13 auf 11 reduziert, ohne Prioritäten
 oder Prüfschwellen zu ändern. Alle Hinweise betreffen weiter die Linkgewichtung.
 Der bisherige Bürobild-Hinweis ist durch ein passendes Beispielbild behoben.
@@ -251,6 +257,8 @@ wechselnden.
 Vor jedem Plan: Tracker lesen und in der Antwort sagen, was dort gefunden
 wurde – auch wenn es nichts war.
 
-## SEO-Ausbaustufe 22.10.2026 (E-015)
+## SEO-Ausbaustufe 22.10.2026 (E-015 (Flächenplanung, 22.10.))
 
-Gemeinsame Quelle für Codex/Claude: docs/SEO-AUSBAU-2026-10-22.md. Vor SEO-/Rechner-/Messarbeit lesen; Handwerksgrenzen in docs/HANDWERKSRECHT.md beachten. Lokal 80 HTML/60 indexierbar, 12 redaktionell bewertete Linkwarnungen; Live-Basis weiterhin 78/58 und 11. Keine Veröffentlichungsgenehmigung für E-015 vorhanden. Zusätzlich audit:area:selftest und seo:events:report:selftest ausführen; bei Ereignisänderungen seo:events und seo:selftest. Versuche/Empfang/qualifizierte Leads/Aufträge getrennt halten.
+Gemeinsame Quelle für Codex/Claude: docs/SEO-AUSBAU-2026-10-22.md. Vor SEO-/Rechner-/Messarbeit lesen; Handwerksgrenzen in docs/HANDWERKSRECHT.md beachten. Lokal 80 HTML/60 indexierbar, 12 redaktionell bewertete Linkwarnungen; Live-Basis weiterhin 78/58 und 11. Veröffentlichung am 22.10.2026 mit „go“ freigegeben. Zusätzlich audit:area:selftest und seo:events:report:selftest ausführen; bei Ereignisänderungen seo:events und seo:selftest. Versuche/Empfang/qualifizierte Leads/Aufträge getrennt halten.
+
+Aktueller gemeinsamer Release-Stand 22.10.2026: Remote 873bde6 und Rechnerentwurf ecc6da4 zusammengeführt, 82 Seiten/62 indexierbar, 0 Fehler und drei redaktionell bewertete Linkhinweise. Datierte E-015-Verweise unterscheiden parallele Entscheidungen ohne historische IDs umzunummerieren. Betreiberfreigabe mit „go“ liegt vor.

@@ -95,6 +95,31 @@ const THEMES = {
     theme: 'Übergabe an Eigentümer oder Verwaltung, professioneller Objekttermin',
     queries: ['property manager clipboard apartment', 'business handshake empty office', 'real estate inspection room'],
   },
+  messiwohnung: {
+    forPage: 'service:messiwohnung-raeumen',
+    theme: 'Arbeit mit Schutzausrüstung, sortierte Säcke und Kartons – ohne Elendsmotiv, ohne erkennbare Bewohner',
+    queries: ['worker gloves sorting bags apartment', 'cleaning crew protective gloves room', 'garbage bags sorted hallway'],
+  },
+  sperrmuell: {
+    forPage: 'service:sperrmuellabholung-berlin',
+    theme: 'einzelne ausrangierte Möbel, ordentlich zur Abholung bereitgestellt',
+    queries: ['old sofa carried out apartment', 'discarded furniture curbside europe', 'old mattress and chair hallway'],
+  },
+  keller: {
+    forPage: 'service:kellerentruempelung-berlin',
+    theme: 'Kellerabteil mit Regalen und Kartons, geordnet statt verwahrlost',
+    queries: ['basement storage room shelves home', 'cluttered storage room boxes', 'storage room metal shelving boxes', 'attic storage boxes old furniture'],
+  },
+  bodenvergleich: {
+    forPage: 'guide:laminat-oder-vinyl-mietwohnung',
+    theme: 'Laminat- und Vinyldielen im direkten Vergleich, Musterstücke',
+    queries: ['vinyl plank flooring samples', 'laminate flooring samples comparison', 'click vinyl floor installation'],
+  },
+  verkaufsfertig: {
+    forPage: 'guide:geerbte-wohnung-verkaufsfertig-machen',
+    theme: 'leere, hergerichtete Altbauwohnung kurz vor Verkauf oder Vermietung',
+    queries: ['renovated empty apartment europe', 'empty apartment fresh paint wooden floor', 'bright empty flat ready to rent'],
+  },
   umzug: {
     forPage: 'service:umzug-berlin',
     theme: 'neutrale professionelle Umzugssituation',

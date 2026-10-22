@@ -317,6 +317,6 @@ dafür:
   WhatsApp erfüllen denselben Zweck.
 
 
-## 10. Flächenplanung (E-015, lokal vorbereitet 22.10.2026)
+## 10. Flächenplanung (E-015 (Flächenplanung, 22.10.), lokal vorbereitet 22.10.2026)
 
 src/lib/areaPlan.ts besitzt Formel, Grenzwerte und Transferprüfung. src/client/area-calculator.ts steuert die Oberfläche; area-plan-transfer.ts ergänzt ausschließlich nach Bestätigung vorhandene Formularfelder. Sessionplan maximal zwei Stunden; keine Maße in URL oder Analyseereignissen. Keine neue API oder Datenbank. Formel/Beispiel sind vorgerendert, interaktive Berechnung braucht JavaScript. Rechner ohne Framework: im lokalen Build 10.285 Byte JavaScript gesamt (7.798 Byte Rechner/Modell); damit knapp über dem 10-KB-Startseitenziel, nicht dessen Erfüllung behaupten. Bestehende Budgets bleiben unverändert. Prüfungen: audit:area:selftest und seo:events:report:selftest. Einzelne lokale Labormessungen sind keine Felddaten, siehe SEO-AUSBAU-2026-10-22.md.

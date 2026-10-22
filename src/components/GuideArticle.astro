@@ -8,6 +8,8 @@ import RelatedGuides from './RelatedGuides.astro';
 import NextStepPanel from './NextStepPanel.astro';
 import ContextualCompanyLink from './ContextualCompanyLink.astro';
 import Toc from './Toc.astro';
+import Figure from './Figure.astro';
+import { heroImage } from '../data/images';
 import { formatDate, headingId } from '../lib/text';
 import { site } from '../config/site';
 import { seoPage } from '../data/seo-pages';
@@ -21,6 +23,7 @@ const answerParagraphs = guide.answer.split(/\n\s*\n/).filter(Boolean);
 
 const pageId = `guide:${guide.slug}`;
 const seo = seoPage(pageId);
+const hero = heroImage(pageId);
 
 /**
  * Auftrag § 4: Ein Ratgeber führt auf GENAU EINE passende Leistungsseite,
@@ -61,6 +64,8 @@ const toc = [
     <div class="answer">
       {answerParagraphs.map((paragraph) => <p>{paragraph}</p>)}
     </div>
+
+    {hero && <Figure image={hero} layout="hero" priority />}
 
     <Toc items={toc} />
 

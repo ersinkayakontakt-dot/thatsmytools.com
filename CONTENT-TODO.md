@@ -1,8 +1,8 @@
 # CONTENT-TODO: Was noch an echten Daten fehlt
 
-## Offen · SEO-2026-05 · Organische Kundengewinnung, erste Ausbaustufe 22.10.2026
+## Offen · SEO-2026-05 (Flächenplanung, 22.10.) · Organische Kundengewinnung, erste Ausbaustufe 22.10.2026
 
-Lokal umgesetzt und geprüft, Veröffentlichung ausstehend: Wandflächenrechner mit geometrischer Planung und ausdrücklicher Übernahme in Anfrage, individueller Angebotsvergleich für Innenausbau, Verbesserungen vorhandener kaufnaher Seiten und leistungsbezogene Anfrage-Links. Keine neuen Ortsserien, Fantasiepreise oder Referenzfälle. Fehlende GSC/Bing-/Conversion-Exporte und Margen verhindern datenbasierte Aussage zu Rankingpotenzial, Rückfragenquote und Profitabilität. Quellen-/Prioritäten-/Messplan ist unter docs/SEO-AUSBAU-2026-10-22.md geführt. Ausbaustufe noch nicht zur Veröffentlichung freigegeben.
+Im gemeinsamen Stand mit Remote 873bde6 umgesetzt und geprüft, Veröffentlichung freigegeben: Wandflächenrechner mit geometrischer Planung und ausdrücklicher Übernahme in Anfrage, individueller Angebotsvergleich für Innenausbau, Verbesserungen vorhandener kaufnaher Seiten und leistungsbezogene Anfrage-Links. Keine neuen Ortsserien, Fantasiepreise oder Referenzfälle. Fehlende GSC/Bing-/Conversion-Exporte und Margen verhindern datenbasierte Aussage zu Rankingpotenzial, Rückfragenquote und Profitabilität. Quellen-/Prioritäten-/Messplan ist unter docs/SEO-AUSBAU-2026-10-22.md geführt. Betreiberfreigabe am 22.10.2026 mit „go“ erhalten; Zusammenführung abgeschlossen (82/62, drei bewertete Linkhinweise); Live-Prüfung folgt.
 
 ## Shipped (lokal, unveröffentlicht) · MEAS-2026-01 · Absendeversuche, Empfang und Auftrag trennen
 
@@ -44,6 +44,10 @@ Veröffentlicht über hostinger-live (f7c5148). Live-Prüfung am 19.10.2026: Sta
 
 Fünf lizenzierte Beispielbilder für Startseite und die Seiten Innenausbau, Trockenbau, Rückbau, Boden und Küche ergänzt. Quellen in IMAGE-SOURCES.md. Live über hostinger-live 904524d. Alle fünf Projektprüfungen erfolgreich, 0 Fehler und unverändert 20 dokumentierte Hinweise. Bild- und Layoutprüfung auf sechs Seiten in fünf Breiten (320 bis 1920 px) ohne Fehler. Anschließende Live-Prüfung: sechs Seiten HTTP 200, alle Bilder geladen, sichtbare Beispielbild-Kennzeichnung, kein horizontaler Überlauf.
 
+## Shipped (Quelle) · BILD-2026-03 · Stockfotos für Seiten ohne Bild, 21.10.2026
+
+Fünf Pexels-Beispielbilder eingebaut: Messiwohnung, Sperrmüllabholung, Kellerentrümpelung sowie die Ratgeber „Laminat oder Vinyl" und „Geerbte Wohnung verkaufsfertig". Die Ratgeber-Vorlage (`GuideArticle.astro`) zeigt jetzt ein Titelbild aus `images.ts` (`guide:<slug>`) und meldet es als `primaryImageOfPage`. Auswahl, Aussortiertes und Lizenz in `IMAGE-SOURCES.md`. Gate 0 Fehler / 0 Warnungen; alle fünf Seiten bei 375 und 1280 px ohne Überlauf, Bilder geladen, Beispiel- und Symbolbild-Kennzeichnung sichtbar. Die übrigen Ratgeber und Kostenseiten haben weiterhin kein Bild. Der Pexels-Schlüssel liegt nur lokal in `.env.local`. Node braucht hinter dem Proxy `NODE_USE_ENV_PROXY=1`. **Noch nicht live.**
+
 ## Offen · BILD-2026-02 · Eigene Referenzfotos
 
 Für Innenausbau, Trockenbau, Rückbau, Boden und Küche fehlen eigene, zur Veröffentlichung freigegebene Auftragsfotos. Nach Bereitstellung ersetzen sie die jeweils als Beispielbild gekennzeichneten Stockfotos. Keine fremden Objekte als eigene Referenz ausgeben.
@@ -64,6 +68,10 @@ Möbelmontage als vollständige Leistungsseite mit Foto und Startseitenkarte erg
 
 Gefunden: Einzelne spezifische Suchbots erhielten Allow: / ohne die Ausschlüsse der allgemeinen Gruppe; Applebot-Extended war fälschlich als Suchkennung behandelt. Korrektur im Quellstand vorbereitet: private Pfade je erlaubter Gruppe ausschließen, Applebot-Suche erlauben und Apple-Training entsprechend bestehender Betreiberpolitik sperren. Semantische Prüfung bestanden (83 Fälle); zusätzlich erkennt die Buildprüfung eine vollständige OAI-Sperre und einen verlorenen API-Ausschluss als echte Fehler (16/16 SEO-Gegenbeispiele). Live-Übernahme am 21.10. bestätigt, robots.txt entspricht exakt dem geprüften Quellstand. Keine Änderung an tatsächlichen Serverberechtigungen.
 
+## Shipped (Quelle) · SEO-2026-05 · Linkgewichtung und Ausbau-Ratgeber, 21.10.2026
+
+Alle 11 Linkgraph-Hinweise ohne Prioritäts- oder Regeländerung aufgelöst: kontextuelle Verweise dort, wo der Text die Folgefrage ohnehin stellt (Wohnungs-, Nachlass-, Haushaltsauflösung, Seniorenumzug, Keller, Büro, Rückbau, Boden, Küche, Möbelmontage, Trockenbau, zwei bestehende Ratgeber). Maler- und Tapezierverweise tragen durchgängig den Fachbetriebshinweis (E-011). Zwei neue Ratgeber: `/ratgeber/geerbte-wohnung-verkaufsfertig-machen/` (Reihenfolge Räumung → Rückbau → Trockenbau → Wände → Boden → Küche/Möbel → Übergabe) und `/ratgeber/laminat-oder-vinyl-mietwohnung/` (vertieft den Vergleich der Leistungsseite um Kernaufbau, Nutzungsklasse, Fußbodenheizung, Reserve; keine Preise). Keine neuen Rechtsbehauptungen ohne Quelle. 80 Seiten / 60 indexierbar, 0 Fehler, 0 Warnungen, Kannibalisierung 0, 16/16 Selbsttests. **Noch nicht live:** Deployment und anschließend IndexNow sowie Indexierungsantrag der zwei Ratgeber in der Search Console.
+
 ## Offen · SEO-2026-04 · Messdaten und nächste Gewichtungsrunde
 
 Keine Exporte aus Google Search Console oder Bing Webmaster Tools vorhanden; kein belegter Ranking-/Klickverlauf. Erst reale Daten importieren, dann Suchbegriffe, Klickrate und indexierte URLs datenbasiert priorisieren. Im bisherigen Produktstand 11, in der lokalen Ausbaustufe E-015 12 redaktionelle Linkgewichtungs-Hinweise zwischen Ausbau und etablierten Angeboten; keine isolierten Seiten, keine defekten Links, keine Metadaten-, Schema-, Bild- oder Kontrastfehler. Ranking-/KI-Nennungen bleiben außerhalb technischer Zusagen. Einzelheiten: docs/SEO-STATUS-2026-10-21.md.
@@ -72,9 +80,9 @@ Keine Exporte aus Google Search Console oder Bing Webmaster Tools vorhanden; kei
 
 Telefon, sichtbare Nummer und WhatsApp zentral auf +49 176 44457385 umgestellt. Build, Check, Inhaltsaudit, Buildaudit und SEO bestanden (0 Fehler, unverändert 13 Linkhinweise). Alle 78 HTML-Seiten geprüft: 436 Telefon- und 353 WhatsApp-Verweise mit korrektem Ziel, alte Nummer nicht vorhanden. Live-Deployment 26c3c2b auf Startseite, Kontakt, Impressum, Formular und llms.txt mit neuer Nummer bestätigt. Vorhandenes Eintrags-Kit ebenfalls manuell abgeglichen. Keine Änderung von Schema-Struktur, Formularfeldern oder Datenbank.
 
-## Offen · TOOL-2026-01 · Eintrags-Kit unter Windows
+## Shipped (Quelle) · TOOL-2026-01 · Eintrags-Kit unter Windows
 
-Beim Regenerieren mit npm run kit schlägt der Dateipfad auf diesem Rechner fehl (doppeltes Laufwerkspräfix C:\C:\...). Bestehendes docs/EINTRAGS-KIT.md für KONTAKT-2026-01 manuell abgeglichen. Generator in einer gesonderten Werkzeugkorrektur auf fileURLToPath statt URL.pathname prüfen. Kein Hindernis für Website-Build oder Deployment.
+Ursache: `scripts/eintrags-kit.mjs` schrieb nach `file:///C:/…` minus `file://`, also `/C:/…`; Windows macht daraus `C:\C:\…`. Jetzt wird der Dateisystempfad über `path.join` gebildet und per `JSON.stringify` in das generierte Modul geschrieben (Backslashes maskiert). Unter Linux geprüft: `npm run kit` läuft und hat `docs/EINTRAGS-KIT.md` neu erzeugt – die acht seit Juli ergänzten Leistungen standen dort noch nicht. **Unter Windows noch nicht ausgeführt**; beim nächsten `npm run kit` auf dem Rechner bestätigen. Hinweis: Das Kit führt jetzt auch „Malerarbeiten“ und „Tapezieren“ als Leistung – in Portalprofilen nur mit dem Fachbetriebs-Zusatz eintragen (E-011, `docs/HANDWERKSRECHT.md`).
 
 ## Shipped · KONTAKT-2026-02 · Allgemeiner WhatsApp-Text
 
@@ -167,7 +175,10 @@ Wohnungsauflösung, Nachlass und Seniorenumzug" umgestellt. Umgesetzt sind:
    zusätzlich mindestens zwei Inhaltsblöcke und 1.800 Zeichen Gesamtinhalt.
    Offen bleiben 10 Umlandorte, bis das tatsächliche Einsatzgebiet bestätigt
    ist.
-5. **Drei Hauptprodukte als eigene Seiten** (Nachlass-Komplettservice,
+5. ✅ **Drei Hauptprodukte – umgesetzt als Abschnitt statt eigener URL (E-015, 21.10.2026).**
+   Baustein-Tabellen „Komplettauftrag" auf Nachlass und Seniorenumzug; die
+   übergabefertige Immobilie über Partnerseite und Ratgeber. Ursprünglicher Punkt:
+   **Drei Hauptprodukte als eigene Seiten** (Nachlass-Komplettservice,
    Senioren-Wohnwechsel, Immobilie übergabefertig). Die Leistungsseiten decken
    die Themen ab, sind aber als Einzelleistungen aufgebaut, nicht als
    Komplettpakete mit Zusatzleistungen.
@@ -233,8 +244,11 @@ Wohnungsauflösung, Nachlass und Seniorenumzug" umgestellt. Umgesetzt sind:
      weil die Schrittzahl in SEO-LAUNCH-CHECKLIST.md als A/B-Test vorgesehen
      ist (Abschlussquote) und Fortschritt sowie `estimate_step_completed`
      an der Nummerierung hängen.
-   - Offen: Szenario- und Fallbeispiel-Bausteine. Das Fallbeispiel
-     braucht echte Einsatzberichte (§ E), sonst bleibt es leer.
+   - Geprüft 21.10.2026: Der Szenario-Baustein ist auf Leistungsseiten durch
+     „Wann diese Leistung passt" und seit E-015 durch die Komplettauftrag-
+     Tabellen abgedeckt; ein weiterer Baustein brächte keinen eigenen Inhalt.
+     Offen bleibt allein das Fallbeispiel – es braucht echte, freigegebene
+     Einsatzberichte (§ E), sonst bleibt es leer. Kein Codeauftrag mehr.
 7. ✅ **Bildsystem und erste Bildsprache umgesetzt.** Sieben dokumentierte
    Stockfotos sind zentral in `src/data/images.ts` zugeordnet und vollständig
    in `IMAGE-SOURCES.md` nachgewiesen. Offen bleiben das Bild für die
@@ -450,8 +464,9 @@ Ohne Telefonnummer fehlt der zweitwichtigste Conversion-Weg der ganzen Seite.
 - `register.vatId` **oder** `register.taxNumber`. Bei Kleinunternehmerregelung
   nach § 19 UStG stattdessen einen entsprechenden Hinweis
 - ~~`register.court` / `register.number`~~ – entfällt, da Einzelunternehmen.
-  Der Abschnitt rendert im Build aber weiterhin seinen Platzhaltertext und
-  muss aus der Impressum-Vorlage entfernt werden
+  ✅ Die Impressum-Vorlage blendet den Abschnitt ohne echte Werte aus
+  (geprüft 26.09.2026: `dist/impressum/` enthält weder „Registereintrag"
+  noch „Registergericht")
 - `register.supervisoryAuthority`: **prüfen.** Güterkraftverkehr mit Fahrzeugen
   über 3,5 t zulässigem Gesamtgewicht ist nach § 3 GüKG erlaubnispflichtig.
   Falls einschlägig, gehört die Erlaubnis ins Impressum.

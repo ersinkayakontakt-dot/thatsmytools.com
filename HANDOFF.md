@@ -1,7 +1,19 @@
+# Veröffentlichung freigegeben · 22.10.2026 · gemeinsamer Stand
+
+Betreiber hat den geprüften Rechner-/SEO-Ausbau mit „go“ freigegeben. Vor Veröffentlichung Remote-Änderungen bis 873bde6 integriert: Ratgeber geerbte Wohnung und Laminat/Vinyl, fünf Beispielbilder, Komplettpakete und Linkpflege bleiben erhalten. Gemeinsamer Build: 82 HTML/62 indexierbar, 0 Fehler, 3 Linkgewichtungshinweise. Letzte Live-Basis 5c0aad0 wurde vor diesem Deployment tatsächlich geprüft: beide zusätzlichen Ratgeber HTTP 200, Rechner noch 404. Veröffentlichung und vollständiger Live-Abgleich folgen in dieser Sitzung. Keine neue echte Anfrage oder Mail gesendet; MAIL-2026-01 bleibt offen.
+
 # Lokaler SEO-Ausbau · 22.10.2026 · noch nicht veröffentlicht
 
-SEO-2026-05/E-015: Wandflächenrechner mit ausdrücklicher Übernahme ins vorhandene Anfrageformular, Angebotsvergleich-Ratgeber und Verbesserungen vorhandener Kernseiten. Dokumentation: docs/SEO-AUSBAU-2026-10-22.md. Lokal 80 HTML/60 indexierbar, 12 redaktionelle Linkwarnungen. Live weiterhin 2a8a55f mit 78/58; E-013-Freigabe gilt nicht automatisch für diese Stufe. Vor Veröffentlichung konkrete neue Freigabe einholen, keine vorzeitige IndexNow-Meldung. Neue Checks: audit:area:selftest, seo:events:report:selftest. Messung unverändert deaktiviert/freigabepflichtig. MAIL-2026-01 offen; LOCAL-2026-01 nur ungeprüfter Suchsnippet-Hinweis. Die darunter stehenden Produktfreigaben sind historische Live-Stände.
+SEO-2026-05/E-015 (Flächenplanung, 22.10.): Wandflächenrechner mit ausdrücklicher Übernahme ins vorhandene Anfrageformular, Angebotsvergleich-Ratgeber und Verbesserungen vorhandener Kernseiten. Dokumentation: docs/SEO-AUSBAU-2026-10-22.md. Lokal 80 HTML/60 indexierbar, 12 redaktionelle Linkwarnungen. Live weiterhin 2a8a55f mit 78/58; E-013-Freigabe gilt nicht automatisch für diese Stufe. Vor Veröffentlichung konkrete neue Freigabe einholen, keine vorzeitige IndexNow-Meldung. Neue Checks: audit:area:selftest, seo:events:report:selftest. Messung unverändert deaktiviert/freigabepflichtig. MAIL-2026-01 offen; LOCAL-2026-01 nur ungeprüfter Suchsnippet-Hinweis. Die darunter stehenden Produktfreigaben sind historische Live-Stände.
 
+
+# Deployment 21.10.2026: hostinger-live 5c0aad0 (Quelle e6858ad), Live-Prüfung offen
+
+Auf ausdrücklichen Betreiberauftrag („deploy und push“) und in Kenntnis der Falle aus `docs/HOSTINGER-AKTUALISIEREN.md` über `hostinger-live` bereitgestellt: SEO-2026-05, E-015 (Flächenplanung, 22.10.), BILD-2026-03 und TOOL-2026-01. Aus der Cloud-Umgebung war die Domain nicht erreichbar, deshalb **nicht live geprüft** und **kein IndexNow** gesendet. Offen: Übernahme durch Hostinger prüfen (neue Ratgeber HTTP 200, Bilder geladen), Honeypot-Probe und eine Testanfrage, im Dateimanager `api/_storage/` auf vorhandene Anfragen prüfen, danach `npm run indexnow` und `.indexnow-state.json` committen, beide Ratgeber in der Search Console einreichen.
+
+# SEO-Runde 21.10.2026 (Quellstand, noch nicht live)
+
+Branch `claude/schnellhelfer24-fortsetzung-w5m31t` (auf Quellstand c506629 aufgesetzt): SEO-2026-05 (Linkgraph 11 → 0 Warnungen, zwei Ratgeber: geerbte Wohnung verkaufsfertig, Laminat oder Vinyl), E-015 (Flächenplanung, 22.10.) (Komplettauftrag-Abschnitte auf Nachlass und Seniorenumzug; Kostenseiten erst mit Preisdaten), TOOL-2026-01 (Eintrags-Kit-Pfad unter Windows) und die korrigierte Handwerksrecht-Bestandsprüfung. 80 Seiten / 60 indexierbar, 0 Fehler, 0 Warnungen. **Vor dem Deployment in den Quellbranch übernehmen**, dann bauen, deployen, IndexNow, und in der Search Console die beiden neuen Ratgeber zur Indexierung einreichen.
 
 # Produktfreigabe und Live-Abgleich · 21.10.2026
 

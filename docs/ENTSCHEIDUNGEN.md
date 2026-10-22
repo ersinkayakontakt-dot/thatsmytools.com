@@ -1,15 +1,23 @@
 # Entscheidungsprotokoll
 
-## E-015 · Nutzbare Flächenplanung und gezielter SEO-Ausbau (22.10.2026)
+Hinweis zur parallelen Bearbeitung: Beide Zweige vergaben E-015 und SEO-2026-05 unabhängig. Bestehende IDs bleiben erhalten; Flächenplanung vom 22.10. und Komplettpakete vom 21.10. werden stets mit Datum/Thema unterschieden.
 
-SEO-2026-05: vorhandene kaufnahe Seiten vor Seitenwachstum; genau ein geometrischer Rechner und ein eigenständiger Angebotsvergleich. Keine Preise ohne Daten, keine Ortskopien, keine erfundenen Referenzen. Quellen, Suchintentionen, Messdefinitionen und 30/60/90-Plan: SEO-AUSBAU-2026-10-22.md. Lokaler Entwurf benötigt gesonderte Veröffentlichungsfreigabe.
+## E-015 (Flächenplanung, 22.10.) · Nutzbare Flächenplanung und gezielter SEO-Ausbau (22.10.2026)
+
+SEO-2026-05: vorhandene kaufnahe Seiten vor Seitenwachstum; genau ein geometrischer Rechner und ein eigenständiger Angebotsvergleich. Keine Preise ohne Daten, keine Ortskopien, keine erfundenen Referenzen. Quellen, Suchintentionen, Messdefinitionen und 30/60/90-Plan: SEO-AUSBAU-2026-10-22.md. Betreiberfreigabe am 22.10.2026 mit „go“ erhalten.
 
 Ein gemeinsames Rechenmodell validiert Eingaben und den maximal zweistündigen lokalen Transfer. Bestehende Anfragefelder bleiben der Vertrag; bewusste Übernahme erhält vorhandene Texte. Absendeversuch, gespeicherter Empfang und Auftrag bleiben getrennt. Analyse wird nicht aktiviert.
 
 Vier Hüte: Staff – keine Scheingenauigkeit/Preisfiktion, gemeinsame Formel; Architektur – statische Inhalte und Browserergänzung ohne neue API; Daten – begrenzter lokaler Plan, keine Migration/PII-Ereignisse; QA – Rechen- und Manipulationsfälle, bestehender Anfrageweg, Responsive- und SEO-Prüfung. Sicherheit/Compliance: textContent statt HTML-Injektion, begrenzte Pläne, keine Maße im Tracking/URL, Handwerksgrenzen A1/B1 erhalten.
 
-Linkgraph: 12 redaktionelle Prioritätswarnungen gegenüber 11 im bisherigen Produktstand. Neue sinnvolle Werkzeug-/Vergleichskontexte stärken Innenausbau; keine verwaisten Seiten, keine defekten Links. Redaktionell als begrenzter Tradeoff akzeptiert, unter SEO-2026-04 weiter auswerten; Prioritäten und Prüfschwellen bleiben unverändert. Keine Rankingwirkung aus dem Graphwert ableiten.
+Linkgraph: im isolierten Rechnerentwurf zwölf Hinweise gegenüber elf im damaligen Produktstand. Nach Integration des parallel veröffentlichten SEO-Zweigs (dort null) bleiben drei: Seniorenumzug/Hausverwaltungen knapp hinter Innenausbau, Sperrmüll knapp hinter Boden. Die neuen hilfreichen Kontextlinks verändern die relativen Gewichte; keine verwaisten Seiten oder defekten Links. Für den gemeinsamen Stand redaktionell als begrenzter Tradeoff akzeptiert, unter SEO-2026-04 weiter auswerten; Prioritäten und Prüfschwellen bleiben unverändert. Keine Rankingwirkung aus dem Graphwert ableiten.
 
+
+## E-015 · Komplettpakete als Abschnitt, Kostenseiten erst mit Preisdaten (21.10.2026)
+
+**Komplettpakete.** Der Tracker (§ 0 Nr. 5) sah drei Hauptprodukte als eigene Seiten vor: Nachlass-Komplettservice, Senioren-Wohnwechsel, Immobilie übergabefertig. Eigene URLs würden mit `/leistungen/nachlassaufloesung-berlin/`, `/leistungen/seniorenumzug-berlin/` und `/hausverwaltungen-immobilienpartner/` um dieselbe Suchabsicht konkurrieren – genau der Fall, den `seo:cannibalization` verhindern soll, und die bestehenden Seiten tragen bereits Linkgewicht. Umgesetzt deshalb als Abschnitt „Was ein Komplettauftrag … umfassen kann" mit Baustein-Tabelle auf Nachlass und Seniorenumzug. Die übergabefertige Immobilie ist durch die Abgrenzung auf der Partnerseite (besenrein / zurückgebaut / übergabefertig) und den Ratgeber `geerbte-wohnung-verkaufsfertig-machen` abgedeckt. Maler- und Tapezierbausteine stehen ausdrücklich als Fachbetriebsleistung (E-011). Wiedervorlage: wenn GSC-Daten eine eigene Paket-Suchanfrage mit Volumen zeigen.
+
+**Kostenseiten für Boden, Küche, Trockenbau, Möbelmontage: zurückgestellt.** `priceDataAvailable` steht auf `false`; jede dieser Leistungsseiten hat bereits ihre Preisfaktoren. Eine Kostenseite ohne Zahlen wäre inhaltlich fast deckungsgleich und würde mit der Leistungsseite konkurrieren – und enttäuscht eine Suche nach „was kostet", die eine Zahl erwartet. Wiedervorlage: sobald echte Preisdaten nach CONTENT-TODO § D vorliegen.
 
 ## E-014 · Öffentliche Formular-Grundkonfiguration übersteht Deployment (21.10.2026)
 
