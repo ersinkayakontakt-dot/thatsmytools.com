@@ -25,6 +25,7 @@ export const guides: Guide[] = [
       {h:'Diese Positionen nebeneinanderlegen',table:{head:['Position','Konkrete Frage an den Betrieb'],rows:[['Fläche und Einheit','Welche Wände, Decken oder Böden sind gemeint – und in welcher Einheit?'],['Vorbereitung','Was muss vor Arbeitsbeginn entfernt, abgedeckt oder vorbereitet werden?'],['Material','Welche Produkte sind vorgesehen, wer liefert sie und in welcher Qualität?'],['Zugang und Anfahrt','Sind Etage, Aufzug, Trageweg, Parken und Anfahrt berücksichtigt?'],['Entsorgung','Welche Altmaterialien werden mitgenommen und welche nicht?'],['Auftragnehmer','Wer führt welches Gewerk aus und stellt dafür die Rechnung?'],['Offene Positionen','Welche Annahmen sind noch ungeprüft und wie werden Änderungen abgestimmt?']]}},
       {h:'Rechenbeispiel ohne erfundene Preise',p:['Angebot A nennt 40 m² Wandfläche. Angebot B nennt 40 m² Wohnfläche. Die Zahlen sehen gleich aus, beschreiben aber unterschiedliche Mengen. Bitten Sie beide Betriebe um dieselbe Raum- und Flächenliste. Dieses Beispiel vergleicht Einheiten, keine tatsächlichen Kundenangebote.','Vergleichen Sie auch, ob Material und Vorbereitung enthalten sind. Ein Angebot ohne diese Positionen ist nicht automatisch günstiger, sondern zunächst unvollständig vergleichbar. Bei einem Stundenmodell müssen Arbeitsumfang, voraussichtlicher Zeitbedarf und Umgang mit Mehrarbeit besprochen werden.']},
       {h:'Wer übernimmt welche Arbeit?',p:['Beim [Innenausbau in Berlin](/leistungen/innenausbau-berlin/) stimmen wir die Arbeitsschritte und Zuständigkeiten zuerst ab. [Trockenbau](/leistungen/trockenbau-berlin/), [Bodenverlegung](/leistungen/bodenbelag-verlegen-berlin/) und Montage brauchen unterschiedliche Voraussetzungen. Maler- und Tapezierarbeiten werden gesondert mit einem geeigneten Fachbetrieb abgestimmt.','Notieren Sie für jedes Gewerk den tatsächlichen Auftragnehmer, die enthaltenen Arbeiten und den Übergabepunkt zum nächsten Gewerk. Eine allgemeine Aussage wie „alles komplett“ ersetzt diese Liste nicht. Bei einer Gewerbefläche klären Sie vorher, ob Inventar bleibt, umzieht oder im Rahmen einer [Büroauflösung](/leistungen/bueroaufloesung-berlin/) entfernt werden soll.']},
+      {h:'Räumung, Transport und Ausbau getrennt planen',p:['Wenn vor dem Ausbau alte Möbel entfernt werden sollen, unterscheiden Sie zwischen einzelnen Stücken und einer vollständigen Räumung. Für die [Abholung einzelner Sperrmöbel](/leistungen/sperrmuellabholung-berlin/) nennen Sie die konkreten Gegenstände und den Trageweg. Das Entfernen von Bodenbelägen oder Einbauten ist eine andere Position und gehört gesondert ins Angebot.','Bei einem Wechsel in eine kleinere Wohnung oder ins betreute Wohnen müssen Möbel, die mitkommen, vor der Räumung feststehen. Der [Seniorenumzug](/leistungen/seniorenumzug-berlin/) verbindet die Planung für den neuen Wohnort mit der Abstimmung des verbleibenden Haushalts. Prüfen Sie, welches Angebot Transport und Aufbau enthält und welches nur die Arbeiten in der bisherigen Wohnung.','Wenn eine Verwaltung mehrere Einheiten vorbereitet, braucht jede Einheit ihren eigenen Umfang und eine benannte Freigabe. Unter [Hausverwaltungen und Immobilienpartner](/hausverwaltungen-immobilienpartner/) finden Sie den Ablauf für Objektlisten, Schlüsselverantwortung und dokumentierte Übergaben. Diese Angaben gehören in die gemeinsame Vorbereitung, statt bei jedem Gewerk neu geklärt zu werden.']},
       {h:'Ihre Checkliste vor der Anfrage',list:['Räume und Maße getrennt aufnehmen; unbekannte Angaben als offen kennzeichnen.','Fotos vom Gesamtzustand und von betroffenen Anschlüssen oder Oberflächen auswählen.','Vorbereitung, Material und Entsorgung je Gewerk zuordnen.','Wunschtermin, Zugang und Nutzung während der Arbeiten beschreiben.','Offene Punkte vor Beauftragung schriftlich klären.'],p:['Diese Angaben helfen bei der Anfrage und beim anschließenden Vergleich. Sie müssen noch keine Preise oder fertige Ausführungsplanung kennen. Prüfen Sie bei der Antwort zuerst den Umfang, danach den Betrag.']}
     ],
     faq:[{q:'Kann ich unterschiedliche Gesamtpreise direkt vergleichen?',a:'Nur wenn Leistungsumfang, Mengen, Material, Vorbereitung und Zusatzpositionen tatsächlich übereinstimmen. Lassen Sie offene oder nicht enthaltene Punkte erst ergänzen. Ein Vergleich des Gesamtbetrags allein kann sonst die Unterschiede verdecken.'},{q:'Ist eine Rechnerfläche bereits ein verbindliches Aufmaß?',a:'Nein. Der Rechner zeigt geometrische Werte anhand Ihrer Eingaben. Ausführung, örtliche Maße und vereinbarte Abrechnungsregeln müssen mit dem tatsächlichen Auftragnehmer geklärt werden. Die Planung unterstützt die Anfrage und ersetzt weder ein Angebot noch die fachliche Prüfung.'}],
@@ -491,7 +492,7 @@ export const guides: Guide[] = [
           'Ein Foto der Einbauküche, wenn sie ausgebaut werden soll',
           'Ein Foto vom Bodenbelag, wenn Teppich aufgenommen werden soll',
           'Bei Häusern zusätzlich Garage, Schuppen, Gartenhaus und Garten',
-          'Bei Gewerbeflächen: Lastenaufzug, Anlieferzone und Serverraum',
+          'Für eine [Büroauflösung](/leistungen/bueroaufloesung-berlin/): Raumübersichten, Möblierung, Lastenaufzug und Anlieferzone; keine lesbaren Akten oder Bildschirme fotografieren',
         ],
       },
       {
@@ -534,7 +535,7 @@ export const guides: Guide[] = [
     related: ['entruempelung-vorbereiten', 'was-kostet-eine-entruempelung-in-berlin'],
     services: ['entruempelung-berlin', 'haushaltsaufloesung-berlin'],
     published: '2026-07-29',
-    updated: '2026-10-21',
+    updated: '2026-10-22',
   },
 
   /* ================================================================== */
@@ -1455,6 +1456,8 @@ export const guides: Guide[] = [
           'Welche Arbeiten anstehen und welche Sie selbst oder andere Betriebe übernehmen',
           'Wer Schlüssel hat und wer Entscheidungen treffen darf',
         ],
+
+        p: ['Übernimmt eine Verwaltung oder ein Makler die Vorbereitung mehrerer Einheiten, sollten Objektliste, Freigaben und Schlüsselzuständigkeit je Einheit festgehalten werden. Der Ablauf für [Hausverwaltungen und Immobilienpartner](/hausverwaltungen-immobilienpartner/) hilft, Räumung und Übergabe gemeinsam zu beschreiben, ohne pauschal jede Renovierungsarbeit mitzubestellen.'],
       },
     ],
     faq: [
@@ -1474,7 +1477,7 @@ export const guides: Guide[] = [
     related: ['haushaltsaufloesung-nach-todesfall', 'checkliste-wohnungsuebergabe', 'laminat-oder-vinyl-mietwohnung'],
     services: ['nachlassaufloesung-berlin', 'innenausbau-berlin', 'bodenbelag-verlegen-berlin'],
     published: '2026-10-21',
-    updated: '2026-10-21',
+    updated: '2026-10-22',
   },
 
   /* ================================================================== */

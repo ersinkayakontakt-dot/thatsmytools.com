@@ -264,3 +264,5 @@ Gemeinsame Quelle für Codex/Claude: docs/SEO-AUSBAU-2026-10-22.md. Vor SEO-/Rec
 Aktueller gemeinsamer Release-Stand 22.10.2026: Remote 873bde6 und Rechnerentwurf ecc6da4 zusammengeführt, 82 Seiten/62 indexierbar, 0 Fehler und drei redaktionell bewertete Linkhinweise. Datierte E-015-Verweise unterscheiden parallele Entscheidungen ohne historische IDs umzunummerieren. Betreiberfreigabe mit „go“ liegt vor.
 
 Live-Abschluss 22.10.2026: Quelle 9b63dd3 / Build 3b64b49, 62 indexierbare URLs exakt live abgeglichen, 33 Live-Browserchecks und fünf Bildseiten geprüft; IndexNow 39 URLs HTTP 200 angenommen. Keine erneute echte Mailtest-Anfrage. Aktueller Status in HANDOFF.md und SEO-AUSBAU-2026-10-22.md.
+
+SEO-2026-06 lokal geprüft (noch unveröffentlicht): 82/62 Seiten, 0 Fehler/0 Warnungen statt drei Live-Hinweisen; vorhandene vier Seiten sinnvoll ergänzt, Prioritäten/Regeln unverändert. Neue konkrete Releasefreigabe nötig; Live weiterhin 3b64b49.
