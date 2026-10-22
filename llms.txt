@@ -97,6 +97,7 @@ Diese Angaben fehlen, weil sie nicht belegt sind, nicht weil sie vergessen wurde
 
 ## Ratgeber
 
+- [Innenausbau-Angebote vergleichen: Was muss drinstehen?](https://schnellhelfer24.de/ratgeber/innenausbau-angebote-vergleichen/): Innenausbau-Angebote sind erst vergleichbar, wenn sie dieselben Räume, Flächen und Arbeiten beschreiben. Prüfen Sie vor allem Untergrundvorbereitung, Material, Abtransport, Zugang, Auftragnehmer und offene Zusatzleistungen. Ein kleinerer Gesamtbetrag kann einen anderen Umfang enthalten. Klären Sie die Unterschiede schriftlich, bevor Sie einen Auftrag erteilen.
 - [Welche Fotos brauchen wir für ein Angebot?](https://schnellhelfer24.de/ratgeber/welche-fotos-fuer-ein-angebot/): Für eine belastbare Einschätzung brauchen wir Übersichtsfotos aller Räume, geöffnete Schränke, Nebenräume, Treppenhaus und die Straße vor dem Haus. Zwölf gute Fotos genügen meistens. Zeigen Sie auch Keller, Dachboden oder Balkon: Fehlen diese Bereiche, können Aufwand und Preis am Einsatztag von der ersten Einschätzung abweichen.
 - [Eine Entrümpelung richtig vorbereiten](https://schnellhelfer24.de/ratgeber/entruempelung-vorbereiten/): Vor einer Entrümpelung sollten Sie drei Dinge klären: Was bleibt, wer aufschließt und wo das Fahrzeug stehen kann. Markieren Sie Gegenstände, die nicht mitgehen, und sichern Sie Dokumente, Schlüssel und Wertsachen selbst. Angaben zu Etage, Aufzug und Halteposition verhindern die meisten Überraschungen am Einsatztag.
 - [Checkliste für die Wohnungsübergabe](https://schnellhelfer24.de/ratgeber/checkliste-wohnungsuebergabe/): Vor der Wohnungsübergabe sollte die Wohnung geräumt und besenrein sein. Lesen Sie alle Zählerstände ab, sammeln Sie sämtliche Schlüssel und dokumentieren Sie vorhandene Mängel. Bestehen Sie auf einem schriftlichen Übergabeprotokoll mit Datum, Zählerständen und Schlüsselanzahl. Prüfen Sie alles vor der Unterschrift und fotografieren Sie den Zustand jedes Raums.
@@ -144,4 +145,4 @@ Diese Angaben fehlen, weil sie nicht belegt sind, nicht weil sie vergessen wurde
 
 Diese Datei folgt dem llms.txt-Vorschlag. Sie ist kein offizieller Standard und wird nicht von allen Systemen ausgewertet. Maßgeblich sind die verlinkten Seiten selbst.
 
-Stand: 2026-10-21
+Stand: 2026-10-22
