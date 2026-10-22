@@ -1,0 +1,118 @@
+---
+/**
+ * ÜBERGABE ZUM FESTEN TERMIN (GROW-2026-02)
+ * =========================================
+ *
+ * Anfragbares Angebot für eine konkrete Lebenssituation: Eine Wohnung muss
+ * bis zu einem festen Tag geräumt und in dem Zustand sein, den Vertrag oder
+ * Verwaltung verlangen. Keine eigene URL (E-015): Der Baustein steht auf den
+ * Seiten, auf denen dieser Bedarf ohnehin ankommt, und führt in den
+ * Übergabe-Einstieg des bestehenden Formulars.
+ *
+ * Der Nutzen ist operativ, nicht werblich: Termin und Anforderungen kommen
+ * mit der ersten Anfrage, es wird rückwärts geplant, und es gibt einen
+ * Ansprechpartner für alle Schritte. Was über Fachbetriebe läuft und was wir
+ * nicht anbieten, steht ausdrücklich dabei (docs/HANDWERKSRECHT.md).
+ *
+ * Wirkung wird im Nachfrageregister gemessen (docs/NACHFRAGE-SYSTEM.md).
+ */
+import Icon from './Icon.astro';
+import { HANDOVER_VORHABEN } from '../data/requestSignals';
+
+interface Props {
+  /** Leistung, die im Formular vorausgewählt wird. */
+  serviceSlug: string;
+  /** Ort des Bausteins für die Messung, z. B. "leistung-wohnungsaufloesung-berlin". */
+  location: string;
+  /** Überschrift, falls die Seite eine eigene Formulierung braucht. */
+  heading?: string;
+}
+
+const { serviceSlug, location, heading = 'Wohnung zum festen Termin übergeben' } = Astro.props;
+const href = `/angebot-anfragen/?leistung=${encodeURIComponent(serviceSlug)}&vorhaben=${HANDOVER_VORHABEN}`;
+---
+
+<section class="handover-offer" aria-labelledby={`handover-${location}`}>
+  <p class="handover-offer__kicker">Wenn ein Übergabetermin feststeht</p>
+  <h2 id={`handover-${location}`}>{heading}</h2>
+  <p>
+    Sie nennen uns den Übergabetermin und was Vermieter oder Verwaltung verlangen. Wir planen
+    rückwärts von diesem Tag: Räumung, Rückbau, Wände und Boden in der richtigen Reihenfolge, mit
+    Puffer bis zur Schlüsselübergabe – und einer Ansprechperson für alle Schritte.
+  </p>
+  <div class="handover-offer__cols">
+    <div>
+      <h3>Übernehmen wir selbst</h3>
+      <ul>
+        <li>Räumung einschließlich Keller und Nebenräume</li>
+        <li>Rückbau von Einbauten, Küche und altem Bodenbelag</li>
+        <li>Dübellöcher schließen, neuen Bodenbelag verlegen</li>
+        <li>Endreinigung, besenreine Übergabe, Schlüsselübergabe</li>
+      </ul>
+    </div>
+    <div>
+      <h3>Mit Fachbetrieb abgestimmt</h3>
+      <ul>
+        <li>Wände und Decken streichen</li>
+        <li>Tapeten entfernen oder neu tapezieren</li>
+      </ul>
+      <h3>Bieten wir nicht an</h3>
+      <ul>
+        <li>Reparaturen an Fenstern, Türen, Sanitär oder Elektrik</li>
+      </ul>
+    </div>
+  </div>
+  <p class="handover-offer__note">
+    Sie erhalten ein Angebot mit getrennten Positionen. Ein Termin ist erst nach gemeinsamer
+    Abstimmung zugesagt.
+  </p>
+  <a class="btn btn--primary" href={href} data-track="handover_cta_click" data-track-location={location}>
+    <Icon name="arrow" size={18} />
+    Übergabe planen lassen
+  </a>
+</section>
+
+<style>
+  .handover-offer {
+    background: var(--paper-2);
+    border-left: 6px solid var(--accent);
+    border-radius: var(--r-sm);
+    padding: var(--sp-5);
+    margin: var(--sp-7, 2.5rem) 0;
+  }
+  .handover-offer h2 {
+    margin-top: 0;
+  }
+  .handover-offer h3 {
+    font-size: 1rem;
+    margin: var(--sp-3) 0 var(--sp-2);
+  }
+  .handover-offer__kicker {
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--ink-3);
+    margin: 0 0 var(--sp-2);
+  }
+  .handover-offer__cols {
+    display: grid;
+    gap: var(--sp-4);
+  }
+  @media (min-width: 40em) {
+    .handover-offer__cols {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+  .handover-offer ul {
+    margin: 0;
+    padding-left: 1.2rem;
+  }
+  .handover-offer li {
+    margin-bottom: var(--sp-1, 0.25rem);
+  }
+  .handover-offer__note {
+    font-size: 0.92rem;
+    color: var(--ink-3);
+  }
+</style>

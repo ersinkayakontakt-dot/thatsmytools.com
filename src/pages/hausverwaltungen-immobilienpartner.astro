@@ -19,6 +19,7 @@ import { seoPage } from '../data/seo-pages';
 import RelatedServiceLinks from '../components/RelatedServiceLinks.astro';
 import ContextualCompanyLink from '../components/ContextualCompanyLink.astro';
 import NextStepPanel from '../components/NextStepPanel.astro';
+import HandoverOffer from '../components/HandoverOffer.astro';
 import Figure from '../components/Figure.astro';
 import { heroImage } from '../data/images';
 
@@ -296,6 +297,10 @@ const steps = [
       </p>
     </div>
   </section>
+
+  <div class="wrap wrap--mid">
+    <HandoverOffer serviceSlug="wohnungsaufloesung-berlin" location="hausverwaltungen" heading="Eine Einheit zum festen Termin übergeben" />
+  </div>
 
   <section class="flow" aria-labelledby="ablauf">
     <div class="wrap flow__grid">

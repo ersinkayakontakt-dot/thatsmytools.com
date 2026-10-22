@@ -13,6 +13,10 @@ import RelatedGuides from '../../components/RelatedGuides.astro';
 import RelevantLocations from '../../components/RelevantLocations.astro';
 import CaseStudyLinks from '../../components/CaseStudyLinks.astro';
 import NextStepPanel from '../../components/NextStepPanel.astro';
+import HandoverOffer from '../../components/HandoverOffer.astro';
+
+/* Übergabe-Einstieg nur dort, wo ein fester Übergabetermin typisch ist (GROW-2026-02). */
+const HANDOVER_SERVICES = ['wohnungsaufloesung-berlin', 'nachlassaufloesung-berlin', 'haushaltsaufloesung-berlin'];
 import ContextualCompanyLink from '../../components/ContextualCompanyLink.astro';
 import Figure from '../../components/Figure.astro';
 import Toc from '../../components/Toc.astro';
@@ -194,6 +198,10 @@ const schema = buildGraph([
         </section>
 
         <Blocks blocks={service.blocks} />
+
+        {HANDOVER_SERVICES.includes(service.slug) && indexable && (
+          <HandoverOffer serviceSlug={service.slug} location={`leistung-${service.slug}`} />
+        )}
 
         <PriceFactors factors={service.priceFactors} id={`pf-${service.slug}`} />
 

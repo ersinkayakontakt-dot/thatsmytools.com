@@ -20,7 +20,7 @@ await new Promise(r=>smtp.listen(0,'127.0.0.1',r));
 const portProbe=createServer();await new Promise(r=>portProbe.listen(0,'127.0.0.1',r));const port=portProbe.address().port;await new Promise(r=>portProbe.close(r));
 const config={recipient:'recipient@example.test',from:'sender@example.test',smtpUser:'sender@example.test',smtpPass:'synthetic-test-only',smtpHost:'127.0.0.1',smtpPort:smtp.address().port,smtpSecure:'none',smtpTimeout:2,storageDir:storage,siteUrl:'http://127.0.0.1:'+port,rateMax:100,minFillMs:0};
 writeFileSync(join(web,'api/config.local.php'),'<?php return json_decode(base64_decode(\''+Buffer.from(JSON.stringify(config)).toString('base64')+'\'),true);');
-const server=spawn(php,['-d','extension_dir='+join(dirname(php),'ext'),'-d','extension=mbstring','-d','extension=fileinfo','-S','127.0.0.1:'+port,'-t',web],{stdio:'ignore'});
+const server=spawn(php,[...(process.platform==='win32'?['-d','extension_dir='+join(dirname(php),'ext'),'-d','extension=mbstring','-d','extension=fileinfo']:[]),'-S','127.0.0.1:'+port,'-t',web],{stdio:'ignore'});
 let passed=0;
 try{
 for(let i=0;i<50;i++){try{await fetch(config.siteUrl+'/api/anfrage.php');break;}catch{await new Promise(r=>setTimeout(r,100));}}

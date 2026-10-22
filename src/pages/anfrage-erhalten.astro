@@ -4,6 +4,11 @@ import Icon from '../components/Icon.astro';
 import { phone, whatsapp, email } from '../lib/contact';
 import { publishedGuides } from '../data/guides';
 import { seoPage } from '../data/seo-pages';
+import { handoverItems, openQuestions } from '../data/requestSignals';
+
+/* Für das Inline-Skript: Schlüssel => Beschriftung und Zuständigkeit. */
+const handoverMap = Object.fromEntries(handoverItems.map((i) => [i.key, { label: i.label, r: i.responsibility }]));
+const openMap = Object.fromEntries(openQuestions.map((q) => [q.key, q.label]));
 
 /* Metadaten kommen aus der zentralen Seitenkarte, damit Title,
    Description, URL und Sitemap-Datum nur an einer Stelle stehen. */
@@ -45,6 +50,25 @@ const prep = [
       <h2 id="recap-head">Ihre Angaben im Überblick</h2>
       <p>Zusammenfassung aus diesem Browser.</p>
       <dl data-recap-list></dl>
+    </section>
+
+    <!-- Übergabe-Einstieg (GROW-2026-02): Ablauf aus den eigenen Angaben,
+         ohne Termin- oder Preiszusage. Wird nur clientseitig gefüllt. -->
+    <section class="handover-plan" data-handover-plan hidden aria-labelledby="plan-head">
+      <h2 id="plan-head">Ihr Ablauf bis zur Übergabe</h2>
+      <p data-plan-date></p>
+      <ol class="plan-steps" data-plan-steps></ol>
+      <div data-plan-not hidden>
+        <h3>Was wir nicht übernehmen</h3>
+        <ul data-plan-not-list></ul>
+        <p class="text-muted">Das sagen wir Ihnen im ersten Gespräch ausdrücklich, damit Sie es rechtzeitig anderweitig beauftragen können.</p>
+      </div>
+      <p class="text-muted">Die Reihenfolge ist die übliche Planung. Konkrete Termine, Umfang und Preis legen wir erst gemeinsam fest.</p>
+    </section>
+
+    <section class="open-first" data-open-first hidden aria-labelledby="open-head">
+      <h2 id="open-head">Darauf gehen wir zuerst ein</h2>
+      <ul data-open-list></ul>
     </section>
 
     <section aria-labelledby="next">
@@ -243,10 +267,11 @@ const prep = [
     font-size: 0.9rem;
     color: var(--ink-3);
   }
+.handover-plan{background:var(--paper-2);border-left:6px solid var(--accent);padding:var(--sp-5);margin-bottom:var(--sp-6);border-radius:var(--r-sm);}.handover-plan h2{margin-top:0;}.handover-plan h3{font-size:1rem;margin-top:var(--sp-4);}.plan-steps{padding-left:1.3rem;}.plan-steps :global(li){margin-bottom:var(--sp-2);}.plan-steps :global(strong){display:block;}.plan-steps :global(span){color:var(--ink-3);}.handover-plan[hidden],.open-first[hidden]{display:none;}.open-first{margin-bottom:var(--sp-6);}
 .done__icon[hidden]{display:none;}.receipt-reference{padding:.8rem 1rem;border-radius:var(--r-sm);background:var(--brand-tint);display:inline-block;font-weight:700;}.receipt-reference[hidden]{display:none;}.done__icon{border-radius:50%;}.recap{border-radius:var(--r-lg);}
 </style>
 
-<script is:inline>
+<script is:inline define:vars={{ handoverMap, openMap }}>
   (function () {
     var box = document.querySelector('[data-recap]');
     var list = document.querySelector('[data-recap-list]');
@@ -308,6 +333,54 @@ const prep = [
       });
 
       if (list.children.length) box.hidden = false;
+
+      /* Übergabeplan aus den gewählten Anforderungen, in fester Reihenfolge. */
+      if (data.vorhaben === 'uebergabe') {
+        var chosen = Array.isArray(data.anforderungen) ? data.anforderungen.filter(function (k) { return handoverMap[k]; }) : [];
+        var has = function (k) { return chosen.indexOf(k) >= 0; };
+        var labelOf = function (k) { return handoverMap[k].label; };
+        var steps = [['Erstgespräch und bei Bedarf Besichtigung', 'Wir gleichen Umfang und Anforderungen aus Vertrag oder Übergabeprotokoll ab' + (has('unklar') ? ' – bitte halten Sie das Dokument bereit.' : '.')]];
+        var clear = ['geraeumt'].filter(has).map(labelOf);
+        steps.push(['Räumung', clear.length ? clear.join(', ') : 'Was mitgenommen, verwertet oder entsorgt wird, legen wir vorher fest.']);
+        var back = ['einbauten', 'boden-raus'].filter(has).map(labelOf);
+        if (back.length) steps.push(['Rückbau', back.join(', ')]);
+        var walls = ['duebel'].filter(has).map(labelOf).concat(['streichen', 'tapeten'].filter(has).map(function (k) { return labelOf(k) + ' (mit Fachbetrieb abgestimmt)'; }));
+        if (walls.length) steps.push(['Wände', walls.join(', ')]);
+        if (has('boden-neu')) steps.push(['Boden', labelOf('boden-neu')]);
+        var finish = ['reinigung', 'besenrein'].filter(has).map(labelOf);
+        steps.push(['Puffer und Übergabe', (finish.length ? finish.join(', ') + '. ' : '') + 'Zwischen Räumung und Übergabe planen wir Zeit für Nacharbeiten ein.']);
+        var ol = document.querySelector('[data-plan-steps]');
+        steps.forEach(function (st) {
+          var li = document.createElement('li');
+          var t = document.createElement('strong');
+          t.textContent = st[0];
+          var d = document.createElement('span');
+          d.textContent = st[1];
+          li.appendChild(t);
+          li.appendChild(d);
+          ol.appendChild(li);
+        });
+        var dateEl = document.querySelector('[data-plan-date]');
+        var m = /^(\d{4})-(\d{2})-(\d{2})$/.exec(data.stichtag || '');
+        dateEl.textContent = m ? 'Übergabetermin laut Ihrer Angabe: ' + m[3] + '.' + m[2] + '.' + m[1] + '. Wir planen rückwärts von diesem Tag.' : 'Den Übergabetermin klären wir im ersten Gespräch.';
+        var not = chosen.filter(function (k) { return handoverMap[k].r === 'nicht'; });
+        if (not.length) {
+          var nl = document.querySelector('[data-plan-not-list]');
+          not.forEach(function (k) { var li = document.createElement('li'); li.textContent = labelOf(k); nl.appendChild(li); });
+          document.querySelector('[data-plan-not]').hidden = false;
+        }
+        document.querySelector('[data-handover-plan]').hidden = false;
+      }
+      if (Array.isArray(data.offen) && data.offen.length) {
+        var ul = document.querySelector('[data-open-list]');
+        data.offen.forEach(function (k) {
+          if (!openMap[k]) return;
+          var li = document.createElement('li');
+          li.textContent = openMap[k];
+          ul.appendChild(li);
+        });
+        if (ul.children.length) document.querySelector('[data-open-first]').hidden = false;
+      }
 
       // Nur einmal anzeigen: beim erneuten Aufruf der Seite ist die
       // Zusammenfassung weg, damit keine Daten im Browser liegen bleiben.

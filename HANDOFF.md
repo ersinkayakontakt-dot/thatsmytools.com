@@ -1,3 +1,7 @@
+# Wachstumsphase 22.10.2026 (Quellstand, noch nicht live)
+
+GROW-2026-01 Nachfrageregister + Betriebsbereich, GROW-2026-02 Übergabe zum festen Termin, UX-2026-02 Bestätigungsseite. Gemeinsame Quelle: docs/NACHFRAGE-SYSTEM.md (Hypothesen, Betrieb, Entscheidungskriterien), E-016. Vor Veröffentlichung: Betreiberfreigabe, danach Zugang einrichten (§ 6). Zusätzlicher Pflicht-Selbsttest: `npm run audit:demand:selftest`.
+
 # SEO-Folgestand live bestätigt · 22.10.2026
 
 SEO-2026-06 am 22.10.2026 nach Betreiberfreigabe „ok gop“ veröffentlicht: Quelle af6200a, hostinger-live 844ba7b. Vier Inhalte plus automatisch aktualisierte Ratgeberübersicht/Sitemap übertragen; keine API-Datei geändert und keine versionierte Datei gelöscht. Alle 62 indexierbaren URLs HTTP 200 und exakt gegen den geprüften Build abgeglichen, keine noindex-Sperre in Produktion. 20 Live-Browser-/Linkprüfungen bestanden: vier geänderte Seiten bei 320/375/768/1440 px ohne Überlauf, Inhalte ohne JavaScript lesbar, neue Linkziele HTTP 200. Build, Check, Inhalts-/Buildaudit, SEO, sieben Anfragefälle, 29 Rechenfälle und sechs Berichtschecks bestanden. SEO vollständig 0 Fehler/0 Warnungen, unveränderte Prioritäten und Prüfschwellen. Nach Live-Abgleich fünf geänderte URLs an IndexNow gemeldet, HTTP 200 angenommen; Zustand gespeichert. Keine Aussage über Indexaufnahme, Rankings oder neue Anfragen. Keine echte Anfrage/Mail abgeschickt; Mailarbeit bleibt auf Betreiberwunsch zurückgestellt.

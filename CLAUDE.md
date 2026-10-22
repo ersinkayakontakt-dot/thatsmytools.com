@@ -126,8 +126,9 @@ hinweg. Sprunglinks innerhalb einer Seite (`#…`) zählt der Linkgraph nicht.
 | Prüfregeln oder Ereignisnamen | `npm run seo:selftest` (16 Verletzungen) und `npm run seo:events` |
 | `src/data/serviceAreas.ts` | `npm run audit:plz:selftest` (13 Gegenbeispiele + Gegenprobe) |
 | `public/api/lib/smtp.php` | `npm run audit:mail:selftest` (14 Fälle, echtes SMTP-Gespräch) |
+| `public/api/lib/nachfrage.php`, `betrieb.php`, `src/data/requestSignals.ts` | `npm run audit:demand:selftest` (Listenabgleich TS/PHP, Einheitsfälle, Integration mit Anmeldung/CSRF) |
 | `public/api/lib/config.php` | `npm run audit:config:selftest` (6 Fälle, Suchreihenfolge und „Deploy löscht die alte Datei“) |
-| irgendein PHP | `php -l` auf `public/api/anfrage.php`, `events.php`, `lib/smtp.php`, `lib/config.php` |
+| irgendein PHP | `php -l` auf `public/api/anfrage.php`, `events.php`, `betrieb.php`, `lib/*.php` |
 
 **Die Selbsttests sind nicht optional.** Zwei von ihnen prüfen Code, der über
 leeren Daten läuft: Solange `serviceAreas` leer ist, läuft jede Schleife der
@@ -154,6 +155,7 @@ genannten Stellen an.
 | **Seite anlegen oder umbenennen** | Eintrag in `src/data/seo-pages.ts`, sonst schlägt `npm run seo:metadata` fehl. Dazu `related`, `focusServices`, `situations.ts`, Navigation, Sitemap |
 | **Mess-Ereignis ergänzen** | Name zusätzlich in `ALLOWED_EVENTS` in `public/api/events.php`, sonst verwirft der Endpunkt es stillschweigend. `npm run seo:events` prüft das |
 | **PLZ-Muster ändern** | `PLZ_PATTERN` in `src/data/serviceAreas.ts` (speist HTML-`pattern` **und** Client-RegExp) · dazu das eigene `preg_match` in `public/api/anfrage.php`. PHP kann das TS-Modul nicht importieren, und die Serverprüfung darf nicht von der Clientseite abhängen |
+| **Übergabe-Anforderung oder offene Frage ändern** | `src/data/requestSignals.ts` **und** `SH24_ANFORDERUNGEN`/`SH24_OFFEN` in `public/api/lib/nachfrage.php`. Schlüssel nie umdeuten (Zeitreihe im Register). `audit:demand:selftest` prüft den Gleichlauf |
 | **Neue Datendatei unter `src/data/`** | Danach `git status --short src/data/` prüfen. Taucht sie dort nicht als `??` auf, ist sie unsichtbar – siehe § Fallen |
 
 ---
@@ -266,3 +268,7 @@ Aktueller gemeinsamer Release-Stand 22.10.2026: Remote 873bde6 und Rechnerentwur
 Live-Abschluss 22.10.2026: Quelle 9b63dd3 / Build 3b64b49, 62 indexierbare URLs exakt live abgeglichen, 33 Live-Browserchecks und fünf Bildseiten geprüft; IndexNow 39 URLs HTTP 200 angenommen. Keine erneute echte Mailtest-Anfrage. Aktueller Status in HANDOFF.md und SEO-AUSBAU-2026-10-22.md.
 
 SEO-2026-06 am 22.10.2026 freigegeben („ok gop“) und live bestätigt: Quelle af6200a / Build 844ba7b. 82/62 Seiten, 0 Fehler/0 Warnungen, Prioritäten/Regeln unverändert. Alle 62 indexierbaren URLs Build-identisch live, 20 Browser-/Linkchecks bestanden, IndexNow fünf geänderte URLs HTTP 200 angenommen. Keine Aussage über Rankings oder neue Anfragen.
+
+## Wachstumsphase 22.10.2026 (E-016)
+
+Nachfrageregister und Übergabe zum festen Termin: docs/NACHFRAGE-SYSTEM.md. Das Register speichert nie Kontaktdaten, Freitext, Datum oder volle PLZ – Einträge werden aus einer Allowlist neu aufgebaut. `/api/betrieb.php` ist der einzige Ort, an dem Ergebnisse erfasst werden; Zugang über `betriebPasswortHash`/`betriebGeheimnis` in `sh24-config.php`. Keine öffentliche Angebotsseite für eine Versorgungslücke, solange niemand sie ausführt.

@@ -8,6 +8,7 @@ import { site } from '../config/site';
 import { phone, whatsapp } from '../lib/contact';
 import { categoryOfService } from '../data/categories';
 import { PLZ_PATTERN, serviceLevelMap, type ServiceLevel } from '../data/serviceAreas';
+import { handoverItems, openQuestions, responsibilityLabel, HANDOVER_VORHABEN } from '../data/requestSignals';
 
 /**
  * AUFWAND-CHECK
@@ -478,13 +479,53 @@ const steps = [
         }
       </div>
 
+      <!--
+        Übergabe-Einstieg (GROW-2026-02). Nur bei Räumungsleistungen aktiv.
+        Ohne JavaScript bleibt alles sichtbar und freiwillig; der Server
+        verwirft die Anforderungen, wenn das Häkchen fehlt.
+      -->
+      <div class="field field--check handover-toggle" data-handover-toggle-wrap>
+        <label class="consent">
+          <input type="checkbox" name="vorhaben" value={HANDOVER_VORHABEN} data-handover-toggle />
+          <span>
+            <strong>Die Räume müssen zu einem festen Termin übergeben werden.</strong>
+            Dann planen wir rückwärts vom Übergabetermin und fragen gleich mit ab, was bis dahin erledigt sein muss.
+          </span>
+        </label>
+      </div>
+
       <div class="field">
-        <label for="stichtag">Gibt es einen festen Termin?</label>
+        <label for="stichtag" data-stichtag-label>Gibt es einen festen Termin?</label>
         <input type="date" id="stichtag" name="stichtag" aria-describedby="stichtag-hint" />
         <p class="field__hint" id="stichtag-hint">
           Zum Beispiel der Tag der Wohnungsübergabe. Wir planen dann rückwärts davon.
         </p>
       </div>
+
+      <fieldset class="subfield" data-handover-items>
+        <legend>Was muss bis zur Übergabe erledigt sein?</legend>
+        <p class="field__hint">
+          Mehrfachauswahl. Am verlässlichsten steht es im Mietvertrag oder im Übergabeprotokoll der
+          Verwaltung – ein Foto davon können Sie im nächsten Schritt anhängen.
+        </p>
+        <div class="choices choices--inline">
+          {
+            handoverItems.map((item) => (
+              <label class="choice choice--pill" title={responsibilityLabel[item.responsibility]}>
+                <input type="checkbox" name="anforderungen[]" value={item.key} data-responsibility={item.responsibility} />
+                <span class="choice__body">
+                  <span class="choice__title">{item.label}</span>
+                </span>
+              </label>
+            ))
+          }
+        </div>
+        <p class="field__hint handover-legend">
+          Streichen und Tapezieren stimmen wir mit einem Fachbetrieb ab. Reparaturen an Fenstern,
+          Türen, Sanitär oder Elektrik bieten wir nicht an – wählen Sie sie trotzdem, wenn sie
+          verlangt werden. Dann sagen wir Ihnen gleich, was wir übernehmen und was nicht.
+        </p>
+      </fieldset>
 
       <div class="nav-row">
         <button type="button" class="btn btn--ghost" data-prev>Zurück</button>
@@ -622,6 +663,25 @@ const steps = [
         </label>
       </div>
 
+      <fieldset class="subfield">
+        <legend>Ist vor Ihrer Entscheidung noch etwas offen?</legend>
+        <p class="field__hint">
+          Freiwillig, Mehrfachauswahl. Darauf gehen wir in unserer ersten Antwort zuerst ein.
+        </p>
+        <div class="choices choices--inline">
+          {
+            openQuestions.map((q) => (
+              <label class="choice choice--pill">
+                <input type="checkbox" name="offen[]" value={q.key} />
+                <span class="choice__body">
+                  <span class="choice__title">{q.label}</span>
+                </span>
+              </label>
+            ))
+          }
+        </div>
+      </fieldset>
+
       <div class="summary" data-summary hidden>
         <p class="summary__head">Das schicken Sie ab</p>
         <dl data-summary-list></dl>
@@ -674,6 +734,14 @@ const steps = [
 <style>
   .check {
     max-width: 46rem;
+  }
+  .handover-toggle {
+    background: var(--paper-2);
+    border-left: 4px solid var(--accent);
+    padding: var(--sp-3) var(--sp-4);
+  }
+  .handover-legend {
+    margin-top: var(--sp-3);
   }
 
   /* ------------------------------------------------------- Fortschritt */
@@ -1174,6 +1242,33 @@ const steps = [
     var areaField = root.querySelector('#flaeche');
     var areaGroup = areaField.closest('.field');
     var note = root.querySelector('[data-profile-note]');
+    var handoverToggle = root.querySelector('[data-handover-toggle]');
+    var handoverToggleWrap = root.querySelector('[data-handover-toggle-wrap]');
+    var handoverItemsGroup = root.querySelector('[data-handover-items]');
+    var stichtagField = root.querySelector('#stichtag');
+    var stichtagLabel = root.querySelector('[data-stichtag-label]');
+    var stichtagHint = root.querySelector('#stichtag-hint');
+    function handoverActive() {
+      return !!handoverToggle && handoverToggle.checked && !handoverToggle.disabled;
+    }
+    /* Übergabe-Einstieg: Termin wird Pflicht, Anforderungen werden sichtbar. */
+    function updateHandover() {
+      var on = handoverActive();
+      enableGroup(handoverItemsGroup, on);
+      stichtagField.required = on;
+      if (on) stichtagField.setAttribute('data-validate', 'Bitte geben Sie den Übergabetermin an.');
+      else { stichtagField.removeAttribute('data-validate'); clearError(stichtagField); }
+      stichtagLabel.innerHTML = '';
+      stichtagLabel.append(on ? 'Übergabetermin ' : 'Gibt es einen festen Termin?');
+      if (on) { var req = document.createElement('span'); req.className = 'req'; req.textContent = 'Pflichtfeld'; stichtagLabel.append(req); }
+      stichtagHint.textContent = on
+        ? 'Der Tag, an dem die Schlüssel zurückgehen. Wir planen Räumung und Arbeiten davor ein, mit Puffer bis zur Übergabe.'
+        : 'Zum Beispiel der Tag der Wohnungsübergabe. Wir planen dann rückwärts davon.';
+    }
+    function checkedTitles(name) {
+      return Array.prototype.filter.call(form.querySelectorAll('input[name="' + name + '"]'), function (el) { return el.checked && !el.disabled; })
+        .map(function (el) { return el.closest('label').querySelector('.choice__title').textContent.trim(); });
+    }
     var floorGroup = root.querySelector('#etage').closest('.field');
     var liftGroup = root.querySelector('input[name="aufzug"]').closest('.subfield');
     var accessMarker = document.createComment('access-origin');
@@ -1214,6 +1309,7 @@ const steps = [
       var isAssembly = activeProfile.kind === 'assembly' || activeProfile.kind === 'advice';
       activeSteps = isClearance ? [1,2,3,4,5,6] : isAssembly ? [1,2,4,6] : [1,2,4,5,6];
       clearanceGroups.forEach(function(group){ enableGroup(group,isClearance); });
+      enableGroup(handoverToggleWrap, isClearance);
       enableGroup(areaGroup, activeProfile.kind !== 'assembly');
       if (isClearance) accessMarker.after(access); else steps[1].querySelector('.nav-row').before(access);
       if (isAssembly) steps[3].querySelector('.nav-row').before(photoFields); else photoMarker.after(photoFields);
@@ -1229,6 +1325,7 @@ const steps = [
       var preferred = form.querySelector('input[name="kontaktart"]:checked');
       mail.required = !!preferred && preferred.value === 'E-Mail';
       root.querySelector('#mail-hint').textContent = mail.required ? 'Bitte angeben, damit wir Ihnen per E-Mail antworten können.' : 'Freiwillig. Nötig, wenn Sie eine Antwort per E-Mail wünschen.';
+      updateHandover();
     }
 
     /* ------------------------------------------------- Hilfsfunktionen */
@@ -1493,6 +1590,7 @@ const steps = [
 
     form.addEventListener('change', function (e) {
       if (e.target.name === 'leistung' || e.target.name === 'kontaktart') { updateProfile(); show(current, false); }
+      if (e.target === handoverToggle) updateHandover();
       save();
       if (current === 6) buildSummary();
       if (e.target.hasAttribute && e.target.hasAttribute('data-validate')) clearError(e.target);
@@ -1513,7 +1611,7 @@ const steps = [
         ['etage', 'Etage'],
         ['aufzug', 'Aufzug'],
         ['zeitraum', 'Wunschzeitraum'],
-        ['stichtag', 'Wunschtermin'],
+        ['stichtag', handoverActive() ? 'Übergabetermin' : 'Wunschtermin'],
         ['beschreibung', 'Ihr Vorhaben'],
         ['kontaktart', 'Antwort per'],
         ['telefon', 'Telefon'],
@@ -1544,6 +1642,16 @@ const steps = [
         summaryList.appendChild(dt3);
         summaryList.appendChild(dd3);
       }
+      [['anforderungen[]', 'Bis zur Übergabe'], ['offen[]', 'Noch offen']].forEach(function (pair) {
+        var titles = checkedTitles(pair[0]);
+        if (!titles.length) return;
+        var dtx = document.createElement('dt');
+        dtx.textContent = pair[1];
+        var ddx = document.createElement('dd');
+        ddx.textContent = titles.join(', ');
+        summaryList.appendChild(dtx);
+        summaryList.appendChild(ddx);
+      });
       var extra = fd.getAll('nebenraeume[]');
       if (extra.length) {
         var dt2 = document.createElement('dt');
@@ -1645,6 +1753,13 @@ const steps = [
         var neben = fd.getAll('nebenraeume[]');
         if (neben.length) out.nebenraeume = neben.join(', ');
         out.fotos = fileInput && fileInput.files ? fileInput.files.length : 0;
+        /* Schlüssel statt Text: Die Bestätigungsseite kennt Beschriftung und Zuständigkeit. */
+        if (handoverActive()) {
+          out.vorhaben = 'uebergabe';
+          out.anforderungen = Array.prototype.filter.call(form.querySelectorAll('input[name="anforderungen[]"]'), function (el) { return el.checked; }).map(function (el) { return el.value; });
+        }
+        var offenKeys = fd.getAll('offen[]');
+        if (offenKeys.length) out.offen = offenKeys;
         sessionStorage.setItem('sh24_anfrage', JSON.stringify(out));
         /* Entwurf erst nach serverseitig bestätigter Speicherung löschen. */
       } catch (err) {
@@ -1672,6 +1787,12 @@ const steps = [
       var requestedInput = Array.prototype.find.call(form.querySelectorAll('input[name="leistung"][data-service-slug]'),function(input){ return input.dataset.serviceSlug === requested; });
       if (requestedInput) { requestedInput.checked = true; updateProfile(); show(1,false); }
       else if (requested === '') { form.querySelector('input[name="leistung"][value="Weiß ich noch nicht"]').checked = true; updateProfile(); show(1,false); }
+    }
+    /* Übergabe-Einstieg über ?vorhaben=uebergabe (Leistungsseiten, Partnerseite). */
+    if (new URLSearchParams(window.location.search).get('vorhaben') === 'uebergabe' && handoverToggle && !handoverToggle.disabled) {
+      handoverToggle.checked = true;
+      updateHandover();
+      save();
     }
     var filterBar = root.querySelector('[data-service-filter]');
     if (filterBar) filterBar.hidden = false;

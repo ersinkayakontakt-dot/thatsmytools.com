@@ -1,5 +1,17 @@
 # CONTENT-TODO: Was noch an echten Daten fehlt
 
+## Shipped (Quelle) · GROW-2026-01 · Nachfrageregister und Betriebsbereich, 22.10.2026
+
+Personenfreier Registereintrag je Anfrage (`lib/nachfrage.php`), freiwillige Frage „Ist vor Ihrer Entscheidung noch etwas offen?“, Betriebsbereich `/api/betrieb.php` mit Ergebniserfassung, Nachfrageverzeichnis und CSV. Anonymisierung nach 180 Tagen. Datenschutzerklärung § 4 ergänzt. `audit:demand:selftest` (Listenabgleich, 53 Einheitsfälle, Integration) und 33 Browserprüfungen bestanden. **Offen:** Betreiberfreigabe und Deployment; Zugang einrichten (`php scripts/betrieb-passwort.php`, docs/NACHFRAGE-SYSTEM.md § 6); Datenschutzabschnitt anwaltlich mitprüfen (A5). Erfolg: ≥ 80 % Ergebnisse binnen 14 Tagen, ≥ 2 Entscheidungen aus ≥ 5 Anfragen in 8 Wochen.
+
+## Shipped (Quelle) · GROW-2026-02 · Übergabe zum festen Termin, 22.10.2026
+
+Baustein `HandoverOffer.astro` auf Wohnungs-, Nachlass-, Haushaltsauflösung und Partnerseite; Formularschalter bei Räumungsleistungen mit Pflicht-Übergabetermin und Anforderungsliste (Zuständigkeit eigen/Fachbetrieb/nicht angeboten); Mail gruppiert, Betreff „Übergabe“; Bestätigungsseite mit Ablauf ohne Termin-/Preiszusage. Messung im Verzeichnis gegen alle übrigen Anfragen. Entscheidung nach 10 Pilotfällen oder 12 Wochen (Kriterien docs/NACHFRAGE-SYSTEM.md § 4). Ereignis `handover_cta_click` ergänzt (wirksam erst mit aktivierter Messung). **Offen:** Fachbetrieb für Übergaben benennen.
+
+## Shipped (Quelle) · UX-2026-02 · Bestätigungsseite: Schritttext in schmaler Spalte
+
+„Wie es weitergeht“ auf `/anfrage-erhalten/` brach mobil Wort für Wort um (Absatz fiel in die Ziffernspalte; 3.694 → 853 px). Eine CSS-Regel in `.steps`; betraf auch Einsatzberichte. Ratgeber-Schritte unverändert.
+
 ## Shipped · SEO-2026-06 · Nutzerwege zwischen Ausbau, Wohnwechsel und Objekträumung
 
 Betreiber am 22.10.2026: erst mit SEO weiterarbeiten; Mailarbeit ausdrücklich zurückgestellt. Vier vorhandene Seiten gezielt ergänzt: Ausbau-Angebote nach Räumung/Transport/Ausbau abgrenzen, Erbratgeber mit Objektkoordination verbinden, Partnerseite um einzelne Sperrmöbel statt pauschaler Komplettauflösung ergänzen; Foto-Ratgeber mit passender Büroauflösung und Schutz lesbarer Akten/Bildschirme. Keine neue URL, Preise, Leistungszusage oder Analyseaktivierung. Ausgangsbasis 82/62 Seiten, drei Linkgewichtungshinweise. Lokal umgesetzt und geprüft: weiterhin 82/62 Seiten, jetzt 0 Fehler/0 Warnungen in allen SEO-Prüfungen, keine Prioritäten oder Schwellen geändert. Build, Check, Inhalts-/Buildaudit und 20 Browser-/Linkprüfungen bestanden. Betreiberfreigabe am 22.10.2026 „ok gop“. Live über 844ba7b (Quelle af6200a) bestätigt: alle 62 indexierbaren URLs HTTP 200 und Build identisch, 20 Live-Browser-/Linkprüfungen bestanden. IndexNow fünf geänderte URLs HTTP 200 angenommen. Keine neue echte Testanfrage, keine zusätzliche Mailarbeit.

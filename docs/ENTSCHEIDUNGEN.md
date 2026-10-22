@@ -1,5 +1,15 @@
 # Entscheidungsprotokoll
 
+## E-016 · Nachfrageregister und Übergabe zum festen Termin statt weiterer Seiten (22.10.2026)
+
+Auftrag: Wachstumsmechanismen mit überprüfbarer Hypothese. Bestandsprüfung: Die einzige echte Datenquelle sind die gespeicherten Anfragen; sie werden nicht gezählt und nie mit dem Ergebnis verbunden. Interne Suche, Abbruchmessung (aus, Rechtsprüfung), Termin- und Projektdaten existieren nicht.
+
+Entschieden: (A) personenfreies Nachfrageregister mit Ergebniserfassung im passwortgeschützten Betriebsbereich, (B) anfragbares Angebot „Wohnung zum festen Termin übergeben“ als Baustein auf bestehenden Seiten und Schalter im Formular, ohne eigene URL (E-015). Zurückgestellt mit Eintrittsbedingung: Partner-Einbettung, Projektakte, Geschäftskunden-Arbeitsbereich, Sammeltermine, veröffentlichte Auswertungen.
+
+Abwägung: Register vor jedem weiteren Angebot, weil sonst jede Entscheidung ohne Evidenz fällt. Übergabe, weil der Anlass auf den stärksten Seiten wiederkehrt und der Nutzen operativ ist (Zielzustand und Termin in der ersten Anfrage, Rückwärtsplanung, ein Ansprechpartner). Grenzen nach HANDWERKSRECHT: Streichen/Tapezieren über Fachbetrieb, Reparaturen ausdrücklich nicht angeboten, aber gezählt. Datenschutz: Allowlist-Neuaufbau, keine Kontaktdaten/Freitext/Datum/volle PLZ, Referenz max. 180 Tage. Betrieb: 20 Sekunden je Anfrage, sonst wertlos – Erfassungsquote wird im Verzeichnis angemahnt.
+
+Hypothesen, Messung, Ausbau-/Änderungs-/Einstellkriterien und Betriebsaufgaben: docs/NACHFRAGE-SYSTEM.md.
+
 Hinweis zur parallelen Bearbeitung: Beide Zweige vergaben E-015 und SEO-2026-05 unabhängig. Bestehende IDs bleiben erhalten; Flächenplanung vom 22.10. und Komplettpakete vom 21.10. werden stets mit Datum/Thema unterschieden.
 
 ## E-015 (Flächenplanung, 22.10.) · Nutzbare Flächenplanung und gezielter SEO-Ausbau (22.10.2026)

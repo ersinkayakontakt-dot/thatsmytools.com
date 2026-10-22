@@ -604,6 +604,12 @@ abbr[title] {
   margin: 0;
   color: var(--ink-2);
 }
+/* Liegen Titel und Absatz direkt im Listenpunkt (Bestätigungsseite), wäre der
+   Absatz sonst das dritte Rasterelement und fiele in die 2,75rem schmale
+   Ziffernspalte – mobil ein Wort je Zeile. */
+.steps > li > :not(:first-child) {
+  grid-column: 2;
+}
 
 /* --------------------------------------------------------------- Tabellen */
 .table-scroll {
