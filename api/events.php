@@ -132,6 +132,8 @@ const ALLOWED_EVENTS = [
     'area_calculator_started',
     'area_calculator_completed',
     'area_plan_transferred',
+    // Übergabe-Einstieg (GROW-2026-02): nur Ereignis und feste Position.
+    'handover_cta_click',
 
     // Interne Navigation und Empfehlungsmodule
     'related_service_click',

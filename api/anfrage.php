@@ -168,6 +168,9 @@ function clean(?string $value, int $maxLength = 500): string
  */
 require_once __DIR__ . '/lib/smtp.php';
 
+// Nachfrageregister ohne Kontaktdaten (GROW-2026-01, docs/NACHFRAGE-SYSTEM.md).
+require_once __DIR__ . '/lib/nachfrage.php';
+
 /** Pseudonymisierter IP-Schlüssel für das Rate Limiting. */
 function ipKey(): string
 {
@@ -340,6 +343,18 @@ if (isset($_POST['zusatzleistungen']) && is_array($_POST['zusatzleistungen'])) {
     }
 }
 
+/*
+ * Übergabe-Einstieg und Signale aus festen Listen (GROW-2026-01/02).
+ * Unbekannte Schlüssel werden verworfen, nicht übernommen: Diese Werte
+ * landen im Nachfrageregister und müssen zählbar bleiben.
+ */
+$fields['vorhaben'] = (($_POST['vorhaben'] ?? '') === 'uebergabe') ? 'uebergabe' : '';
+$anforderungen = sh24_pick_keys($_POST['anforderungen'] ?? [], SH24_ANFORDERUNGEN);
+$offen = sh24_pick_keys($_POST['offen'] ?? [], SH24_OFFEN);
+if ($fields['vorhaben'] === '') {
+    $anforderungen = [];
+}
+
 $errors = [];
 
 if ($fields['kontaktart'] === 'E-Mail' && $fields['mail'] === '') { $errors[] = 'mail'; }
@@ -483,6 +498,8 @@ $recordFile = $inboxDir . '/' . date('Y-m-d') . '-' . $ref . '.json';
 $record = $fields;
 $record['nebenraeume'] = $nebenraeume;
 $record['zusatzleistungen'] = $zusatzleistungen;
+$record['anforderungen'] = $anforderungen;
+$record['offen'] = $offen;
 $record['referenz'] = $ref;
 $record['zeit'] = date('c');
 $record['fotos'] = array_map('basename', $saved);
@@ -496,6 +513,39 @@ if (!ensureDir($inboxDir) || $encodedRecord === false || @file_put_contents($rec
     fail('speicher-nicht-verfuegbar', $config, 500);
 }
 
+// Registereintrag ohne Kontaktdaten. Ein Fehler hier darf die gespeicherte
+// Anfrage nicht gefährden – er wird nur protokolliert.
+if (!sh24_ledger_append($storage, sh24_ledger_entry($fields, $zusatzleistungen, $nebenraeume, $anforderungen, $offen, count($saved), $ref, $now))) {
+    error_log('[schnellhelfer24] Nachfrageregister nicht beschreibbar fuer ' . $ref);
+}
+
+$uebergabeZeilen = [];
+if ($fields['vorhaben'] === 'uebergabe') {
+    $uebergabeZeilen[] = '';
+    $uebergabeZeilen[] = '--- Übergabe zum festen Termin --------------------';
+    $uebergabeZeilen[] = 'Übergabetermin:  ' . ($fields['stichtag'] !== '' ? $fields['stichtag'] : '(nicht angegeben – zuerst erfragen)');
+    foreach (SH24_ZUSTAENDIG as $zust => $zustLabel) {
+        $items = array_values(array_filter($anforderungen, static fn($k) => SH24_ANFORDERUNGEN[$k][1] === $zust));
+        if ($items !== []) {
+            $uebergabeZeilen[] = $zustLabel . ':';
+            foreach ($items as $k) {
+                $uebergabeZeilen[] = '  - ' . SH24_ANFORDERUNGEN[$k][0];
+            }
+        }
+    }
+    if ($anforderungen === []) {
+        $uebergabeZeilen[] = 'Anforderungen:   (keine gewählt – im Erstgespräch klären)';
+    }
+    $uebergabeZeilen[] = 'Planung rückwärts vom Termin, mit Puffer zwischen Räumung und Übergabe.';
+}
+$offenZeilen = [];
+if ($offen !== []) {
+    $offenZeilen[] = '';
+    $offenZeilen[] = '--- Vor der Entscheidung offen (zuerst beantworten)';
+    foreach ($offen as $k) {
+        $offenZeilen[] = '  - ' . SH24_OFFEN[$k];
+    }
+}
 
 $lines = [
     'Neue Anfrage über schnellhelfer24.de',
@@ -523,6 +573,8 @@ $lines = [
     'Nebenräume:      ' . ($nebenraeume !== [] ? implode(', ', $nebenraeume) : '(keine angegeben)'),
     'Zeitraum:        ' . $fields['zeitraum'],
     'Fester Termin:   ' . ($fields['stichtag'] !== '' ? $fields['stichtag'] : '(keiner)'),
+    ...$uebergabeZeilen,
+    ...$offenZeilen,
     '',
     '--- Beschreibung ----------------------------------',
     $fields['beschreibung'] !== '' ? $fields['beschreibung'] : '(keine)',
@@ -555,8 +607,9 @@ $body = implode("\r\n", $lines);
  * Einzelabholung zu unterscheiden, ohne die Mail zu öffnen.
  */
 $subject = sprintf(
-    '[Anfrage %s]%s %s, %s %s',
+    '[Anfrage %s]%s%s %s, %s %s',
     $ref,
+    $fields['vorhaben'] === 'uebergabe' ? ' Übergabe' . ($fields['stichtag'] !== '' ? ' ' . $fields['stichtag'] : '') . ' -' : '',
     $fields['umfang'] !== '' ? ' ' . $fields['umfang'] . ' -' : '',
     $fields['leistung'],
     $fields['plz'],

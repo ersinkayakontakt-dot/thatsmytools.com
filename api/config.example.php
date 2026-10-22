@@ -130,4 +130,10 @@ return [
     //      _storage/events/JJJJ-MM-TT.jsonl prüfen, dass dort weder eine
     //      IP-Adresse noch Formularinhalte stehen.
     'eventsEnabled' => false,
+
+    // Betriebsbereich /api/betrieb.php (Nachfrageregister, GROW-2026-01).
+    // Beide Werte erzeugt: php scripts/betrieb-passwort.php
+    // Ohne beide Werte antwortet die Seite mit 503. Siehe docs/NACHFRAGE-SYSTEM.md.
+    // 'betriebPasswortHash' => '$2y$10$...',
+    // 'betriebGeheimnis'    => '64 Hexadezimalzeichen',
 ];
