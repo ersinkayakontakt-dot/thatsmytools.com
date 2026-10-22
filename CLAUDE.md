@@ -250,3 +250,7 @@ wechselnden.
 
 Vor jedem Plan: Tracker lesen und in der Antwort sagen, was dort gefunden
 wurde – auch wenn es nichts war.
+
+## SEO-Ausbaustufe 22.10.2026 (E-015)
+
+Gemeinsame Quelle für Codex/Claude: docs/SEO-AUSBAU-2026-10-22.md. Vor SEO-/Rechner-/Messarbeit lesen; Handwerksgrenzen in docs/HANDWERKSRECHT.md beachten. Lokal 80 HTML/60 indexierbar, 12 redaktionell bewertete Linkwarnungen; Live-Basis weiterhin 78/58 und 11. Keine Veröffentlichungsgenehmigung für E-015 vorhanden. Zusätzlich audit:area:selftest und seo:events:report:selftest ausführen; bei Ereignisänderungen seo:events und seo:selftest. Versuche/Empfang/qualifizierte Leads/Aufträge getrennt halten.

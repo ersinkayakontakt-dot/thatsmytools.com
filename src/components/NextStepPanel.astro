@@ -28,7 +28,7 @@
  * nie ein toter Link.
  */
 import Icon from './Icon.astro';
-import { phone, whatsapp, primaryCta } from '../lib/contact';
+import { requestHrefForService, phone, whatsapp, primaryCta } from '../lib/contact';
 import { seoPage } from '../data/seo-pages';
 import type { ConversionGoal } from '../data/seo-pages';
 
@@ -104,7 +104,9 @@ const GOALS: Record<
   },
 };
 
-const goal = GOALS[page.conversionGoal];
+const baseGoal = GOALS[page.conversionGoal];
+const requestedService = page.id.startsWith('service:') ? page.id.slice(8) : page.requiredOutboundLinks.find(id=>id.startsWith('service:'))?.slice(8);
+const goal = {...baseGoal, href: baseGoal.href===primaryCta.href ? requestHrefForService(requestedService) : baseGoal.href};
 const isExternal = goal.href.startsWith('http');
 ---
 

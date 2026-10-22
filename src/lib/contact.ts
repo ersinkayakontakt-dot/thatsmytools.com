@@ -1,3 +1,4 @@
+import { publishedServices } from '../data/services';
 import { site, realValue, telHref, whatsappHref } from '../config/site';
 
 /**
@@ -35,3 +36,8 @@ export const primaryCta = {
   label: 'Vorhaben unverbindlich anfragen',
   labelShort: 'Projekt anfragen',
 };
+
+/** Leistungswahl übernehmen; ausschließlich veröffentlichte Registry-Slugs. */
+export function requestHrefForService(slug?: string): string {
+  return slug && publishedServices.some(s=>s.slug===slug) ? primaryCta.href+'?leistung='+encodeURIComponent(slug) : primaryCta.href;
+}

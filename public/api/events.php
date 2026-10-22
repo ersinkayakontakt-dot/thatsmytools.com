@@ -128,6 +128,10 @@ const ALLOWED_EVENTS = [
     'photo_uploaded',
     'lead_form_submitted',
     'lead_confirmed',
+    // Werkzeug: nur Ereignis und feste Position, keine Maße oder Freitexte.
+    'area_calculator_started',
+    'area_calculator_completed',
+    'area_plan_transferred',
 
     // Interne Navigation und Empfehlungsmodule
     'related_service_click',

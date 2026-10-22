@@ -13,6 +13,23 @@ import type { Guide } from './types.ts';
  */
 
 export const guides: Guide[] = [
+  {
+    slug: 'innenausbau-angebote-vergleichen', status: 'published', hub: 'ratgeber',
+    h1: 'Innenausbau-Angebote vergleichen: Was muss drinstehen?', navLabel: 'Ausbau-Angebote vergleichen',
+    metaTitle: 'Innenausbau-Angebote vergleichen: Umfang und Kosten prüfen',
+    metaDescription: 'Angebote für Innenausbau vergleichen: Flächen, Vorbereitung, Material, Entsorgung und Zuständigkeiten prüfen. Mit konkreter Checkliste vor der Beauftragung.',
+    answer: 'Innenausbau-Angebote sind erst vergleichbar, wenn sie dieselben Räume, Flächen und Arbeiten beschreiben. Prüfen Sie vor allem Untergrundvorbereitung, Material, Abtransport, Zugang, Auftragnehmer und offene Zusatzleistungen.\n\nEin kleinerer Gesamtbetrag kann einen anderen Umfang enthalten. Klären Sie die Unterschiede schriftlich, bevor Sie einen Auftrag erteilen.',
+    teaser: 'Eine praktische Prüfliste für Leistungsumfang, Materialien, offene Positionen und Zuständigkeiten.',
+    blocks: [
+      {h:'Zuerst denselben Umfang beschreiben',p:['Notieren Sie je Raum den jetzigen Zustand und das gewünschte Ergebnis. Ein Bodenwechsel ist noch nicht eindeutig: Gehören Altbelag, Untergrund, Sockelleisten und Entsorgung dazu? Bei Wänden muss klar sein, ob alte Tapete bleibt, entfernt wird oder Vorarbeiten nötig sind.','Nutzen Sie für rechteckige Räume den [Wandflächenrechner](/werkzeuge/wandflaechenrechner/). Er trennt geometrische Wand- und Deckenflächen. Vereinbarte Abrechnungsregeln und das tatsächliche Aufmaß sind anschließend mit dem ausführenden Betrieb zu klären.']},
+      {h:'Diese Positionen nebeneinanderlegen',table:{head:['Position','Konkrete Frage an den Betrieb'],rows:[['Fläche und Einheit','Welche Wände, Decken oder Böden sind gemeint – und in welcher Einheit?'],['Vorbereitung','Was muss vor Arbeitsbeginn entfernt, abgedeckt oder vorbereitet werden?'],['Material','Welche Produkte sind vorgesehen, wer liefert sie und in welcher Qualität?'],['Zugang und Anfahrt','Sind Etage, Aufzug, Trageweg, Parken und Anfahrt berücksichtigt?'],['Entsorgung','Welche Altmaterialien werden mitgenommen und welche nicht?'],['Auftragnehmer','Wer führt welches Gewerk aus und stellt dafür die Rechnung?'],['Offene Positionen','Welche Annahmen sind noch ungeprüft und wie werden Änderungen abgestimmt?']]}},
+      {h:'Rechenbeispiel ohne erfundene Preise',p:['Angebot A nennt 40 m² Wandfläche. Angebot B nennt 40 m² Wohnfläche. Die Zahlen sehen gleich aus, beschreiben aber unterschiedliche Mengen. Bitten Sie beide Betriebe um dieselbe Raum- und Flächenliste. Dieses Beispiel vergleicht Einheiten, keine tatsächlichen Kundenangebote.','Vergleichen Sie auch, ob Material und Vorbereitung enthalten sind. Ein Angebot ohne diese Positionen ist nicht automatisch günstiger, sondern zunächst unvollständig vergleichbar. Bei einem Stundenmodell müssen Arbeitsumfang, voraussichtlicher Zeitbedarf und Umgang mit Mehrarbeit besprochen werden.']},
+      {h:'Wer übernimmt welche Arbeit?',p:['Beim [Innenausbau in Berlin](/leistungen/innenausbau-berlin/) stimmen wir die Arbeitsschritte und Zuständigkeiten zuerst ab. [Trockenbau](/leistungen/trockenbau-berlin/), [Bodenverlegung](/leistungen/bodenbelag-verlegen-berlin/) und Montage brauchen unterschiedliche Voraussetzungen. Maler- und Tapezierarbeiten werden gesondert mit einem geeigneten Fachbetrieb abgestimmt.','Notieren Sie für jedes Gewerk den tatsächlichen Auftragnehmer, die enthaltenen Arbeiten und den Übergabepunkt zum nächsten Gewerk. Eine allgemeine Aussage wie „alles komplett“ ersetzt diese Liste nicht. Bei einer Gewerbefläche klären Sie vorher, ob Inventar bleibt, umzieht oder im Rahmen einer [Büroauflösung](/leistungen/bueroaufloesung-berlin/) entfernt werden soll.']},
+      {h:'Ihre Checkliste vor der Anfrage',list:['Räume und Maße getrennt aufnehmen; unbekannte Angaben als offen kennzeichnen.','Fotos vom Gesamtzustand und von betroffenen Anschlüssen oder Oberflächen auswählen.','Vorbereitung, Material und Entsorgung je Gewerk zuordnen.','Wunschtermin, Zugang und Nutzung während der Arbeiten beschreiben.','Offene Punkte vor Beauftragung schriftlich klären.'],p:['Diese Angaben helfen bei der Anfrage und beim anschließenden Vergleich. Sie müssen noch keine Preise oder fertige Ausführungsplanung kennen. Prüfen Sie bei der Antwort zuerst den Umfang, danach den Betrag.']}
+    ],
+    faq:[{q:'Kann ich unterschiedliche Gesamtpreise direkt vergleichen?',a:'Nur wenn Leistungsumfang, Mengen, Material, Vorbereitung und Zusatzpositionen tatsächlich übereinstimmen. Lassen Sie offene oder nicht enthaltene Punkte erst ergänzen. Ein Vergleich des Gesamtbetrags allein kann sonst die Unterschiede verdecken.'},{q:'Ist eine Rechnerfläche bereits ein verbindliches Aufmaß?',a:'Nein. Der Rechner zeigt geometrische Werte anhand Ihrer Eingaben. Ausführung, örtliche Maße und vereinbarte Abrechnungsregeln müssen mit dem tatsächlichen Auftragnehmer geklärt werden. Die Planung unterstützt die Anfrage und ersetzt weder ein Angebot noch die fachliche Prüfung.'}],
+    related:['welche-fotos-fuer-ein-angebot','checkliste-wohnungsuebergabe'],services:['innenausbau-berlin'],published:'2026-10-22',updated:'2026-10-22',
+  },
   /* ============================ KOSTEN ============================== */
   {
     slug: 'was-kostet-eine-entruempelung-in-berlin',
@@ -47,7 +64,7 @@ export const guides: Guide[] = [
         steps: [
           {
             title: 'Volumen in Kubikmetern',
-            text: 'Der bestimmende Faktor. Gerechnet wird, wie viele Kubikmeter herausgetragen und entsorgt werden. Ein voller Kleiderschrank sind rund zwei Kubikmeter, eine typische Zweizimmerwohnung liegt je nach Füllgrad zwischen 15 und 45 Kubikmetern. Quadratmeter sagen darüber nichts aus.',
+            text: 'Der bestimmende Faktor. Gerechnet wird, wie viele Kubikmeter herausgetragen und entsorgt werden. Die Raumgröße allein sagt nicht, wie viel tatsächlich herausgetragen werden muss. Möbelgröße, Füllgrad und Nebenräume müssen deshalb gesondert aufgenommen werden.',
           },
           {
             title: 'Etage und Aufzug',
@@ -55,7 +72,7 @@ export const guides: Guide[] = [
           },
           {
             title: 'Trageweg und Halteposition',
-            text: 'Vom Hauseingang zum Fahrzeug. In Berliner Innenstadtlagen sind 50 bis 100 Meter normal, wenn keine Halteverbotszone eingerichtet ist. Bei 30 Kubikmetern bedeutet das mehrere Kilometer zusätzlichen Weg.',
+            text: 'Vom Hauseingang zum Fahrzeug. Ein Hinterhof oder eine entfernte Halteposition können zusätzliche Tragearbeit verursachen. Der konkrete Weg und eine geeignete Haltemöglichkeit sollten vor dem Angebot geklärt sein.',
           },
           {
             title: 'Art des Materials',
@@ -124,7 +141,7 @@ export const guides: Guide[] = [
     related: ['kosten-haushaltsaufloesung-berlin', 'welche-fotos-fuer-ein-angebot', 'entruempelung-vorbereiten'],
     services: ['entruempelung-berlin', 'kellerentruempelung-berlin'],
     published: '2026-07-29',
-    updated: '2026-10-21',
+    updated: '2026-10-22',
   },
 
   /* ================================================================== */

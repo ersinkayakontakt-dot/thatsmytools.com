@@ -1,6 +1,6 @@
 ---
 import Icon from './Icon.astro';
-import { phone, whatsapp, primaryCta } from '../lib/contact';
+import { requestHrefForService, phone, whatsapp } from '../lib/contact';
 import { seoPage } from '../data/seo-pages';
 
 /**
@@ -24,7 +24,10 @@ interface Props {
 }
 const { headline, text, location = 'cta-band', pageId } = Astro.props;
 
-const goal = pageId ? seoPage(pageId).conversionGoal : 'complete_project_request';
+const page = pageId ? seoPage(pageId) : undefined;
+const goal = page?.conversionGoal ?? 'complete_project_request';
+const requestedService = page?.id.startsWith('service:') ? page.id.slice(8) : page?.requiredOutboundLinks.find(id=>id.startsWith('service:'))?.slice(8);
+const requestHref=requestHrefForService(requestedService);
 
 /**
  * Formulierungen je Conversion-Ziel. Sie stehen hier und nicht in jeder
@@ -71,7 +74,7 @@ const finalText = text ?? copy.text;
         <p>{finalText}</p>
       </div>
       <div class="cta-band__actions">
-        <a class="btn btn--onbrand" href={primaryCta.href} data-track="estimate_cta_click" data-track-location={location}>
+        <a class="btn btn--onbrand" href={requestHref} data-track="estimate_cta_click" data-track-location={location}>
           <Icon name="camera" size={19} />
           Fotos senden & Einschätzung erhalten
         </a>

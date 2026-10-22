@@ -1,0 +1,11 @@
+import assert from 'node:assert/strict';import {mkdtempSync,mkdirSync,writeFileSync,readFileSync,existsSync} from 'node:fs';import {tmpdir} from 'node:os';import {join,resolve} from 'node:path';import {spawnSync} from 'node:child_process';
+const fixture=mkdtempSync(join(tmpdir(),'sh24-events-report-'));const data=join(fixture,'data'),out=join(fixture,'output');mkdirSync(join(data,'events'),{recursive:true});
+const day=new Date().toISOString().slice(0,10),base={ts:new Date().toISOString(),visitor:'synthetische-sitzung',page:'/angebot-anfragen/',landing:'/leistungen/moebelmontage-berlin/',device:'mobile',channel:'organic'};
+const rows=['page_view','lead_form_submitted','lead_form_submitted','lead_confirmed','area_calculator_started','area_calculator_completed','area_plan_transferred'].map(event=>({...base,event}));writeFileSync(join(data,'events',day+'.jsonl'),rows.map(r=>JSON.stringify(r)).join('\n'));
+const run=spawnSync(process.execPath,[resolve('scripts/seo/events-report.mjs')],{encoding:'utf8',env:{...process.env,SEO_DATA_DIR:data,SEO_REPORT_DIR:out}});assert.equal(run.status,0,run.stderr);const result=JSON.parse(readFileSync(join(out,'messdaten.json'),'utf8'));
+assert.equal(result.abschnitte.find(s=>s.title==='Absendeversuche je Einstiegsseite').rows[0].Absendeversuche,2);
+assert.equal(result.abschnitte.find(s=>s.title==='Bestätigte Anfragen je Einstiegsseite').rows[0].Bestätigt,1);
+assert.equal(result.abschnitte.find(s=>s.title==='Werkzeug-Verlauf').rows.length,3);
+assert.ok(result.abschnitte.find(s=>s.title==='Werkzeug-Verlauf').rows.every(r=>r.Ereignisse===1));
+assert.ok(!result.abschnitte.some(s=>/beauftragt|qualifizierte Aufträge/i.test(s.question)));
+assert.ok(existsSync(join(out,'messdaten.md')));console.log('6 Berichtsprüfungen bestanden; 2 Absendeversuche bleiben 1 bestätigter Empfang, keine Aufträge erfunden.');

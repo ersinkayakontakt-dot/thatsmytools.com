@@ -88,3 +88,7 @@ Betreiberfreigabe liegt vor. Die erste reguläre Live-Testanfrage wurde mit nich
 - U1: https://www.reddit.com/r/Handwerker/comments/1i0f7b7/myhammer_ist_nicht_zu_empfehlen_hohe_kosten_kaum/
 - U2: https://www.reddit.com/r/Handwerker/comments/199vn9l/was_sind_eure_erfahrungen_mit_myhammer/
 - Explorativ, nicht als Beleg wiederholter Probleme gewertet: https://de.trustpilot.com/review/taskrabbit.de
+
+## Ergänzung E-015 · 22.10.2026
+
+Die lokale SEO-Stufe integriert Rechner und Angebotsvergleich in die bestehende warme Gestaltung. Kein Preisrechner ohne Preisdaten, kein Registrierungszwang, keine automatische Übernahme ohne Bestätigung. Nutzer erhalten Ergebnis und Formel vor der Anfrage. Vorhandene Texte und Kontaktwege bleiben erhalten. Strategie und Quellen: SEO-AUSBAU-2026-10-22.md. Erfolg wird erst mit echten Such-/Empfangs-/Auftragsdaten bewertet; Veröffentlichung benötigt neue konkrete Freigabe.

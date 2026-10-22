@@ -1,12 +1,25 @@
 # CONTENT-TODO: Was noch an echten Daten fehlt
 
+## Offen · SEO-2026-05 · Organische Kundengewinnung, erste Ausbaustufe 22.10.2026
+
+Lokal umgesetzt und geprüft, Veröffentlichung ausstehend: Wandflächenrechner mit geometrischer Planung und ausdrücklicher Übernahme in Anfrage, individueller Angebotsvergleich für Innenausbau, Verbesserungen vorhandener kaufnaher Seiten und leistungsbezogene Anfrage-Links. Keine neuen Ortsserien, Fantasiepreise oder Referenzfälle. Fehlende GSC/Bing-/Conversion-Exporte und Margen verhindern datenbasierte Aussage zu Rankingpotenzial, Rückfragenquote und Profitabilität. Quellen-/Prioritäten-/Messplan ist unter docs/SEO-AUSBAU-2026-10-22.md geführt. Ausbaustufe noch nicht zur Veröffentlichung freigegeben.
+
+## Shipped (lokal, unveröffentlicht) · MEAS-2026-01 · Absendeversuche, Empfang und Auftrag trennen
+
+Befund 22.10.: Ereignisbericht bezeichnet Absendeversuche als Anfragen und fragt nach beauftragten Leistungen, obwohl nur Anfrage-Empfang gemessen wird. In dieser Ausbaustufe im Bericht korrigiert und mit isolierten Testdaten geprüft; keine Aktivierung der serverseitigen Messung oder neue Einwilligungsentscheidung. Rechnerereignisse enthalten nur feste Positionsnamen und keinen Plan, keine Maße oder Kontaktdaten.
+
+
+## Offen · LOCAL-2026-01 · Unternehmensadresse im Verzeichnistreffer prüfen
+
+Am 22.10. nennt ein Cylex-Suchsnippet Lindenstraße 14, während zentrale Website/Impressum Lindenstr. 16 führen. Direkte Verzeichnisseite nicht abrufbar; möglicher veralteter Treffer, keine bestätigte aktuelle Abweichung. Betreiber-/Eintragsprüfung und Korrekturentwurf in docs/SEO-AUSBAU-2026-10-22.md. Keine externe Nachricht oder Stammdatenänderung erfolgt.
+
 ## Shipped · UX-2026-01 · Neue Startseite und Anfrageführung live
 
-Startseite und Anfrageweg am 21.10.2026 lokal überarbeitet. Umsetzung und Quellen: docs/PRODUKT-UND-DESIGN.md, Entscheidung E-013. Betreiberfreigabe am 21.10.2026 mit „ok go“ erhalten. Live über 676e39e bestätigt: 58 indexierbare URLs HTTP 200, drei adaptive Formularzweige bei 375/768/1440 px ohne Überlauf oder JavaScript-Fehler, alle Bilder geladen. Vollständige Testanfrage wird wegen fehlender Konfiguration abgewiesen; gesondert OPS-2026-02. Lokale Tests ersetzen den Posteingang nicht. Richtwerte für Nutzungsmetriken sind Ziele, keine nachgewiesenen Steigerungen. Authentifizierter Projektstatus und direkte Montagebuchung bleiben bis zu echten Kapazitäts-/Preis-/Prozessdaten zurückgestellt.
+Startseite und Anfrageweg am 21.10.2026 lokal überarbeitet. Umsetzung und Quellen: docs/PRODUKT-UND-DESIGN.md, Entscheidung E-013. Betreiberfreigabe am 21.10.2026 mit „ok go“ erhalten. Live über 676e39e bestätigt: 58 indexierbare URLs HTTP 200, drei adaptive Formularzweige bei 375/768/1440 px ohne Überlauf oder JavaScript-Fehler, alle Bilder geladen. Der zunächst beobachtete Konfigurationsabbruch wurde anschließend unter OPS-2026-02 repariert. Lokale Tests ersetzen den Posteingang nicht. Richtwerte für Nutzungsmetriken sind Ziele, keine nachgewiesenen Steigerungen. Authentifizierter Projektstatus und direkte Montagebuchung bleiben bis zu echten Kapazitäts-/Preis-/Prozessdaten zurückgestellt.
 
 ## Shipped · FLOW-2026-01 · Empfang nur nach Speicherung
 
-Anfrage vor Mailversand gespeichert, Speicherfehler führen zum Fehlerweg, Statusaktualisierung erhält ursprünglichen Datensatz. Entwurf bleibt bei Fehler erhalten. Antwortweg E-Mail erfordert Adresse. Bestätigung zeigt tatsächliche angenommene Fotozahl und Hinweis bei fehlenden Fotos. Sechs lokale Endpoint-Szenarien und bestehende 14 SMTP-Fälle bestanden; Code mit UX-2026-01 veröffentlicht; tatsächlicher Formularempfang bleibt durch OPS-2026-02 blockiert.
+Anfrage vor Mailversand gespeichert, Speicherfehler führen zum Fehlerweg, Statusaktualisierung erhält ursprünglichen Datensatz. Entwurf bleibt bei Fehler erhalten. Antwortweg E-Mail erfordert Adresse. Bestätigung zeigt tatsächliche angenommene Fotozahl und Hinweis bei fehlenden Fotos. Sechs lokale Endpoint-Szenarien und bestehende 14 SMTP-Fälle bestanden; Code mit UX-2026-01 veröffentlicht; tatsächlicher Formularempfang anschließend unter OPS-2026-02 nachgewiesen.
 
 
 ## Shipped · OPS-2026-02 · Formularannahme und Mail-Empfang wiederhergestellt
@@ -53,7 +66,7 @@ Gefunden: Einzelne spezifische Suchbots erhielten Allow: / ohne die Ausschlüsse
 
 ## Offen · SEO-2026-04 · Messdaten und nächste Gewichtungsrunde
 
-Keine Exporte aus Google Search Console oder Bing Webmaster Tools vorhanden; kein belegter Ranking-/Klickverlauf. Erst reale Daten importieren, dann Suchbegriffe, Klickrate und indexierte URLs datenbasiert priorisieren. Im neuen Produktentwurf noch 11 redaktionelle Linkgewichtungs-Hinweise zwischen Ausbau und etablierten Angeboten; keine isolierten Seiten, keine defekten Links, keine Metadaten-, Schema-, Bild- oder Kontrastfehler. Ranking-/KI-Nennungen bleiben außerhalb technischer Zusagen. Einzelheiten: docs/SEO-STATUS-2026-10-21.md.
+Keine Exporte aus Google Search Console oder Bing Webmaster Tools vorhanden; kein belegter Ranking-/Klickverlauf. Erst reale Daten importieren, dann Suchbegriffe, Klickrate und indexierte URLs datenbasiert priorisieren. Im bisherigen Produktstand 11, in der lokalen Ausbaustufe E-015 12 redaktionelle Linkgewichtungs-Hinweise zwischen Ausbau und etablierten Angeboten; keine isolierten Seiten, keine defekten Links, keine Metadaten-, Schema-, Bild- oder Kontrastfehler. Ranking-/KI-Nennungen bleiben außerhalb technischer Zusagen. Einzelheiten: docs/SEO-STATUS-2026-10-21.md.
 
 ## Shipped · KONTAKT-2026-01 · Neue Rufnummer, 21.10.2026
 
@@ -70,8 +83,7 @@ Am 21.10.2026 den zentralen Nachrichtentext auf „Hallo, ich interessiere mich 
 ---
 
 Diese Website ist inhaltlich vollständig gebaut, aber sie enthält bewusst
-**keine erfundenen Unternehmensdaten**. Keine Telefonnummer, keine Adresse,
-keine Bewertungen, keine Preise, keine Referenzfälle.
+**keine erfundenen Unternehmensdaten**. Bestätigte Kontaktdaten stehen zentral in src/config/site.ts; fehlende Bewertungen, Preise und Referenzfälle werden nicht erfunden.
 
 Was fehlt, steht hier. Alles, was in eckigen Klammern steht, ist ein
 Platzhalter.

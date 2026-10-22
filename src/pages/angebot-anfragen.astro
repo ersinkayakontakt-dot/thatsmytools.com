@@ -28,7 +28,7 @@ const schema = buildGraph([
   organizationNode(),
   websiteNode(),
   breadcrumbNode(path, crumbs),
-  webPageNode({ url: path, name: title, description, dateModified: '2026-07-29' }),
+  webPageNode({ url: path, name: title, description, dateModified: page.lastmod }),
 ]);
 ---
 

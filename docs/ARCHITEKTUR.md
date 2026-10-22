@@ -20,14 +20,14 @@ Berlin. Diese Positionierung wurde übernommen und geschärft (siehe
 
 ## 2. Entscheidung: Astro, statisch, ohne Framework-Insel
 
-**Gewählt: Astro 5 mit TypeScript, `output: 'static'`, keine UI-Bibliothek.**
+**Gewählt: Astro 7 mit TypeScript, `output: 'static'`, keine UI-Bibliothek.**
 
 Begründung entlang der Anforderungen:
 
 | Anforderung | Warum Astro statisch passt |
 |---|---|
-| Kerninhalte server- oder vorgerendert | Jede Seite ist fertiges HTML. Kein Inhalt entsteht erst im Browser. |
-| Sehr wenig JavaScript | Ausgeliefert werden rund 2 KB eigenes Skript. Keine Framework-Laufzeit. |
+| Kerninhalte server- oder vorgerendert | Hauptinhalte sind fertiges HTML; interaktive Ergebnisse entstehen nach Eingabe im Browser. |
+| Sehr wenig JavaScript | Gemeinsames Seitenskript rund 2,5 KB; Anfrage und Rechner laden zusätzlich ihren eigenen Code. Keine Framework-Laufzeit. |
 | Läuft auf einfachem Hosting | Reine Dateien. Kein Node-Prozess, kein Container, kein Build auf dem Server. |
 | Strukturierter Content, leicht erweiterbar | Leistungen, Bezirke, Ratgeber und Einsatzberichte liegen als typisierte Daten in `src/data/`. Neue Seiten entstehen durch Ergänzen von Einträgen, nicht durch Kopieren von Dateien. |
 | Wartbarkeit | Eine Person mit HTML- und CSS-Kenntnissen kann Inhalte pflegen, ohne ein Framework zu lernen. |
@@ -45,7 +45,7 @@ Begründung entlang der Anforderungen:
   pflegen. Dann ist ein Wechsel jederzeit möglich, weil die Inhalte
   strukturiert vorliegen.
 - **Ein Headless CMS**: Zusätzliche Abhängigkeit, zusätzliche Kosten,
-  zusätzlicher Ausfallpunkt. Bei aktuell rund 40 gepflegten Seiten nicht
+  zusätzlicher Ausfallpunkt. Bei den zentral gepflegten statischen Inhaltsseiten nicht
   gerechtfertigt.
 
 ### Wann diese Entscheidung neu zu treffen ist
@@ -61,14 +61,14 @@ Begründung entlang der Anforderungen:
 Die Website selbst ist statisch. Das Anfrageformular braucht aber einen
 Server: serverseitige Prüfung, Rate Limiting, Datei-Uploads, Mailversand.
 
-`public/api/anfrage.php` ist der einzige dynamische Teil.
+`public/api/anfrage.php` verarbeitet Anfragen; public/api/events.php ist der gesondert freizugebende Ereignisendpunkt.
 
 **Warum PHP und nicht Node:**
 
 - Auf klassischen Webhosting-Tarifen (unter anderem bei Hostinger) ist PHP
   ohne Zusatzkosten vorhanden. Node.js erfordert dort einen anderen Tarif
   oder fehlt ganz.
-- Der Endpunkt ist eine einzelne Datei ohne Abhängigkeiten. Keine
+- Der Endpunkt nutzt eigene PHP-Hilfsdateien ohne externe Pakete. Keine
   `node_modules`, kein Prozess, der abstürzen und neu gestartet werden kann.
 - Das Deployment bleibt „Dateien hochladen".
 
@@ -223,27 +223,7 @@ Auftragsverarbeiter und braucht einen Vertrag nach Art. 28 DSGVO.
 
 ## 7. Gestaltung und Schriften
 
-Die visuelle Handschrift heißt intern **„Werkstatt & Signal"** und ist in
-`src/styles/global.css` als Token-Satz definiert. Tragende Entscheidungen:
-
-- Kühles Weiß und Betongrau als Flächen, kein cremefarbenes Papierweiß.
-- Tiefschwarz trägt die Struktur: Balken, Regeln, Rahmen. Keine Haarlinien
-  in warmem Grau.
-- Ein gesättigtes Arbeitsorange (`#d24507`), ausschließlich für Handlungen
-  und Markierungen. Nie flächig, nie dekorativ.
-- Durchgehend Grotesk, keine Serifen. Überschriften in 800 mit enger
-  Laufweite.
-- Radius 0. Kartenkanten sind eckig, oben trägt jede Karte einen kräftigen
-  Balken statt einer Schattenkante.
-- Keine Schatten, keine Verläufe, keine schwebenden Elemente.
-
-Der Akzent existiert in zwei Werten: `--accent` für Flächen und Rahmen,
-`--accent-text` für Text. Der Unterschied ist kaum sichtbar, sorgt aber
-dafür, dass kleiner Text auch auf Betongrau die 4,5:1 nach WCAG erreicht.
-
-Alles Visuelle hängt an diesen Tokens. Ein Wechsel der Handschrift betrifft
-`global.css` plus die Detailmotive in einigen Komponenten, aber weder
-Struktur noch Inhalt noch SEO.
+Seit E-013 gilt die warme Gestaltung aus docs/PRODUKT-UND-DESIGN.md: Papierflächen, Waldgrün, Terrakotta, abgerundete Karten und ruhige Typografie. Die frühere eckige Schwarz/Orange-Vorgabe ist ersetzt. Tokens in src/styles/global.css bleiben die zentrale Quelle. System-Grotesk und Georgia-Akzente benötigen keine externen Schriftabrufe. Kontraste und schmale Ansichten werden geprüft.
 
 ### Schriften
 
@@ -262,7 +242,7 @@ Warum keine Webfont:
 - kein externer Aufruf, damit kein Datenschutzproblem und keine
   Einwilligungspflicht,
 - keine zusätzliche Ladezeit und kein Schriftflackern beim Laden,
-- keine Layoutverschiebung.
+- keine Layoutverschiebung durch nachgeladene Schriftdateien.
 
 Wenn später eine eigene Hausschrift kommt: **selbst hosten**, als WOFF2, mit
 `font-display: swap`, und die Schriftmetriken über
@@ -307,7 +287,7 @@ Leistungsseiten (20,8 KB).
   `CONTENT-TODO.md`.
 - *CSS der Startseite:* 20,8 + 11,3 = 32 KB roh, 6,9 KB gzip.
 
-Es gibt keine externen Ressourcen, keine Webfonts und kein Hero-Bild.
+Es gibt keine extern geladenen Webfonts. Die aktuellen Bildmotive kommen aus der belegten lokalen Registry.
 **Beim Ergänzen echter Fotos ist das Budget der kritische Punkt.** Regeln
 dafür:
 
@@ -335,3 +315,8 @@ dafür:
 - **Kein Chat-Widget.** Zusätzliches Drittanbieter-Skript, das die
   Ladezeit belastet und im Handwerksbetrieb selten besetzt ist. Telefon und
   WhatsApp erfüllen denselben Zweck.
+
+
+## 10. Flächenplanung (E-015, lokal vorbereitet 22.10.2026)
+
+src/lib/areaPlan.ts besitzt Formel, Grenzwerte und Transferprüfung. src/client/area-calculator.ts steuert die Oberfläche; area-plan-transfer.ts ergänzt ausschließlich nach Bestätigung vorhandene Formularfelder. Sessionplan maximal zwei Stunden; keine Maße in URL oder Analyseereignissen. Keine neue API oder Datenbank. Formel/Beispiel sind vorgerendert, interaktive Berechnung braucht JavaScript. Rechner ohne Framework: im lokalen Build 10.285 Byte JavaScript gesamt (7.798 Byte Rechner/Modell); damit knapp über dem 10-KB-Startseitenziel, nicht dessen Erfüllung behaupten. Bestehende Budgets bleiben unverändert. Prüfungen: audit:area:selftest und seo:events:report:selftest. Einzelne lokale Labormessungen sind keine Felddaten, siehe SEO-AUSBAU-2026-10-22.md.

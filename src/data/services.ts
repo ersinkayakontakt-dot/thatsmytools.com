@@ -407,6 +407,44 @@ export const services: Service[] = [
           'Wenn nur ein Teil der Wohnung geräumt werden muss, weil Sie den Rest selbst schaffen, sagen Sie das. Ein Teilauftrag ist oft schneller planbar als eine komplette Räumung.',
         ],
       },
+
+      {
+        "h": "Was soll bleiben, was soll die Wohnung verlassen?",
+        "p": [
+          "Notieren Sie je Raum die Gegenstände in drei Gruppen: bleibt in der Wohnung, wird an eine andere Adresse gebracht oder soll entsorgt werden. Ein vorhandener Keller oder Dachboden gehört als eigener Bereich in die Anfrage. Persönliche Unterlagen und Erinnerungsstücke sollten vor dem Räumungstermin gesondert festgelegt sein. Beim [Seniorenumzug](/leistungen/seniorenumzug-berlin/) stimmen wir neue Wohnung und verbleibenden Haushalt zusammen ab.",
+          "Bei Nachlassgegenständen hilft die [Nachlassauflösung](/leistungen/nachlassaufloesung-berlin/) bei der vorherigen Abstimmung. Sollen Möbel am neuen Ort wieder aufgebaut werden, beschreiben Sie das beim [Umzug](/leistungen/umzug-berlin/) mit."
+        ]
+      },
+      {
+        "h": "Angebote auf denselben Umfang prüfen",
+        "table": {
+          "head": [
+            "Punkt",
+            "Vor der Beauftragung klären"
+          ],
+          "rows": [
+            [
+              "Räume und Nebenflächen",
+              "Sind Wohnung, Keller, Balkon und Abstellräume einzeln erfasst?"
+            ],
+            [
+              "Zugang",
+              "Welche Etage, welcher Aufzug und welcher Weg bis zum Fahrzeug sind berücksichtigt?"
+            ],
+            [
+              "Einbauten",
+              "Was bleibt bestehen und was soll gesondert demontiert werden?"
+            ],
+            [
+              "Abschluss",
+              "Was bedeutet die vereinbarte Übergabe konkret; welche Arbeiten bleiben offen?"
+            ]
+          ]
+        },
+        "p": [
+          "Eine [Haushaltsauflösung](/leistungen/haushaltsaufloesung-berlin/) kann eine andere Zuordnung der Dinge erfordern als eine reine Räumung. Wenn die Freigabe oder der Umfang noch offen ist, sprechen Sie das bei der Anfrage an. Für eine Verwaltung hilft die Abstimmung mit unserem [Räumungspartner-Angebot für Hausverwaltungen](/hausverwaltungen-immobilienpartner/). Bei stark zugestellten Räumen wird der Ablauf über die [diskrete Räumung einer Messiwohnung](/leistungen/messiwohnung-raeumen/) gesondert geklärt. Die [Kostenfaktoren einer Entrümpelung](/kosten/was-kostet-eine-entruempelung-in-berlin/) helfen beim Einordnen einzelner Angebotspositionen."
+        ]
+      },
     ],
     priceFactors: [
       {
@@ -458,7 +496,7 @@ export const services: Service[] = [
       'demontage-rueckbau',
     ],
     guides: ['wohnungsaufloesung-checkliste-pdf', 'checkliste-wohnungsuebergabe', 'kosten-haushaltsaufloesung-berlin'],
-    updated: '2026-07-29',
+    updated: '2026-10-22',
   },
 
   /* ================================================================== */

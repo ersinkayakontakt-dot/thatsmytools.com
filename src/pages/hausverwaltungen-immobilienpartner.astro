@@ -82,7 +82,7 @@ const schema = buildGraph([
   organizationNode(),
   websiteNode(),
   breadcrumbNode(path, crumbs),
-  webPageNode({ url: path, name: title, description, dateModified: '2026-07-30' }),
+  webPageNode({ url: path, name: title, description, dateModified: page.lastmod }),
   serviceNode({
     name: 'Räumung und Objektübergabe für Hausverwaltungen',
     description:
@@ -199,6 +199,7 @@ const steps = [
     </div>
   </section>
 
+  <section class="section"><div class="wrap"><h2>Eine Objektliste spart Rückfragen.</h2><p>Beschreiben Sie je Einheit Räume und Nebenflächen, vorhandenes Inventar, Zugang, gewünschte Übergabe und offene Freigaben. Halten Sie getrennt fest, was bleiben, umziehen oder entsorgt werden soll.</p><p>Für die Anfrage müssen noch keine fertigen Preise vorliegen. Entscheidend ist ein klarer Umfang: <a href="/leistungen/wohnungsaufloesung-berlin/">Wohnung räumen und übergeben</a>, <a href="/leistungen/bueroaufloesung-berlin/">Büroauflösung</a> oder <a href="/leistungen/messiwohnung-raeumen/">stark zugestellte Räume</a>. Ergänzende Arbeiten werden gesondert abgestimmt.</p></div></section>
   <section class="scope" aria-labelledby="umfang">
     <div class="wrap">
       <div class="section-head">

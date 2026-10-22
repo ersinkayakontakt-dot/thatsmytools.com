@@ -4,7 +4,7 @@ export const constructionServices: Service[] = [
     "category": "herrichten",
     "status": "published",
     "icon": "home",
-    "updated": "2026-10-21",
+    "updated": '2026-10-22',
     "slug": "innenausbau-berlin",
     "h1": "Innenausbau in Berlin – komplett geplant",
     "navLabel": "Innenausbau komplett",
@@ -100,7 +100,14 @@ export const constructionServices: Service[] = [
           "Bei einer geerbten Wohnung beginnt der Ausbau häufig erst nach der [Nachlassauflösung](/leistungen/nachlassaufloesung-berlin/). Persönliche Unterlagen, Erinnerungsstücke und weiterzugebende Möbel werden vorher festgelegt. Ein [Seniorenumzug](/leistungen/seniorenumzug-berlin/) benötigt wiederum die Abstimmung zwischen neuer Wohnung, mitgenommenen Möbeln und der Übergabe des bisherigen Haushalts.",
           "Für Gewerberäume verbindet die [Büroauflösung](/leistungen/bueroaufloesung-berlin/) die Räumung mit der Klärung von Akten, Inventar und weitergenutzten Arbeitsplätzen. Eigentümer und Verwaltungen finden die gemeinsame Objektkoordination unter [Hausverwaltungen und Immobilienpartner](/hausverwaltungen-immobilienpartner/)."
         ]
-      }
+      },
+      {
+        "h": "Wie vergleichen Sie Ausbau-Angebote sinnvoll?",
+        "p": [
+          "Erfassen Sie Räume und gewünschten Endzustand zuerst. Trennen Sie Rückbau, Vorbereitung, Material, Ausführung und Entsorgung. Legen Sie außerdem fest, welcher tatsächliche Auftragnehmer welches Gewerk übernimmt. So werden unterschiedliche Angebote überhaupt erst vergleichbar.",
+          "Die [Checkliste für Innenausbau-Angebote](/ratgeber/innenausbau-angebote-vergleichen/) führt durch diese Positionen. Mit dem [Wandflächenrechner](/werkzeuge/wandflaechenrechner/) können Sie eigene Maße vorbereiten; eine Rechnerfläche ist noch kein verbindliches Aufmaß."
+        ]
+      },
     ],
     "priceFactors": [
       {
@@ -277,7 +284,7 @@ export const constructionServices: Service[] = [
     "category": "herrichten",
     "status": "published",
     "icon": "home",
-    "updated": "2026-10-20",
+    "updated": '2026-10-22',
     "slug": "malerarbeiten-berlin",
     "h1": "Malerarbeiten in Berlin – mit Fachbetrieb abstimmen",
     "navLabel": "Malerarbeiten",
@@ -354,7 +361,14 @@ export const constructionServices: Service[] = [
         "p": [
           "Über [Angebot anfragen](/angebot-anfragen/) können Sie Malerarbeiten gemeinsam mit Räumung oder Innenausbau beschreiben. Ein Preis wird erst aus dem geklärten Umfang abgeleitet. Feuchte Stellen, Schimmel oder unbekannte Altmaterialien benötigen vorher eine gesonderte fachliche Bewertung."
         ]
-      }
+      },
+      {
+        "h": "Wandfläche und Wohnfläche vor der Anfrage trennen",
+        "p": [
+          "Ein Raum von 5 × 4 m hat 20 m² Bodenfläche. Bei 2,5 m Höhe ergeben seine vier Wände zusammen 45 m² vor Fenster- und Türabzügen. Dieses geometrische Rechenbeispiel zeigt, warum eine Wohnflächenangabe allein für ein Malerangebot nicht genügt. Decken werden zusätzlich erfasst.",
+          "Der [Wandflächenrechner](/werkzeuge/wandflaechenrechner/) hilft Ihnen, diese Angaben zu trennen und in die Anfrage zu übernehmen. Vorarbeiten, Farbwechsel, Material und das vereinbarte Aufmaß klären Sie anschließend mit dem geeigneten Fachbetrieb. Die [Angebots-Checkliste für Ausbauarbeiten](/ratgeber/innenausbau-angebote-vergleichen/) hilft beim Vergleich."
+        ]
+      },
     ],
     "priceFactors": [
       {
@@ -397,7 +411,7 @@ export const constructionServices: Service[] = [
     "category": "herrichten",
     "status": "published",
     "icon": "home",
-    "updated": "2026-10-20",
+    "updated": '2026-10-22',
     "slug": "tapezieren-berlin",
     "h1": "Tapezieren in Berlin – Tapeten und Untergrund abstimmen",
     "navLabel": "Tapezieren",
@@ -469,7 +483,14 @@ export const constructionServices: Service[] = [
           "Soll anschließend gestrichen werden, finden Sie den ergänzenden Umfang unter [Malerarbeiten](/leistungen/malerarbeiten-berlin/). Bei neu aufgebauten Wänden muss der Übergabezustand aus dem [Trockenbau](/leistungen/trockenbau-berlin/) zur späteren Wandbekleidung passen.",
           "Über [Angebot anfragen](/angebot-anfragen/) nennen Sie Tapetenart, Flächen, Wunschtermin und weitere Arbeiten. Für mehrere Räume kann [Innenausbau komplett](/leistungen/innenausbau-berlin/) der passende gemeinsame Einstieg sein. Vor dem Auftrag werden Ausführung und Zuständigkeiten schriftlich festgehalten."
         ]
-      }
+      },
+      {
+        "h": "Wie viel Wand soll tapeziert werden?",
+        "p": [
+          "Für einen rechteckigen Raum lässt sich die Wandfläche aus Umfang mal Höhe berechnen. Fenster und Türen können geometrisch abgezogen werden. Im [Wandflächenrechner](/werkzeuge/wandflaechenrechner/) wählen Sie dafür „Wände tapezieren lassen“ und übernehmen den Plan auf Wunsch in die Anfrage.",
+          "Eine Flächensumme allein bestimmt noch nicht die Tapetenrollen: Rollenbreite, Rollenlänge, Raumhöhe und Musterversatz müssen zum konkreten Produkt passen. Erfasst werden sollten auch alte Beläge, Vorarbeiten und die Frage, wer Material stellt. Die Ausführung wird gesondert mit einem geeigneten Fachbetrieb abgestimmt."
+        ]
+      },
     ],
     "priceFactors": [
       {
@@ -512,7 +533,7 @@ export const constructionServices: Service[] = [
     "category": "herrichten",
     "status": "published",
     "icon": "home",
-    "updated": "2026-10-21",
+    "updated": '2026-10-22',
     "slug": "moebelmontage-berlin",
     "h1": "Möbelmontage in Berlin – Schränke, Betten und Regale",
     "navLabel": "Möbelmontage",
@@ -593,7 +614,14 @@ export const constructionServices: Service[] = [
           "Beim [Innenausbau](/leistungen/innenausbau-berlin/) sollte die Montage erst stattfinden, wenn Boden und Oberflächen im benötigten Zustand sind. Bei einer [Büroauflösung](/leistungen/bueroaufloesung-berlin/) wird dagegen vorher geklärt, welche Möbel weitergenutzt, abgebaut oder getrennt entsorgt werden.",
           "Senden Sie Ihre Eckdaten über [Angebot anfragen](/angebot-anfragen/). Geben Sie neben den Möbeln auch Zugang, Wunschtermin und Zusatzwünsche an. Das Angebot unterscheidet Montage, Transport, Befestigung und Verpackungsentsorgung, damit der beauftragte Umfang nachvollziehbar bleibt."
         ]
-      }
+      },
+      {
+        "h": "Was brauchen wir für ein vergleichbares Montageangebot?",
+        "p": [
+          "Nennen Sie Produktnamen oder Modelllink und die Anzahl der Möbel. Ein Schrank mit Schiebetüren, mehrere Kommoden und ein Bett sind unterschiedliche Aufgaben; die Wohnungsgröße beschreibt diesen Aufwand nicht. Geben Sie an, ob die Teile verpackt sind und ob Anleitung und Beschläge vorliegen.",
+          "Klären Sie Aufbau oder Abbau, Wandbefestigung, Transport und Verpackungsentsorgung ausdrücklich. Diese Positionen sind nicht automatisch dasselbe Leistungspaket. Bei einem Wohnwechsel wird der [Umzug](/leistungen/umzug-berlin/) gesondert abgestimmt; eine ganze Küchenzeile gehört zur [Küchenmontage](/leistungen/kuechenmontage-berlin/). Hier werden keine unbelegten Stunden- oder Stückpreise genannt."
+        ]
+      },
     ],
     "priceFactors": [
       {

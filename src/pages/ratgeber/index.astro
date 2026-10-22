@@ -28,7 +28,7 @@ const schema = buildGraph([
   organizationNode(),
   websiteNode(),
   breadcrumbNode(path, crumbs),
-  webPageNode({ url: path, name: title, description, dateModified: '2026-07-30' }),
+  webPageNode({ url: path, name: title, description, dateModified: page.lastmod }),
 ]);
 ---
 
@@ -53,6 +53,7 @@ const schema = buildGraph([
     </div>
   </div>
 
+  <section class="section" aria-labelledby="planung-werkzeug"><div class="wrap"><p class="eyebrow">Von der Frage zur brauchbaren Planung</p><h2 id="planung-werkzeug">Wandfläche statt Wohnfläche.</h2><p>Berechnen Sie Wände und Decken aus eigenen Maßen. Fenster und Türen getrennt abziehen und das Ergebnis bei Bedarf direkt in die Anfrage übernehmen.</p><a class="btn btn--primary" href="/werkzeuge/wandflaechenrechner/">Wandflächenrechner öffnen →</a></div></section>
   <section class="section" aria-labelledby="anleitungen">
     <div class="wrap">
       <p class="kicker">Ablauf und Vorbereitung</p>

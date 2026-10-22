@@ -66,6 +66,17 @@ const ARTICLE_SCHEMA = ['Article', 'WebPage', 'BreadcrumbList', 'FAQPage'];
 
 const staticPages: StaticPage[] = [
   {
+    id: 'wandflaechenrechner', url: '/werkzeuge/wandflaechenrechner/', pageType: 'guide',
+    title: 'Wandflächenrechner: Wände, Decken & Farbmenge berechnen',
+    metaDescription: 'Wandfläche aus Länge, Breite und Höhe berechnen: Fenster und Türen abziehen, Decken getrennt erfassen und Maße direkt in Ihre Anfrage übernehmen.',
+    h1: 'Wandflächenrechner für Ihre Renovierung', primaryQuery: 'wandflächenrechner',
+    secondaryQueries: ['wandfläche berechnen','wandfläche statt wohnfläche','farbmenge berechnen'],
+    searchIntent: 'informational', businessPriority: 2, conversionGoal: 'complete_project_request', targetRegion: ['Berlin','Berliner Umland'],
+    requiredOutboundLinks: ['service:malerarbeiten-berlin','service:tapezieren-berlin','guide:innenausbau-angebote-vergleichen'],
+    requiredInboundContexts: ['ratgeber','service:malerarbeiten-berlin','service:tapezieren-berlin'],
+    mustNotCompeteWith: ['service:malerarbeiten-berlin'], allowedSchemaTypes: ['WebPage','BreadcrumbList','FAQPage'], ownOgImage: false, lastmod: '2026-10-22', indexable: true,
+  },
+  {
     id: 'home',
     url: '/',
     pageType: 'home',
@@ -87,7 +98,7 @@ const staticPages: StaticPage[] = [
     ],
     allowedSchemaTypes: ['WebPage', 'FAQPage'],
     ownOgImage: true,
-    lastmod: '2026-10-21',
+    lastmod: '2026-10-22',
     indexable: true,
   },
   {
@@ -172,7 +183,7 @@ const staticPages: StaticPage[] = [
     conversionGoal: 'information',
     targetRegion: ['Berlin'],
     allowedSchemaTypes: HUB_SCHEMA,
-    lastmod: '2026-07-30',
+    lastmod: '2026-10-22',
     indexable: true,
   },
   {
@@ -210,24 +221,24 @@ const staticPages: StaticPage[] = [
     allowedSchemaTypes: CONTENT_SCHEMA,
     imageTheme: 'Schlüsselübergabe und dokumentierte Wohnungsräumung',
     ownOgImage: true,
-    lastmod: '2026-07-29',
+    lastmod: '2026-10-22',
     indexable: true,
   },
   {
     id: 'angebot-anfragen',
     url: '/angebot-anfragen/',
     pageType: 'conversion',
-    title: 'Angebot für Entrümpelung in Berlin anfordern | Schnellhelfer24',
+    title: 'Angebot anfragen Berlin: Räumung, Montage & Innenausbau',
     metaDescription:
-      'Aufwand-Check: Leistung, Ort, Umfang, Etage und Zeitraum angeben, Fotos anhängen. Sie erhalten eine persönliche Einschätzung, kostenlos und unverbindlich.',
+      'Ihr Vorhaben in Berlin anfragen: Räumung, Montage oder Innenausbau auswählen, passende Angaben machen und Fotos ergänzen. Unverbindlich und ohne Registrierung.',
     h1: 'Erzählen Sie uns, was ansteht.',
-    primaryQuery: 'angebot entrümpelung anfordern berlin',
+    primaryQuery: 'angebot anfragen berlin',
     searchIntent: 'transactional',
     businessPriority: 4,
     conversionGoal: 'complete_project_request',
     targetRegion: ['Berlin', 'Berliner Umland'],
     allowedSchemaTypes: ['WebPage', 'BreadcrumbList'],
-    lastmod: '2026-07-29',
+    lastmod: '2026-10-22',
     indexable: true,
   },
   {
@@ -311,7 +322,7 @@ const staticPages: StaticPage[] = [
     conversionGoal: 'information',
     targetRegion: ['Berlin'],
     allowedSchemaTypes: ['WebPage', 'BreadcrumbList'],
-    lastmod: '2026-07-29',
+    lastmod: '2026-10-22',
     indexable: true,
   },
   {

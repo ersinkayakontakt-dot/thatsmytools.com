@@ -41,6 +41,7 @@ const service = (slug:string) => {const found=publishedServices.find(s=>s.slug==
       <details class="all-services"><summary>Alle Leistungen im Überblick <span aria-hidden="true">+</span></summary><div class="all-services__groups">{publishedCategories.map(category=><div><h3>{category.title}</h3><ul>{category.services.map(slug=><li><a href={'/leistungen/'+slug+'/'}>{service(slug).navLabel}</a></li>)}</ul></div>)}</div><a href="/leistungen/">Zur Leistungsübersicht →</a></details>
     </div>
   </section>
+  <section class="section" aria-labelledby="home-planung"><div class="wrap"><p class="eyebrow">Aus einer Idee wird ein klarer Umfang</p><h2 id="home-planung">Erst messen. Dann anfragen.</h2><p>Unser <a href="/werkzeuge/wandflaechenrechner/">Wandflächenrechner</a> trennt Wände, Fenster und Decken. Für mehrere Gewerke hilft die <a href="/ratgeber/innenausbau-angebote-vergleichen/">Checkliste für vergleichbare Ausbau-Angebote</a>. Ohne erfundene Preise, mit Angaben, die im Gespräch weiterhelfen.</p></div></section>
   <section class="section thoughtful" aria-labelledby="mitgedacht">
     <div class="wrap thoughtful__layout">
       <div class="thoughtful__image">{heroImage('service:seniorenumzug-berlin')&&<Figure image={heroImage('service:seniorenumzug-berlin')!} layout="wide" />}</div>

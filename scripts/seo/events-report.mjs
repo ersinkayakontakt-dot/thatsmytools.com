@@ -7,7 +7,7 @@
  *
  *   1. Welche Landingpage erzeugt Anfragen?
  *   2. Welche Seite erzeugt Telefonklicks?
- *   3. Welche Quelle erzeugt qualifizierte Komplettaufträge?
+ *   3. Welche Quelle erzeugt bestätigte Anfrage-Empfänge?
  *   4. Wo brechen Menschen im Formular ab?
  *   5. Welche Seiten bekommen Besuch, aber lösen nichts aus?
  *   6. Welche Geräte haben technische oder Conversion-Probleme?
@@ -46,7 +46,7 @@ const dataDir = process.env.SEO_DATA_DIR
   ? resolve(process.env.SEO_DATA_DIR)
   : join(projectRoot, 'data');
 const eventsDir = join(dataDir, 'events');
-const outDir = join(projectRoot, 'tmp', 'seo-reports');
+const outDir = process.env.SEO_REPORT_DIR ? resolve(process.env.SEO_REPORT_DIR) : join(projectRoot, 'tmp', 'seo-reports');
 
 const report = new Report('Messdaten');
 const map = await loadSeoMap();
@@ -128,15 +128,17 @@ const add = (title, question, rows, columns) => sections.push({ title, question,
 
 const submissions = of('lead_form_submitted');
 add(
-  'Anfragen je Einstiegsseite',
-  'Welche Landingpage erzeugt Anfragen?',
+  'Absendeversuche je Einstiegsseite',
+  'Wo wurde Absenden ausgelöst (noch kein Empfangsnachweis)?',
   count(submissions, (e) => e.landing || e.page).map(([landing, n]) => ({
     Einstiegsseite: landing,
-    Anfragen: n,
+    Absendeversuche: n,
     Priorität: map.byUrl.get(landing)?.businessPriority ?? '—',
   })),
-  ['Einstiegsseite', 'Anfragen', 'Priorität'],
+  ['Einstiegsseite', 'Absendeversuche', 'Priorität'],
 );
+
+add('Bestätigte Anfragen je Einstiegsseite','Welche Landingpage führte zu einem gespeicherten Anfrage-Empfang?',count(of('lead_confirmed'), e=>e.landing||e.page).map(([landing,n])=>({Einstiegsseite:landing,Bestätigt:n})),['Einstiegsseite','Bestätigt']);
 
 /* ------------------------------- 2. Welche Seite erzeugt Telefonklicks? */
 
@@ -161,7 +163,7 @@ add(
 const confirmed = of('lead_confirmed');
 add(
   'Bestätigte Anfragen je Kanal',
-  'Welche Such- oder Verweisquelle erzeugt qualifizierte Aufträge?',
+  'Aus welcher Quelle stammen bestätigte gespeicherte Anfragen?',
   count(confirmed, (e) => `${e.channel}${e.referrerHost ? ` (${e.referrerHost})` : ''}`).map(
     ([channel, n]) => ({ Kanal: channel, Anfragen: n }),
   ),
@@ -170,7 +172,7 @@ add(
 
 add(
   'Bestätigte Anfragen je Leistung',
-  'Welche Leistung wird tatsächlich beauftragt?',
+  'Für welche Leistung wurde eine Anfrage gespeichert?',
   count(confirmed, (e) => e.leistung).map(([leistung, n]) => ({ Leistung: leistung, Anfragen: n })),
   ['Leistung', 'Anfragen'],
 );
@@ -189,7 +191,8 @@ for (const [step, n] of stepDone.sort((a, b) => Number(a[0]) - Number(b[0]))) {
     Abbrüche: abandoned.find(([s]) => s === step)?.[1] ?? 0,
   });
 }
-funnel.push({ Schritt: 'Anfrage abgeschickt', Anzahl: submissions.length, Abbrüche: '—' });
+funnel.push({ Schritt: 'Absendeversuche', Anzahl: submissions.length, Abbrüche: '—' });
+funnel.push({ Schritt: 'Bestätigte gespeicherte Anfragen', Anzahl: confirmed.length, Abbrüche: '—' });
 
 add('Formularverlauf', 'Wo brechen Nutzer im Formular ab?', funnel, [
   'Schritt',
@@ -313,6 +316,9 @@ add(
   ['Gerät', 'Aufrufe', 'Aktionen', 'Quote', 'LCP', 'INP', 'CLS'],
 );
 
+add('Werkzeug-Verlauf','Wie häufig werden Planung, Ergebnis und tatsächliche Übernahme ausgelöst?', [['Rechner begonnen','area_calculator_started'],['Berechnung abgeschlossen','area_calculator_completed'],['Plan ins Formular übernommen','area_plan_transferred']].map(([label,event])=>({Stufe:label,Ereignisse:of(event).length})),['Stufe','Ereignisse']);
+report.stat('Absendeversuche sind keine Empfangsnachweise. Bestätigte Anfragen sind keine qualifizierten Leads oder gewonnenen Aufträge. Ohne Einwilligung/Freigabe und aktive Messung fehlen Ereignisse; Ereigniszahlen sind keine Personenzahlen.');
+
 /* ------------------------------------------------------------ Ausgabe */
 
 for (const section of sections) {
@@ -336,8 +342,8 @@ const md = [
     `der letzten ${days} Tage (${sessions} unterscheidbare Sitzungen).`,
   '',
   '> Alle Angaben sind Summen. Es gibt keine Einzelprofile. Das',
-  '> Sitzungspseudonym wechselt täglich und ist nach Tagesende auch mit',
-  '> Serverzugang keiner Person mehr zuzuordnen.',
+  '> Tagespseudonyme sind keine Personenzählung. Aus diesen Ereignissen lassen sich',
+  '> weder Lead-Qualifikation noch gewonnene Aufträge oder Umsatz ableiten.',
   '',
   ...sections.flatMap((s) => [
     `## ${s.title}`,

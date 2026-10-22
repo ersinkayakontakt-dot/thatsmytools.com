@@ -1,5 +1,16 @@
 # Entscheidungsprotokoll
 
+## E-015 · Nutzbare Flächenplanung und gezielter SEO-Ausbau (22.10.2026)
+
+SEO-2026-05: vorhandene kaufnahe Seiten vor Seitenwachstum; genau ein geometrischer Rechner und ein eigenständiger Angebotsvergleich. Keine Preise ohne Daten, keine Ortskopien, keine erfundenen Referenzen. Quellen, Suchintentionen, Messdefinitionen und 30/60/90-Plan: SEO-AUSBAU-2026-10-22.md. Lokaler Entwurf benötigt gesonderte Veröffentlichungsfreigabe.
+
+Ein gemeinsames Rechenmodell validiert Eingaben und den maximal zweistündigen lokalen Transfer. Bestehende Anfragefelder bleiben der Vertrag; bewusste Übernahme erhält vorhandene Texte. Absendeversuch, gespeicherter Empfang und Auftrag bleiben getrennt. Analyse wird nicht aktiviert.
+
+Vier Hüte: Staff – keine Scheingenauigkeit/Preisfiktion, gemeinsame Formel; Architektur – statische Inhalte und Browserergänzung ohne neue API; Daten – begrenzter lokaler Plan, keine Migration/PII-Ereignisse; QA – Rechen- und Manipulationsfälle, bestehender Anfrageweg, Responsive- und SEO-Prüfung. Sicherheit/Compliance: textContent statt HTML-Injektion, begrenzte Pläne, keine Maße im Tracking/URL, Handwerksgrenzen A1/B1 erhalten.
+
+Linkgraph: 12 redaktionelle Prioritätswarnungen gegenüber 11 im bisherigen Produktstand. Neue sinnvolle Werkzeug-/Vergleichskontexte stärken Innenausbau; keine verwaisten Seiten, keine defekten Links. Redaktionell als begrenzter Tradeoff akzeptiert, unter SEO-2026-04 weiter auswerten; Prioritäten und Prüfschwellen bleiben unverändert. Keine Rankingwirkung aus dem Graphwert ableiten.
+
+
 ## E-014 · Öffentliche Formular-Grundkonfiguration übersteht Deployment (21.10.2026)
 
 Betreiber meldet vorher funktionierenden Versand und fordert sofortige Reparatur. Der Programmvergleich zeigt unveränderten SMTP-/mail()-Transport und Konfigurationslader; der beobachtete Abbruch erfolgt vorher wegen leerem Empfänger. Hostingers Git-Abgleich kann unversionierte lokale Konfiguration löschen. Die konkrete entfernte Datei lässt sich ohne Serverzugriff nicht rekonstruieren.

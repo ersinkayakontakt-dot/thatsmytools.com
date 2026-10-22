@@ -11,6 +11,8 @@ import { defineConfig } from 'astro/config';
 export default defineConfig({
   site: 'https://schnellhelfer24.de',
   output: 'static',
+  // Nur dev/preview: lokale Vorschauen niemals als Suchseite ausliefern.
+  server: { headers: { 'X-Robots-Tag': 'noindex, nofollow' } },
   trailingSlash: 'always',
   build: {
     format: 'directory',
