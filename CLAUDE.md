@@ -265,4 +265,4 @@ Aktueller gemeinsamer Release-Stand 22.10.2026: Remote 873bde6 und Rechnerentwur
 
 Live-Abschluss 22.10.2026: Quelle 9b63dd3 / Build 3b64b49, 62 indexierbare URLs exakt live abgeglichen, 33 Live-Browserchecks und fünf Bildseiten geprüft; IndexNow 39 URLs HTTP 200 angenommen. Keine erneute echte Mailtest-Anfrage. Aktueller Status in HANDOFF.md und SEO-AUSBAU-2026-10-22.md.
 
-SEO-2026-06 lokal geprüft (noch unveröffentlicht): 82/62 Seiten, 0 Fehler/0 Warnungen statt drei Live-Hinweisen; vorhandene vier Seiten sinnvoll ergänzt, Prioritäten/Regeln unverändert. Neue konkrete Releasefreigabe nötig; Live weiterhin 3b64b49.
+SEO-2026-06 am 22.10.2026 freigegeben („ok gop“) und live bestätigt: Quelle af6200a / Build 844ba7b. 82/62 Seiten, 0 Fehler/0 Warnungen, Prioritäten/Regeln unverändert. Alle 62 indexierbaren URLs Build-identisch live, 20 Browser-/Linkchecks bestanden, IndexNow fünf geänderte URLs HTTP 200 angenommen. Keine Aussage über Rankings oder neue Anfragen.

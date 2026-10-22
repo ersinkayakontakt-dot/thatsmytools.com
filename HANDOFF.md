@@ -1,6 +1,8 @@
-# SEO-Folgestand lokal fertig · SEO-2026-06 · Veröffentlichung noch offen
+# SEO-Folgestand live bestätigt · 22.10.2026
 
-Vier bestehende Seiten gezielt verbessert: Angebotsvergleich, Erbratgeber, Foto-Ratgeber und Partnerseite. Lokal weiterhin 82/62 Seiten, jetzt 0 Fehler/0 SEO-Warnungen (live bisher drei); keine Prioritäten oder Regeln geändert. Build, Check, Inhalts-/Buildaudit sowie 20 Browser-/Linkchecks bestanden. Neue konkrete Veröffentlichungsfreigabe steht aus. Live bleibt 3b64b49. Betreiber wählte ausdrücklich SEO statt SMTP; Mailarbeit zurückgestellt. Details in docs/SEO-AUSBAU-2026-10-22.md.
+SEO-2026-06 am 22.10.2026 nach Betreiberfreigabe „ok gop“ veröffentlicht: Quelle af6200a, hostinger-live 844ba7b. Vier Inhalte plus automatisch aktualisierte Ratgeberübersicht/Sitemap übertragen; keine API-Datei geändert und keine versionierte Datei gelöscht. Alle 62 indexierbaren URLs HTTP 200 und exakt gegen den geprüften Build abgeglichen, keine noindex-Sperre in Produktion. 20 Live-Browser-/Linkprüfungen bestanden: vier geänderte Seiten bei 320/375/768/1440 px ohne Überlauf, Inhalte ohne JavaScript lesbar, neue Linkziele HTTP 200. Build, Check, Inhalts-/Buildaudit, SEO, sieben Anfragefälle, 29 Rechenfälle und sechs Berichtschecks bestanden. SEO vollständig 0 Fehler/0 Warnungen, unveränderte Prioritäten und Prüfschwellen. Nach Live-Abgleich fünf geänderte URLs an IndexNow gemeldet, HTTP 200 angenommen; Zustand gespeichert. Keine Aussage über Indexaufnahme, Rankings oder neue Anfragen. Keine echte Anfrage/Mail abgeschickt; Mailarbeit bleibt auf Betreiberwunsch zurückgestellt.
+
+Die folgenden Abschnitte sind historische Zwischenstände.
 
 # SEO-Ausbau live bestätigt · 22.10.2026
 
