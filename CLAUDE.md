@@ -262,3 +262,5 @@ wurde – auch wenn es nichts war.
 Gemeinsame Quelle für Codex/Claude: docs/SEO-AUSBAU-2026-10-22.md. Vor SEO-/Rechner-/Messarbeit lesen; Handwerksgrenzen in docs/HANDWERKSRECHT.md beachten. Lokal 80 HTML/60 indexierbar, 12 redaktionell bewertete Linkwarnungen; Live-Basis weiterhin 78/58 und 11. Veröffentlichung am 22.10.2026 mit „go“ freigegeben. Zusätzlich audit:area:selftest und seo:events:report:selftest ausführen; bei Ereignisänderungen seo:events und seo:selftest. Versuche/Empfang/qualifizierte Leads/Aufträge getrennt halten.
 
 Aktueller gemeinsamer Release-Stand 22.10.2026: Remote 873bde6 und Rechnerentwurf ecc6da4 zusammengeführt, 82 Seiten/62 indexierbar, 0 Fehler und drei redaktionell bewertete Linkhinweise. Datierte E-015-Verweise unterscheiden parallele Entscheidungen ohne historische IDs umzunummerieren. Betreiberfreigabe mit „go“ liegt vor.
+
+Live-Abschluss 22.10.2026: Quelle 9b63dd3 / Build 3b64b49, 62 indexierbare URLs exakt live abgeglichen, 33 Live-Browserchecks und fünf Bildseiten geprüft; IndexNow 39 URLs HTTP 200 angenommen. Keine erneute echte Mailtest-Anfrage. Aktueller Status in HANDOFF.md und SEO-AUSBAU-2026-10-22.md.

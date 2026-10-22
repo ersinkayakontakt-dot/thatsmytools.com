@@ -2,7 +2,7 @@
 
 ## Status und belastbare Ausgangsbasis
 
-Betreiberfreigabe zur Veröffentlichung am 22.10.2026 mit „go“. Vor Release neuere Remote-Änderungen bis 873bde6 integriert: zwei zusätzliche Ratgeber, fünf dokumentierte Beispielbilder, Paketabschnitte und Linkpflege bleiben erhalten. Gemeinsamer geprüfter Stand: 82 HTML-Seiten, 62 indexierbar. Vorheriger freigegebener Rechnerentwurf ecc6da4 hatte 80/60; Remote-Live-Basis 5c0aad0 hatte ebenfalls 80/60, mit anderen neuen Seiten. Keine URLs entfernt oder umbenannt. Keine Profiländerung oder externe Nachricht.
+Veröffentlichung am 22.10.2026 nach Betreiberfreigabe „go“ live bestätigt (3b64b49 / Quelle 9b63dd3). Vor Release neuere Remote-Änderungen bis 873bde6 integriert: zwei zusätzliche Ratgeber, fünf dokumentierte Beispielbilder, Paketabschnitte und Linkpflege bleiben erhalten. Gemeinsamer geprüfter Stand: 82 HTML-Seiten, 62 indexierbar. Vorheriger freigegebener Rechnerentwurf ecc6da4 hatte 80/60; Remote-Live-Basis 5c0aad0 hatte ebenfalls 80/60, mit anderen neuen Seiten. Keine URLs entfernt oder umbenannt. Keine Profiländerung oder externe Nachricht.
 
 Schnellhelfer24 ist ein direkter Dienstleister mit Koordination geeigneter Fachbetriebe, kein offener Marktplatz. Vorhandene Schwerpunkte: Wohnungs-/Haushalts-/Nachlassauflösung, Entrümpelung, Umzug einschließlich Seniorenumzug, Gewerberäumung, Montage und Innenausbau in Berlin und tatsächlich zugesagtem Umland. Maler/Tapezieren werden gemäß HANDWERKSRECHT A1/B1 gesondert über geeignete Fachbetriebe abgestimmt. Keine Behauptung eigener Meistereintragung oder pauschaler Eigenleistung.
 
@@ -105,7 +105,7 @@ Labormessung 22.10., einzelner Headless-Edge-Aufruf 375 px, ohne Drosselung, kei
 
 Umgesetzt ist eine vollständige erste Stufe. Veröffentlichungsfreigabe liegt vor; Indexaufnahme, mehr qualifizierte Anfragen, profitable Aufträge oder KI-Nennungen sind nicht nachgewiesen.
 
-## Abschließende lokale Nachweise
+## Lokale Nachweise vor Zusammenführung (ecc6da4)
 
 Build und Typprüfung: 80 Seiten, 121 geprüfte Dateien, keine Fehler/Warnungen/Hinweise der Typprüfung. Inhalts-/Buildaudit sauber, 60 Sitemap-URLs. SEO vor Zusammenführung: keine Fehler, zwölf unter E-015 (Flächenplanung, 22.10.) bewertete Linkgewichtungshinweise, Metadaten/Schema/Bilder/Kontrast/Kannibalisierung sauber. 26 erlaubte Ereignisse stimmen mit Quelltext überein; 16/16 absichtlich eingebaute SEO-Verletzungen erkannt. 29 Rechen-/Transfermodellfälle, sechs Berichtschecks, sieben Anfrage-Endpunktfälle, 14 lokale SMTP-Fälle und sechs Konfigurationsfälle bestanden; vier PHP-Dateien ohne Syntaxfehler. Kein echter Lead und keine externe Testmail in dieser Stufe gesendet.
 
@@ -115,3 +115,9 @@ Zusätzlicher Build-Abgleich aller 18 veröffentlichten Leistungen: passende lei
 
 
 Gemeinsamer Release-Check nach Remote-Integration: 82/62 Seiten, drei redaktionell bewertete Linkgewichtungshinweise. Keine Prioritäten/Prüfschwellen geändert; alle neuen Remote-Inhalte erhalten. Die bisherigen Messergebnisse beziehen sich auf den Entwurf ecc6da4, keine erneute Performancebehauptung für den gemeinsamen Stand.
+
+## Live-Abschluss
+
+Veröffentlicht am 22.10.2026 mit Betreiberfreigabe „go“: Quelle 9b63dd3, hostinger-live 3b64b49. Alle 62 indexierbaren URLs HTTP 200 und nach Normalisierung der Zeilenenden exakt identisch mit dem geprüften Build; Sitemap 62 Ziele, keine Produktions-noindex-Sperre. 33 Live-Browserchecks bestanden, einschließlich Rechnung, einmaliger Planübernahme, Fehlerfällen und fünf Bildschirmbreiten. Fünf übernommene Bildseiten zusätzlich mobil geprüft: Bilder geladen, kein Überlauf. Private Pfade weiterhin 403/404, unbekannte URL 404. Keine echte Anfrage oder Mail in dieser Ausbaustufe gesendet; tatsächlicher Mail-Empfang seit dem Deployment nicht erneut bestätigt. IndexNow erst nach Live-Abgleich: 39 URLs (vier neu, 35 geändert, keine entfernt), HTTP 200 angenommen; Zustand gespeichert. Indexaufnahme, Rankings und Umsatzwirkung nicht nachgewiesen. Keine Aussage über den internen Bestand gespeicherter Anfragen ohne Serverzugriff.
+
+Vier Hüte beim Release: Staff – parallele Änderungen erhalten statt zurücksetzen; Architektur – gemeinsamer statischer Build, unveränderter Anfrage-Endpunkt und Konfigurationslader (identische Git-Blobs zur vorherigen Live-Basis); Daten – keine Migration, keine Aktivierung der Messung oder neue Empfänger; QA – vollständiger Live-Buildabgleich, Browser- und Bildtests. Kein geheimer Inhalt oder Laufzeitdatensatz in den Deploy-Commit übernommen. Vorhandene versionierte Dateien wurden beim Bereitstellen nicht gelöscht. Interne Serverbestände bleiben ohne autorisierten Serverzugriff ungeprüft.
