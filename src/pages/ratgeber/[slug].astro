@@ -52,6 +52,7 @@ const schema = buildGraph([
     description: guide.metaDescription,
     published: guide.published,
     updated: guide.updated,
+    image: hero ? { src: hero.src.src, width: hero.src.width, height: hero.src.height } : undefined,
   }),
   faqNode(path, guide.faq),
 ]);

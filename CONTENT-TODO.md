@@ -1,5 +1,9 @@
 # CONTENT-TODO: Was noch an echten Daten fehlt
 
+## Shipped (Quelle, noch nicht live) · BILD-2026-04 · Titelbilder für alle Ratgeber- und Kostenseiten, 23.10.2026
+
+13 Seiten hatten kein Bild: 9 Ratgeber und 4 Kostenseiten. Jede hat jetzt ein geprüftes Pexels-Beispielbild (Auswahl und Aussortiertes in IMAGE-SOURCES.md). Kostenseiten melden das Bild jetzt als `primaryImageOfPage`. `Article.image` nennt bei allen Ratgebern und Kostenseiten zuerst das inhaltliche Titelbild und danach das Vorschaubild (vorher nur das allgemeine Vorschaubild). Die Bild-Sitemap nimmt die Bilder automatisch auf (76 Bildeinträge). Gate 0 Fehler/0 Warnungen; 13 Seiten bei 375 und 1280 px: Bild als AVIF geladen, sofort statt verzögert, Kennzeichnung sichtbar, kein Überlauf, keine JavaScript-Fehler. Damit hat jede indexierbare Leistungs-, Ratgeber- und Kostenseite ein Inhaltsbild.
+
 ## Shipped (bereitgestellt 0a6afbd, Live-Prüfung offen) · GROW-2026-01 · Nachfrageregister und Betriebsbereich, 22.10.2026
 
 Personenfreier Registereintrag je Anfrage (`lib/nachfrage.php`), freiwillige Frage „Ist vor Ihrer Entscheidung noch etwas offen?“, Betriebsbereich `/api/betrieb.php` mit Ergebniserfassung, Nachfrageverzeichnis und CSV. Anonymisierung nach 180 Tagen. Datenschutzerklärung § 4 ergänzt. `audit:demand:selftest` (Listenabgleich, 53 Einheitsfälle, Integration) und 33 Browserprüfungen bestanden. **Offen:** Betreiberfreigabe und Deployment; Zugang einrichten (`php scripts/betrieb-passwort.php`, docs/NACHFRAGE-SYSTEM.md § 6); Datenschutzabschnitt anwaltlich mitprüfen (A5). Erfolg: ≥ 80 % Ergebnisse binnen 14 Tagen, ≥ 2 Entscheidungen aus ≥ 5 Anfragen in 8 Wochen.

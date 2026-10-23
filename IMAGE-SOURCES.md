@@ -105,6 +105,28 @@ Auswahlgründe und Aussortiertes:
 - **Keller:** Der erste Lauf brachte nur Weinkeller und Lagerhallen. Zweiter Lauf mit neuen Suchbegriffen; gewählt das vergitterte Kellerfenster, weil es einem deutschen Kellerabteil am nächsten kommt. Aussortiert: US-Hobbykeller, Lagerhallen, englisch beschriftete Kartons.
 - **Leere Wohnung:** Nr. 04 der Kandidaten war dieselbe Wohnung wie `wohnungsaufloesung-leere-wohnung.jpg` – aussortiert, damit nicht zwei Seiten dasselbe Objekt zeigen. Gewählt eine andere Wohnung mit europäischen Heizkörpern.
 
+### Ratgeber- und Kostenseiten: ergänzt am 23.10.2026 (BILD-2026-04)
+
+155 Kandidaten aus 13 Themen über `npm run images:fetch`, jeder Kontaktbogen angesehen, Favoriten mit Schrift oder möglichen Logos zusätzlich in voller Größe. Abruf in 2400 px Breite. Alle als Beispielbild gekennzeichnet, mit Personen zusätzlich als Symbolbild.
+
+| Datei | Fotograf | Originalseite | Abruf | Verwendung | Lizenz | Personen |
+|---|---|---|---|---|---|---|
+| `ratgeber-angebote-vergleichen.jpg` | RDNE Stock project | [Pexels 7821540](https://www.pexels.com/photo/person-working-on-documents-7821540/) | 2026-10-23 | `/ratgeber/innenausbau-angebote-vergleichen/` | Pexels-Lizenz: kostenlose Nutzung und Bearbeitung, Namensnennung nicht erforderlich | ja (Hände) |
+| `kosten-entruempelung-dachzimmer.jpg` | Đặng Thanh Tú | [Pexels 19271472](https://www.pexels.com/photo/cafe-interior-with-vintage-furniture-and-decor-19271472/) | 2026-10-23 | `/kosten/was-kostet-eine-entruempelung-in-berlin/` | Pexels-Lizenz: kostenlose Nutzung und Bearbeitung, Namensnennung nicht erforderlich | nein |
+| `kosten-haushalt-altbauzimmer.jpg` | Karl Solano | [Pexels 5317149](https://www.pexels.com/photo/disorganized-furniture-in-abandoned-house-5317149/) | 2026-10-23 | `/kosten/kosten-haushaltsaufloesung-berlin/` | Pexels-Lizenz: kostenlose Nutzung und Bearbeitung, Namensnennung nicht erforderlich | nein |
+| `kosten-sperrmuell-alte-moebel.jpg` | Arti Kh | [Pexels 15864302](https://www.pexels.com/photo/vintage-abandoned-interior-15864302/) | 2026-10-23 | `/kosten/kosten-sperrmuellabholung-berlin/` | Pexels-Lizenz: kostenlose Nutzung und Bearbeitung, Namensnennung nicht erforderlich | nein |
+| `kosten-seniorenumzug-packen.jpg` | Vy Van Bui | [Pexels 35821967](https://www.pexels.com/photo/elderly-man-carrying-cardboard-boxes-outdoors-35821967/) | 2026-10-23 | `/kosten/kosten-seniorenumzug-berlin/` | Pexels-Lizenz: kostenlose Nutzung und Bearbeitung, Namensnennung nicht erforderlich | ja (Gesicht) |
+| `ratgeber-fotos-smartphone.jpg` | Tima Miroshnichenko | [Pexels 6474473](https://www.pexels.com/photo/person-holding-black-iphone-6474473/) | 2026-10-23 | `/ratgeber/welche-fotos-fuer-ein-angebot/` | Pexels-Lizenz: kostenlose Nutzung und Bearbeitung, Namensnennung nicht erforderlich | ja (Hände) |
+| `ratgeber-entruempelung-packen.jpg` | SHVETS production | [Pexels 7203849](https://www.pexels.com/photo/crop-faceless-woman-packing-belongings-into-cardboard-box-before-relocation-7203849/) | 2026-10-23 | `/ratgeber/entruempelung-vorbereiten/` | Pexels-Lizenz: kostenlose Nutzung und Bearbeitung, Namensnennung nicht erforderlich | ja (Hände) |
+| `ratgeber-uebergabe-protokoll.jpg` | Tima Miroshnichenko | [Pexels 6169648](https://www.pexels.com/photo/a-person-filling-up-a-form-on-a-clipboard-6169648/) | 2026-10-23 | `/ratgeber/checkliste-wohnungsuebergabe/` | Pexels-Lizenz: kostenlose Nutzung und Bearbeitung, Namensnennung nicht erforderlich | ja (Hände) |
+| `ratgeber-nachlass-sekretaer.jpg` | Brett A | [Pexels 38545752](https://www.pexels.com/photo/vintage-wooden-desk-with-writing-supplies-38545752/) | 2026-10-23 | `/ratgeber/haushaltsaufloesung-nach-todesfall/` | Pexels-Lizenz: kostenlose Nutzung und Bearbeitung, Namensnennung nicht erforderlich | nein |
+| `ratgeber-halteverbot-schild.jpg` | Reinis Brūzītis | [Pexels 33548609](https://www.pexels.com/photo/brick-wall-with-no-parking-sign-on-street-corner-33548609/) | 2026-10-23 | `/ratgeber/halteverbotszone-berlin-umzug/` | Pexels-Lizenz: kostenlose Nutzung und Bearbeitung, Namensnennung nicht erforderlich | nein |
+| `ratgeber-antrag-ausfuellen.jpg` | Tima Miroshnichenko | [Pexels 7567551](https://www.pexels.com/photo/a-hand-holding-a-pen-7567551/) | 2026-10-23 | `/ratgeber/umzugskosten-jobcenter-berlin/` | Pexels-Lizenz: kostenlose Nutzung und Bearbeitung, Namensnennung nicht erforderlich | ja (Hand) |
+| `ratgeber-sofa-heraustragen.jpg` | RDNE Stock project | [Pexels 7464722](https://www.pexels.com/photo/man-in-blue-denim-jeans-sitting-on-green-sofa-7464722/) | 2026-10-23 | `/ratgeber/sperrmuell-moebel-entsorgen-berlin/` | Pexels-Lizenz: kostenlose Nutzung und Bearbeitung, Namensnennung nicht erforderlich | ja (Gesicht, seitlich) |
+| `ratgeber-checkliste-haken.jpg` | Tara Winstead | [Pexels 8850706](https://www.pexels.com/photo/red-check-mark-over-black-box-8850706/) | 2026-10-23 | `/ratgeber/wohnungsaufloesung-checkliste-pdf/` | Pexels-Lizenz: kostenlose Nutzung und Bearbeitung, Namensnennung nicht erforderlich | nein |
+
+Aussortiert, unter anderem: Umzugswagen mit US-Firmenaufschriften (U-Haul, „Moving Company“, DHL); ein Lastwagen in einer erkennbar südostasiatischen Straße für die Berliner Halteverbotsseite (stattdessen zweiter Suchlauf, echtes deutsches Halteverbotsschild); zwei Personen mit Bettgestell vor Burger-King-Logo und Ladenschildern; Kartons mit englischer Beschriftung („Keep/Donate/Trash“, „Winter Cloths“, „Kitchen“); Maskenträger (datiert das Bild); verfallene Räume und Straßenmüll als Elendsmotiv.
+
 ### Was aussortiert wurde – und warum
 
 Die Auswahl bestand nicht darin, die ersten sieben Treffer zu nehmen.

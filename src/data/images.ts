@@ -21,6 +21,19 @@ import officeSpace from '../assets/bueroaufloesung-arbeitsflaeche.jpg';
 import movingBoxes from '../assets/umzug-kartons-tragen.jpg';
 
 import furnitureAssembly from '../assets/moebelmontage-anleitung-werkzeug.jpg';
+import guideComparison from '../assets/ratgeber-angebote-vergleichen.jpg';
+import costClearing from '../assets/kosten-entruempelung-dachzimmer.jpg';
+import costHousehold from '../assets/kosten-haushalt-altbauzimmer.jpg';
+import costBulky from '../assets/kosten-sperrmuell-alte-moebel.jpg';
+import costSenior from '../assets/kosten-seniorenumzug-packen.jpg';
+import guidePhotos from '../assets/ratgeber-fotos-smartphone.jpg';
+import guidePrepare from '../assets/ratgeber-entruempelung-packen.jpg';
+import guideHandover from '../assets/ratgeber-uebergabe-protokoll.jpg';
+import guideBereavement from '../assets/ratgeber-nachlass-sekretaer.jpg';
+import guideNoStopping from '../assets/ratgeber-halteverbot-schild.jpg';
+import guideApplication from '../assets/ratgeber-antrag-ausfuellen.jpg';
+import guideSofa from '../assets/ratgeber-sofa-heraustragen.jpg';
+import guideChecklist from '../assets/ratgeber-checkliste-haken.jpg';
 
 import clutterBag from '../assets/messiwohnung-muellsack-handschuhe.jpg';
 import bulkyTable from '../assets/sperrmuell-tisch-heraustragen.jpg';
@@ -50,6 +63,19 @@ export interface SiteImage {
  * IMAGE-SOURCES.md.
  */
 export const siteImages: readonly SiteImage[] = [
+  { pageId: 'guide:innenausbau-angebote-vergleichen', role: 'hero', src: guideComparison, alt: 'Zwei Hände vergleichen ausgedruckte Angebote, Positionen sind farbig markiert', caption: 'Beispielbild: Angebote werden Position für Position verglichen.', imageOrigin: 'stock', showsPeople: true },
+  { pageId: 'guide:was-kostet-eine-entruempelung-in-berlin', role: 'hero', src: costClearing, alt: 'Dachzimmer mit Polsterstuhl, Beistelltisch, Bildern und alten Gegenständen', caption: 'Beispielbild: Ein eingerichteter Raum vor der Räumung – Menge und Zugang bestimmen den Aufwand.', imageOrigin: 'stock', showsPeople: false },
+  { pageId: 'guide:kosten-haushaltsaufloesung-berlin', role: 'hero', src: costHousehold, alt: 'Altbauzimmer mit Holzdielen, Heizkörper, Stühlen und Stehlampe', caption: 'Beispielbild: Ein vollständig eingerichteter Haushalt vor der Auflösung.', imageOrigin: 'stock', showsPeople: false },
+  { pageId: 'guide:kosten-sperrmuellabholung-berlin', role: 'hero', src: costBulky, alt: 'Alter Holzstuhl und Sessel in einem leeren Raum mit hohen Fenstern', caption: 'Beispielbild: Einzelne ausrangierte Möbel, bereitgestellt zur Abholung.', imageOrigin: 'stock', showsPeople: false },
+  { pageId: 'guide:kosten-seniorenumzug-berlin', role: 'hero', src: costSenior, alt: 'Älterer Mann packt Umzugskartons', caption: 'Beispielbild: Beim Seniorenumzug wird ausgewählt, was mitkommt.', imageOrigin: 'stock', showsPeople: true },
+  { pageId: 'guide:welche-fotos-fuer-ein-angebot', role: 'hero', src: guidePhotos, alt: 'Hände fotografieren mit dem Smartphone einen Raum mit Sofa', caption: 'Beispielbild: Ein Übersichtsfoto je Raum reicht für die erste Einschätzung.', imageOrigin: 'stock', showsPeople: true },
+  { pageId: 'guide:entruempelung-vorbereiten', role: 'hero', src: guidePrepare, alt: 'Person packt Gegenstände in einen offenen Umzugskarton', caption: 'Beispielbild: Was bleiben soll, wird vorher getrennt und gekennzeichnet.', imageOrigin: 'stock', showsPeople: true },
+  { pageId: 'guide:checkliste-wohnungsuebergabe', role: 'hero', src: guideHandover, alt: 'Hand füllt ein Formular auf einem Klemmbrett aus, im Hintergrund Kartons', caption: 'Beispielbild: Das Übergabeprotokoll hält Zustand und Zählerstände fest.', imageOrigin: 'stock', showsPeople: true },
+  { pageId: 'guide:haushaltsaufloesung-nach-todesfall', role: 'hero', src: guideBereavement, alt: 'Geöffneter alter Sekretär mit Papieren und Unterlagen', caption: 'Beispielbild: Unterlagen werden gesichtet, bevor irgendetwas geräumt wird.', imageOrigin: 'stock', showsPeople: false },
+  { pageId: 'guide:halteverbotszone-berlin-umzug', role: 'hero', src: guideNoStopping, alt: 'Verkehrsschild Absolutes Halteverbot vor einer Klinkerwand', caption: 'Beispielbild: Das Halteverbotsschild für den Umzugstag.', imageOrigin: 'stock', showsPeople: false },
+  { pageId: 'guide:umzugskosten-jobcenter-berlin', role: 'hero', src: guideApplication, alt: 'Hand füllt mit einem Kugelschreiber ein Formular aus', caption: 'Beispielbild: Der Antrag wird vor der Beauftragung gestellt.', imageOrigin: 'stock', showsPeople: true },
+  { pageId: 'guide:sperrmuell-moebel-entsorgen-berlin', role: 'hero', src: guideSofa, alt: 'Mann trägt ein grünes Sofa durch eine Wohnungstür', caption: 'Beispielbild: Ein Sofa wird aus der Wohnung getragen.', imageOrigin: 'stock', showsPeople: true },
+  { pageId: 'guide:wohnungsaufloesung-checkliste-pdf', role: 'hero', src: guideChecklist, alt: 'Blatt mit drei Kästchen, das erste ist rot abgehakt', caption: 'Beispielbild: Aufgabe für Aufgabe abhaken.', imageOrigin: 'stock', showsPeople: false },
   { pageId: 'service:messiwohnung-raeumen', role: 'hero', src: clutterBag, alt: 'Hände in Arbeitshandschuhen halten einen offenen schwarzen Müllsack mit gemischtem Abfall', caption: 'Beispielbild: Abfall wird mit Schutzhandschuhen gesammelt und getrennt.', imageOrigin: 'stock', showsPeople: true },
   { pageId: 'service:sperrmuellabholung-berlin', role: 'hero', src: bulkyTable, alt: 'Mann trägt einen Holztisch durch ein Wohnzimmer, das Sofa ist mit Folie abgedeckt', caption: 'Beispielbild: ein ausrangiertes Möbelstück wird aus der Wohnung getragen.', imageOrigin: 'stock', showsPeople: true },
   { pageId: 'service:kellerentruempelung-berlin', role: 'hero', src: cellarBoxes, alt: 'Gestapelte Kartons und ein Kanister hinter einem vergitterten Kellerfenster', caption: 'Beispielbild: eingelagerte Kartons hinter einem Kellerfenster.', imageOrigin: 'stock', showsPeople: false },

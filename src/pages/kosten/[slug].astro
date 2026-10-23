@@ -5,6 +5,7 @@ import GuideArticle from '../../components/GuideArticle.astro';
 import CtaBand from '../../components/CtaBand.astro';
 import { guides } from '../../data/guides';
 import { guideIsIndexable } from '../../lib/publishGuard';
+import { heroImage } from '../../data/images';
 import {
   buildGraph,
   organizationNode,
@@ -24,6 +25,7 @@ export function getStaticPaths() {
 const { guide } = Astro.props;
 const path = `/kosten/${guide.slug}/`;
 const indexable = guideIsIndexable(guide);
+const hero = heroImage(`guide:${guide.slug}`);
 
 const crumbs = [
   { name: 'Start', href: '/' },
@@ -41,6 +43,7 @@ const schema = buildGraph([
     description: guide.metaDescription,
     datePublished: guide.published,
     dateModified: guide.updated,
+    primaryImage: hero?.src.src,
     breadcrumbId: `https://schnellhelfer24.de${path}#breadcrumb`,
   }),
   articleNode({
@@ -49,6 +52,7 @@ const schema = buildGraph([
     description: guide.metaDescription,
     published: guide.published,
     updated: guide.updated,
+    image: hero ? { src: hero.src.src, width: hero.src.width, height: hero.src.height } : undefined,
   }),
   faqNode(path, guide.faq),
 ]);

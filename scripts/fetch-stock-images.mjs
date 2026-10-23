@@ -120,6 +120,71 @@ const THEMES = {
     theme: 'leere, hergerichtete Altbauwohnung kurz vor Verkauf oder Vermietung',
     queries: ['renovated empty apartment europe', 'empty apartment fresh paint wooden floor', 'bright empty flat ready to rent'],
   },
+  'angebotsvergleich': {
+    forPage: 'guide:innenausbau-angebote-vergleichen',
+    theme: 'zwei Angebote nebeneinander, Positionen werden verglichen',
+    queries: ['comparing two documents desk pen', 'reviewing contractor quote paperwork', 'renovation estimate documents table'],
+  },
+  'kosten-entruempelung': {
+    forPage: 'guide:was-kostet-eine-entruempelung-in-berlin',
+    theme: 'vollgestellter Raum mit Kartons vor der Räumung, ohne Elendsmotiv',
+    queries: ['cluttered storage room boxes', 'attic full of boxes old furniture', 'decluttering room cardboard boxes'],
+  },
+  'kosten-haushalt': {
+    forPage: 'guide:kosten-haushaltsaufloesung-berlin',
+    theme: 'eingerichtete ältere Wohnung, Hausrat und Möbel',
+    queries: ['old furnished living room', 'vintage apartment furniture interior', 'household items shelves old apartment'],
+  },
+  'kosten-sperrmuell': {
+    forPage: 'guide:kosten-sperrmuellabholung-berlin',
+    theme: 'einzelne alte Möbel bereitgestellt',
+    queries: ['old armchair empty room', 'old wooden furniture stacked', 'used furniture pile indoor'],
+  },
+  'kosten-senioren': {
+    forPage: 'guide:kosten-seniorenumzug-berlin',
+    theme: 'ältere Person mit Angehörigen beim Packen, würdevoll',
+    queries: ['elderly woman packing box with daughter', 'senior man moving boxes home', 'older couple packing belongings'],
+  },
+  'fotos-angebot': {
+    forPage: 'guide:welche-fotos-fuer-ein-angebot',
+    theme: 'Person fotografiert einen Raum mit dem Smartphone',
+    queries: ['taking photo of room with smartphone', 'smartphone photographing interior', 'hand holding phone photographing room'],
+  },
+  'vorbereiten': {
+    forPage: 'guide:entruempelung-vorbereiten',
+    theme: 'Gegenstände werden sortiert und beschriftet',
+    queries: ['sorting items into boxes labels', 'labeling cardboard box marker', 'packing and sorting belongings'],
+  },
+  'uebergabe-checkliste': {
+    forPage: 'guide:checkliste-wohnungsuebergabe',
+    theme: 'Übergabeprotokoll, Schlüssel und leere Wohnung',
+    queries: ['clipboard checklist empty apartment', 'keys and clipboard apartment inspection', 'apartment handover keys document'],
+  },
+  'todesfall': {
+    forPage: 'guide:haushaltsaufloesung-nach-todesfall',
+    theme: 'ruhige Szene mit Unterlagen und Briefen, keine Trauerinszenierung',
+    queries: ['old letters and documents on table', 'stack of old papers folder desk', 'sorting documents at kitchen table'],
+  },
+  'halteverbot': {
+    forPage: 'guide:halteverbotszone-berlin-umzug',
+    theme: 'Umzugswagen in einer Wohnstraße',
+    queries: ['no parking sign street germany', 'traffic sign no stopping europe', 'berlin residential street parked cars', 'old building street berlin'],
+  },
+  'jobcenter': {
+    forPage: 'guide:umzugskosten-jobcenter-berlin',
+    theme: 'Formular wird ausgefüllt, Unterlagen',
+    queries: ['filling out application form pen', 'person filling paperwork at table', 'documents form signature desk'],
+  },
+  'moebel-entsorgen': {
+    forPage: 'guide:sperrmuell-moebel-entsorgen-berlin',
+    theme: 'Sofa oder Matratze wird abgeholt',
+    queries: ['old mattress removal', 'sofa being carried out', 'discarded mattress and sofa'],
+  },
+  'checkliste-pdf': {
+    forPage: 'guide:wohnungsaufloesung-checkliste-pdf',
+    theme: 'ausgedruckte Checkliste mit Stift',
+    queries: ['printed checklist pen clipboard', 'to do list paper checkboxes', 'checklist on clipboard desk'],
+  },
   umzug: {
     forPage: 'service:umzug-berlin',
     theme: 'neutrale professionelle Umzugssituation',

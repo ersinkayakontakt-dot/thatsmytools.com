@@ -361,9 +361,17 @@ export function articleNode(opts: {
   description: string;
   published: string;
   updated: string;
+  /** Sichtbares Titelbild des Artikels. Fehlt es, bleibt nur das allgemeine Vorschaubild. */
+  image?: { src: string; width: number; height: number };
 }) {
   const publishedAt = `${opts.published}T00:00:00+00:00`;
   const updatedAt = `${opts.updated}T00:00:00+00:00`;
+  const fallback = {
+    '@type': 'ImageObject',
+    url: absoluteUrl('/og-default.png'),
+    width: 1200,
+    height: 630,
+  };
 
   return clean({
     '@type': 'Article',
@@ -371,12 +379,11 @@ export function articleNode(opts: {
     headline: opts.headline,
     description: opts.description,
     url: absoluteUrl(opts.url),
-    image: {
-      '@type': 'ImageObject',
-      url: absoluteUrl('/og-default.png'),
-      width: 1200,
-      height: 630,
-    },
+    // Das inhaltliche Titelbild zuerst: Es zeigt, worum es im Artikel geht.
+    // Das Vorschaubild bleibt als zweites Seitenverhältnis erhalten.
+    image: opts.image
+      ? [{ '@type': 'ImageObject', url: absoluteUrl(opts.image.src), width: opts.image.width, height: opts.image.height }, fallback]
+      : fallback,
     datePublished: publishedAt,
     dateModified: updatedAt,
     inLanguage: 'de-DE',
