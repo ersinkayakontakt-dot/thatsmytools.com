@@ -1,5 +1,9 @@
 # CONTENT-TODO: Was noch an echten Daten fehlt
 
+## Shipped (Quelle) · SEO-2026-07 · „Wohnungsauflösung Kosten“ abgedeckt, 28.10.2026
+
+Keine Seite zielte auf die Kostenfrage zur Wohnungsauflösung (P5). Statt einer neuen URL, die mit Leistungsseite und Haushaltsauflösungs-Kosten konkurriert hätte, deckt `/kosten/kosten-haushaltsaufloesung-berlin/` jetzt beide Begriffe ab: H1, Title, Description und Direktantwort, dazu ein neuer Abschnitt „Was bei einer Wohnungsauflösung zusätzlich in den Preis eingeht“ (Übergabezustand, Termin) mit Verweis auf den Übergabe-Einstieg und eine neue FAQ. Keine Preise, keine neuen Rechtsaussagen. Die Leistungsseite verlinkt mit dem Ankertext „Was eine Wohnungsauflösung kostet“. URL unverändert. Gate 0/0, Kannibalisierung 0.
+
 ## Shipped (Quelle, noch nicht live) · BILD-2026-04 · Titelbilder für alle Ratgeber- und Kostenseiten, 23.10.2026
 
 13 Seiten hatten kein Bild: 9 Ratgeber und 4 Kostenseiten. Jede hat jetzt ein geprüftes Pexels-Beispielbild (Auswahl und Aussortiertes in IMAGE-SOURCES.md). Kostenseiten melden das Bild jetzt als `primaryImageOfPage`. `Article.image` nennt bei allen Ratgebern und Kostenseiten zuerst das inhaltliche Titelbild und danach das Vorschaubild (vorher nur das allgemeine Vorschaubild). Die Bild-Sitemap nimmt die Bilder automatisch auf (76 Bildeinträge). Gate 0 Fehler/0 Warnungen; 13 Seiten bei 375 und 1280 px: Bild als AVIF geladen, sofort statt verzögert, Kennzeichnung sichtbar, kein Überlauf, keine JavaScript-Fehler. Damit hat jede indexierbare Leistungs-, Ratgeber- und Kostenseite ein Inhaltsbild.

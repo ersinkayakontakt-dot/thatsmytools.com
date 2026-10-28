@@ -150,13 +150,13 @@ export const guides: Guide[] = [
     slug: 'kosten-haushaltsaufloesung-berlin',
     status: 'published',
     hub: 'kosten',
-    h1: 'Was kostet eine Haushaltsauflösung in Berlin?',
-    navLabel: 'Kosten Haushaltsauflösung',
-    metaTitle: 'Kosten Haushaltsauflösung Berlin: Aufwand und Wertanrechnung',
+    h1: 'Was kostet eine Haushalts- oder Wohnungsauflösung in Berlin?',
+    navLabel: 'Kosten Haushalts- und Wohnungsauflösung',
+    metaTitle: 'Kosten Wohnungsauflösung & Haushaltsauflösung Berlin',
     metaDescription:
-      'Wovon der Preis einer Haushaltsauflösung in Berlin abhängt, warum der Sortieraufwand entscheidend ist und was Wertanrechnung realistisch bringt.',
+      'Wovon der Preis einer Haushalts- oder Wohnungsauflösung in Berlin abhängt: Sortieraufwand, Übergabezustand, Nebenräume und was Wertanrechnung bringt.',
     answer:
-      'Bei einer Haushaltsauflösung entsteht der größte Kostenblock oft nicht durch das Tragen, sondern durch das Sortieren. Der Preis hängt von Volumen, Sichtungsaufwand, Etage, Aufzug und Nebenräumen ab.\n\nKeller, Dachboden und Garage werden bei der ersten Einschätzung häufig vergessen. Verwertbares wird angerechnet, deckt die Kosten aber nur in Ausnahmefällen.',
+      'Bei einer Haushaltsauflösung entsteht der größte Kostenblock oft durch das Sortieren, nicht durch das Tragen. Bei einer Wohnungsauflösung kommt hinzu, in welchem Zustand die Wohnung übergeben werden muss.\n\nDer Preis hängt von Volumen, Sichtungsaufwand, Etage, Aufzug, Nebenräumen und Übergabeanforderungen ab. Verwertbares wird angerechnet, deckt die Kosten aber nur in Ausnahmefällen.',
     teaser: 'Warum der Sortieraufwand mehr kostet als das Tragen und was Wertanrechnung wirklich bringt.',
     blocks: [
       {
@@ -201,6 +201,14 @@ export const guides: Guide[] = [
         ],
       },
       {
+        h: 'Was bei einer Wohnungsauflösung zusätzlich in den Preis eingeht',
+        p: [
+          'Eine Wohnungsauflösung endet nicht mit der leeren Wohnung, sondern mit der Übergabe an Vermieter oder Verwaltung. Was dafür verlangt wird, steht im Mietvertrag oder im Übergabeprotokoll – und jede dieser Anforderungen ist eine eigene Position im Angebot.',
+          'Häufig sind das der Rückbau von Einbauküche oder Einbauschränken, das Entfernen von Teppichboden, das Schließen von Dübellöchern und eine Endreinigung. Sollen die Wände gestrichen werden, stimmen wir das gesondert mit einem Fachbetrieb ab. Wer die Anforderungen schon bei der Anfrage nennt, bekommt ein Angebot, das am Übergabetag nicht nachgebessert werden muss.',
+          'Der zweite Faktor ist der Termin. Ein fester Übergabetag mit wenig Vorlauf kann bedeuten, dass mehr Personen gleichzeitig arbeiten müssen. Mit ausreichend Vorlauf lassen sich Räumung und Arbeiten ruhiger planen. Wie das abläuft, beschreibt die [Wohnungsauflösung in Berlin](/leistungen/wohnungsaufloesung-berlin/); den Übergabetermin und die Anforderungen können Sie direkt im [Übergabe-Einstieg der Anfrage](/angebot-anfragen/?leistung=wohnungsaufloesung-berlin&vorhaben=uebergabe) angeben.',
+        ],
+      },
+      {
         h: 'Wer die Kosten trägt',
         list: [
           'Bei einer Mietwohnung: die Person, die den Mietvertrag hat, oder bei einem Erbfall die Erbengemeinschaft.',
@@ -217,6 +225,10 @@ export const guides: Guide[] = [
       },
     ],
     faq: [
+      {
+        q: 'Ist eine Wohnungsauflösung teurer als eine Haushaltsauflösung?',
+        a: 'Nicht grundsätzlich. Bei einer Wohnungsauflösung wird oft weniger sortiert, weil Bewohner das Wichtige bereits mitgenommen haben. Dafür kommen die Anforderungen an die Übergabe hinzu, etwa Rückbau, Dübellöcher oder Reinigung. Welcher Teil überwiegt, zeigt erst die Einschätzung des konkreten Falls.',
+      },
       {
         q: 'Ist eine Haushaltsauflösung teurer als eine Entrümpelung?',
         a: 'Bei gleichem Volumen in der Regel ja, weil der Sortieraufwand dazukommt. Der Unterschied liegt in der Arbeitszeit vor Ort, nicht im Abtransport. Wenn Sie selbst vorsortieren und nur noch abgeräumt werden muss, nähert sich der Preis dem einer Entrümpelung an.',
@@ -237,7 +249,7 @@ export const guides: Guide[] = [
     related: ['was-kostet-eine-entruempelung-in-berlin', 'haushaltsaufloesung-nach-todesfall', 'checkliste-wohnungsuebergabe'],
     services: ['haushaltsaufloesung-berlin', 'nachlassaufloesung-berlin', 'wohnungsaufloesung-berlin'],
     published: '2026-07-29',
-    updated: '2026-07-29',
+    updated: '2026-10-28',
   },
 
   /* ================================================================== */

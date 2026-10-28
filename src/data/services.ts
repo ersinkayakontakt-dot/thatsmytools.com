@@ -371,6 +371,7 @@ export const services: Service[] = [
         p: [
           'Bei einer Wohnungsauflösung gibt es fast immer ein festes Datum. Läuft die Kündigungsfrist ab, zahlen Sie weiter Miete, solange die Wohnung nicht übergeben ist. Deshalb planen wir rückwärts: Übergabetermin, davor der Puffer für Nacharbeiten, davor der Räumungstag.',
           'Planen Sie mindestens drei bis fünf Tage zwischen Räumung und Übergabe ein. In dieser Zeit lassen sich Dinge nachholen, die erst auffallen, wenn die Wohnung leer ist. Dübellöcher und Bohrspuren sieht man erst, wenn das Regal weg ist.',
+          'Wovon der Preis abhängt – Menge, Sortieraufwand, Nebenräume und die Anforderungen an die Übergabe –, steht im Ratgeber [Was eine Wohnungsauflösung kostet](/kosten/kosten-haushaltsaufloesung-berlin/).',
         ],
       },
       {
@@ -498,7 +499,7 @@ export const services: Service[] = [
       'demontage-rueckbau',
     ],
     guides: ['wohnungsaufloesung-checkliste-pdf', 'checkliste-wohnungsuebergabe', 'kosten-haushaltsaufloesung-berlin'],
-    updated: '2026-10-22',
+    updated: '2026-10-28',
   },
 
   /* ================================================================== */
