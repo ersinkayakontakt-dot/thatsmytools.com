@@ -110,11 +110,34 @@
         'gemini.google.com',
         'claude.ai',
       ];
+      /*
+       * Kanäle außerhalb der Suche (WACHSTUMSPLAN-ANFRAGEN.md § 3). Ohne sie
+       * zählt ein Klick aus dem Google-Profil als „organic“ und einer aus
+       * einem Branchenverzeichnis als „referral“ – dann lässt sich nicht
+       * messen, ob Profilarbeit, Einträge oder ein Portaltest Anfragen bringen.
+       *   profile    Link im Google-, Bing- oder Apple-Profil (utm_medium=profile)
+       *   directory  Branchenverzeichnis (Verweis oder utm_medium=directory)
+       *   portal     Anfrageportal (Verweis oder utm_medium=portal)
+       *   partner    Link oder Einbettung eines Partners (utm_medium=partner)
+       * Erkannt wird nur am Hostnamen bzw. an utm_medium; es wird nichts
+       * zusätzlich gespeichert. Namen spiegeln ALLOWED_CHANNELS in events.php.
+       */
+      var directoryHosts = ['gelbeseiten.de', 'sellwerk.de', 'dasoertliche.de', '11880.com', 'golocal.de', 'werkenntdenbesten.de', 'kennstdueinen.de', 'cylex.de', 'web2.cylex.de', 'yelp.de', 'yelp.com', 'meinestadt.de', 'branchenbuch.meinestadt.de'];
+      var portalHosts = ['my-hammer.de', 'check24.de', 'profis.check24.de', 'blauarbeit.de', 'umzugsauktion.de', 'aroundhome.de'];
+      var medium = params.get('utm_medium') || '';
       var channel = 'direct';
       var source = params.get('utm_source') || refHost || 'direct';
 
-      if (params.get('utm_medium') === 'cpc' || params.get('gclid') || params.get('msclkid')) {
+      if (medium === 'cpc' || params.get('gclid') || params.get('msclkid')) {
         channel = 'paid';
+      } else if (medium === 'profile') {
+        channel = 'profile';
+      } else if (medium === 'partner') {
+        channel = 'partner';
+      } else if (medium === 'portal' || portalHosts.indexOf(refHost) > -1) {
+        channel = 'portal';
+      } else if (medium === 'directory' || directoryHosts.indexOf(refHost) > -1) {
+        channel = 'directory';
       } else if (aiHosts.indexOf(source) > -1 || aiHosts.indexOf(refHost) > -1) {
         channel = 'ai';
       } else if (

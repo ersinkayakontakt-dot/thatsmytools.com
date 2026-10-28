@@ -156,6 +156,7 @@ genannten Stellen an.
 | **Mess-Ereignis ergänzen** | Name zusätzlich in `ALLOWED_EVENTS` in `public/api/events.php`, sonst verwirft der Endpunkt es stillschweigend. `npm run seo:events` prüft das |
 | **PLZ-Muster ändern** | `PLZ_PATTERN` in `src/data/serviceAreas.ts` (speist HTML-`pattern` **und** Client-RegExp) · dazu das eigene `preg_match` in `public/api/anfrage.php`. PHP kann das TS-Modul nicht importieren, und die Serverprüfung darf nicht von der Clientseite abhängen |
 | **Übergabe-Anforderung oder offene Frage ändern** | `src/data/requestSignals.ts` **und** `SH24_ANFORDERUNGEN`/`SH24_OFFEN` in `public/api/lib/nachfrage.php`. Schlüssel nie umdeuten (Zeitreihe im Register). `audit:demand:selftest` prüft den Gleichlauf |
+| **Herkunftskanal ergänzen** | `detectSource()` in `src/components/Analytics.astro` · `ALLOWED_CHANNELS` in `public/api/events.php` · Kanalliste in `docs/NACHFRAGE-SYSTEM.md` · UTM-Links im Generator `scripts/eintrags-kit.mjs`. Kanalnamen nur `[a-z]{1,12}` (Regex in `lib/nachfrage.php`), nie umdeuten |
 | **Neue Datendatei unter `src/data/`** | Danach `git status --short src/data/` prüfen. Taucht sie dort nicht als `??` auf, ist sie unsichtbar – siehe § Fallen |
 
 ---

@@ -156,7 +156,8 @@ const ALLOWED_EVENTS = [
 const ALLOWED_DEVICES = ['mobile', 'tablet', 'desktop', 'unbekannt'];
 
 /** Erlaubte Kanäle. */
-const ALLOWED_CHANNELS = ['organic', 'paid', 'ai', 'referral', 'direct'];
+// Spiegelt die Kanäle in src/components/Analytics.astro (detectSource).
+const ALLOWED_CHANNELS = ['organic', 'paid', 'ai', 'referral', 'direct', 'profile', 'directory', 'portal', 'partner'];
 
 /** Erlaubte Web-Vitals-Kennzahlen. */
 const ALLOWED_VITALS = ['LCP', 'INP', 'CLS', 'TTFB', 'FCP'];

@@ -80,6 +80,16 @@ werden je Leistung benannt.
   Zusatzleistungen, Anzahl Nebenräume/Fotos, ob eine Fläche genannt wurde,
   Textlänge als Klasse, Anforderungen und offene Fragen. **Kein** Name,
   Telefon, E-Mail, Ort, Freitext, Datum, keine vollständige PLZ.
+- **Kanal** (seit GROW-2026-03): `detectSource()` in
+  `src/components/Analytics.astro` schreibt `kanal | quelle` ins verborgene
+  Feld `quelle`; das Register übernimmt nur den Kanal. Werte: `organic`,
+  `paid` (cpc/gclid/msclkid), `ai`, `referral`, `direct`, `profile`
+  (`utm_medium=profile` – Google-, Bing-, Apple-Profil), `directory`
+  (`utm_medium=directory` oder Verweis von Gelbe Seiten, Das Örtliche, 11880,
+  Cylex, Yelp …), `portal` (`utm_medium=portal` oder Verweis von MyHammer,
+  Check24 …), `partner` (`utm_medium=partner`). Dieselbe Liste steht in
+  `ALLOWED_CHANNELS` in `public/api/events.php`. Die genaue Quelle (z. B.
+  `bing`) steht nur in der Anfrage selbst, nicht im Register.
 - Neue freiwillige Formularfrage „Ist vor Ihrer Entscheidung noch etwas
   offen?" (feste Liste). Doppelter Nutzen: Die erste Antwort beginnt damit,
   und das Register zählt die Unsicherheit vor der Kontaktaufnahme.
@@ -238,7 +248,7 @@ Ohne diese Routine erzeugt die Funktion nur Dateien. Der Warnhinweis unter
 
 | Vorhaben | Startet, wenn |
 |---|---|
-| C Partner-Einbettung für Hausverwaltungen | ein bestehender Verwaltungskunde dem Einbinden zustimmt; Grundlage: dieselbe Übergabe-Anfrage mit `quelle=partner:<kürzel>` |
+| C Partner-Einbettung für Hausverwaltungen | ein bestehender Verwaltungskunde dem Einbinden zustimmt; Grundlage: dieselbe Übergabe-Anfrage, verlinkt mit `utm_medium=partner&utm_source=<kürzel>` (Register: Kanal `partner`, Kürzel in der Anfrage) |
 | Projektakte mit Freigabelink | ≥ 5 abgeschlossene Aufträge mit Fotofreigabe und ≥ 2 Kunden, die ausdrücklich nach Unterlagen für Vermieter fragten (Register: offene Frage „vermieter") |
 | Arbeitsbereich für Geschäftskunden | ≥ 3 Verwaltungen mit ≥ 2 Anfragen je Quartal im Register |
 | Flexible Sammeltermine | Absagegrund „zu klein" ≥ 3 im Quartal **und** eine reale Terminquelle |

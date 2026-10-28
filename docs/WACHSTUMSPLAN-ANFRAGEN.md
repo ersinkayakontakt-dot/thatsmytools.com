@@ -55,7 +55,7 @@ Ohne Umsatzdaten ist das eine begründete Annahme. Das Nachfrageregister
 | Hauptkategorie auf das Kerngeschäft (Entrümpelung/Wohnungsauflösung – die genaue Bezeichnung in der Oberfläche wählen), Zusatzkategorien nur für Leistungen, die selbst erbracht werden (z. B. Umzug) | Betreiber | 10 Min |
 | Leistungen im Profil anlegen: alle Leistungen der Stufen A–C mit dem Kurztext aus `docs/EINTRAGS-KIT.md` | Betreiber, Texte liegen vor | 30 Min |
 | Servicegebiet statt Ladenadresse, solange Kunden die Lindenstraße nicht aufsuchen (`hasVisitableAddress: false`) | Betreiber | 5 Min |
-| Website-Link mit Kennung `?utm_source=google&utm_medium=organic&utm_campaign=gbp` (trennt Profil- von Suchbesuchen in der Search Console nicht, aber in künftiger Messung) | Betreiber | 2 Min |
+| Website-Link mit Kennung `?utm_source=google&utm_medium=profile&utm_campaign=gbp` – Anfragen erscheinen im Nachfrageregister als Kanal `profile` (fertige Links: `docs/EINTRAGS-KIT.md`) | Betreiber | 2 Min |
 | Wöchentlich 2–3 echte Fotos von Einsätzen (ohne Personen, Adressen, Dokumente) | Betreiber | 5 Min/Woche |
 | Jede Bewertung beantworten | Betreiber | laufend |
 | Nach **jedem** abgeschlossenen Auftrag um eine Bewertung bitten – gleicher Text an alle, ohne Filter oder Prämie (`/bewerten/` existiert) | Betreiber | 1 Min/Auftrag |
