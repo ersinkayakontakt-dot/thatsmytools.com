@@ -91,7 +91,7 @@ Diese Angaben fehlen, weil sie nicht belegt sind, nicht weil sie vergessen wurde
 ## Kosten und Preisfaktoren
 
 - [Was kostet eine Entrümpelung in Berlin?](https://schnellhelfer24.de/kosten/was-kostet-eine-entruempelung-in-berlin/): Der Preis einer Entrümpelung in Berlin ergibt sich aus fünf Größen: Volumen, Etage und Aufzug, Trageweg, Materialart und Zusatzarbeiten. Verwertbares wird gegengerechnet. Eine seriöse Zahl entsteht erst nach Fotos oder einer Besichtigung, weil sich das tatsächliche Volumen von außen nicht zuverlässig schätzen lässt.
-- [Was kostet eine Haushaltsauflösung in Berlin?](https://schnellhelfer24.de/kosten/kosten-haushaltsaufloesung-berlin/): Bei einer Haushaltsauflösung entsteht der größte Kostenblock oft nicht durch das Tragen, sondern durch das Sortieren. Der Preis hängt von Volumen, Sichtungsaufwand, Etage, Aufzug und Nebenräumen ab. Keller, Dachboden und Garage werden bei der ersten Einschätzung häufig vergessen. Verwertbares wird angerechnet, deckt die Kosten aber nur in Ausnahmefällen.
+- [Was kostet eine Haushalts- oder Wohnungsauflösung in Berlin?](https://schnellhelfer24.de/kosten/kosten-haushaltsaufloesung-berlin/): Bei einer Haushaltsauflösung entsteht der größte Kostenblock oft durch das Sortieren, nicht durch das Tragen. Bei einer Wohnungsauflösung kommt hinzu, in welchem Zustand die Wohnung übergeben werden muss. Der Preis hängt von Volumen, Sichtungsaufwand, Etage, Aufzug, Nebenräumen und Übergabeanforderungen ab. Verwertbares wird angerechnet, deckt die Kosten aber nur in Ausnahmefällen.
 - [Was kostet eine Sperrmüllabholung in Berlin?](https://schnellhelfer24.de/kosten/kosten-sperrmuellabholung-berlin/): Für Sperrmüll in Berlin gibt es drei Wege: BSR-Abholung, Selbstanlieferung auf einem Recyclinghof oder private Abholung aus der Wohnung. Die BSR ist meist günstiger, verlangt aber eine zugängliche Bereitstellung und kann Vorlauf haben. Ein privater Abholservice trägt auch aus der Wohnung und ist oft flexibler planbar.
 - [Was kostet ein Seniorenumzug in Berlin?](https://schnellhelfer24.de/kosten/kosten-seniorenumzug-berlin/): Die Kosten eines Seniorenumzugs hängen vor allem davon ab, wie viel mitkommt und ob zusätzlich eingerichtet oder die alte Wohnung aufgelöst wird. Eine Beteiligung von Pflegekasse oder Sozialamt ist im Einzelfall möglich. Der Antrag muss jedoch vor der Beauftragung gestellt und bewilligt werden.
 
@@ -145,4 +145,4 @@ Diese Angaben fehlen, weil sie nicht belegt sind, nicht weil sie vergessen wurde
 
 Diese Datei folgt dem llms.txt-Vorschlag. Sie ist kein offizieller Standard und wird nicht von allen Systemen ausgewertet. Maßgeblich sind die verlinkten Seiten selbst.
 
-Stand: 2026-10-22
+Stand: 2026-10-28
