@@ -1,3 +1,7 @@
+# Deployment 28.10.2026: hostinger-live c524549 (Quelle 51ee42f), Live-Prüfung offen
+
+Betreiberfreigabe „Deploy“. Enthält BILD-2026-04 (13 Titelbilder, Bildschema) und SEO-2026-07 (Kostenseite deckt Wohnungsauflösung ab) zusätzlich zum Stand 0a6afbd. Domain aus der Cloud-Umgebung nicht erreichbar: **nicht live geprüft, kein IndexNow.** Offen: `/kosten/kosten-haushaltsaufloesung-berlin/` zeigt die neue H1 und ein Titelbild; `npm run indexnow`; Neuindexierung der Kostenseite in der Search Console beantragen.
+
 # Wachstumsphase 22.10.2026 · bereitgestellt, Live-Prüfung offen
 
 Betreiberfreigabe „go“ am 22.10.2026. Quelle c2610ca, hostinger-live 0a6afbd. Aus der Cloud-Umgebung war die Domain nicht erreichbar: **nicht live geprüft, kein IndexNow gesendet.** Offen in dieser Reihenfolge: (1) Übernahme prüfen – `/leistungen/wohnungsaufloesung-berlin/` zeigt „Wohnung zum festen Termin übergeben“, `/anfrage-erhalten/` mobil ohne Ein-Wort-Zeilen, `/api/betrieb.php` liefert 503 „nicht eingerichtet“ bis zur Einrichtung, `/api/lib/nachfrage.php` 403; (2) Zugang einrichten (docs/NACHFRAGE-SYSTEM.md § 6) und eine markierte Testanfrage senden; (3) `npm run indexnow`, `.indexnow-state.json` committen.
