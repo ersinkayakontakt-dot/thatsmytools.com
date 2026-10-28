@@ -32,6 +32,7 @@
     "seo:events:report": "node scripts/seo/events-report.mjs",
     "seo:opportunities": "node scripts/seo/opportunities.mjs",
     "seo:opportunities:selftest": "node scripts/seo/search-data/selftest.mjs",
+    "ads:laengen": "node scripts/ads-laengen.mjs",
     "kit": "node scripts/eintrags-kit.mjs",
     "audit:request:selftest": "node scripts/request-selftest.mjs",
     "audit:area:selftest": "node scripts/area-plan-selftest.mjs",

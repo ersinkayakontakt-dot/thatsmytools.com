@@ -3,6 +3,12 @@
 Stand 28.10.2026 · ergänzt `docs/ENTITY-UND-RANKING.md` (Profil- und
 Nennungsstufen, Juli 2026) und `docs/NACHFRAGE-SYSTEM.md` (Messung)
 
+**Umsetzungsstand 28.10.2026 (GROW-2026-03):** Kanalmessung im Code;
+Arbeitsunterlagen liegen bereit – `docs/EINTRAGS-KIT.md` (Profiltext,
+Leistungen, Links mit Kennung), `docs/VERZEICHNIS-CHECKLISTE.md`,
+`docs/GOOGLE-ADS-ENTWURF.md`, `docs/VORLAGEN-ANSPRACHE.md`. Alles Weitere
+in § 3 braucht den Betreiber (Konten, Versand, Budget).
+
 ---
 
 ## 1. Kernbefund

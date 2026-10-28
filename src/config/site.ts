@@ -251,6 +251,15 @@ export const site = {
   shortDescription:
     'Entrümpelung, Haushaltsauflösung und Umzug in Berlin und im Umland. Einschätzung nach Fotos oder Besichtigung, feste Absprache vor Beginn, auf Wunsch besenreine Übergabe.',
 
+  /**
+   * Langbeschreibung für Google-Unternehmensprofil, Bing Places und Apple
+   * Business Connect (Google: max. 750 Zeichen, keine URLs, keine Aktionen).
+   * Nur Aussagen, die auch auf der Website stehen. `npm run kit` bricht ab,
+   * wenn der Text zu lang wird.
+   */
+  profileDescription:
+    'Schnellhelfer24 ist ein Berliner Dienstleistungsbetrieb für Entrümpelung, Haushaltsauflösung, Wohnungsauflösung und Nachlassauflösung sowie Umzüge in Berlin und im angrenzenden Brandenburg. Wir räumen Wohnungen, Keller und Gewerbeflächen, holen Sperrmüll und einzelne Möbel ab, bauen Einbauküchen und Einbauten zurück und verlegen auf Wunsch neuen Bodenbelag. Steht ein Übergabetermin fest, planen wir Räumung, Rückbau und Endreinigung rückwärts von diesem Tag. Bei Nachlässen werden Unterlagen gesichert. Die Einschätzung erfolgt nach Fotos oder bei einer Besichtigung, der Umfang wird vor Beginn fest abgesprochen.',
+
   /** Gründerin oder Gründer – nur eintragen, wenn öffentlich genannt werden soll. */
   founder: '[NAME DER GRÜNDERIN / DES GRÜNDERS ODER ZEILE LEER LASSEN]',
 

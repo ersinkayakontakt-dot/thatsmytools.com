@@ -100,6 +100,47 @@ const profileOffen = Object.entries(site.profiles)
   .filter(([, url]) => isPlaceholder(url))
   .map(([k]) => '- [ ] ' + k);
 
+
+// Langbeschreibung für die Kartenprofile (Google-Limit 750 Zeichen).
+const profilText = site.profileDescription;
+if (profilText.length > 750) {
+  console.error('site.profileDescription hat ' + profilText.length + ' Zeichen, Google erlaubt 750.');
+  process.exit(1);
+}
+
+// Dienstleistungen fürs Google-Profil: dieselben Namen wie auf der Website,
+// ohne Ortszusatz. Streichen/Tapezieren gibt es hier bewusst nicht
+// (docs/HANDWERKSRECHT.md) – sie sind keine eigene Leistung.
+const profilLeistungen = publishedServices
+  .filter((s) => !/maler|tapez/.test(s.slug))
+  .map((s) => '- ' + s.h1.split(' in Berlin')[0].replace(/ lassen$/, ''))
+  .join('\\n');
+
+// Links mit Kennung. Der Kanal (utm_medium) landet über detectSource() in
+// Analytics.astro im Nachfrageregister; die Kanalnamen müssen dort und in
+// ALLOWED_CHANNELS (public/api/events.php) existieren.
+const mitKennung = (pfad: string, source: string, medium: string, campaign?: string) =>
+  site.url + pfad + '?utm_source=' + source + '&utm_medium=' + medium + (campaign ? '&utm_campaign=' + campaign : '');
+const kennungsZeilen: [string, string, string][] = [
+  ['Google-Profil: Website', mitKennung('/', 'google', 'profile', 'gbp'), 'profile'],
+  ['Google-Profil: Link „Angebot/Termin"', mitKennung('/angebot-anfragen/', 'google', 'profile', 'gbp-anfrage'), 'profile'],
+  ['Bing Places: Website', mitKennung('/', 'bing', 'profile'), 'profile'],
+  ['Apple Business Connect: Website', mitKennung('/', 'apple', 'profile'), 'profile'],
+  ['Gelbe Seiten', mitKennung('/', 'gelbeseiten', 'directory'), 'directory'],
+  ['Das Örtliche', mitKennung('/', 'dasoertliche', 'directory'), 'directory'],
+  ['11880', mitKennung('/', 'elf1880', 'directory'), 'directory'],
+  ['Cylex', mitKennung('/', 'cylex', 'directory'), 'directory'],
+  ['GoLocal', mitKennung('/', 'golocal', 'directory'), 'directory'],
+  ['Yelp', mitKennung('/', 'yelp', 'directory'), 'directory'],
+  ['KennstDuEinen', mitKennung('/', 'kennstdueinen', 'directory'), 'directory'],
+  ['werkenntdenBESTEN', mitKennung('/', 'wkdb', 'directory'), 'directory'],
+  ['Portal (z. B. MyHammer, Check24)', mitKennung('/', '<portal>', 'portal'), 'portal'],
+  ['Partner (Hausverwaltung, Bestatter …)', site.url + '/angebot-anfragen/?leistung=wohnungsaufloesung-berlin&vorhaben=uebergabe&utm_source=<kürzel>&utm_medium=partner', 'partner'],
+];
+const kennungsTabelle = kennungsZeilen
+  .map(([wo, url, kanal]) => '| ' + wo + ' | ' + url + ' | ' + String.fromCharCode(96) + kanal + String.fromCharCode(96) + ' |')
+  .join('\\n');
+
 const adresse = addressLine() ?? '**FEHLT — Anschrift in src/config/site.ts**';
 
 const md = \`# Eintrags-Kit: dieselben Angaben für alle Portale
@@ -167,6 +208,41 @@ Für Profilfelder, die einen längeren Text erlauben:
 
 ---
 
+## Google-, Bing- und Apple-Profil
+
+### Beschreibung (\${profilText.length} von 750 Zeichen)
+
+> \${profilText}
+
+Keine URLs, Telefonnummern, Preise oder Aktionen in dieses Feld. Google
+lehnt sie ab oder sperrt das Profil.
+
+### Dienstleistungen
+
+Einzeln unter „Dienstleistungen" anlegen, je mit dem Kurztext aus der
+Tabelle „Leistungen" unten:
+
+\${profilLeistungen}
+
+Streichen und Tapezieren **nicht** als Leistung oder Kategorie anlegen –
+sie laufen nur über einen Fachbetrieb (docs/HANDWERKSRECHT.md).
+
+### Links mit Kennung
+
+In jedes Profil **diesen** Link statt der nackten Domain eintragen. Dann
+erscheint jede Anfrage im Nachfrageregister mit ihrem Kanal, und es lässt
+sich zählen, welches Profil Aufträge bringt. Die Suchmaschine wertet den
+Link trotzdem als Verweis auf die Startseite (kanonische Adresse).
+
+| Wo | Link | Kanal im Register |
+|---|---|---|
+\${kennungsTabelle}
+
+\\\`<portal>\\\` und \\\`<kürzel>\\\` durch einen kurzen Namen aus Kleinbuchstaben
+ersetzen (z. B. \\\`myhammer\\\`, \\\`hv-mitte\\\`).
+
+---
+
 ## Einsatzgebiet
 
 \${gebiet}
@@ -221,6 +297,8 @@ Nach Wirkung sortiert. Nach jedem angelegten Profil die URL in
 \\\`src/config/site.ts\\\` unter \\\`profiles\\\` eintragen — sie wird dann
 automatisch als \\\`sameAs\\\` ausgezeichnet, und der Kreis schließt sich:
 Die Website nennt die Profile, die Profile nennen die Website.
+
+Anmeldewege, Fallstricke und Kennung je Portal: \\\`docs/VERZEICHNIS-CHECKLISTE.md\\\`.
 
 ### Stufe 1 — Karten und Suche
 

@@ -1,3 +1,7 @@
+# GROW-2026-03 · 28.10.2026 · Kanalmessung und Eintragsunterlagen
+
+Kanal-Attribution (`profile`/`directory`/`portal`/`partner`) im Code, dazu Eintrags-Kit mit Profiltext und Links mit Kennung, Anzeigenentwurf, Partner- und Bewertungsvorlagen, Verzeichnis-Checkliste. Nächster Schritt liegt beim Betreiber, in dieser Reihenfolge: (1) Google-Profil: Beschreibung, Dienstleistungen und Link mit Kennung aus docs/EINTRAGS-KIT.md übernehmen, Bewertungslink melden; (2) Bing Places und Apple Business Connect nach docs/VERZEICHNIS-CHECKLISTE.md, URLs melden; (3) Verzeichnisse Stufe 2 inkl. Cylex-Korrektur; (4) Partnerbriefe nach docs/VORLAGEN-ANSPRACHE.md; (5) Anzeigen erst nach MAIL-2026-01. Neue Kanäle wirken erst nach Deployment.
+
 # Deployment 28.10.2026: hostinger-live c524549 (Quelle 51ee42f), Live-Prüfung offen
 
 Betreiberfreigabe „Deploy“. Enthält BILD-2026-04 (13 Titelbilder, Bildschema) und SEO-2026-07 (Kostenseite deckt Wohnungsauflösung ab) zusätzlich zum Stand 0a6afbd. Domain aus der Cloud-Umgebung nicht erreichbar: **nicht live geprüft, kein IndexNow.** Offen: `/kosten/kosten-haushaltsaufloesung-berlin/` zeigt die neue H1 und ein Titelbild; `npm run indexnow`; Neuindexierung der Kostenseite in der Search Console beantragen.

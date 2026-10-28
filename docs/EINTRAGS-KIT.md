@@ -3,7 +3,7 @@
 > **Diese Datei wird erzeugt.** Sie nicht von Hand ändern —
 > `npm run kit` überschreibt sie. Quelle ist `src/config/site.ts`.
 >
-> Erzeugt am 21.10.2026.
+> Erzeugt am 28.10.2026.
 
 Beim Anlegen eines Profils **nichts abtippen, sondern von hier kopieren.**
 Eine einzige abweichende Schreibweise macht die Nennung wertlos: Sie wird
@@ -61,6 +61,69 @@ Profil.
 Für Profilfelder, die einen längeren Text erlauben:
 
 > Schnellhelfer24 ist ein eigenständiger Berliner Dienstleistungsbetrieb für Entrümpelung, Haushaltsauflösung, Wohnungsauflösung, Nachlassauflösung und Umzüge in Berlin und im angrenzenden Brandenburg. Das Unternehmen gehört zu keiner Kette und steht in keiner Verbindung zu ähnlich benannten Anbietern wie DeineHelfer24, PflegeHelfer24 oder anderen Diensten mit der Endung „helfer24".
+
+---
+
+## Google-, Bing- und Apple-Profil
+
+### Beschreibung (616 von 750 Zeichen)
+
+> Schnellhelfer24 ist ein Berliner Dienstleistungsbetrieb für Entrümpelung, Haushaltsauflösung, Wohnungsauflösung und Nachlassauflösung sowie Umzüge in Berlin und im angrenzenden Brandenburg. Wir räumen Wohnungen, Keller und Gewerbeflächen, holen Sperrmüll und einzelne Möbel ab, bauen Einbauküchen und Einbauten zurück und verlegen auf Wunsch neuen Bodenbelag. Steht ein Übergabetermin fest, planen wir Räumung, Rückbau und Endreinigung rückwärts von diesem Tag. Bei Nachlässen werden Unterlagen gesichert. Die Einschätzung erfolgt nach Fotos oder bei einer Besichtigung, der Umfang wird vor Beginn fest abgesprochen.
+
+Keine URLs, Telefonnummern, Preise oder Aktionen in dieses Feld. Google
+lehnt sie ab oder sperrt das Profil.
+
+### Dienstleistungen
+
+Einzeln unter „Dienstleistungen" anlegen, je mit dem Kurztext aus der
+Tabelle „Leistungen" unten:
+
+- Entrümpelung
+- Haushaltsauflösung
+- Wohnungsauflösung
+- Nachlassauflösung
+- Stark vermüllte Wohnung räumen
+- Sperrmüll und Möbel abholen
+- Umzug
+- Seniorenumzug
+- Keller entrümpeln
+- Büroauflösung
+- Demontage und Rückbau
+- Bodenbelag verlegen
+- Küchenmontage
+- Innenausbau
+- Trockenbau
+- Möbelmontage
+
+Streichen und Tapezieren **nicht** als Leistung oder Kategorie anlegen –
+sie laufen nur über einen Fachbetrieb (docs/HANDWERKSRECHT.md).
+
+### Links mit Kennung
+
+In jedes Profil **diesen** Link statt der nackten Domain eintragen. Dann
+erscheint jede Anfrage im Nachfrageregister mit ihrem Kanal, und es lässt
+sich zählen, welches Profil Aufträge bringt. Die Suchmaschine wertet den
+Link trotzdem als Verweis auf die Startseite (kanonische Adresse).
+
+| Wo | Link | Kanal im Register |
+|---|---|---|
+| Google-Profil: Website | https://schnellhelfer24.de/?utm_source=google&utm_medium=profile&utm_campaign=gbp | `profile` |
+| Google-Profil: Link „Angebot/Termin" | https://schnellhelfer24.de/angebot-anfragen/?utm_source=google&utm_medium=profile&utm_campaign=gbp-anfrage | `profile` |
+| Bing Places: Website | https://schnellhelfer24.de/?utm_source=bing&utm_medium=profile | `profile` |
+| Apple Business Connect: Website | https://schnellhelfer24.de/?utm_source=apple&utm_medium=profile | `profile` |
+| Gelbe Seiten | https://schnellhelfer24.de/?utm_source=gelbeseiten&utm_medium=directory | `directory` |
+| Das Örtliche | https://schnellhelfer24.de/?utm_source=dasoertliche&utm_medium=directory | `directory` |
+| 11880 | https://schnellhelfer24.de/?utm_source=elf1880&utm_medium=directory | `directory` |
+| Cylex | https://schnellhelfer24.de/?utm_source=cylex&utm_medium=directory | `directory` |
+| GoLocal | https://schnellhelfer24.de/?utm_source=golocal&utm_medium=directory | `directory` |
+| Yelp | https://schnellhelfer24.de/?utm_source=yelp&utm_medium=directory | `directory` |
+| KennstDuEinen | https://schnellhelfer24.de/?utm_source=kennstdueinen&utm_medium=directory | `directory` |
+| werkenntdenBESTEN | https://schnellhelfer24.de/?utm_source=wkdb&utm_medium=directory | `directory` |
+| Portal (z. B. MyHammer, Check24) | https://schnellhelfer24.de/?utm_source=<portal>&utm_medium=portal | `portal` |
+| Partner (Hausverwaltung, Bestatter …) | https://schnellhelfer24.de/angebot-anfragen/?leistung=wohnungsaufloesung-berlin&vorhaben=uebergabe&utm_source=<kürzel>&utm_medium=partner | `partner` |
+
+`<portal>` und `<kürzel>` durch einen kurzen Namen aus Kleinbuchstaben
+ersetzen (z. B. `myhammer`, `hv-mitte`).
 
 ---
 
@@ -133,6 +196,8 @@ Nach Wirkung sortiert. Nach jedem angelegten Profil die URL in
 `src/config/site.ts` unter `profiles` eintragen — sie wird dann
 automatisch als `sameAs` ausgezeichnet, und der Kreis schließt sich:
 Die Website nennt die Profile, die Profile nennen die Website.
+
+Anmeldewege, Fallstricke und Kennung je Portal: `docs/VERZEICHNIS-CHECKLISTE.md`.
 
 ### Stufe 1 — Karten und Suche
 
