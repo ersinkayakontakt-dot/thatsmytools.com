@@ -383,7 +383,7 @@ export const guides: Guide[] = [
         steps: [
           {
             title: 'Umzug ins Pflegeheim',
-            text: 'Meist nur ein Zimmer: Bett, Schrank, Sessel, persönliche Dinge. Der reine Transport ist klein. Zeit kostet das Einrichten vor Ort und die anschließende Auflösung der alten Wohnung.',
+            text: 'Meist nur ein Zimmer: Bett, Schrank, Sessel, persönliche Dinge. Der reine Transport ist klein. Zeit kostet das Einrichten vor Ort und die anschließende Auflösung der alten Wohnung. Die Mietwohnung läuft bis zum Ende der Kündigungsfrist weiter – was dabei gilt, steht unter [Wohnung kündigen bei Umzug ins Pflegeheim](/ratgeber/wohnung-kuendigen-pflegeheim/).',
           },
           {
             title: 'Umzug ins betreute Wohnen',
@@ -441,7 +441,7 @@ export const guides: Guide[] = [
         a: 'Ja, und in einem Auftrag geplant ist es meist günstiger, weil Fahrten und Team zusammengelegt werden können. Wir empfehlen, ein paar Tage zwischen Umzug und Räumung zu lassen. Erfahrungsgemäß fällt in den ersten Tagen im neuen Zuhause auf, dass noch etwas fehlt.',
       },
     ],
-    related: ['umzugskosten-jobcenter-berlin', 'kosten-haushaltsaufloesung-berlin', 'checkliste-wohnungsuebergabe'],
+    related: ['wohnung-kuendigen-pflegeheim', 'umzugskosten-jobcenter-berlin', 'kosten-haushaltsaufloesung-berlin'],
     services: ['seniorenumzug-berlin', 'umzug-berlin', 'haushaltsaufloesung-berlin'],
     published: '2026-07-29',
     updated: '2026-07-29',
@@ -777,7 +777,7 @@ export const guides: Guide[] = [
           },
           {
             title: 'Mietvertrag beenden',
-            text: 'Das Mietverhältnis endet nicht mit dem Tod. Es geht auf die Erben über. In der Regel besteht ein Sonderkündigungsrecht mit gesetzlicher Frist. Kündigen Sie schriftlich und lassen Sie sich den Zugang bestätigen.',
+            text: 'Das Mietverhältnis endet nicht mit dem Tod. Es geht auf die Erben über. In der Regel besteht ein Sonderkündigungsrecht mit gesetzlicher Frist. Fristen und ein Musterschreiben stehen im Ratgeber [Mietvertrag nach einem Todesfall kündigen](/ratgeber/mietvertrag-kuendigen-todesfall/).',
           },
           {
             title: 'Übergabetermin abstimmen',
@@ -840,10 +840,228 @@ export const guides: Guide[] = [
         a: 'Ja. Wir drängen bei Nachlässen nicht auf schnelle Termine. Melden Sie sich, wenn Sie eine Einschätzung brauchen, auch wenn der Termin noch offen ist. Eine Besichtigung jetzt und eine Räumung in sechs Wochen ist ein normaler Ablauf.',
       },
     ],
-    related: ['wohnungsaufloesung-checkliste-pdf', 'kosten-haushaltsaufloesung-berlin', 'checkliste-wohnungsuebergabe'],
+    related: ['mietvertrag-kuendigen-todesfall', 'wohnungsaufloesung-checkliste-pdf', 'kosten-haushaltsaufloesung-berlin'],
     services: ['nachlassaufloesung-berlin', 'haushaltsaufloesung-berlin', 'wohnungsaufloesung-berlin'],
     published: '2026-07-29',
     updated: '2026-07-29',
+  },
+
+  /* ================================================================== */
+  {
+    slug: 'mietvertrag-kuendigen-todesfall',
+    status: 'published',
+    hub: 'ratgeber',
+    h1: 'Mietvertrag nach einem Todesfall kündigen',
+    navLabel: 'Mietvertrag nach Todesfall',
+    metaTitle: 'Mietvertrag kündigen nach Todesfall: Frist und Muster',
+    metaDescription:
+      'Wohnung eines Verstorbenen kündigen: wer kündigen darf, die Monatsfrist nach § 564 BGB, die Kündigungsfrist und ein Musterschreiben für Erben.',
+    answer:
+      'Ein Mietvertrag endet nicht mit dem Tod des Mieters. Lebte niemand mit im Haushalt, geht er auf die Erben über. Sie können binnen eines Monats ab Kenntnis außerordentlich kündigen, meist zum Ende des übernächsten Monats.\n\nDie Kündigung muss schriftlich und eigenhändig unterschrieben sein. Bei mehreren Erben ist es am sichersten, wenn alle unterschreiben oder eine bevollmächtigte Person die Vollmacht im Original beilegt.',
+    teaser: 'Wer kündigen darf, welche Fristen gelten und ein Musterschreiben.',
+    blocks: [
+      {
+        h: 'Wer nach dem Tod im Mietvertrag steht',
+        p: [
+          'Bevor gekündigt wird, ist zu klären, wer überhaupt Vertragspartei ist. Das Gesetz regelt das in einer festen Reihenfolge.',
+        ],
+        table: {
+          caption: 'Wer den Mietvertrag nach dem Tod übernimmt (§§ 563, 563a, 564 BGB)',
+          head: ['Situation', 'Was mit dem Vertrag passiert', 'Wie man wieder herauskommt'],
+          rows: [
+            ['Ehe- oder Lebenspartner lebte mit in der Wohnung', 'Tritt in den Mietvertrag ein (§ 563 BGB)', 'Binnen eines Monats ab Kenntnis vom Tod gegenüber dem Vermieter erklären, den Vertrag nicht fortzusetzen'],
+            ['Kinder oder andere Personen führten dauerhaft einen gemeinsamen Haushalt', 'Treten ein, wenn kein Ehe- oder Lebenspartner eintritt (§ 563 BGB)', 'Ebenfalls Erklärung binnen eines Monats ab Kenntnis vom Tod'],
+            ['Ein Mitmieter stand mit im Vertrag', 'Vertrag läuft mit dem überlebenden Mitmieter weiter (§ 563a BGB)', 'Außerordentliche Kündigung mit gesetzlicher Frist binnen eines Monats ab Kenntnis'],
+            ['Die verstorbene Person lebte allein', 'Vertrag geht auf die Erben über (§ 564 BGB)', 'Außerordentliche Kündigung mit gesetzlicher Frist binnen eines Monats ab Kenntnis vom Tod und davon, dass niemand eintritt'],
+          ],
+        },
+        note: {
+          title: 'Wenn Sie über eine Ausschlagung nachdenken',
+          text: 'Wer nicht Erbe ist, kann den Mietvertrag nicht kündigen. Wer überlegt, das Erbe auszuschlagen, sollte sich vor Kündigung und Räumung beraten lassen. Die Ausschlagungsfrist beträgt in der Regel sechs Wochen.',
+          tone: 'caution',
+        },
+      },
+      {
+        h: 'Welche Fristen gelten',
+        p: [
+          '**Die Monatsfrist** bestimmt, bis wann das Sonderkündigungsrecht ausgeübt werden muss. Sie beginnt, sobald die Erben vom Tod wissen und davon, dass niemand in den Vertrag eintritt. Wichtig ist sie vor allem dann, wenn der Mietvertrag eine feste Laufzeit oder einen Kündigungsverzicht enthält: Das Sonderkündigungsrecht gilt trotzdem.',
+          '**Die Kündigungsfrist** ist die gesetzliche Frist nach § 573d Abs. 2 BGB: Geht die Kündigung spätestens am dritten Werktag eines Monats beim Vermieter ein, endet das Mietverhältnis mit Ablauf des übernächsten Monats. Damit es nicht auf den Tag ankommt, sollte das Schreiben spätestens am ersten oder zweiten Werktag ankommen.',
+        ],
+        table: {
+          caption: 'Beispiele für das Mietende',
+          head: ['Kündigung geht beim Vermieter ein', 'Mietverhältnis endet am'],
+          rows: [
+            ['bis zum 3. Werktag im März', '31. Mai'],
+            ['bis zum 3. Werktag im April', '30. Juni'],
+            ['nach dem 3. Werktag im April', '31. Juli'],
+          ],
+        },
+      },
+      {
+        h: 'So kündigen Sie wirksam',
+        list: [
+          '**Schriftlich auf Papier**, eigenhändig unterschrieben (§ 568 BGB). E-Mail, Fax oder Messenger genügen nicht.',
+          '**Tod und Rechtsgrundlage nennen:** Name der verstorbenen Person, Sterbedatum und den Hinweis auf § 564 BGB.',
+          '**Alle Erben einbeziehen:** Am sichersten unterschreiben alle. Unterschreibt eine bevollmächtigte Person, gehört die Vollmacht im Original dazu – eine Kopie kann der Vermieter zurückweisen (§ 174 BGB).',
+          '**Zugang beweisbar machen:** Einwurf durch eine Begleitperson, die den Inhalt kennt und ein kurzes Protokoll schreibt, oder Einwurf-Einschreiben.',
+          '**Nachweise beilegen:** Kopie der Sterbeurkunde und, sobald vorhanden, den Erbnachweis.',
+          '**Um Bestätigung bitten:** Eingang und Datum des Mietendes schriftlich bestätigen lassen.',
+        ],
+      },
+      {
+        h: 'Musterschreiben für Erben',
+        p: [
+          '**Absender:** Vor- und Nachnamen aller Erben mit Anschrift',
+          '**Empfänger:** Vermieter oder Hausverwaltung mit Anschrift',
+          '**Betreff:** Kündigung des Mietverhältnisses über die Wohnung (Straße, Hausnummer, Lage) – Mieterin oder Mieter (Name), verstorben am (Datum)',
+          'Sehr geehrte Damen und Herren,',
+          '(Name) ist am (Datum) verstorben. Wir sind die Erben. In das Mietverhältnis ist niemand nach § 563 oder § 563a BGB eingetreten.',
+          'Hiermit kündigen wir das Mietverhältnis über die oben genannte Wohnung außerordentlich mit der gesetzlichen Frist nach § 564 Satz 2 BGB zum nächstmöglichen Termin, nach unserer Berechnung zum (Datum).',
+          'Bitte bestätigen Sie uns den Eingang dieser Kündigung und das Ende des Mietverhältnisses schriftlich. Für die Übergabe der Wohnung schlagen wir einen Termin in der Woche vor dem Mietende vor.',
+          'Mit freundlichen Grüßen – Ort, Datum, eigenhändige Unterschriften aller Erben',
+          '**Anlagen:** Kopie der Sterbeurkunde, Erbnachweis (falls schon vorhanden), gegebenenfalls Vollmacht im Original',
+        ],
+        note: {
+          title: 'Keine Rechtsberatung',
+          text: 'Das Muster ist eine Orientierung für den häufigsten Fall. Bei Mitmietern, eintrittsberechtigten Angehörigen, Streit unter Erben oder einem möglicherweise überschuldeten Nachlass helfen ein Mieterverein, das Nachlassgericht oder eine Fachanwältin bzw. ein Fachanwalt.',
+          tone: 'info',
+        },
+      },
+      {
+        h: 'Bis zum Mietende: Wohnung auflösen und übergeben',
+        p: [
+          'Mit dem Datum des Mietendes steht der Termin fest, auf den alles Weitere hinläuft. Was in welcher Reihenfolge geklärt werden sollte, bevor geräumt wird, beschreibt der Ratgeber zur [Haushaltsauflösung nach einem Todesfall](/ratgeber/haushaltsaufloesung-nach-todesfall/).',
+          'Für die Räumung selbst planen wir rückwärts vom Übergabetermin: Unterlagen sichern, Verwertbares anrechnen, den Rest getrennt entsorgen und die Wohnung besenrein übergeben. Wie das abläuft, steht bei der [Nachlassauflösung in Berlin](/leistungen/nachlassaufloesung-berlin/). Für den Termin mit dem Vermieter hilft die [Checkliste für die Wohnungsübergabe](/ratgeber/checkliste-wohnungsuebergabe/).',
+        ],
+      },
+    ],
+    faq: [
+      {
+        q: 'Muss die Miete bis zum Ende weitergezahlt werden?',
+        a: 'Ja. Bis zum Ende des Mietverhältnisses bleibt die Miete geschuldet. Für Erben ist sie eine Nachlassverbindlichkeit. Wer befürchtet, dass der Nachlass überschuldet ist, sollte vor der Kündigung klären lassen, wie sich die Haftung auf den Nachlass beschränken lässt.',
+      },
+      {
+        q: 'Geht es auch schneller als mit der gesetzlichen Frist?',
+        a: 'Nur mit Zustimmung des Vermieters, also über einen schriftlichen Mietaufhebungsvertrag. Einen Anspruch darauf gibt es nicht. Viele Vermieter sind eher bereit, wenn die Wohnung früh geräumt übergeben werden kann.',
+      },
+      {
+        q: 'Was passiert, wenn noch nicht feststeht, wer erbt?',
+        a: 'Dann kann das Nachlassgericht einen Nachlasspfleger bestellen. Er sichert den Nachlass und kann auch das Mietverhältnis abwickeln. Den Antrag stellen häufig der Vermieter oder andere Gläubiger.',
+      },
+      {
+        q: 'Kann der Vermieter den Vertrag ebenfalls kündigen?',
+        a: 'Ja. Auch der Vermieter kann das Mietverhältnis mit den Erben innerhalb eines Monats ab Kenntnis außerordentlich mit gesetzlicher Frist kündigen. Einen besonderen Grund braucht er dafür gegenüber Erben nicht.',
+      },
+    ],
+    related: ['haushaltsaufloesung-nach-todesfall', 'checkliste-wohnungsuebergabe', 'kosten-haushaltsaufloesung-berlin'],
+    services: ['nachlassaufloesung-berlin', 'wohnungsaufloesung-berlin', 'haushaltsaufloesung-berlin'],
+    sources: [
+      { label: '§ 563 BGB – Eintrittsrecht bei Tod des Mieters', url: 'https://www.gesetze-im-internet.de/bgb/__563.html', publisher: 'Bundesministerium der Justiz', checked: '2026-11-02' },
+      { label: '§ 563a BGB – Fortsetzung mit überlebenden Mietern', url: 'https://www.gesetze-im-internet.de/bgb/__563a.html', publisher: 'Bundesministerium der Justiz', checked: '2026-11-02' },
+      { label: '§ 564 BGB – Fortsetzung mit dem Erben, außerordentliche Kündigung', url: 'https://www.gesetze-im-internet.de/bgb/__564.html', publisher: 'Bundesministerium der Justiz', checked: '2026-11-02' },
+      { label: '§ 573d BGB – Außerordentliche Kündigung mit gesetzlicher Frist', url: 'https://www.gesetze-im-internet.de/bgb/__573d.html', publisher: 'Bundesministerium der Justiz', checked: '2026-11-02' },
+      { label: '§ 568 BGB – Form der Kündigung', url: 'https://www.gesetze-im-internet.de/bgb/__568.html', publisher: 'Bundesministerium der Justiz', checked: '2026-11-02' },
+      { label: '§ 174 BGB – Einseitiges Rechtsgeschäft eines Bevollmächtigten', url: 'https://www.gesetze-im-internet.de/bgb/__174.html', publisher: 'Bundesministerium der Justiz', checked: '2026-11-02' },
+    ],
+    published: '2026-11-02',
+    updated: '2026-11-02',
+  },
+
+  /* ================================================================== */
+  {
+    slug: 'wohnung-kuendigen-pflegeheim',
+    status: 'published',
+    hub: 'ratgeber',
+    h1: 'Wohnung kündigen bei Umzug ins Pflegeheim',
+    navLabel: 'Kündigen beim Heimeinzug',
+    metaTitle: 'Wohnung kündigen bei Umzug ins Pflegeheim: Frist & Vollmacht',
+    metaDescription:
+      'Beim Umzug ins Pflegeheim gibt es kein Sonderkündigungsrecht. Was für Frist, Vollmacht und Betreuer gilt und wie die Wohnung rechtzeitig aufgelöst wird.',
+    answer:
+      'Ein Umzug ins Pflegeheim gibt kein Sonderkündigungsrecht. Es gilt die normale Kündigungsfrist für Mieter von drei Monaten: Geht die Kündigung spätestens am dritten Werktag eines Monats beim Vermieter ein, endet das Mietverhältnis mit Ablauf des übernächsten Monats.\n\nKündigen kann der Mieter selbst, eine bevollmächtigte Person mit der Vollmacht im Original oder ein rechtlicher Betreuer. Ein Betreuer braucht dafür vorher die Genehmigung des Betreuungsgerichts.',
+    teaser: 'Frist, Vollmacht, Betreuer: was beim Heimeinzug für die Mietwohnung gilt.',
+    blocks: [
+      {
+        h: 'Kündigungsfrist und Mietende',
+        p: [
+          'Der Auszug allein beendet den Mietvertrag nicht. Bis zum Mietende fallen Miete und Heimkosten gleichzeitig an – deshalb lohnt es sich, die Kündigung abzuschicken, sobald Heimplatz und Einzugstermin feststehen.',
+          'Für Mieter gilt die Frist nach § 573c BGB, sofern der Vertrag keine kürzere vorsieht. Enthält er einen Kündigungsverzicht oder eine feste Laufzeit, sollte er vor der Kündigung geprüft werden, etwa beim Mieterverein.',
+        ],
+        table: {
+          caption: 'Beispiele für das Mietende bei drei Monaten Frist',
+          head: ['Kündigung geht beim Vermieter ein', 'Mietverhältnis endet am'],
+          rows: [
+            ['bis zum 3. Werktag im März', '31. Mai'],
+            ['bis zum 3. Werktag im April', '30. Juni'],
+            ['nach dem 3. Werktag im April', '31. Juli'],
+          ],
+        },
+      },
+      {
+        h: 'Wer die Kündigung unterschreiben darf',
+        table: {
+          caption: 'Wer kündigt, wenn der Mieter ins Heim zieht',
+          head: ['Situation', 'Wer unterschreibt', 'Worauf es ankommt'],
+          rows: [
+            ['Die Mieterin oder der Mieter kann selbst entscheiden', 'Sie oder er selbst', 'Schriftlich auf Papier, eigenhändig unterschrieben (§ 568 BGB)'],
+            ['Es gibt eine Vorsorgevollmacht', 'Die bevollmächtigte Person', 'Vollmacht im Original beilegen, eine Kopie kann der Vermieter zurückweisen (§ 174 BGB). Die Vollmacht sollte Wohnungs- und Mietangelegenheiten umfassen'],
+            ['Es gibt eine rechtliche Betreuung', 'Der Betreuer mit dem Aufgabenkreis Wohnungsangelegenheiten', 'Vorherige Genehmigung des Betreuungsgerichts (§ 1833 Abs. 3 BGB). Ohne sie ist die Kündigung unwirksam; das gilt auch für einen Aufhebungsvertrag'],
+            ['Weder Vollmacht noch Betreuung, eigene Entscheidung nicht mehr möglich', 'Zunächst niemand', 'Angehörige können beim Betreuungsgericht eine Betreuung anregen. Das dauert, die Miete läuft weiter'],
+          ],
+        },
+        note: {
+          title: 'Zeit für die Genehmigung einplanen',
+          text: 'Vor der Genehmigung hört das Betreuungsgericht die betroffene Person an. Wer als Betreuer kündigen muss, stellt den Antrag deshalb so früh wie möglich und spricht die Kündigung erst aus, wenn die Genehmigung vorliegt. Eine nachträgliche Genehmigung macht eine bereits ausgesprochene Kündigung nicht wirksam.',
+          tone: 'caution',
+        },
+      },
+      {
+        h: 'Ablauf: rückwärts vom Mietende planen',
+        steps: [
+          { title: 'Heimplatz bestätigen lassen', text: 'Erst wenn Einzugstermin und Vertrag mit der Einrichtung feststehen, die Wohnung kündigen.' },
+          { title: 'Kündigung abschicken', text: 'Mit Originalvollmacht oder nach der Genehmigung des Betreuungsgerichts. Eingang und Mietende schriftlich bestätigen lassen.' },
+          { title: 'Mit dem Heim klären, was mitkommen darf', text: 'Größe des Zimmers erfragen und welche eigenen Möbel erlaubt sind. Ein vertrauter Sessel oder eine Kommode erleichtern das Ankommen.' },
+          { title: 'Gemeinsam sortieren', text: 'Mitnehmen, an Angehörige geben, verkaufen oder spenden, entsorgen. Persönliche Unterlagen, Fotos und Wertsachen zuerst sichern.' },
+          { title: 'Umzug ins Heim, danach die Auflösung', text: 'Oft ist es entlastender, zuerst die ausgewählten Möbel ins Heim zu bringen und die Wohnung anschließend ohne Zeitdruck für die betroffene Person aufzulösen.' },
+          { title: 'Wohnung übergeben', text: 'Zählerstände, Schlüssel und Übergabeprotokoll – Einzelheiten in der [Checkliste für die Wohnungsübergabe](/ratgeber/checkliste-wohnungsuebergabe/).' },
+        ],
+      },
+      {
+        h: 'Wenn Miete und Heimkosten zusammen nicht tragbar sind',
+        p: [
+          'Reichen Einkommen und Vermögen für Heim und Wohnung nicht aus, kann beim Sozialamt Hilfe zur Pflege beantragt werden. Ob und wie lange die Miete der bisherigen Wohnung berücksichtigt wird, entscheidet das Amt im Einzelfall. Stellen Sie den Antrag so früh wie möglich – Sozialhilfe setzt in der Regel erst ein, wenn das Amt vom Bedarf weiß.',
+          'Was ein Umzug ins Heim kosten kann und welche Posten hineinspielen, steht bei den [Kosten eines Seniorenumzugs](/kosten/kosten-seniorenumzug-berlin/). Umzug und Auflösung der alten Wohnung planen wir auf Wunsch zusammen: [Seniorenumzug in Berlin](/leistungen/seniorenumzug-berlin/) und [Wohnungsauflösung in Berlin](/leistungen/wohnungsaufloesung-berlin/).',
+        ],
+      },
+    ],
+    faq: [
+      {
+        q: 'Gibt es wirklich kein Sonderkündigungsrecht beim Heimeinzug?',
+        a: 'Nein, nicht allein wegen des Heimeinzugs. Möglich sind die ordentliche Kündigung mit drei Monaten Frist, eine kürzere im Vertrag vereinbarte Frist oder eine einvernehmliche Aufhebung mit dem Vermieter.',
+      },
+      {
+        q: 'Muss der Vermieter einen Nachmieter akzeptieren?',
+        a: 'Nur wenn der Mietvertrag eine Nachmieterklausel enthält oder der Vermieter zustimmt. Einen allgemeinen Anspruch auf vorzeitige Entlassung gibt es nicht; bei langen festen Laufzeiten kann es Ausnahmen geben, das sollte geprüft werden. Passende Interessenten erhöhen aber oft die Bereitschaft zu einer Aufhebung.',
+      },
+      {
+        q: 'Was passiert mit den Möbeln, die nicht mitkommen?',
+        a: 'Was niemand übernehmen möchte, wird bei der Wohnungsauflösung getrennt: Verwertbares kann angerechnet werden, der Rest wird fachgerecht entsorgt. Persönliche Unterlagen und Fotos werden nicht entsorgt, sondern gesammelt übergeben.',
+      },
+      {
+        q: 'Kann die Wohnung schon vor dem Mietende geräumt werden?',
+        a: 'Ja, das ist üblich. Wichtig ist nur, dass alle Beteiligten mit der Räumung einverstanden sind und wichtige Unterlagen vorher gesichert wurden. Die Miete läuft trotzdem bis zum Mietende weiter, sofern der Vermieter keiner früheren Aufhebung zustimmt.',
+      },
+    ],
+    related: ['kosten-seniorenumzug-berlin', 'checkliste-wohnungsuebergabe', 'wohnungsaufloesung-checkliste-pdf'],
+    services: ['seniorenumzug-berlin', 'wohnungsaufloesung-berlin', 'haushaltsaufloesung-berlin'],
+    sources: [
+      { label: '§ 573c BGB – Fristen der ordentlichen Kündigung', url: 'https://www.gesetze-im-internet.de/bgb/__573c.html', publisher: 'Bundesministerium der Justiz', checked: '2026-11-02' },
+      { label: '§ 568 BGB – Form der Kündigung', url: 'https://www.gesetze-im-internet.de/bgb/__568.html', publisher: 'Bundesministerium der Justiz', checked: '2026-11-02' },
+      { label: '§ 174 BGB – Einseitiges Rechtsgeschäft eines Bevollmächtigten', url: 'https://www.gesetze-im-internet.de/bgb/__174.html', publisher: 'Bundesministerium der Justiz', checked: '2026-11-02' },
+      { label: '§ 1833 BGB – Aufgabe von Wohnraum des Betreuten', url: 'https://www.gesetze-im-internet.de/bgb/__1833.html', publisher: 'Bundesministerium der Justiz', checked: '2026-11-02' },
+    ],
+    published: '2026-11-02',
+    updated: '2026-11-02',
   },
 
   /* ================================================================== */

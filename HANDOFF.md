@@ -1,3 +1,7 @@
+# SEO-2026-08 · 02.11.2026 · zwei Kündigungsratgeber, noch nicht live
+
+Neue Ratgeber „Mietvertrag nach einem Todesfall kündigen“ und „Wohnung kündigen bei Umzug ins Pflegeheim“ führen Suchende vor der Nachlass- bzw. Wohnungsauflösung auf die Leistungsseiten. 84/64 Seiten, 0/0. Zusammen mit GROW-2026-03 (Kanalmessung) bereit fürs Deployment; der Push auf `hostinger-live` braucht die Freigabe des Betreibers. Danach: `npm run indexnow`, beide URLs in der Search Console zur Indexierung einreichen. Rechtliche Aussagen bei Gesetzesänderung (BGB §§ 563–564, 573c/d, 1833) nachprüfen.
+
 # GROW-2026-03 · 28.10.2026 · Kanalmessung und Eintragsunterlagen
 
 Kanal-Attribution (`profile`/`directory`/`portal`/`partner`) im Code, dazu Eintrags-Kit mit Profiltext und Links mit Kennung, Anzeigenentwurf, Partner- und Bewertungsvorlagen, Verzeichnis-Checkliste. Nächster Schritt liegt beim Betreiber, in dieser Reihenfolge: (1) Google-Profil: Beschreibung, Dienstleistungen und Link mit Kennung aus docs/EINTRAGS-KIT.md übernehmen, Bewertungslink melden; (2) Bing Places und Apple Business Connect nach docs/VERZEICHNIS-CHECKLISTE.md, URLs melden; (3) Verzeichnisse Stufe 2 inkl. Cylex-Korrektur; (4) Partnerbriefe nach docs/VORLAGEN-ANSPRACHE.md; (5) Anzeigen erst nach MAIL-2026-01. Neue Kanäle wirken erst nach Deployment.

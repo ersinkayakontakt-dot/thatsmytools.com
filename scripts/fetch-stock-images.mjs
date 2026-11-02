@@ -185,6 +185,16 @@ const THEMES = {
     theme: 'ausgedruckte Checkliste mit Stift',
     queries: ['printed checklist pen clipboard', 'to do list paper checkboxes', 'checklist on clipboard desk'],
   },
+  'kuendigung-todesfall': {
+    forPage: 'guide:mietvertrag-kuendigen-todesfall',
+    theme: 'Brief wird unterschrieben oder kuvertiert, ruhig, ohne Trauerinszenierung',
+    queries: ['signing a letter pen desk', 'envelope letter on wooden table', 'writing a formal letter by hand'],
+  },
+  'kuendigung-pflegeheim': {
+    forPage: 'guide:wohnung-kuendigen-pflegeheim',
+    theme: 'ältere Person mit Angehörigen bei Unterlagen, würdevoll, kein Krankenbett',
+    queries: ['elderly woman reviewing documents with daughter', 'senior and adult child paperwork table', 'older couple reading letter at home'],
+  },
   umzug: {
     forPage: 'service:umzug-berlin',
     theme: 'neutrale professionelle Umzugssituation',

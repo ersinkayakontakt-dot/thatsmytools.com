@@ -641,7 +641,7 @@ export const services: Service[] = [
       },
     ],
     related: ['haushaltsaufloesung-berlin', 'wohnungsaufloesung-berlin', 'messiwohnung-raeumen'],
-    guides: ['haushaltsaufloesung-nach-todesfall', 'wohnungsaufloesung-checkliste-pdf', 'kosten-haushaltsaufloesung-berlin', 'geerbte-wohnung-verkaufsfertig-machen'],
+    guides: ['haushaltsaufloesung-nach-todesfall', 'mietvertrag-kuendigen-todesfall', 'wohnungsaufloesung-checkliste-pdf', 'kosten-haushaltsaufloesung-berlin', 'geerbte-wohnung-verkaufsfertig-machen'],
     updated: '2026-07-29',
   },
 
@@ -1156,7 +1156,7 @@ export const services: Service[] = [
       },
     ],
     related: ['umzug-berlin', 'haushaltsaufloesung-berlin', 'wohnungsaufloesung-berlin'],
-    guides: ['umzugskosten-jobcenter-berlin', 'kosten-seniorenumzug-berlin', 'checkliste-wohnungsuebergabe'],
+    guides: ['wohnung-kuendigen-pflegeheim', 'kosten-seniorenumzug-berlin', 'umzugskosten-jobcenter-berlin', 'checkliste-wohnungsuebergabe'],
     updated: '2026-07-29',
   },
 

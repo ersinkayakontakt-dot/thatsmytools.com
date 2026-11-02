@@ -88,7 +88,7 @@ Torwächter: Metadaten, Linkgraph, Kannibalisierung, Schema, Bilder,
 Kontrast. **FEHLER blockieren die Veröffentlichung, Warnungen brauchen eine
 redaktionelle Entscheidung.**
 
-Stand 21.10.2026 (SEO-2026-05): 0 Fehler, **0 Warnungen** (80 Seiten, 60 indexierbar).
+Stand 02.11.2026 (SEO-2026-08): 0 Fehler, **0 Warnungen** (84 Seiten, 64 indexierbar). Davor 21.10.2026 (SEO-2026-05): 0 Fehler, 0 Warnungen (80 Seiten, 60 indexierbar).
 Von 11 auf 0 durch kontextuelle Verweise im Fließtext von Leistungsseiten und
 zwei neue Ratgeber – ohne Prioritäten oder Prüfschwellen zu ändern.
 Stufenmittel P5 9,2 · P4 6,7 · P3 5,0 · P2 3,8. Jede neue Warnung ist damit

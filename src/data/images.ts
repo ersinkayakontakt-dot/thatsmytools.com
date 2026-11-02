@@ -28,6 +28,8 @@ import costBulky from '../assets/kosten-sperrmuell-alte-moebel.jpg';
 import costSenior from '../assets/kosten-seniorenumzug-packen.jpg';
 import guidePhotos from '../assets/ratgeber-fotos-smartphone.jpg';
 import guidePrepare from '../assets/ratgeber-entruempelung-packen.jpg';
+import guideTenancyNotice from '../assets/ratgeber-kuendigung-brief.jpg';
+import guideCareHome from '../assets/ratgeber-pflegeheim-unterlagen.jpg';
 import guideHandover from '../assets/ratgeber-uebergabe-protokoll.jpg';
 import guideBereavement from '../assets/ratgeber-nachlass-sekretaer.jpg';
 import guideNoStopping from '../assets/ratgeber-halteverbot-schild.jpg';
@@ -72,6 +74,8 @@ export const siteImages: readonly SiteImage[] = [
   { pageId: 'guide:entruempelung-vorbereiten', role: 'hero', src: guidePrepare, alt: 'Person packt Gegenstände in einen offenen Umzugskarton', caption: 'Beispielbild: Was bleiben soll, wird vorher getrennt und gekennzeichnet.', imageOrigin: 'stock', showsPeople: true },
   { pageId: 'guide:checkliste-wohnungsuebergabe', role: 'hero', src: guideHandover, alt: 'Hand füllt ein Formular auf einem Klemmbrett aus, im Hintergrund Kartons', caption: 'Beispielbild: Das Übergabeprotokoll hält Zustand und Zählerstände fest.', imageOrigin: 'stock', showsPeople: true },
   { pageId: 'guide:haushaltsaufloesung-nach-todesfall', role: 'hero', src: guideBereavement, alt: 'Geöffneter alter Sekretär mit Papieren und Unterlagen', caption: 'Beispielbild: Unterlagen werden gesichtet, bevor irgendetwas geräumt wird.', imageOrigin: 'stock', showsPeople: false },
+  { pageId: 'guide:mietvertrag-kuendigen-todesfall', role: 'hero', src: guideTenancyNotice, alt: 'Hand hält zwei Briefumschläge über einem Tisch mit weiteren Umschlägen und Stiften', caption: 'Beispielbild: Die Kündigung geht schriftlich und unterschrieben an den Vermieter.', imageOrigin: 'stock', showsPeople: true },
+  { pageId: 'guide:wohnung-kuendigen-pflegeheim', role: 'hero', src: guideCareHome, alt: 'Ältere Frau mit Brille liest am Tisch mehrere Schreiben und Formulare', caption: 'Beispielbild: Vertrag, Vollmacht und Fristen werden vor dem Heimeinzug geklärt.', imageOrigin: 'stock', showsPeople: true },
   { pageId: 'guide:halteverbotszone-berlin-umzug', role: 'hero', src: guideNoStopping, alt: 'Verkehrsschild Absolutes Halteverbot vor einer Klinkerwand', caption: 'Beispielbild: Das Halteverbotsschild für den Umzugstag.', imageOrigin: 'stock', showsPeople: false },
   { pageId: 'guide:umzugskosten-jobcenter-berlin', role: 'hero', src: guideApplication, alt: 'Hand füllt mit einem Kugelschreiber ein Formular aus', caption: 'Beispielbild: Der Antrag wird vor der Beauftragung gestellt.', imageOrigin: 'stock', showsPeople: true },
   { pageId: 'guide:sperrmuell-moebel-entsorgen-berlin', role: 'hero', src: guideSofa, alt: 'Mann trägt ein grünes Sofa durch eine Wohnungstür', caption: 'Beispielbild: Ein Sofa wird aus der Wohnung getragen.', imageOrigin: 'stock', showsPeople: true },

@@ -42,6 +42,8 @@ const nextStepLinks = seo.requiredOutboundLinks
 /** Nur bei Themen, bei denen die Frage nach dem Betrieb wirklich aufkommt. */
 const COMPANY_LINK_ON: Record<string, 'trauerfall' | 'senioren'> = {
   'haushaltsaufloesung-nach-todesfall': 'trauerfall',
+  'mietvertrag-kuendigen-todesfall': 'trauerfall',
+  'wohnung-kuendigen-pflegeheim': 'senioren',
   'kosten-seniorenumzug-berlin': 'senioren',
 };
 const companyLinkContext = COMPANY_LINK_ON[guide.slug];
