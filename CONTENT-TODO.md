@@ -2,7 +2,7 @@
 
 ## Shipped (Quellstand, Deployment folgt) · LEAD-2026-01 · Anfragen dürfen nicht unbemerkt bleiben, 17.11.2026
 
-Betreiber meldet: weiterhin keine Anfragen. Befunde: (1) Formularmails landen nachweislich im Spam (MAIL-2026-01), eine Anfrage kann also eingegangen sein, ohne gesehen zu werden. (2) Fehler auf der Bestätigungsseite: `.btn` überschrieb das `hidden`-Attribut, nach erfolgreichem Absenden blieb „Vorhaben anfragen“ sichtbar – wirkt wie „nicht angekommen“. (3) Eine Websuche am 17.11. zeigt für schnellhelfer24.de noch den alten Seitenstand (Titel „Stressfreie Umzüge & Entrümpelungen“, „ab 69,99 €“, „24/7“) mit der **alten Nummer 0176 86066817**; site:-Abfrage ohne Treffer. Ob Google-Profil und Verzeichnisse noch die alte Nummer führen, muss der Betreiber prüfen. (4) Seit c524549 nichts mehr live (Deploy-Freigabe offen).
+Betreiber meldet: weiterhin keine Anfragen. Befunde: (1) Formularmails landen nachweislich im Spam (MAIL-2026-01), eine Anfrage kann also eingegangen sein, ohne gesehen zu werden. (2) Fehler auf der Bestätigungsseite: `.btn` überschrieb das `hidden`-Attribut, nach erfolgreichem Absenden blieb „Vorhaben anfragen“ sichtbar – wirkt wie „nicht angekommen“. (3) Eine Websuche am 17.11. zeigt für schnellhelfer24.de noch den alten Seitenstand (Titel „Stressfreie Umzüge & Entrümpelungen“, „ab 69,99 €“, „24/7“) mit der **alten Nummer 0176 86066817**; site:-Abfrage ohne Treffer. Betreiber bestätigt am 17.11.: einzig gültige Nummer ist 0176 44457385 – Anrufe über die alte Nummer gehen verloren. Google-Profil und Verzeichnisse müssen geprüft und umgestellt werden (Anleitung oben in docs/VERZEICHNIS-CHECKLISTE.md). (4) Seit c524549 nichts mehr live (Deploy-Freigabe offen).
 Umgesetzt: globale Regel `[hidden] { display: none !important; }`; auf der Bestätigungsseite Knopf „Referenz per WhatsApp senden“ (nur Referenz und Leistung, Hinweis auf Datenschutz § 6), damit jede Anfrage zusätzlich auf dem Telefon erscheint. Geprüft: 83 Seiten ohne sichtbares `hidden`-Element beim Laden (alt/neu gleich), Formular in vier Varianten alt/neu identisch (Schritte, Datenmenge), Bestätigungsseite jetzt ohne „Vorhaben anfragen“ und mit WhatsApp-Knopf; Gate 0/0, audit:request:selftest 7/7.
 
 ## Shipped (Quellstand, Deployment folgt) · SEO-2026-08 · Zwei Ratgeber zur Kündigung der Mietwohnung, 02.11.2026
@@ -484,8 +484,8 @@ Prüfung durch den Betreiber. Keiner davon wurde eigenmächtig geändert.
 
 | Feld | Was gebraucht wird |
 |---|---|
-| ~~`phone` / `phoneDisplay`~~ ✅ | Eingetragen: `+49 176 86066817` / `0176 86066817`. Muss **identisch** im Google-Unternehmensprofil hinterlegt werden. |
-| ~~`whatsapp`~~ ✅ | Eingetragen: `+49 176 86066817` (identisch mit der Telefonnummer). |
+| ~~`phone` / `phoneDisplay`~~ ✅ | **Überholt:** seit 21.10.2026 `+49 176 44457385` / `0176 44457385` (KONTAKT-2026-01); die alte `0176 86066817` ist nicht mehr erreichbar. Ursprünglich eingetragen: `+49 176 86066817` / `0176 86066817`. Muss **identisch** im Google-Unternehmensprofil hinterlegt werden. |
+| ~~`whatsapp`~~ ✅ | **Überholt:** seit 21.10.2026 `+49 176 44457385`. Ursprünglich eingetragen: `+49 176 86066817` (identisch mit der Telefonnummer). |
 | ~~`email`~~ ✅ | Eingetragen: `hello@schnellhelfer24.de`. Postfach muss unter der Domain tatsächlich empfangen – vor Launch mit einer Testmail prüfen. |
 | ~~`address.street`, `address.postalCode`~~ ✅ | Eingetragen: Lindenstr. 16, 10969 Berlin. `hasVisitableAddress` steht weiterhin auf `false` (Service Area Business) – umstellen, falls Kundschaft die Adresse aufsuchen kann. |
 

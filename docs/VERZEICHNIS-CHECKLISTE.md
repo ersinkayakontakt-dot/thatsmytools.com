@@ -18,6 +18,15 @@ gilt, was das Portal anzeigt.
 > nichts Zugeschicktes unterschreiben. Kostenlose Testpakete (z. B. bei
 > Sellwerk) nur mit gelesenem Kleingedrucktem.
 
+> **Zuerst: alte Rufnummer überall ersetzen (LEAD-2026-01).** Richtig ist
+> nur **0176 44457385**. Die frühere Nummer **0176 86066817** erreicht den
+> Betrieb nicht mehr, steht aber am 17.11.2026 noch im Suchmaschinen-Abbild
+> der Startseite. In jedem bestehenden Profil (Google zuerst, dann Cylex,
+> Gelbe Seiten, Das Örtliche, 11880, golocal) die Nummer prüfen und ändern,
+> auch im Feld für WhatsApp. Bei Google zusätzlich unter „Website“ den Link
+> mit Kennung eintragen und in der Search Console die Startseite neu
+> indexieren lassen, damit das alte Abbild ersetzt wird.
+
 ---
 
 ## Stufe 1 – Karten und Suche (zuerst, zusammen etwa 1 Stunde)

@@ -104,7 +104,9 @@ ein sauberes.
 1. **Angaben gegenprüfen und mit der Website zeichengenau abgleichen.**
    - Name exakt `Schnellhelfer24`, ohne Zusatz. Keine Keywords im Namen, das
      verstößt gegen die Richtlinien und kostet im Zweifel das Profil.
-   - Telefonnummer identisch mit `site.phone`: `0176 86066817`.
+   - Telefonnummer identisch mit `site.phone`: `0176 44457385` (seit 21.10.2026,
+     KONTAKT-2026-01). Die alte Nummer `0176 86066817` ist nicht mehr erreichbar
+     und darf in keinem Profil mehr stehen (LEAD-2026-01).
    - Als **Dienstleistungsgebiet-Unternehmen** geführt, solange
      `hasVisitableAddress` auf `false` steht. Beides muss dieselbe Aussage
      ergeben.
