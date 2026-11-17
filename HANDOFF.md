@@ -1,3 +1,7 @@
+# LEAD-2026-01 · 17.11.2026 · keine Anfragen: Ursachen und Sofortmaßnahmen
+
+Betreiber: weiterhin keine Anfragen. Reihenfolge nach Wirkung: (1) Deploy freigeben – seit c524549 ist nichts live, darunter der neue WhatsApp-Eingangsweg und der Fehler auf der Bestätigungsseite. (2) Spamordner von hello@schnellhelfer24.de durchsehen und Filter „nie als Spam“ für Betreff „Anfrage“ setzen; JSON-Ablage auf dem Server sichten (`api/_storage`). (3) Rufnummer im Google-Profil und allen Verzeichnissen prüfen: Die Suche zeigt noch 0176 86066817. (4) Search Console und Bing Webmaster: Sitemap einreichen, Startseite neu indexieren lassen; `npm run indexnow`. (5) SMTP-Zugang in sh24-config.php (MAIL-2026-01). Details: CONTENT-TODO.md LEAD-2026-01.
+
 # SEO-2026-08 · 02.11.2026 · zwei Kündigungsratgeber, noch nicht live
 
 Neue Ratgeber „Mietvertrag nach einem Todesfall kündigen“ und „Wohnung kündigen bei Umzug ins Pflegeheim“ führen Suchende vor der Nachlass- bzw. Wohnungsauflösung auf die Leistungsseiten. 84/64 Seiten, 0/0. Zusammen mit GROW-2026-03 (Kanalmessung) bereit fürs Deployment; der Push auf `hostinger-live` braucht die Freigabe des Betreibers. Danach: `npm run indexnow`, beide URLs in der Search Console zur Indexierung einreichen. Rechtliche Aussagen bei Gesetzesänderung (BGB §§ 563–564, 573c/d, 1833) nachprüfen.

@@ -2,6 +2,7 @@
 import Base from '../layouts/Base.astro';
 import Icon from '../components/Icon.astro';
 import { phone, whatsapp, email } from '../lib/contact';
+import { site, whatsappHref } from '../config/site';
 import { publishedGuides } from '../data/guides';
 import { seoPage } from '../data/seo-pages';
 import { handoverItems, openQuestions } from '../data/requestSignals';
@@ -39,6 +40,36 @@ const prep = [
       <p class="receipt-reference" data-receipt-reference hidden></p>
       <p data-receipt-photos hidden></p>
       <p data-mail-warning hidden></p>
+      {
+        /* Zweiter Eingangsweg (LEAD-2026-01): Die Formularmail landet teils im
+           Spam (MAIL-2026-01). Ein Tipp schickt Referenz und Leistung per
+           WhatsApp, damit die Anfrage sofort auf dem Telefon sichtbar ist.
+           Nur Referenz und Leistung, keine Kontakt- oder Adressdaten. */
+        whatsapp.available && (
+          <div class="wa-confirm" data-wa-confirm data-wa-base={whatsappHref(site.whatsapp)} hidden>
+            <p>
+              <strong>Schneller zur Antwort:</strong> Schicken Sie uns Ihre Referenz kurz per
+              WhatsApp. Dann sehen wir Ihre Anfrage sofort auf dem Telefon.
+            </p>
+            <a
+              class="btn btn--primary"
+              data-wa-confirm-link
+              href={whatsapp.href}
+              target="_blank"
+              rel="noopener"
+              data-track="whatsapp_click"
+              data-track-location="bestaetigung"
+            >
+              <Icon name="whatsapp" size={19} />
+              Referenz per WhatsApp senden
+            </a>
+            <p class="text-muted">
+              Die Nachricht enthält nur Ihre Referenz und die gewählte Leistung. Für WhatsApp gilt
+              <a href="/datenschutz/">Abschnitt 6 der Datenschutzerklärung</a>.
+            </p>
+          </div>
+        )
+      }
       <a class="btn btn--primary" data-receipt-start href="/angebot-anfragen/">Vorhaben anfragen</a>
       <noscript><p>Wenn Sie direkt nach dem Absenden hierhin weitergeleitet wurden, wurde Ihre Anfrage auf dem Server angenommen. Preis und Termin sind damit noch nicht bestätigt.</p></noscript>
     </div>
@@ -269,6 +300,21 @@ const prep = [
   }
 .handover-plan{background:var(--paper-2);border-left:6px solid var(--accent);padding:var(--sp-5);margin-bottom:var(--sp-6);border-radius:var(--r-sm);}.handover-plan h2{margin-top:0;}.handover-plan h3{font-size:1rem;margin-top:var(--sp-4);}.plan-steps{padding-left:1.3rem;}.plan-steps :global(li){margin-bottom:var(--sp-2);}.plan-steps :global(strong){display:block;}.plan-steps :global(span){color:var(--ink-3);}.handover-plan[hidden],.open-first[hidden]{display:none;}.open-first{margin-bottom:var(--sp-6);}
 .done__icon[hidden]{display:none;}.receipt-reference{padding:.8rem 1rem;border-radius:var(--r-sm);background:var(--brand-tint);display:inline-block;font-weight:700;}.receipt-reference[hidden]{display:none;}.done__icon{border-radius:50%;}.recap{border-radius:var(--r-lg);}
+  .wa-confirm {
+    margin: var(--sp-4) auto 0;
+    padding: var(--sp-4);
+    max-width: 36rem;
+    background: var(--paper-2);
+    border-radius: var(--r-sm);
+    text-align: left;
+  }
+  .wa-confirm p {
+    margin: 0 0 var(--sp-3);
+  }
+  .wa-confirm .text-muted {
+    margin: var(--sp-3) 0 0;
+    font-size: 0.9rem;
+  }
 </style>
 
 <script is:inline define:vars={{ handoverMap, openMap }}>
@@ -308,6 +354,14 @@ const prep = [
     document.querySelector('[data-receipt-message]').textContent = 'Ihre Angaben sind auf dem Server gespeichert. Wir melden uns auf dem gewählten Kontaktweg und klären die nächsten Schritte. Ein Termin ist damit noch nicht bestätigt.';
     var reference = document.querySelector('[data-receipt-reference]');reference.textContent = 'Ihre Referenz: ' + ref;reference.hidden=false;
     document.querySelector('[data-receipt-icon]').hidden=false;
+    var waBox = document.querySelector('[data-wa-confirm]');
+    var setWa = function (leistung) {
+      if (!waBox) return;
+      var text = 'Hallo, ich habe gerade über die Website angefragt. Referenz: ' + ref + (leistung ? ' (' + leistung + ')' : '') + '.';
+      waBox.querySelector('[data-wa-confirm-link]').href = waBox.getAttribute('data-wa-base') + '?text=' + encodeURIComponent(text);
+      waBox.hidden = false;
+    };
+    setWa('');
     document.querySelector('[data-receipt-start]').hidden=true;
     var photoMessage = document.querySelector('[data-receipt-photos]');
     var accepted = new URLSearchParams(window.location.search).get('fotos');
@@ -321,6 +375,7 @@ const prep = [
       var raw = sessionStorage.getItem('sh24_anfrage');
       if (!raw) return;
       var data = JSON.parse(raw);
+      if (typeof data.leistung === 'string' && data.leistung.length <= 60) setWa(data.leistung);
 
       Object.keys(labels).forEach(function (key) {
         if (!data[key]) return;

@@ -101,6 +101,13 @@
   box-sizing: border-box;
 }
 
+/* `hidden` muss immer gewinnen. Ohne diese Regel überschreibt jede Klasse mit
+   eigenem display (.btn: inline-flex) das Attribut – so blieb nach dem
+   Absenden „Vorhaben anfragen“ sichtbar, als sei nichts angekommen. */
+[hidden] {
+  display: none !important;
+}
+
 html {
   -webkit-text-size-adjust: 100%;
   scroll-behavior: smooth;
